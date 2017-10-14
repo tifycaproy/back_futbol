@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-9">
     @if($notificacion=Session::get('notificacion'))
         <div class="alert alert-success">{{ $notificacion }}</div>
     @endif
@@ -27,8 +27,8 @@
         <div class="alert alert-danger">{{ $notificacion_error }}</div>
     @endif
     </div>
-    <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
+    <div class="col-lg-3">
+        <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route("noticias.edit",codifica($_SESSION['noticia_id'])) }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-undo"></i> Regresar a la noticia</a></p>
     </div>
 </div>
 <form role="form" action="{{ route('noticiasgalerias.update', codifica($noticia->id)) }}" method="POST">
@@ -44,12 +44,9 @@
                 @endif
             </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Imagen Principal</label>
+                <label>Foto</label>
                 <div class="slim">
                     @if($noticia->foto<>'')<img src="uploads/noticias/{{ $noticia->foto }}" alt="">@endif
                     <input name="archivo" type="file" accept="image/jpeg, image/png" />
@@ -60,10 +57,10 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticiasgalerias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('galeria_noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticiasgalerias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('noticiasgalerias.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('noticiasgalerias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
         <div class="col-lg-6">
-            <a href="{{ route("galeria_noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-pencil"></i> Administrar galería de fotos</a>
+            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-pencil"></i> Administrar galería de fotos</a>
         </div>
     </div>
 </form>
@@ -84,14 +81,14 @@ $(document).ready(function(){
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '1024:512',
+      ratio: 'free',
       minSize: {
         width: 1024,
         height: 512
       },
       size: {
-        width: 1024,
-        height: 512
+        width: 2048,
+        height: 2048
       },
       download: false,
       labelLoading: 'Cargando imagen...',

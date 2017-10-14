@@ -32,7 +32,7 @@
                     <tr>
                         <th>Título</th>
                         <th>Fecha</th>
-                        <th width="60"></th>
+                        <th width="80"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +43,7 @@
                         <td>
                             <a href="{{ route('noticias.edit', codifica($noticia->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                             <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                            <a href="{{ route('rederactto_noticiasgaleria', codifica($noticia->id) ) }}" title="Galería de fotos"><i class="fa fa-fw fa-file-image-o"></i></a>
                         </td>
                     </tr>
                 @endforeach

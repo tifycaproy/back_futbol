@@ -115,7 +115,7 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Foto</label>
+                <label>Imagen Principal</label>
                 <div class="slim">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>

@@ -20,7 +20,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a></p>
+        <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a> <a href="{{ route("noticias.edit",codifica($_SESSION['noticia_id'])) }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-undo"></i> Regresar a la noticia</a></p>
     </div>
 </div>
 
@@ -40,7 +40,7 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Imagen Principal</label>
+                <label>Foto</label>
                 <div class="slim">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
@@ -62,6 +62,10 @@ $(document).ready(function(){
       minSize: {
         width: 1024,
         height: 512
+      },
+      size: {
+        width: 2048,
+        height: 2048
       },
       download: false,
       labelLoading: 'Cargando imagen...',
