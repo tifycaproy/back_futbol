@@ -20,6 +20,7 @@ class NoticiasController extends Controller
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {
+            if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
             $data["data"][]=$noticia;
         }
         return $data;
@@ -32,7 +33,7 @@ class NoticiasController extends Controller
         foreach ($noticia->fotos as $foto) {
             $data["data"][]=[
                 'titulo' => $foto->titulo,
-                'foto' => config('app.url') . $foto->foto,
+                'foto' => config('app.url') . 'noticias/' . $foto->foto,
             ];
         }
         return $data;

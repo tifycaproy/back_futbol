@@ -140,4 +140,9 @@ class NoticiasController extends Controller
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
         }
     }
+    public function rederactto_noticiasgaleria($id){
+        $id=decodifica($id);
+        $_SESSION['noticia_id']=$id;
+        return redirect()->route('noticiasgalerias.index');
+    }
 }
