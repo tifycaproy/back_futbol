@@ -131,23 +131,20 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
+		"Éxito"=>['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
 	),
-
-
 	"Actualizar usuario"=>array(
 		"Ruta"=>"/usuarios/token",
 		"Método"=>"PUT",
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
-			"apodo" => "varchar(30) / requerido",
-			"descripcion" => "mediumtext / opcional",
 			"celular" => "varchar(30) / opcional",
 			"pais" => "varchar(100) / opcional",
+			"ciudad" => "varchar(100) / opcional",
 			"fecha_nacimiento" => "fecha / opcional",
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
@@ -156,16 +153,44 @@ $data=array(
 			"error"=>"Internal error",
 		)
 	),
-/*
-
 //calendario
-	"Calendario (partidos)"=>array(
+	"Copas"=>array(
+		"Ruta"=>"/copas",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idcopa","titulo"
+		)
+	),
+	"Partidos"=>array(
+		"Ruta"=>"/partidos",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"copa",
+			"partido (array)"=>[
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+			],
+		)
+	),
+	"Calendario"=>array(
 		"Ruta"=>"/calendario",
 		"Método"=>"GET",
 		"Éxito (Array)"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","posicion", "tipo", "fecha", "fecha_fifa", "estatus", "destacado"
+			"copa",
+			"partido (array)"=>[
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+			],
 		)
 	),
+//jugadores
+	"Nómina"=>array(
+		"Ruta"=>"/nomina",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idjudador","banner"
+		)
+	),
+
+/*
 	"Calendario Single (partidos)"=>array(
 		"Ruta"=>"/calendario_single?idcalendario={idcalendario}",
 		"Método"=>"GET",

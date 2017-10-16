@@ -253,6 +253,7 @@ class UsuariosController extends Controller
             }else{
                 $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
+            $usuario["codigo"]=codifica($idusuario);
             unset($usuario["foto_redes"]);
             return ["status" => "exito", "data" => $usuario];
         } catch (Exception $e) {
