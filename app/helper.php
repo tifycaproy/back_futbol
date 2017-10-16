@@ -83,5 +83,6 @@ function meses($mes){
 	$meses_array = array("","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 	return $meses_array[$mes];
 }
+	
 
 ?>
