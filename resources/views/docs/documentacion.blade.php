@@ -54,21 +54,6 @@ $data=array(
 			'titulo','foto'
 		],
 	),
-/*
-	"Ofertas"=>array(
-		"Ruta"=>"/ofertas?pag={pagina}",
-		"Método"=>"GET",
-		"Éxito"=>[
-			'idoferta',
-			'titulo',
-			'enlace',
-			'descripcion',
-			'foto',
-			'isVideo',
-			'isInfografia',
-			'isNoticiaInfografia'
-		],
-	),
 
 //usuarios
 	"Registrarse"=>array(
@@ -79,16 +64,14 @@ $data=array(
 			"apellido" => "varchar(60) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
-			"apodo" => "varchar(30) / requerido",
-			"descripcion" => "mediumtext / opcional",
 			"celular" => "varchar(30) / opcional",
 			"pais" => "varchar(100) / opcional",
-			"fecha_nacimiento" => "fecha / opcional",
+			"ciudad" => "varchar(100) / opcional",
+			"fecha_nacimiento" => "fecha / opcional / yy-mm-dd",
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
-			"referido" => "varchar(30) (apodo del referido)",
 		),
-		"Éxito"=>"token","idusuario",
+		"Éxito"=>"token",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
 		)
@@ -100,7 +83,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token","idusuario",
+		"Éxito"=>"token",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
 		)
@@ -113,11 +96,11 @@ $data=array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
-			"foto_redes (URL opcional)"
+			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token","idusuario",
+		"Éxito"=>"token",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
+			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
 	),
 	"Recuperar clave"=>array(
@@ -133,7 +116,6 @@ $data=array(
 			"error"=>array("Error en validación de datos" , "Email incorrecto")
 		)
 	),
-
 	"Ingresar con pin"=>array(
 		"Ruta"=>"/ingresar_con_pin",
 		"Método"=>"POST",
@@ -141,35 +123,25 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token","idusuario",
+		"Éxito"=>"token",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)
 	),
-
 	"Consultar usuario"=>array(
-		"Ruta"=>"/usuarios?idusuario={idusuario}",
+		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>"array de datos",
+		"Éxito"=>['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
 	),
 
-	"Consultar usuario por idusuario"=>array(
-		"Ruta"=>"/usuarios_idusuario?token={token}",
-		"Método"=>"GET",
-		"Éxito"=>"array de datos",
-		"Falla"=>array(
-			"error"=>"Invalid token",
-		)
-	),
 
 	"Actualizar usuario"=>array(
-		"Ruta"=>"/usuarios",
+		"Ruta"=>"/usuarios/token",
 		"Método"=>"PUT",
 		"Parámetros"=>array(
-			"token" => '',
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
 			"apodo" => "varchar(30) / requerido",
@@ -184,11 +156,7 @@ $data=array(
 			"error"=>"Internal error",
 		)
 	),
-	"Configuración perfil"=>array(
-		"Ruta"=>"/configuracion_perfil",
-		"Método"=>"GET",
-		"Éxito"=>array("politicas","instrucciones")
-	),
+/*
 
 //calendario
 	"Calendario (partidos)"=>array(
