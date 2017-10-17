@@ -202,6 +202,19 @@ $data=array(
 			"error"=>["El token es incorrecto","idjugador incorrecto"],
 		)
 	),
+	"Aplaudir"=>array(
+		"Ruta"=>"/aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idjudador" => "integer / requerido",
+			"idpartido" => "integer / requerido",
+			"imei" => "varchar(45) / requerido",
+		),
+		"Éxito"=>"no devuelve datos, sip'lemente se debería refrescar la vista",
+		"Falla"=>array(
+			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido")
+		)
+	),
 
 /*
 	"Calendario Single (partidos)"=>array(
