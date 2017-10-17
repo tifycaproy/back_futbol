@@ -189,6 +189,19 @@ $data=array(
 			"idjudador","banner"
 		)
 	),
+	"Single del jugador"=>array(
+		"Ruta"=>"/single_jugador/{token}/{idjugador}",
+		"Método"=>"GET",
+		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner',
+		'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
+		'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
+		'apalusos_ultimo_partido', 'aplausos_acumulado'
+
+		],
+		"Falla"=>array(
+			"error"=>["El token es incorrecto","idjugador incorrecto"],
+		)
+	),
 
 /*
 	"Calendario Single (partidos)"=>array(
