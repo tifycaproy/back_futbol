@@ -30,17 +30,8 @@ class JugadoresController extends Controller
         }
         return $data;
     }
-    public function single_jugador($token,$id)
+    public function single_jugador($id)
     {
-        //Validaciones
-        $errors=[];
-        $idusuario=decodifica_token($token);
-        if($idusuario=="") $errors[]="El token es incorrecto";
-        if(count($errors)>0){
-            return ["status" => "fallo", "error" => $errors];
-        }
-        //fin validaciones
-
         if($jugador=Jugador::find($id)){
             $data["status"]='exito';
             $data["data"]=[

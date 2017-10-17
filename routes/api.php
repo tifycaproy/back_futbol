@@ -36,4 +36,4 @@ Route::get('calendario', 'api\CalendarioController@calendario');
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
-Route::get('single_jugador/{token}/{id}', 'api\JugadoresController@single_jugador');
+Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');

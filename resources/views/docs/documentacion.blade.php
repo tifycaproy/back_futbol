@@ -190,7 +190,7 @@ $data=array(
 		)
 	),
 	"Single del jugador"=>array(
-		"Ruta"=>"/single_jugador/{token}/{idjugador}",
+		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
 		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner',
 		'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
