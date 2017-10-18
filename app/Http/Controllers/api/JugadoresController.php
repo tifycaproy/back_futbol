@@ -42,6 +42,7 @@ class JugadoresController extends Controller
                 'n_camiseta' => $jugador->n_camiseta,
                 'posicion' => $jugador->posicion,
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
+                'instagram' => $jugador->instagram,
             ];
             if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
                 $fecha=$sepuedeaplaudir->fecha;
@@ -68,7 +69,15 @@ class JugadoresController extends Controller
                 $data["data"]['apalusos_ultimo_partido'] = 0;
             }
             $data["data"]['aplausos_acumulado']=Aplauso::where('jugadores_id',$id)->count();
-            
+
+            $noticias=$jugador->noticias;
+            $data["data"]['noticias']=[];
+            foreach ($noticias as $noticia) {
+                if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+                unset($noticia->pivot);
+                $data["data"]['noticias'][]=$noticia;
+            }
+
         }else{
             $data["status"]='fallo';
             $data["error"]=['idjugador incorrecto'];

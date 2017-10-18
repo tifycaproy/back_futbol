@@ -16,7 +16,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias=Noticia::where('active',1)->orderby('fecha','desc','id')->paginate(25);
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->orderby('fecha','desc','id')->paginate(25);
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {

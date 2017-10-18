@@ -43,8 +43,7 @@ $data=array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
-			'id','link','titulo','descripcion','fecha','foto','aparecetimelineppal (1 ó 0)','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)',
-			'aparevetimelinemonumentales (1 ó 0)'
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
 		],
 	),
 	"Noticias fotos"=>array(
@@ -181,6 +180,14 @@ $data=array(
 			],
 		)
 	),
+	"Convocados"=>array(
+		"Ruta"=>"/convocados",
+		"Método"=>"GET",
+		"Éxito"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"jugadores (array)"=>['idjudador','banner'],
+		)
+	),
 //jugadores
 	"Nómina"=>array(
 		"Ruta"=>"/nomina",
@@ -192,11 +199,11 @@ $data=array(
 	"Single del jugador"=>array(
 		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
-		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner',
-		'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
-		'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
-		'apalusos_ultimo_partido', 'aplausos_acumulado'
-
+		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner','instagram',
+			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
+			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
+			'apalusos_ultimo_partido', 'aplausos_acumulado',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
 		],
 		"Falla"=>array(
 			"error"=>["El token es incorrecto","idjugador incorrecto"],

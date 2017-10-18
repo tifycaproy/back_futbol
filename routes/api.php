@@ -33,6 +33,7 @@ Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
 Route::get('copas', 'api\CalendarioController@copas');
 Route::get('partidos', 'api\CalendarioController@partidos');
 Route::get('calendario', 'api\CalendarioController@calendario');
+Route::get('convocados', 'api\CalendarioController@convocados');
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');

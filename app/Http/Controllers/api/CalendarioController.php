@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Copas;
+use App\Convocado;
+use App\Configuracion;
 
 
 class CalendarioController extends Controller
@@ -80,6 +82,34 @@ class CalendarioController extends Controller
                 "partidos" => $fechas
             ];
         }
+        return $data;
+    }
+    public function convocados()
+    {
+        $data["status"]='exito';
+        $configuración=Configuracion::first();
+        $fecha=$configuración->partido;
+        $data["data"]=[
+            'idpartido'=>$fecha->id,
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "goles_1"=>$fecha->goles_1,
+            "equipo_2"=>$fecha->equipo2->nombre,
+            "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "goles_2"=>$fecha->goles_2,
+            'fecha'=>$fecha->fecha,
+            'fecha_etapa'=>$fecha->fecha_etapa,
+            'estadio'=>$fecha->estadio,
+        ];
+        $jugadores=[];
+        $convocados=Convocado::orderby('orden')->get();
+        foreach ($convocados as $convocado) {
+            $jugadores[]=[
+                'idjudador' => $convocado->jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $convocado->jugador->banner,
+            ];
+        }
+        $data["data"]['jugadores']=$jugadores;
         return $data;
     }
 }
