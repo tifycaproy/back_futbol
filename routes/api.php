@@ -40,4 +40,10 @@ Route::get('nomina', 'api\JugadoresController@nomina');
 Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
 Route::post('aplaudir', 'api\JugadoresController@aplaudir');
 
+//Monumentales
+Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
+Route::get('monumentales_encuesta', 'api\MonumentalesController@monumentales_encuesta');
+Route::get('single_monumental/{id}', 'api\MonumentalesController@single_monumental');
+Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
+Route::get('ranking_monumentales', 'api\MonumentalesController@ranking_monumentales');
 
