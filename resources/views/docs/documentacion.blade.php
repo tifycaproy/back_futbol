@@ -39,6 +39,13 @@ function mostrar($m, $primera){
 	echo "</table>";
 }
 $data=array(
+	"Configuración"=>array(
+		"Ruta"=>"/configuracion",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'url_tabla','url_simulador','url_juramento','url_livestream'
+		],
+	),
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",
@@ -259,6 +266,11 @@ $data=array(
 		"Falla"=>array(
 			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido")
 		)
+	),
+	"Monumentales Anual"=>array(
+		"Ruta"=>"/monumentales_anuales",
+		"Método"=>"GET",
+		"Éxito"=>['nombre','banner'],
 	),
 	"Ranking Monumentales"=>array(
 		"Ruta"=>"/ranking_monumentales",
