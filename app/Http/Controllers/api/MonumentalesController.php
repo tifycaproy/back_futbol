@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Monumental;
 use App\MonumentalEncuesta;
 use App\MonumentalVotos;
+use App\MonumentalAnual;
 
 
 
@@ -79,6 +80,19 @@ class MonumentalesController extends Controller
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
         } 
+    }
+    public function monumentales_anuales()
+    {
+        $data["status"]='exito';
+        $data['data']=[];
+        $monumentales=MonumentalAnual::select('nombre','banner')->get();
+        foreach ($monumentales as $monumental){
+            $data["data"][]=[
+                "nombre"=>$monumental->nombre,
+                "banner"=>config('app.url') . 'monumentales/' . $monumental->banner,
+            ];
+        }
+        return $data;
     }
     public function ranking_monumentales()
     {

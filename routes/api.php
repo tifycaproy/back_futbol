@@ -45,5 +45,6 @@ Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentale
 Route::get('monumentales_encuesta', 'api\MonumentalesController@monumentales_encuesta');
 Route::get('single_monumental/{id}', 'api\MonumentalesController@single_monumental');
 Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
+Route::get('monumentales_anuales', 'api\MonumentalesController@monumentales_anuales');
 Route::get('ranking_monumentales', 'api\MonumentalesController@ranking_monumentales');
 
