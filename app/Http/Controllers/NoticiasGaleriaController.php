@@ -46,7 +46,7 @@ class NoticiasGaleriaController extends Controller
 
                 //file_put_contents('uploads/noticias/' . $fileName, $image);
                 $s3 = \Storage::disk(config('s3'));
-                $filePath = '/uploads/noticias/' . $fileName;
+                $filePath = '/noticias/' . $fileName;
                 $s3->put($filePath, $image, 'public');
 
             }
