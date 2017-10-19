@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 @session_start();
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 use App\NoticiaFoto;
 
@@ -43,7 +44,11 @@ class NoticiasGaleriaController extends Controller
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
 
-                file_put_contents('uploads/noticias/' . $fileName, $image);
+                //file_put_contents('uploads/noticias/' . $fileName, $image);
+                $s3 = \Storage::disk(config('s3'));
+                $filePath = '/uploads/noticias/' . $fileName;
+                $s3->put($filePath, $image, 'public');
+
             }
             $noticia=NoticiaFoto::create([
                 'titulo' => $request->titulo,

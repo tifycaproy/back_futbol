@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Noticia;
+use App\Jugador;
+use App\NoticiaJugador;
 
 class NoticiasController extends Controller
 {
@@ -144,5 +146,22 @@ class NoticiasController extends Controller
         $id=decodifica($id);
         $_SESSION['noticia_id']=$id;
         return redirect()->route('noticiasgalerias.index');
+    }
+
+    public function noticias_jugadores()
+    {
+        $jugadores=Jugador::orderby('nombre')->get();
+        return view('noticias.jugadores')->with('jugadores',$jugadores);
+    }
+    public function update_jugadores(Request $request)
+    {
+        NoticiaJugador::where('noticias_id',$_SESSION['noticia_id'])->delete();
+        foreach ($request->jugadores as $idjugador) {
+            NoticiaJugador::create([
+                'noticias_id' => $_SESSION['noticia_id'],
+                'jugadores_id' => $idjugador,
+            ]);
+        }
+        return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
     }
 }

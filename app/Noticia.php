@@ -14,4 +14,9 @@ class Noticia extends Model
     {
         return $this->hasMany('App\NoticiaFoto');
     }
+
+    public function jugadores()
+    {
+        return $this->where('activo',1)->orderby('nombre')->belongsToMany('App\Jugador', 'noticias_jugadores', 'noticias_id','jugadores_id')->select('jugadores.id','nombre','n_camiseta','posicion');
+    }
 }

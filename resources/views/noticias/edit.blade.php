@@ -134,10 +134,15 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('noticias.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  
+            <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> 
+            <a href="{{ route('noticias.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> 
+            <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
         <div class="col-lg-6">
-            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-pencil"></i> Administrar galería de fotos</a>
+            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-file-image-o"></i> Administrar galería de fotos</a> 
+            <a href="{{ route('noticias_jugadores') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores</a> 
+
         </div>
     </div>
 </form>

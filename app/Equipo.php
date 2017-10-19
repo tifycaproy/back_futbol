@@ -8,6 +8,6 @@ class Equipo extends Model
 {
     protected $table = 'equipos';
 	protected $guarded = ['id'];
-
+	
 //relaciones
 }
