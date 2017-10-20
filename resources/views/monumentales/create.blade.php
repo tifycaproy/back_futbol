@@ -8,31 +8,31 @@
 
 <div class="row">
      <div class="col-lg-6">
-        <h1 class="page-header">Noticias</h1>
+        <h1 class="page-header">Monumentales</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("noticias.index") }}"><i class="fa fa-fw fa-pencil"></i> Noticias</a></li>
+            <li><a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a></li>
             <li>Crear</li>
         </ol>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <p class="text-right"><a href="{{ route('noticias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a></p>
+        <p class="text-right"><a href="{{ route('monumentales.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a></p>
     </div>
 </div>
 
-<form role="form" action="{{ route('noticias.store') }}" method="POST">
+<form role="form" action="{{ route('monumentales.store') }}" method="POST">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
-                <label>Título</label>
-                <input type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" maxlength="100" required autofocus>
-                @if ($errors->has('titulo'))
-                    <p class="help-block">{{ $errors->first('titulo') }}</p>
+            <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" maxlength="100" required autofocus>
+                @if ($errors->has('nombre'))
+                    <p class="help-block">{{ $errors->first('nombre') }}</p>
                 @endif
             </div>
         </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                 <label>Fecha</label>
                 <input type="date" class="form-control" name="fecha" value="{{ old('fecha') }}" maxlength="10" required>
                 @if ($errors->has('fecha'))
@@ -63,7 +63,7 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Aparece en noticias generales</label>
+                <label>Aparece en monumentales generales</label>
                 <select name="aparecetimelineppal" class="form-control">
                     <option value="1"@if(old('aparecetimelineppal')=='1') selected @endif>Si</option>
                     <option value="0"@if(old('aparecetimelineppal')=='0') selected @endif>No</option>
@@ -115,15 +115,15 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Foto</label>
+                <label>Imagen Principal</label>
                 <div class="slim">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 512 x 512 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
               </div>
         </div>
     </div>
-    <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
+    <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('monumentales.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
 </form>
 
 @endsection
@@ -133,14 +133,14 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: 'free',
+      ratio: '1024:512',
       minSize: {
-        width: 512,
+        width: 1024,
         height: 512
       },
       size: {
         width: 1024,
-        height: 1024
+        height: 512
       },
       download: false,
       labelLoading: 'Cargando imagen...',

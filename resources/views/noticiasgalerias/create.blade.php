@@ -44,7 +44,7 @@
                 <div class="slim">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 512 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 512 x 512 píxeles | JPG y PNG</span></label>
               </div>
         </div>
     </div>

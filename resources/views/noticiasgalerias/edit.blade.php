@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-8">
     @if($notificacion=Session::get('notificacion'))
         <div class="alert alert-success">{{ $notificacion }}</div>
     @endif
@@ -27,7 +27,7 @@
         <div class="alert alert-danger">{{ $notificacion_error }}</div>
     @endif
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route("noticias.edit",codifica($_SESSION['noticia_id'])) }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-undo"></i> Regresar a la noticia</a></p>
     </div>
 </div>
@@ -48,11 +48,14 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    @if($noticia->foto<>'')<img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" alt="">@endif
                     <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 512 x 512 píxeles | JPEG y PNG</span></label>
-              </div>
+                <label><span>Mínimo 512 x 512 píxeles | JPG y PNG</span></label>
+                @if($noticia->foto<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" style="max-width: 100%"></p>
+                @endif
+            </div>
         </div>
     </div>
     <div class="row">

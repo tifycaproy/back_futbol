@@ -38,7 +38,7 @@
         <div class="col-lg-6">
             <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                 <label>Nombre</label>
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" maxlength="60" required autofocus>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre',$equipo->nombre) }}" maxlength="60" required autofocus>
                 @if ($errors->has('nombre'))
                     <p class="help-block">{{ $errors->first('nombre') }}</p>
                 @endif
@@ -47,12 +47,15 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Foto</label>
-                <div class="slim" style="max-width: 256px">
-                    @if($equipo->bandera<>'')<img src="uploads/equipos/{{ $equipo->bandera }}" alt="">@endif
+                <div class="slim">
                     <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPEG y PNG</span></label>
-              </div>
+                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                @if($equipo->bandera<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'equipos/' . $equipo->bandera }}" alt=""></p>
+                @endif
+            </div>
         </div>
     </div>
     <div class="row">

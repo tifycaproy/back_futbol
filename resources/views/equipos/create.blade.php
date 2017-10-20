@@ -42,7 +42,7 @@
                 <div class="slim" style="max-width: 256px">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
               </div>
         </div>
     </div>

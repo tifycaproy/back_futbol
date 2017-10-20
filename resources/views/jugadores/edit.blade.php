@@ -34,89 +34,61 @@
 <form role="form" action="{{ route('jugadores.update', codifica($jugador->id)) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
-    <div class="row">
+     <div class="row">
         <div class="col-lg-6">
             <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                <label>Título</label>
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre', $jugador->nombre) }}" maxlength="100" required autofocus>
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre', $jugador->nombre) }}" maxlength="60" required autofocus>
                 @if ($errors->has('nombre'))
                     <p class="help-block">{{ $errors->first('nombre') }}</p>
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Link</label>
-                <input type="text" class="form-control" name="link" value="{{ old('link', $jugador->link) }}" maxlength="300">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea name="descripcion" class="form-control">{{ old('descripcion', $jugador->descripcion) }}</textarea>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                <label>Fecha</label>
-                <input type="date" class="form-control" name="fecha" value="{{ old('fecha', $jugador->fecha) }}" maxlength="10" required>
-                @if ($errors->has('fecha'))
-                    <p class="help-block">{{ $errors->first('fecha') }}</p>
+        <div class="col-lg-3">
+            <div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
+                <label>Fecha de nacimiento</label>
+                <input type="date" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $jugador->fecha_nacimiento) }}" maxlength="10" required>
+                @if ($errors->has('fecha_nacimiento'))
+                    <p class="help-block">{{ $errors->first('fecha_nacimiento') }}</p>
                 @endif
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>Aparece en jugadores generales</label>
-                <select name="aparecetimelineppal" class="form-control">
-                    <option value="1"@if(old('aparecetimelineppal', $jugador->aparecetimelineppal)=='1') selected @endif>Si</option>
-                    <option value="0"@if(old('aparecetimelineppal', $jugador->aparecetimelineppal)=='0') selected @endif>No</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Aparece en monumentales</label>
-                <select name="aparevetimelinemonumentales" class="form-control">
-                    <option value="0"@if(old('aparevetimelinemonumentales', $jugador->aparevetimelinemonumentales)=='0') selected @endif>No</option>
-                    <option value="1"@if(old('aparevetimelinemonumentales', $jugador->aparevetimelinemonumentales)=='1') selected @endif>Si</option>
+                <label>Activo</label>
+                <select name="activo" class="form-control">
+                    <option value="1"@if(old('activo', $jugador->activo)=='1') selected @endif>Si</option>
+                    <option value="0"@if(old('activo', $jugador->activo)=='0') selected @endif>No</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>Tipo</label>
-                <select name="tipo" class="form-control">
-                    <option value="Normal"@if(old('tipo', $jugador->tipo)=='Normal') selected @endif>Normal</option>
-                    <option value="Video"@if(old('tipo', $jugador->tipo)=='Video') selected @endif>Video</option>
-                    <option value="Infografia"@if(old('tipo', $jugador->tipo)=='Infografia') selected @endif>Infografía</option>
-                    <option value="Galeria"@if(old('tipo', $jugador->tipo)=='Galeria') selected @endif>Galería</option>
-                    <option value="Stat"@if(old('tipo', $jugador->tipo)=='Stat') selected @endif>Stat</option>
-                </select>
+                <label>Nacionalidad</label>
+                <input type="text" class="form-control" name="nacionalidad" value="{{ old('nacionalidad', $jugador->nacionalidad) }}" maxlength="60">
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Activa</label>
-                <select name="active" class="form-control">
-                    <option value="1"@if(old('active', $jugador->active)=='1') selected @endif>Si</option>
-                    <option value="0"@if(old('active', $jugador->active)=='0') selected @endif>No</option>
-                </select>
+        <div class="col-lg-3">
+            <div class="form-group{{ $errors->has('n_camiseta') ? ' has-error' : '' }}">
+                <label>Número de camiseta</label>
+                <input type="text" class="form-control" name="n_camiseta" value="{{ old('n_camiseta', $jugador->n_camiseta) }}" maxlength="2" required>
+                @if ($errors->has('n_camiseta'))
+                    <p class="help-block">{{ $errors->first('n_camiseta', $jugador->nombre) }}</p>
+                @endif
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>Destacada</label>
-                <select name="destacada" class="form-control">
-                    <option value="0"@if(old('destacada', $jugador->destacada)=='0') selected @endif>No</option>
-                    <option value="1"@if(old('destacada', $jugador->destacada)=='1') selected @endif>Si</option>
-                </select>
+                <label>Posición</label>
+                <input type="text" class="form-control" name="posicion" value="{{ old('posicion', $jugador->posicion) }}" maxlength="40">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Instagram</label>
+                <input type="text" class="form-control" name="instagram" value="{{ old('instagram', $jugador->instagram) }}" maxlength="60">
             </div>
         </div>
     </div>
@@ -124,11 +96,27 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Foto</label>
-                <div class="slim">
-                    @if($jugador->foto<>'')<img src="uploads/jugadores/{{ $jugador->foto }}" alt="">@endif
-                    <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                <div class="slim slim_foto">
+                  <input name="foto" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                @if($jugador->foto<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->foto }}" style="max-width: 100%"></p>
+                @endif
+              </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Banner</label>
+                <div class="slim slim_banner">
+                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                </div>
+                <label><span>Mínimo 512 x 240 píxeles | JPG y PNG</span></label>
+                @if($jugador->foto<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->banner }}" style="max-width: 100%"></p>
+                @endif
               </div>
         </div>
     </div>

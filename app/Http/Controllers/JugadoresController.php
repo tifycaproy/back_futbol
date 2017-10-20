@@ -24,8 +24,9 @@ class JugadoresController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
             'fecha_nacimiento' => 'required',
+            'n_camiseta' => 'required',
         ];
 
         try {
@@ -34,17 +35,32 @@ class JugadoresController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $fileName = "";
-            if($request->archivo){
-                $foto=json_decode($request->archivo);
+            $fileName_foto = "";
+            if($request->foto){
+                $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
-                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
-                $filepath = '/jugadores/' . $fileName;
+                $filepath = '/jugadores/' . $fileName_foto;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                    'http'=>[ 'verify'=>false],
+                ));
+            }
+
+            $fileName_banner = "";
+            if($request->foto){
+                $foto=json_decode($request->foto);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = '/jugadores/' . $fileName_banner;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -56,16 +72,15 @@ class JugadoresController extends Controller
                 ));
             }
             $jugador=Jugador::create([
-                'titulo' => $request->titulo,
-                'link' => $request->link,
-                'descripcion' => $request->descripcion,
-                'fecha' => $request->fecha,
-                'active' => $request->active,
-                'aparecetimelineppal' => $request->aparecetimelineppal,
-                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
-                'destacada' => $request->destacada,
-                'tipo' => $request->tipo,
-                'foto' => $fileName,
+                'nombre' => $request->nombre,
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+                'nacionalidad' => $request->nacionalidad,
+                'n_camiseta' => $request->n_camiseta,
+                'posicion' => $request->posicion,
+                'instagram' => $request->instagram,
+                'activo' => $request->activo,
+                'foto' => $fileName_foto,
+                'banner' => $fileName_banner,
             ]);
             return redirect()->route('jugadores.edit', codifica($jugador->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -103,28 +118,21 @@ class JugadoresController extends Controller
             $id=decodifica($id);
 
             $data=[
-                'titulo' => $request->titulo,
-                'link' => $request->link,
-                'descripcion' => $request->descripcion,
-                'fecha' => $request->fecha,
-                'active' => $request->active,
-                'aparecetimelineppal' => $request->aparecetimelineppal,
-                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
-                'destacada' => $request->destacada,
-                'tipo' => $request->tipo,
+                'nombre' => $request->nombre,
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+                'nacionalidad' => $request->nacionalidad,
+                'n_camiseta' => $request->n_camiseta,
+                'posicion' => $request->posicion,
+                'instagram' => $request->instagram,
+                'activo' => $request->activo,
             ];
 
-            $fileName = "";
-            if($request->archivo){
-                $foto=json_decode($request->archivo);
+            if($request->foto){
+                $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
-                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
-                $filepath = '/jugadores/' . $fileName;
+                $filepath = '/jugadores/' . $fileName_foto;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -134,8 +142,27 @@ class JugadoresController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-                $data['foto']=$fileName;
+                $data['foto']=$fileName_foto;
             }
+
+            if($request->foto){
+                $foto=json_decode($request->foto);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = '/jugadores/' . $fileName_banner;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['foto']=$fileName_banner;
+            }
+
             Jugador::find($id)->update($data);
             return redirect()->route('jugadores.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 

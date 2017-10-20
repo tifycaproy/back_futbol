@@ -48,5 +48,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('calendarios_eliminar/{id}', 'CalendarioController@destroy')->name('calendarios_eliminar');
     Route::resource('calendarios', 'CalendarioController');
 
+    Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');
+    Route::resource('monumentales', 'MonumentalesController');
+
 
 });

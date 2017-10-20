@@ -42,10 +42,6 @@ class NoticiasController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
                 $filepath = '/noticias/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
@@ -122,10 +118,6 @@ class NoticiasController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
                 $filepath = '/noticias/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
