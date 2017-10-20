@@ -8,47 +8,45 @@
 
 <div class="row">
      <div class="col-lg-6">
-        <h1 class="page-header">Galería de fotos</h1>
+        <h1 class="page-header">Equipos</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("noticiasgalerias.index") }}"><i class="fa fa-fw fa-pencil"></i> Galería de fotos</a></li>
+            <li><a href="{{ route("equipos.index") }}"><i class="fa fa-fw fa-pencil"></i> Equipos</a></li>
             <li>Crear</li>
         </ol>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <p class="text-right"><a href="{{ route('noticiasgalerias.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a> <a href="{{ route("noticias.edit",codifica($_SESSION['noticia_id'])) }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-undo"></i> Regresar a la noticia</a></p>
+        <p class="text-right"><a href="{{ route('equipos.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Ver lista</a></p>
     </div>
 </div>
 
-<form role="form" action="{{ route('noticiasgalerias.store') }}" method="POST">
+<form role="form" action="{{ route('equipos.store') }}" method="POST">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
-                <label>Título</label>
-                <input type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" maxlength="100" required autofocus>
-                @if ($errors->has('titulo'))
-                    <p class="help-block">{{ $errors->first('titulo') }}</p>
+            <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" maxlength="60" required autofocus>
+                @if ($errors->has('nombre'))
+                    <p class="help-block">{{ $errors->first('nombre') }}</p>
                 @endif
             </div>
         </div>
-
-    <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="form-group">
-                <label>Foto</label>
-                <div class="slim">
+                <label>Bandera</label>
+                <div class="slim" style="max-width: 256px">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 512 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPEG y PNG</span></label>
               </div>
         </div>
     </div>
-    <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticiasgalerias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
+    <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('equipos.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
 </form>
 
 @endsection
@@ -58,14 +56,14 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: 'free',
+      ratio: '1:1',
       minSize: {
-        width: 512,
-        height: 512
+        width: 100,
+        height: 100
       },
       size: {
-        width: 1024,
-        height: 1024
+        width: 256,
+        height: 256
       },
       download: false,
       labelLoading: 'Cargando imagen...',

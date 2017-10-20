@@ -275,7 +275,7 @@ $data=array(
 	"Ranking Monumentales"=>array(
 		"Ruta"=>"/ranking_monumentales",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','miniatura','total_votos','porcentaje'],
+		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
 	),
 );
 

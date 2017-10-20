@@ -6,25 +6,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 
-use App\NoticiaFoto;
+use App\Equipo;
 
-class NoticiasGaleriaController extends Controller
+class EquiposController extends Controller
 {
     public function index()
     {
-        $galeria_noticias=NoticiaFoto::where('noticia_id',$_SESSION['noticia_id'])->paginate(25);
-        return view('noticiasgalerias.index')->with('galeria_noticias',$galeria_noticias);
+       $equipos=Equipo::paginate(25);
+        return view('equipos.index')->with('equipos',$equipos);
     }
 
     public function create()
     {
-        return view('noticiasgalerias.create');
+        return view('equipos.create');
     }
 
     public function store(Request $request)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
         ];
 
         try {
@@ -43,7 +43,7 @@ class NoticiasGaleriaController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = 'noticias/' . $fileName;
+                $filepath = '/equipos/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -53,14 +53,12 @@ class NoticiasGaleriaController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-
             }
-            $noticia=NoticiaFoto::create([
-                'titulo' => $request->titulo,
-                'noticia_id' => $_SESSION['noticia_id'],
-                'foto' => $fileName,
+            $equipo=Equipo::create([
+                'nombre' => $request->nombre,
+                'bandera' => $fileName,
             ]);
-            return redirect()->route('noticiasgalerias.edit', codifica($noticia->id))->with("notificacion","Se ha guardado correctamente su información");
+            return redirect()->route('equipos.edit', codifica($equipo->id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -75,14 +73,17 @@ class NoticiasGaleriaController extends Controller
 
     public function edit($id)
     {
-        $noticia=NoticiaFoto::find(decodifica($id));
-        return view('noticiasgalerias.edit')->with('noticia',$noticia);
+        $id=decodifica($id);
+        $equipo=Equipo::find($id);
+        $_SESSION['equipo_id']=$id;
+        return view('equipos.edit')->with('equipo',$equipo);
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
+            'fecha' => 'required',
             ];
 
         try {
@@ -93,7 +94,7 @@ class NoticiasGaleriaController extends Controller
             $id=decodifica($id);
 
             $data=[
-                'titulo' => $request->titulo,
+                'nombre' => $request->nombre,
             ];
 
             $fileName = "";
@@ -106,7 +107,7 @@ class NoticiasGaleriaController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = 'noticias/' . $fileName;
+                $filepath = '/equipos/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -116,12 +117,10 @@ class NoticiasGaleriaController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-
-                $data['foto']=$fileName;
+                $data['bandera']=$fileName;
             }
-
-            NoticiaFoto::find($id)->update($data);
-            return redirect()->route('noticiasgalerias.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+            Equipo::find($id)->update($data);
+            return redirect()->route('equipos.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -133,8 +132,8 @@ class NoticiasGaleriaController extends Controller
     {
         $id=decodifica($id);
         try{
-            NoticiaFoto::find($id)->delete();
-            return redirect()->route('noticiasgalerias.index');
+            Equipo::find($id)->delete();
+            return redirect()->route('equipos.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
         }

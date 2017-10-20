@@ -75,6 +75,9 @@
                         <a href="{{ route("noticias.index") }}"><i class="fa fa-fw fa-pencil"></i> Noticias</a>
                     </li>
                     <li>
+                        <a href="{{ route("equipos.index") }}"><i class="fa fa-fw fa-pencil"></i> Equipos</a>
+                    </li>
+                    <li>
                         <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
                     </li>
                 </ul>

@@ -104,6 +104,7 @@ class MonumentalesController extends Controller
             if($monumental->votos->count()>0){
                 $mitot=$monumental->votos->count();
                 $monumentales[]=[
+                    'idmonumental' => $monumental->id,
                     'nombre' => $monumental->nombre,
                     'miniatura'=>config('app.url') . 'monumentales/' . $monumental->miniatura,
                     'total_votos' => $mitot,

@@ -6,25 +6,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 
-use App\NoticiaFoto;
+use App\Jugador;
 
-class NoticiasGaleriaController extends Controller
+class JugadoresController extends Controller
 {
     public function index()
     {
-        $galeria_noticias=NoticiaFoto::where('noticia_id',$_SESSION['noticia_id'])->paginate(25);
-        return view('noticiasgalerias.index')->with('galeria_noticias',$galeria_noticias);
+       $jugadores=Jugador::orderby('nombre')->paginate(25);
+        return view('jugadores.index')->with('jugadores',$jugadores);
     }
 
     public function create()
     {
-        return view('noticiasgalerias.create');
+        return view('jugadores.create');
     }
 
     public function store(Request $request)
     {
         $rules = [
             'titulo' => 'required',
+            'fecha_nacimiento' => 'required',
         ];
 
         try {
@@ -43,7 +44,7 @@ class NoticiasGaleriaController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = 'noticias/' . $fileName;
+                $filepath = '/jugadores/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -53,14 +54,20 @@ class NoticiasGaleriaController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-
             }
-            $noticia=NoticiaFoto::create([
+            $jugador=Jugador::create([
                 'titulo' => $request->titulo,
-                'noticia_id' => $_SESSION['noticia_id'],
+                'link' => $request->link,
+                'descripcion' => $request->descripcion,
+                'fecha' => $request->fecha,
+                'active' => $request->active,
+                'aparecetimelineppal' => $request->aparecetimelineppal,
+                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
+                'destacada' => $request->destacada,
+                'tipo' => $request->tipo,
                 'foto' => $fileName,
             ]);
-            return redirect()->route('noticiasgalerias.edit', codifica($noticia->id))->with("notificacion","Se ha guardado correctamente su información");
+            return redirect()->route('jugadores.edit', codifica($jugador->id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -75,14 +82,17 @@ class NoticiasGaleriaController extends Controller
 
     public function edit($id)
     {
-        $noticia=NoticiaFoto::find(decodifica($id));
-        return view('noticiasgalerias.edit')->with('noticia',$noticia);
+        $id=decodifica($id);
+        $jugador=Jugador::find($id);
+        $_SESSION['jugador_id']=$id;
+        return view('jugadores.edit')->with('jugador',$jugador);
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
             'titulo' => 'required',
+            'fecha_nacimiento' => 'required',
             ];
 
         try {
@@ -94,6 +104,14 @@ class NoticiasGaleriaController extends Controller
 
             $data=[
                 'titulo' => $request->titulo,
+                'link' => $request->link,
+                'descripcion' => $request->descripcion,
+                'fecha' => $request->fecha,
+                'active' => $request->active,
+                'aparecetimelineppal' => $request->aparecetimelineppal,
+                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
+                'destacada' => $request->destacada,
+                'tipo' => $request->tipo,
             ];
 
             $fileName = "";
@@ -106,7 +124,7 @@ class NoticiasGaleriaController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = 'noticias/' . $fileName;
+                $filepath = '/jugadores/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -116,12 +134,10 @@ class NoticiasGaleriaController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-
                 $data['foto']=$fileName;
             }
-
-            NoticiaFoto::find($id)->update($data);
-            return redirect()->route('noticiasgalerias.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+            Jugador::find($id)->update($data);
+            return redirect()->route('jugadores.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -133,10 +149,32 @@ class NoticiasGaleriaController extends Controller
     {
         $id=decodifica($id);
         try{
-            NoticiaFoto::find($id)->delete();
-            return redirect()->route('noticiasgalerias.index');
+            Jugador::find($id)->delete();
+            return redirect()->route('jugadores.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
         }
+    }
+    public function rederactto_jugadoresgaleria($id){
+        $id=decodifica($id);
+        $_SESSION['jugador_id']=$id;
+        return redirect()->route('jugadoresgalerias.index');
+    }
+
+    public function jugadores_jugadores()
+    {
+        $jugadores=Jugador::orderby('nombre')->get();
+        return view('jugadores.jugadores')->with('jugadores',$jugadores);
+    }
+    public function update_jugadores(Request $request)
+    {
+        JugadorJugador::where('jugadores_id',$_SESSION['jugador_id'])->delete();
+        foreach ($request->jugadores as $idjugador) {
+            JugadorJugador::create([
+                'jugadores_id' => $_SESSION['jugador_id'],
+                'jugadores_id' => $idjugador,
+            ]);
+        }
+        return redirect()->route('jugadores.edit', codifica($_SESSION['jugador_id']));
     }
 }
