@@ -25,7 +25,6 @@ class MonumentalesController extends Controller
     {
         $rules = [
             'titulo' => 'required',
-            'fecha' => 'required',
         ];
 
         try {
@@ -118,7 +117,6 @@ class MonumentalesController extends Controller
     {
         $rules = [
             'titulo' => 'required',
-            'fecha' => 'required',
             ];
 
         try {

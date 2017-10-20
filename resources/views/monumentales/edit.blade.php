@@ -38,7 +38,7 @@
         <div class="col-lg-6">
             <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                 <label>Nombre</label>
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" maxlength="60" required autofocus>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre', $monumental->nombre) }}" maxlength="60" required autofocus>
                 @if ($errors->has('nombre'))
                     <p class="help-block">{{ $errors->first('nombre') }}</p>
                 @endif
@@ -47,7 +47,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Instagram</label>
-                <input type="text" class="form-control" name="instagram" value="{{ old('instagram') }}" maxlength="60">
+                <input type="text" class="form-control" name="instagram" value="{{ old('instagram', $monumental->instagram) }}" maxlength="60">
             </div>
         </div>
     </div>

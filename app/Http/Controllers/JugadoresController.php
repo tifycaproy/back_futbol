@@ -106,8 +106,9 @@ class JugadoresController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
             'fecha_nacimiento' => 'required',
+            'n_camiseta' => 'required',
             ];
 
         try {

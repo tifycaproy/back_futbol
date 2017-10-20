@@ -71,4 +71,7 @@ $(document).ready(function(){
     },10000)
 })
 </script>
+<script type="text/javascript">
+  //$('tbody').sortable();
+</script>
 @endsection
