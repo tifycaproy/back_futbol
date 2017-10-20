@@ -34,13 +34,31 @@ class MonumentalesController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $fileName = "";
-            if($request->archivo){
-                $foto=json_decode($request->archivo);
+            $fileName_foto = "";
+            if($request->foto){
+                $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
-                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/monumentales/' . $fileName;
+                $filepath = 'monumentales/' . $fileName_foto;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                    'http'=>[ 'verify'=>false],
+                ));
+            }
+            $fileName_banner = "";
+            if($request->banner){
+                $foto=json_decode($request->banner);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = 'monumentales/' . $fileName_banner;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -51,17 +69,29 @@ class MonumentalesController extends Controller
                     'ACL' => 'public-read',
                 ));
             }
-            $monumental=Monumental::create([
-                'titulo' => $request->titulo,
-                'link' => $request->link,
-                'descripcion' => $request->descripcion,
-                'fecha' => $request->fecha,
-                'active' => $request->active,
-                'aparecetimelineppal' => $request->aparecetimelineppal,
-                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
-                'destacada' => $request->destacada,
-                'tipo' => $request->tipo,
-                'foto' => $fileName,
+            $fileName_miniatura = "";
+            if($request->slim_miniatura){
+                $foto=json_decode($request->slim_miniatura);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_miniatura = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = 'monumentales/' . $fileName_miniatura;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+            }
+            $jugador=Jugador::create([
+                'nombre' => $request->nombre,
+                'instagram' => $request->instagram,
+                'foto' => $fileName_foto,
+                'banner' => $fileName_banner,
+                'miniatura' => $fileName_miniatura,
             ]);
             return redirect()->route('monumentales.edit', codifica($monumental->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -99,24 +129,16 @@ class MonumentalesController extends Controller
             $id=decodifica($id);
 
             $data=[
-                'titulo' => $request->titulo,
-                'link' => $request->link,
-                'descripcion' => $request->descripcion,
-                'fecha' => $request->fecha,
-                'active' => $request->active,
-                'aparecetimelineppal' => $request->aparecetimelineppal,
-                'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
-                'destacada' => $request->destacada,
-                'tipo' => $request->tipo,
+                'nombre' => $request->nombre,
+                'instagram' => $request->instagram,
             ];
 
-            $fileName = "";
-            if($request->archivo){
-                $foto=json_decode($request->archivo);
+            if($request->foto){
+                $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
-                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/monumentales/' . $fileName;
+                $filepath = 'monumentales/' . $fileName_foto;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -126,8 +148,45 @@ class MonumentalesController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-                $data['foto']=$fileName;
+                $data['foto']=$fileName_foto;
             }
+
+            if($request->banner){
+                $foto=json_decode($request->banner);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = 'monumentales/' . $fileName_banner;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['banner']=$fileName_banner;
+            }
+
+            if($request->miniatura){
+                $foto=json_decode($request->miniatura);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_miniatura = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = 'monumentales/' . $fileName_miniatura;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['miniatura']=$fileName_miniatura;
+            }
+
             Monumental::find($id)->update($data);
             return redirect()->route('monumentales.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -153,18 +212,18 @@ class MonumentalesController extends Controller
         return redirect()->route('monumentalesgalerias.index');
     }
 
-    public function monumentales_jugadores()
+    public function monumentales_monumentales()
     {
-        $jugadores=Jugador::orderby('nombre')->get();
-        return view('monumentales.jugadores')->with('jugadores',$jugadores);
+        $monumentales=Jugador::orderby('nombre')->get();
+        return view('monumentales.monumentales')->with('monumentales',$monumentales);
     }
-    public function update_jugadores(Request $request)
+    public function update_monumentales(Request $request)
     {
         MonumentalJugador::where('monumentales_id',$_SESSION['monumental_id'])->delete();
-        foreach ($request->jugadores as $idjugador) {
+        foreach ($request->monumentales as $idjugador) {
             MonumentalJugador::create([
                 'monumentales_id' => $_SESSION['monumental_id'],
-                'jugadores_id' => $idjugador,
+                'monumentales_id' => $idjugador,
             ]);
         }
         return redirect()->route('monumentales.edit', codifica($_SESSION['monumental_id']));

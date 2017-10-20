@@ -31,7 +31,6 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Fecha</th>
                         <th width="60"></th>
                     </tr>
                 </thead>
@@ -39,7 +38,6 @@
                 @foreach($monumentales as $monumental)
                     <tr>
                         <td><a href="{{ route('monumentales.edit', codifica($monumental->id) ) }}" title="Editar">{{ $monumental->nombre }}</a></td>
-                        <td><a href="{{ route('monumentales.edit', codifica($monumental->id) ) }}" title="Editar">{{ volteafecha($monumental->fecha) }}</a></td>
                         <td>
                             <a href="{{ route('monumentales.edit', codifica($monumental->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                             <a href="{{ route('monumentales_eliminar', codifica($monumental->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>

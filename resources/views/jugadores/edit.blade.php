@@ -137,19 +137,46 @@ $(document).ready(function(){
     },10000)
 })
 </script>
-
 <script src="js/slim.jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-   $('.slim').slim({
+   $('.slim_foto').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '1024:512',
+      ratio: '1:1',
       minSize: {
-        width: 1024,
-        height: 512
+        width: 100,
+        height: 100
       },
       size: {
-        width: 1024,
+        width: 256,
+        height: 256
+      },
+      download: false,
+      labelLoading: 'Cargando imagen...',
+      statusImageTooSmall: 'La imagen es muy pequeña. El tamaño mínimo es $0 píxeles.',
+      statusUnknownResponse: 'Ha ocurrido un error inesperado.',
+      statusUploadSuccess: 'Imagen guardada',
+      statusFileType: 'El formato de imagen no es permitido. Solamente: $0.',
+      statusFileSize: 'El tamaño máximo de imagen es 2MB.',
+      buttonConfirmLabel: 'Aceptar',
+      buttonConfirmTitle: 'Aceptar',
+      buttonCancelLabel: 'Cancelar',
+      buttonCancelLabel: "Cancelar",
+      buttonCancelTitle: "Cancelar",
+      buttonEditTitle: "Editar",
+      buttonRemoveTitle: "Eliminar",
+      buttonRotateTitle: "Rotar",
+      buttonUploadTitle: "Guardar"
+    });
+   $('.slim_banner').slim({
+      label: 'Arrastra tu imagen ó haz click aquí',
+      ratio: 'free',
+      minSize: {
+        width: 512,
+        height: 240
+      },
+      size: {
+        width: 512,
         height: 512
       },
       download: false,
@@ -171,5 +198,4 @@ $(document).ready(function(){
     });
 })
 </script>
-
 @endsection

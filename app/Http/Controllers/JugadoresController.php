@@ -41,7 +41,7 @@ class JugadoresController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/jugadores/' . $fileName_foto;
+                $filepath = 'jugadores/' . $fileName_foto;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -55,12 +55,12 @@ class JugadoresController extends Controller
             }
 
             $fileName_banner = "";
-            if($request->foto){
-                $foto=json_decode($request->foto);
+            if($request->banner){
+                $foto=json_decode($request->banner);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/jugadores/' . $fileName_banner;
+                $filepath = 'jugadores/' . $fileName_banner;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -132,7 +132,7 @@ class JugadoresController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/jugadores/' . $fileName_foto;
+                $filepath = 'jugadores/' . $fileName_foto;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -145,12 +145,12 @@ class JugadoresController extends Controller
                 $data['foto']=$fileName_foto;
             }
 
-            if($request->foto){
-                $foto=json_decode($request->foto);
+            if($request->banner){
+                $foto=json_decode($request->banner);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName_banner = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $filepath = '/jugadores/' . $fileName_banner;
+                $filepath = 'jugadores/' . $fileName_banner;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -160,7 +160,7 @@ class JugadoresController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-                $data['foto']=$fileName_banner;
+                $data['banner']=$fileName_banner;
             }
 
             Jugador::find($id)->update($data);

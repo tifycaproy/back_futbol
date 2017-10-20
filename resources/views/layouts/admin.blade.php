@@ -83,6 +83,9 @@
                     <li>
                         <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
                     </li>
+                    <li>
+                        <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
