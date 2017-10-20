@@ -125,10 +125,10 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    @if($noticia->foto<>'')<img src="uploads/noticias/{{ $noticia->foto }}" alt="">@endif
+                    @if($noticia->foto<>'')<img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" alt="">@endif
                     <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 512 x 512 píxeles | JPEG y PNG</span></label>
               </div>
         </div>
     </div>
@@ -142,7 +142,6 @@
         <div class="col-lg-6">
             <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-file-image-o"></i> Administrar galería de fotos</a> 
             <a href="{{ route('noticias_jugadores') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores</a> 
-
         </div>
     </div>
 </form>
@@ -163,14 +162,14 @@ $(document).ready(function(){
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '1024:512',
+      ratio: 'free',
       minSize: {
-        width: 1024,
+        width: 512,
         height: 512
       },
       size: {
         width: 1024,
-        height: 512
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

@@ -14,6 +14,7 @@
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" rel="stylesheet">
 @yield('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -72,6 +73,9 @@
                     </li>
                     <li>
                         <a href="{{ route("noticias.index") }}"><i class="fa fa-fw fa-pencil"></i> Noticias</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
                     </li>
                 </ul>
             </div>

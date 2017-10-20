@@ -34,6 +34,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('noticias_jugadores', 'NoticiasController@noticias_jugadores')->name('noticias_jugadores');
     Route::put('update_jugadores', 'NoticiasController@update_jugadores')->name('update_jugadores');
+//Calendario
+    Route::get('copas_eliminar/{id}', 'CopasController@destroy')->name('copas_eliminar');
+    Route::get('redirectto_calendario/{id}', 'CopasController@redirectto_calendario')->name('redirectto_calendario');
+    Route::resource('copas', 'CopasController');
+
+    Route::get('calendarios_eliminar/{id}', 'CalendarioController@destroy')->name('calendarios_eliminar');
+    Route::resource('calendarios', 'CalendarioController');
+
 
 
 });

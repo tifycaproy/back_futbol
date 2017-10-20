@@ -228,14 +228,14 @@ return [
 
     ],
 
-//s3
-    's3' => [
-        'driver' => 's3',
-        'key'    => env('S3_KEY'),
-        'secret' => env('S3_SECRET'),
+    's3'=>[
         'region' => env('S3_REGION'),
-        'bucket' => env('S3_BUCKET'),
+        'version' => 'latest',
+        'credentials' => array(
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET')
+        )
     ],
-
-
+    's3_bucket'=>env('S3_BUCKET'),
 ];
+

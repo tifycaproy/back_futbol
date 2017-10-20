@@ -119,7 +119,7 @@
                 <div class="slim">
                   <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 512 x 512 píxeles | JPEG y PNG</span></label>
               </div>
         </div>
     </div>
@@ -133,14 +133,14 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '1024:512',
+      ratio: 'free',
       minSize: {
-        width: 1024,
+        width: 512,
         height: 512
       },
       size: {
         width: 1024,
-        height: 512
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

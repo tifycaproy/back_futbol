@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Copas extends Model
+class Copa extends Model
 {
     protected $table = 'copas';
 	protected $guarded = ['id'];
