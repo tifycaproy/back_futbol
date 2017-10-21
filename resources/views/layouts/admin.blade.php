@@ -84,6 +84,9 @@
                         <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
                     </li>
                     <li>
+                        <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
+                    </li>
+                    <li>
                         <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
                     </li>
                     <li>

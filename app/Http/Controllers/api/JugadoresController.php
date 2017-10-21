@@ -129,7 +129,5 @@ class JugadoresController extends Controller
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
         } 
-
-
     }
 }

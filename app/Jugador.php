@@ -14,4 +14,8 @@ class Jugador extends Model
     {
         return $this->belongsToMany('App\Noticia', 'noticias_jugadores', 'jugadores_id', 'noticias_id')->select('noticias.id','link','titulo','descripcion','fecha','foto','destacada','tipo');
     }
+    public function convocado()
+    {
+    	return $this->hasOne('App\Convocado');
+    }
 }

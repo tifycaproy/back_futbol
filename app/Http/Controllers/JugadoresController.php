@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 
 use App\Jugador;
+use App\Convocado;
+use App\Calendario;
 
 class JugadoresController extends Controller
 {
@@ -183,26 +185,23 @@ class JugadoresController extends Controller
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
         }
     }
-    public function rederactto_jugadoresgaleria($id){
-        $id=decodifica($id);
-        $_SESSION['jugador_id']=$id;
-        return redirect()->route('jugadoresgalerias.index');
-    }
-
-    public function jugadores_jugadores()
+    public function convocados()
     {
-        $jugadores=Jugador::orderby('nombre')->get();
-        return view('jugadores.jugadores')->with('jugadores',$jugadores);
+        $jugadores=Jugador::leftjoin('convocados','jugadores.id','=','convocados.jugador_id')->orderby('convocados.orden','desc')->get(['jugadores.*','convocados.id as convocado']);
+        return view('jugadores.convocados')->with('jugadores',$jugadores);
     }
-    public function update_jugadores(Request $request)
+    public function convocados_actualizar(Request $request)
     {
-        JugadorJugador::where('jugadores_id',$_SESSION['jugador_id'])->delete();
-        foreach ($request->jugadores as $idjugador) {
-            JugadorJugador::create([
-                'jugadores_id' => $_SESSION['jugador_id'],
-                'jugadores_id' => $idjugador,
+        Convocado::where('id','<>',0)->delete();
+        $orden=count($request->jugadores);
+        foreach ($request->jugadores as $jugador) {
+            Convocado::create([
+                'jugador_id' => $jugador,
+                'orden' => $orden
             ]);
+//            echo "<p>-" . $jugador . ' - ' . $orden . "</p>";
+            $orden--;
         }
-        return redirect()->route('jugadores.edit', codifica($_SESSION['jugador_id']));
+        return redirect()->route('convocados')->with("notificacion","Se ha guardado correctamente su información");
     }
 }

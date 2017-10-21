@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('jugadores_eliminar/{id}', 'JugadoresController@destroy')->name('jugadores_eliminar');
     Route::resource('jugadores', 'JugadoresController');
+    Route::get('convocados', 'JugadoresController@convocados')->name('convocados');
+    Route::put('convocados_actualizar', 'JugadoresController@convocados_actualizar')->name('convocados_actualizar');
+
 
     Route::get('copas_eliminar/{id}', 'CopasController@destroy')->name('copas_eliminar');
     Route::get('redirectto_calendario/{id}', 'CopasController@redirectto_calendario')->name('redirectto_calendario');
