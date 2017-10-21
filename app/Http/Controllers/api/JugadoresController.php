@@ -19,9 +19,30 @@ class JugadoresController extends Controller
      */
     public function nomina()
     {
-        $judadores=Jugador::where('activo',1)->select('id','banner')->orderby('n_camiseta')->get();
         $data["status"]='exito';
         $data["data"]=[];
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Portero')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Defensa')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Volante')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Delantero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
                 'idjudador' => $jugador->id,
