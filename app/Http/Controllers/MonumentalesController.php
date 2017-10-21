@@ -85,7 +85,7 @@ class MonumentalesController extends Controller
                     'ACL' => 'public-read',
                 ));
             }
-            $jugador=Monumental::create([
+            $monumental=Monumental::create([
                 'nombre' => $request->nombre,
                 'instagram' => $request->instagram,
                 'foto' => $fileName_foto,
@@ -218,10 +218,10 @@ class MonumentalesController extends Controller
     public function update_monumentales(Request $request)
     {
         MonumentalMonumental::where('monumentales_id',$_SESSION['monumental_id'])->delete();
-        foreach ($request->monumentales as $idjugador) {
+        foreach ($request->monumentales as $idmonumental) {
             MonumentalMonumental::create([
                 'monumentales_id' => $_SESSION['monumental_id'],
-                'monumentales_id' => $idjugador,
+                'monumentales_id' => $idmonumental,
             ]);
         }
         return redirect()->route('monumentales.edit', codifica($_SESSION['monumental_id']));
