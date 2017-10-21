@@ -54,6 +54,7 @@ class CopasController extends Controller
         $id=decodifica($id);
         $copa=Copa::find($id);
         $_SESSION['copa_id']=$id;
+        $_SESSION['copa_titulo']=$copa->titulo;
         return view('copas.edit')->with('copa',$copa);
     }
 
@@ -95,7 +96,9 @@ class CopasController extends Controller
     }
     public function redirectto_calendario($id){
         $id=decodifica($id);
+        $copa=Copa::find($id);
         $_SESSION['copa_id']=$id;
+        $_SESSION['copa_titulo']=$copa->titulo;
         return redirect()->route('calendarios.index');
     }
 }

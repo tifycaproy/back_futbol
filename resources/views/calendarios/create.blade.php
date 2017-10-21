@@ -9,7 +9,7 @@
 
 <div class="row">
      <div class="col-lg-6">
-        <h1 class="page-header">Calendario</h1>
+        <h1 class="page-header">Calendario - {{ $copa_titulo }}</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">

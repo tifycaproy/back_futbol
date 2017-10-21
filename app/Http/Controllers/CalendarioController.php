@@ -13,13 +13,13 @@ class CalendarioController extends Controller
     public function index()
     {
         $calendarios=Calendario::where('copas_id',$_SESSION['copa_id'])->orderby('fecha','desc')->paginate(25);
-        return view('calendarios.index')->with('calendarios',$calendarios);
+        return view('calendarios.index')->with('calendarios',$calendarios)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function create()
     {
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.create')->with("equipos",$equipos);
+        return view('calendarios.create')->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function store(Request $request)
@@ -63,7 +63,7 @@ class CalendarioController extends Controller
         $calendario=Calendario::find($id);
         $_SESSION['calendario_id']=$id;
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos);
+        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function update(Request $request, $id)
