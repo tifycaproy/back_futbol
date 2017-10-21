@@ -62,7 +62,7 @@
                 <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
               </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Miniatura para ranking</label>
                 <div class="slim slim_miniatura">

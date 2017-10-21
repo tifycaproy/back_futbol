@@ -78,7 +78,7 @@
                 @endif
               </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Miniatura para ranking</label>
                 <div class="slim slim_miniatura">

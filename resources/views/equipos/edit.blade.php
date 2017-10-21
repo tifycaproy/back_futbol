@@ -44,7 +44,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">

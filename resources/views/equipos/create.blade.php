@@ -36,7 +36,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Bandera</label>
                 <div class="slim" style="max-width: 256px">
