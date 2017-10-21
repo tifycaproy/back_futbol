@@ -103,10 +103,10 @@
 @section('javascript')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript">
-
     $(document).ready(function(){
-
-
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
     })
 </script>
  @endsection
