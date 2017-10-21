@@ -43,7 +43,7 @@ class EquiposController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = '/equipos/' . $fileName;
+                $filepath = 'equipos/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
@@ -105,7 +105,7 @@ class EquiposController extends Controller
                 list(, $Base64Img) = explode(';', $Base64Img);
                 list(, $Base64Img) = explode(',', $Base64Img);
                 $image = base64_decode($Base64Img);
-                $filepath = '/equipos/' . $fileName;
+                $filepath = 'equipos/' . $fileName;
 
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
