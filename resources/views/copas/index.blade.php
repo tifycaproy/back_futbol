@@ -41,7 +41,7 @@
                         <td>
                             <a href="{{ route('copas.edit', codifica($copa->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                             <a href="{{ route('copas_eliminar', codifica($copa->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
-                            <a href="{{ route('redirectto_calendario', codifica($copa->id) ) }}" title="Galería de fotos"><i class="fa fa-fw fa-calendar"></i></a>
+                            <a href="{{ route('redirectto_calendario', codifica($copa->id) ) }}" title="Calendario"><i class="fa fa-fw fa-calendar"></i></a>
                         </td>
                     </tr>
                 @endforeach

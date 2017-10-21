@@ -66,7 +66,7 @@
             <div class="form-group">
                 <label>Miniatura para ranking</label>
                 <div class="slim slim_miniatura">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="miniatura" type="file" accept="image/jpeg, image/png" />
                 </div>
                 <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
               </div>

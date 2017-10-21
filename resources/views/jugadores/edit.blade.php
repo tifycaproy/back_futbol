@@ -47,7 +47,7 @@
         <div class="col-lg-3">
             <div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
                 <label>Fecha de nacimiento</label>
-                <input type="date" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $jugador->fecha_nacimiento) }}" maxlength="10" required>
+                <input type="date" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', date('Y-m-d',strtotime($jugador->fecha_nacimiento))) }}" maxlength="10" required>
                 @if ($errors->has('fecha_nacimiento'))
                     <p class="help-block">{{ $errors->first('fecha_nacimiento') }}</p>
                 @endif

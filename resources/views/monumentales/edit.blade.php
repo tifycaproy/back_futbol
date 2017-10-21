@@ -82,12 +82,12 @@
             <div class="form-group">
                 <label>Miniatura para ranking</label>
                 <div class="slim slim_miniatura">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="miniatura" type="file" accept="image/jpeg, image/png" />
                 </div>
                 <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
-                @if($monumental->banner<>'')
+                @if($monumental->miniatura<>'')
                 <h5>Imagen actual</h5>
-                <p><img src="{{ config('app.url') . 'monumentales/' . $monumental->banner }}" style="max-width: 100%"></p>
+                <p><img src="{{ config('app.url') . 'monumentales/' . $monumental->miniatura }}" style="max-width: 100%"></p>
                 @endif
               </div>
         </div>

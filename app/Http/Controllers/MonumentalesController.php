@@ -69,8 +69,8 @@ class MonumentalesController extends Controller
                 ));
             }
             $fileName_miniatura = "";
-            if($request->slim_miniatura){
-                $foto=json_decode($request->slim_miniatura);
+            if($request->miniatura){
+                $foto=json_decode($request->miniatura);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName_miniatura = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;

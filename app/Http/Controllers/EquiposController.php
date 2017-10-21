@@ -83,7 +83,6 @@ class EquiposController extends Controller
     {
         $rules = [
             'nombre' => 'required',
-            'fecha' => 'required',
             ];
 
         try {
@@ -92,7 +91,6 @@ class EquiposController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
             $id=decodifica($id);
-
             $data=[
                 'nombre' => $request->nombre,
             ];
