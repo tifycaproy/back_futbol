@@ -102,7 +102,7 @@ class CalendarioController extends Controller
             'estadio'=>$fecha->estadio,
         ];
         $jugadores=[];
-        $convocados=Convocado::orderby('orden')->get();
+        $convocados=Convocado::orderby('orden','desc')->get();
         foreach ($convocados as $convocado) {
             $jugadores[]=[
                 'idjudador' => $convocado->jugador->id,

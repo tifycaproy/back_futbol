@@ -194,13 +194,14 @@ class JugadoresController extends Controller
     {
         Convocado::where('id','<>',0)->delete();
         $orden=count($request->jugadores);
-        foreach ($request->jugadores as $jugador) {
-            Convocado::create([
-                'jugador_id' => $jugador,
-                'orden' => $orden
-            ]);
-//            echo "<p>-" . $jugador . ' - ' . $orden . "</p>";
-            $orden--;
+        if($orden>0){
+            foreach ($request->jugadores as $jugador) {
+                Convocado::create([
+                    'jugador_id' => $jugador,
+                    'orden' => $orden
+                ]);
+                $orden--;
+            }
         }
         return redirect()->route('convocados')->with("notificacion","Se ha guardado correctamente su información");
     }
