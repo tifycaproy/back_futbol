@@ -133,14 +133,14 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: 'free',
+      ratio: '2:1',
       minSize: {
-        width: 512,
-        height: 256
+        width: 500,
+        height: 250
       },
       size: {
-        width: 1024,
-        height: 1024
+        width: 512,
+        height: 256
       },
       download: false,
       labelLoading: 'Cargando imagen...',

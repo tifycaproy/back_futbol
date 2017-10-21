@@ -100,7 +100,7 @@
                 <div class="slim slim_banner">
                   <input name="banner" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 512 x 240 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
               </div>
         </div>
     </div>
