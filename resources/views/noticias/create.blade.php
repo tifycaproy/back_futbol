@@ -136,7 +136,7 @@ $(document).ready(function(){
       ratio: 'free',
       minSize: {
         width: 512,
-        height: 512
+        height: 256
       },
       size: {
         width: 1024,

@@ -24,7 +24,7 @@ class MonumentalesController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
         ];
 
         try {
@@ -116,7 +116,7 @@ class MonumentalesController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'titulo' => 'required',
+            'nombre' => 'required',
             ];
 
         try {
