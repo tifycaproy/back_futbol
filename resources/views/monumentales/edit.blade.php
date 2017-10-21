@@ -102,6 +102,14 @@
 
 @endsection
 @section('javascript')
+<script type="text/javascript">
+$(document).ready(function(){
+    setTimeout(function(){
+        $(".alert").slideUp(500);
+    },10000)
+})
+</script>
+
 <script src="js/slim.jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){

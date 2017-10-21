@@ -59,20 +59,6 @@ class CopasController extends Controller
 
     public function update(Request $request, $id)
     {
-
-$image = $request->file('image');
-$imageFileName = time() . '.' . $image->getClientOriginalExtension();
-
-
-$s3 = \Storage::disk(config('s3'));
-var_dump($s3);
-$filePath = '/borrar/' . $imageFileName;
-$s3->put($filePath, file_get_contents($image), 'public');
-
-exit;
-
-
-
         $rules = [
             'titulo' => 'required',
             ];
