@@ -86,6 +86,9 @@
                     <li>
                         <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
                     </li>
+                    <li>
+                        <a href="{{ route("encuestas.index") }}"><i class="fa fa-fw fa-pencil"></i> Encuestas monumentales</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

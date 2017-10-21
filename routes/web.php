@@ -51,5 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');
     Route::resource('monumentales', 'MonumentalesController');
 
+    Route::get('encuestas_eliminar/{id}', 'EncuestasController@destroy')->name('encuestas_eliminar');
+    Route::resource('encuestas', 'EncuestasController');
+
 
 });

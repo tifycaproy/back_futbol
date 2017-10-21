@@ -14,8 +14,12 @@ class MonumentalEncuesta extends Model
     {
     	return $this->belongsToMany('App\Monumental');
     }
-	public function votos()
+    public function votos()
     {
-    	return $this->hasMany('App\MonumentalVotos');
+        return $this->hasMany('App\MonumentalVotos');
+    }
+    public function seleccionadas()
+    {
+        return $this->hasMany('App\MonumentalEncuestaMonumental');
     }
 }
