@@ -81,7 +81,7 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de livstream</label>
+                <label>Link a webview de livestream</label>
                 <input type="text" class="form-control" name="url_livestream" value="{{ $configuracion->url_livestream }}" maxlength="200">
             </div>
         </div>
