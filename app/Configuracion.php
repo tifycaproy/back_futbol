@@ -8,6 +8,11 @@ class Configuracion extends Model
 {
     protected $table = 'configuracion';
 	protected $guarded = ['id'];
+    public $timestamps = false;
 
 //relaciones
+    public function partido()
+    {
+        return $this->belongsTo('App\Calendario','calendario_convodados_id');
+    }
 }

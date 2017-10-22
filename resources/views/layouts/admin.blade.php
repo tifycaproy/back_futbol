@@ -14,6 +14,7 @@
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" rel="stylesheet">
 @yield('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -68,10 +69,31 @@
                         <a href="{{ route('home') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
+                        <a href="{{ route("configuracion") }}"><i class="fa fa-fw fa-cog"></i> Configuración</a>
+                    </li>
+                    <li>
                         <a href="{{ route("usuarios.index") }}"><i class="fa fa-fw fa-user"></i> Usuarios</a>
                     </li>
                     <li>
                         <a href="{{ route("noticias.index") }}"><i class="fa fa-fw fa-pencil"></i> Noticias</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("equipos.index") }}"><i class="fa fa-fw fa-pencil"></i> Equipos</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("jugadores.index") }}"><i class="fa fa-fw fa-pencil"></i> Jugadores</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("encuestas.index") }}"><i class="fa fa-fw fa-pencil"></i> Encuestas monumentales</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +116,8 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
 @yield('javascript')
 
     <!-- Bootstrap Core JavaScript -->

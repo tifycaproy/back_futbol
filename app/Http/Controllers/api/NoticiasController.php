@@ -16,7 +16,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias=Noticia::where('active',1)->orderby('fecha','desc','id')->paginate(25);
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparecetimelineppal',1)->orderby('fecha','desc','id')->paginate(25);
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {
@@ -35,6 +35,17 @@ class NoticiasController extends Controller
                 'titulo' => $foto->titulo,
                 'foto' => config('app.url') . 'noticias/' . $foto->foto,
             ];
+        }
+        return $data;
+    }
+    public function noticias_monumentales()
+    {
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparevetimelinemonumentales',1)->orderby('fecha','desc','id')->paginate(25);
+        $data["status"]='exito';
+        $data["data"]=[];
+        foreach ($noticias as $noticia) {
+            if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+            $data["data"][]=$noticia;
         }
         return $data;
     }

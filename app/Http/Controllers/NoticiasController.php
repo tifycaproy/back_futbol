@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 @session_start();
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 
 use App\Noticia;
+use App\Jugador;
+use App\NoticiaJugador;
 
 class NoticiasController extends Controller
 {
     public function index()
     {
-        $noticias=Noticia::orderby('fecha','desc')->paginate(25);
+       $noticias=Noticia::orderby('fecha','desc')->paginate(25);
         return view('noticias.index')->with('noticias',$noticias);
     }
 
@@ -39,12 +42,16 @@ class NoticiasController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
+                $filepath = 'noticias/' . $fileName;
 
-                file_put_contents('uploads/noticias/' . $fileName, $image);
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
             }
             $noticia=Noticia::create([
                 'titulo' => $request->titulo,
@@ -111,16 +118,18 @@ class NoticiasController extends Controller
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
-                $Base64Img=$picture;
-                list(, $Base64Img) = explode(';', $Base64Img);
-                list(, $Base64Img) = explode(',', $Base64Img);
-                $image = base64_decode($Base64Img);
+                $filepath = 'noticias/' . $fileName;
 
-                file_put_contents('uploads/noticias/' . $fileName, $image);
-
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
                 $data['foto']=$fileName;
             }
-
             Noticia::find($id)->update($data);
             return redirect()->route('noticias.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -144,5 +153,22 @@ class NoticiasController extends Controller
         $id=decodifica($id);
         $_SESSION['noticia_id']=$id;
         return redirect()->route('noticiasgalerias.index');
+    }
+
+    public function noticias_jugadores()
+    {
+        $jugadores=Jugador::orderby('nombre')->get();
+        return view('noticias.jugadores')->with('jugadores',$jugadores);
+    }
+    public function update_jugadores(Request $request)
+    {
+        NoticiaJugador::where('noticias_id',$_SESSION['noticia_id'])->delete();
+        foreach ($request->jugadores as $idjugador) {
+            NoticiaJugador::create([
+                'noticias_id' => $_SESSION['noticia_id'],
+                'jugadores_id' => $idjugador,
+            ]);
+        }
+        return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
     }
 }

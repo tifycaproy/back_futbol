@@ -228,4 +228,14 @@ return [
 
     ],
 
+    's3'=>[
+        'region' => env('S3_REGION'),
+        'version' => 'latest',
+        'credentials' => array(
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET')
+        )
+    ],
+    's3_bucket'=>env('S3_BUCKET'),
 ];
+

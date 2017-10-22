@@ -125,19 +125,26 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    @if($noticia->foto<>'')<img src="uploads/noticias/{{ $noticia->foto }}" alt="">@endif
                     <input name="archivo" type="file" accept="image/jpeg, image/png" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
-              </div>
+                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                @if($noticia->foto<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" style="max-width: 100%"></p>
+                @endif
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('noticias.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  
+            <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> 
+            <a href="{{ route('noticias.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> 
+            <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
         <div class="col-lg-6">
-            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-pencil"></i> Administrar galería de fotos</a>
+            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-file-image-o"></i> Administrar galería de fotos</a> 
+            <a href="{{ route('noticias_jugadores') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores</a> 
         </div>
     </div>
 </form>
@@ -158,14 +165,14 @@ $(document).ready(function(){
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '1024:512',
+      ratio: '2:1',
       minSize: {
-        width: 1024,
-        height: 512
+        width: 500,
+        height: 250
       },
       size: {
-        width: 1024,
-        height: 512
+        width: 512,
+        height: 256
       },
       download: false,
       labelLoading: 'Cargando imagen...',

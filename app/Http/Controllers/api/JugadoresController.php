@@ -19,9 +19,30 @@ class JugadoresController extends Controller
      */
     public function nomina()
     {
-        $judadores=Jugador::where('activo',1)->select('id','banner')->orderby('n_camiseta')->get();
         $data["status"]='exito';
         $data["data"]=[];
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Portero')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Defensa')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Volante')->get();
+        foreach ($judadores as $jugador){
+            $data['data'][]=[
+                'idjudador' => $jugador->id,
+                "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
+            ];
+        }
+        $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Delantero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
                 'idjudador' => $jugador->id,
@@ -30,17 +51,8 @@ class JugadoresController extends Controller
         }
         return $data;
     }
-    public function single_jugador($token,$id)
+    public function single_jugador($id)
     {
-        //Validaciones
-        $errors=[];
-        $idusuario=decodifica_token($token);
-        if($idusuario=="") $errors[]="El token es incorrecto";
-        if(count($errors)>0){
-            return ["status" => "fallo", "error" => $errors];
-        }
-        //fin validaciones
-
         if($jugador=Jugador::find($id)){
             $data["status"]='exito';
             $data["data"]=[
@@ -51,6 +63,7 @@ class JugadoresController extends Controller
                 'n_camiseta' => $jugador->n_camiseta,
                 'posicion' => $jugador->posicion,
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
+                'instagram' => $jugador->instagram,
             ];
             if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
                 $fecha=$sepuedeaplaudir->fecha;
@@ -72,16 +85,49 @@ class JugadoresController extends Controller
                 $data["data"]['sepuedeaplaudir'] = 0;
             }
             if($ultimopartido=AplausoCalendario::orderby('id','desc')->first()){
-                $data["data"]['apalusos_ultimo_partido'] = 0;
+                $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$ultimopartido->calendario_id)->where('jugadores_id',$id)->count();
             }else{
                 $data["data"]['apalusos_ultimo_partido'] = 0;
             }
             $data["data"]['aplausos_acumulado']=Aplauso::where('jugadores_id',$id)->count();
-            
+
+            $noticias=$jugador->noticias;
+            $data["data"]['noticias']=[];
+            foreach ($noticias as $noticia) {
+                if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+                unset($noticia->pivot);
+                $data["data"]['noticias'][]=$noticia;
+            }
+
         }else{
             $data["status"]='fallo';
             $data["error"]=['idjugador incorrecto'];
         }
         return $data;
+    }
+    public function aplaudir(Request $request)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+            $errors=[];
+            if(!isset($request["idjudador"])) $errors[]="El idjudador es requerido";
+            if(!isset($request["imei"])) $errors[]="El imei es requerido";
+            if(!isset($request["idpartido"])) $errors[]="El idpartido es requerido";
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            Aplauso::create([
+                'jugadores_id'=>$request["idjudador"],
+                'calendario_id'=>$request["idpartido"],
+                'imei'=>$request["imei"],
+            ]);
+
+            return ["status" => "exito"];
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+        } 
     }
 }

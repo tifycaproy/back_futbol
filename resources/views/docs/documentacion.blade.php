@@ -39,12 +39,18 @@ function mostrar($m, $primera){
 	echo "</table>";
 }
 $data=array(
+	"Configuración"=>array(
+		"Ruta"=>"/configuracion",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'url_tabla','url_simulador','url_juramento','url_livestream'
+		],
+	),
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
-			'id','link','titulo','descripcion','fecha','foto','aparecetimelineppal (1 ó 0)','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)',
-			'aparevetimelinemonumentales (1 ó 0)'
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
 		],
 	),
 	"Noticias fotos"=>array(
@@ -181,6 +187,14 @@ $data=array(
 			],
 		)
 	),
+	"Convocados"=>array(
+		"Ruta"=>"/convocados",
+		"Método"=>"GET",
+		"Éxito"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"jugadores (array)"=>['idjudador','banner'],
+		)
+	),
 //jugadores
 	"Nómina"=>array(
 		"Ruta"=>"/nomina",
@@ -190,317 +204,79 @@ $data=array(
 		)
 	),
 	"Single del jugador"=>array(
-		"Ruta"=>"/single_jugador/{token}/{idjugador}",
+		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
-		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner',
-		'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
-		'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
-		'apalusos_ultimo_partido', 'aplausos_acumulado'
-
+		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner','instagram',
+			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
+			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
+			'apalusos_ultimo_partido', 'aplausos_acumulado',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
 		],
 		"Falla"=>array(
-			"error"=>["El token es incorrecto","idjugador incorrecto"],
+			"error"=>["idjugador incorrecto"],
 		)
 	),
-
-/*
-	"Calendario Single (partidos)"=>array(
-		"Ruta"=>"/calendario_single?idcalendario={idcalendario}",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","posicion", "tipo", "fecha", "fecha_fifa",
-			"hora","descripcion", "estatus",
-				"noticias (array)" => array(
-					"idNew","linkNew","tittleNew","descNew","dateNew","isVideoNew","impot","isInfograf","img","heigthInfo","isNoticiaInfo"
-				),
-			),
-		"Error"=>array("idcalendario es requerido","idcalendario incorrecto")
-	),
-	
-	"Play by play"=>array(
-		"Ruta"=>"/playbyplay?idcalendario={idcalendario}",
-		"Método"=>"GET",
-		"Éxito Array"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","posicion", "tipo", "fecha", "fecha_fifa",
-			"hora","estatus","formacion","idjugador","nombre_dt","foto_dt",
-			"titulares (array)"=>array(
-				"idjugador","foto","banner","posicion_campo","nombre","actividades (array)"=>array("actividad","minuto")
-			),
-			"suplentes (array)"=>array(
-				"idjugador","foto","banner","nombre","actividades (array)"=>array("actividad","minuto")
-			),
-			"titulares2 (array)"=>array(
-				"idjugador","foto","banner","posicion_campo","nombre","actividades (array)"=>array("actividad","minuto")
-			),
-			"suplentes2 (array)"=>array(
-				"idjugador","foto","banner","posicion_campo","nombre","actividades (array)"=>array("actividad","minuto")
-			),
-		),
-		"Error"=>array("idcalendario es requerido","idcalendario incorrecto")
-	),
-	
-	"Jugador Single"=>array(
-		"Ruta"=>"/jugador?idjugador={idjugador}",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","posicion", "tipo", "fecha", "fecha_fifa", "hora", "estatus",
-			"aplausos_partido", "aplausos_total",
-			"idjugador","nombre","fecha_nacimiento","estatura","pie","posicion","biografia","foto", "camiseta", "dt","banner",
-			"noticias (array)" => array(
-				"idNew","linkNew","tittleNew","descNew","dateNew","isVideoNew","impot","isInfograf","img","heigthInfo","isNoticiaInfo"
-			),
-			"sepuedeaplaudir (1 ó 0)",
-		),
-		"Error"=>array("idjugador es requerido","idjugador incorrecto")
-	),
-//calendarios 2
-	"Calendario 2"=>array(
-		"Ruta"=>"/calendario",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","tipo", "fecha", "fecha_fifa", "estatus", "destacado"
-		)
-	),
-	"Calendario 2 Single"=>array(
-		"Ruta"=>"/calendario2_single?idcalendario={idcalendario}",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2","tipo", "fecha", "fecha_fifa",
-			"hora","descripcion", "estatus",
-				"noticias (array)" => array(
-					"idNew","linkNew","tittleNew","descNew","dateNew","isVideoNew","impot","isInfograf","img","heigthInfo","isNoticiaInfo"
-				),
-			),
-		"Error"=>array("idcalendario es requerido","idcalendario incorrecto")
-	),
-
-//encuestas
-	"Consultar encuesta"=>array(
-		"Ruta"=>"/encuestas",
-		"Método"=>"GET",
-		"Parámetros"=>array('imei'),
-		"Éxito (Array)"=>array(
-			"idencuesta","titulo","fecha_inicio","fecha_fin","yavoto (1,0)",
-			"respuestas (array)"=>array(
-				"idrespuesta","respuesta","foto","porcentaje","yavoto"
-			),
-		),
-		"Error"=>array("No hay encuestas activas")
-	),
-	
-	"Encuesta votar"=>array(
-		"Ruta"=>"/encuestas",
+	"Aplaudir"=>array(
+		"Ruta"=>"/aplaudir",
 		"Método"=>"POST",
 		"Parámetros"=>array(
-			"idencuesta" => "requerido",
-			"idrespuesta" => "requerido (si ya voto puede venir con 0)",
-			"imei" => 'requerido',
+			"idjudador" => "integer / requerido",
+			"idpartido" => "integer / requerido",
+			"imei" => "varchar(45) / requerido",
 		),
-		"Éxito (Array)"=>array(
-			"respuesta","foto","votos"
-		),
-		"Error"=>array("No hay encuestas activas")
-	),
-
-	"Single respuesta"=>array(
-		"Ruta"=>"/respuesta?idrespuesta={idrespuesta}",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"idrespuesta","idencuesta","respuesta","foto",
-			"noticias (array)" => array(
-				"idNew","linkNew","tittleNew","descNew","dateNew","isVideoNew","impot","isInfograf","img","heigthInfo","isNoticiaInfo"
-			),
-		),
-		"Error"=>array("idrespuesta es requerido","idrespuesta incorrecto")
-	),
-	
-//videos
-	"videos"=>array(
-		"Ruta"=>"/videos",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"titulo","descripcion","foto","url",
-		),
-	),
-	"videos 360"=>array(
-		"Ruta"=>"/videos360",
-		"Método"=>"GET",
-		"Éxito (Array)"=>array(
-			"titulo","descripcion","foto","video",
-		),
-	),
-
-//aplausos
-	"Registrar aplauso"=>array(
-		"Ruta"=>"/aplausos",
-		"Método"=>"POST",
-		"Parámetros"=>array(
-			"idjugador" => "requerido",
-			"imei" => 'requerido',
-		),
-		"Éxito"=>"yaaplaudio  (1,0)",
-		"Error"=>array("No hay juegos cercanos para aplaudir","El jugador no tiene juegos registrados")
-	),
-	"Consultar aplauso / jugador"=>array(
-		"Ruta"=>"/aplausos",
-		"Método"=>"GET",
-		"Parámetros"=>array('idjugador'),
-		"Éxito"=>array(
-			'equipo1','bandera1','goles1','equipo2','bandera2','goles2','tipo','fecha','hora',
-			'nombre','posicion','foto','banner',
-			'aplausos_partido','aplausos_total'
-		),
-		"Error"=>array("El jugador no tiene juegos registrados")
-	),
-
-	"Consultar aplauso / equipo"=>array(
-		"Ruta"=>"/aplausos_equipo",
-		"Método"=>"GET",
-		"Éxito"=>array(
-			'equipo1','bandera1','goles1','equipo2','bandera2','goles2',"posicion",'fecha','hora',
-			'partido_actual'=>[
-				'idjugador','nombre','foto','votos','porcentaje'
-			],
-			'acumulado'=>[
-				'idjugador','nombre','foto','votos','porcentaje'
-			],
-		),
-		"Error"=>array("No hay juegos registrados","Ya aplaudió a este jugador en este partido")
-	),
-
-	"Convocados"=>array(
-		"Ruta"=>"/convocados",
-		"Método"=>"GET",
-		"Éxito"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2", "tipo","posicion", "fecha", "fecha_fifa","hora","estatus",
-			"convocados"=>array(
-				'idjugador','nombre','foto','banner'
-			),
-		),
-	),
-
-
-	"Convocados eliminatorias"=>array(
-		"Ruta"=>"/convocados_eliminatorias",
-		"Método"=>"GET",
-		"Éxito"=>array(
-			'idjugador','nombre','foto','banner'
-		),
-		"Error"=>array("No hay juegos registrados")
-	),
-
-	"Convocados úlitmo partido"=>array(
-		"Ruta"=>"/convocados_ulitmo_partido",
-		"Método"=>"GET",
-		"Éxito"=>array(
-			"idcalendario","equipo1","bandera1","goles1","equipo2","bandera2","goles2", "tipo","posicion", "fecha", "fecha_fifa","hora","estatus",
-			"convocados"=>array(
-				'idjugador','nombre','foto','banner'
-			),
-		),
-		"Error"=>array("No hay juegos registrados")
-	),
-
-//pollas
-	"Configuración pollas"=>array(
-		"Ruta"=>"/configuracion_pollas",
-		"Método"=>"GET",
-		"Éxito"=>array("politicas","instrucciones")
-	),
-
-	"Consultar polla"=>array(
-		"Ruta"=>"/pollas?token={token}",
-		"Método"=>"GET",
-		"Éxito"=>array("idpolla","fecha_inicio","fecha_fin","nombre","apellido","puntos","ranking","foto","bandera1","bandera2","posicion","fecha",
-			"jugadores"=>array(
-				"idjugador","nombre","foto","posicion"
-			)
-		),
-		"Error"=>array("Invalid token","No existe polla activa","El usuario ya cargó sus predicciones")
-	),
-
-	"Registrar predicción"=>array(
-		"Ruta"=>"/pollas",
-		"Método"=>"POST",
-		"Parámetros"=>array(
-			"token","idpolla","goles_colombia","goles_contrincante",
-			"idjugador1","idjugador2","idjugador3","idjugador4","idjugador5","idjugador6","idjugador7","idjugador8","idjugador9","idjugador10","idjugador11",
-			"goles (array)"=>["idjugador_gol","minuto"],
-		),
-		//"Éxito"=>"token",
+		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos","El token es incorrecto","La polla no se encuentra activa","Ya tiene una predicción cargada para este partido","La cantidad de goles del equipo no coincide con los predichos"),
+			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido")
 		)
 	),
-
-	"Consultar mi predicción"=>array(
-		"Ruta"=>"/pollas_mi_prediccion?token={token}",
+//monumentales
+	"Noticias Monumentales"=>array(
+		"Ruta"=>"/noticias_monumentales?page={pagina}",
 		"Método"=>"GET",
-		"Éxito"=>array(
-			"goles"=>array(
-				"idjugador","minuto","nombre"
-			),
-			"alineacion"=>array(
-				"idjugador","nombre"
-			),"goles_colombia","goles_contrincante"
-		),
-		"Error"=>array("Invalid token","No existe polla activa")
+		"Éxito (Array)"=>[
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
+		],
 	),
-
-	"Ranking pollas"=>array(
-		"Ruta"=>"/pollas_rancking?token={token}",
+	"Encuesta Monumentales"=>array(
+		"Ruta"=>"/monumentales_encuesta",
 		"Método"=>"GET",
-		"Éxito"=>array("nombre","apellido","foto","puntos","ranking","puntos_partido","ranking_partido",
-			"usuarios"=>array(
-				"idusuario","nombre","apellido","foto","puntos","ranking"
-			),
-			"usuarios_utimo_partido"=>array(
-				"idusuario","nombre","apellido","foto","puntos","ranking"
-			),
-		),
-		"Error"=>array("Invalid token")
+		"Éxito"=>['idencuesta','titulo','fecha_fin','total_votos'],
+		'monumentales (array)'=>['idmonumental','nombre','banner'],
+		"Falla"=>array(
+			"error"=>["No hay encuestas activas"],
+		)
 	),
-
-	"Resultado de pollas"=>array(
-		"Ruta"=>"/pollas_resultados?token={token} o idusuario={idusuario} OJO debe mandar uno de los dos",
+	"Single Monumental"=>array(
+		"Ruta"=>"/single_monumental/{idmonumental}",
 		"Método"=>"GET",
-		"Éxito"=>array("nombre","apellido","foto","puntos","ranking",
-			"bandera1","goles1","bandera2","goles2","posicion (Casa o Visitante)",
-
-			"realidad"=>array(
-				"goles"=>array(
-					"idjugador","minuto","nombre"
-				),
-				"alineacion"=>array(
-					"idjugador","nombre"
-				),"goles_colombia","goles_contrincante"
-			),
-
-			"prediccion"=>array(
-				"alineacion"=>array(
-					"idjugador","nombre","puntos"
-				),
-				"goles"=>array(
-					"idjugador","nombre","puntos"
-				),
-				"minutos"=>array(
-					"minuto","puntos"
-				),
-				"goles_colombia","goles_contrincante","puntos_resultado","conbono (1 o 0)","puntos"
-			),
-		),
-		"Error"=>array("Invalid token","No existe polla activa")
+		"Éxito"=>['nombre','foto','total_votos','instagram'],
+		"Falla"=>array(
+			"error"=>["idmonumental incorrecto"],
+		)
 	),
-
-	"Banners"=>array(
-		"Ruta"=>"/banners?seccion={'Menu inferior','Menu superior','login','registro','perfil','notificaciones','noticias recientes','partidos','tabla','calendario','equipo','jugador mas aplaudido','alineación oficial','tu equipo ideal','realidad virtual','en vivo','tu eliges','la polla','ofertas'}",
+	"Votar Monumental"=>array(
+		"Ruta"=>"/votar_monumental",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idencuesta" => "integer / requerido",
+			"idmonumental" => "integer / requerido",
+			"imei" => "varchar(45) / requerido",
+		),
+		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
+		"Falla"=>array(
+			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido")
+		)
+	),
+	"Monumentales Anual"=>array(
+		"Ruta"=>"/monumentales_anuales",
 		"Método"=>"GET",
-		"Éxito"=>array(
-			"titulo","seccion","url_ios","url_android","link","target (Interno,Externo)"
-		),
-		"Error"=>array("No hay banners para la sección seleccionada")
+		"Éxito"=>['nombre','banner'],
 	),
-*/
+	"Ranking Monumentales"=>array(
+		"Ruta"=>"/ranking_monumentales",
+		"Método"=>"GET",
+		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
+	),
 );
 
 

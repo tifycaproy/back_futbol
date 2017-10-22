@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $usuarios=User::paginate(20);
+        $usuarios=User::where('id','<>','1')->paginate(20);
         return view('usuarios.index')->with('usuarios',$usuarios);
     }
 
