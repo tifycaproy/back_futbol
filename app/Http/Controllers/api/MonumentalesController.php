@@ -70,6 +70,7 @@ class MonumentalesController extends Controller
                 return ['status' => 'fallo','error'=>["No hay encuestas activas"]];
             }
             //fin validaciones
+            //valido voto repetido
             if(MonumentalVotos::
                 where('monumental_encuesta_id',$request["idencuesta"])
                 ->where('monumental_id',$request["idmonumental"])
