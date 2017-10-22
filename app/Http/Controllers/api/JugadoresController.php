@@ -65,7 +65,7 @@ class JugadoresController extends Controller
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
             ];
-            AplausoCalendario::update(['calendario_id'=>50]);
+            AplausoCalendario::where('id','<>',5000)->update(['calendario_id'=>50]);
             if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
                 $fecha=$sepuedeaplaudir->fecha;
                 $partido=[
