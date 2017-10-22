@@ -22,7 +22,7 @@ font-size: 35px;
 <body bgcolor= "#E9EBEB" bgwidth:"2px" height:"20px">
 <center> 
 <?php
-$texto = "Livestream";
+$texto = "Livestream2";
 
   echo "<br>";
   echo "<div id=\"texto\">";
