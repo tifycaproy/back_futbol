@@ -67,9 +67,16 @@ class MonumentalesController extends Controller
             if(!isset($request["idmonumental"])) $errors[]="El idmonumental es requerido";
             if(!isset($request["imei"])) $errors[]="El imei es requerido";
             if(count($errors)>0){
-                return ["status" => "fallo", "error" => $errors];
+                return ['status' => 'fallo','error'=>["No hay encuestas activas"]];
             }
             //fin validaciones
+            if(MonumentalVotos::
+                where('monumental_encuesta_id',$request["idencuesta"])
+                ->where('monumental_id',$request["idmonumental"])
+                ->where('imei',$request["imei"])
+                ->first()){
+                return ['status' => 'fallo','error'=>["Usted ya ha votado por esta monumental"]];
+            }
             MonumentalVotos::create([
                 'monumental_encuesta_id'=>$request["idencuesta"],
                 'monumental_id'=>$request["idmonumental"],

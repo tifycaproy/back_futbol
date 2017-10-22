@@ -264,7 +264,7 @@ $data=array(
 		),
 		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido")
+			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido","Usted ya ha votado por esta monumental")
 		)
 	),
 	"Monumentales Anual"=>array(
