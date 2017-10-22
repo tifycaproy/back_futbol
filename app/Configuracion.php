@@ -8,6 +8,7 @@ class Configuracion extends Model
 {
     protected $table = 'configuracion';
 	protected $guarded = ['id'];
+    public $timestamps = false;
 
 //relaciones
     public function partido()

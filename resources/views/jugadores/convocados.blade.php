@@ -69,9 +69,7 @@ $(document).ready(function(){
     setTimeout(function(){
         $(".alert").slideUp(500);
     },10000)
-    $('tbody').sortable(function(){
-        alert("w");
-    });
+    $('tbody').sortable();
 })
 
 </script>

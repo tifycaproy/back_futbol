@@ -69,6 +69,9 @@
                         <a href="{{ route('home') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
+                        <a href="{{ route("configuracion") }}"><i class="fa fa-fw fa-cog"></i> Configuración</a>
+                    </li>
+                    <li>
                         <a href="{{ route("usuarios.index") }}"><i class="fa fa-fw fa-user"></i> Usuarios</a>
                     </li>
                     <li>

@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
+//configuración
+    Route::get('configuracion', 'ConfiguracionController@index')->name('configuracion');
+    Route::put('configuracion_actualizar', 'ConfiguracionController@configuracion_actualizar')->name('configuracion_actualizar');
 //usuarios
     Route::get('usuarios_eliminar/{id}', 'UserController@destroy')->name('usuarios_eliminar');
     Route::get('edit_password/{id}', 'UserController@edit_password')->name('edit_password');
