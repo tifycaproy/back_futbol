@@ -63,7 +63,7 @@
         <div class="col-lg-4">
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                 <label>Fecha</label>
-                <input type="date" class="form-control" name="fecha" value="{{ old('fecha', $noticia->fecha) }}" maxlength="10" required>
+                <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha', $noticia->fecha) }}" required>
                 @if ($errors->has('fecha'))
                     <p class="help-block">{{ $errors->first('fecha') }}</p>
                 @endif
@@ -192,6 +192,14 @@ $(document).ready(function(){
       buttonUploadTitle: "Guardar"
     });
 })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
 </script>
 
 @endsection

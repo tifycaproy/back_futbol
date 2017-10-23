@@ -9,6 +9,7 @@ use Aws\S3\S3Client;
 use App\Noticia;
 use App\Jugador;
 use App\NoticiaJugador;
+use App\Monumental;
 
 class NoticiasController extends Controller
 {
@@ -20,7 +21,8 @@ class NoticiasController extends Controller
 
     public function create()
     {
-        return view('noticias.create');
+        $monumentales=Monumental::orderby('nombre')->get();
+        return view('noticias.create')->with('monumentales',$monumentales);
     }
 
     public function store(Request $request)
@@ -80,10 +82,11 @@ class NoticiasController extends Controller
 
     public function edit($id)
     {
+        $monumentales=Monumental::orderby('nombre')->get();
         $id=decodifica($id);
         $noticia=Noticia::find($id);
         $_SESSION['noticia_id']=$id;
-        return view('noticias.edit')->with('noticia',$noticia);
+        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales);
     }
 
     public function update(Request $request, $id)
@@ -157,13 +160,22 @@ class NoticiasController extends Controller
 
     public function noticias_jugadores()
     {
+        $noticias_id=$_SESSION['noticia_id'];
+        $jugadores=Jugador::leftJoin('noticias_jugadores', function($join) use ($noticias_id)
+        {
+            $join->on('jugadores.id', '=', 'noticias_jugadores.jugadores_id');
+            $join->where('noticias_id','=',$noticias_id);
+        })
+        ->orderby('nombre')->get(['jugadores.*','noticias_jugadores.id as yaesta']);
+        /*
         $jugadores=Jugador::orderby('nombre')->get();
+    */
         return view('noticias.jugadores')->with('jugadores',$jugadores);
     }
     public function update_jugadores(Request $request)
     {
         NoticiaJugador::where('noticias_id',$_SESSION['noticia_id'])->delete();
-        foreach ($request->jugadores as $idjugador) {
+        if($request->jugadores) foreach ($request->jugadores as $idjugador) {
             NoticiaJugador::create([
                 'noticias_id' => $_SESSION['noticia_id'],
                 'jugadores_id' => $idjugador,

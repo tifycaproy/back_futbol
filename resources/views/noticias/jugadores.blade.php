@@ -40,7 +40,7 @@
                     <tbody>
                     @foreach($jugadores as $jugador)
                         <tr>
-                            <td><input type="checkbox" name="jugadores[]" value="{{ $jugador->id }}" id="jugador{{ $jugador->id }}">  <label for="jugador{{ $jugador->id }}">{{ $jugador->nombre }}</label></td>
+                            <td><input @if($jugador->yaesta) checked @endif type="checkbox" name="jugadores[]" value="{{ $jugador->id }}" id="jugador{{ $jugador->id }}">  <label for="jugador{{ $jugador->id }}">{{ $jugador->nombre }}</label></td>
                         </tr>
                     @endforeach
                     </tbody>
