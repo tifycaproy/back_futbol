@@ -16,7 +16,7 @@ if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
     // redirect to ipa file download
         ?><script type="text/javascript">
 window.location.href = 'https://itunes.apple.com/ec/app/barcelona-sc-oficial/id1127538792?mt=8';
-</script><?
+</script><?php
 
 		die();
 	} else if ( $Android ) {
@@ -24,21 +24,22 @@ window.location.href = 'https://itunes.apple.com/ec/app/barcelona-sc-oficial/id1
 
 	       ?><script type="text/javascript">
 window.location.href = 'https://play.google.com/store/apps/details?id=com.BarcelonaSC.BarcelonaApp&hl=es_419';
-</script><?
+</script><?php
 
 		die();
 	}else{
 
 	   ?><script type="text/javascript">
 window.location.href = 'https://barcelonasc.com.ec/';
-</script><?
+</script><?php
 
 	}
 } else { 
  ?><script type="text/javascript">
 window.location.href = 'https://barcelonasc.com.ec/';
-</script><?
+</script><?php
 }
 
 echo "</html>";
+
 ?>
