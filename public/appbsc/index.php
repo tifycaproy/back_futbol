@@ -1,13 +1,5 @@
 <html>
 <header>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100387371-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-100387371-1');
-</script>
 </header>
 <?php
 if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
@@ -45,15 +37,5 @@ window.location.href = 'https://barcelonasc.com.ec/';
 window.location.href = 'https://barcelonasc.com.ec/';
 </script><?
 }
-
-
-
-
-
-
-
-
 ?>
-
-
 </html>
