@@ -99,7 +99,7 @@ class CalendarioController extends Controller
             "goles_2"=>$fecha->goles_2,
             'fecha'=>date('Y-m-d',strtotime($fecha->fecha)),
             'fecha_etapa'=>$fecha->fecha_etapa,
-            'estadio'=>$fecha->estadio,
+            'estadio'=>$fecha->estadio
         ];
         $jugadores=[];
         $convocados=Convocado::orderby('orden','desc')->get();
