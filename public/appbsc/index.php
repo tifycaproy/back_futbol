@@ -1,7 +1,9 @@
+<?php
+echo "
 <html>
 <header>
-</header>
-<?php
+</header>";
+
 if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 	$iPod = stripos( $_SERVER['HTTP_USER_AGENT'], "iPod" );
 	$iPhone = stripos( $_SERVER['HTTP_USER_AGENT'], "iPhone" );
@@ -37,5 +39,6 @@ window.location.href = 'https://barcelonasc.com.ec/';
 window.location.href = 'https://barcelonasc.com.ec/';
 </script><?
 }
+
+echo "</html>";
 ?>
-</html>
