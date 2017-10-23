@@ -21,3 +21,4 @@ class Copa extends Model
         })->orderby('fecha','desc');
     }
 }
+
