@@ -51,6 +51,15 @@ class MonumentalesController extends Controller
                 'total_votos' => $monumental->votos->count(),
                 'instagram' => $monumental->instagram,
             ];
+
+            $noticias=$monumental->noticias;
+            $data["data"]['noticias']=[];
+            foreach ($noticias as $noticia) {
+                if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+                unset($noticia->pivot);
+                $data["data"]['noticias'][]=$noticia;
+            }
+
             return $data;
         }else{
             return ['status' => 'fallo','error'=>["idmonumental incorrecto"]];

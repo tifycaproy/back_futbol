@@ -14,4 +14,8 @@ class Monumental extends Model
     {
     	return $this->hasMany('App\MonumentalVotos');
     }
+	public function noticias()
+    {
+    	return $this->hasMany('App\Noticia','aparevetimelinemonumentales');
+    }
 }
