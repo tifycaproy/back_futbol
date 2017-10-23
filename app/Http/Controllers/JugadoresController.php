@@ -20,7 +20,8 @@ class JugadoresController extends Controller
 
     public function create()
     {
-        return view('jugadores.create');
+        $partidos=Calendario::orderby('fecha','desc')->get();
+        return view('jugadores.create')->with('partidos',$partidos);
     }
 
     public function store(Request $request)
@@ -83,6 +84,7 @@ class JugadoresController extends Controller
                 'activo' => $request->activo,
                 'foto' => $fileName_foto,
                 'banner' => $fileName_banner,
+                'calendario_id' => $request->calendario_id,
             ]);
             return redirect()->route('jugadores.edit', codifica($jugador->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -102,7 +104,8 @@ class JugadoresController extends Controller
         $id=decodifica($id);
         $jugador=Jugador::find($id);
         $_SESSION['jugador_id']=$id;
-        return view('jugadores.edit')->with('jugador',$jugador);
+        $partidos=Calendario::orderby('fecha','desc')->get();
+        return view('jugadores.edit')->with('jugador',$jugador)->with('partidos',$partidos);
     }
 
     public function update(Request $request, $id)
@@ -128,6 +131,7 @@ class JugadoresController extends Controller
                 'posicion' => $request->posicion,
                 'instagram' => $request->instagram,
                 'activo' => $request->activo,
+                'calendario_id' => $request->calendario_id,
             ];
 
             if($request->foto){

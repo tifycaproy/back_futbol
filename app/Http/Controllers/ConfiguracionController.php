@@ -27,6 +27,6 @@ class ConfiguracionController extends Controller
             'url_juramento'=> $request->url_juramento,
             'url_livestream'=> $request->url_livestream,
         ]);
-        return redirect()->route('configuracion');
+        return redirect()->route('configuracion')->with("notificacion","Se ha guardado correctamente su información");
     }
 }
