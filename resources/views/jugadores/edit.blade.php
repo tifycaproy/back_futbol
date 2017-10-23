@@ -95,6 +95,19 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
+                <label>Partido asociado</label>
+                <select name="id_calendario_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia',$noticia->id_calendario_noticia)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
                 <label>Foto</label>
                 <div class="slim slim_foto">
                   <input name="foto" type="file" accept="image/jpeg, image/png" />
