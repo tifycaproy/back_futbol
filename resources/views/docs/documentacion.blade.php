@@ -249,7 +249,9 @@ $data=array(
 	"Single Monumental"=>array(
 		"Ruta"=>"/single_monumental/{idmonumental}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','foto','total_votos','instagram'],
+		"Éxito"=>['nombre','foto','total_votos','instagram',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
 		"Falla"=>array(
 			"error"=>["idmonumental incorrecto"],
 		)

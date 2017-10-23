@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                 <label>Fecha</label>
                 <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha', $noticia->fecha) }}" required>
@@ -69,6 +69,38 @@
                 @endif
             </div>
         </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Tipo</label>
+                <select name="tipo" class="form-control">
+                    <option value="Normal"@if(old('tipo', $noticia->tipo)=='Normal') selected @endif>Normal</option>
+                    <option value="Video"@if(old('tipo', $noticia->tipo)=='Video') selected @endif>Video</option>
+                    <option value="Infografia"@if(old('tipo', $noticia->tipo)=='Infografia') selected @endif>Infografía</option>
+                    <option value="Galeria"@if(old('tipo', $noticia->tipo)=='Galeria') selected @endif>Galería</option>
+                    <option value="Stat"@if(old('tipo', $noticia->tipo)=='Stat') selected @endif>Stat</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Activa</label>
+                <select name="active" class="form-control">
+                    <option value="1"@if(old('active', $noticia->active)=='1') selected @endif>Si</option>
+                    <option value="0"@if(old('active', $noticia->active)=='0') selected @endif>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Destacada</label>
+                <select name="destacada" class="form-control">
+                    <option value="0"@if(old('destacada', $noticia->destacada)=='0') selected @endif>No</option>
+                    <option value="1"@if(old('destacada', $noticia->destacada)=='1') selected @endif>Si</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Aparece en noticias generales</label>
@@ -89,35 +121,14 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Tipo</label>
-                <select name="tipo" class="form-control">
-                    <option value="Normal"@if(old('tipo', $noticia->tipo)=='Normal') selected @endif>Normal</option>
-                    <option value="Video"@if(old('tipo', $noticia->tipo)=='Video') selected @endif>Video</option>
-                    <option value="Infografia"@if(old('tipo', $noticia->tipo)=='Infografia') selected @endif>Infografía</option>
-                    <option value="Galeria"@if(old('tipo', $noticia->tipo)=='Galeria') selected @endif>Galería</option>
-                    <option value="Stat"@if(old('tipo', $noticia->tipo)=='Stat') selected @endif>Stat</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Activa</label>
-                <select name="active" class="form-control">
-                    <option value="1"@if(old('active', $noticia->active)=='1') selected @endif>Si</option>
-                    <option value="0"@if(old('active', $noticia->active)=='0') selected @endif>No</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Destacada</label>
-                <select name="destacada" class="form-control">
-                    <option value="0"@if(old('destacada', $noticia->destacada)=='0') selected @endif>No</option>
-                    <option value="1"@if(old('destacada', $noticia->destacada)=='1') selected @endif>Si</option>
+                <label>Partido asociado</label>
+                <select name="id_calendario_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia',$noticia->id_calendario_noticia)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
                 </select>
             </div>
         </div>

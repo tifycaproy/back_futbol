@@ -22,4 +22,8 @@ class Calendario extends Model
     {
         return $this->belongsTo('App\Equipo', 'equipo_2');
     }
+    public function noticias()
+    {
+        return $this->hasMany('App\Noticia','aparevetimelinemonumentales');
+    }
 }

@@ -10,6 +10,7 @@ use App\Noticia;
 use App\Jugador;
 use App\NoticiaJugador;
 use App\Monumental;
+use App\Calendario;
 
 class NoticiasController extends Controller
 {
@@ -22,7 +23,8 @@ class NoticiasController extends Controller
     public function create()
     {
         $monumentales=Monumental::orderby('nombre')->get();
-        return view('noticias.create')->with('monumentales',$monumentales);
+        $partidos=Calendario::orderby('fecha','desc')->get();
+        return view('noticias.create')->with('monumentales',$monumentales)->with('partidos',$partidos);
     }
 
     public function store(Request $request)
@@ -63,6 +65,7 @@ class NoticiasController extends Controller
                 'active' => $request->active,
                 'aparecetimelineppal' => $request->aparecetimelineppal,
                 'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
+                'id_calendario_noticia' => $request->id_calendario_noticia,
                 'destacada' => $request->destacada,
                 'tipo' => $request->tipo,
                 'foto' => $fileName,
@@ -83,10 +86,11 @@ class NoticiasController extends Controller
     public function edit($id)
     {
         $monumentales=Monumental::orderby('nombre')->get();
+        $partidos=Calendario::orderby('fecha','desc')->get();
         $id=decodifica($id);
         $noticia=Noticia::find($id);
         $_SESSION['noticia_id']=$id;
-        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales);
+        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales)->with('partidos',$partidos);
     }
 
     public function update(Request $request, $id)
@@ -111,6 +115,7 @@ class NoticiasController extends Controller
                 'active' => $request->active,
                 'aparecetimelineppal' => $request->aparecetimelineppal,
                 'aparevetimelinemonumentales' => $request->aparevetimelinemonumentales,
+                'id_calendario_noticia' => $request->id_calendario_noticia,
                 'destacada' => $request->destacada,
                 'tipo' => $request->tipo,
             ];
