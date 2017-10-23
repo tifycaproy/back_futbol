@@ -66,9 +66,13 @@ class JugadoresController extends Controller
                 'instagram' => $jugador->instagram,
             ];
             if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
-                $fecha=$sepuedeaplaudir->fecha;
+                $data["data"]['sepuedeaplaudir'] = 1;
+            }else{
+                $data["data"]['sepuedeaplaudir'] = 0;
+            }
+
+            if($fecha=$jugador->fecha){
                 $partido=[
-                    'sepuedeaplaudir' => 1,
                     'idpartido'=>$fecha->id,
                     "equipo_1"=>$fecha->equipo1->nombre,
                     "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
@@ -82,8 +86,9 @@ class JugadoresController extends Controller
                 ];
                 $data["data"] = array_merge($data["data"], $partido);
             }else{
-                $data["data"]['sepuedeaplaudir'] = 0;
+                $data["data"]['idpartido'] = null;
             }
+
             if($ultimopartido=AplausoCalendario::orderby('id','desc')->first()){
                 $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$ultimopartido->calendario_id)->where('jugadores_id',$id)->count();
             }else{
