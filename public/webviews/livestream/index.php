@@ -145,11 +145,7 @@ if(!isset($_GET['idvideo'])){
             <h2>El Monumental siempre contigo</h2>
        </a>
     </li>
-    
-        <li>
-      <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/qd1brdPy5yQ" frameborder="0" allowfullscreen></iframe>
 
-    </li>
     
     <?php
 
