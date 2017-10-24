@@ -37,6 +37,7 @@ h2{
 	font-family: 'Open Sans', sans-serif;
 	text-align: left;
 margin: 0px;
+padding-left: 10px;
 }
 img {
 	width: 100%;
