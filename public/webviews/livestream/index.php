@@ -168,7 +168,7 @@ if(!isset($_GET['idvideo'])){
 </ul>
  
     </div>
-       <link rel="stylesheet" href="dist/css/lightbox.min.css">
+       
   </body>
   
   
