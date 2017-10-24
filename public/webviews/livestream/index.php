@@ -43,7 +43,7 @@ h2{
 margin: 0px;
 padding-left: 10px;
 }
-img {
+img.example-image {
 	width: 100%;
 	height: auto;
 }
