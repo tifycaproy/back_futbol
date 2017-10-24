@@ -293,7 +293,7 @@ img.hover-shadow {
   </tr>
     <tr data-eq="ve">
     <td>10</td>
-    <td><img src="img/banderas/cuenca.png" />DEP. CUENCA</td>
+    <td><img src="img/banderas/cuenta.png" />DEP. CUENCA</td>
     <td>-</td>
     <td>-</td>
     <td>-</td>
@@ -352,17 +352,17 @@ img.hover-shadow {
 <div class="lafecha-info">8 de octubre de 2015</div>
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/cuenca.png">DEP. CUENCA</div><div class="marc"><input tabindex="1" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="2" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="1" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="2" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="1" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="2" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="1" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="2" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="3" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="4" pattern="\d*" maxlength="2" type="number" data-eq="py" value="1" disabled></div><div class="vis">L.D.U (Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="3" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="4" pattern="\d*" maxlength="2" type="number" data-eq="py" value="1" disabled></div><div class="vis">L.D.U (Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="5" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>--</span><input tabindex="6" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="5" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>--</span><input tabindex="6" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="7" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>--</span><input tabindex="8" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="7" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>--</span><input tabindex="8" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="9" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>--</span><input tabindex="10" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">BARCELONA S.C<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="9" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>--</span><input tabindex="10" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">BARCELONA S.C<img src="img/banderas/barcelona.png"></div></li>
 
 </ul>
 
@@ -378,17 +378,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="11" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="12" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="11" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="12" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input tabindex="11" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="12" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="11" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="12" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="13" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="14" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="13" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="14" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="15" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="16" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="15" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="16" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="17" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="3" disabled><span>--</span><input tabindex="18" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="4" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="17" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="3" disabled><span>--</span><input tabindex="18" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="4" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U (Q)</div><div class="marc"><input tabindex="19" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="20" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U (Q)</div><div class="marc"><input tabindex="19" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="20" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
 </ul>
 
@@ -404,17 +404,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="19" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="20" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="19" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="20" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="21" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="22" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="21" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="22" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="23" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="24" pattern="\d*" maxlength="2" type="number" data-eq="br" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="23" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="24" pattern="\d*" maxlength="2" type="number" data-eq="br" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="25" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="26" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">L.D.U (Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="25" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="26" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">L.D.U (Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="27" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="4" disabled><span>--</span><input tabindex="28" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="27" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="4" disabled><span>--</span><input tabindex="28" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="29" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="1" disabled><span>--</span><input tabindex="30" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="29" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="1" disabled><span>--</span><input tabindex="30" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
 </ul>
 
@@ -430,17 +430,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input tabindex="31" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="32" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="31" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="32" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="31" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="32" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="31" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="32" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="33" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="34" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="33" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="34" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="35" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="36" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="35" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="36" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="37" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="1" disabled><span>--</span><input tabindex="38" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="3" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="37" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="1" disabled><span>--</span><input tabindex="38" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="3" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U (Q)</div><div class="marc"><input tabindex="39" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="40" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U (Q)</div><div class="marc"><input tabindex="39" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="40" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
 </ul>
 
@@ -456,17 +456,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U (Q)</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U (Q)</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
 </ul>
 
@@ -483,17 +483,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="51" maxlength="2" pattern="\d*" type="number" data-eq="co" value="3" disabled><span>--</span><input tabindex="52" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="51" maxlength="2" pattern="\d*" type="number" data-eq="co" value="3" disabled><span>--</span><input tabindex="52" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="51" maxlength="2" pattern="\d*" type="number" data-eq="co" value="3" disabled><span>--</span><input tabindex="52" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="51" maxlength="2" pattern="\d*" type="number" data-eq="co" value="3" disabled><span>--</span><input tabindex="52" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="53" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="54" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="53" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="54" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="55" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="2" disabled><span>--</span><input tabindex="56" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="55" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="2" disabled><span>--</span><input tabindex="56" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="57" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="1" disabled><span>--</span><input tabindex="58" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="4" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="57" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="1" disabled><span>--</span><input tabindex="58" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="4" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="59" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="1" disabled><span>--</span><input tabindex="60" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="59" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="1" disabled><span>--</span><input tabindex="60" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
 </ul>
 
@@ -510,17 +510,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="61" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="62" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="61" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="62" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="61" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="62" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="61" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="62" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="63" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="64" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="63" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="64" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="65" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="66" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="65" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="66" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="67" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="0" disabled><span>--</span><input tabindex="68" pattern="\d*" maxlength="2" type="number" data-eq="br" value="3" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="67" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="0" disabled><span>--</span><input tabindex="68" pattern="\d*" maxlength="2" type="number" data-eq="br" value="3" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="69" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>--</span><input tabindex="70" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="3" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="69" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>--</span><input tabindex="70" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="3" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
 </ul>
 
@@ -537,17 +537,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="71" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="72" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="71" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="72" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="71" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="72" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="71" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="72" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="73" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="2" disabled><span>--</span><input tabindex="74" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="73" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="2" disabled><span>--</span><input tabindex="74" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="75" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2" disabled><span>--</span><input tabindex="76" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="75" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2" disabled><span>--</span><input tabindex="76" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="77" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="78" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="77" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="78" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C</div><div class="marc"><input tabindex="79" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="4" disabled><span>--</span><input tabindex="80" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C</div><div class="marc"><input tabindex="79" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="4" disabled><span>--</span><input tabindex="80" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
 </ul>
 
@@ -564,17 +564,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="81" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="82" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="81" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="82" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="81" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="82" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="81" maxlength="2" pattern="\d*" type="number" data-eq="py" value="0" disabled><span>--</span><input tabindex="82" pattern="\d*" maxlength="2" type="number" data-eq="co" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="83" maxlength="2" pattern="\d*" type="number" data-eq="br" value="5" disabled><span>--</span><input tabindex="84" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="83" maxlength="2" pattern="\d*" type="number" data-eq="br" value="5" disabled><span>--</span><input tabindex="84" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="85" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="3" disabled><span>--</span><input tabindex="86" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="85" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="3" disabled><span>--</span><input tabindex="86" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="87" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="88" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="87" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="88" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="89" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="90" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="89" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="3" disabled><span>--</span><input tabindex="90" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
 </ul>
 
@@ -591,17 +591,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="91" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="92" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="91" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="92" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="91" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="92" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="91" maxlength="2" pattern="\d*" type="number" data-eq="co" value="2" disabled><span>--</span><input tabindex="92" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="93" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>--</span><input tabindex="94" pattern="\d*" maxlength="2" type="number" data-eq="py" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="93" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>--</span><input tabindex="94" pattern="\d*" maxlength="2" type="number" data-eq="py" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="95" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="96" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="95" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="96" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="97" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="98" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="97" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="98" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="99" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>--</span><input tabindex="100" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="1" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="99" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>--</span><input tabindex="100" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="1" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
 </ul>
 
@@ -617,17 +617,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="101" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="102" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="101" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="102" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="101" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="102" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="101" maxlength="2" pattern="\d*" type="number" data-eq="co" value="0" disabled><span>--</span><input tabindex="102" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="103" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="104" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="4" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="103" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="104" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="4" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="105" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="5" disabled><span>--</span><input tabindex="106" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="105" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="5" disabled><span>--</span><input tabindex="106" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="107" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="2" disabled><span>--</span><input tabindex="108" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="107" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="2" disabled><span>--</span><input tabindex="108" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input tabindex="109" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="110" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="109" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="110" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
 </ul>
 
@@ -643,17 +643,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="111" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="112" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="111" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="112" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="111" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="112" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="111" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="112" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="113" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="3" disabled><span>--</span><input tabindex="114" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="113" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="3" disabled><span>--</span><input tabindex="114" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="115" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="3" disabled><span>--</span><input tabindex="116" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="115" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="3" disabled><span>--</span><input tabindex="116" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="117" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="1" disabled><span>--</span><input tabindex="118" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="117" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="1" disabled><span>--</span><input tabindex="118" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="119" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="0" disabled><span>--</span><input tabindex="120" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="119" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="0" disabled><span>--</span><input tabindex="120" pattern="\d*" maxlength="2" type="number" data-eq="br" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
 </ul>
 
@@ -669,17 +669,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="121" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="122" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="121" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="122" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="121" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="122" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="121" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="122" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="0" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="123" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="124" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="123" maxlength="2" pattern="\d*" type="number" data-eq="py" value="2" disabled><span>--</span><input tabindex="124" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="125" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="126" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="125" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="126" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="127" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="2" disabled><span>--</span><input tabindex="128" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="127" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="2" disabled><span>--</span><input tabindex="128" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="129" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="1" disabled><span>--</span><input tabindex="130" pattern="\d*" maxlength="2" type="number" data-eq="br" value="4" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="129" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="1" disabled><span>--</span><input tabindex="130" pattern="\d*" maxlength="2" type="number" data-eq="br" value="4" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
 </ul>
 
@@ -696,17 +696,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input tabindex="131" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="132" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="131" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="3" disabled><span>--</span><input tabindex="132" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="133" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="134" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="133" maxlength="2" pattern="\d*" type="number" data-eq="br" value="3" disabled><span>--</span><input tabindex="134" pattern="\d*" maxlength="2" type="number" data-eq="py" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="135" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="0" disabled><span>--</span><input tabindex="136" pattern="\d*" maxlength="2" type="number" data-eq="co" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="135" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="0" disabled><span>--</span><input tabindex="136" pattern="\d*" maxlength="2" type="number" data-eq="co" value="2" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="137" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="138" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="137" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="138" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="139" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="140" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="139" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="140" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="139" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="140" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="139" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="140" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="1" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
 </ul>
 
@@ -722,17 +722,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="145" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="146" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="145" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>--</span><input tabindex="146" pattern="\d*" maxlength="2" type="number" data-eq="co" value="0" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="141" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="0" disabled><span>--</span><input tabindex="142" pattern="\d*" maxlength="2" type="number" data-eq="py" value="3" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="141" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="0" disabled><span>--</span><input tabindex="142" pattern="\d*" maxlength="2" type="number" data-eq="py" value="3" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="149" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="0" disabled><span>--</span><input tabindex="150" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="149" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="0" disabled><span>--</span><input tabindex="150" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="0" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="143" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2" disabled><span>--</span><input tabindex="144" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="143" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2" disabled><span>--</span><input tabindex="144" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="0" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="147" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="148" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="147" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="148" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="147" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="148" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="147" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2" disabled><span>--</span><input tabindex="148" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="1" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
 </ul>
 
@@ -748,17 +748,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input tabindex="159" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="1" disabled><span>--</span><input tabindex="160" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input tabindex="159" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="1" disabled><span>--</span><input tabindex="160" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="0" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="151" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="152" pattern="\d*" maxlength="2" type="number" data-eq="br" value="1" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="151" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>--</span><input tabindex="152" pattern="\d*" maxlength="2" type="number" data-eq="br" value="1" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE+</div><div class="marc"><input tabindex="157" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="1" disabled><span>--</span><input tabindex="158" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE+</div><div class="marc"><input tabindex="157" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="1" disabled><span>--</span><input tabindex="158" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="155" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="156" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="155" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="1" disabled><span>--</span><input tabindex="156" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="1" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="153" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="154" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="153" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="154" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="153" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="154" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="153" maxlength="2" pattern="\d*" type="number" data-eq="py" value="1" disabled><span>--</span><input tabindex="154" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
 </ul>
 
@@ -775,17 +775,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input name="fecha17-1" tabindex="161" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>-</span><input name="fecha17-2" tabindex="162" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input name="fecha17-1" tabindex="161" maxlength="2" pattern="\d*" type="number" data-eq="co" value="1" disabled><span>-</span><input name="fecha17-2" tabindex="162" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input name="fecha17-3" tabindex="163" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>-</span><input name="fecha17-4" tabindex="164" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input name="fecha17-3" tabindex="163" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="2" disabled><span>-</span><input name="fecha17-4" tabindex="164" pattern="\d*" maxlength="2" type="number" data-eq="ec" value="1" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input name="fecha17-5" tabindex="165" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>-</span><input name="fecha17-6" tabindex="166" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input name="fecha17-5" tabindex="165" maxlength="2" pattern="\d*" type="number" data-eq="ar" value="0" disabled><span>-</span><input name="fecha17-6" tabindex="166" pattern="\d*" maxlength="2" type="number" data-eq="pe" value="0" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input name="fecha17-7" tabindex="167" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>-</span><input name="fecha17-8" tabindex="168" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="0" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input name="fecha17-7" tabindex="167" maxlength="2" pattern="\d*" type="number" data-eq="ve" value="0" disabled><span>-</span><input name="fecha17-8" tabindex="168" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="0" disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input name="fecha17-9" tabindex="169" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>-</span><input name="fecha17-10" tabindex="170" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input name="fecha17-9" tabindex="169" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>-</span><input name="fecha17-10" tabindex="170" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input name="fecha17-9" tabindex="169" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>-</span><input name="fecha17-10" tabindex="170" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input name="fecha17-9" tabindex="169" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="0" disabled><span>-</span><input name="fecha17-10" tabindex="170" pattern="\d*" maxlength="2" type="number" data-eq="br" value="0" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
 <div id="siteInfo2">
 </div>
@@ -801,17 +801,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C.</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input name="fecha18-3" tabindex="173" maxlength="2" pattern="\d*" type="number" data-eq="br" value="<?php echo $row['fecha18-3']?>" ><span>--</span><input name="fecha18-4" tabindex="174" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="<?php echo $row['fecha18-4']?>" ></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input name="fecha18-3" tabindex="173" maxlength="2" pattern="\d*" type="number" data-eq="br" value="<?php echo $row['fecha18-3']?>" ><span>--</span><input name="fecha18-4" tabindex="174" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="<?php echo $row['fecha18-4']?>" ></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input name="fecha18-5" tabindex="175" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="<?php echo $row['fecha18-5']?>" ><span>--</span><input name="fecha18-6" tabindex="176" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="<?php echo $row['fecha18-6']?>" ></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input name="fecha18-5" tabindex="175" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="<?php echo $row['fecha18-5']?>" ><span>--</span><input name="fecha18-6" tabindex="176" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="<?php echo $row['fecha18-6']?>" ></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input name="fecha18-7" tabindex="177" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="<?php echo $row['fecha18-7']?>" ><span>--</span><input name="fecha18-8" tabindex="178" pattern="\d*" maxlength="2" type="number" data-eq="co" value="<?php echo $row['fecha18-8']?>" ></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input name="fecha18-7" tabindex="177" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="<?php echo $row['fecha18-7']?>" ><span>--</span><input name="fecha18-8" tabindex="178" pattern="\d*" maxlength="2" type="number" data-eq="co" value="<?php echo $row['fecha18-8']?>" ></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input name="fecha18-9" tabindex="179" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="<?php echo $row['fecha18-9']?>" ><span>--</span><input name="fecha18-10" tabindex="180" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="<?php echo $row['fecha18-10']?>" ></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input name="fecha18-9" tabindex="179" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="<?php echo $row['fecha18-9']?>" ><span>--</span><input name="fecha18-10" tabindex="180" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="<?php echo $row['fecha18-10']?>" ></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
 </ul>
 
@@ -827,17 +827,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">BARCELONA S.C.<img src="img/banderas/barcelona.png"></div></li>
 
 </ul>
 
@@ -853,17 +853,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
  
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
 </ul>
 
@@ -886,17 +886,17 @@ $date2=$hoy = date("Y-m-d H:i:s", time());
 ?>
 
 
-<li><div class="loc"><img src="img/banderas/CLAN.png">CLAN JUVENIL</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/NACIONAL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/CUENCA.png">DEP. CUENCA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/L.D.U.png"></div></li>
+<li><div class="loc"><img src="img/banderas/cuenta.png">DEP. CUENCA</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/EMELEC.png">EMELEC</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/GUAYAQUIL.png"></div></li>
+<li><div class="loc"><img src="img/banderas/emelec.png">EMELEC</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/FUERZA.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">BARCELONA S.C<img src="img/banderas/BARCELONA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">BARCELONA S.C<img src="img/banderas/barcelona.png"></div></li>
  
-<li><div class="loc"><img src="img/banderas/MACARA.png">MACARA</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/INDEPENDIENTE.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">INDEPENDIENTE<img src="img/banderas/independiente.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/UCATOLICA.png">U. CATOLICA</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">DELFIN<img src="img/banderas/DELFIN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/ucatolica.png">U. CATOLICA</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">DELFIN<img src="img/banderas/delfin.png"></div></li>
 
 </ul>
 
@@ -1034,17 +1034,17 @@ $row = mysql_fetch_array($result);
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/BARCELONA.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/MACARA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/DELFIN.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/FUERZA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/NACIONAL.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">EMELEC<img src="img/banderas/EMELEC.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/GUAYAQUIL.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/CUENCA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenta.png"></div></li>
  
-<li><div class="loc"><img src="img/banderas/INDEPENDIENTE.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/UCATOLICA.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/L.D.U.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/CLAN.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
 </ul>
 
