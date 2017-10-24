@@ -57,49 +57,86 @@ a:link
   </head>
   <body>
    
+   
+   
+   <?php
+   if($_GET['idvideo'])
+   {
+   echo "<div class=\"video\">";
+
+switch ($_GET['idvideo']) {
+    case 1:
+        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">Hoy necesitamos de todos en el <a href=\"https://twitter.com/hashtag/MonumentalBP?src=hash&amp;ref_src=twsrc%5Etfw\">#MonumentalBP</a> <a href=\"https://twitter.com/hashtag/vamosidolo?src=hash&amp;ref_src=twsrc%5Etfw\">#vamosidolo</a> <a href=\"https://twitter.com/hashtag/BSCvsNAC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSCvsNAC</a> <a href=\"https://t.co/YBMZM6wtUc\">pic.twitter.com/YBMZM6wtUc</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/920713216724013069?ref_src=twsrc%5Etfw\">18 de octubre de 2017</a></blockquote>
+<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+        break;
+    case 2:
+        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qd1brdPy5yQ\" frameborder=\"0\" allowfullscreen></iframe>";
+        break;
+    case 3:
+        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Cfm2Vw5ScPs\" frameborder=\"0\" allowfullscreen></iframe>";
+        break;
+    case 4:
+        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8LX6hRk5tYk\" frameborder=\"0\" allowfullscreen></iframe>";
+        break;
+    case 5:
+        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0bRnzaZxLow\" frameborder=\"0\" allowfullscreen></iframe>";
+        break;
+     case 6:
+        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9BddzJpLpyE\" frameborder=\"0\" allowfullscreen></iframe>";
+        break;
+     case 7:
+        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">¡No te quedes sin tu estadio, sin el Coloso de América en <a href=\"https://twitter.com/BSC_Puzzle3D?ref_src=twsrc%5Etfw\">@BSC_Puzzle3D</a>¡ | Reserva y compra ahora vía <a href=\"https://t.co/GTcoCTmQPn\">https://t.co/GTcoCTmQPn</a> <a href=\"https://twitter.com/hashtag/BSC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSC</a> <a href=\"https://t.co/waXQiuF9Nn\">pic.twitter.com/waXQiuF9Nn</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/921458974377107461?ref_src=twsrc%5Etfw\">20 de octubre de 2017</a></blockquote>
+<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+        break;
+}
+   
+   
+   echo "</div>";
+    }   
+   ?>
 <div class="center">
 
 <ul>
      
      
     <li>
-      <a class="example-image-link" href="imagenes/1.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=1" data-lightbox="example-1">
        <img class="example-image" src="imagenes/1.jpg" alt="image-1" />
             <h2>No se pierden las ganas de alentarte</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/2.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=2" data-lightbox="example-1">
        <img class="example-image" src="imagenes/2.jpg" alt="image-1" />
             <h2>Creo en ti </h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/3.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=3" data-lightbox="example-1">
        <img class="example-image" src="imagenes/3.jpg" alt="image-1" />
             <h2>Los clásicos no se juegan, se ganan</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/4.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=4" data-lightbox="example-1">
        <img class="example-image" src="imagenes/4.jpg" alt="image-1" />
             <h2>92 años de gloria Amarilla</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/5.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=5" data-lightbox="example-1">
        <img class="example-image" src="imagenes/5.jpg" alt="image-1" />
             <h2>Viernes de Revancha</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/6.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=6" data-lightbox="example-1">
        <img class="example-image" src="imagenes/6.jpg" alt="image-1" />
             <h2>El domingo volvemos al monumental</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="imagenes/7.jpg" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?id=7" data-lightbox="example-1">
        <img class="example-image" src="imagenes/7.jpg" alt="image-1" />
             <h2>El Monumental siempre contigo</h2>
        </a>
