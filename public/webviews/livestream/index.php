@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Nick Pettit</title>
+    <title>BSC en vivo</title>
     
      <script src="dist/js/lightbox-plus-jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -32,7 +32,7 @@ body {
 	text-align: center;
 }
 h2{
-	font-size: 18px;
+	font-size: 16px;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	text-align: left;
