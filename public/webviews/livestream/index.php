@@ -76,8 +76,8 @@ a:link
 
 switch ($_GET['idvideo']) {
     case 1:
-        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">Hoy necesitamos de todos en el <a href=\"https://twitter.com/hashtag/MonumentalBP?src=hash&amp;ref_src=twsrc%5Etfw\">#MonumentalBP</a> <a href=\"https://twitter.com/hashtag/vamosidolo?src=hash&amp;ref_src=twsrc%5Etfw\">#vamosidolo</a> <a href=\"https://twitter.com/hashtag/BSCvsNAC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSCvsNAC</a> <a href=\"https://t.co/YBMZM6wtUc\">pic.twitter.com/YBMZM6wtUc</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/920713216724013069?ref_src=twsrc%5Etfw\">18 de octubre de 2017</a></blockquote>
-<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+        echo '<blockquote class="twitter-tweet" data-lang="es"><p lang="und" dir="ltr"><a href="https://t.co/DAFZEqZCJn">https://t.co/DAFZEqZCJn</a></p>&mdash; Mario L Salas (@mariolsalas) <a href="https://twitter.com/mariolsalas/status/922901033772134400?ref_src=twsrc%5Etfw">24 de octubre de 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
         break;
     case 2:
         echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qd1brdPy5yQ\" frameborder=\"0\" allowfullscreen></iframe>";
