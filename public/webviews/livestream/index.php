@@ -76,8 +76,7 @@ a:link
 
 switch ($_GET['idvideo']) {
     case 1:
-        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">Hoy necesitamos de todos en el <a href=\"https://twitter.com/hashtag/MonumentalBP?src=hash&amp;ref_src=twsrc%5Etfw\">#MonumentalBP</a> <a href=\"https://twitter.com/hashtag/vamosidolo?src=hash&amp;ref_src=twsrc%5Etfw\">#vamosidolo</a> <a href=\"https://twitter.com/hashtag/BSCvsNAC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSCvsNAC</a> <a href=\"https://t.co/YBMZM6wtUc\">pic.twitter.com/YBMZM6wtUc</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/920713216724013069?ref_src=twsrc%5Etfw\">18 de octubre de 2017</a></blockquote>
-<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+        echo "";
         break;
     case 2:
         echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qd1brdPy5yQ\" frameborder=\"0\" allowfullscreen></iframe>";
@@ -95,8 +94,7 @@ switch ($_GET['idvideo']) {
         echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9BddzJpLpyE\" frameborder=\"0\" allowfullscreen></iframe>";
         break;
      case 7:
-        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">¡No te quedes sin tu estadio, sin el Coloso de América en <a href=\"https://twitter.com/BSC_Puzzle3D?ref_src=twsrc%5Etfw\">@BSC_Puzzle3D</a>¡ | Reserva y compra ahora vía <a href=\"https://t.co/GTcoCTmQPn\">https://t.co/GTcoCTmQPn</a> <a href=\"https://twitter.com/hashtag/BSC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSC</a> <a href=\"https://t.co/waXQiuF9Nn\">pic.twitter.com/waXQiuF9Nn</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/921458974377107461?ref_src=twsrc%5Etfw\">20 de octubre de 2017</a></blockquote>
-<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+        echo "";
         break;
 }
    
