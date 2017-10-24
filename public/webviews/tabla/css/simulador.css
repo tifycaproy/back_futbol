@@ -1,0 +1,633 @@
+@charset "utf-8";
+/* CSS Document */
+
+.loc {
+	color: #000;
+	text-shadow: 1px 1px 1px #000;
+}
+.vis {
+	color: #000;
+	text-shadow: 1px 1px 1px #000;
+}
+.loc.res{
+	color: #000;
+	text-shadow: 0px 0px 0px #000;
+}
+
+ul.resultados.sim-calendario-grupo li {
+	height: 35px;
+	line-height: 35px;
+	background: url(../img/calendario/bg-left.jpg) bottom left no-repeat, url(../img/calendario/bg-right.jpg) bottom right no-repeat;
+	background-color: transparent;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #3c3c3c;
+	text-transform: none;
+	border-bottom: 2px solid #d9d9d9;
+}
+.vis.res{
+	color: #000;
+	text-shadow: 0px 0px 0px #000;
+}
+
+.predecir {
+  background: #ddad0b none repeat scroll 0 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 20px;
+  margin: 10px;
+  padding: 17px;
+  text-align: center;
+}
+#siteInfo2 input[type="button"] {
+  text-align: center;
+  text-shadow: 1px 1px 1px #000000;
+}
+.box-simulador-general {
+	float: left;
+	width: 47%;
+	margin: 0 0% 15px 2%;
+
+}
+.llaves-cuartos-a {
+	float: left;
+	padding: 2%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #FFFFFF;
+	margin-top: 2px;
+	width: 46%;
+}
+.llaves-partido-box {
+	float: left;
+	width: 50%;
+}
+.llaves-partido-box-numero {
+	float: left;
+	width: 22%;
+}
+.icon-simulador-llaves {
+	float: left;
+	max-width: 20px;
+}
+.icon-simulador-llaves img {
+	max-width:100%;
+}
+.texto-simulador-llaves {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 4px;
+	float:left;
+	text-transform: uppercase;
+	margin-left: 4px;
+}
+.llaves-partido-box-numero {
+	float: left;
+	width: 22%;
+}
+.form-simulador {
+	float:left;
+	width: 100%;
+	height: 20px;
+	background-color:#D7E1EC;
+	border: 1px solid #CCCCCC;
+	box-sizing: border-box;
+	text-align:center;
+	font-size: 14px;
+	font-weight:normal;
+
+}
+.header{
+	position: fixed;
+	min-height: 325px!important;
+	background-color: #fff;
+	z-index: 50;
+	width: 100% !important;
+
+}
+
+/* ----------------- NUEVO -------------------- */
+
+
+ul.sim-calendario-grupo {
+list-style-type: none;
+padding:0px;
+margin:0px;
+float:left;
+clear:both;
+width:100%;
+}
+
+ul.sim-calendario-grupo li {
+	height: 45px;
+	line-height: 45px;
+	background: url(../img/calendario/bg-left.jpg) bottom left no-repeat, url(../img/calendario/bg-right.jpg) bottom right no-repeat;
+	background-color: transparent;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #3c3c3c;
+	text-transform: none;
+	border-bottom: 2px solid #d9d9d9;
+}
+
+ul.sim-calendario-grupo li img {
+width: 30px;
+position: absolute;
+top:12px;
+}
+
+ul.sim-calendario-grupo li div {
+display: inline-block;
+position: relative;
+height: 45px;
+}
+
+ul.sim-calendario-grupo li div.loc,
+ul.sim-calendario-grupo li div.vis {
+width: 26%;
+}
+
+ul.sim-calendario-grupo li div.loc {
+padding-left:12.5%;
+}
+
+ul.sim-calendario-grupo li div.loc img {
+left:10.5%;
+}
+
+ul.sim-calendario-grupo li div.vis {
+padding-right:13.5%;
+text-align: right;
+}
+
+ul.sim-calendario-grupo li div.vis img {
+right:10.5%;
+}
+
+ul.sim-calendario-grupo li div.marc {
+width: 22%;
+font-size: 18px;
+text-align: center;
+position: relative;
+}
+
+ul.sim-calendario-grupo li div.marc span {
+width: 30%;
+font-weight: bold;
+display: inline-block;
+}
+
+ul.sim-calendario-grupo li div.marc input[disabled] {
+background-color: #efefef;
+}
+
+ul.sim-calendario-grupo li div.marc input {
+  background-color: #ccc;
+  border: 0 solid #cccccc;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  height: 32px;
+  text-align: center;
+  width: 35%;
+}
+
+
+
+/* == barras == */
+
+.simulador-box {
+display: none;
+/*	float: left;
+	width: 100%;
+	margin-top: 0px;
+	padding-top: 8px;
+	padding-right: 0%;
+	padding-bottom: 0px;
+	padding-left: 0%;
+	border-top: 2px solid #e1e1e1;
+	border-bottom: 2px solid #e1e1e1;*/
+}
+a#compartir-borrar-menu {
+	display:block;
+	width:78%;
+	background-color: #bb1836;
+	height:24px;
+	float: right;
+	color:#FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	text-decoration:none;
+	text-align: center;
+	padding-top: 10px;
+	border-radius: 5px;
+	margin-right: 0;
+}
+a#compartir-borrar-menu:hover {
+	text-decoration:none;
+	background-color: #81182c;
+}
+a#compartir-tabla-menu {
+	display:block;
+	width:78%;
+	background-color: #2c9f29;
+	height:24px;
+	float: right;
+	color:#FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	text-decoration:none;
+	text-align: center;
+	padding-top: 10px;
+	border-radius: 5px;
+	margin-right: 0;
+}
+a#compartir-tabla-menu:hover {
+	text-decoration:none;
+	background-color: #1f711d;
+}
+
+#clasificacion{
+	position: fixed;
+	top: 0px;
+	left: 0%;
+	width: 100%;
+	height: 325px;
+	display: block;
+	z-index: 100;
+}
+
+#posiciones-simulador.tabla-fixed {
+position: fixed;
+top:10px;
+left:632px;
+width:309px;
+}
+
+a.ver-tabla-sim,
+div.nav-sim {
+display: none;
+}
+
+span.titulo-nav-box-central {
+margin-left:0px;
+margin-bottom:10px;
+width:40%;
+}
+
+h4.calendario-fecha a.izq,
+h4.calendario-fecha a.der {
+display: none;
+}
+
+
+
+
+
+/*Tabla de posiciones*/
+
+#posiciones-portada-simulador {
+top:0px;
+}
+
+table.tabla-posiciones-simulador {
+font-size: 11px;
+width:100%;
+}
+
+table.tabla-posiciones-simulador th {
+background-color: #fce0a0;
+border-bottom: 1px solid #174882;
+color: #000;
+font-weight: bold;
+height: 20px;
+line-height: 20px;
+text-align: center;
+}
+
+table.tabla-posiciones-simulador th:nth-child(2) {
+text-align: left;
+text-indent: 28px;
+}
+
+table.tabla-posiciones-simulador td {
+border-bottom: 1px solid #ccc;
+height: 26px;
+line-height: 26px;
+text-align: center;
+background-color: #fff;
+
+}
+
+table.tabla-posiciones-simulador td:nth-child(even){
+background-color: #ededed;
+}
+
+table.tabla-posiciones-simulador td img {
+	max-width: 20px;
+	max-height: 20px;
+	width:100%;
+}
+
+table.tabla-posiciones-simulador td:first-child {
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-weight: 400;
+color: #fff;
+background-color: #818181;
+width:6.45%;
+}
+
+table.tabla-posiciones-simulador td:nth-child(n+3){
+width:6.45%;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+}
+
+/*table.tabla-posiciones-simulador tbody tr:first-child td:first-child {*/
+table.tabla-posiciones-simulador tbody td:first-child {
+
+}
+
+table.tabla-posiciones-simulador tbody tr:nth-child(1) td:first-child,
+table.tabla-posiciones-simulador tbody tr:nth-child(2) td:first-child,
+table.tabla-posiciones-simulador tbody tr:nth-child(3) td:first-child,
+table.tabla-posiciones-simulador tbody tr:nth-child(4) td:first-child
+{
+background-color: #4bad40;
+}
+table.tabla-posiciones-simulador tbody tr:nth-child(1) td:nth-child(2),
+table.tabla-posiciones-simulador tbody tr:nth-child(2) td:nth-child(2), 
+table.tabla-posiciones-simulador tbody tr:nth-child(3) td:nth-child(2), 
+table.tabla-posiciones-simulador tbody tr:nth-child(4) td:nth-child(2)
+ {
+background-color: #4bad40;
+}
+
+
+
+
+
+table.tabla-posiciones-simulador tbody tr:nth-child(5) td:first-child {
+background-color: #c6161d;
+}
+table.tabla-posiciones-simulador td:nth-child(2){
+text-align: left;
+font-weight: bold;
+}
+
+table.tabla-posiciones-simulador td img {
+float:left;
+width:24px;
+height: 22px;
+margin:2px 3px;
+}
+
+#compartir-simulador {
+display: block;
+padding:10px;
+border-top: 1px dotted #ccc;
+border-bottom: 1px dotted #ccc;
+text-align: center;
+background-color: #DADFE4;
+}
+
+#compartir-simulador p {
+display: inline-block;
+width:30%;
+text-indent: 10px;
+font-weight: bold;
+margin-right: 2%;
+}
+
+#compartir-simulador a {
+width:33%;
+max-width: 150px;
+height: 30px;
+line-height: 30px;
+color: #fff;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+margin-right:2%;
+transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+}
+
+#compartir-simulador a#compartir-fb {
+background-color: #47639e;
+}
+
+#compartir-simulador a#compartir-fb:hover {
+background-color: #253a68;
+}
+
+#compartir-simulador a#compartir-tw {
+background-color: #6caddf;
+}
+
+#compartir-simulador a#compartir-tw:hover {
+background-color: #2877b5;
+}
+
+#compartir-simulador #compartir-ws {
+display: none;
+}
+
+
+
+/* ===== RESOLUCIÓN < 1180 ===== */
+
+
+
+@media (max-width: 1400px) {
+
+/*General*/
+.box-simulador-general {
+	width: 96%;
+}
+
+ul.nav-fechas-calendario {
+box-sizing: border-box;
+}
+
+#posiciones-simulador,
+#posiciones-simulador.tabla-fixed {
+left:0%;
+width:100%;
+z-index: 3;
+}
+
+/*Contenedor simulador*/
+
+div.contenedor-simulador-movil {
+height: 100%;
+width:100%;
+overflow: hidden;
+}
+
+div.contenedor-simulador-movil-inside {
+width:1900%;
+height: 100%;
+transition: margin-left 0.4s linear;
+  -webkit-transition: margin-left 0.4s linear;
+  -ms-transition: margin-left 0.4s linear;
+  -moz-transition: margin-left 0.4s linear;
+  -o-transition: margin-left 0.4s linear;
+}
+
+div.contenedor-simulador-movil-inside[data-pos="0"],
+div.contenedor-simulador-movil-inside[data-pos="19"] { margin-left:0%; }
+div.contenedor-simulador-movil-inside[data-pos="1"] { margin-left:-100%; }
+div.contenedor-simulador-movil-inside[data-pos="2"] { margin-left:-200%; }
+div.contenedor-simulador-movil-inside[data-pos="3"] { margin-left:-300%; }
+div.contenedor-simulador-movil-inside[data-pos="4"] { margin-left:-400%; }
+div.contenedor-simulador-movil-inside[data-pos="5"] { margin-left:-500%; }
+div.contenedor-simulador-movil-inside[data-pos="6"] { margin-left:-600%; }
+div.contenedor-simulador-movil-inside[data-pos="7"] { margin-left:-700%; }
+div.contenedor-simulador-movil-inside[data-pos="8"] { margin-left:-800%; }
+div.contenedor-simulador-movil-inside[data-pos="9"] { margin-left:-900%; }
+div.contenedor-simulador-movil-inside[data-pos="10"] { margin-left:-1000%; }
+div.contenedor-simulador-movil-inside[data-pos="11"] { margin-left:-1100%; }
+div.contenedor-simulador-movil-inside[data-pos="12"] { margin-left:-1200%; }
+div.contenedor-simulador-movil-inside[data-pos="13"] { margin-left:-1300%; }
+div.contenedor-simulador-movil-inside[data-pos="14"] { margin-left:-1400%; }
+div.contenedor-simulador-movil-inside[data-pos="15"] { margin-left:-1500%; }
+div.contenedor-simulador-movil-inside[data-pos="16"] { margin-left:-1600%; }
+div.contenedor-simulador-movil-inside[data-pos="17"] { margin-left:-1700%; }
+div.contenedor-simulador-movil-inside[data-pos="18"] { margin-left:-1800%; }
+
+span.titulo-nav-box-central {
+width:100%;
+}
+
+ul.nav-fechas-calendario,
+div.box-simulador-general {
+height: 100%;
+float:left;
+width:5.2631%;
+margin:0%;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+h4.calendario-fecha {
+  height: 22px;
+  line-height: 22px;
+  margin-top: 0;
+  position: relative;
+  text-align: center;
+  text-indent: 0;
+}
+
+ul.nav-fechas-calendario {
+padding: 0px 10px;
+}
+
+ul.nav-fechas-calendario li {
+width:23%;
+height: 25px;
+line-height: 25px;
+font-size: 15px;
+margin: 4px 1%;
+}
+
+h4.calendario-fecha a:link,
+h4.calendario-fecha a:visited {
+background-color: transparent;
+position: absolute;
+top:0px;
+z-index: 2;
+background-repeat: no-repeat;
+background-size: auto 23px;
+background-position: center center;
+height: 38px;
+width: 38px;
+text-indent: -100px;
+overflow: hidden;
+display: block;
+}
+
+h4.calendario-fecha a.izq {
+left:0px;
+background-image: url(../img/nav-left.png);
+}
+
+h4.calendario-fecha a.der {
+right:0px;
+background-image: url(../img/nav-right.png);
+}
+
+h4.calendario-fecha a[data-top] {
+display: none;
+}
+
+div.lafecha-info {
+display: none;
+}
+
+#compartir-simulador {
+margin-bottom:10px;
+}
+
+#compartir-simulador p {
+display: block;
+width:100%;
+text-indent: 0px;
+text-align: center;
+margin: 0;
+padding-bottom:10px;
+}
+
+#compartir-simulador a {
+width:31%;
+max-width: 150px;
+height: 30px;
+line-height: 30px;
+color: #fff;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+margin-right:2%;
+border-radius: 2px;
+}
+
+#compartir-simulador #compartir-ws {
+display: inline-block;
+background-color:#4dc247;
+}
+
+#compartir-simulador #compartir-ws:hover {
+background-color: #20831a;
+}
+
+}
+
+@media (max-width: 660px) {
+	#clasificacion{
+	position: fixed;
+	top: 0px;
+	left: 0%;
+	width: 100%;
+	display: block;
+	z-index: 100;
+}
+
+ul.nav-fechas-calendario,
+div.box-simulador-general {
+padding:0%;
+width:5.2631%;
+}
+
+ul.nav-fechas-calendario {
+padding:0px 10px;
+box-sizing: border-box
+}
+
+}

@@ -1,0 +1,2692 @@
+/*Fuente extra*/
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.eot');
+    src: url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.woff2') format('woff2'),
+         url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.woff') format('woff'),
+         url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.ttf') format('truetype'),
+         url('/especiales/recursos_especiales/fonts/oswald-regular-webfont.svg#oswaldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OswaldLight';
+    src: url('/especiales/recursos_especiales/fonts/oswald-light-webfont.eot');
+    src: url('/especiales/recursos_especiales/fonts/oswald-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/especiales/recursos_especiales/fonts/oswald-light-webfont.woff2') format('woff2'),
+         url('/especiales/recursos_especiales/fonts/oswald-light-webfont.woff') format('woff'),
+         url('/especiales/recursos_especiales/fonts/oswald-light-webfont.ttf') format('truetype'),
+         url('/especiales/recursos_especiales/fonts/oswald-light-webfont.svg#oswaldlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+*
+{
+	border:0px;
+	margin: 0px;
+	padding: 0px;
+}
+body {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0px;
+padding: 0px;
+width: 100%;
+}
+
+/* Reset menÃº techo */
+
+div.box-emol {
+float:none;
+}
+
+/* General */
+
+#inner-wrap {
+
+width:100%;
+}
+
+#especiales-contenedor-principal {
+margin-left:1%;
+width:72.5%;
+position: relative;
+float:left;
+}
+
+#contenedor-columnas {
+	background: url(../fondoservientrega.jpg) scroll center bottom;
+	height: 550px;
+	position: relative;
+	width: 100%;
+	background-size: cover;
+}
+
+/* Header */
+
+#especiales-header {
+margin-bottom:36px;
+position: relative;
+width: 100%;
+}
+
+/* Header > Background con resize */
+
+#especiales-header .background-header-out {
+padding-top:7%;
+position: relative;
+width:100%;
+}
+
+#especiales-header .background-header {
+background-image: url(../img/header.jpg);
+background-position: left center;
+background-repeat: no-repeat;
+background-size: cover;
+bottom:0px;
+left:0px;
+position: absolute;
+right:0px;
+top:0px;
+}
+
+/* Header > MenÃº */
+
+#especiales-header ul {
+	bottom:-26px;
+	display: block;
+	height: 26px;
+	left:0px;
+	list-style-type: none;
+	margin:0px;
+	padding:0px;
+	position: absolute;
+	width:100%;
+	background-image: url(../img/bg-menu-all.jpg);
+}
+
+#especiales-header ul li {
+border-right: 1px solid #ddc98e;
+float:left;
+font-size: 12px;
+height: 14px;
+line-height: 14px;
+margin-top: 6px;
+padding-left: 10px;
+padding-right: 10px;
+text-transform: uppercase;
+}
+
+#especiales-header ul li a:link,
+#especiales-header ul li a:visited {
+color: #fff;
+font-weight: bold;
+text-decoration: none;
+transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  -ms-transition: color 0.2s linear;
+  -moz-transition: color 0.2s linear;
+  -o-transition: color 0.2s linear;
+}
+
+#especiales-header ul li a:hover {
+	color: #ddc98e;
+}
+
+#especiales-header ul li:first-child {
+display: none;
+}
+
+#especiales-header ul li:nth-child(2) {
+margin-left:10px;
+}
+
+#especiales-header ul li:last-child {
+border-right: none;
+}
+
+div.especiales-header-boton {
+display: none;
+}
+
+
+
+
+
+#noticia-principal {
+background-color: #eeeaeb;
+padding: 12px 1.5%;
+width:62.3%;
+border-bottom: 4px solid #dfdfdf;
+margin-bottom:10px;
+}
+
+
+#noticia-principal div.noticia-principal-foto {
+position: relative;
+}
+
+#noticia-principal div.noticia-principal-foto img {
+width:100%;
+max-width:579px;
+opacity: 1;
+border:0px;
+filter: alpha(opacity=100);
+transition: opacity 0.3s linear;
+  -webkit-transition: opacity 0.3s linear;
+  -ms-transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+}
+
+#noticia-principal div.noticia-principal-foto:hover img {
+opacity: 0.85;
+filter: alpha(opacity=85);
+}
+
+#noticia-principal div.noticia-principal-foto a.link-noticia:link,
+#noticia-principal div.noticia-principal-foto a.link-noticia:visited {
+background-color: #000;
+background-color: rgba(23,72,130,1);
+bottom:10px;
+color: #fff;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 28px;
+font-weight: normal;
+left:0px;
+padding: 5px 2%;
+position: absolute;
+text-decoration: none;
+text-transform: uppercase;
+width: 96%;
+transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+}
+
+#noticia-principal div.noticia-principal-foto:hover a.link-noticia {
+color: #f6be3c;
+background-color: rgba(23,72,130,0.9);
+}
+
+#noticia-principal p {
+font-size: 16px;
+line-height: 20px;
+margin:0px;
+padding-top:10px;
+}
+
+/*Tabs*/
+
+.tab-texto p {
+font-size: 16px;
+line-height: 20px;
+margin:0px;
+padding-top:10px;
+
+}
+
+a.tab-ver-mas:link,
+a.tab-ver-mas:visited,
+h3.tab-texto {
+background-color: #174882;
+display: block;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 16px;
+font-weight: 400;
+height: 30px;
+line-height: 30px;
+text-indent: 10px;
+color: #fff;
+margin:0px;
+font-weight: normal;
+text-decoration: none;
+text-transform: uppercase;
+/*background-image: url(../img/vermas.png);
+background-position: right -20px;
+background-repeat: no-repeat;*/
+transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  
+  
+background: url(../img/vermas.png) right -20px no-repeat,
+	url(../img/bg-tab01.jpg) top left no-repeat;
+	
+	padding-left: 40px;
+}
+
+
+a.tab-ver-mas.secundario:link,
+a.tab-ver-mas.secundario:visited {
+
+color: #fff;
+}
+
+a.tab-ver-mas:hover {
+color: #f9e09e;
+/*background-image: url(../img/vermas.png);
+background-position: right 3px;
+background-repeat: no-repeat;*/
+
+background: url(../img/vermas.png) right 3px no-repeat,
+	url(../img/bg-tab01.jpg) top left no-repeat;
+}
+
+a.tab-ver-mas.secundario:hover {
+color: #f9e09e;
+/*background-image: url(../img/vermas.png);
+background-position: right 3px;
+background-repeat: no-repeat;*/
+
+background: url(../img/vermas.png) right 3px no-repeat,
+	url(../img/bg-tab01.jpg) top left no-repeat;
+}
+
+/*ProgramaciÃ³n*/
+
+.lafecha-info {
+	padding: 5px 2%;
+	width: 96%;
+	background-color: #453e78;
+	border-bottom: 1px solid #174882;
+	color: #fff;
+}
+
+#programacion-portada {
+border-bottom: none;
+}
+
+table.programacion-fecha {
+font-size: 11px;
+width:100%;
+}
+table.programacion-fecha img {
+	max-width: 20px;
+	max-height: 20px;
+	width:100%;
+	margin: 2px 0;
+}
+
+table.programacion-fecha th {
+background-color: #ededed;
+border-bottom: 1px solid #174882;
+color: #000;
+font-weight: bold;
+height: 20px;
+line-height: 20px;
+text-align: center;
+}
+
+table.programacion-fecha td {
+border-bottom: 1px solid #ccc;
+height: 20px;
+line-height: 16px;
+text-align: center;
+}
+
+table.programacion-fecha tr td:first-child {
+background-color: #f6be3c;
+color: #000;
+font-weight: normal;
+width:16%;
+}
+
+/*table.programacion-fecha tr td:nth-child(2) {
+background-color: #fce0a0;
+width:8%;
+}*/
+
+table.programacion-fecha tr td:nth-child(2), 
+table.programacion-fecha tr td:nth-child(6) {
+background-color: #fff;
+width:29%;
+}
+table.programacion-fecha tr td:nth-child(6) {
+font-weight: normal;
+}
+table.programacion-fecha tr td:nth-child(3),
+table.programacion-fecha tr td:nth-child(5) {
+background-color: #fff;
+
+}
+
+table.programacion-fecha tr td:nth-child(4) {
+background-color: #ededed;
+font-weight: bold;
+width:9%;
+}
+
+table.programacion-fecha tr td:nth-child(7) {
+background-color: #fce0a0;
+color: #174882;
+font-size: 20px;
+font-weight: bold;
+width:7%;
+}
+
+table.programacion-fecha tr td a:link,
+table.programacion-fecha tr td a:visited {
+text-decoration: none;
+font-weight: bold;
+color: #666;
+text-decoration: underline;
+}
+
+table.programacion-fecha tr td a:hover {
+text-decoration: none;
+}
+
+table.programacion-fecha tr td:nth-child(5),
+table.programacion-fecha tr td:nth-child(5) a:link,
+table.programacion-fecha tr td:nth-child(5) a:visited {
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+color: #fff;
+font-weight:400;
+font-size: 12px;
+}
+
+
+
+/* Destacado simulador*/
+.destacado-img-simulador {
+	width:100%;
+	float:left;
+}
+.destacado-img-simulador img {
+	width:100%;
+}
+.destacado-simulador-bajada {
+	width:96%;
+	padding:2%;
+	float:left;
+	background-color: #ccdeea;
+	color:#000;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+		font-weight: bold;
+}
+.destacado-simulador-bajada a {
+	text-decoration:none;
+	color:#000000;
+	
+}
+.destacado-simulador-bajada a:hover {
+	text-decoration:underline;
+	color:#000000;
+}
+/* fin Destacado simulador*/
+
+
+/* de posiciones SIMBOLOGIA*/
+
+.caja-simbologia-tablaposic {
+  background-color: #ededed;
+  float: left;
+  padding: 0 8%;
+  width: 100%;
+}
+.caja-simbologia-tablaposic-punto {
+	width: 6%;
+	float:left;
+	text-align:left;
+	font-size:36px;
+	font-weight: bold;
+	line-height: 14px;
+	
+			padding-bottom: 6px;
+}
+.simbologia-color-clasifica {
+	color: #818181;
+}
+.simbologia-color-repechaje {
+	color: #818181;
+}
+.simbologia-color-noclasifica {
+	color: #818181;
+}
+.caja-simbologia-tablaposic-fr {
+width:27.3%;
+	float:left;
+	font-size:11px;
+		line-heigh00014px;
+		padding-bottom: 6px;
+}
+.simbologia-general {
+	padding: 0px 0 1px 0;
+	width: 50%;
+	float:left;
+	font-size:11px;
+	line-height: 14px;
+		text-align:left;
+}
+/* Fin Tabla de posiciones SIMBOLOGIA*/
+
+/*Tabla de posiciones*/
+
+#posiciones-portada {
+top:0px;
+}
+
+table.tabla-posiciones {
+font-size: 22px;
+width:100%;
+height: 325px;
+color: #000;
+}
+
+table.tabla-posiciones th {
+background-color: #E7E3E3;
+border-bottom: 0px solid #174882;
+color: #000;
+font-weight: bold;
+height: 20px;
+line-height: 20px;
+text-align: center;
+}
+
+table.tabla-posiciones th:nth-child(2) {
+text-align: left;
+text-indent: 28px;
+}
+
+table.tabla-posiciones td {
+  background-color: #E7E3E3;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+}
+
+table.tabla-posiciones td:nth-child(even){
+background-color: #E7E3E3;
+}
+
+table.tabla-posiciones td img {
+	max-width: 20px;
+	max-height: 20px;
+	width:100%;
+}
+
+table.tabla-posiciones td:first-child {
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-weight: 400;
+color: #fff;
+background-color: #818181;
+width:3%;
+}
+
+table.tabla-posiciones td:nth-child(n+4){
+width:6%;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 18px;
+}
+
+
+table.tabla-posiciones tbody tr:first-child td:first-child {
+background-color: #818181;
+}
+
+table.tabla-posiciones tbody tr:nth-child(2) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(3) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(4) td:first-child{
+background-color: #818181;
+}
+table.tabla-posiciones tbody tr:nth-child(5) td:first-child {
+background-color: #818181;
+}
+table.tabla-posiciones td:nth-child(2) {
+text-align: left;
+font-weight: normal;
+}
+table.tabla-posiciones td:nth-child(2) {
+text-align: left;
+font-weight: normal;
+}
+.haz {
+  font-size: 19px;
+  text-align: center;
+}
+
+table.tabla-posiciones td img {
+  float: left;
+  height: 20px;
+  margin: 0 10px;
+  width: 24px;
+}
+thead {
+  font-size: 16px;
+}
+
+ul.simbologia-campeonato {
+list-style-type: none;
+padding:15px 0px;
+margin:0px;
+}
+
+ul.simbologia-campeonato li {
+padding: 15px 20px 15px 80px;
+position: relative;
+font-size: 12px;
+line-height: 17px;
+border-bottom: 1px solid #ccc;
+}
+
+ul.simbologia-campeonato li:last-child {
+border-bottom: none;
+}
+
+ul.simbologia-campeonato li span {
+display: block;
+width: 22px;
+height: 22px;
+position: absolute;
+left:30px;
+top:12px;
+}
+
+/*ul.simbologia-campeonato li[data-simbolo="campeon"] span { background-color: #FF5233; }
+ul.simbologia-campeonato li[data-simbolo="liguilla"] span { background-color: #FF7962; }
+ul.simbologia-campeonato li[data-simbolo="otros"] span { background-color: #8aa430; }*/
+
+/*Noticias en lÃ­nea*/
+
+#noticias-relacionadas-portada {
+top: 493px;
+}
+
+#ultimas-noticias {
+width:100%;
+list-style-type: none;
+margin:0px;
+padding:0px;
+padding-top:5px;
+}
+
+#ultimas-noticias li {
+width: 100%;
+font-size: 12px;
+float:left;
+clear:both;
+margin-bottom:8px;
+line-height: 16px;
+}
+
+#ultimas-noticias li.noticias-relacionadas-fecha {
+font-weight: bold;
+padding:4px 2%;
+width: 96%;
+}
+
+#ultimas-noticias li img {
+float:left;
+width: 70px;
+height: 47px;
+margin-right:8px;
+border: none;
+}
+
+#ultimas-noticias li span {
+color: #2d73b2;
+font-weight: bold;
+margin-right:4px;
+height: 12px;
+line-height: 12px;
+}
+
+#ultimas-noticias li a:link,
+#ultimas-noticias li a:visited {
+color: #000;
+text-decoration: none;
+}
+
+#ultimas-noticias li a:hover {
+text-decoration: underline;
+}
+
+a.mas-noticias:link,
+a.mas-noticias:visited {
+background-color: #2d73b2;
+width:66%;
+margin-left: 17%;
+color: #fff;
+text-decoration: none;
+font-size: 11px;
+padding: 3px 0px;
+display: block;
+float:left;
+clear:both;
+text-align: center;
+margin-top:5px;
+}
+
+a.mas-noticias:hover {
+text-decoration: underline;
+}
+
+/*Box Goleadores*/
+
+#goleadores-portada {
+top: 600px;
+}
+
+#box-goleadores {
+list-style-type: none;
+padding:0px;
+margin:0px;
+width:100%;
+}
+
+#box-goleadores li {
+display: table-row;
+width:100%;
+background-color: #fce0a0;
+color: #000;
+font-size: 13px;
+text-transform: uppercase;
+border-bottom: 1px solid #fff;
+}
+
+#box-goleadores li div {
+display: table-cell;
+vertical-align: middle;
+width:80%;
+border-bottom: 1px solid #fff;
+padding-left:7px;
+}
+
+#box-goleadores li span {
+text-transform: none;
+font-size: 11px;
+margin-top:2px;
+line-height: 14px;
+}
+
+#box-goleadores li div:last-child {
+width:20%;
+background-color: #f6be3c;
+color: #000;
+text-align: center;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 35px;
+font-weight: 400;
+padding:0px;
+}
+
+#box-goleadores li img {
+float:left;
+width:63px;
+border: none;
+}
+
+/*GalerÃ­as de fotos*/
+
+#galerias-fotos {
+width:100%;
+list-style-type: none;
+padding:0px;
+margin:0px;
+}
+
+#galerias-fotos li {
+width: 50%;
+display: inline-block;
+position: relative;
+}
+
+#galerias-fotos li a:link,
+#galerias-fotos li a:visited {
+font-family: 'OswaldLight', Arial, Helvetica, sans-serif;
+font-weight: 300;
+color: #fff;
+font-size: 18px;
+font-weight: 300;
+text-decoration: none;
+line-height: 20px;
+width: 100%;
+}
+
+#galerias-fotos li img {
+width: 100%;
+opacity: 1;
+z-index: 2;
+border: none;
+filter: alpha(opacity=100);
+transition: opacity 0.3s linear;
+  -webkit-transition: opacity 0.3s linear;
+  -ms-transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+}
+
+#galerias-fotos li span {
+position: absolute;
+bottom:10px;
+padding:3%;
+width: 94%;
+display: block;
+background-color: #000;
+background-color: rgba(0,0,0,0.8);
+transition: background 0.3s linear;
+-webkit-transition: background 0.3s linear;
+-ms-transition: background 0.3s linear;
+-moz-transition: background 0.3s linear;
+-o-transition: background 0.3s linear;
+}
+
+#galerias-fotos li:before {
+content: '';
+position: absolute;
+left:0px;
+top:0px;
+width: 100%;
+height: 199px;
+background-color: transparent;
+z-index: -1;
+}
+
+#galerias-fotos li:hover img {
+opacity: 0.7;
+filter: alpha(opacity=70);
+width: 100%;
+}
+
+#galerias-fotos li:hover span {
+background-color: #000;
+background-color: rgba(0,0,0,1);
+}
+
+#galerias-fotos li.hd span:after {
+content:'';
+position: absolute;
+top:-30px;
+left:0px;
+width: 100%;
+height: 35px;
+display: block;
+background-image: url(../img/iconos/fotosHD.png);
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+#pags-galerias-fotos {
+list-style-type: none;
+width: 100%;
+text-align: center;
+display: none;
+float:left;
+clear:both;
+margin:15px 0px;
+}
+
+#pags-galerias-fotos li {
+display: inline-block;
+width: 10%;
+height: 25px;
+background-color: #f36b21;
+color: #fff;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-weight: 400;
+text-align: center;
+line-height: 26px;
+font-size: 15px;
+transition: background 0.2s linear;
+-webkit-transition: background 0.2s linear;
+-ms-transition: background 0.2s linear;
+-moz-transition: background 0.2s linear;
+-o-transition: background 0.2s linear;
+}
+
+#pags-galerias-fotos li:last-child {
+margin-right:0px;
+}
+
+#pags-galerias-fotos li.activo,
+#pags-galerias-fotos li.activo:hover {
+background-color: #cf4a20;
+cursor: default;
+}
+
+#pags-galerias-fotos li:hover {
+cursor: pointer;
+background-color: #9a3e21;
+}
+
+/*Ficha equipos*/
+
+div.ficha-equipo {
+display: block;
+padding:10px;
+position: relative;
+}
+
+div.ficha-equipo img {
+position: absolute;
+left:10px;
+top:10px;
+}
+
+div.ficha-equipo ul {
+list-style-type: none;
+padding:0px;
+margin:0px;
+margin-left:230px;
+width:80%;
+width: calc(100% - 230px);
+margin-bottom:10px;
+}
+
+div.ficha-equipo ul li {
+font-size: 12px;
+border-bottom: 1px solid #d3d3d3;
+position: relative;
+padding:3px 0px;
+font-weight: bold;
+}
+
+div.ficha-equipo ul li b {
+font-weight: bold;
+position: absolute;
+left:3px;
+top:3px;
+}
+
+div.ficha-equipo ul li span {
+font-weight: normal;
+display: block;
+margin-left:110px;
+}
+
+div.ficha-equipo ul li a:link,
+div.ficha-equipo ul li a:visited {
+text-decoration: none;
+color: #226199;
+transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  -ms-transition: color 0.2s linear;
+  -moz-transition: color 0.2s linear;
+  -o-transition: color 0.2s linear;
+}
+
+div.ficha-equipo ul li a:hover {
+color: #3496EC;
+}
+
+/*Goleadores Opta V3*/
+
+div.goleadores table.Opta-Ranking {
+border-collapse: collapse;
+margin:10px 0px;
+}
+
+div.goleadores table.Opta-Ranking th {
+padding: 5px 3px;
+background-color: #1d77b5;
+color: #fff;
+}
+
+div.goleadores table tr td {
+padding: 6px 3px;
+}
+
+div.goleadores table tbody tr:nth-child(even) td {
+background-color: #efefef;
+}
+
+div.goleadores table th:nth-child(3),
+div.goleadores table th:nth-child(5),
+div.goleadores table td:nth-child(3),
+div.goleadores table td:nth-child(5) {
+text-align: center;
+}
+
+div.goleadores table td:last-child {
+font-weight: bold;
+background-color: #f7f7f7;
+}
+
+div.goleadores table td.Opta-Games div,
+div.goleadores table td.Opta-Score div {
+display: none;
+}
+
+div.goleadores table td.Opta-Rank {
+padding-right: 5px;
+text-align: right;
+width:30px;
+font-weight: bold;
+}
+
+/*Lista plantel*/
+
+#plantel-opta {
+border-collapse: collapse;
+margin: 10px 2%;
+width:96%;
+}
+
+#plantel-opta th {
+padding: 8px 6px 8px 0px;
+text-align: right;
+background-color: #1d77b5;
+color: #fff;
+}
+
+#plantel-opta th:first-child {
+padding: 8px 6px 8px 6px;
+text-align: left;
+}
+
+#plantel-opta tr:nth-child(odd) td {
+background-color: #ffffff;
+}
+
+#plantel-opta tr:nth-child(even) td {
+background-color: #f1f1f1;
+}
+
+#plantel-opta td {
+padding: 8px 6px 8px 0px;
+text-align: right;
+}
+
+#plantel-opta td:first-child {
+padding: 8px 6px 8px 6px;
+text-align: left;
+}
+
+ul.lista-plantel {
+list-style-type: none;
+padding:0px;
+margin:0px;
+border-bottom: 4px solid #dfdfdf;
+}
+
+ul.lista-plantel li {
+border-left: 1px solid #EDEDED;
+border-right: 1px solid #EDEDED;
+border-bottom: 1px solid #EDEDED;
+padding: 5px 0px;
+text-indent: 20px;
+}
+
+ul.lista-plantel li.posicion {
+background-color: #B5D5F2;
+border-left: 1px solid #B5D5F2;
+border-right: 1px solid #B5D5F2;
+border-bottom: 1px solid #B5D5F2;
+text-indent: 12px;
+font-weight: bold;
+}
+
+/*CrÃ©ditos*/
+
+#especiales-creditos {
+width: 96.875%;
+background-color: #f4f4f4;
+font-family: Arial, Helvetica, sans-serif;
+padding: 5px 1.56%;
+font-size: 9px;
+color: #666666;
+text-align: left;
+}
+
+#especiales-creditos a:link,
+#especiales-creditos a:visited {
+color: #666666;
+text-decoration: none;
+transition: color 0.3s linear;
+  -webkit-transition: color 0.3s linear;
+  -ms-transition: color 0.3s linear;
+  -moz-transition: color 0.3s linear;
+  -o-transition: color 0.3s linear;
+}
+
+#especiales-creditos a:hover {
+color: #333333;
+}
+
+.especiales-creditos-autor {
+font-size: 10px;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: #CCCCCC;
+margin-bottom: 5px;
+padding-bottom: 5px;
+}
+
+.especiales-creditos-autor strong{
+font-weight: bold;
+color: #4D5C64;
+}
+
+/*Redes sociales*/
+
+ul#redes-sociales {
+float:right;
+list-style-type: none;
+background-color: #f4f4f4;
+}
+
+ul#redes-sociales li {
+display: inline-block;
+width: 25px;
+height: 25px;
+margin-right:4px;
+border-radius: 2px;
+text-align: center;
+}
+
+ul#redes-sociales li img {
+width: 18px;
+height: 18px;
+margin-top:3px;
+border: none;
+}
+
+ul#redes-sociales li:nth-child(1) {
+background-color: #55acee;
+}
+
+ul#redes-sociales li:nth-child(2) {
+background-color: #3b5999;
+}
+
+ul#redes-sociales li:nth-child(3) {
+background-color: #d74a38;
+}
+
+ul#redes-sociales li:nth-child(4) {
+background-color: #cc1f27;
+}
+
+ul#redes-sociales li span {
+display: none;
+}
+
+/*Box columna*/
+
+div.box-columna {
+position: absolute;
+right:0px;
+top:0px;
+width:33.3%;
+}
+
+/*Box central*/
+
+div.box-central {
+  border-bottom: 0 solid #dfdfdf;
+  float: left;
+  font-size: 21px;
+  height: auto;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+div.box-central-2 {
+	width: 65.3%;
+	font-size: 12px;
+	margin-bottom:10px;
+	float:left;
+	height: auto;
+}
+
+div.box-central.blanco {
+background-color: #fff;
+border-bottom: none;
+
+}
+div.box-central p {
+line-height: 17px;
+
+}
+
+.p-texto {
+line-height: 17px;
+margin:0px;
+padding: 20px 3% 25px 3%;
+
+}
+/* ==== OTROS EQUIPOS ==== */
+.box-general300-otrosequipos {
+	float:left;
+	width: 100%;
+	height:auto;
+
+}
+#box-otrosequipos {
+	float:left;
+	width: 100%;
+	background-color:#FFFFFF;
+	margin-top: 0px;
+	padding-bottom: 12px;
+	background-color: #ededed;
+}
+.box-otrosequipos-icon {
+	float:left;
+	width: 20%;
+	padding-left: 0%;
+	padding-top: 10px;
+	text-align:center;
+}
+.box-otrosequipos-icon img {
+	max-width: 40px;
+	opacity: 1;
+	filter: alpha(opacity=100); /* Para IE */
+	transition: all 1.2s linear;
+	-webkit-transition: all 1.2s linear;
+	-moz-transition: all 1.2s linear;
+	-o-transition: all 1.2s linear;
+}
+.box-otrosequipos-icon img:hover {
+/*	opacity: 0.8;
+	filter:alpha(opacity=8); /* Para IE */
+	transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+ 	-o-transition: all 0.2s linear;
+	background-color:#e5e5e5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+/* ======= fin otros equipos ====== */
+
+/*MenÃº equipos principal*/
+
+#menu-equipos-principal {
+list-style-type: none;
+padding:0px;
+margin:0px;
+margin-top:10px;
+}
+
+#menu-equipos-principal a:link,
+#menu-equipos-principal a:visited {
+color: #fff;
+text-decoration: none;
+width:100%;
+display: block;
+transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  -ms-transition: color 0.2s linear;
+  -moz-transition: color 0.2s linear;
+  -o-transition: color 0.2s linear;
+}
+
+#menu-equipos-principal li {
+float:left;
+width: 23%;
+margin-left: 1%;
+margin-right: 1%;
+background-color: #fff;
+text-align: center;
+margin-bottom:10px;
+color: #fff;
+transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+}
+
+#menu-equipos-principal li img {
+margin: 5px auto;
+border: none;
+}
+
+#menu-equipos-principal li span {
+background-color: #8aa430;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 12.5px;
+text-align: center;
+padding: 5px 0px;
+display: block;
+text-transform: uppercase;
+}
+
+#menu-equipos-principal li:hover {
+color: #c0ed25;
+background-color: #fce0a0;
+}
+
+#menu-equipos-principal li:hover a {
+color: #c0ed25;
+}
+
+/*MenÃº equipos lateral*/
+
+ul#box-equipos {
+list-style-type: none;
+margin:0px;
+background-color: #F0F0F0;
+width: 96%;
+padding: 10px 2% 3px 2%;
+}
+
+ul#box-equipos li {
+display: inline-block;
+width: 12.5%;
+text-align: center;
+margin-bottom:5px;
+}
+
+ul#box-equipos li img {
+margin-bottom: 2px;
+border:none;
+}
+
+ul#box-equipos li a:link,
+ul#box-equipos li a:visited {
+font-size: 11px;
+color: #000;
+text-decoration: none;
+text-transform: uppercase;
+margin-bottom:7px;
+}
+
+ul#box-equipos li a:hover {
+text-decoration: underline;
+}
+
+/**/
+
+span.titulo-nav-box-central {
+background-color: #2d73b2;
+display: block;
+color: #fff;
+font-size: 11px;
+padding: 5px 0px;
+width:20%;
+margin-left:10px;
+font-weight: bold;
+text-align: center;
+}
+
+ul.nav-fechas-calendario {
+list-style-type: none;
+padding:600px 10px 10px 10px;
+margin:0px;
+width:100%;
+
+}
+
+ul.nav-fechas-calendario li {
+display: inline-block;
+width:4.3%;
+background-color: #e3d935;
+text-align: center;
+font-size: 11px;
+font-weight: bold;
+padding: 6px 0px;
+margin-right:3px;
+transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+}
+
+ul.nav-fechas-calendario li:hover {
+background-color: #f6be3c;
+color: #fff;
+cursor: pointer;
+}
+
+h4.calendario-fecha {
+	background-color: #FFD900;
+	color: #000;
+	font-size: 22px;
+	font-weight: bold;
+	margin: 10px 0 0;
+	padding: 5px 0;
+	position: relative;
+	text-indent: 10px;
+}
+
+h4.calendario-fecha:nth-child(2) {
+margin-top:0px;
+}
+
+h4.calendario-fecha a:link,
+h4.calendario-fecha a:visited {
+position: absolute;
+top:0px;
+bottom:0px;
+right:0px;
+background-color: #818181;
+color: #fff;
+padding: 0px 10px;
+text-decoration: none;
+text-align: center;
+text-indent: 0px;
+line-height: 24px;
+}
+
+h4.calendario-fecha a:hover {
+text-decoration: underline;
+}
+
+/*Ads*/
+
+div.publicidad-superior img {
+width:100%;
+border: none;
+margin: 10px 0px;
+}
+
+div.publicidad-superior a {
+background-color: #fff;
+}
+
+div.publicidad-movil-techo {
+display: none;
+}
+
+div.publicidad-inferior {
+display: inline-block;
+text-align: center;
+width:65.3%;
+margin-bottom:10px;
+}
+
+div.publicidad-inferior img {
+width:100%;
+max-width: 600px;
+display: inline-block;
+text-align: center;
+border: none;
+}
+
+div.publicidad-derecha {
+float:left;
+position: relative;
+margin-left:1.4%;
+width:24%;
+margin-top:30px;
+}
+
+div.publicidad-derecha img {
+width:100%;
+border: none;
+}
+
+div.publicidad-movil-superior,
+div.publicidad-movil-central,
+div.publicidad-movil-inferior {
+display: none;
+}
+
+div.banner_off_random {
+float:none!important;
+}
+
+
+/* ==================== OPTA =======================*/
+
+.Opta p.Opta-Load {
+font-family: Arial, Helvetica, sans-serif;
+height:140px;
+padding-top:60px;
+width: 100%;
+background-image: url('../img/load.gif');
+background-repeat: no-repeat;
+background-position: center center;
+font-size:11px;
+font-weight:bold;
+text-align: center;
+}
+
+#menu-estadisticas-opta {
+	list-style-type: none;
+	float:left;
+	clear:both;
+	width: 100%;
+	padding-top: 20px;
+	padding-right: 0px;
+	padding-bottom: 20px;
+	padding-left: 0px;
+}
+
+#menu-estadisticas-opta li {
+
+/*height: 25px;*/
+line-height: 30px;
+float:left;
+
+text-align: center;
+background-color: #01448b;
+/*font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+font-weight: bold;
+color: #333;*/
+transition: background-color 0.3s linear;
+  -webkit-transition: background-color 0.3s linear;
+  -ms-transition: background-color 0.3s linear;
+  -moz-transition: background-color 0.3s linear;
+  -o-transition: background-color 0.3s linear;
+  
+  
+  	border-radius: 5px;
+  	height:30px;
+	color:#FFFFFF;
+	font-family: 'roboto', Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	margin: 5px 1.5% 5px 1.5%;
+	width: 22%;
+}
+
+#menu-estadisticas-opta li:hover {
+background-color: #608ec0;
+cursor: pointer;
+}
+
+#menu-estadisticas-opta li.activo {
+background-color: #333;
+color: #fff;
+}
+
+#menu-estadisticas-opta li.activo[data-ranking="goleadores"] { background-color: #f4961c; }
+#menu-estadisticas-opta li.activo[data-ranking="asistencias"] { background-color: #8fac31; }
+#menu-estadisticas-opta li.activo[data-ranking="remates"] { background-color: #20b4e2; }
+#menu-estadisticas-opta li.activo[data-ranking="pases"] { background-color: #cd2228; }
+#menu-estadisticas-opta li.activo[data-ranking="despejes"] { background-color: #03997e; }
+#menu-estadisticas-opta li.activo[data-ranking="atajadas"] { background-color: #c0198d; }
+#menu-estadisticas-opta li.activo[data-ranking="tarjetasrojas"] { background-color: #ab0000; }
+#menu-estadisticas-opta li.activo[data-ranking="tarjetasamarillas"] { background-color: #edb51d; }
+
+div.box-opta-completo {
+display: none;
+}
+
+#contenedor-opta-home {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+}
+#contenedor-opta-home2 {
+	float: left;
+	width: 100%;
+}
+.box-opta-general {
+	float: left;
+	width: 50%;
+}
+
+.box-opta-general:nth-child(1n) {
+clear:left;
+}
+
+.box-opta-general:nth-child(2n) {
+clear:right;
+}
+
+.box-opta-general-interior {
+	float: left;
+	width: 100%;
+	/*width: 310px;*/
+}
+.box-opta-gralbox {
+	float: left;
+	width: 100%;
+	/*width: 310px;*/
+	background-image: url(../img/estadisticas-opta/logo-opta-320px.png);
+	background-repeat: no-repeat;
+	padding-bottom: 20px;
+	background-position: right top;
+	border-top-width: 5px;
+	border-top-style: solid;
+	border-top-color: #fff;
+}
+
+.box-opta-gralbox h2 {
+	float: left;
+	font-size: 22px;
+	color: #3c3c3c;
+	font-weight: normal;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	padding-left: 4%;
+	width: 90%;
+	/*width: 260px;*/
+	line-height: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.box-opta-gralbox h2 a {
+   text-decoration:none;
+   	color: #3c3c3c;
+}
+.box-opta-gralbox h2 a:hover {
+   text-decoration:underline;
+}
+.calendario-bx1 h2 a {
+   text-decoration:none;
+   	color: #3c3c3c;
+}
+.calendario-bx1 h2 a:hover {
+   text-decoration:underline;
+}
+.box-opta-down {
+	float: left;
+	width: 100%;
+	/*width: 310px;*/
+	border-bottom-color: #fff;
+	border-bottom-width: 5px;
+	border-bottom-style: solid;
+}
+a#boton-seccion-opta {
+	height: 40px;
+	width: 196px;
+	float:left;
+	background-image: url(../img/bg-boton.png);
+	margin: 5px 0px 5px 23%;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #747474;
+	transition: all 0.2s linear;
+}
+a#boton-seccion-opta:hover {
+	background-image: url(../img/bg-boton-hover.png);
+}
+#boton-seccion-opta p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #747474;
+	float: left;
+	width: 155px;
+	margin: 0px;
+	padding-top: 14px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	text-align: center;
+}
+ul.lista-opta-gral{
+	float: left;
+	list-style:none;
+	width: 92%;
+	padding: 0 4%;
+}
+
+ul.lista-opta-gral.cargando-opta {
+min-height: 100px;
+background-image: url(../img/load2.gif);
+background-position: center center;
+background-repeat: no-repeat;
+}
+
+ul.lista-opta-gral li {
+	width: 100%;
+	float: left;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d1d1d1;
+	margin-bottom: 6px;
+	position: relative;
+}
+
+ul.lista-opta-gral li img {
+	position: absolute;
+	max-width: 52px;
+	width: 100%;
+	/*padding-right:1.85%;*/
+	padding-bottom:6px;
+	top:0px;
+	left:0px;
+}
+ul.lista-opta-gral li h3 {
+	float:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	color: #3c3c3c;
+	padding-top: 8px;
+	display: block;
+	padding-left:57px;
+	padding-right:65px;
+}
+ul.lista-opta-gral li p {
+	float:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #3c3c3c;
+	padding-top: 2px;
+	padding-left:57px;
+	padding-right:65px;
+	display: block;
+	padding-bottom: 16px;
+	line-height: 16px;
+	width:100%;
+	box-sizing: border-box;
+}
+.box-numero-estadisticas-opta {
+	width: 60px;
+	position: absolute;
+	right:0px;
+	top:0px;
+	background-color: #FFFFFF;
+	border: 1px solid #d1d1d1;
+	text-align: center;
+	font-family: 'roboto', Arial, Helvetica, sans-serif;
+	color: #3c3c3c;
+	font-size: 20px;
+	padding-top: 13px;
+	padding-bottom: 7px;
+	height: 30px;
+	font-weight: normal;
+}
+
+p.opta-widget-error {
+	font-size: 12px;
+}
+
+/*  ============ LOS COLORES =============*/
+
+.naranjo {
+	background-color: #f5e4d0;
+}
+.naranjo-down {
+	background-color: #f4961c;
+}
+
+.verde {
+	background-color: #edf4d8;
+}
+.verde-down {
+	background-color: #8fac31;
+}
+.rojo {
+	background-color: #f7e2e1;
+}
+.rojo-down {
+	background-color: #cd2228;
+}
+.cyan {
+	background-color: #ddeff3;
+}
+.cyan-down {
+	background-color: #20b4e2;
+}
+.aqua {
+	background-color: #d6efeb;
+}
+.aqua-down {
+	background-color: #03997e;
+}
+.rose {
+	background-color: #f3dfeb;
+}
+.rose-down {
+	background-color: #c0198d;
+}
+.TarjetasRojas {
+	background-color: #ecd0d0;
+}
+.TarjetasRojas-down {
+	background-color: #ab0000;
+}
+.TarjetasAmarillas {
+	background-color: #fefbda;
+}
+.TarjetasAmarillas-down {
+	background-color: #edb51d;
+}
+
+/* Opta */
+.box-opta-general {
+	width: 50%;
+}
+a#boton-seccion-opta {
+	height: 40px;
+	width: 196px;
+	float:right;
+	background-image: url(../img/bg-boton.png);
+	margin: 5px 6.45% 5px 58px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #747474;
+	transition: all 0.2s linear;
+}
+ul.lista-opta-gral li h3 {
+	font-size: 16px;
+}
+ul.lista-opta-gral li p {
+	font-size: 12px;
+}
+ul.lista-opta-gral2 li h3 {
+	font-size: 16px;
+}
+ul.lista-opta-gral2 li p {
+	font-size: 12px;
+}
+.box-opta-gralbox {
+	border-top-width: 7px;
+	border-top-style: solid;
+	border-top-color: #fff;
+}
+
+
+/* Fin Opta */
+
+
+/*  ============ FIN DE LOS COLORES =============*/
+/* ==================== FIN OPTA =======================*/
+
+/* ============= ESTADISTICAS INTERIOR ============== */
+/* ============= ESTADISTICAS INTERIOR ============== */
+
+table {
+    width: 100%;
+}
+.esta-box-interior {
+	float: left;
+	width: 94%;
+	padding-left: 3%;
+	/*	background-color: #f3f7fa;*/
+	padding-right: 3%;
+	padding-bottom: 15px;
+	border-bottom-width: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+}
+.tabla-estadisticas-interior th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #ededed;
+	line-height: 24px;
+	margin-bottom: 4px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+
+}
+.tabla-bold {
+	font-weight: bold;
+}
+.tabla-estadisticas-interior td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #FFFFFF;
+	line-height: 18px;
+	padding: 3px 0px;
+	vertical-align: top;
+}
+
+.tabla-estadisticas-interior tr:hover td {
+background-color: #efefef;
+}
+
+.tabla-estadisticas-interior td:nth-child(1),
+.tabla-estadisticas-interior td:nth-child(4),
+.tabla-estadisticas-interior td:nth-child(5) {
+	text-align: center;
+}
+
+.ei-numero {
+	width: 8%;
+	font-weight: normal;
+	text-align: center;
+}
+.ei-nombre {
+	width: 37%;
+	font-weight: normal;
+	text-align: left;
+}
+.ei-pais {
+	width: 23%;
+	font-weight: normal;
+	text-align: left;
+}
+.ei-pj {
+	width: 15%;
+	font-weight: normal;
+	text-align: center;
+}
+.ei-datos {
+	width: 17%;
+	font-weight: normal;
+	text-align: center;
+}
+.ei-numero-bajada  {
+	width: 8%;
+	font-weight: normal;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+	background-color: #EDEDED;
+}
+.ei-nombre-bajada {
+	width: 37%;
+	font-weight: normal;
+	text-align: left;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+	padding-left: 2%;
+}
+.ei-pais-bajada  {
+	width: 23%;
+	font-weight: normal;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+}
+.ei-pais-bajada img {
+	width: 100%;
+	max-width: 34px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.ei-pj-bajada  {
+	width: 15%;
+	font-weight: normal;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+}
+.ei-datos-bajada  {
+	width: 17%;
+	font-weight: normal;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+}
+.box-left-oscuro-ei {
+	float:left;
+	width: 100%;
+	background-color: #dbe4eb;
+}
+.box-left-oscuro-ei h1 {
+	float: left;
+	font-size: 22px;
+	color: #3c3c3c;
+	font-weight: normal;
+	padding-top: 25px;
+	padding-left: 20px;
+	width: 92%;
+	line-height: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-bottom: 20px;
+}
+.box-left-oscuro-ei p {
+	float: left;
+	font-size: 12px;
+	color: #3c3c3c;
+	font-weight: normal;
+	padding-left: 20px;
+	width: 92%;
+	line-height: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-bottom: 20px;
+}
+
+/* ============= FIN ESTADISTICAS INTERIOR ============== */
+/* ============= FIN ESTADISTICAS INTERIOR ============== */
+
+
+/*Comparativo clasificatorias*/
+
+#comparador-clasificatorias {
+width:100%;
+}
+
+#comparador-clasificatorias p {
+width:33%;
+float:left;
+}
+
+#comparador-ul-fechas {
+list-style-type: none;
+padding:0px;
+width:60%;
+float:left;
+padding-top:20px;
+}
+
+#comparador-ul-fechas li {
+float:left;
+background-color: #efbe00;
+font-size: 12px;
+color: #000;
+width:15.66%;
+padding:8px 0px;
+margin: 0px 0.5% 5px 0.5%;
+text-align: center;
+font-weight: bold;
+transition: background-color 0.3s linear;
+  -webkit-transition: background-color 0.3s linear;
+  -ms-transition: background-color 0.3s linear;
+  -moz-transition: background-color 0.3s linear;
+  -o-transition: background-color 0.3s linear;
+border-radius: 2px;
+}
+
+#comparador-ul-fechas li:hover {
+background-color: #ef8d00;
+cursor: pointer;
+}
+
+#comparador-ul-fechas li.activo {
+background-color: #264681;
+color: #fff;
+}
+
+#interactivo-comparacion {
+float:left;
+clear:both;
+width:100%;
+}
+
+#interactivo-comparacion table {
+border-left: 1px solid #264681;
+}
+
+#interactivo-comparacion table th {
+background-color: #264681;
+color: #fff;
+font-weight: normal;
+font-size: 11px;
+text-transform: uppercase;
+padding: 3px 0px;
+text-align: center;
+}
+
+#interactivo-comparacion table td {
+text-align: center;
+width: 4.5%;
+vertical-align: middle;
+line-height: 30px;
+height: 30px;
+border-bottom: 1px solid #264681;
+transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+}
+
+#interactivo-comparacion table tr.clasificatorias-anteriores th {
+background-color: #e2e6ea;
+border-right: 1px solid #264681;
+border-top: 1px solid #264681;
+}
+
+#interactivo-comparacion table tr.clasificatorias-anteriores th div.activo {
+position: relative;
+}
+
+#interactivo-comparacion table tr.clasificatorias-anteriores th div.activo:after {
+content: '';
+position: absolute;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 7px 6px 0 6px;
+border-color: #264681 transparent transparent transparent;
+top:0px;
+right: 5px;
+opacity: 0.8;
+filter: alpha(opacity=80);
+}
+
+#interactivo-comparacion table tr.clasificatorias-anteriores th:first-child {
+background-color: #c9d9e4;
+border-bottom: 1px solid #264681;
+}
+
+#interactivo-comparacion table td.nojugo,
+#interactivo-comparacion table tr:hover td.nojugo,
+#interactivo-comparacion table td[data-st="rnd"].nojugo,
+#interactivo-comparacion table tr:hover td[data-st="rnd"].nojugo {
+background-color: #d1d5df;
+}
+
+#interactivo-comparacion table td.clasificado {
+background-color: #d8ecd5;
+}
+
+#interactivo-comparacion table td[data-st="pos"] {
+font-weight: bold;
+}
+
+#interactivo-comparacion table td[data-st="rnd"] {
+background-color: #f0f0f2;
+}
+
+#interactivo-comparacion table td[data-st="rnd"].clasificado {
+background-color: #b5d7b0;
+}
+
+#interactivo-comparacion table td.repechaje {
+background-color: #f6e8cc;
+}
+
+#interactivo-comparacion table tr[data-equipo="cl"] td:first-child,
+#menu-paises-interactivo li[data-equipo="cl"] {
+background-color: #ccd6e2;
+font-weight: bold;
+}
+
+#interactivo-comparacion table td[data-st="rnd"].repechaje {
+background-color: #e6cea2;
+}
+
+#interactivo-comparacion table tr:hover td {
+background-color: #efefef;
+}
+
+#interactivo-comparacion table tr:hover td[data-st="rnd"] {
+background-color: #cbcbd0;
+}
+
+#interactivo-comparacion table tr:hover td.clasificado {
+background-color: #b6d4b2;
+}
+
+#interactivo-comparacion table tr:hover td[data-st="rnd"].clasificado {
+background-color: #8ab583;
+}
+
+#interactivo-comparacion table tr:hover td.repechaje {
+background-color: #e6d2aa;
+}
+
+#interactivo-comparacion table tr:hover td[data-st="rnd"].repechaje {
+background-color: #ddb56b;
+}
+
+#interactivo-comparacion table th img {
+width:100%;
+max-width: 115px;
+filter: gray;
+-webkit-filter: grayscale(0%);
+transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+}
+
+#interactivo-comparacion table th img:hover {
+  filter: none;
+  -webkit-filter: grayscale(80%);
+cursor: pointer;
+}
+
+#interactivo-comparacion table th img.activo:after {
+
+}
+
+#interactivo-comparacion table td img {
+width:22px;
+height: 22px;
+float:left;
+margin-top: 4px;
+margin-left:4px;
+}
+
+#interactivo-comparacion table td:first-child {
+width:19%;
+text-align: left;
+text-indent: 5px;
+border-right: 1px solid #264681;
+}
+
+#interactivo-comparacion table td[data-st="pts"] {
+border-right: 1px solid #264681;
+}
+
+ul.simbologia-interactivo {
+width:100%;
+background-color: #2a477c;
+color: #fff;
+padding:0px;
+list-style-type: none;
+text-align: right;
+padding-top:8px;
+padding-bottom:10px;
+float:left;
+clear:both;
+}
+
+ul.simbologia-interactivo li {
+display: inline-block;
+margin-right:20px;
+height: 28px;
+line-height: 28px;
+}
+
+ul.simbologia-interactivo li:first-child div {
+background-color: #b5d7b0;
+border: 2px solid #7eac79;
+}
+
+ul.simbologia-interactivo li:last-child div {
+background-color: #d1d5df;
+border: 2px solid #a9afc0;
+}
+
+
+ul.simbologia-interactivo div {
+float:left;
+width: 24px;
+height: 24px;
+border: 2px solid #c3a86e;
+background-color: #f6e8cc;
+margin-right:8px;
+border-radius: 40px;
+}
+
+#menu-paises-interactivo,
+div.mensaje-moviles {
+display: none;
+}
+
+/*Fin comparativo clasificatorias*/
+
+/* ===== RESOLUCIÃ“N < 1180 ===== */
+
+
+
+@media (max-width: 1400px) {
+
+
+
+/*General*/
+
+#especiales-contenedor-principal {
+margin:0%;
+width:100%;
+float:none;
+}
+
+#contenedor-columnas {
+margin-top:10px;
+}
+
+/*Header*/
+
+#especiales-header .background-header-out {
+padding-top:15%;
+}
+
+#especiales-header .background-header {
+background-image: url(../img/header_movil.jpg);
+}
+
+div.especiales-header-boton {
+background-image: url(../img/boton_movil.png);
+background-repeat: no-repeat;
+background-size: contain;
+display: block;
+height: 100%;
+left:0px;
+position: absolute;
+top:0px;
+width:18%;
+z-index: 2;
+}
+
+div.especiales-header-boton:hover {
+cursor: pointer;
+}
+
+#especiales-header {
+margin-bottom:0px;
+}
+
+/*MenÃº*/
+
+#especiales-header ul {
+background-color: #fff;
+background-color: rgba(255,255,255,0.75);
+border:0px;
+display: block;
+float:none;
+height: auto;
+left:-100%;
+margin:0px;
+min-height: 100vh;
+padding:0px;
+position: absolute;
+top: 0px;
+width: 100%;
+transition: left 0.3s linear;
+  -webkit-transition: left 0.3s linear;
+  -ms-transition: left 0.3s linear;
+  -moz-transition: left 0.3s linear;
+  -o-transition: left 0.3s linear;
+}
+
+#especiales-header ul li {
+background-color: #1d77b5;
+border-bottom: 1px dotted #ccc;
+border:0px;
+font-family: 'Oswald', Arial, Helvetica, sans-serif;
+font-size: 15px;
+font-weight: normal;
+height: 40px;
+line-height: 40px;
+margin-top:0px;
+padding:0px;
+text-indent: 5%;
+width: 80%;
+border-bottom: 1px dotted #ccc;
+}
+
+#especiales-header ul li:first-child {
+background-color: #174882;
+background-image: url(/especiales/recursos_especiales/menu/img/home.png);
+background-position: 95% center;
+background-repeat: no-repeat;
+background-size: 18px 20px;
+display: block;
+}
+
+#especiales-header ul li:nth-child(2) {
+margin-left:0px;
+}
+
+/*Fotos*/
+
+#galerias-fotos li span {
+font-size: 15px;
+bottom:0px;
+}
+
+#galerias-fotos li.hd span:after {
+background-image: none;
+}
+
+/*MenÃº activado*/
+
+#inner-wrap {
+  left: 0;
+  position: absolute;
+  top: 330px;
+
+  z-index: 51;
+transition: left 0.3s linear;
+  -webkit-transition: left 0.3s linear;
+  -ms-transition: left 0.3s linear;
+  -moz-transition: left 0.3s linear;
+  -o-transition: left 0.3s linear;
+}
+
+
+#especiales-header ul {
+display: block;
+position: absolute;
+width: 100%;
+padding:0px;
+margin:0px;
+top:0px;
+border: none;
+min-height: 100vh;
+color: rgba(255,255,255,0.75);
+background-image:none;
+}
+
+body.menu-on #inner-wrap {
+left:80%;
+position: fixed;
+}
+
+body.menu-on {
+overflow: hidden;
+}
+
+body.menu-on #especiales-header ul {
+height: 100%;
+left:-80%;
+overflow-y: scroll;
+z-index: 10;
+}
+
+/*Noticia principal*/
+
+#noticia-principal div.noticia-principal-foto a.link-noticia:link,
+#noticia-principal div.noticia-principal-foto a.link-noticia:visited {
+font-size: 23px;
+}
+
+span.titulo-nav-box-central {
+width:50%;
+}
+
+
+
+ul.nav-fechas-calendario li {
+width:10.5%;
+margin-bottom:5px;
+}
+
+/*Ficha equipos*/
+
+div.ficha-equipo {
+display: inline-block;
+text-align: center;
+padding:0px;
+width:100%;
+}
+
+div.ficha-equipo img {
+position: static;
+width:100%;
+max-width: 220px;
+display: inline-block;
+text-align: center;
+margin-top:10px;
+margin-bottom:10px;
+}
+
+div.ficha-equipo ul {
+list-style-type: none;
+text-align: left;
+margin:0px;
+padding:0px;
+float:none;
+width:100%;
+margin-bottom:0px;
+}
+
+div.ficha-equipo ul li {
+font-size: 13px;
+border-bottom: 1px solid #d3d3d3;
+position: relative;
+padding:4px 0px;
+font-weight: bold;
+}
+
+div.ficha-equipo ul li b {
+font-weight: bold;
+position: absolute;
+left:3px;
+top:3px;
+text-indent: 5px;
+}
+
+div.ficha-equipo ul li span {
+font-weight: normal;
+display: block;
+margin-left:125px;
+}
+
+/*CrÃ©ditos y redes sociales*/
+
+#especiales_creditos{
+width: 96.875%;
+margin-bottom: 0px;
+height: auto;
+background-color: #f4f4f4;
+font-family: Arial, Helvetica, sans-serif;
+padding-right: 1.56%;
+padding-left: 1.56%;
+font-size: 9px;
+color: #666666;
+padding-top: 5px;
+padding-bottom: 5px;
+text-align: left;
+}
+
+ul#redes-sociales {
+float:none;
+width: 100%;
+text-align: center;
+padding: 10px 0px;
+margin-top:0px;
+border-bottom-width: 1px solid #ccc;
+}
+
+ul#redes-sociales li {
+display: inline-block;
+margin-right:3%;
+width: 40px;
+height: 40px;
+border-radius: 3px;
+}
+
+ul#redes-sociales li img {
+width: 32px;
+height: 32px;
+margin-top:4px;
+}
+
+/*Ads*/
+
+div.publicidad-derecha,
+div.publicidad-superior,
+div.publicidad-inferior {
+display: none;
+}
+
+div.publicidad-movil-superior,
+div.publicidad-movil-central,
+div.publicidad-movil-inferior {
+display: inline-block;
+text-align: center;
+width: 100%;
+}
+
+div.publicidad-movil-superior img {
+margin-bottom:10px;
+width:100%;
+max-width: 666px;
+}
+
+div.publicidad-movil-central img,
+div.publicidad-movil-inferior img {
+margin-bottom:10px;
+width:100%;
+max-width: 300px;
+}
+
+/*Comparativo clasificatorias*/
+
+ul.simbologia-interactivo li {
+display: block;
+text-align: left;
+padding-left:10px;
+margin-top:6px;
+padding-bottom:10px;
+}
+
+#comparador-clasificatorias p.p-texto {
+margin:0px;
+width:97%;
+padding:15px 1.5%;
+}
+
+#comparador-ul-fechas {
+width:97%;
+padding:0px 1.5%;
+}
+
+#tabla-interactivo-comparacion tr.clasificatorias-anteriores th {
+height: 55px;
+}
+
+#tabla-interactivo-comparacion td:first-child,
+#tabla-interactivo-comparacion th[rowspan="2"] {
+display: none;
+}
+
+#interactivo-comparacion {
+width:75%;
+float:left;
+overflow-x: scroll;
+clear:none;
+margin-top:15px;
+width: calc(100% - 82px);
+}
+
+#interactivo-comparacion table {
+min-width: 660px;
+}
+
+#menu-paises-interactivo {
+margin-top:15px;
+list-style-type: none;
+padding:0px;
+float:left;
+width:24%;
+width: calc(84px - 2px);
+display: block;
+}
+
+#menu-paises-interactivo li.cabecera {
+background-color: #c9d9e4;
+height: 79px;
+border-top: 1px solid #264681;
+border-bottom: 1px solid #264681;
+}
+
+#menu-paises-interactivo li {
+border-left: 1px solid #264681;
+height: 30px;
+line-height: 30px;
+border-bottom: 1px solid #264681;
+text-indent: 10px;
+}
+
+#comparador-ul-fechas li {
+width: 19%;
+margin: 0px 0.5% 5px 0.5%;
+}
+
+div.mensaje-moviles {
+display: block;
+background-color: #264681;
+color: #fff;
+text-align: right;
+padding: 5px 2% 5px 0px;
+float:left;
+clear:both;
+width:98%;
+font-size: 11px;
+}
+
+#interactivo-comparacion table th img {
+max-width: 94px;
+}
+
+}
+
+/* ===== RESOLUCIÃ“N < 440 ===== */
+
+@media (max-width: 440px) {
+
+
+/*calendario*/
+ul.nav-fechas-calendario {
+    list-style-type: none;
+    padding: 3%;
+    margin: 0px;
+    width: 94%;
+}
+ul.nav-fechas-calendario li {
+	margin-right: 1%;
+}
+/*fin calendario*/
+
+/*MenÃº equipos principal*/
+
+#menu-equipos-principal li {
+width: 48%;
+margin-left: 1%;
+margin-right: 1%;
+}
+
+/*Fotos*/
+
+#galerias-fotos li {
+width:100%;
+}
+
+#fotos-portada #galerias-fotos li:nth-child(n+3) {
+display: none;
+}
+
+}
+
+
+/* Relatos simultaneos */
+
+.relatossimultaneo_cont {
+	width:100%;
+	float:left;
+	margin-bottom: 10px;
+}
+
+.relatossimultaneo_tit {
+	width:100%;
+	float:left;
+	font-family: 'Oswald', Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	height: 30px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	background-color: #a60009;
+	text-align: center;
+	line-height: 30px;
+}
+.relatossimultaneo_tit_b {
+	width:100%;
+	float:left;
+	font-family: 'Oswald', Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	height: 30px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	background-color: #666666;
+	text-align: center;
+	line-height: 30px;
+}
+
+.header-relatossimultaneo {
+	width:100%;
+}
+.relatossimultaneo_detalle {
+	width:100%;
+	float:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+	background-color: #00316f;
+	box-sizing: border-box;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 1%;
+	text-align: center;
+}
+.relatossimultaneo_destacado {
+	width:98%;
+	float:left;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	padding-left:1%;
+	padding-right:1%;
+	background-color: #EDEDED;
+	
+}
+.relatossimultaneo_destacado img{
+width:100%;
+height:auto;
+}
