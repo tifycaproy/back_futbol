@@ -35,6 +35,9 @@ body {
 	min-width: 100px;
 	text-align: center;
 }
+.video {
+	padding-top: 10px;
+}
 h2{
 	font-size: 12px;
 	color: #fff;
@@ -62,13 +65,14 @@ a:link
    <?php
    if($_GET['idvideo'])
    {
+   echo "<div class=\"video\">";
    echo "<ul><li class=\"\">
       <a href=\"index.php\"><img src=\"cerrar.png\" width=\"30px\" height=\"30px\"></a>
     </li>
     </ul>
     ";
    
-   echo "<div class=\"video\">";
+ 
 
 switch ($_GET['idvideo']) {
     case 1:
