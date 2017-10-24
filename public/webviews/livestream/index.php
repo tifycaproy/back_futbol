@@ -32,7 +32,7 @@ body {
 	text-align: center;
 }
 h2{
-	font-size: 16px;
+	font-size: 12px;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	text-align: left;
