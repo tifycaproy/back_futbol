@@ -114,43 +114,43 @@ if(!isset($_GET['idvideo'])){
 ?>  
      
     <li>
-      <a class="example-image-link" href="index.php?idvideo=1" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=1" >
        <img class="example-image" src="imagenes/1.jpg" alt="image-1" />
             <h2>No se pierden las ganas de alentarte</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=2" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=2" >
        <img class="example-image" src="imagenes/2.jpg" alt="image-1" />
             <h2>Creo en ti </h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=3" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=3" >
        <img class="example-image" src="imagenes/3.jpg" alt="image-1" />
             <h2>Los clásicos no se juegan, se ganan</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=4" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=4" >
        <img class="example-image" src="imagenes/4.jpg" alt="image-1" />
             <h2>92 años de gloria Amarilla</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=5" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=5" >
        <img class="example-image" src="imagenes/5.jpg" alt="image-1" />
             <h2>Viernes de Revancha</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=6" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=6" >
        <img class="example-image" src="imagenes/6.jpg" alt="image-1" />
             <h2>El domingo volvemos al monumental</h2>
        </a>
     </li>
     <li>
-      <a class="example-image-link" href="index.php?idvideo=7" data-lightbox="example-1">
+      <a class="example-image-link" href="index.php?idvideo=7" >
        <img class="example-image" src="imagenes/7.jpg" alt="image-1" />
             <h2>El Monumental siempre contigo</h2>
        </a>
