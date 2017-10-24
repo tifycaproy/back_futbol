@@ -12,6 +12,10 @@ li {
 	list-style-image: none;
 	padding-bottom: 20px;
 }
+iframe.youtube {
+	width: 100%!important;
+	min-height: auto!important;
+}
 
 ul {
 	padding: 0px;
@@ -101,6 +105,10 @@ a:link
        </a>
     </li>
     
+        <li>
+      <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/qd1brdPy5yQ" frameborder="0" allowfullscreen></iframe>
+       </a>
+    </li>
 </ul>
  
     </div>
