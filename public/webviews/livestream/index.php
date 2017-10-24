@@ -61,9 +61,7 @@ a:link
 
   </head>
   <body>
- <object class="youtube" width="420" height="315"
-data="https://www.youtube.com/embed/XGSy3_Czz8k">
-</object>
+<iframe class="youtube" id="ls_embed_1508874368" src="https://livestream.com/accounts/5381476/events/2395418/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe>
  </body>
   
   
