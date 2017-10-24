@@ -507,7 +507,7 @@ table.tabla-posiciones td {
 }
 
 table.tabla-posiciones td:nth-child(even){
-background-color: #E7E3E3;
+background-color: #FFFFFF;
 }
 
 table.tabla-posiciones td img {
