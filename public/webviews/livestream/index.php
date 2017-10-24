@@ -14,6 +14,11 @@ iframe.youtube {
 	min-height: auto!important;
 }
 
+object.youtube {
+	width: 100%!important;
+	min-height: auto!important;
+}
+
 ul {
 	padding: 0px;
 	margin: 0px;
@@ -56,7 +61,10 @@ a:link
 
   </head>
   <body>
- <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe></body>
+ <object class="youtube" width="420" height="315"
+data="https://www.youtube.com/embed/XGSy3_Czz8k">
+</object>
+ </body>
   
   
 </html>
