@@ -62,6 +62,12 @@ a:link
    <?php
    if($_GET['idvideo'])
    {
+   echo "<ul><li class=\"\">
+      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"30px\" height=\"30px\"></a>
+    </li>
+    </ul>
+    ";
+   
    echo "<div class=\"video\">";
 
 switch ($_GET['idvideo']) {
@@ -151,9 +157,7 @@ if(!isset($_GET['idvideo'])){
 
 }else{
 
-echo "<li class=\"center\">
-      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"20px\" height=\"20px\"></a>
-    </li>";
+
 
 }
 ?>  
