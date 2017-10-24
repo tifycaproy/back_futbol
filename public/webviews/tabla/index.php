@@ -801,17 +801,17 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C.</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<" ></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="<?php echo $row['fecha18-1']?>" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="<?php echo $row['fecha18-2']?>" ></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenca.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input name="fecha18-1" tabindex="171" maxlength="2" pattern="\d*" type="number" data-eq="py" value="" ><span>--</span><input name="fecha18-2" tabindex="172" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="" ></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenca.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input name="fecha18-3" tabindex="173" maxlength="2" pattern="\d*" type="number" data-eq="br" value="<?php echo $row['fecha18-3']?>" ><span>--</span><input name="fecha18-4" tabindex="174" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="<?php echo $row['fecha18-4']?>" ></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input name="fecha18-3" tabindex="173" maxlength="2" pattern="\d*" type="number" data-eq="br" value="" ><span>--</span><input name="fecha18-4" tabindex="174" pattern="\d*" maxlength="2" type="number" data-eq="cl" value="" ></div><div class="vis">GUAYAQUIL CITY<img src="img/banderas/guayaquil.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input name="fecha18-5" tabindex="175" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="<?php echo $row['fecha18-5']?>" ><span>--</span><input name="fecha18-6" tabindex="176" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="<?php echo $row['fecha18-6']?>" ></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
+<li><div class="loc"><img src="img/banderas/fuerza.png">FUERZA AMARILLA</div><div class="marc"><input name="fecha18-5" tabindex="175" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="" ><span>--</span><input name="fecha18-6" tabindex="176" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="" ></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input name="fecha18-7" tabindex="177" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="<?php echo $row['fecha18-7']?>" ><span>--</span><input name="fecha18-8" tabindex="178" pattern="\d*" maxlength="2" type="number" data-eq="co" value="<?php echo $row['fecha18-8']?>" ></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input name="fecha18-7" tabindex="177" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="" ><span>--</span><input name="fecha18-8" tabindex="178" pattern="\d*" maxlength="2" type="number" data-eq="co" value="" ></div><div class="vis">L.D.U(Q)<img src="img/banderas/l.d.u.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input name="fecha18-9" tabindex="179" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="<?php echo $row['fecha18-9']?>" ><span>--</span><input name="fecha18-10" tabindex="180" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="<?php echo $row['fecha18-10']?>" ></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
+<li><div class="loc"><img src="img/banderas/macara.png">MACARA</div><div class="marc"><input name="fecha18-9" tabindex="179" maxlength="2" pattern="\d*" type="number" data-eq="uy" value="" ><span>--</span><input name="fecha18-10" tabindex="180" pattern="\d*" maxlength="2" type="number" data-eq="bo" value="" ></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
 </ul>
 
@@ -879,11 +879,7 @@ img.hover-shadow {
 
 <ul class="sim-calendario-grupo">
 
-<?php $idUsuario=$_GET['idusurio']; 
-$datem2=date("Y-m-d H:i:s", time());
-$date2=$hoy = date("Y-m-d H:i:s", time());
 
-?>
 
 
 <li><div class="loc"><img src="img/banderas/clan.png">CLAN JUVENIL</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">NACIONAL<img src="img/banderas/nacional.png"></div></li>
@@ -905,127 +901,6 @@ $date2=$hoy = date("Y-m-d H:i:s", time());
 
 <!--22 FECHA-->
 
-<?php
-/*$DB_SERVER = "awsfcf2waysports.co6n6hotu5cp.us-east-1.rds.amazonaws.com";
-$DB_USER = "admin";
-$DB_PASSWORD = "Shok7788!";
-$DB = "fcf2ways_api";
-
-$link=mysql_connect($DB_SERVER, $DB_USER, $DB_PASSWORD) or die(mysql_error());
-mysql_select_db($DB) or die(mysql_error());*/
-
-
-
-if($_POST['update'] && $_GET['i'] ){
-
-echo "<span class=\"haz\">Pronóstico Generado</span>";
-if($_POST['fecha18-1']==''){$_POST['fecha18-1']='NULL';}
-if($_POST['fecha18-2']==''){$_POST['fecha18-2']='NULL';}
-if($_POST['fecha18-3']==''){$_POST['fecha18-3']='NULL';}
-if($_POST['fecha18-4']==''){$_POST['fecha18-4']='NULL';}
-if($_POST['fecha18-5']==''){$_POST['fecha18-5']='NULL';}
-if($_POST['fecha18-6']==''){$_POST['fecha18-6']='NULL';}
-if($_POST['fecha18-7']==''){$_POST['fecha18-7']='NULL';}
-if($_POST['fecha18-8']==''){$_POST['fecha18-8']='NULL';}
-if($_POST['fecha18-9']==''){$_POST['fecha18-9']='NULL';}
-if($_POST['fecha18-10']==''){$_POST['fecha18-10']='NULL';}
-
-
-
- $sql_insert="INSERT INTO simulador_predicciones (
-idUsuario, 
-`fecha18-1`,
-`fecha18-2`,
-`fecha18-3`,
-`fecha18-4`,
-`fecha18-5`,
-`fecha18-6`,
-`fecha18-7`,
-`fecha18-8`,
-`fecha18-9`,
-`fecha18-10`,
-`tiempo2`
-)VALUES(
-".$_GET['idusurio'].", 
-".$_POST['fecha18-1'].",
-".$_POST['fecha18-2'].",
-".$_POST['fecha18-3'].",
-".$_POST['fecha18-4'].",
-".$_POST['fecha18-5'].",
-".$_POST['fecha18-6'].",
-".$_POST['fecha22-7'].",
-".$_POST['fecha22-8'].",
-".$_POST['fecha22-9'].",
-".$_POST['fecha22-10'].",
-'".$datem2."'
-)";
-
-//mysql_query($sql_insert);
-
-}
-
-if($_POST['update'] && $_GET['u']){
-
-echo "<span class=\"haz\">Pronóstico Actualizado</span>";
-if($_POST['fecha22-1']==''){$_POST['fecha22-1']='NULL';}
-if($_POST['fecha22-2']==''){$_POST['fecha22-2']='NULL';}
-if($_POST['fecha22-3']==''){$_POST['fecha22-3']='NULL';}
-if($_POST['fecha22-4']==''){$_POST['fecha22-4']='NULL';}
-if($_POST['fecha22-5']==''){$_POST['fecha22-5']='NULL';}
-if($_POST['fecha22-6']==''){$_POST['fecha22-6']='NULL';}
-if($_POST['fecha22-7']==''){$_POST['fecha22-7']='NULL';}
-if($_POST['fecha22-8']==''){$_POST['fecha22-8']='NULL';}
-if($_POST['fecha22-9']==''){$_POST['fecha22-9']='NULL';}
-if($_POST['fecha22-10']==''){$_POST['fecha22-10']='NULL';}
-
-$datem=date("Y-m-d H:i:s", time());
-
-$sql_update="
-UPDATE simulador_predicciones
-SET 
-`fecha22-1`=".$_POST['fecha22-1'].",
-`fecha22-2`=".$_POST['fecha22-2'].",
-`fecha22-3`=".$_POST['fecha22-3'].",
-`fecha22-4`=".$_POST['fecha22-4'].",
-`fecha22-5`=".$_POST['fecha22-5'].",
-`fecha22-6`=".$_POST['fecha22-6'].",
-`fecha22-7`=".$_POST['fecha22-7'].",
-`fecha22-8`=".$_POST['fecha22-8'].",
-`fecha22-9`=".$_POST['fecha22-9'].",
-`fecha22-10`=".$_POST['fecha22-10'].",
-`tiempo2`='".$datem."'
-WHERE idUsuario=".$idUsuario." ";
-
-//mysql_query($sql_update);
-
-}
-
-
-
-$query = "SELECT * FROM simulador_predicciones where idusuario=$idUsuario";
-$result = mysql_query($query);
-
-/* array numérico */
-if(mysql_num_rows($result)==0){
-
-echo '<div class="column">
-    <img src="img.png"  onload="openModal();">
-  </div>';
-  
-echo "<form id=\"myForm\" method=\"POST\" action=\"index.php?idusurio=$idUsuario&i=1\" >";
-
-
-}else{
-
-
-echo "<form id=\"myForm\" method=\"POST\" action=\"index.php?idusurio=$idUsuario&u=1\" >";
-//imprime resultados
-$row = mysql_fetch_array($result);
-}
-
-
-
-?>
 
 <div class="box-simulador-general">
 
@@ -1034,17 +909,17 @@ $row = mysql_fetch_array($result);
 
 <ul class="sim-calendario-grupo">
 
-<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
+<li><div class="loc"><img src="img/banderas/barcelona.png">BARCELONA S.C</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" ></div><div class="vis">MACARA<img src="img/banderas/macara.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" disabled></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
+<li><div class="loc"><img src="img/banderas/delfin.png">DELFIN</div><div class="marc"><input tabindex="41" maxlength="2" pattern="\d*" type="number" data-eq="cl" value="1" disabled><span>--</span><input tabindex="42" pattern="\d*" maxlength="2" type="number" data-eq="ar" value="2" ></div><div class="vis">FUERZA AMARILLA<img src="img/banderas/fuerza.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  disabled></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
+<li><div class="loc"><img src="img/banderas/nacional.png">NACIONAL</div><div class="marc"><input tabindex="43" maxlength="2" pattern="\d*" type="number" data-eq="br" value="2"  disabled><span>--</span><input tabindex="44" pattern="\d*" maxlength="2" type="number" data-eq="uy" value="2"  ></div><div class="vis">EMELEC<img src="img/banderas/emelec.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" disabled></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenca.png"></div></li>
+<li><div class="loc"><img src="img/banderas/guayaquil.png">GUAYAQUIL CITY</div><div class="marc"><input tabindex="45" maxlength="2" pattern="\d*" type="number" data-eq="ec" value="2" disabled><span>--</span><input tabindex="46" pattern="\d*" maxlength="2" type="number" data-eq="py" value="2" ></div><div class="vis">DEP. CUENCA<img src="img/banderas/cuenca.png"></div></li>
  
-<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" disabled></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
+<li><div class="loc"><img src="img/banderas/independiente.png">INDEPENDIENTE</div><div class="marc"><input tabindex="47" maxlength="2" pattern="\d*" type="number" data-eq="bo" value="2" disabled><span>--</span><input tabindex="48" pattern="\d*" maxlength="2" type="number" data-eq="co" value="3" ></div><div class="vis">U. CATOLICA<img src="img/banderas/ucatolica.png"></div></li>
 
-<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  disabled></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
+<li><div class="loc"><img src="img/banderas/l.d.u.png">L.D.U(Q)</div><div class="marc"><input tabindex="49" maxlength="2" pattern="\d*" type="number" data-eq="pe" value="2"  disabled><span>--</span><input tabindex="50" pattern="\d*" maxlength="2" type="number" data-eq="ve" value="2"  ></div><div class="vis">CLAN JUVENIL<img src="img/banderas/clan.png"></div></li>
 
 </ul>
 
@@ -1060,11 +935,7 @@ $row = mysql_fetch_array($result);
 </div><!-- fin contenedor general -->
 
 
-<?php
-/*
-mysqli_close($link);
-*/
-?>
+
 
 
 <div id="myModal" class="modal">
