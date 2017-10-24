@@ -75,9 +75,7 @@ a:link
  
 
 switch ($_GET['idvideo']) {
-    case 1:
-        echo "";
-        break;
+
     case 2:
         echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qd1brdPy5yQ\" frameborder=\"0\" allowfullscreen></iframe>";
         break;
@@ -93,9 +91,7 @@ switch ($_GET['idvideo']) {
      case 6:
         echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9BddzJpLpyE\" frameborder=\"0\" allowfullscreen></iframe>";
         break;
-     case 7:
-        echo "";
-        break;
+
 }
    
    
@@ -111,12 +107,7 @@ switch ($_GET['idvideo']) {
 if(!isset($_GET['idvideo'])){
 ?>  
      
-    <li>
-      <a class="example-image-link" href="index.php?idvideo=1" >
-       <img class="example-image" src="imagenes/1.jpg" alt="image-1" />
-            <h2>No se pierden las ganas de alentarte</h2>
-       </a>
-    </li>
+
     <li>
       <a class="example-image-link" href="index.php?idvideo=2" >
        <img class="example-image" src="imagenes/2.jpg" alt="image-1" />
@@ -147,12 +138,7 @@ if(!isset($_GET['idvideo'])){
             <h2>El domingo volvemos al monumental</h2>
        </a>
     </li>
-    <li>
-      <a class="example-image-link" href="index.php?idvideo=7" >
-       <img class="example-image" src="imagenes/7.jpg" alt="image-1" />
-            <h2>El Monumental siempre contigo</h2>
-       </a>
-    </li>
+
 
     
     <?php
