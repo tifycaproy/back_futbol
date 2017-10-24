@@ -76,28 +76,9 @@ a:link
 
 switch ($_GET['idvideo']) {
     case 1:
-        echo '<blockquote class="twitter-tweet" data-lang="es"><p lang="und" dir="ltr"><a href="https://t.co/DAFZEqZCJn">https://t.co/DAFZEqZCJn</a></p>&mdash; Mario L Salas (@mariolsalas) <a href="https://twitter.com/mariolsalas/status/922901033772134400?ref_src=twsrc%5Etfw">24 de octubre de 2017</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
+        echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe>';
         break;
-    case 2:
-        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qd1brdPy5yQ\" frameborder=\"0\" allowfullscreen></iframe>";
-        break;
-    case 3:
-        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Cfm2Vw5ScPs\" frameborder=\"0\" allowfullscreen></iframe>";
-        break;
-    case 4:
-        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8LX6hRk5tYk\" frameborder=\"0\" allowfullscreen></iframe>";
-        break;
-    case 5:
-        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0bRnzaZxLow\" frameborder=\"0\" allowfullscreen></iframe>";
-        break;
-     case 6:
-        echo "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9BddzJpLpyE\" frameborder=\"0\" allowfullscreen></iframe>";
-        break;
-     case 7:
-        echo "<blockquote class=\"twitter-video\" data-lang=\"es\"><p lang=\"es\" dir=\"ltr\">¡No te quedes sin tu estadio, sin el Coloso de América en <a href=\"https://twitter.com/BSC_Puzzle3D?ref_src=twsrc%5Etfw\">@BSC_Puzzle3D</a>¡ | Reserva y compra ahora vía <a href=\"https://t.co/GTcoCTmQPn\">https://t.co/GTcoCTmQPn</a> <a href=\"https://twitter.com/hashtag/BSC?src=hash&amp;ref_src=twsrc%5Etfw\">#BSC</a> <a href=\"https://t.co/waXQiuF9Nn\">pic.twitter.com/waXQiuF9Nn</a></p>&mdash; Barcelona S.C. (@BarcelonaSCweb) <a href=\"https://twitter.com/BarcelonaSCweb/status/921458974377107461?ref_src=twsrc%5Etfw\">20 de octubre de 2017</a></blockquote>
-<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
-        break;
+
 }
    
    
