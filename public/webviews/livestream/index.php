@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>BSC en vivo</title>
     
-     <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <style>
 li {
@@ -156,7 +156,7 @@ if(!isset($_GET['idvideo'])){
 }else{
 
 echo "<li class=\"center\">
-      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"50px\" height=\"50px\"></a>
+      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"20px\" height=\"20px\"></a>
     </li>";
 
 }
