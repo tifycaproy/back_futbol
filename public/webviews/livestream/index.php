@@ -76,7 +76,7 @@ a:link
 
 switch ($_GET['idvideo']) {
     case 1:
-        echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe>';
+        echo '<iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe>';
         break;
 
 }
