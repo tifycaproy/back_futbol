@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>BSC en vivo</title>
-    
-
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <style>
 li {
 	list-style: none;
@@ -59,69 +56,7 @@ a:link
 
   </head>
   <body>
-   
-   
-   
-   <?php
-   if($_GET['idvideo'])
-   {
-   echo "<div class=\"video\">";
-   echo "<ul><li class=\"\">
-      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"30px\" height=\"30px\"></a>
-    </li>
-    </ul>
-    ";
-   
- 
-
-switch ($_GET['idvideo']) {
-    case 1:
-        echo '<iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe>';
-        break;
-
-}
-   
-   
-   echo "</div>";
-    }   
-   ?>
-<div class="center">
-
-<ul>
-   
-<?php
-
-if(!isset($_GET['idvideo'])){
-?>  
-     
-    <li>
-      <a class="example-image-link" href="index.php?idvideo=1" >
-       <img class="example-image" src="imagenes/1.jpg" alt="image-1" />
-            <h2>No se pierden las ganas de alentarte</h2>
-       </a>
-    </li>
-    
-    <li>
-      <a class="example-image-link" href="index.php?idvideo=7" >
-       <img class="example-image" src="imagenes/7.jpg" alt="image-1" />
-            <h2>El Monumental siempre contigo</h2>
-       </a>
-    </li>
-
-    
-    <?php
-
-}else{
-
-
-
-}
-?>  
-</ul>
- 
-    </div>
-       
-  </body>
+ <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/oPpEio5Fz2w" frameborder="0" allowfullscreen></iframe></body>
   
   
 </html>
