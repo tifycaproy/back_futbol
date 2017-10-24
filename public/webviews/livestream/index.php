@@ -97,7 +97,11 @@ switch ($_GET['idvideo']) {
 <div class="center">
 
 <ul>
-     
+   
+<?php
+
+if(!isset($_GET['idvideo'])){
+?>  
      
     <li>
       <a class="example-image-link" href="index.php?idvideo=1" data-lightbox="example-1">
@@ -144,8 +148,19 @@ switch ($_GET['idvideo']) {
     
         <li>
       <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/qd1brdPy5yQ" frameborder="0" allowfullscreen></iframe>
-       </a>
+
     </li>
+    
+    <?php
+
+}else{
+
+echo "<li class=\"center\">
+      <a href=\"index.php\"><img src=\"cerrar.png\" width=\"50px\" height=\"50px\"></a>
+    </li>";
+
+}
+?>  
 </ul>
  
     </div>
