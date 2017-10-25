@@ -152,6 +152,10 @@ text-align: center;
 
 <?php
 
+echo "<pre>";
+print_r($_GET);
+echo "</pre>";
+
 if($_GET['id']==1){
 echo "<img src=\"libertadores.jpg\">";
 }elseif($_GET['id']==2){
