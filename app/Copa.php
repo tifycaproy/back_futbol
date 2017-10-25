@@ -12,12 +12,13 @@ class Copa extends Model
 //relaciones
 	public function fechas_calendario()
     {
-        return $this->hasMany('App\Calendario','copas_id')->orderby('fecha');
+        return $this->hasMany('App\Calendario','copas_id')->orderby('fecha','desc');
     }
 	public function fechas_partidos()
     {
         return $this->hasMany('App\Calendario','copas_id')->where(function($q){
         	$q->where("equipo_1",1)->orwhere('equipo_2',1);
-        })->orderby('fecha');
+        })->orderby('fecha','desc');
     }
 }
+

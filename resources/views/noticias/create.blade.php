@@ -52,36 +52,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                 <label>Fecha</label>
-                <input type="date" class="form-control" name="fecha" value="{{ old('fecha') }}" maxlength="10" required>
+                <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha') }}" required>
                 @if ($errors->has('fecha'))
                     <p class="help-block">{{ $errors->first('fecha') }}</p>
                 @endif
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Aparece en noticias generales</label>
-                <select name="aparecetimelineppal" class="form-control">
-                    <option value="1"@if(old('aparecetimelineppal')=='1') selected @endif>Si</option>
-                    <option value="0"@if(old('aparecetimelineppal')=='0') selected @endif>No</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Aparece en monumentales</label>
-                <select name="aparevetimelinemonumentales" class="form-control">
-                    <option value="0"@if(old('aparevetimelinemonumentales')=='0') selected @endif>No</option>
-                    <option value="1"@if(old('aparevetimelinemonumentales')=='1') selected @endif>Si</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Tipo</label>
                 <select name="tipo" class="form-control">
@@ -93,7 +73,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Activa</label>
                 <select name="active" class="form-control">
@@ -102,12 +82,45 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="form-group">
                 <label>Destacada</label>
                 <select name="destacada" class="form-control">
                     <option value="0"@if(old('destacada')=='0') selected @endif>No</option>
                     <option value="1"@if(old('destacada')=='1') selected @endif>Si</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Aparece en noticias generales</label>
+                <select name="aparecetimelineppal" class="form-control">
+                    <option value="1"@if(old('aparecetimelineppal')=='1') selected @endif>Si</option>
+                    <option value="0"@if(old('aparecetimelineppal')=='0') selected @endif>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Monumental asociada</label>
+                <select name="aparevetimelinemonumentales" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($monumentales as $monumental)
+                    <option value="{{ $monumental->id }}"@if($monumental->id==old('aparevetimelinemonumentales')) selected @endif>{{ $monumental->nombre }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Partido asociado</label>
+                <select name="id_calendario_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
                 </select>
             </div>
         </div>
@@ -160,5 +173,13 @@ $(document).ready(function(){
       buttonUploadTitle: "Guardar"
     });
 })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
 </script>
 @endsection

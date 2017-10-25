@@ -249,7 +249,9 @@ $data=array(
 	"Single Monumental"=>array(
 		"Ruta"=>"/single_monumental/{idmonumental}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','foto','total_votos','instagram'],
+		"Éxito"=>['nombre','foto','total_votos','instagram',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
 		"Falla"=>array(
 			"error"=>["idmonumental incorrecto"],
 		)
@@ -264,7 +266,7 @@ $data=array(
 		),
 		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido")
+			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido","Usted ya ha votado por esta monumental"),
 		)
 	),
 	"Monumentales Anual"=>array(

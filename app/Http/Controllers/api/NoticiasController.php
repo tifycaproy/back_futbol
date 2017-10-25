@@ -40,7 +40,7 @@ class NoticiasController extends Controller
     }
     public function noticias_monumentales()
     {
-        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparevetimelinemonumentales',1)->orderby('fecha','desc','id')->paginate(25);
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparevetimelinemonumentales','<>',0)->orderby('fecha','desc','id')->paginate(25);
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {

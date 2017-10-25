@@ -16,6 +16,15 @@ class Jugador extends Model
     }
     public function convocado()
     {
-    	return $this->hasOne('App\Convocado');
+        return $this->hasOne('App\Convocado');
     }
+
+
+    public function fecha()
+    {
+        return $this->belongsTo('App\Calendario','calendario_id');
+    }
+
+
+
 }
