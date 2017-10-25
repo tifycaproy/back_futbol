@@ -149,6 +149,12 @@ text-align: center;
 </head>
 <body>
 <span class="center-image">
+
+<?php
+echo "<pre>";
+print_r($_GET);
+echo "</pre>";
+?>
 <img src="tabla.jpg">
 </span>
 </body>
