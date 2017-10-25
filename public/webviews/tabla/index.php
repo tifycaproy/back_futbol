@@ -152,7 +152,7 @@ text-align: center;
 
 <?php
 echo "<pre>";
-echo $_GET['idcopa'];
+print_r($_GET);
 echo "</pre>";
 ?>
 <img src="tabla.jpg">
