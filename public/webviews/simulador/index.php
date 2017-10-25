@@ -155,8 +155,18 @@ color: #fff;
 </head>
 <body>
 <span class="center-image">
-<img src="tabla.jpg">
+<?php
 
+
+
+if($_GET['id']==1 || $_GET['idcopa']==1){
+echo "<img src=\"libertadores.jpg\">";
+}elseif($_GET['id']==2 || $_GET['idcopa']==2){
+echo "<img src=\"tabla.jpg\">";
+}
+
+?>
+<br>
 <h3 class="proximamente">Proximamente...</h3>
 
 </span>

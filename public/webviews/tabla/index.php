@@ -152,13 +152,11 @@ text-align: center;
 
 <?php
 
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
 
-if($_GET['id']==1){
+
+if($_GET['id']==1 || $_GET['idcopa']==1){
 echo "<img src=\"libertadores.jpg\">";
-}elseif($_GET['id']==2){
+}elseif($_GET['id']==2 || $_GET['idcopa']==2){
 echo "<img src=\"tabla.jpg\">";
 }
 
