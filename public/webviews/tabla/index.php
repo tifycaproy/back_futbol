@@ -151,11 +151,15 @@ text-align: center;
 <span class="center-image">
 
 <?php
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
+
+if($_GET['id']==1){
+echo "<img src=\"libertadores.jpg\">";
+}elseif($_GET['id']==2){
+echo "<img src=\"tabla.jpg\">";
+}
+
 ?>
-<img src="tabla.jpg">
+
 </span>
 </body>
 </html>
