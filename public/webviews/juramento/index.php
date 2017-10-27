@@ -25,8 +25,10 @@ font-size: 20px;
 
  
 <?php
-$texto = "Juro ser amarillo de nacimiento y pertenecer <br> de corazón al único ídolo del Ecuador... <br> Barcelona Sporting Club <br> Si es así haz click en Aceptar";
+$texto = "Juro ser amarillo de nacimiento y pertenecer <br> de corazón al único Ídolo del Ecuador, <br> Barcelona Sporting Club. <br> Si es así, haz click aquí";
 
+
+   
   echo "<br>";
   echo "<div id=\"texto\">";
   echo $texto;

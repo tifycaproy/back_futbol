@@ -97,7 +97,7 @@ class CalendarioController extends Controller
             "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "goles_2"=>$fecha->goles_2,
-            'fecha'=>$fecha->fecha,
+            'fecha'=>date('Y-m-d H:i',strtotime($fecha->fecha)),
             'fecha_etapa'=>$fecha->fecha_etapa,
             'estadio'=>$fecha->estadio,
         ];
