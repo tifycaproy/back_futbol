@@ -1,0 +1,3 @@
+git config --global push.default simple
+
+Using simple instead of matching
