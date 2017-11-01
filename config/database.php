@@ -1,5 +1,16 @@
 <?php
+if (defined('DB_HOST')) {
+    define('DB_HOST', $_SERVER['DB_HOST']);
+    define('DB_USERNAME', $_SERVER['DB_USERNAME']);
+    define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
+    define('DB_NAME', $_SERVER['DB_NAME']);
+}else{
 
+    define('DB_HOST', env('DB_HOST', 'forge'));
+    define('DB_USERNAME', env('DB_USERNAME', 'forge'));
+    define('DB_PASSWORD',  env('DB_PASSWORD', ''));
+    define('DB_NAME', env('DB_DATABASE', 'forge'));
+}
 return [
 
     /*
@@ -40,18 +51,16 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
+            'driver'    => 'mysql',
+            'host'      => DB_HOST,
+            'database'  => DB_NAME,
+            'username'  => DB_USERNAME,
+            'password'  => DB_PASSWORD,
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
         ],
 
         'pgsql' => [
