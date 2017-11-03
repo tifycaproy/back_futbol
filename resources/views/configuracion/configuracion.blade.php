@@ -70,7 +70,6 @@
                 <input type="text" class="form-control" name="url_simulador" value="{{ $configuracion->url_simulador }}" maxlength="200">
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-6">
@@ -85,7 +84,247 @@
                 <input type="text" class="form-control" name="url_livestream" value="{{ $configuracion->url_livestream }}" maxlength="200">
             </div>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Link a webview de tienda</label>
+                <input type="text" class="form-control" name="url_tienda" value="{{ $configuracion->url_tienda }}" maxlength="200">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Link a webview de estadisticas</label>
+                <input type="text" class="form-control" name="url_estadisticas" value="{{ $configuracion->url_estadisticas }}" maxlength="200">
+            </div>
+        </div>
+    </div>
+     <div class="row">
+         <div class="col-lg-12">
+            <h3><i class="fa fa-fw fa-list-ul"></i> Títulos de secciones</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 1</label>
+                <input type="text" class="form-control" name="tit_1" value="{{ $configuracion->tit_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 2</label>
+                <input type="text" class="form-control" name="tit_2" value="{{ $configuracion->tit_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 3</label>
+                <input type="text" class="form-control" name="tit_3" value="{{ $configuracion->tit_3 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 4</label>
+                <input type="text" class="form-control" name="tit_4" value="{{ $configuracion->tit_4 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 4.1</label>
+                <input type="text" class="form-control" name="tit_4_1" value="{{ $configuracion->tit_4_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 4.2</label>
+                <input type="text" class="form-control" name="tit_4_2" value="{{ $configuracion->tit_4_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 5</label>
+                <input type="text" class="form-control" name="tit_5" value="{{ $configuracion->tit_5 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6</label>
+                <input type="text" class="form-control" name="tit_6" value="{{ $configuracion->tit_6 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.1</label>
+                <input type="text" class="form-control" name="tit_6_1" value="{{ $configuracion->tit_6_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.2</label>
+                <input type="text" class="form-control" name="tit_6_2" value="{{ $configuracion->tit_6_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.3</label>
+                <input type="text" class="form-control" name="tit_6_3" value="{{ $configuracion->tit_6_3 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.3.1</label>
+                <input type="text" class="form-control" name="tit_6_3_1" value="{{ $configuracion->tit_6_3_1 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.3.2</label>
+                <input type="text" class="form-control" name="tit_6_3_2" value="{{ $configuracion->tit_6_3_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 7</label>
+                <input type="text" class="form-control" name="tit_7" value="{{ $configuracion->tit_7 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 7.1</label>
+                <input type="text" class="form-control" name="tit_7_1" value="{{ $configuracion->tit_7_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 7.2</label>
+                <input type="text" class="form-control" name="tit_7_2" value="{{ $configuracion->tit_7_2 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 8</label>
+                <input type="text" class="form-control" name="tit_8" value="{{ $configuracion->tit_8 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 9</label>
+                <input type="text" class="form-control" name="tit_9" value="{{ $configuracion->tit_9 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 10</label>
+                <input type="text" class="form-control" name="tit_10" value="{{ $configuracion->tit_10 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 10.1</label>
+                <input type="text" class="form-control" name="tit_10_1" value="{{ $configuracion->tit_10_1 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 10.2</label>
+                <input type="text" class="form-control" name="tit_10_2" value="{{ $configuracion->tit_10_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11</label>
+                <input type="text" class="form-control" name="tit_11" value="{{ $configuracion->tit_11 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11.1</label>
+                <input type="text" class="form-control" name="tit_11_1" value="{{ $configuracion->tit_11_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11.1.1</label>
+                <input type="text" class="form-control" name="tit_11_1_1" value="{{ $configuracion->tit_11_1_1 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11.1.2</label>
+                <input type="text" class="form-control" name="tit_11_1_2" value="{{ $configuracion->tit_11_1_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11.1.3</label>
+                <input type="text" class="form-control" name="tit_11_1_3" value="{{ $configuracion->tit_11_1_3 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 11.1.4</label>
+                <input type="text" class="form-control" name="tit_11_1_4" value="{{ $configuracion->tit_11_1_4 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 12</label>
+                <input type="text" class="form-control" name="tit_12" value="{{ $configuracion->tit_12 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 13</label>
+                <input type="text" class="form-control" name="tit_13" value="{{ $configuracion->tit_13 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14</label>
+                <input type="text" class="form-control" name="tit_14" value="{{ $configuracion->tit_14 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14.1</label>
+                <input type="text" class="form-control" name="tit_14_1" value="{{ $configuracion->tit_14_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14.2</label>
+                <input type="text" class="form-control" name="tit_14_2" value="{{ $configuracion->tit_14_2 }}" maxlength="30">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14.3</label>
+                <input type="text" class="form-control" name="tit_14_3" value="{{ $configuracion->tit_14_3 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 15</label>
+                <input type="text" class="form-control" name="tit_15" value="{{ $configuracion->tit_15 }}" maxlength="30">
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-6">

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jugador;
 use App\Aplauso;
-use App\AplausoCalendario;
+use App\Configuracion;
 
 
 
@@ -65,7 +65,8 @@ class JugadoresController extends Controller
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
             ];
-            if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
+            $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
+            if($partidoaaplaudor->calendario_aplausos_id<>0 and $partidoaaplaudor->calendario_aplausos_id==$jugador->calendario_id){
                 $data["data"]['sepuedeaplaudir'] = 1;
             }else{
                 $data["data"]['sepuedeaplaudir'] = 0;
@@ -89,8 +90,8 @@ class JugadoresController extends Controller
                 $data["data"]['idpartido'] = null;
             }
 
-            if($ultimopartido=AplausoCalendario::orderby('id','desc')->first()){
-                $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$ultimopartido->calendario_id)->where('jugadores_id',$id)->count();
+            if($jugador->calendario_id<>0){
+                $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$jugador->calendario_id)->where('jugadores_id',$id)->count();
             }else{
                 $data["data"]['apalusos_ultimo_partido'] = 0;
             }
@@ -123,6 +124,10 @@ class JugadoresController extends Controller
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
+            if(Aplauso::where('jugadores_id',$request["idjudador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
+                return ["status" => "fallo", "error" => ["Usted ya aplaudió a este jugador en este partido"]];
+            }
+
             //fin validaciones
             Aplauso::create([
                 'jugadores_id'=>$request["idjudador"],

@@ -43,7 +43,10 @@ $data=array(
 		"Ruta"=>"/configuracion",
 		"Método"=>"GET",
 		"Éxito"=>[
-			'url_tabla','url_simulador','url_juramento','url_livestream'
+			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas',
+			'tit_1','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
+			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
+			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_3','tit_15',
 		],
 	),
 	"Noticias"=>array(
@@ -68,6 +71,8 @@ $data=array(
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
+			"apodo" => "varchar(30) / opcional",
+			"referido" => "varchar(30) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
 			"celular" => "varchar(30) / opcional",
@@ -137,7 +142,7 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
+		"Éxito"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -159,6 +164,16 @@ $data=array(
 			"error"=>"Internal error",
 		)
 	),
+	"consultar referidos"=>array(
+		"Ruta"=>"/consultar_referidos/{token}",
+		"Método"=>"GET",
+		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
+		"Falla"=>array(
+			"error"=>"Invalid token",
+		)
+	),
+
+
 //calendario
 	"Copas"=>array(
 		"Ruta"=>"/copas",
@@ -226,7 +241,7 @@ $data=array(
 		),
 		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido")
+			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
 		)
 	),
 //monumentales
