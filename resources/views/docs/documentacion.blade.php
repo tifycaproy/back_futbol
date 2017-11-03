@@ -221,7 +221,7 @@ $data=array(
 	"Single del jugador"=>array(
 		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
-		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner','instagram',
+		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
 			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
 			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
 			'apalusos_ultimo_partido', 'aplausos_acumulado',

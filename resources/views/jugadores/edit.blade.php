@@ -66,7 +66,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
-                <label>Nacionalidad</label>
+                <label>Lugar de nacimiento</label>
                 <input type="text" class="form-control" name="nacionalidad" value="{{ old('nacionalidad', $jugador->nacionalidad) }}" maxlength="60">
             </div>
         </div>
@@ -93,7 +93,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Peso</label>
+                <input type="text" class="form-control" name="peso" value="{{ old('peso', $jugador->peso) }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Estatura</label>
+                <input type="text" class="form-control" name="estatura" value="{{ old('estatura', $jugador->estatura) }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Último partido convocado</label>
                 <select name="calendario_id" class="form-control">

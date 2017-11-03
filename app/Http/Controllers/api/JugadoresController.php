@@ -62,6 +62,8 @@ class JugadoresController extends Controller
                 'nacionalidad' => $jugador->nacionalidad,
                 'n_camiseta' => $jugador->n_camiseta,
                 'posicion' => $jugador->posicion,
+                'peso' => $jugador->peso,
+                'estatura' => $jugador->estatura,
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
             ];
