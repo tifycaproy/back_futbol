@@ -4,10 +4,14 @@
 # Perform tests in browser using the WebDriver or PhpBrowser.
 # If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
-class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-            url: 'http://millonarios.dev' # put your local url
-            browser: firefox
-        - \Helper\Acceptance
+            url: http://millonarios.dev/
+            browser: chrome
+extensions:
+    enabled:
+        - Codeception\Extension\RunProcess:
+            0: java -jar Selenium/selenium-server.jar
+
+
