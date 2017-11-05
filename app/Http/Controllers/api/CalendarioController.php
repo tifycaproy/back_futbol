@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Copa;
 use App\Convocado;
 use App\Configuracion;
+use App\Calendario;
 
 
 class CalendarioController extends Controller
@@ -81,6 +82,37 @@ class CalendarioController extends Controller
                 "copa" => $copa->titulo,
                 "partidos" => $fechas
             ];
+        }
+        return $data;
+    }
+    public function single_calendario($id)
+    {
+        if($fecha=Calendario::find($id)){
+            $data["status"]='exito';
+            $data["data"]=[
+                    'idpartido'=>$fecha->id,
+                    "estado"=>$fecha->estado,
+                    "equipo_1"=>$fecha->equipo1->nombre,
+                    "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+                    "goles_1"=>$fecha->goles_1,
+                    "equipo_2"=>$fecha->equipo2->nombre,
+                    "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+                    "goles_2"=>$fecha->goles_2,
+                    'fecha'=>$fecha->fecha,
+                    'fecha_etapa'=>$fecha->fecha_etapa,
+                    'estadio'=>$fecha->estadio,
+            ];
+            $noticias=$fecha->noticias;
+            $data["data"]['noticias']=[];
+            foreach ($noticias as $noticia) {
+                if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+                unset($noticia->pivot);
+                $data["data"]['noticias'][]=$noticia;
+            }
+
+        }else{
+            $data["status"]='fallo';
+            $data["error"]=['idpartido incorrecto'];
         }
         return $data;
     }

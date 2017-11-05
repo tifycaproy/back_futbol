@@ -30,12 +30,14 @@ Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
 Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
+Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
 //Calendario
 Route::get('copas', 'api\CalendarioController@copas');
 Route::get('partidos', 'api\CalendarioController@partidos');
 Route::get('calendario', 'api\CalendarioController@calendario');
 Route::get('convocados', 'api\CalendarioController@convocados');
+Route::get('single_calendario/{id}', 'api\CalendarioController@single_calendario');
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');

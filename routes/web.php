@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit_password/{id}', 'UserController@edit_password')->name('edit_password');
     Route::put('update_password/{id}', 'UserController@update_password')->name('update_password');
     Route::resource('usuarios', 'UserController');
+    Route::get('ranking_referidos', 'UserController@ranking_referidos')->name('ranking_referidos');
 //notiicas
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');
