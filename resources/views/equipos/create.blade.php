@@ -40,9 +40,9 @@
             <div class="form-group">
                 <label>Bandera</label>
                 <div class="slim" style="max-width: 256px">
-                  <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                  <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
     </div>

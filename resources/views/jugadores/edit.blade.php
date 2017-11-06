@@ -122,9 +122,9 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim slim_foto">
-                  <input name="foto" type="file" accept="image/jpeg, image/png" />
+                  <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
                 @if($jugador->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->foto }}" style="max-width: 100%"></p>
@@ -135,9 +135,9 @@
             <div class="form-group">
                 <label>Banner</label>
                 <div class="slim slim_banner">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="banner" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
                 @if($jugador->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->banner }}" style="max-width: 100%"></p>

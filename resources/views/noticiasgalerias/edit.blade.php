@@ -48,9 +48,9 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                    <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
                 @if($noticia->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" style="max-width: 100%"></p>
