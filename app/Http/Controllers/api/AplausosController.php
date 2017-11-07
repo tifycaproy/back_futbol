@@ -10,13 +10,27 @@ use App\Configuracion;
 
 
 
-class JugadoresController extends Controller
+class AplausosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function aplausos_equipo()
+    {
+        echo "hola mundo";
+
+
+        $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
+        if($partidoaaplaudor->calendario_aplausos_id<>0 and $partidoaaplaudor->calendario_aplausos_id==$jugador->calendario_id){
+            $data["data"]['sepuedeaplaudir'] = 1;
+        }else{
+            $data["data"]['sepuedeaplaudir'] = 0;
+        }
+
+
+    }
     public function nomina()
     {
         $data["status"]='exito';
@@ -24,28 +38,28 @@ class JugadoresController extends Controller
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Portero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjugador' => $jugador->id,
+                'idjudador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Defensa')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjugador' => $jugador->id,
+                'idjudador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Volante')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjugador' => $jugador->id,
+                'idjudador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Delantero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjugador' => $jugador->id,
+                'idjudador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
@@ -56,7 +70,7 @@ class JugadoresController extends Controller
         if($jugador=Jugador::find($id)){
             $data["status"]='exito';
             $data["data"]=[
-                'idjugador' => $jugador->id,
+                'idjudador' => $jugador->id,
                 'nombre' => $jugador->nombre,
                 'fecha_nacimiento' => $jugador->fecha_nacimiento,
                 'nacionalidad' => $jugador->nacionalidad,
@@ -120,19 +134,19 @@ class JugadoresController extends Controller
         try{
             //Validaciones
             $errors=[];
-            if(!isset($request["idjugador"])) $errors[]="El idjugador es requerido";
+            if(!isset($request["idjudador"])) $errors[]="El idjudador es requerido";
             if(!isset($request["imei"])) $errors[]="El imei es requerido";
             if(!isset($request["idpartido"])) $errors[]="El idpartido es requerido";
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
-            if(Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
+            if(Aplauso::where('jugadores_id',$request["idjudador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
                 return ["status" => "fallo", "error" => ["Usted ya aplaudió a este jugador en este partido"]];
             }
 
             //fin validaciones
             Aplauso::create([
-                'jugadores_id'=>$request["idjugador"],
+                'jugadores_id'=>$request["idjudador"],
                 'calendario_id'=>$request["idpartido"],
                 'imei'=>$request["imei"],
             ]);

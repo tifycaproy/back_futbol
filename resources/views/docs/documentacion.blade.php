@@ -207,7 +207,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>array(
 			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
-			"jugadores (array)"=>['idjudador','banner'],
+			"jugadores (array)"=>['idjugador','banner'],
 		)
 	),
 //jugadores
@@ -215,13 +215,13 @@ $data=array(
 		"Ruta"=>"/nomina",
 		"Método"=>"GET",
 		"Éxito (Array)"=>array(
-			"idjudador","banner"
+			"idjugador","banner"
 		)
 	),
 	"Single del jugador"=>array(
 		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
-		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
+		"Éxito"=>['idjugador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
 			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
 			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
 			'apalusos_ultimo_partido', 'aplausos_acumulado',
@@ -235,13 +235,13 @@ $data=array(
 		"Ruta"=>"/aplaudir",
 		"Método"=>"POST",
 		"Parámetros"=>array(
-			"idjudador" => "integer / requerido",
+			"idjugador" => "integer / requerido",
 			"idpartido" => "integer / requerido",
 			"imei" => "varchar(45) / requerido",
 		),
 		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
+			"error"=>array("El idjugador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
 		)
 	),
 //monumentales

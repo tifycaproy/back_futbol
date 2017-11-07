@@ -19,7 +19,6 @@ Route::middleware('auth:api')->get('/user', function(){
 Route::get('configuracion', 'api\ConfiguracionController@index');
 
 //noticias
-
 Route::get('noticias', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 
@@ -44,6 +43,10 @@ Route::get('single_calendario/{id}', 'api\CalendarioController@single_calendario
 Route::get('nomina', 'api\JugadoresController@nomina');
 Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
 Route::post('aplaudir', 'api\JugadoresController@aplaudir');
+
+//equipo
+Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
+
 
 //Monumentales
 Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
