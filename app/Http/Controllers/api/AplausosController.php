@@ -26,8 +26,9 @@ class AplausosController extends Controller
         if($partidoaaplaudor->calendario_aplausos_id<>0){
             $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
         }else{
-            $partidoaaplaudor=Aplauso::orderby('','desc')->first(['calendario_aplausos_id']);
-
+            if($partidoaaplaudor=Aplauso::orderby('created_at','desc')->first(['calendario_id'])){
+                
+            }
         }
 
 
