@@ -112,12 +112,10 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Monumental asociada</label>
-                <select name="aparevetimelinemonumentales" class="form-control">
-                    <option value="0">No aplica</option>
-                @foreach($monumentales as $monumental)
-                    <option value="{{ $monumental->id }}"@if($monumental->id==old('aparevetimelinemonumentales',$noticia->aparevetimelinemonumentales)) selected @endif>{{ $monumental->nombre }}</option>
-                @endforeach
+                <label>Aparece en futbol base</label>
+                <select name="aparecefutbolbase" class="form-control">
+                    <option value="0"@if(old('aparecefutbolbase', $noticia->aparecefutbolbase)=='0') selected @endif>No</option>
+                    <option value="1"@if(old('aparecefutbolbase', $noticia->aparecefutbolbase)=='1') selected @endif>Si</option>
                 </select>
             </div>
         </div>

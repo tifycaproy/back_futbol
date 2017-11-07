@@ -49,4 +49,15 @@ class NoticiasController extends Controller
         }
         return $data;
     }
+    public function noticias_futbolbase()
+    {
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparecefutbolbase','<>',0)->orderby('fecha','desc','id')->paginate(25);
+        $data["status"]='exito';
+        $data["data"]=[];
+        foreach ($noticias as $noticia) {
+            if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+            $data["data"][]=$noticia;
+        }
+        return $data;
+    }
 }

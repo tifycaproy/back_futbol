@@ -21,6 +21,7 @@ Route::get('configuracion', 'api\ConfiguracionController@index');
 //noticias
 Route::get('noticias', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
+Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
 //usuarios
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');

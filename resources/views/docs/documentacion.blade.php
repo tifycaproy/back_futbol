@@ -63,6 +63,14 @@ $data=array(
 			'titulo','foto'
 		],
 	),
+	
+	"Noticias futboal base"=>array(
+		"Ruta"=>"/noticias_futbolbase?page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
+		],
+	),
 
 //usuarios
 	"Registrarse"=>array(
