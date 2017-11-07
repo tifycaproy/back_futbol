@@ -252,6 +252,20 @@ $data=array(
 			"error"=>array("El idjugador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
 		)
 	),
+	"Consultar aplauso / equipo"=>array(
+		"Ruta"=>"/aplausos_equipo",
+		"Método"=>"GET",
+		"Éxito"=>array(
+			'partido_actual'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+			'acumulado'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+		),
+		"Error"=>array("No hay juegos registrados")
+	),
+
 //monumentales
 	"Noticias Monumentales"=>array(
 		"Ruta"=>"/noticias_monumentales?page={pagina}",

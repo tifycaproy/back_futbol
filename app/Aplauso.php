@@ -10,8 +10,8 @@ class Aplauso extends Model
 	protected $guarded = ['id'];
 
 //relaciones
-	public function fotos()
+	public function jugador()
     {
-        return $this->hasMany('App\NoticiaFoto');
+        return $this->hasOne('App\Jugador');
     }
 }
