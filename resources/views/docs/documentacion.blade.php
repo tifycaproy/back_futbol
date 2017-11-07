@@ -210,6 +210,14 @@ $data=array(
 			],
 		)
 	),
+	"Silgle Calendario"=>array(
+		"Ruta"=>"/single_calendario/{idpartido}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
+		)
+	),
 	"Convocados"=>array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
