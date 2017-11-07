@@ -23,8 +23,8 @@ class AplausosController extends Controller
 
 
         $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
-        if($partidoaaplaudor->calendario_aplausos_id<>0 and $partidoaaplaudor->calendario_aplausos_id==$jugador->calendario_id){
-            $data["data"]['sepuedeaplaudir'] = 1;
+        if($partidoaaplaudor->calendario_aplausos_id<>0){
+            $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
         }else{
             $data["data"]['sepuedeaplaudir'] = 0;
         }
