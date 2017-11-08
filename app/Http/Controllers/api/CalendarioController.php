@@ -137,7 +137,7 @@ class CalendarioController extends Controller
         $convocados=Convocado::orderby('orden','desc')->get();
         foreach ($convocados as $convocado) {
             $jugadores[]=[
-                'idjudador' => $convocado->jugador->id,
+                'idjugador' => $convocado->jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $convocado->jugador->banner,
             ];
         }
