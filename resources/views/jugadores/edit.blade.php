@@ -195,14 +195,14 @@ $(document).ready(function(){
     });
    $('.slim_banner').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '2:1',
+      ratio: 'free',
       minSize: {
         width: 500,
         height: 250
       },
       size: {
-        width: 512,
-        height: 256
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',
