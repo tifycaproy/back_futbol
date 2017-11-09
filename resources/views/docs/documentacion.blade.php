@@ -63,6 +63,14 @@ $data=array(
 			'titulo','foto'
 		],
 	),
+	
+	"Noticias futboal base"=>array(
+		"Ruta"=>"/noticias_futbolbase?page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
+		],
+	),
 
 //usuarios
 	"Registrarse"=>array(
@@ -202,6 +210,14 @@ $data=array(
 			],
 		)
 	),
+	"Silgle Calendario"=>array(
+		"Ruta"=>"/single_calendario/{idpartido}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
+		)
+	),
 	"Convocados"=>array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
@@ -244,6 +260,20 @@ $data=array(
 			"error"=>array("El idjugador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
 		)
 	),
+	"Consultar aplauso / equipo"=>array(
+		"Ruta"=>"/aplausos_equipo",
+		"Método"=>"GET",
+		"Éxito"=>array(
+			'partido_actual'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+			'acumulado'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+		),
+		"Error"=>array("No hay juegos registrados")
+	),
+
 //monumentales
 	"Noticias Monumentales"=>array(
 		"Ruta"=>"/noticias_monumentales?page={pagina}",

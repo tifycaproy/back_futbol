@@ -1,11 +1,9 @@
 branch-defaults:
   dev:
     environment: dev-env
-  master:
-    environment: prod-env
 environment-defaults:
   dev-env:
-    branch: master
+    branch: dev
     repository: millonarios_backend
 global:
   application_name: millonarios

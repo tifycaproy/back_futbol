@@ -24,6 +24,6 @@ class Calendario extends Model
     }
     public function noticias()
     {
-        return $this->hasMany('App\Noticia','aparevetimelinemonumentales');
+        return $this->hasMany('App\Noticia','aparevetimelinemonumentales')->select('id','link','titulo','descripcion','fecha','foto','destacada','tipo');
     }
 }
