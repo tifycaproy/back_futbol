@@ -1,10 +1,11 @@
 <?php
-if (!defined('DB_HOST')) {
+
+if (defined('DB_HOST')) {
     define('DB_HOST', $_SERVER['DB_HOST']);
     define('DB_USERNAME', $_SERVER['DB_USERNAME']);
     define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
     define('DB_NAME', $_SERVER['DB_NAME']);
-}else{
+}else if(!defined('DB_HOST')){
 
     define('DB_HOST', env('DB_HOST', 'forge'));
     define('DB_USERNAME', env('DB_USERNAME', 'forge'));
@@ -45,6 +46,7 @@ return [
 
 
     'connections' => [
+
 
 
             'sqlite' => [
