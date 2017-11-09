@@ -1,5 +1,5 @@
 <?php
-if (defined('DB_HOST')) {
+if (!defined('DB_HOST')) {
     define('DB_HOST', $_SERVER['DB_HOST']);
     define('DB_USERNAME', $_SERVER['DB_USERNAME']);
     define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
@@ -41,14 +41,33 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
+    'default' => env('DB_DEFAULT', 'mysql'),
+
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-        ],
+
+            'sqlite' => [
+                'driver'   => 'sqlite',
+                'database' => storage_path().'/database.sqlite',
+                'prefix'   => '',
+            ],
+
+            'sqlite_testing' => [
+                'driver'   => 'sqlite',
+                'database' => storage_path().'/testing.sqlite',
+                'prefix'   => '',
+            ],
+
+            'sqlite_unit_testing' => [
+                'driver'   => 'sqlite',
+                'database' => ':memory:',
+                'prefix'   => '',
+            ],
+
+            // other connections
+
+
 
         'mysql' => [
             'driver'    => 'mysql',

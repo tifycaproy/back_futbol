@@ -155,7 +155,7 @@ $(document).ready(function(){
         width: 512,
         height: 256
       },
-      download: false,
+      download: true,
       labelLoading: 'Cargando imagen...',
       statusImageTooSmall: 'La imagen es muy pequeña. El tamaño mínimo es $0 píxeles.',
       statusUnknownResponse: 'Ha ocurrido un error inesperado.',

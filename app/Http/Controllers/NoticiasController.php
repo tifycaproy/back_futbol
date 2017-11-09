@@ -128,6 +128,18 @@ class NoticiasController extends Controller
                 $picture=$foto->output->image;
                 $filepath = 'noticias/' . $fileName;
 
+                if($foto->input->type== 'image/gif'){
+                    $path =  $foto->input->name;
+                    $extensio = pathinfo($path, PATHINFO_EXTENSION);
+                    $data = file_get_contents($path);
+                    $picture = 'data:image/' . $extensio . ';base64,' . base64_encode($data);
+                    $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+
+                }
+
+                // $picture = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+
+
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
                     'Bucket' => config('app.s3_bucket'),
