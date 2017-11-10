@@ -32,8 +32,13 @@
 <form role="form" action="{{ route('configuracion_actualizar') }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
+     <div class="row">
+         <div class="col-lg-12">
+            <h3><i class="fa fa-fw fa-calendar-check-o"></i> Partidos</h3>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Partido para convocados</label>
                 <select name="calendario_convodados_id" class="form-control">
@@ -43,9 +48,7 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Partido para aplausos</label>
                 <select name="calendario_aplausos_id" class="form-control">
@@ -60,13 +63,30 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de tablas</label>
+                <label>Partido para alineación / playbyplay</label>
+                <select name="calendario_alineacion_id" class="form-control">
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==$configuracion->calendario_alineacion_id) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+         <div class="col-lg-12">
+            <h3><i class="fa fa-fw fa-external-link"></i> Enlaces a los webview</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Tablas</label>
                 <input type="text" class="form-control" name="url_tabla" value="{{ $configuracion->url_tabla }}" maxlength="200">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de simulador</label>
+                <label>Simulador</label>
                 <input type="text" class="form-control" name="url_simulador" value="{{ $configuracion->url_simulador }}" maxlength="200">
             </div>
         </div>
@@ -74,13 +94,13 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de juramento</label>
+                <label>Juramento</label>
                 <input type="text" class="form-control" name="url_juramento" value="{{ $configuracion->url_juramento }}" maxlength="200">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de livestream</label>
+                <label>Livestream</label>
                 <input type="text" class="form-control" name="url_livestream" value="{{ $configuracion->url_livestream }}" maxlength="200">
             </div>
         </div>
@@ -88,14 +108,22 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de tienda</label>
+                <label>Tienda</label>
                 <input type="text" class="form-control" name="url_tienda" value="{{ $configuracion->url_tienda }}" maxlength="200">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Link a webview de estadisticas</label>
+                <label>Estadisticas</label>
                 <input type="text" class="form-control" name="url_estadisticas" value="{{ $configuracion->url_estadisticas }}" maxlength="200">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Academia Millonarios</label>
+                <input type="text" class="form-control" name="url_academia" value="{{ $configuracion->url_academia }}" maxlength="200">
             </div>
         </div>
     </div>
@@ -165,10 +193,24 @@
         </div>
         <div class="col-lg-3">
             <div class="form-group">
+                <label>Título 6.1.1</label>
+                <input type="text" class="form-control" name="tit_6_1_1" value="{{ $configuracion->tit_6_1_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 6.1.2</label>
+                <input type="text" class="form-control" name="tit_6_1_2" value="{{ $configuracion->tit_6_1_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
                 <label>Título 6.2</label>
                 <input type="text" class="form-control" name="tit_6_2" value="{{ $configuracion->tit_6_2 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.3</label>
@@ -181,8 +223,6 @@
                 <input type="text" class="form-control" name="tit_6_3_1" value="{{ $configuracion->tit_6_3_1 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.3.2</label>
@@ -195,6 +235,8 @@
                 <input type="text" class="form-control" name="tit_7" value="{{ $configuracion->tit_7 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 7.1</label>
@@ -207,8 +249,6 @@
                 <input type="text" class="form-control" name="tit_7_2" value="{{ $configuracion->tit_7_2 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 8</label>
@@ -221,6 +261,8 @@
                 <input type="text" class="form-control" name="tit_9" value="{{ $configuracion->tit_9 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 10</label>
@@ -233,8 +275,6 @@
                 <input type="text" class="form-control" name="tit_10_1" value="{{ $configuracion->tit_10_1 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 10.2</label>
@@ -247,6 +287,8 @@
                 <input type="text" class="form-control" name="tit_11" value="{{ $configuracion->tit_11 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1</label>
@@ -259,8 +301,6 @@
                 <input type="text" class="form-control" name="tit_11_1_1" value="{{ $configuracion->tit_11_1_1 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1.2</label>
@@ -273,6 +313,8 @@
                 <input type="text" class="form-control" name="tit_11_1_3" value="{{ $configuracion->tit_11_1_3 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1.4</label>
@@ -285,8 +327,6 @@
                 <input type="text" class="form-control" name="tit_12" value="{{ $configuracion->tit_12 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 13</label>
@@ -299,6 +339,8 @@
                 <input type="text" class="form-control" name="tit_14" value="{{ $configuracion->tit_14 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 14.1</label>
@@ -311,8 +353,6 @@
                 <input type="text" class="form-control" name="tit_14_2" value="{{ $configuracion->tit_14_2 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 14.3</label>
