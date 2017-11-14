@@ -10,4 +10,5 @@ class Formacion extends Model
 	protected $guarded = ['id'];
 	
 //relaciones
+	
 }
