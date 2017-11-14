@@ -26,4 +26,15 @@ class Calendario extends Model
     {
         return $this->hasMany('App\Noticia','aparevetimelinemonumentales')->select('id','link','titulo','descripcion','fecha','foto','destacada','tipo');
     }
+    public function formacion(){
+        return $this->belongsTo('App\formacion');
+    }
+    public function titulares()
+    {
+        return $this->hasMany('App\Alineacion')->where('estado','Titular');
+    }
+    public function suplentes()
+    {
+        return $this->hasMany('App\Alineacion')->where('estado','Suplente');
+    }
 }

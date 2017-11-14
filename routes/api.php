@@ -37,8 +37,9 @@ Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_refe
 Route::get('copas', 'api\CalendarioController@copas');
 Route::get('partidos', 'api\CalendarioController@partidos');
 Route::get('calendario', 'api\CalendarioController@calendario');
-Route::get('convocados', 'api\CalendarioController@convocados');
 Route::get('single_calendario/{id}', 'api\CalendarioController@single_calendario');
+Route::get('convocados', 'api\CalendarioController@convocados');
+Route::get('playbyplay', 'api\CalendarioController@playbyplay');
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');

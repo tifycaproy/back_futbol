@@ -144,6 +144,16 @@
                 @endif
               </div>
         </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>DT</label>
+                <select name="dt" class="form-control">
+                    <option value="0"@if(old('dt', $jugador->dt)=='0') selected @endif>No</option>
+                    <option value="1"@if(old('dt', $jugador->dt)=='1') selected @endif>Si</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-6">

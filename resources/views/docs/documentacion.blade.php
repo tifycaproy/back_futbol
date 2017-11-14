@@ -226,6 +226,22 @@ $data=array(
 			"jugadores (array)"=>['idjugador','banner'],
 		)
 	),
+	"Play by play"=>array(
+		"Ruta"=>"/playbyplay",
+		"Método"=>"GET",
+		"Éxito Array"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"video","info","formacion","foto_formacion",
+			"idjugador","nombre_dt","foto_dt",
+			"titulares (array)"=>array(
+				"idjugador","foto","nombre","posicion","actividades (array)"=>array("actividad","minuto")
+			),
+			"suplentes (array)"=>array(
+				"idjugador","foto","nombre","actividades (array)"=>array("actividad","minuto")
+			),
+		),
+		"Error"=>array("idcalendario es requerido","idcalendario incorrecto")
+	),
 //jugadores
 	"Nómina"=>array(
 		"Ruta"=>"/nomina",

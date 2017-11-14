@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Calendario;
 use App\Equipo;
+use App\Alineacion;
+use App\Jugador;
 
 class CalendarioController extends Controller
 {
@@ -129,5 +131,33 @@ class CalendarioController extends Controller
             ]);
         }
         return redirect()->route('calendarios.edit', codifica($_SESSION['calendario_id']));
+    }
+    public function alineacion()
+    {
+        $jugadores=Jugador::where('dt',0)->leftjoin('alineacion', function($join)
+        {
+            $join->on('jugadores.id','=','alineacion.jugador_id');
+            $join->where('alineacion.calendario_id','=',$_SESSION['calendario_id']);
+        })
+        ->orderby('alineacion.orden','desc')->get(['jugadores.id','nombre','alineacion.posicion','alineacion.estado','alineacion.id as convocado']);
+        return view('calendarios.alineacion')->with('jugadores',$jugadores)->with('idcalendario',$_SESSION['calendario_id']);
+    }
+    public function alineacion_actualizar(Request $request)
+    {
+        Alineacion::where('id','<>',0)->delete();
+        $orden=count($request->jugadores);
+        if($orden>0){
+            foreach ($request->jugadores as $jugador) {
+                Alineacion::create([
+                    'calendario_id' => $_SESSION['calendario_id'],
+                    'jugador_id' => $jugador,
+                    'estado' => $request["estado_" . $jugador],
+                    'posicion' => $request["posicion_" . $jugador],
+                    'orden' => $orden
+                ]);
+                $orden--;
+            }
+        }
+        return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
     }
 }

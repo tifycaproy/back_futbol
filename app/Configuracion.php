@@ -15,4 +15,8 @@ class Configuracion extends Model
     {
         return $this->belongsTo('App\Calendario','calendario_convodados_id');
     }
+    public function partido_alineacion()
+    {
+        return $this->belongsTo('App\Calendario','calendario_alineacion_id');
+    }
 }

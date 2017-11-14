@@ -54,6 +54,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('calendarios_eliminar/{id}', 'CalendarioController@destroy')->name('calendarios_eliminar');
     Route::resource('calendarios', 'CalendarioController');
+    Route::get('alineacion', 'CalendarioController@alineacion')->name('alineacion');
+    Route::put('alineacion_actualizar', 'CalendarioController@alineacion_actualizar')->name('alineacion_actualizar');
+
+    Route::get('actividad_eliminar/{id}', 'ActividadController@destroy')->name('actividad_eliminar');
+    Route::resource('actividad', 'ActividadController');
+
+
+
 
     Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');
     Route::resource('monumentales', 'MonumentalesController');

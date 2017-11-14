@@ -8,6 +8,8 @@ use App\Copa;
 use App\Convocado;
 use App\Configuracion;
 use App\Calendario;
+use App\Jugador;
+use App\Playbyplay;
 
 
 class CalendarioController extends Controller
@@ -123,6 +125,7 @@ class CalendarioController extends Controller
         $fecha=$configuración->partido;
         $data["data"]=[
             'idpartido'=>$fecha->id,
+            'estado' =>$fecha->estado,
             "equipo_1"=>$fecha->equipo1->nombre,
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
             "goles_1"=>$fecha->goles_1,
@@ -142,6 +145,77 @@ class CalendarioController extends Controller
             ];
         }
         $data["data"]['jugadores']=$jugadores;
+        return $data;
+    }
+
+    public function playbyplay()
+    {
+        $data["status"]='exito';
+        $configuración=Configuracion::first();
+        $fecha=$configuración->partido_alineacion;
+        $data["data"]=[
+            'idpartido'=>$fecha->id,
+            'estado' =>$fecha->estado,
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "goles_1"=>$fecha->goles_1,
+            "equipo_2"=>$fecha->equipo2->nombre,
+            "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "goles_2"=>$fecha->goles_2,
+            'fecha'=>date('Y-m-d H:i',strtotime($fecha->fecha)),
+            'fecha_etapa'=>$fecha->fecha_etapa,
+            'estadio'=>$fecha->estadio,
+            'video'=>$fecha->video,
+            'info'=>$fecha->info,
+            'formacion'=>$fecha->formacion->titulo,
+            "foto_formacion"=>config('app.url') . 'formaciones/' . $fecha->formacion->foto,
+        ];
+        if($dt=Jugador::where("dt",1)->first()){
+            $data["data"]["idjugador"]=$dt->id;
+            $data["data"]["nombre_dt"]=$dt->nombre;
+            $data["data"]["foto_dt"]=config('app.url') . 'jugadores/' . $dt->foto;
+        }
+
+        $titulares=[];
+        $jugadores=$fecha->titulares;
+        foreach ($jugadores as $jugador) {
+            $actividad_bd=Playbyplay::where("jugador_id",$jugador->jugador->id)->where("calendario_id",$fecha->id)->get();
+            $actividades=[];
+            foreach ($actividad_bd as $actividad) {
+                $actividades[]=[
+                    'actividad'=>$actividad->actividad,
+                    'minuto'=>$actividad->minuto,                    
+                ];
+            }
+            $titulares[]=[
+                'idjugador' => $jugador->jugador->id,
+                "foto"=>config('app.url') . 'jugadores/' . $jugador->jugador->foto,
+                'nombre' => $jugador->jugador->nombre,
+                'posicion' => $jugador->posicion,
+                'actividades'=>$actividades,
+            ];
+        }
+        $data["data"]['titulares']=$titulares;
+
+        $suplentes=[];
+        $jugadores=$fecha->suplentes;
+        foreach ($jugadores as $jugador) {
+            $actividad_bd=Playbyplay::where("jugador_id",$jugador->jugador->id)->where("calendario_id",$fecha->id)->get();
+            $actividades=[];
+            foreach ($actividad_bd as $actividad) {
+                $actividades[]=[
+                    'actividad'=>$actividad->actividad,
+                    'minuto'=>$actividad->minuto,                    
+                ];
+            }
+            $suplentes[]=[
+                'idjugador' => $jugador->jugador->id,
+                "foto"=>config('app.url') . 'jugadores/' . $jugador->jugador->foto,
+                'nombre' => $jugador->jugador->nombre,
+                'actividades'=>$actividades,
+            ];
+        }
+        $data["data"]['suplentes']=$suplentes;
         return $data;
     }
 }

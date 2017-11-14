@@ -107,6 +107,10 @@
         <div class="col-lg-6">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('calendarios.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('calendarios.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
+        <div class="col-lg-6">
+            <a href="{{ route("alineacion") }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Administrar Alineación</a> 
+            <a href="{{ route("actividad.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-futbol-o"></i> Administrar Playbyplay</a> 
+        </div>
     </div>
 </form>
 

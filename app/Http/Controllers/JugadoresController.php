@@ -83,6 +83,7 @@ class JugadoresController extends Controller
                 'peso' => $request->peso,
                 'estatura' => $request->estatura,
                 'instagram' => $request->instagram,
+                'dt' => $request->dt,
                 'activo' => $request->activo,
                 'foto' => $fileName_foto,
                 'banner' => $fileName_banner,
@@ -134,6 +135,7 @@ class JugadoresController extends Controller
                 'peso' => $request->peso,
                 'estatura' => $request->estatura,
                 'instagram' => $request->instagram,
+                'dt' => $request->dt,
                 'activo' => $request->activo,
                 'calendario_id' => $request->calendario_id,
             ];
