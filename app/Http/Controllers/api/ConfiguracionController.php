@@ -22,8 +22,10 @@ class ConfiguracionController extends Controller
             'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
             'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_3','tit_15',
         ]);
+
         $data["status"]='exito';
         $data["data"]=$configuracion;
+        $data["data"]["patrocinante"]=config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
         return $data;
     }
 }

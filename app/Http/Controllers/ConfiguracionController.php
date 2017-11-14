@@ -19,7 +19,7 @@ class ConfiguracionController extends Controller
     }
     public function configuracion_actualizar(Request $request)
     {
-        Configuracion::find(1)->update([
+        $data=[
             'calendario_convodados_id'=> $request->calendario_convodados_id,
             'calendario_aplausos_id'=> $request->calendario_aplausos_id,
             'calendario_alineacion_id'=> $request->calendario_alineacion_id,
@@ -68,7 +68,26 @@ class ConfiguracionController extends Controller
             'tit_14_2'=> $request->tit_14_2,
             'tit_14_3'=> $request->tit_14_3,
             'tit_15'=> $request->tit_15,
-        ]);
+        ];
+        if($request->patrocinante){
+            $foto=json_decode($request->patrocinante);
+            $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+            $picture=$foto->output->image;
+            $filepath = 'patrocinantes/' . $fileName_foto;
+
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+            $data['patrocinante']=$fileName_foto;
+        }
+
+        Configuracion::find(1)->update($data);
         return redirect()->route('configuracion')->with("notificacion","Se ha guardado correctamente su información");
     }
 }
