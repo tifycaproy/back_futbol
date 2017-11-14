@@ -170,7 +170,7 @@ class CalendarioController extends Controller
             'formacion'=>$fecha->formacion->titulo,
             "foto_formacion"=>config('app.url') . 'formaciones/' . $fecha->formacion->foto,
         ];
-        if($dt=Jugador::where("dt",1)->first()){
+        if($dt=Jugador::where("posicion",'Director técnico')->first()){
             $data["data"]["idjugador"]=$dt->id;
             $data["data"]["nombre_dt"]=$dt->nombre;
             $data["data"]["foto_dt"]=config('app.url') . 'jugadores/' . $dt->foto;
