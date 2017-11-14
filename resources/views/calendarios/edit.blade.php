@@ -105,6 +105,20 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
+            <div class="form-group">
+                <label>url al Video</label>
+                <input type="text" class="form-control" name="video" value="{{ old('video',$calendario->video) }}" maxlength="200">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Información adicional</label>
+                <input type="text" class="form-control" name="info" value="{{ old('info',$calendario->info) }}" maxlength="100">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('calendarios.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('calendarios.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
         <div class="col-lg-6">

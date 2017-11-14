@@ -45,6 +45,8 @@ class CalendarioController extends Controller
                 'fecha' => $request->fecha,
                 'fecha_etapa' => $request->fecha_etapa,
                 'estadio' => $request->estadio,
+                'video' => $request->video,
+                'info' => $request->info,
             ]);
             return redirect()->route('calendarios.edit', codifica($calendario->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -90,6 +92,8 @@ class CalendarioController extends Controller
                 'fecha' => $request->fecha,
                 'fecha_etapa' => $request->fecha_etapa,
                 'estadio' => $request->estadio,
+                'video' => $request->video,
+                'info' => $request->info,
             ];
             Calendario::find($id)->update($data);
             return redirect()->route('calendarios.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
