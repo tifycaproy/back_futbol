@@ -60,7 +60,7 @@ class UsuariosController extends Controller
             $nuevo=Usuario::create($request);
             $idusuario=$nuevo->id;
             
-            return ["status" => "exito", "data" => ["token" => crea_token($idusuario)]];
+            return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario]];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
@@ -86,7 +86,7 @@ class UsuariosController extends Controller
             $usuario=Usuario::where('email',$email)->first();
             if($usuario){
                 if(password_verify($request["clave"], $usuario->clave)){
-                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
                 }else{
                     return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
                 }
@@ -129,7 +129,7 @@ class UsuariosController extends Controller
                     $data=['userID_google' => $userID_google];
                 }
                 Usuario::find($usuario->id)->update($data);
-                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }else{
                 $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
                 $pass = array();
@@ -154,7 +154,7 @@ class UsuariosController extends Controller
                     $data['foto_redes']=$request["foto_redes"];
                 }
                 $usuario=Usuario::create($data);
-                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
@@ -229,7 +229,7 @@ class UsuariosController extends Controller
             $email=$request["email"];
             $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
             if($usuario){
-               return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+               return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }else{
                return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
             }

@@ -90,7 +90,7 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
 		)
@@ -102,7 +102,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
 		)
@@ -117,7 +117,7 @@ $data=array(
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
 			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
@@ -142,7 +142,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)
