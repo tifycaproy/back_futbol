@@ -27,7 +27,7 @@ class Calendario extends Model
         return $this->hasMany('App\Noticia','id_calendario_noticia')->select('id','link','titulo','descripcion','fecha','foto','destacada','tipo');
     }
     public function formacion(){
-        return $this->belongsTo('App\formacion');
+        return $this->belongsTo('App\Formacion');
     }
     public function titulares()
     {
