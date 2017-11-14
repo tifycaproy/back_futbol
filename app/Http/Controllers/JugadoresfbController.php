@@ -6,22 +6,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 
-use App\Jugador;
-use App\Convocado;
-use App\Calendario;
+use App\Jugadorfb;
 
-class JugadoresController extends Controller
+class JugadoresfbController extends Controller
 {
     public function index()
     {
-       $jugadores=Jugador::orderby('nombre')->paginate(25);
-        return view('jugadores.index')->with('jugadores',$jugadores);
+       $jugadores=Jugadorfb::orderby('nombre')->paginate(25);
+        return view('jugadoresfb.index')->with('jugadores',$jugadores);
     }
 
     public function create()
     {
-        $partidos=Calendario::orderby('fecha','desc')->get();
-        return view('jugadores.create')->with('partidos',$partidos);
+        return view('jugadoresfb.create');
     }
 
     public function store(Request $request)
@@ -74,7 +71,7 @@ class JugadoresController extends Controller
                     'ACL' => 'public-read',
                 ));
             }
-            $jugador=Jugador::create([
+            $jugador=Jugadorfb::create([
                 'nombre' => $request->nombre,
                 'fecha_nacimiento' => $request->fecha_nacimiento,
                 'nacionalidad' => $request->nacionalidad,
@@ -86,9 +83,8 @@ class JugadoresController extends Controller
                 'activo' => $request->activo,
                 'foto' => $fileName_foto,
                 'banner' => $fileName_banner,
-                'calendario_id' => $request->calendario_id,
             ]);
-            return redirect()->route('jugadores.edit', codifica($jugador->id))->with("notificacion","Se ha guardado correctamente su información");
+            return redirect()->route('jugadoresfb.edit', codifica($jugador->id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -104,10 +100,9 @@ class JugadoresController extends Controller
     public function edit($id)
     {
         $id=decodifica($id);
-        $jugador=Jugador::find($id);
+        $jugador=Jugadorfb::find($id);
         $_SESSION['jugador_id']=$id;
-        $partidos=Calendario::orderby('fecha','desc')->get();
-        return view('jugadores.edit')->with('jugador',$jugador)->with('partidos',$partidos);
+        return view('jugadoresfb.edit')->with('jugador',$jugador);
     }
 
     public function update(Request $request, $id)
@@ -135,7 +130,6 @@ class JugadoresController extends Controller
                 'estatura' => $request->estatura,
                 'instagram' => $request->instagram,
                 'activo' => $request->activo,
-                'calendario_id' => $request->calendario_id,
             ];
 
             if($request->foto){
@@ -174,8 +168,8 @@ class JugadoresController extends Controller
                 $data['banner']=$fileName_banner;
             }
 
-            Jugador::find($id)->update($data);
-            return redirect()->route('jugadores.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+            Jugadorfb::find($id)->update($data);
+            return redirect()->route('jugadoresfb.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -187,30 +181,10 @@ class JugadoresController extends Controller
     {
         $id=decodifica($id);
         try{
-            Jugador::find($id)->delete();
-            return redirect()->route('jugadores.index');
+            Jugadorfb::find($id)->delete();
+            return redirect()->route('jugadoresfb.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
         }
-    }
-    public function convocados()
-    {
-        $jugadores=Jugador::leftjoin('convocados','jugadores.id','=','convocados.jugador_id')->orderby('convocados.orden','desc')->get(['jugadores.*','convocados.id as convocado']);
-        return view('jugadores.convocados')->with('jugadores',$jugadores);
-    }
-    public function convocados_actualizar(Request $request)
-    {
-        Convocado::where('id','<>',0)->delete();
-        $orden=count($request->jugadores);
-        if($orden>0){
-            foreach ($request->jugadores as $jugador) {
-                Convocado::create([
-                    'jugador_id' => $jugador,
-                    'orden' => $orden
-                ]);
-                $orden--;
-            }
-        }
-        return redirect()->route('convocados')->with("notificacion","Se ha guardado correctamente su información");
     }
 }

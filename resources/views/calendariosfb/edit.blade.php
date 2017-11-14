@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("calendarios.index") }}"><i class="fa fa-fw fa-pencil"></i> Calendario</a></li>
+            <li><a href="{{ route("calendariosfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Calendario</a></li>
             <li>Editar</li>
         </ol>
     </div>
@@ -28,10 +28,10 @@
     @endif
     </div>
     <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('calendarios.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
+        <p class="text-right"><a href="{{ route('calendariosfb.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
     </div>
 </div>
-<form role="form" action="{{ route('calendarios.update', codifica($calendario->id)) }}" method="POST">
+<form role="form" action="{{ route('calendariosfb.update', codifica($calendario->id)) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
@@ -105,11 +105,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('calendarios.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('calendarios.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
-        </div>
-        <div class="col-lg-6">
-            <a href="{{ route("alineacion") }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Administrar Alineación</a> 
-            <a href="{{ route("actividad.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-futbol-o"></i> Administrar Playbyplay</a> 
+            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('calendariosfb.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('calendariosfb.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('calendariosfb_eliminar', codifica($calendario->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
     </div>
 </form>

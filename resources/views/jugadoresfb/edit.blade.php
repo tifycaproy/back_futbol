@@ -8,12 +8,12 @@
 
 <div class="row">
      <div class="col-lg-6">
-        <h1 class="page-header">Jugadores</h1>
+        <h1 class="page-header">Jugadores Futbol Base</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("jugadores.index") }}"><i class="fa fa-fw fa-pencil"></i> Jugadores</a></li>
+            <li><a href="{{ route("jugadoresfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Jugadores Futbol Base</a></li>
             <li>Editar</li>
         </ol>
     </div>
@@ -28,10 +28,10 @@
     @endif
     </div>
     <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('jugadores.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
+        <p class="text-right"><a href="{{ route('jugadoresfb.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
     </div>
 </div>
-<form role="form" action="{{ route('jugadores.update', codifica($jugador->id)) }}" method="POST">
+<form role="form" action="{{ route('jugadoresfb.update', codifica($jugador->id)) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
      <div class="row">
@@ -87,7 +87,6 @@
                     <option value="Defensa"@if(old('posicion', $jugador->posicion)=='Defensa') selected @endif>Defensa</option>
                     <option value="Volante"@if(old('posicion', $jugador->posicion)=='Volante') selected @endif>Volante</option>
                     <option value="Delantero"@if(old('posicion', $jugador->posicion)=='Delantero') selected @endif>Delantero</option>
-                    <option value="Director técnico"@if(old('posicion', $jugador->posicion)=='Director técnico') selected @endif>Director técnico</option>
                 </select>
             </div>
         </div>
@@ -109,17 +108,6 @@
             <div class="form-group">
                 <label>Estatura</label>
                 <input type="text" class="form-control" name="estatura" value="{{ old('estatura', $jugador->estatura) }}" maxlength="10">
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Último partido convocado</label>
-                <select name="calendario_id" class="form-control">
-                    <option value="0">No aplica</option>
-                @foreach($partidos as $partido)
-                    <option value="{{ $partido->id }}"@if($partido->id==old('calendario_id',$jugador->calendario_id)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
-                @endforeach
-                </select>
             </div>
         </div>
     </div>
@@ -153,7 +141,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('jugadores.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('jugadores.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('jugadores_eliminar', codifica($jugador->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('jugadoresfb.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('jugadoresfb.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('jugadores_eliminar', codifica($jugador->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
     </div>
 </form>

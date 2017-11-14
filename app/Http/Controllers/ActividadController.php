@@ -19,7 +19,7 @@ class ActividadController extends Controller
 
     public function create()
     {
-        $jugadores=Jugador::where('dt',0)->orderby('nombre')->get();
+        $jugadores=Jugador::where('posicion','<>','Director técnico')->orderby('nombre')->get();
         return view('actividad.create')->with('jugadores',$jugadores)->with('idcalendario',$_SESSION['calendario_id']);
     }
 
@@ -56,7 +56,7 @@ class ActividadController extends Controller
 
     public function edit($id)
     {
-        $jugadores=Jugador::where('dt',0)->orderby('nombre')->get();
+        $jugadores=Jugador::where('posicion','<>','Director técnico')->orderby('nombre')->get();
         $id=decodifica($id);
         $actividad=Playbyplay::find($id);
         $_SESSION['actividad_id']=$id;

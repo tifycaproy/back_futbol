@@ -134,7 +134,7 @@ class CalendarioController extends Controller
     }
     public function alineacion()
     {
-        $jugadores=Jugador::where('dt',0)->leftjoin('alineacion', function($join)
+        $jugadores=Jugador::where('jugadores.posicion','<>','Director técnico')->leftjoin('alineacion', function($join)
         {
             $join->on('jugadores.id','=','alineacion.jugador_id');
             $join->where('alineacion.calendario_id','=',$_SESSION['calendario_id']);

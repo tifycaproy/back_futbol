@@ -4,12 +4,12 @@
 
 <div class="row">
      <div class="col-lg-6">
-        <h1 class="page-header">Noticias</h1>
+        <h1 class="page-header">Noticias Futbol Base</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active"><i class="fa fa-fw fa-pencil"></i> Noticias</li>
+            <li class="active"><i class="fa fa-fw fa-pencil"></i> Noticias Futbol Base</li>
             <li class="active"><i class="fa fa-fw fa-users"></i> Jugadores asociados</li>
         </ol>
     </div>
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<form role="form" action="{{ route('update_jugadores') }}" method="POST">
+<form role="form" action="{{ route('update_jugadoresfb') }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">

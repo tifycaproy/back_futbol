@@ -74,7 +74,13 @@
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Posición</label>
-                <input type="text" class="form-control" name="posicion" value="{{ old('posicion') }}" maxlength="40">
+                <select name="posicion" class="form-control">
+                    <option value="Portero"@if(old('posicion')=='Portero') selected @endif>Portero</option>
+                    <option value="Defensa"@if(old('posicion')=='Defensa') selected @endif>Defensa</option>
+                    <option value="Volante"@if(old('posicion')=='Volante') selected @endif>Volante</option>
+                    <option value="Delantero"@if(old('posicion')=='Delantero') selected @endif>Delantero</option>
+                    <option value="Director técnico"@if(old('posicion')=='Director técnico') selected @endif>Director técnico</option>
+                </select>
             </div>
         </div>
         <div class="col-lg-3">
@@ -127,16 +133,6 @@
                 </div>
                 <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
               </div>
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>DT</label>
-                <select name="dt" class="form-control">
-                    <option value="0"@if(old('dt')=='0') selected @endif>No</option>
-                    <option value="1"@if(old('dt')=='1') selected @endif>Si</option>
-                </select>
-            </div>
         </div>
     </div>
     <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('jugadores.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>

@@ -44,7 +44,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>[
 			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas','url_academia',
-			'tit_1','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
+			'tit_1','tit_1_1','tit_1_2','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
 			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
 			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_3','tit_15',
 		],
@@ -218,6 +218,26 @@ $data=array(
 			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
 		)
 	),
+
+	"Calendario FB"=>array(
+		"Ruta"=>"/calendariofb",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"copa",
+			"partido (array)"=>[
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+			],
+		)
+	),
+	"Silgle Calendario FB"=>array(
+		"Ruta"=>"/single_calendariofb/{idpartido}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
+		)
+	),
+
 	"Convocados"=>array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
@@ -250,6 +270,13 @@ $data=array(
 			"idjugador","banner"
 		)
 	),
+	"Nómina FB"=>array(
+		"Ruta"=>"/nominafb",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idjugador","banner"
+		)
+	),
 	"Single del jugador"=>array(
 		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
@@ -257,6 +284,16 @@ $data=array(
 			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
 			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
 			'apalusos_ultimo_partido', 'aplausos_acumulado',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
+		"Falla"=>array(
+			"error"=>["idjugador incorrecto"],
+		)
+	),
+	"Single del jugador FB"=>array(
+		"Ruta"=>"/single_jugadorfb/{idjugador}",
+		"Método"=>"GET",
+		"Éxito"=>['idjugador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
 			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
 		],
 		"Falla"=>array(

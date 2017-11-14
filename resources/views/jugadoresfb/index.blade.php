@@ -3,13 +3,13 @@
 @section('content')
 
 <div class="row">
-     <div class="col-lg-12">
-        <h1 class="page-header">Calendario - {{ $copa_titulo }}</h1>
+     <div class="col-lg-6">
+        <h1 class="page-header">Jugadores Futbol Base</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active"><i class="fa fa-fw fa-pencil"></i> Calendario</li>
+            <li class="active"><i class="fa fa-fw fa-pencil"></i> Jugadores Futbol Base</li>
         </ol>
     </div>
 </div>
@@ -20,7 +20,7 @@
     @endif
     </div>
     <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('calendarios.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
+        <p class="text-right"><a href="{{ route('jugadoresfb.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
     </div>
 </div>
 
@@ -30,23 +30,17 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Equipo 1</th>
-                        <th>Equipo 2</th>
-                        <th>Estado</th>
+                        <th>Nombre</th>
                         <th width="60"></th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($calendarios as $calendario)
+                @foreach($jugadores as $jugador)
                     <tr>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ date('d/m/Y h:n', strtotime($calendario->fecha)) }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo1->nombre }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo2->nombre }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->estado }}</a></td>
+                        <td><a href="{{ route('jugadoresfb.edit', codifica($jugador->id) ) }}" title="Editar">{{ $jugador->nombre }}</a></td>
                         <td>
-                            <a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
-                            <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                            <a href="{{ route('jugadoresfb.edit', codifica($jugador->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                            <a href="{{ route('jugadores_eliminar', codifica($jugador->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -58,7 +52,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        {{$calendarios->render()}}
+        {{$jugadores->render()}}
     </div>
 </div>
 

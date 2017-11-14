@@ -31,6 +31,8 @@ class ConfiguracionController extends Controller
             'url_estadisticas'=> $request->url_estadisticas,
             'url_academia'=> $request->url_academia,
             'tit_1'=> $request->tit_1,
+            'tit_1_1'=> $request->tit_1_1,
+            'tit_1_2'=> $request->tit_1_2,
             'tit_2'=> $request->tit_2,
             'tit_3'=> $request->tit_3,
             'tit_4'=> $request->tit_4,

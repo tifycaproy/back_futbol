@@ -141,10 +141,24 @@
         </div>
         <div class="col-lg-3">
             <div class="form-group">
+                <label>Título 1.1</label>
+                <input type="text" class="form-control" name="tit_1_1" value="{{ $configuracion->tit_1_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 1.2</label>
+                <input type="text" class="form-control" name="tit_1_2" value="{{ $configuracion->tit_1_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
                 <label>Título 2</label>
                 <input type="text" class="form-control" name="tit_2" value="{{ $configuracion->tit_2 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 3</label>
@@ -157,8 +171,6 @@
                 <input type="text" class="form-control" name="tit_4" value="{{ $configuracion->tit_4 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 4.1</label>
@@ -171,6 +183,8 @@
                 <input type="text" class="form-control" name="tit_4_2" value="{{ $configuracion->tit_4_2 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 5</label>
@@ -183,8 +197,6 @@
                 <input type="text" class="form-control" name="tit_6" value="{{ $configuracion->tit_6 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.1</label>
@@ -197,6 +209,8 @@
                 <input type="text" class="form-control" name="tit_6_1_1" value="{{ $configuracion->tit_6_1_1 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.1.2</label>
@@ -209,8 +223,6 @@
                 <input type="text" class="form-control" name="tit_6_2" value="{{ $configuracion->tit_6_2 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.3</label>
@@ -223,6 +235,8 @@
                 <input type="text" class="form-control" name="tit_6_3_1" value="{{ $configuracion->tit_6_3_1 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 6.3.2</label>
@@ -235,8 +249,6 @@
                 <input type="text" class="form-control" name="tit_7" value="{{ $configuracion->tit_7 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 7.1</label>
@@ -249,6 +261,8 @@
                 <input type="text" class="form-control" name="tit_7_2" value="{{ $configuracion->tit_7_2 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 8</label>
@@ -261,8 +275,6 @@
                 <input type="text" class="form-control" name="tit_9" value="{{ $configuracion->tit_9 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 10</label>
@@ -275,6 +287,8 @@
                 <input type="text" class="form-control" name="tit_10_1" value="{{ $configuracion->tit_10_1 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 10.2</label>
@@ -287,8 +301,6 @@
                 <input type="text" class="form-control" name="tit_11" value="{{ $configuracion->tit_11 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1</label>
@@ -301,6 +313,8 @@
                 <input type="text" class="form-control" name="tit_11_1_1" value="{{ $configuracion->tit_11_1_1 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1.2</label>
@@ -313,8 +327,6 @@
                 <input type="text" class="form-control" name="tit_11_1_3" value="{{ $configuracion->tit_11_1_3 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 11.1.4</label>
@@ -327,6 +339,8 @@
                 <input type="text" class="form-control" name="tit_12" value="{{ $configuracion->tit_12 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 13</label>
@@ -339,8 +353,6 @@
                 <input type="text" class="form-control" name="tit_14" value="{{ $configuracion->tit_14 }}" maxlength="30">
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 14.1</label>
@@ -353,6 +365,8 @@
                 <input type="text" class="form-control" name="tit_14_2" value="{{ $configuracion->tit_14_2 }}" maxlength="30">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Título 14.3</label>

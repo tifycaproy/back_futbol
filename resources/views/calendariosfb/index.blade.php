@@ -20,7 +20,7 @@
     @endif
     </div>
     <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('calendarios.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
+        <p class="text-right"><a href="{{ route('calendariosfb.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
     </div>
 </div>
 
@@ -40,13 +40,13 @@
                 <tbody>
                 @foreach($calendarios as $calendario)
                     <tr>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ date('d/m/Y h:n', strtotime($calendario->fecha)) }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo1->nombre }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo2->nombre }}</a></td>
-                        <td><a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->estado }}</a></td>
+                        <td><a href="{{ route('calendariosfb.edit', codifica($calendario->id) ) }}" title="Editar">{{ date('d/m/Y h:n', strtotime($calendario->fecha)) }}</a></td>
+                        <td><a href="{{ route('calendariosfb.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo1->nombre }}</a></td>
+                        <td><a href="{{ route('calendariosfb.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->equipo2->nombre }}</a></td>
+                        <td><a href="{{ route('calendariosfb.edit', codifica($calendario->id) ) }}" title="Editar">{{ $calendario->estado }}</a></td>
                         <td>
-                            <a href="{{ route('calendarios.edit', codifica($calendario->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
-                            <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                            <a href="{{ route('calendariosfb.edit', codifica($calendario->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                            <a href="{{ route('calendariosfb_eliminar', codifica($calendario->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
                         </td>
                     </tr>
                 @endforeach

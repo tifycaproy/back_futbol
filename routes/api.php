@@ -41,10 +41,16 @@ Route::get('single_calendario/{id}', 'api\CalendarioController@single_calendario
 Route::get('convocados', 'api\CalendarioController@convocados');
 Route::get('playbyplay', 'api\CalendarioController@playbyplay');
 
+Route::get('calendariofb', 'api\CalendariofbController@calendariofb');
+Route::get('single_calendariofb/{id}', 'api\CalendariofbController@single_calendariofb');
+
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
 Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
 Route::post('aplaudir', 'api\JugadoresController@aplaudir');
+
+Route::get('nominafb', 'api\JugadoresfbController@nomina');
+Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb');
 
 //equipo
 Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');

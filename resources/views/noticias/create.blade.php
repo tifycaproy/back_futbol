@@ -47,7 +47,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" class="form-control">{{ old('descripcion') }}</textarea>
+                <textarea name="descripcion" rows="5" class="form-control">{{ old('descripcion') }}</textarea>
             </div>
         </div>
     </div>
@@ -102,6 +102,19 @@
                 </select>
             </div>
         </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label>Partido asociado</label>
+                <select name="id_calendario_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Aparece en futbol base</label>
@@ -111,13 +124,13 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-8">
             <div class="form-group">
-                <label>Partido asociado</label>
-                <select name="id_calendario_noticia" class="form-control">
+                <label>Partido Futbol Base asociado</label>
+                <select name="id_calendario_noticiafb" class="form-control">
                     <option value="0">No aplica</option>
-                @foreach($partidos as $partido)
-                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @foreach($partidosfb as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticiafb')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
                 @endforeach
                 </select>
             </div>

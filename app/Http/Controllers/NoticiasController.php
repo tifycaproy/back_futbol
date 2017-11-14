@@ -8,9 +8,12 @@ use Aws\S3\S3Client;
 
 use App\Noticia;
 use App\Jugador;
+use App\Jugadorfb;
 use App\NoticiaJugador;
+use App\NoticiaJugadorfb;
 use App\Monumental;
 use App\Calendario;
+use App\Calendariofb;
 
 class NoticiasController extends Controller
 {
@@ -24,7 +27,8 @@ class NoticiasController extends Controller
     {
         $monumentales=Monumental::orderby('nombre')->get();
         $partidos=Calendario::orderby('fecha','desc')->get();
-        return view('noticias.create')->with('monumentales',$monumentales)->with('partidos',$partidos);
+        $partidosfb=Calendariofb::orderby('fecha','desc')->get();
+        return view('noticias.create')->with('monumentales',$monumentales)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
     }
 
     public function store(Request $request)
@@ -66,6 +70,7 @@ class NoticiasController extends Controller
                 'aparecetimelineppal' => $request->aparecetimelineppal,
                 'aparecefutbolbase' => $request->aparecefutbolbase,
                 'id_calendario_noticia' => $request->id_calendario_noticia,
+                'id_calendario_noticiafb' => $request->id_calendario_noticiafb,
                 'destacada' => $request->destacada,
                 'tipo' => $request->tipo,
                 'foto' => $fileName,
@@ -87,10 +92,11 @@ class NoticiasController extends Controller
     {
         $monumentales=Monumental::orderby('nombre')->get();
         $partidos=Calendario::orderby('fecha','desc')->get();
+        $partidosfb=Calendariofb::orderby('fecha','desc')->get();
         $id=decodifica($id);
         $noticia=Noticia::find($id);
         $_SESSION['noticia_id']=$id;
-        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales)->with('partidos',$partidos);
+        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
     }
 
     public function update(Request $request, $id)
@@ -116,6 +122,7 @@ class NoticiasController extends Controller
                 'aparecetimelineppal' => $request->aparecetimelineppal,
                 'aparecefutbolbase' => $request->aparecefutbolbase,
                 'id_calendario_noticia' => $request->id_calendario_noticia,
+                'id_calendario_noticiafb' => $request->id_calendario_noticiafb,
                 'destacada' => $request->destacada,
                 'tipo' => $request->tipo,
             ];
@@ -184,10 +191,7 @@ class NoticiasController extends Controller
             $join->where('noticias_id','=',$noticias_id);
         })
         ->orderby('nombre')->get(['jugadores.*','noticias_jugadores.id as yaesta']);
-        /*
-        $jugadores=Jugador::orderby('nombre')->get();
-    */
-        return view('noticias.jugadores')->with('jugadores',$jugadores);
+        return view('noticias.jugadores')->with('jugadores',$jugadores)->with('idnoticia',$noticias_id);
     }
     public function update_jugadores(Request $request)
     {
@@ -196,6 +200,29 @@ class NoticiasController extends Controller
             NoticiaJugador::create([
                 'noticias_id' => $_SESSION['noticia_id'],
                 'jugadores_id' => $idjugador,
+            ]);
+        }
+        return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
+    }
+
+    public function noticias_jugadoresfb()
+    {
+        $noticias_id=$_SESSION['noticia_id'];
+        $jugadores=Jugadorfb::leftJoin('noticias_jugadoresfb', function($join) use ($noticias_id)
+        {
+            $join->on('jugadoresfb.id', '=', 'noticias_jugadoresfb.jugadoresfb_id');
+            $join->where('noticias_id','=',$noticias_id);
+        })
+        ->orderby('nombre')->get(['jugadoresfb.*','noticias_jugadoresfb.id as yaesta']);
+        return view('noticias.jugadoresfb')->with('jugadores',$jugadores)->with('idnoticia',$noticias_id);
+    }
+    public function update_jugadoresfb(Request $request)
+    {
+        NoticiaJugadorfb::where('noticias_id',$_SESSION['noticia_id'])->delete();
+        if($request->jugadores) foreach ($request->jugadores as $idjugador) {
+            NoticiaJugadorfb::create([
+                'noticias_id' => $_SESSION['noticia_id'],
+                'jugadoresfb_id' => $idjugador,
             ]);
         }
         return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));

@@ -55,7 +55,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" class="form-control">{{ old('descripcion', $noticia->descripcion) }}</textarea>
+                <textarea name="descripcion" rows="5" class="form-control">{{ old('descripcion', $noticia->descripcion) }}</textarea>
             </div>
         </div>
     </div>
@@ -110,6 +110,19 @@
                 </select>
             </div>
         </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label>Partido asociado</label>
+                <select name="id_calendario_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia',$noticia->id_calendario_noticia)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Aparece en futbol base</label>
@@ -119,13 +132,13 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-8">
             <div class="form-group">
-                <label>Partido asociado</label>
-                <select name="id_calendario_noticia" class="form-control">
+                <label>Partido Futbol Base asociado</label>
+                <select name="id_calendario_noticiafb" class="form-control">
                     <option value="0">No aplica</option>
-                @foreach($partidos as $partido)
-                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia',$noticia->id_calendario_noticia)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @foreach($partidosfb as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticiafb',$noticia->id_calendario_noticiafb)) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
                 @endforeach
                 </select>
             </div>
@@ -154,8 +167,11 @@
             <a href="{{ route('noticias_eliminar', codifica($noticia->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
         </div>
         <div class="col-lg-6">
-            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-file-image-o"></i> Administrar galería de fotos</a> 
-            <a href="{{ route('noticias_jugadores') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores</a> 
+            <a href="{{ route("noticiasgalerias.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-file-image-o"></i> Administrar galería de fotos</a>
+            <p style="padding-top: 10px">
+                <a href="{{ route('noticias_jugadores') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores</a> 
+                <a href="{{ route('noticias_jugadoresfb') }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Asociar jugadores FB</a> 
+            </p>
         </div>
     </div>
 </form>
