@@ -9,6 +9,7 @@ use App\Calendario;
 use App\Equipo;
 use App\Alineacion;
 use App\Jugador;
+use App\Formacion;
 
 class CalendarioController extends Controller
 {
@@ -20,8 +21,9 @@ class CalendarioController extends Controller
 
     public function create()
     {
+        $formaciones=Formacion::get();
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.create')->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
+        return view('calendarios.create')->with("equipos",$equipos)->with('formaciones',$formaciones)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function store(Request $request)
@@ -47,6 +49,7 @@ class CalendarioController extends Controller
                 'estadio' => $request->estadio,
                 'video' => $request->video,
                 'info' => $request->info,
+                'formacion_id' => $request->formacion_id,
             ]);
             return redirect()->route('calendarios.edit', codifica($calendario->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -66,8 +69,10 @@ class CalendarioController extends Controller
         $id=decodifica($id);
         $calendario=Calendario::find($id);
         $_SESSION['calendario_id']=$id;
+        $_SESSION['formacion']=config('app.url') . 'formaciones/' . $calendario->formacion->foto;
+        $formaciones=Formacion::get();
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
+        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos)->with('formaciones',$formaciones)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function update(Request $request, $id)
@@ -94,6 +99,7 @@ class CalendarioController extends Controller
                 'estadio' => $request->estadio,
                 'video' => $request->video,
                 'info' => $request->info,
+                'formacion_id' => $request->formacion_id,
             ];
             Calendario::find($id)->update($data);
             return redirect()->route('calendarios.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");

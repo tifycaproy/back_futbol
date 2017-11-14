@@ -35,7 +35,7 @@
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
                 <label>Fecha</label>
                 <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha',$calendario->fecha) }}" required>
@@ -44,13 +44,23 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Estado</label>
                 <select name="estado" class="form-control">
                     <option value="Pendiente"@if(old('estado',$calendario->estado)=='Pendiente') selected @endif>Pendiente</option>
                     <option value="En curso"@if(old('estado',$calendario->estado)=='En curso') selected @endif>En curso</option>
                     <option value="Finalizado"@if(old('estado',$calendario->estado)=='Finalizado') selected @endif>Finalizado</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Formación</label>
+                <select name="formacion_id" class="form-control">
+                @foreach($formaciones as $formacion)
+                    <option value="{{ $formacion->id }}"@if($formacion->id==old('formacion_id',$calendario->formacion_id)) selected @endif>{{ $formacion->titulo }}</option>
+                @endforeach
                 </select>
             </div>
         </div>

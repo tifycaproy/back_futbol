@@ -29,6 +29,9 @@
     <div class="col-lg-2">
     </div>
 </div>
+<div class="row" style="text-align: center;">
+    <img src="{{$_SESSION['formacion'] }}" width="300">
+</div>
 <form role="form" action="{{ route('alineacion_actualizar') }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
