@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
 

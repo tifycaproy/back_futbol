@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 @session_start();
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 
 use App\Configuracion;
 use App\Calendario;
