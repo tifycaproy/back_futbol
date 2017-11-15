@@ -54,7 +54,17 @@ class UsuariosController extends Controller
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                     list(, $Base64Img) = explode(',', $Base64Img);
                     $image = base64_decode($Base64Img);
-                    file_put_contents('uploads/usuarios/' . $request["foto"], $image);
+                    $filepath='usuarios/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $image,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
                 }
             }
             $nuevo=Usuario::create($request);
@@ -292,7 +302,16 @@ class UsuariosController extends Controller
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                     list(, $Base64Img) = explode(',', $Base64Img);
                     $image = base64_decode($Base64Img);
-                    file_put_contents('uploads/usuarios/' . $request["foto"], $image);
+                    $filepath='usuarios/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $image,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
                 }else{
                     unset($request["foto"]);
                 }
