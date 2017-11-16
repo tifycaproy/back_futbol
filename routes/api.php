@@ -55,6 +55,9 @@ Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb'
 //equipo
 Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
 
+//Onceideal
+Route::post('onceideal', 'api\OnceidealController@guardar_once');
+Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
 //Monumentales
 Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
