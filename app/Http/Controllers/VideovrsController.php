@@ -33,12 +33,12 @@ class VideovrsController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $foto = "";
+            $foto1 = "";
             if($request->foto){
                 $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                $foto=$fileName;
+                $foto1=$fileName;
                 $picture=$foto->output->image;
                 $filepath = 'videosvr/' . $fileName;
 
@@ -72,7 +72,7 @@ class VideovrsController extends Controller
             $video=Videovr::create([
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
-                'foto' => $foto,
+                'foto' => $foto1,
                 'video' => $video,
             ]);
             return redirect()->route('videosvr.edit', codifica($video->id))->with("notificacion","Se ha guardado correctamente su información");
