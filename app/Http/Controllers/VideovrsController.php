@@ -52,6 +52,24 @@ class VideovrsController extends Controller
                 ));
             }
             $video="";
+            if ($fileName=$_FILES['video']['name']){
+                $fileName = str_replace(array(" ","/","$","&","#","-","_"), array("","","","","","",""), $fileName);
+                $video=$fileName;
+
+                $filepath = 'videosvr/' . $fileName;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $_FILES['video']['tmp_name'],
+                    'ContentType' => 'video',
+                    'ACL' => 'public-read',
+                ));
+                $data['video']=$fileName;
+            }
+
+/*            
             if($file = $request->file('video')){
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . '.' . $file->getClientOriginalExtension();
                 $video=$fileName;
@@ -67,7 +85,7 @@ class VideovrsController extends Controller
                 ));
                 $data['video']=$fileName;
             }
-
+*/
 
             $video=Videovr::create([
                 'titulo' => $request->titulo,
