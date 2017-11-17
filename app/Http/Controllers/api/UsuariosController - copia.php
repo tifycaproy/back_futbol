@@ -299,13 +299,12 @@ class UsuariosController extends Controller
 
             if(isset($request["foto"])){
                 $foto=$request["foto"];
-                if($foto<>''){
-                    list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
-                    $image = $Base64Img;
+                if($_FILES){
+                    $nombre_original=$_FILES["foto"]["name"];
+                    $path_parts = pathinfo($_FILES["foto"]["name"]);
+                    $extension = $path_parts['extension'];
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extension;
+
                     $filepath='usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
