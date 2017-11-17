@@ -61,7 +61,7 @@ class VideovrsController extends Controller
                 $result = $s3->putObject(array(
                     'Bucket' => config('app.s3_bucket'),
                     'Key' => $filepath,
-                    'SourceFile' => $file->getClientOriginalName();,
+                    'SourceFile' => $file->getClientOriginalName(),
                     'ContentType' => 'video',
                     'ACL' => 'public-read',
                 ));
