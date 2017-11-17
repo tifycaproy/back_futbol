@@ -19,8 +19,8 @@ class VideovrController extends Controller
             	$data[]=[
             		'titulo' => $video->titulo,
             		'descripcion' => $video->descripcion,
-            		'foto' => config('app.url') . 'noticias/' . $video->foto,
-            		'video' => config('app.url') . 'noticias/' . $video->video,
+            		'foto' => config('app.url') . 'videosvr/' . $video->foto,
+            		'video' => config('app.url') . 'videosvr/' . $video->video,
             	];
             }
             return ["status"=>'exito', 'data' => $data];
