@@ -55,16 +55,24 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    @if($video->foto<>'')<img src="uploads/videosvr/{{ $video->foto }}" alt="">@endif
-                    <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
+                    <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG, PNG y GIF</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
+                @if($video->foto<>'')
+                <h5>Imagen actual</h5>
+                <p><img src="{{ config('app.url') . 'videosvr/' . $video->foto }}" style="max-width: 100%"></p>
+                @endif
+
               </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Archivo a cargar</label>
                 <input type="file" name="video">
+                @if($video->video<>'')
+                <h5>Video actual</h5>
+                <p><a href="{{ config('app.url') . 'videosvr/' . $video->video }}">{{ $video->video }}</a></p>
+                @endif
             </div>
         </div>
     </div>
