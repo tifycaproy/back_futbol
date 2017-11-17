@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                    <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
+                    <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
                 <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
                 @if($video->foto<>'')
@@ -71,7 +71,7 @@
                 <input type="file" name="video">
                 @if($video->video<>'')
                 <h5>Video actual</h5>
-                <p><a href="{{ config('app.url') . 'videosvr/' . $video->video }}">{{ $video->video }}</a></p>
+                <p><a href="{{ config('app.url') . 'videosvr/' . $video->video }}" target="_blank">{{ $video->video }}</a></p>
                 @endif
             </div>
         </div>

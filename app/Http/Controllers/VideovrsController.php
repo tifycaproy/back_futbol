@@ -62,7 +62,7 @@ class VideovrsController extends Controller
                     'Bucket' => config('app.s3_bucket'),
                     'Key' => $filepath,
                     'SourceFile' => $file,
-                    'ContentType' => 'image',
+                    'ContentType' => 'video',
                     'ACL' => 'public-read',
                 ));
                 $data['video']=$fileName;
@@ -149,7 +149,7 @@ class VideovrsController extends Controller
                     'Bucket' => config('app.s3_bucket'),
                     'Key' => $filepath,
                     'SourceFile' => $file,
-                    'ContentType' => 'image',
+                    'ContentType' => 'video',
                     'ACL' => 'public-read',
                 ));
                 $data['video']=$fileName;
