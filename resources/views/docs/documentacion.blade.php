@@ -150,7 +150,7 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
+		"Éxito"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -383,39 +383,11 @@ $data=array(
 		"Método"=>"POST",
 		"Parámetros"=>array(
 			"token" => "requerido",
-			"idjugador1" => "integer / requerido",
-			"x1" => "integer / requerido",
-			"y1" => "integer / requerido",
-			"idjugador2" => "integer / requerido",
-			"x2" => "integer / requerido",
-			"y2" => "integer / requerido",
-			"idjugador3" => "integer / requerido",
-			"x3" => "integer / requerido",
-			"y3" => "integer / requerido",
-			"idjugador4" => "integer / requerido",
-			"x4" => "integer / requerido",
-			"y4" => "integer / requerido",
-			"idjugador5" => "integer / requerido",
-			"x5" => "integer / requerido",
-			"y5" => "integer / requerido",
-			"idjugador6" => "integer / requerido",
-			"x6" => "integer / requerido",
-			"y6" => "integer / requerido",
-			"idjugador7" => "integer / requerido",
-			"x7" => "integer / requerido",
-			"y7" => "integer / requerido",
-			"idjugador8" => "integer / requerido",
-			"x8" => "integer / requerido",
-			"y8" => "integer / requerido",
-			"idjugador9" => "integer / requerido",
-			"x9" => "integer / requerido",
-			"y9" => "integer / requerido",
-			"idjugador10" => "integer / requerido",
-			"x10" => "integer / requerido",
-			"y10" => "integer / requerido",
-			"idjugador11" => "integer / requerido",
-			"x11" => "integer / requerido",
-			"y11" => "integer / requerido",
+			"jugadores (Array de 11)"=>[
+				"idjugador" => "integer / requerido",
+				"x" => "integer / requerido",
+				"y" => "integer / requerido"
+			],
 		),
 		"Éxito"=>"no devuelve datos",
 		"Falla"=>array(
@@ -425,10 +397,18 @@ $data=array(
 	"Consultar Once ideal"=>array(
 		"Ruta"=>"/onceideal/{token}",
 		"Método"=>"GET",
-		"Éxito"=>["idjugador1","x1","y1","idjugador2","x2","y2","idjugador3","x3","y3","idjugador4","x4","y4","idjugador5","x5","y5","idjugador6","x6","y6","idjugador7","x7","y7","idjugador8","x8","y8","idjugador9","x9","y9","idjugador10","x10","y10","idjugador11","x11","y11"],
+		"Éxito (Array de 11)"=>["idjugador","x","y"],
 		"Falla"=>array(
 			"error"=>array("El token es requerido", "No tiene once ideal cargado"),
 		)
+	),
+
+	"videos 360"=>array(
+		"Ruta"=>"/videos360",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"titulo","descripcion","foto","video",
+		),
 	),
 
 );

@@ -73,6 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('jugadoresfb_eliminar/{id}', 'JugadoresfbController@destroy')->name('jugadoresfb_eliminar');
     Route::resource('jugadoresfb', 'JugadoresfbController');
    
+//videos vr
+    Route::get('videosvr_eliminar/{id}', 'VideovrsController@destroy')->name('videosvr_eliminar');
+    Route::resource('videosvr', 'VideovrsController');
 
 //Monumentales
     Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');

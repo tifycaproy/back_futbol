@@ -26,13 +26,18 @@ class OnceidealController extends Controller
             }
             //fin validaciones
             $idcalendario=Configuracion::first(["calendario_alineacion_id"]);
-            $request["usuario_id"]=$idusuario;
-            $request["calendario_id"]=$idcalendario->calendario_alineacion_id;
-            unset($request["token"]);
+            $data["usuario_id"]=$idusuario;
+            $data["calendario_id"]=$idcalendario->calendario_alineacion_id;
+            foreach ($request["jugadores"] as $key => $value) {
+                $indice=$key+1;
+                $data['idjugador' . $indice]=$value->idjugador;
+                $data['x' . $indice]=$value->x;
+                $data['y' . $indice]=$value->y;
+            }
             if($idonce=Onceideal::where('calendario_id',$idcalendario->calendario_alineacion_id)->where("usuario_id",$idusuario)->first()){
-            	$idonce->update($request);
+            	$idonce->update($data);
             }else{
-            	Onceideal::create($request);
+            	Onceideal::create($data);
             }
             return ["status" => "exito"];
         } catch (Exception $e) {
@@ -51,8 +56,17 @@ class OnceidealController extends Controller
             }
             //fin validaciones
             $idcalendario=Configuracion::first(["calendario_alineacion_id"]);
-            if($idonce=Onceideal::where('calendario_id',$idcalendario->calendario_alineacion_id)->where("usuario_id",$idusuario)->first(["idjugador1","x1","y1","idjugador2","x2","y2","idjugador3","x3","y3","idjugador4","x4","y4","idjugador5","x5","y5","idjugador6","x6","y6","idjugador7","x7","y7","idjugador8","x8","y8","idjugador9","x9","y9","idjugador10","x10","y10","idjugador11","x11","y11"])){
-	            return ["status" => "exito", "data" => $idonce];
+            if($idonce=Onceideal::where('calendario_id',$idcalendario->calendario_alineacion_id)->where("usuario_id",$idusuario)->first()){
+                //"idjugador1","x1","y1"
+                $data=[];
+                for($l=1; $l<=11; $l++){
+                    $data[]=[
+                        "idjugador"=>$idonce["idjugador" . $l],
+                        "x"=>$idonce["x" . $l],
+                        "y"=>$idonce["y" . $l],
+                    ];
+                }
+	            return ["status" => "exito", "data" => $data];
             	$idonce->update($request);
             }else{
 	            return ['status' => 'fallo','error'=>["No tiene once ideal cargado"]];

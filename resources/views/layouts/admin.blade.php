@@ -95,6 +95,9 @@
                     <li>
                         <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
                     </li>
+                    <li>
+                        <a href="{{ route("videosvr.index") }}"><i class="fa fa-fw fa-pencil"></i> Videos VR</a>
+                    </li>
                     <!--
                     <li>
                         <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
