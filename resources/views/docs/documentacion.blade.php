@@ -243,7 +243,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>array(
 			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
-			"jugadores (array)"=>['idjugador','banner'],
+			"jugadores (array)"=>['idjugador','nombre','foto','banner'],
 		)
 	),
 	"Play by play"=>array(
