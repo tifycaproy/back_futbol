@@ -150,7 +150,7 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
+		"Éxito"=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -243,7 +243,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>array(
 			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
-			"jugadores (array)"=>['idjugador','banner'],
+			"jugadores (array)"=>['idjugador','nombre','foto','banner'],
 		)
 	),
 	"Play by play"=>array(
@@ -377,6 +377,40 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
 	),
+//Onceideal
+	"Registrar Once ideal"=>array(
+		"Ruta"=>"/onceideal",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"token" => "requerido",
+			"jugadores (Array de 11)"=>[
+				"idjugador" => "integer / requerido",
+				"x" => "integer / requerido",
+				"y" => "integer / requerido"
+			],
+		),
+		"Éxito"=>"no devuelve datos",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","Debe colocar todos los jugadores"),
+		)
+	),
+	"Consultar Once ideal"=>array(
+		"Ruta"=>"/onceideal/{token}",
+		"Método"=>"GET",
+		"Éxito (Array de 11)"=>["idjugador","x","y"],
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "No tiene once ideal cargado"),
+		)
+	),
+
+	"videos 360"=>array(
+		"Ruta"=>"/videos360",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"titulo","descripcion","foto","video",
+		),
+	),
+
 );
 
 

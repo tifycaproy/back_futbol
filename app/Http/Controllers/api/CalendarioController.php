@@ -141,6 +141,8 @@ class CalendarioController extends Controller
         foreach ($convocados as $convocado) {
             $jugadores[]=[
                 'idjugador' => $convocado->jugador->id,
+                'nombre' => $convocado->jugador->nombre,
+                "foto"=>config('app.url') . 'jugadores/' . $convocado->jugador->foto,
                 "banner"=>config('app.url') . 'jugadores/' . $convocado->jugador->banner,
             ];
         }

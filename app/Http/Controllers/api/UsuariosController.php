@@ -260,9 +260,11 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuario=Usuario::where('id',$idusuario)->first(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']); 
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at']);
             $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
+            //unset($usuario['created_at']);
             if($usuario["foto"]==''){
                 if($usuario["foto_redes"]<>""){
                     $usuario["foto"]=$usuario["foto_redes"];
@@ -301,15 +303,13 @@ class UsuariosController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    list(, $Base64Img) = explode(',', $Base64Img);
-                    $image = base64_decode($Base64Img);
                     $filepath='usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
                     $result = $s3->putObject(array(
                         'Bucket' => config('app.s3_bucket'),
                         'Key' => $filepath,
-                        'SourceFile' => $image,
+                        'SourceFile' => $foto,
                         'ContentType' => 'image',
                         'ACL' => 'public-read',
                     ));
