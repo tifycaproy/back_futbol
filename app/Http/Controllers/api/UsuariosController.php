@@ -303,16 +303,13 @@ class UsuariosController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
-                    $image = $Base64Img;
                     $filepath='usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
                     $result = $s3->putObject(array(
                         'Bucket' => config('app.s3_bucket'),
                         'Key' => $filepath,
-                        'SourceFile' => $image,
+                        'SourceFile' => $foto,
                         'ContentType' => 'image',
                         'ACL' => 'public-read',
                     ));
