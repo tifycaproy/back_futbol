@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
 <div class="row">
      <div class="col-lg-6">
         <h1 class="page-header">Video VR</h1>
@@ -31,7 +30,7 @@
         <p class="text-right"><a href="{{ route('videosvr.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
     </div>
 </div>
-<form role="form" action="{{ route('videosvr.update', codifica($video->id)) }}" method="POST">
+<form role="form" action="{{ route('videosvr.update', codifica($video->id)) }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
@@ -61,6 +60,12 @@
                 </div>
                 <label><span>Mínimo 1024 x 512 píxeles | JPEG, PNG y GIF</span></label>
               </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Archivo a cargar</label>
+                <input type="file" name="video">
+            </div>
         </div>
     </div>
     <div class="row">

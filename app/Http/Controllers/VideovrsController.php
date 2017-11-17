@@ -33,11 +33,12 @@ class VideovrsController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $fileName = "";
+            $foto = "";
             if($request->foto){
                 $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $foto=$fileName;
                 $picture=$foto->output->image;
                 $filepath = 'videosvr/' . $fileName;
 
@@ -50,9 +51,29 @@ class VideovrsController extends Controller
                     'ACL' => 'public-read',
                 ));
             }
+            $video="";
+            if($file = $request->file('video')){
+                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . '.' . $file->getClientOriginalExtension();
+                $video=$fileName;
+                $filepath = 'videosvr/' . $fileName;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $file,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['video']=$fileName;
+            }
+
+
             $video=Videovr::create([
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
+                'foto' => $foto,
+                'video' => $video,
             ]);
             return redirect()->route('videosvr.edit', codifica($video->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -69,6 +90,7 @@ class VideovrsController extends Controller
 
     public function edit($id)
     {
+        $id=decodifica($id);
         $video=Videovr::find($id);
         return view('videosvr.edit')->with('video',$video);
     }
@@ -117,6 +139,20 @@ class VideovrsController extends Controller
                     'ACL' => 'public-read',
                 ));
                 $data['foto']=$fileName;
+            }
+            if($file = $request->file('video')){
+                $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . '.' . $file->getClientOriginalExtension();
+                $filepath = 'videosvr/' . $fileName;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $file,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['video']=$fileName;
             }
             Videovr::find($id)->update($data);
             return redirect()->route('videosvr.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");

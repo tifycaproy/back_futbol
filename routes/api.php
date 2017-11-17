@@ -67,3 +67,5 @@ Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
 Route::get('monumentales_anuales', 'api\MonumentalesController@monumentales_anuales');
 Route::get('ranking_monumentales', 'api\MonumentalesController@ranking_monumentales');
 
+Route::get('videos360', 'api\VideovrController@videos360');
+

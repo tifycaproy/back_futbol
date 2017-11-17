@@ -14,7 +14,16 @@ class VideovrController extends Controller
     {
         try{
             $videosvr=Videovr::get(['titulo','descripcion','foto','video']);
-            return ["status"=>'exito', 'data' => $videosvr];
+            $data=[];
+            foreach ($videosvr as $video) {
+            	$data[]=[
+            		'titulo' => $video->titulo,
+            		'descripcion' => $video->descripcion,
+            		'foto' => config('app.url') . 'noticias/' . $video->foto,
+            		'video' => config('app.url') . 'noticias/' . $video->video,
+            	];
+            }
+            return ["status"=>'exito', 'data' => $data];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];

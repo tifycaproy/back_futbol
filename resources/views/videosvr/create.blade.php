@@ -59,7 +59,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Archivo a cargar</label>
-                <input type="file" name="file">
+                <input type="file" name="video">
             </div>
         </div>
     </div>
