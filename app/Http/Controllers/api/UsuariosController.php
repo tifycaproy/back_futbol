@@ -264,7 +264,7 @@ class UsuariosController extends Controller
             $usuario=$usuario->toArray();
             $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
-            unset($usuario['created_at']);
+            //unset($usuario['created_at']);
             if($usuario["foto"]==''){
                 if($usuario["foto_redes"]<>""){
                     $usuario["foto"]=$usuario["foto_redes"];
