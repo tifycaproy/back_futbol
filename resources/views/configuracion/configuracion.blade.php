@@ -392,7 +392,7 @@
                 <div class="slim slim">
                   <input name="patrocinante" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
+                <label><span>Mínimo 30 x 30 píxeles | JPG, PNG y GIF</span></label>
                 @if($configuracion->patrocinante<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}" style="max-width: 100%"></p>
@@ -424,8 +424,8 @@ $(document).ready(function(){
       label: 'Arrastra tu imagen ó haz click aquí',
       ratio: 'free',
       minSize: {
-        width: 100,
-        height: 100
+        width: 30,
+        height: 30
       },
       size: {
         width: 256,
