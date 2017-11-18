@@ -164,7 +164,8 @@ class VideovrsController extends Controller
                 $video=$fileName;
 
                 $filepath = 'videosvr/' . $fileName;
-
+echo $_FILES['video']['tmp_name'];
+exit;
                 $s3 = S3Client::factory(config('app.s3'));
                 $result = $s3->putObject(array(
                     'Bucket' => config('app.s3_bucket'),

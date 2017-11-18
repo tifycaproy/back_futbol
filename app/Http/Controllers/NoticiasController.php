@@ -101,7 +101,8 @@ class NoticiasController extends Controller
 
     public function update(Request $request, $id)
     {
-        $rules = [
+
+       $rules = [
             'titulo' => 'required',
             'fecha' => 'required',
             ];
