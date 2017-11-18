@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row">
-     <div class="col-lg-6">
+     <div class="col-lg-12">
         <h1 class="page-header">Calendario - {{ $copa_titulo }}</h1>
     </div>
     <div class="col-lg-12">
@@ -35,7 +35,7 @@
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
                 <label>Fecha</label>
                 <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha',$calendario->fecha) }}" required>
@@ -44,13 +44,23 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Estado</label>
                 <select name="estado" class="form-control">
                     <option value="Pendiente"@if(old('estado',$calendario->estado)=='Pendiente') selected @endif>Pendiente</option>
                     <option value="En curso"@if(old('estado',$calendario->estado)=='En curso') selected @endif>En curso</option>
                     <option value="Finalizado"@if(old('estado',$calendario->estado)=='Finalizado') selected @endif>Finalizado</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Formación</label>
+                <select name="formacion_id" class="form-control">
+                @foreach($formaciones as $formacion)
+                    <option value="{{ $formacion->id }}"@if($formacion->id==old('formacion_id',$calendario->formacion_id)) selected @endif>{{ $formacion->titulo }}</option>
+                @endforeach
                 </select>
             </div>
         </div>
@@ -105,7 +115,25 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
+            <div class="form-group">
+                <label>url al Video</label>
+                <input type="text" class="form-control" name="video" value="{{ old('video',$calendario->video) }}" maxlength="200">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Información adicional</label>
+                <input type="text" class="form-control" name="info" value="{{ old('info',$calendario->info) }}" maxlength="100">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('calendarios.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('calendarios.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('calendarios_eliminar', codifica($calendario->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+        </div>
+        <div class="col-lg-6">
+            <a href="{{ route("alineacion") }}" class="btn btn-primary"><i class="fa fa-fw fa-check-square-o"></i> Administrar Alineación</a> 
+            <a href="{{ route("actividad.index") }}" class="btn btn-primary"><i class="fa fa-fw fa-futbol-o"></i> Administrar Playbyplay</a> 
         </div>
     </div>
 </form>

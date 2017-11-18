@@ -66,7 +66,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
-                <label>Nacionalidad</label>
+                <label>Lugar de nacimiento</label>
                 <input type="text" class="form-control" name="nacionalidad" value="{{ old('nacionalidad', $jugador->nacionalidad) }}" maxlength="60">
             </div>
         </div>
@@ -82,7 +82,13 @@
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Posición</label>
-                <input type="text" class="form-control" name="posicion" value="{{ old('posicion', $jugador->posicion) }}" maxlength="40">
+                <select name="posicion" class="form-control">
+                    <option value="Portero"@if(old('posicion', $jugador->posicion)=='Portero') selected @endif>Portero</option>
+                    <option value="Defensa"@if(old('posicion', $jugador->posicion)=='Defensa') selected @endif>Defensa</option>
+                    <option value="Volante"@if(old('posicion', $jugador->posicion)=='Volante') selected @endif>Volante</option>
+                    <option value="Delantero"@if(old('posicion', $jugador->posicion)=='Delantero') selected @endif>Delantero</option>
+                    <option value="Director técnico"@if(old('posicion', $jugador->posicion)=='Director técnico') selected @endif>Director técnico</option>
+                </select>
             </div>
         </div>
         <div class="col-lg-3">
@@ -93,7 +99,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Peso</label>
+                <input type="text" class="form-control" name="peso" value="{{ old('peso', $jugador->peso) }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Estatura</label>
+                <input type="text" class="form-control" name="estatura" value="{{ old('estatura', $jugador->estatura) }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Último partido convocado</label>
                 <select name="calendario_id" class="form-control">
@@ -110,9 +128,9 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim slim_foto">
-                  <input name="foto" type="file" accept="image/jpeg, image/png" />
+                  <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
                 @if($jugador->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->foto }}" style="max-width: 100%"></p>
@@ -123,9 +141,9 @@
             <div class="form-group">
                 <label>Banner</label>
                 <div class="slim slim_banner">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="banner" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
                 @if($jugador->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'jugadores/' . $jugador->banner }}" style="max-width: 100%"></p>
@@ -183,14 +201,14 @@ $(document).ready(function(){
     });
    $('.slim_banner').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '2:1',
+      ratio: 'free',
       minSize: {
         width: 500,
         height: 250
       },
       size: {
-        width: 512,
-        height: 256
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

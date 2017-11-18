@@ -58,7 +58,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
-                <label>Nacionalidad</label>
+                <label>Lugar de nacimiento</label>
                 <input type="text" class="form-control" name="nacionalidad" value="{{ old('nacionalidad') }}" maxlength="60">
             </div>
         </div>
@@ -74,7 +74,13 @@
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Posición</label>
-                <input type="text" class="form-control" name="posicion" value="{{ old('posicion') }}" maxlength="40">
+                <select name="posicion" class="form-control">
+                    <option value="Portero"@if(old('posicion')=='Portero') selected @endif>Portero</option>
+                    <option value="Defensa"@if(old('posicion')=='Defensa') selected @endif>Defensa</option>
+                    <option value="Volante"@if(old('posicion')=='Volante') selected @endif>Volante</option>
+                    <option value="Delantero"@if(old('posicion')=='Delantero') selected @endif>Delantero</option>
+                    <option value="Director técnico"@if(old('posicion')=='Director técnico') selected @endif>Director técnico</option>
+                </select>
             </div>
         </div>
         <div class="col-lg-3">
@@ -85,7 +91,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Peso</label>
+                <input type="text" class="form-control" name="peso" value="{{ old('peso') }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Estatura</label>
+                <input type="text" class="form-control" name="estatura" value="{{ old('estatura') }}" maxlength="10">
+            </div>
+        </div>
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Último partido convocado</label>
                 <select name="calendario_id" class="form-control">
@@ -96,25 +114,24 @@
                 </select>
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim slim_foto">
-                  <input name="foto" type="file" accept="image/jpeg, image/png" />
+                  <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Banner</label>
                 <div class="slim slim_banner">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="banner" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
     </div>
@@ -162,8 +179,8 @@ $(document).ready(function(){
         height: 240
       },
       size: {
-        width: 512,
-        height: 512
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

@@ -20,9 +20,6 @@
         <div class="alert alert-danger">{{ $notificacion_error }}</div>
     @endif
     </div>
-    <div class="col-lg-2">
-        <p class="text-right"><a href="{{ route('noticias.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
-    </div>
 </div>
 
 <form role="form" action="{{ route('update_jugadores') }}" method="POST">
@@ -51,6 +48,7 @@
     <div class="row">
         <div class="col-lg-12">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>
+            <a href="{{ route('noticias.edit', codifica($idnoticia)) }}" class="btn btn-primary"><i class="fa fa-fw fa-reply"></i> Regresar a la noticia</a>
         </div>
     </div>
 </form>

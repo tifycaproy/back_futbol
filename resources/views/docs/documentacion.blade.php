@@ -43,7 +43,10 @@ $data=array(
 		"Ruta"=>"/configuracion",
 		"Método"=>"GET",
 		"Éxito"=>[
-			'url_tabla','url_simulador','url_juramento','url_livestream'
+			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas','url_academia',
+			'tit_1','tit_1_1','tit_1_2','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
+			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
+			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_3','tit_15',
 		],
 	),
 	"Noticias"=>array(
@@ -60,6 +63,14 @@ $data=array(
 			'titulo','foto'
 		],
 	),
+	
+	"Noticias futboal base"=>array(
+		"Ruta"=>"/noticias_futbolbase?page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
+		],
+	),
 
 //usuarios
 	"Registrarse"=>array(
@@ -68,6 +79,8 @@ $data=array(
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
+			"apodo" => "varchar(30) / opcional",
+			"referido" => "varchar(30) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
 			"celular" => "varchar(30) / opcional",
@@ -77,7 +90,7 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
 		)
@@ -89,7 +102,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
 		)
@@ -104,7 +117,7 @@ $data=array(
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
 			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
@@ -129,7 +142,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token",
+		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)
@@ -137,7 +150,7 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo'],
+		"Éxito"=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -159,6 +172,16 @@ $data=array(
 			"error"=>"Internal error",
 		)
 	),
+	"consultar referidos"=>array(
+		"Ruta"=>"/consultar_referidos/{token}",
+		"Método"=>"GET",
+		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
+		"Falla"=>array(
+			"error"=>"Invalid token",
+		)
+	),
+
+
 //calendario
 	"Copas"=>array(
 		"Ruta"=>"/copas",
@@ -187,29 +210,90 @@ $data=array(
 			],
 		)
 	),
+	"Silgle Calendario"=>array(
+		"Ruta"=>"/single_calendario/{idpartido}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
+		)
+	),
+
+	"Calendario FB"=>array(
+		"Ruta"=>"/calendariofb",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"copa",
+			"partido (array)"=>[
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+			],
+		)
+	),
+	"Silgle Calendario FB"=>array(
+		"Ruta"=>"/single_calendariofb/{idpartido}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
+		)
+	),
+
 	"Convocados"=>array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
 		"Éxito"=>array(
 			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
-			"jugadores (array)"=>['idjudador','banner'],
+			"jugadores (array)"=>['idjugador','nombre','foto','banner'],
 		)
+	),
+	"Play by play"=>array(
+		"Ruta"=>"/playbyplay",
+		"Método"=>"GET",
+		"Éxito Array"=>array(
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"video","info","formacion","foto_formacion",
+			"idjugador","nombre_dt","foto_dt",
+			"titulares (array)"=>array(
+				"idjugador","foto","nombre","posicion","actividades (array)"=>array("actividad","minuto")
+			),
+			"suplentes (array)"=>array(
+				"idjugador","foto","nombre","actividades (array)"=>array("actividad","minuto")
+			),
+		),
+		"Error"=>array("idcalendario es requerido","idcalendario incorrecto")
 	),
 //jugadores
 	"Nómina"=>array(
 		"Ruta"=>"/nomina",
 		"Método"=>"GET",
 		"Éxito (Array)"=>array(
-			"idjudador","banner"
+			"idjugador","banner"
+		)
+	),
+	"Nómina FB"=>array(
+		"Ruta"=>"/nominafb",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"idjugador","banner"
 		)
 	),
 	"Single del jugador"=>array(
 		"Ruta"=>"/single_jugador/{idjugador}",
 		"Método"=>"GET",
-		"Éxito"=>['idjudador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','banner','instagram',
+		"Éxito"=>['idjugador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
 			'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
 			'idpartido','equipo_1','bandera_1','goles_1','equipo_2','bandera_2','goles_2','fecha','fecha_etapa','estadio',
 			'apalusos_ultimo_partido', 'aplausos_acumulado',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
+		"Falla"=>array(
+			"error"=>["idjugador incorrecto"],
+		)
+	),
+	"Single del jugador FB"=>array(
+		"Ruta"=>"/single_jugadorfb/{idjugador}",
+		"Método"=>"GET",
+		"Éxito"=>['idjugador','nombre','fecha_nacimiento','nacionalidad','n_camiseta','posicion','peso','estatura','banner','instagram',
 			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
 		],
 		"Falla"=>array(
@@ -220,15 +304,29 @@ $data=array(
 		"Ruta"=>"/aplaudir",
 		"Método"=>"POST",
 		"Parámetros"=>array(
-			"idjudador" => "integer / requerido",
+			"idjugador" => "integer / requerido",
 			"idpartido" => "integer / requerido",
 			"imei" => "varchar(45) / requerido",
 		),
 		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
 		"Falla"=>array(
-			"error"=>array("El idjudador es requerido","El imei es requerido","El idpartido es requerido")
+			"error"=>array("El idjugador es requerido","El imei es requerido","El idpartido es requerido","Usted ya aplaudió a este jugador en este partido")
 		)
 	),
+	"Consultar aplauso / equipo"=>array(
+		"Ruta"=>"/aplausos_equipo",
+		"Método"=>"GET",
+		"Éxito"=>array(
+			'partido_actual'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+			'acumulado'=>[
+				'idjugador','nombre','foto','votos','porcentaje'
+			],
+		),
+		"Error"=>array("No hay juegos registrados")
+	),
+
 //monumentales
 	"Noticias Monumentales"=>array(
 		"Ruta"=>"/noticias_monumentales?page={pagina}",
@@ -279,6 +377,40 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
 	),
+//Onceideal
+	"Registrar Once ideal"=>array(
+		"Ruta"=>"/onceideal",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"token" => "requerido",
+			"jugadores (Array de 11)"=>[
+				"idjugador" => "integer / requerido",
+				"x" => "integer / requerido",
+				"y" => "integer / requerido"
+			],
+		),
+		"Éxito"=>"no devuelve datos",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","Debe colocar todos los jugadores"),
+		)
+	),
+	"Consultar Once ideal"=>array(
+		"Ruta"=>"/onceideal/{token}",
+		"Método"=>"GET",
+		"Éxito (Array de 11)"=>["idjugador","x","y"],
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "No tiene once ideal cargado"),
+		)
+	),
+
+	"videos 360"=>array(
+		"Ruta"=>"/videos360",
+		"Método"=>"GET",
+		"Éxito (Array)"=>array(
+			"titulo","descripcion","foto","video",
+		),
+	),
+
 );
 
 

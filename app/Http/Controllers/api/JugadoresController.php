@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jugador;
 use App\Aplauso;
-use App\AplausoCalendario;
+use App\Configuracion;
 
 
 
@@ -24,28 +24,28 @@ class JugadoresController extends Controller
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Portero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjudador' => $jugador->id,
+                'idjugador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Defensa')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjudador' => $jugador->id,
+                'idjugador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Volante')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjudador' => $jugador->id,
+                'idjugador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
         $judadores=Jugador::where('activo',1)->select('id','banner')->where('posicion','Delantero')->get();
         foreach ($judadores as $jugador){
             $data['data'][]=[
-                'idjudador' => $jugador->id,
+                'idjugador' => $jugador->id,
                 "banner"=>config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
@@ -56,16 +56,19 @@ class JugadoresController extends Controller
         if($jugador=Jugador::find($id)){
             $data["status"]='exito';
             $data["data"]=[
-                'idjudador' => $jugador->id,
+                'idjugador' => $jugador->id,
                 'nombre' => $jugador->nombre,
                 'fecha_nacimiento' => $jugador->fecha_nacimiento,
                 'nacionalidad' => $jugador->nacionalidad,
                 'n_camiseta' => $jugador->n_camiseta,
                 'posicion' => $jugador->posicion,
+                'peso' => $jugador->peso,
+                'estatura' => $jugador->estatura,
                 'banner'=>config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
             ];
-            if($sepuedeaplaudir=AplausoCalendario::where('activo',1)->orderby('id','desc')->first()){
+            $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
+            if($partidoaaplaudor->calendario_aplausos_id<>0 and $partidoaaplaudor->calendario_aplausos_id==$jugador->calendario_id){
                 $data["data"]['sepuedeaplaudir'] = 1;
             }else{
                 $data["data"]['sepuedeaplaudir'] = 0;
@@ -89,8 +92,8 @@ class JugadoresController extends Controller
                 $data["data"]['idpartido'] = null;
             }
 
-            if($ultimopartido=AplausoCalendario::orderby('id','desc')->first()){
-                $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$ultimopartido->calendario_id)->where('jugadores_id',$id)->count();
+            if($jugador->calendario_id<>0){
+                $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$jugador->calendario_id)->where('jugadores_id',$id)->count();
             }else{
                 $data["data"]['apalusos_ultimo_partido'] = 0;
             }
@@ -117,15 +120,19 @@ class JugadoresController extends Controller
         try{
             //Validaciones
             $errors=[];
-            if(!isset($request["idjudador"])) $errors[]="El idjudador es requerido";
+            if(!isset($request["idjugador"])) $errors[]="El idjugador es requerido";
             if(!isset($request["imei"])) $errors[]="El imei es requerido";
             if(!isset($request["idpartido"])) $errors[]="El idpartido es requerido";
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
+            if(Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
+                return ["status" => "fallo", "error" => ["Usted ya aplaudió a este jugador en este partido"]];
+            }
+
             //fin validaciones
             Aplauso::create([
-                'jugadores_id'=>$request["idjudador"],
+                'jugadores_id'=>$request["idjugador"],
                 'calendario_id'=>$request["idpartido"],
                 'imei'=>$request["imei"],
             ]);

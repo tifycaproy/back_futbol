@@ -12,6 +12,7 @@ yarn-error.log
 .env
 /composer.lock
 
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

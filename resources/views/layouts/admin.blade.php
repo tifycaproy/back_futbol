@@ -84,17 +84,28 @@
                         <a href="{{ route("jugadores.index") }}"><i class="fa fa-fw fa-pencil"></i> Jugadores</a>
                     </li>
                     <li>
+                        <a href="{{ route("jugadoresfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Jugadores Futbol Base</a>
+                    </li>
+                    <li>
                         <a href="{{ route("copas.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("copasfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario FB</a>
                     </li>
                     <li>
                         <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
                     </li>
+                    <li>
+                        <a href="{{ route("videosvr.index") }}"><i class="fa fa-fw fa-pencil"></i> Videos VR</a>
+                    </li>
+                    <!--
                     <li>
                         <a href="{{ route("monumentales.index") }}"><i class="fa fa-fw fa-pencil"></i> Monumentales</a>
                     </li>
                     <li>
                         <a href="{{ route("encuestas.index") }}"><i class="fa fa-fw fa-pencil"></i> Encuestas monumentales</a>
                     </li>
+                -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
 
@@ -35,25 +36,43 @@ class UsuariosController extends Controller
 
             if(Usuario::where('email',$email)->first()){
                 return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
-            }else{
-
-                $request["clave"]=password_hash($request["clave"], PASSWORD_DEFAULT);
-                if(isset($request["foto"])){
-                    $foto=$request["foto"];
-                    if($foto<>''){
-                        list($tipo, $Base64Img) = explode(';', $foto);
-                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                        list(, $Base64Img) = explode(',', $Base64Img);
-                        $image = base64_decode($Base64Img);
-                        file_put_contents('uploads/usuarios/' . $request["foto"], $image);
-                    }
-                }
-                $nuevo=Usuario::create($request);
-                $idusuario=$nuevo->id;
-                
-                return ["status" => "exito", "data" => ["token" => crea_token($idusuario)]];
             }
+            if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
+                return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
+            }
+
+            if(isset($request["referido"])) if($request["referido"]<>'') if(!Usuario::where('apodo',$request["referido"])->first()){
+                return ["status" => "fallo", "error" => ["El apodo del referido no existe"]];
+            }
+
+
+            $request["clave"]=password_hash($request["clave"], PASSWORD_DEFAULT);
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    list(, $Base64Img) = explode(',', $Base64Img);
+                    $image = base64_decode($Base64Img);
+                    $filepath='usuarios/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $image,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }
+            $nuevo=Usuario::create($request);
+            $idusuario=$nuevo->id;
+            
+            return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario]];
+
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
         } 
@@ -78,7 +97,7 @@ class UsuariosController extends Controller
             $usuario=Usuario::where('email',$email)->first();
             if($usuario){
                 if(password_verify($request["clave"], $usuario->clave)){
-                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
                 }else{
                     return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
                 }
@@ -121,7 +140,7 @@ class UsuariosController extends Controller
                     $data=['userID_google' => $userID_google];
                 }
                 Usuario::find($usuario->id)->update($data);
-                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }else{
                 $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
                 $pass = array();
@@ -146,7 +165,7 @@ class UsuariosController extends Controller
                     $data['foto_redes']=$request["foto_redes"];
                 }
                 $usuario=Usuario::create($data);
-                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
@@ -221,7 +240,7 @@ class UsuariosController extends Controller
             $email=$request["email"];
             $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
             if($usuario){
-               return ["status" => "exito", "data" => ["token" => crea_token($usuario->id)]];
+               return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }else{
                return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
             }
@@ -241,9 +260,11 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuario=Usuario::where('id',$idusuario)->first(['nombre','apellido','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']);
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at']);
             $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
+            //unset($usuario['created_at']);
             if($usuario["foto"]==''){
                 if($usuario["foto_redes"]<>""){
                     $usuario["foto"]=$usuario["foto_redes"];
@@ -253,7 +274,7 @@ class UsuariosController extends Controller
             }else{
                 $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
-            $usuario["codigo"]=codifica($idusuario);
+            $usuario["codigo"]=codifica($idusuario + 10000);
             unset($usuario["foto_redes"]);
             return ["status" => "exito", "data" => $usuario];
         } catch (Exception $e) {
@@ -282,15 +303,56 @@ class UsuariosController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    list(, $Base64Img) = explode(',', $Base64Img);
-                    $image = base64_decode($Base64Img);
-                    file_put_contents('uploads/usuarios/' . $request["foto"], $image);
+                    $filepath='usuarios/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
                 }else{
                     unset($request["foto"]);
                 }
             }
             Usuario::find($idusuario)->update($request);
             return ["status" => "exito"];
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+        }
+    }
+    public function consultar_referidos($token)
+    {
+        try{
+            //Validaciones
+            $errors=[];
+            $idusuario=decodifica_token($token);
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            $apodo=Usuario::where('id',$idusuario)->first(['apodo']);
+            $usuarios=Usuario::where('referido',$apodo->apodo)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']);
+            $data=[];
+            foreach ($usuarios as $usuario) {
+                $usuario=$usuario->toArray();
+
+                if($usuario["foto"]==''){
+                    if($usuario["foto_redes"]<>""){
+                        $usuario["foto"]=$usuario["foto_redes"];
+                    }else{
+                        $usuario["foto"]="";
+                    }
+                }else{
+                    $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+                }
+                unset($usuario["foto_redes"]);
+                $data[]=$usuario;
+            }
+            return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
         }

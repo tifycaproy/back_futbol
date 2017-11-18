@@ -47,7 +47,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" class="form-control">{{ old('descripcion') }}</textarea>
+                <textarea name="descripcion" rows="5" class="form-control">{{ old('descripcion') }}</textarea>
             </div>
         </div>
     </div>
@@ -102,18 +102,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Monumental asociada</label>
-                <select name="aparevetimelinemonumentales" class="form-control">
-                    <option value="0">No aplica</option>
-                @foreach($monumentales as $monumental)
-                    <option value="{{ $monumental->id }}"@if($monumental->id==old('aparevetimelinemonumentales')) selected @endif>{{ $monumental->nombre }}</option>
-                @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
+        <div class="col-lg-8">
             <div class="form-group">
                 <label>Partido asociado</label>
                 <select name="id_calendario_noticia" class="form-control">
@@ -128,9 +117,31 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
+                <label>Aparece en futbol base</label>
+                <select name="aparecefutbolbase" class="form-control">
+                    <option value="0"@if(old('aparecefutbolbase')=='0') selected @endif>No</option>
+                    <option value="1"@if(old('aparecefutbolbase')=='1') selected @endif>Si</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label>Partido Futbol Base asociado</label>
+                <select name="id_calendario_noticiafb" class="form-control">
+                    <option value="0">No aplica</option>
+                @foreach($partidosfb as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticiafb')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                  <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                  <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
                 <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
               </div>
@@ -146,16 +157,16 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '2:1',
+      ratio: 'free',
       minSize: {
         width: 500,
         height: 250
       },
       size: {
-        width: 512,
-        height: 256
+        width: 1024,
+        height: 1024
       },
-      download: false,
+      download: true,
       labelLoading: 'Cargando imagen...',
       statusImageTooSmall: 'La imagen es muy pequeña. El tamaño mínimo es $0 píxeles.',
       statusUnknownResponse: 'Ha ocurrido un error inesperado.',

@@ -25,6 +25,10 @@ class Jugador extends Model
         return $this->belongsTo('App\Calendario','calendario_id');
     }
 
+    public function aplausos()
+    {
+        return $this->hasMany('App\Aplauso','jugadores_id');
+    }
 
 
 }

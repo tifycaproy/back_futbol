@@ -48,27 +48,27 @@
             <div class="form-group">
                 <label>Banner</label>
                 <div class="slim slim_banner">
-                  <input name="banner" type="file" accept="image/jpeg, image/png" />
+                  <input name="banner" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 240 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 240 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Foto interna</label>
                 <div class="slim slim_foto">
-                  <input name="foto" type="file" accept="image/jpeg, image/png" />
+                  <input name="foto" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Miniatura para ranking</label>
                 <div class="slim slim_miniatura">
-                  <input name="miniatura" type="file" accept="image/jpeg, image/png" />
+                  <input name="miniatura" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
     </div>
@@ -82,14 +82,14 @@
 $(document).ready(function(){
    $('.slim_banner').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '2:1',
+      ratio: 'free',
       minSize: {
         width: 500,
         height: 250
       },
       size: {
-        width: 512,
-        height: 256
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',
@@ -116,8 +116,8 @@ $(document).ready(function(){
         height: 240
       },
       size: {
-        width: 512,
-        height: 512
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

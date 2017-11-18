@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 use App\Calendario;
 use App\Equipo;
+use App\Alineacion;
+use App\Jugador;
+use App\Formacion;
 
 class CalendarioController extends Controller
 {
@@ -18,8 +21,9 @@ class CalendarioController extends Controller
 
     public function create()
     {
+        $formaciones=Formacion::get();
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.create')->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
+        return view('calendarios.create')->with("equipos",$equipos)->with('formaciones',$formaciones)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function store(Request $request)
@@ -43,6 +47,9 @@ class CalendarioController extends Controller
                 'fecha' => $request->fecha,
                 'fecha_etapa' => $request->fecha_etapa,
                 'estadio' => $request->estadio,
+                'video' => $request->video,
+                'info' => $request->info,
+                'formacion_id' => $request->formacion_id,
             ]);
             return redirect()->route('calendarios.edit', codifica($calendario->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -62,8 +69,10 @@ class CalendarioController extends Controller
         $id=decodifica($id);
         $calendario=Calendario::find($id);
         $_SESSION['calendario_id']=$id;
+        $_SESSION['formacion']=config('app.url') . 'formaciones/' . $calendario->formacion->foto;
+        $formaciones=Formacion::get();
         $equipos=Equipo::orderby('nombre')->get();
-        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos)->with('copa_titulo',$_SESSION['copa_titulo']);
+        return view('calendarios.edit')->with('calendario',$calendario)->with("equipos",$equipos)->with('formaciones',$formaciones)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 
     public function update(Request $request, $id)
@@ -88,6 +97,9 @@ class CalendarioController extends Controller
                 'fecha' => $request->fecha,
                 'fecha_etapa' => $request->fecha_etapa,
                 'estadio' => $request->estadio,
+                'video' => $request->video,
+                'info' => $request->info,
+                'formacion_id' => $request->formacion_id,
             ];
             Calendario::find($id)->update($data);
             return redirect()->route('calendarios.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
@@ -129,5 +141,33 @@ class CalendarioController extends Controller
             ]);
         }
         return redirect()->route('calendarios.edit', codifica($_SESSION['calendario_id']));
+    }
+    public function alineacion()
+    {
+        $jugadores=Jugador::where('jugadores.posicion','<>','Director técnico')->leftjoin('alineacion', function($join)
+        {
+            $join->on('jugadores.id','=','alineacion.jugador_id');
+            $join->where('alineacion.calendario_id','=',$_SESSION['calendario_id']);
+        })
+        ->orderby('alineacion.orden','desc')->get(['jugadores.id','nombre','alineacion.posicion','alineacion.estado','alineacion.id as convocado']);
+        return view('calendarios.alineacion')->with('jugadores',$jugadores)->with('idcalendario',$_SESSION['calendario_id']);
+    }
+    public function alineacion_actualizar(Request $request)
+    {
+        Alineacion::where('id','<>',0)->delete();
+        $orden=count($request->jugadores);
+        if($orden>0){
+            foreach ($request->jugadores as $jugador) {
+                Alineacion::create([
+                    'calendario_id' => $_SESSION['calendario_id'],
+                    'jugador_id' => $jugador,
+                    'estado' => $request["estado_" . $jugador],
+                    'posicion' => $request["posicion_" . $jugador],
+                    'orden' => $orden
+                ]);
+                $orden--;
+            }
+        }
+        return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
     }
 }

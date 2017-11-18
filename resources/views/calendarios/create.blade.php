@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="row">
-     <div class="col-lg-6">
+     <div class="col-lg-12">
         <h1 class="page-header">Calendario - {{ $copa_titulo }}</h1>
     </div>
     <div class="col-lg-12">
@@ -28,7 +28,7 @@
 <form role="form" action="{{ route('calendarios.store') }}" method="POST">
     {{ csrf_field() }}
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
                 <label>Fecha</label>
                 <input type="text" class="form-control datetimepicker" name="fecha" value="{{ old('fecha') }}" required>
@@ -37,13 +37,23 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Estado</label>
                 <select name="estado" class="form-control">
                     <option value="Pendiente"@if(old('estado')=='Pendiente') selected @endif>Pendiente</option>
                     <option value="En curso"@if(old('estado')=='En curso') selected @endif>En curso</option>
                     <option value="Finalizado"@if(old('estado')=='Finalizado') selected @endif>Finalizado</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Formación</label>
+                <select name="formacion_id" class="form-control">
+                @foreach($formaciones as $formacion)
+                    <option value="{{ $formacion->id }}"@if($formacion->id==old('formacion_id')) selected @endif>{{ $formacion->titulo }}</option>
+                @endforeach
                 </select>
             </div>
         </div>
@@ -93,6 +103,20 @@
             <div class="form-group">
                 <label>Subtítulo de fecha-etapa</label>
                 <input type="text" class="form-control" name="fecha_etapa" value="{{ old('fecha_etapa') }}" maxlength="50">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>url al Video</label>
+                <input type="text" class="form-control" name="video" value="{{ old('video') }}" maxlength="200">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Información adicional</label>
+                <input type="text" class="form-control" name="info" value="{{ old('info') }}" maxlength="100">
             </div>
         </div>
     </div>

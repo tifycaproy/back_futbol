@@ -42,9 +42,9 @@
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">
-                  <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                  <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
               </div>
         </div>
     </div>
@@ -58,14 +58,14 @@
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',
-      ratio: '2:1',
+      ratio: 'free',
       minSize: {
         width: 500,
         height: 250
       },
       size: {
-        width: 512,
-        height: 256
+        width: 1024,
+        height: 1024
       },
       download: false,
       labelLoading: 'Cargando imagen...',

@@ -126,9 +126,9 @@
                 <label>Foto</label>
                 <div class="slim">
                     @if($noticia->foto<>'')<img src="uploads/noticias/{{ $noticia->foto }}" alt="">@endif
-                    <input name="archivo" type="file" accept="image/jpeg, image/png" />
+                    <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 1024 x 512 píxeles | JPEG y PNG</span></label>
+                <label><span>Mínimo 1024 x 512 píxeles | JPEG, PNG y GIF</span></label>
               </div>
         </div>
     </div>
