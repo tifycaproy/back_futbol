@@ -14,7 +14,7 @@ class CompartirController extends Controller
     {
         if($ususario=Usuario::where('apodo',$slug)->first()){
             $idusuario=$ususario->id;
-        }else if($ususario=Usuario::where('apodo',$slug)->first()){
+        }else if($ususario=Usuario::find($slug)){
             $idusuario=$ususario->id;
         }
         $once=Onceideal::where('usuario_id',$idusuario)->orderby('id','desc')->first(['foto']);
