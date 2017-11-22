@@ -53,8 +53,7 @@ class OnceidealController extends Controller
                         'ContentType' => 'image',
                         'ACL' => 'public-read',
                     ));
-                }else{
-                    unset($request["foto"]);
+                    $data["foto"]=$request["foto"];
                 }
             }
 
