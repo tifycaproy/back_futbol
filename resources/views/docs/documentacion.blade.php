@@ -388,8 +388,9 @@ $data=array(
 				"x" => "integer / requerido",
 				"y" => "integer / requerido"
 			],
+			"foto" => 'base64',
 		),
-		"Éxito"=>"no devuelve datos",
+		"Éxito"=>["url"],
 		"Falla"=>array(
 			"error"=>array("El token es requerido","Debe colocar todos los jugadores"),
 		)
@@ -397,7 +398,10 @@ $data=array(
 	"Consultar Once ideal"=>array(
 		"Ruta"=>"/onceideal/{token}",
 		"Método"=>"GET",
-		"Éxito (Array de 11)"=>["idjugador","x","y"],
+		"Éxito"=>[
+			"jugadores (Array de 11)"=>["idjugador","x","y"],
+			"url"=>'',
+		],
 		"Falla"=>array(
 			"error"=>array("El token es requerido", "No tiene once ideal cargado"),
 		)

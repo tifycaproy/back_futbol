@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Onceideal;
 use App\Configuracion;
+use App\Usuario;
 
 
 class OnceidealController extends Controller
@@ -34,12 +35,42 @@ class OnceidealController extends Controller
                 $data['x' . $indice]=$value->x;
                 $data['y' . $indice]=$value->y;
             }
+
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='onceideal/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+                }else{
+                    unset($request["foto"]);
+                }
+            }
+
+
             if($idonce=Onceideal::where('calendario_id',$idcalendario->calendario_alineacion_id)->where("usuario_id",$idusuario)->first()){
             	$idonce->update($data);
             }else{
             	Onceideal::create($data);
             }
-            return ["status" => "exito"];
+            unset($data);
+            $usuario=Usuario::find($idusuario,["apodo"]);
+            if($usuario['apodo']<>''){
+                $data["url"]=config('app.share_url') . 'compartir/onceideal/' . $usuario['apodo'];
+            }else{
+                $data["url"]=config('app.share_url') . 'compartir/onceideal/' . $idusuario;
+            }
+            return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
         }
@@ -60,11 +91,17 @@ class OnceidealController extends Controller
                 //"idjugador1","x1","y1"
                 $data=[];
                 for($l=1; $l<=11; $l++){
-                    $data[]=[
+                    $data['jugadores'][]=[
                         "idjugador"=>$idonce["idjugador" . $l],
                         "x"=>$idonce["x" . $l],
                         "y"=>$idonce["y" . $l],
                     ];
+                }
+                $usuario=Usuario::find($idusuario,["apodo"]);
+                if($usuario['apodo']<>''){
+                    $data["url"]=config('app.share_url') . 'compartir/onceideal/' . $usuario['apodo'];
+                }else{
+                    $data["url"]=config('app.share_url') . 'compartir/onceideal/' . $idusuario;
                 }
 	            return ["status" => "exito", "data" => $data];
             	$idonce->update($request);
