@@ -7,6 +7,12 @@
   h1, h2{
    font-weight: bold;
    }
+  h1{
+  font-size:1em;
+  }
+  h2{
+   font-size:.9em;
+  }
  </style>
 <body>
 
