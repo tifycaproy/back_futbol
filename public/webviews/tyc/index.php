@@ -2,11 +2,17 @@
 <html lang="es">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1" user-scalable="no">
-<style>
- h1, h2{
-  font-weight: bold;
+ <style>
+  h1, h2{
+   font-weight: bold;
+   }
+  h1{
+  font-size:1em;
   }
-</style>
+  h2{
+   font-size:.9em;
+  }
+ </style>
 <body>
 
 <h1>TÉRMINOS Y CONDICIONES DE ACCESO Y USO DE LA APLICACIÓN OFICIAL DE AZUL & BLANCO MILLONARIOS F.C S.A</h1>
