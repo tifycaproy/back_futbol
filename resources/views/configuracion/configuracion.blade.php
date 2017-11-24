@@ -369,6 +369,18 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
+                <label>Título 14.2.1</label>
+                <input type="text" class="form-control" name="tit_14_2_1" value="{{ $configuracion->tit_14_2_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14.2.2</label>
+                <input type="text" class="form-control" name="tit_14_2_2" value="{{ $configuracion->tit_14_2_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
                 <label>Título 14.3</label>
                 <input type="text" class="form-control" name="tit_14_3" value="{{ $configuracion->tit_14_3 }}" maxlength="30">
             </div>

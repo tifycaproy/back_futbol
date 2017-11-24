@@ -2,11 +2,11 @@
 
 <head>
     <meta charset="utf-8">
-	<title>¡Tu once ideal!</title>
+	<title>TU ONCE IDEAL</title>
 	<meta property="og:url"                content="{{ Request::fullUrl() }}" />
 	<meta property="og:type"               content="article" />
-	<meta property="og:title"              content="¡Tu once ideal! " />
-	<meta property="og:description"        content="Descarga la App Selección Colombia Oficial y viajemos juntos al Mundial Rusia 2018" />
+	<meta property="og:title"              content="TU ONCE IDEAL" />
+	<meta property="og:description"        content="¡Escoge tu once ideal y comparte con tus amigos! Descarga ya la App Oficial de Millonarios FC" />
 	<meta property="og:image"              content="{{ config('app.url') . 'onceideal/' . $once['foto'] }}" />
 
 
