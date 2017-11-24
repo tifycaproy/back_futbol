@@ -25,6 +25,10 @@ class Jugador extends Model
         return $this->belongsTo('App\Calendario','calendario_id');
     }
 
+    public function aplausos_up($idcalendario)
+    {
+        return $this->hasMany('App\Aplauso','jugadores_id')->where('aplausos.calendario_id',$idcalendario);
+    }
     public function aplausos()
     {
         return $this->hasMany('App\Aplauso','jugadores_id');
