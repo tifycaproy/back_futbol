@@ -74,7 +74,7 @@ class UsuariosController extends Controller
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario]];
 
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function iniciar_secion(Request $request)
@@ -105,7 +105,7 @@ class UsuariosController extends Controller
                 return["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function auth_redes(Request $request)
@@ -168,7 +168,7 @@ class UsuariosController extends Controller
                 return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function recuperar_clave(Request $request)
@@ -221,7 +221,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => ["email incorrecto"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function ingresar_con_pin(Request $request)
@@ -245,7 +245,7 @@ class UsuariosController extends Controller
                return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
 
@@ -320,7 +320,7 @@ class UsuariosController extends Controller
             Usuario::find($idusuario)->update($request);
             return ["status" => "exito"];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
     public function consultar_referidos($token)
@@ -354,7 +354,7 @@ class UsuariosController extends Controller
             }
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

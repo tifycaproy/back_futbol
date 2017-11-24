@@ -72,7 +72,7 @@ class OnceidealController extends Controller
             }
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
     public function leer_once($token)
@@ -109,7 +109,7 @@ class OnceidealController extends Controller
 	            return ['status' => 'fallo','error'=>["No tiene once ideal cargado"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

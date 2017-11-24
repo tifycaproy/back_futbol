@@ -136,7 +136,7 @@ class JugadoresController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             if(Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
-                return ["status" => "fallo", "error" => ["Usted ya aplaudió a este jugador en este partido"]];
+                return ["status" => "fallo", "error" => ["Ya aplaudiste a este jugador en este partido"]];
             }
 
             //fin validaciones
@@ -148,7 +148,7 @@ class JugadoresController extends Controller
 
             return ["status" => "exito"];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
 }
