@@ -30,7 +30,7 @@ class AplausosController extends Controller
 
         $jugadores=Jugador::get()->sortby(function($jugador) use ($idcalendario){
             return $jugador->aplausos_up($idcalendario)->count();
-        })->where('calendario_id',$idcalendario);
+        });
 
         $data["status"]='exito';
         $data["data"]['partido_actual']=[];
