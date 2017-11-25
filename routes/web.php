@@ -89,4 +89,4 @@ Route::get('documentacion', function () {
     return view('docs.documentacion');
 });
 
-Route::get('compartir/onceideal/{slug}', 'CompartirController@onceideal');
+Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');

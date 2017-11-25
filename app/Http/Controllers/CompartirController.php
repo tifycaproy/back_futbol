@@ -10,14 +10,10 @@ use App\Onceideal;
 class CompartirController extends Controller
 {
 
-    public function onceideal($slug)
+    public function onceideal($ruta)
     {
-        if($ususario=Usuario::where('apodo',$slug)->first()){
-            $idusuario=$ususario->id;
-        }else if($ususario=Usuario::find($slug)){
-            $idusuario=$ususario->id;
-        }
-        $once=Onceideal::where('usuario_id',$idusuario)->orderby('id','desc')->first(['foto']);
+        list($idusuario,$idcalendario) = explode('&', $ruta);
+        $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first(['foto']);
         return view('compartir.onceideal')->with('ususario',$ususario)->with('once',$once);
     }
 }
