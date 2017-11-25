@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Calendario;
 use App\Onceideal;
+use App\Jugador;
 
 class CompartirController extends Controller
 {
@@ -17,13 +18,21 @@ class CompartirController extends Controller
         $idcalendario=decodifica($idcalendario);
 
         $fecha=Calendario::find($idcalendario);
-        $partido=[
+        $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
+        $data=[
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "copa"=>$fecha->copa->titulo,
+            "foto" => config('app.url') . 'onceideal/' . $once->foto,
         ];
 
-        $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first(['foto']);
-        return view('compartir.onceideal')->with('once',$once)->with("partido",$partido);
+        for($l=1; $l<=11; $l++){
+            $jugador=Jugador::find($once["idjugador" . $l]);
+            $data['jugadores'][]=[
+                'nombre' => $jugador->nombre,
+                'foto'=>config('app.url') . 'jugadores/' . $jugador->foto,
+            ];
+        }
+        return view('compartir.onceideal')->with("data",$data);
     }
 }

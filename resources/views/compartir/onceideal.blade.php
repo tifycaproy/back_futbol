@@ -12,7 +12,7 @@
 	<meta property="og:type"               content="article" />
 	<meta property="og:title"              content="TU ONCE IDEAL" />
 	<meta property="og:description"        content="¡Escoge tu once ideal y comparte con tus amigos! Descarga ya la App Oficial de Millonarios FC" />
-	<meta property="og:image"              content="{{ config('app.url') . 'onceideal/' . $once['foto'] }}" />
+	<meta property="og:image"              content="{{ $data['foto'] }}" />
 <style type="text/css">
 	@font-face {
 	    font-family: 'Gill Sans MT';
@@ -31,8 +31,11 @@
 	.banderas{height: 35px}
 	.tabla_banderas{margin:0 auto; width: 130px;}
 	p{margin: 2px 0 7px 0}
-	.cancha{padding: 15px 10px}
+	.cancha{padding: 15px 10px; width: 318px;}
 	.cancha img{width: 318px}
+	.tabla_jugadores{width: 100%;}
+	.tabla_jugadores img{width: 33px;}
+	.tabla_jugadores td{font-size: 9px; text-align: center; padding-top: 5px}
 
 	.footer{background-image: url('img/banner_vacio.png'); height: 80px;}
 	.footer div{padding: 30px 0 0 150px;}
@@ -41,24 +44,38 @@
 <body>
 
 <table class="tablappal">
-	<tr 	style="background: #074C9C; text-align: center;">
-		<td>
+	<tr style="background: #074C9C; text-align: center;">
+		<td colspan="2">
 			<h1>¡ESTE ES MI ONCE IDEAL!</h1>
 			<table class="tabla_banderas">
 				<tr>
-					<td><img src="{{ $partido['bandera_1'] }}" class="banderas"></td>
+					<td><img src="{{ $data['bandera_1'] }}" class="banderas"></td>
 					<td> Vs </td>
-					<td><img src="{{ $partido['bandera_2'] }}" class="banderas"></td>
+					<td><img src="{{ $data['bandera_2'] }}" class="banderas"></td>
 				</tr>
 			</table>
-			<p>{{ $partido['copa'] }}</p>
+			<p>{{ $data['copa'] }}</p>
 		</td>
 	</tr>
 	<tr>
-		<td class="cancha"><img src="{{ config('app.url') . 'onceideal/' . $once['foto'] }}"></td>
+		<td class="cancha"><img src="{{ $data['foto'] }}"></td>
+		<td valign="top">
+			<table class="tabla_jugadores"><?php
+			$n=1;
+			foreach($data['jugadores'] as $jugador){
+				if($n==1) echo "<tr>"; ?>
+				<td>
+					<img src="{{  $jugador['foto'] }}">
+					<p>{{ $jugador['nombre'] }}</p>
+				</td><?php
+				if($n==0) echo "<tr>";
+				$n=1-$n;
+			 }?>
+			</table>
+		</td>
 	</tr>
 	<tr>
-		<td class="footer">
+		<td colspan="2" class="footer">
 			<div><a href=""><img src="img/android.png"></a>&nbsp;&nbsp;<a href=""><img src="img/ios.png"></a></div>
 		</td>
 	</tr>
