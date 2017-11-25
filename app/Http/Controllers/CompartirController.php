@@ -12,8 +12,11 @@ class CompartirController extends Controller
 
     public function onceideal($ruta)
     {
-        list($idusuario,$idcalendario) = explode('&', $ruta);
+        list($idusuario,$idcalendario) = explode('$', $ruta);
+        $idusuario=decodifica($idusuario);
+        $idcalendario=decodifica($idcalendario);
+
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first(['foto']);
-        return view('compartir.onceideal')->with('ususario',$ususario)->with('once',$once);
+        return view('compartir.onceideal')->with('once',$once);
     }
 }
