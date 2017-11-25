@@ -27,11 +27,12 @@ class CompartirController extends Controller
         ];
 
         for($l=1; $l<=11; $l++){
-            $jugador=Jugador::find($once["idjugador" . $l]);
-            $data['jugadores'][]=[
-                'nombre' => $jugador->nombre,
-                'foto'=>config('app.url') . 'jugadores/' . $jugador->foto,
-            ];
+            if($jugador=Jugador::find($once["idjugador" . $l])){
+                $data['jugadores'][]=[
+                    'nombre' => $jugador->nombre,
+                    'foto'=>config('app.url') . 'jugadores/' . $jugador->foto,
+                ];
+            }
         }
         return view('compartir.onceideal')->with("data",$data);
     }
