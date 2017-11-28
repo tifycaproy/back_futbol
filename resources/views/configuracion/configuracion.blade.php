@@ -369,6 +369,18 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
+                <label>Título 14.2.1</label>
+                <input type="text" class="form-control" name="tit_14_2_1" value="{{ $configuracion->tit_14_2_1 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Título 14.2.2</label>
+                <input type="text" class="form-control" name="tit_14_2_2" value="{{ $configuracion->tit_14_2_2 }}" maxlength="30">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
                 <label>Título 14.3</label>
                 <input type="text" class="form-control" name="tit_14_3" value="{{ $configuracion->tit_14_3 }}" maxlength="30">
             </div>
@@ -392,7 +404,7 @@
                 <div class="slim slim">
                   <input name="patrocinante" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 100 x 100 píxeles | JPG, PNG y GIF</span></label>
+                <label><span>Mínimo 30 x 30 píxeles | JPG, PNG y GIF</span></label>
                 @if($configuracion->patrocinante<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}" style="max-width: 100%"></p>
@@ -424,8 +436,8 @@ $(document).ready(function(){
       label: 'Arrastra tu imagen ó haz click aquí',
       ratio: 'free',
       minSize: {
-        width: 100,
-        height: 100
+        width: 30,
+        height: 30
       },
       size: {
         width: 256,

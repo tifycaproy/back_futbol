@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 
 use App\Onceideal;
@@ -34,14 +35,38 @@ class OnceidealController extends Controller
                 $data['x' . $indice]=$value->x;
                 $data['y' . $indice]=$value->y;
             }
+
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='onceideal/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+                    $data["foto"]=$request["foto"];
+                }
+            }
+
+
             if($idonce=Onceideal::where('calendario_id',$idcalendario->calendario_alineacion_id)->where("usuario_id",$idusuario)->first()){
             	$idonce->update($data);
             }else{
             	Onceideal::create($data);
             }
-            return ["status" => "exito"];
+            unset($data);
+            $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "$" . codifica($idcalendario->calendario_alineacion_id);
+            return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
     public function leer_once($token)
@@ -60,19 +85,20 @@ class OnceidealController extends Controller
                 //"idjugador1","x1","y1"
                 $data=[];
                 for($l=1; $l<=11; $l++){
-                    $data[]=[
+                    $data['jugadores'][]=[
                         "idjugador"=>$idonce["idjugador" . $l],
                         "x"=>$idonce["x" . $l],
                         "y"=>$idonce["y" . $l],
                     ];
                 }
+                $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "$" . codifica($idcalendario->calendario_alineacion_id);
 	            return ["status" => "exito", "data" => $data];
             	$idonce->update($request);
             }else{
 	            return ['status' => 'fallo','error'=>["No tiene once ideal cargado"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

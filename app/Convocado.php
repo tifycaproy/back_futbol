@@ -12,6 +12,6 @@ class Convocado extends Model
 //relaciones
     public function jugador()
     {
-        return $this->belongsTo('App\Jugador')->select('id','nombre','banner');
+        return $this->belongsTo('App\Jugador')->select('id','nombre','banner','foto');
     }
 }

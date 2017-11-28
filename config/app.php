@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'share_url' => env('APP_SHARE_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------

@@ -12,7 +12,7 @@ class Calendario extends Model
 //relaciones
     public function copa()
     {
-        return $this->belongsTo('App\Copa');
+        return $this->belongsTo('App\Copa','copas_id');
     }
     public function equipo1()
     {
