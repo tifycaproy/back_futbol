@@ -8,8 +8,6 @@ use App\Jugador;
 use App\Aplauso;
 use App\Configuracion;
 
-
-
 class AplausosController extends Controller
 {
     /**
@@ -29,22 +27,25 @@ class AplausosController extends Controller
                 $idcalendario=$partidoaaplaudor->calendario_id;
             }
         }
-        $jugadores=Jugador::get()->sortby(function($jugador){
-            return $jugador->aplausos->count();
-        })->where('calendario_id',$idcalendario);
+
+        $jugadores=Jugador::get()->sortby(function($jugador) use ($idcalendario){
+            return $jugador->aplausos_up($idcalendario)->count();
+        });
+
         $data["status"]='exito';
         $data["data"]['partido_actual']=[];
         $total=0;
         foreach($jugadores->reverse() as $jugador){
-            if($jugador->aplausos->count()>0){
+            $votos=$jugador->aplausos_up($idcalendario)->count();
+            if($votos>0){
                 $data["data"]['partido_actual'][]=[
                     'idjugador' => $jugador->id,
                     'nombre' => $jugador->nombre,
                     'foto' => config('app.url') . 'jugadores/' . $jugador->foto,
-                    'votos' => $jugador->aplausos->count(),
+                    'votos' => $votos,
                     'porcentaje' => 0,
                 ];
-                $total+=$jugador->aplausos->count();
+                $total+=$votos;
             }
         }
         foreach ($data["data"]['partido_actual'] as &$voto) {

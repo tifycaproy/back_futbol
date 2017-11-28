@@ -67,6 +67,8 @@ class ConfiguracionController extends Controller
             'tit_14'=> $request->tit_14,
             'tit_14_1'=> $request->tit_14_1,
             'tit_14_2'=> $request->tit_14_2,
+            'tit_14_2_1'=> $request->tit_14_2_1,
+            'tit_14_2_2'=> $request->tit_14_2_2,
             'tit_14_3'=> $request->tit_14_3,
             'tit_15'=> $request->tit_15,
         ];

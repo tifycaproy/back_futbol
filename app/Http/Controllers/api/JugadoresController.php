@@ -91,12 +91,21 @@ class JugadoresController extends Controller
             }else{
                 $data["data"]['idpartido'] = null;
             }
-
+/*
             if($jugador->calendario_id<>0){
                 $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$jugador->calendario_id)->where('jugadores_id',$id)->count();
             }else{
                 $data["data"]['apalusos_ultimo_partido'] = 0;
             }
+*/
+            $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
+            if($idcalendario==0){
+                if($partidoaaplaudor=Aplauso::orderby('created_at','desc')->first(['calendario_id'])){
+                    $idcalendario=$partidoaaplaudor->calendario_id;
+                }
+            }
+            $data["data"]['apalusos_ultimo_partido'] = Aplauso::where('calendario_id',$idcalendario)->where('jugadores_id',$id)->count();
+
             $data["data"]['aplausos_acumulado']=Aplauso::where('jugadores_id',$id)->count();
 
             $noticias=$jugador->noticias;
@@ -127,7 +136,7 @@ class JugadoresController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             if(Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
-                return ["status" => "fallo", "error" => ["Usted ya aplaudió a este jugador en este partido"]];
+                return ["status" => "fallo", "error" => ["Ya aplaudiste a este jugador en este partido"]];
             }
 
             //fin validaciones
@@ -139,7 +148,7 @@ class JugadoresController extends Controller
 
             return ["status" => "exito"];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
 }

@@ -53,15 +53,15 @@ class UsuariosController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    list(, $Base64Img) = explode(',', $Base64Img);
-                    $image = base64_decode($Base64Img);
+                    //list(, $Base64Img) = explode(',', $Base64Img);
+                    //$image = base64_decode($Base64Img);
                     $filepath='usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
                     $result = $s3->putObject(array(
                         'Bucket' => config('app.s3_bucket'),
                         'Key' => $filepath,
-                        'SourceFile' => $image,
+                        'SourceFile' => $foto,
                         'ContentType' => 'image',
                         'ACL' => 'public-read',
                     ));
@@ -74,7 +74,7 @@ class UsuariosController extends Controller
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario]];
 
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function iniciar_secion(Request $request)
@@ -105,7 +105,7 @@ class UsuariosController extends Controller
                 return["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function auth_redes(Request $request)
@@ -168,7 +168,7 @@ class UsuariosController extends Controller
                 return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function recuperar_clave(Request $request)
@@ -221,7 +221,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => ["email incorrecto"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
     public function ingresar_con_pin(Request $request)
@@ -245,7 +245,7 @@ class UsuariosController extends Controller
                return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
             }
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
 
@@ -278,7 +278,7 @@ class UsuariosController extends Controller
             unset($usuario["foto_redes"]);
             return ["status" => "exito", "data" => $usuario];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intente de nuevo"]];
         }
     }
     public function actualizar_usuario(Request $request, $token)
@@ -320,7 +320,7 @@ class UsuariosController extends Controller
             Usuario::find($idusuario)->update($request);
             return ["status" => "exito"];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
     public function consultar_referidos($token)
@@ -354,7 +354,7 @@ class UsuariosController extends Controller
             }
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

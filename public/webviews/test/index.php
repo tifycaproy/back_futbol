@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -229,11 +230,3 @@
  en relación con esta Aplicación Móvil escribiendo al siguiente correo electrónico: • appmillonarios@2waysports.com</p>
 </body>
 </html>
-<?php
-/*
-echo "TYC";
-echo "<pre>";
-print_r($_GET);
-
-echo "</pre>";*/
-?>

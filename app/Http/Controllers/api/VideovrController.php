@@ -26,7 +26,7 @@ class VideovrController extends Controller
             return ["status"=>'exito', 'data' => $data];
 
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

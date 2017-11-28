@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('documentacion', function () {
-    return view('docs.documentacion');
-});
 
 Auth::routes();
 
@@ -85,4 +82,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('encuestas', 'EncuestasController');
 
 
+
 });
+
+Route::get('documentacion', function () {
+    return view('docs.documentacion');
+});
+
+Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
