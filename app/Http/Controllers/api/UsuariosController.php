@@ -200,7 +200,7 @@ class UsuariosController extends Controller
                 $subject="Recuperación de clave";
                 $cuerpo = '
                 <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
-                    <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="{{ config('app.share_url' ) }}img/logo.jpg"></td></tr>
+                    <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="img/logo.jpg"></td></tr>
                     <tr>
                         <td width="20"> </td>
                         <td style="padding-bottom: 20px">
@@ -212,7 +212,7 @@ class UsuariosController extends Controller
                         </td>
                         <td width="20"> </td>
                     </tr>
-                    <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="{{ config('app.share_url' ) }}img/logoG.jpg"></td></tr>
+                    <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="img/logoG.jpg"></td></tr>
                 </table></p>';
                 if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
 
