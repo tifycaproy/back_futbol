@@ -5,5 +5,7 @@ echo "<pre>";
 print_r($_GET);
 
 echo "</pre>";
-echo 1;
+echo 2;
 ?>
+
+ 
