@@ -32,6 +32,7 @@ Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
 Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
+Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_referidos');
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
 //registrar referidos

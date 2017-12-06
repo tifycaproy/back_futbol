@@ -165,6 +165,11 @@ class UsuariosController extends Controller
                 if(isset($request["foto_redes"])){
                     $data['foto_redes']=$request["foto_redes"];
                 }
+                // Referidos
+                if($referente=Referido::where('email',$email)->first()){
+                    $data["referido"]=$referente->usuario_id;
+                }
+
                 $usuario=Usuario::create($data);
                 return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
             }
@@ -326,7 +331,37 @@ class UsuariosController extends Controller
     }
     public function registrar_referido(Request $request)
     {
-        
+        $errors=[];
+        if($request["email"]=='') $errors[]="El email es requerido";
+        if($request["codigo"]=='') $errors[]="El codigo es requerido";
+
+        if(count($errors)>0){
+            $result=["status" => "fallo", "error" => $errors];
+            return $result;
+        }
+        //fin validaciones
+        $email=$request["email"];
+        $idusuario=decodifica($request["codigo"]);
+
+        //referidos
+        if($referido=Referido::where('email',$email)->first()){
+            $referido->update([
+                'usuario_id' => $idusuario
+            ]);
+        }else{
+            Referido::create([
+                'usuario_id' => $idusuario,
+                'email' => $email
+            ]);
+        }
+        //fin referidos
+
+        $result=["status" => "exito"];
+        return $result;
+
+
+
+
     }
     public function consultar_referidos($token)
     {
