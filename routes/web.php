@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('encuestas', 'EncuestasController');
 
 //Banners
-    Route::resource('banners', 'bannersController');
+    Route::resource('banners', 'BannersController');
 
 
 });
