@@ -49,6 +49,11 @@ $data=array(
 			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15',
 		],
 	),
+	"Banners"=>array(
+		"Ruta"=>"/banners",
+		"Método"=>"GET",
+		"Éxito (Array)"=>['seccion','target','url','foto'],
+	),
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",

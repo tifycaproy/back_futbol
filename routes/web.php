@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('encuestas_eliminar/{id}', 'EncuestasController@destroy')->name('encuestas_eliminar');
     Route::resource('encuestas', 'EncuestasController');
 
+//Banners
+    Route::resource('banners', 'bannersController');
 
 
 });
