@@ -45,13 +45,23 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-4">
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                <label>url / destino</label>
+                <label>url</label>
                 <input type="text" class="form-control" name="url" value="{{ old('url', $banner->url) }}" maxlength="200">
                 @if ($errors->has('url'))
                     <p class="help-block">{{ $errors->first('url') }}</p>
                 @endif
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Sección destino</label>
+                <select name="seccion_destino" class="form-control">
+                @foreach($secciones_destino as $seccion_destino)
+                  <option value="{{$seccion_destino}}"@if(old('seccion_destino', $banner->seccion_destino)==$seccion_destino) selected @endif>{{$seccion_destino}}</option>
+                @endforeach
+                </select>
             </div>
         </div>
     </div>

@@ -52,7 +52,7 @@ $data=array(
 	"Banners"=>array(
 		"Ruta"=>"/banners",
 		"Método"=>"GET",
-		"Éxito (Array)"=>['seccion','target','url','foto'],
+		"Éxito (Array)"=>['seccion','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
 	),
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
@@ -107,7 +107,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
 		)
@@ -122,7 +122,7 @@ $data=array(
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
 			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
@@ -147,7 +147,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)

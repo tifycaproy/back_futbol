@@ -21,7 +21,10 @@ class BannersController extends Controller
     {
         $id=decodifica($id);
         $banner=Banner::find($id);
-        return view('banners.edit')->with('banner',$banner);
+        $secciones_destino=[
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','games'
+        ];
+        return view('banners.edit')->with('banner',$banner)->with('secciones_destino',$secciones_destino);
     }
 
     public function update(Request $request, $id)
@@ -32,6 +35,7 @@ class BannersController extends Controller
             $data=[
                 'target' => $request->target,
                 'url' => $request->url,
+                'seccion_destino' => $request->seccion_destino,
             ];
 
             $fileName = "";
