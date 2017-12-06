@@ -53,7 +53,7 @@ $data=array(
 		"Ruta"=>"/banners",
 		"Método"=>"GET",
 		"Éxito (Array)"=>['seccion','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
-	),
+	), 
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",

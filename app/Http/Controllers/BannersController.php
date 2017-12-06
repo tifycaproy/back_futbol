@@ -37,7 +37,6 @@ class BannersController extends Controller
                 'url' => $request->url,
                 'seccion_destino' => $request->seccion_destino,
             ];
-
             $fileName = "";
             if($request->archivo){
                 $foto=json_decode($request->archivo);

@@ -16,7 +16,7 @@ class BannersController extends Controller
      */
     public function index()
     {
-        $banners=Banner::get(['seccion','target','url','foto']);
+        $banners=Banner::get(['seccion','target','url','seccion_destino','foto']);
 
         $data["status"]='exito';
         $data["data"]=$banners;
@@ -26,7 +26,6 @@ class BannersController extends Controller
                 $banner['foto']=config('app.url') . 'banners/' . $banner['foto'];
             }
         }
-
         return $data;
     }
 }
