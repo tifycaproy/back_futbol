@@ -14,7 +14,7 @@
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li><a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a></li>
-            <li>Editar</li>
+            <li>Editar ({{ $banner->seccion }})</li>
         </ol>
     </div>
 </div>
@@ -48,7 +48,7 @@
         <div class="col-lg-8">
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                 <label>url / destino</label>
-                <input type="text" class="form-control" name="url" value="{{ old('url', $banner->url) }}" maxlength="100" required autofocus>
+                <input type="text" class="form-control" name="url" value="{{ old('url', $banner->url) }}" maxlength="200">
                 @if ($errors->has('url'))
                     <p class="help-block">{{ $errors->first('url') }}</p>
                 @endif
@@ -63,9 +63,9 @@
                     <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
                 <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
-                @if($noticia->foto<>'')
+                @if($banner->foto<>'')
                 <h5>Imagen actual</h5>
-                <p><img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" style="max-width: 100%"></p>
+                <p><img src="{{ config('app.url') . 'banners/' . $banner->foto }}" style="max-width: 100%"></p>
                 @endif
             </div>
         </div>
