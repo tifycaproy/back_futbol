@@ -26,6 +26,7 @@ class ConfiguracionController extends Controller
         $data["status"]='exito';
         $data["data"]=$configuracion;
         $data["data"]["patrocinante"]=config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
+        $data["data"]["url_vistas"]=config('app.share_url');
         return $data;
     }
 }
