@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
+use App\Referido;
 
 
 class UsuariosController extends Controller
@@ -30,9 +31,12 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-
-            
             $email=$request["email"];
+
+            // Referidos
+            if($referente=Referido::where('email',$email)->first()){
+                $request["referido"]=$referente->usuario_id;
+            }
 
             if(Usuario::where('email',$email)->first()){
                 return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
@@ -41,10 +45,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
 
-            if(isset($request["referido"])) if($request["referido"]<>'') if(!Usuario::where('apodo',$request["referido"])->first()){
-                return ["status" => "fallo", "error" => ["El apodo del referido no existe"]];
-            }
-
+//ojo
 
             $request["clave"]=password_hash($request["clave"], PASSWORD_DEFAULT);
             if(isset($request["foto"])){
@@ -323,6 +324,10 @@ class UsuariosController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
+    public function registrar_referido(Request $request)
+    {
+        
+    }
     public function consultar_referidos($token)
     {
         try{
@@ -334,8 +339,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $apodo=Usuario::where('id',$idusuario)->first(['apodo']);
-            $usuarios=Usuario::where('referido',$apodo->apodo)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']);
+            $usuarios=Usuario::where('referido',$idusuario)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']);
             $data=[];
             foreach ($usuarios as $usuario) {
                 $usuario=$usuario->toArray();

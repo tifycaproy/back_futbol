@@ -34,6 +34,9 @@ Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
+//registrar referidos
+Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
+
 //Calendario
 Route::get('copas', 'api\CalendarioController@copas');
 Route::get('partidos', 'api\CalendarioController@partidos');

@@ -85,7 +85,6 @@ $data=array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
 			"apodo" => "varchar(30) / opcional",
-			"referido" => "varchar(30) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
 			"celular" => "varchar(30) / opcional",
@@ -97,7 +96,7 @@ $data=array(
 		),
 		"Éxito"=>"token, idusuario",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
+			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
 		)
 	),
 	"Iniciar sessión"=>array(

@@ -22,7 +22,7 @@ class BannersController extends Controller
         $id=decodifica($id);
         $banner=Banner::find($id);
         $secciones_destino=[
-            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','games'
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose',
         ];
         return view('banners.edit')->with('banner',$banner)->with('secciones_destino',$secciones_destino);
     }
