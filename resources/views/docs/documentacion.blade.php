@@ -49,7 +49,7 @@ $data=array(
 			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15','patrocinante','url_vistas'
 		],
 	),
-	
+
 	"Banners"=>array(
 		"Ruta"=>"/banners",
 		"Método"=>"GET",
@@ -59,7 +59,7 @@ $data=array(
 	"Ventanas para compartir"=>array(
 		"Ruta"=>"/ventanas_compartir",
 		"Método"=>"GET",
-		"Éxito (Array)"=>['seccion','titulo','descripcion','foto'],
+		"Éxito (Array)"=>['seccion','url'],
 	), 
 
 	"Noticias"=>array(

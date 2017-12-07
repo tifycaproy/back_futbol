@@ -16,15 +16,13 @@ class CompartirController extends Controller
      */
     public function index()
     {
-        $ventanas=Compartir::get(['seccion','titulo','descripcion','foto']);
+        $ventanas=Compartir::get(['seccion']);
 
         $data["status"]='exito';
         $data["data"]=$ventanas;
  
         foreach($data["data"] as &$ventana){
-            if($ventana["foto"]<>''){
-                $ventana['foto']=config('app.url') . 'ventanas/' . $ventana['foto'];
-            }
+            $ventana->url=config('app.share_url') . 'compartir/' . $ventana->seccion;
         }
         return $data;
     }
