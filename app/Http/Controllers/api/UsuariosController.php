@@ -69,15 +69,120 @@ class UsuariosController extends Controller
 
                 }
             }
+            $clave_recuperacion=rand(1000,9999);
+            $request["pinseguridad"]=$clave_recuperacion;
+            $request["estatus"]='Pendiente';
+
             $nuevo=Usuario::create($request);
             $idusuario=$nuevo->id;
-            
+
+            //email con pin de ingreso
+            $headers = "MIME-Version: 1.0\n"; 
+            $headers .= "Content-type: text/html; charset=utf-8\n"; 
+            $headers .= "X-Priority: 3\n"; 
+            $headers .= "X-MSmail-Priority: Normal\n"; 
+            $headers .= "X-mailer: php\n"; 
+            $headers .= "From: appoficial@millonarios.com.co\n"; 
+            $subject="Pin de validación de cuenta";
+            $cuerpo = '
+            <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
+                <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="' . config('app.share_url' ) . 'img/logo.jpg"></td></tr>
+                <tr>
+                    <td width="20"> </td>
+                    <td style="padding-bottom: 20px">
+                        <p>¡Hola, Hincha Oficial!</p>
+                        <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
+                        <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
+                        <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
+                        <p>Muchas gracias,<br>El equipo de Selección Colombia.</p>
+                    </td>
+                    <td width="20"> </td>
+                </tr>
+                <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="' . config('app.share_url' ) . 'img/logoG.jpg"></td></tr>
+            </table></p>';
+            if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
+            //fin de email
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+
+
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
+
+    public function reenviar_pin_confirmacion($email)
+    {
+        try{
+            $usuario=Usuario::where('email',$email)->first();
+            if(!$usuario){
+                return ["status" => "fallo", "error" => ["El email es invorrecto"]];
+            }
+            $clave_recuperacion=$usuario->pinseguridad;
+
+            //email con pin de ingreso
+            $headers = "MIME-Version: 1.0\n"; 
+            $headers .= "Content-type: text/html; charset=utf-8\n"; 
+            $headers .= "X-Priority: 3\n"; 
+            $headers .= "X-MSmail-Priority: Normal\n"; 
+            $headers .= "X-mailer: php\n"; 
+            $headers .= "From: appoficial@millonarios.com.co\n"; 
+            $subject="Pin de validación de cuenta";
+            $cuerpo = '
+            <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
+                <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="' . config('app.share_url' ) . 'img/logo.jpg"></td></tr>
+                <tr>
+                    <td width="20"> </td>
+                    <td style="padding-bottom: 20px">
+                        <p>¡Hola, Hincha Oficial!</p>
+                        <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
+                        <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
+                        <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
+                        <p>Muchas gracias,<br>El equipo de Selección Colombia.</p>
+                    </td>
+                    <td width="20"> </td>
+                </tr>
+                <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="' . config('app.share_url' ) . 'img/logoG.jpg"></td></tr>
+            </table></p>';
+            if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
+            //fin de email
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+
+    public function validar_cuenta(Request $request)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+            $errors=[];
+            if(!isset($request["email"])) $errors[]="El email es requerido";
+            if(!isset($request["pin"])) $errors[]="El pin es requerido";
+            if(count($errors)>0){
+                $result=["status" => "fallo", "error" => $errors];
+                return $result;
+            }
+            //fin validaciones
+            $email=$request["email"];
+            if($usuario=Usuario::where('pinseguridad',$request["pin"])->where('email',$email)->first(['id'])){
+                $result=["status" => "exito", "data" => ["token" => crea_token($usuario->id),"codigo" => codifica($usuario->id),"idusuario" => $usuario->id]];
+                $usuario->update(['estatus'=>'Activo']);
+                return $result;
+            }else{
+                $result=["status" => "fallo", "error" => ["email o pin incorrectos"]];
+                return $result;
+            }
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+
+
     public function iniciar_secion(Request $request)
     {
         $request=json_decode($request->getContent());
@@ -98,6 +203,9 @@ class UsuariosController extends Controller
             $usuario=Usuario::where('email',$email)->first();
             if($usuario){
                 if(password_verify($request["clave"], $usuario->clave)){
+                    if($usuario->estatus=='Pendiente'){
+                        return ["status" => "fallo", "error" => ["La cuenta aun no ha sido confirmada"]];
+                    }
                     return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
                 }else{
                     return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];

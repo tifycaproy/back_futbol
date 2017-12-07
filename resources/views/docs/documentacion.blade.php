@@ -94,11 +94,34 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"mensaje_pin",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
 		)
 	),
+
+	"Reenviar pin de confirmación"=>array(
+		"Ruta"=>"/reenviar_pin_confirmacion/{email}",
+		"Método"=>"GET",
+		"Éxito"=>"mensaje_pin",
+		"Falla"=>array(
+			"error"=>["El email es requerido","El email es invorrecto"],
+		)
+	),
+
+	"Validar cuenta"=>array(
+		"Ruta"=>"/validar_cuenta",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"email" => "varchar(200) / requerido / único",
+			"pin" => "varchar(4)",
+		),
+		"Éxito"=>["token","idusuario","codigo"],
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
+		)
+	),
+
 	"Iniciar sessión"=>array(
 		"Ruta"=>"/auth",
 		"Método"=>"POST",
@@ -108,7 +131,7 @@ $data=array(
 		),
 		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
+			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos","La cuenta aun no ha sido confirmada")
 		)
 	),
 	"iniciar sesión con redes"=>array(

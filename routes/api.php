@@ -26,6 +26,8 @@ Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
 //usuarios
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
+Route::get('reenviar_pin_confirmacion/{email}', 'api\UsuariosController@reenviar_pin_confirmacion');
+Route::post('validar_cuenta', 'api\UsuariosController@validar_cuenta');
 Route::post('auth', 'api\UsuariosController@iniciar_secion');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
