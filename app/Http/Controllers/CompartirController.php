@@ -40,7 +40,7 @@ class CompartirController extends Controller
 
     public function general($seccion)
     {
-        if($contenido=Compartir::where('seccion',$seccion)->first()){
+        if($seccion=Compartir::where('seccion',$seccion)->first()){
             return view('compartir.general')->with('seccion',$seccion);
         }
     }

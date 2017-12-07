@@ -4,24 +4,29 @@
 	<meta charset="UTF-8">
 	<title>Referidos</title>
 	<link rel="stylesheet" href="css/css.css">
-	<base href="{{ config('app.share_url') }}compartir/">	
+    <base href="{{asset('/') }}compartir/" />
+
+	<title>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}</title>
+	<meta property="og:url"                content="{{ Request::fullUrl() }}" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="T{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}" />
+	<meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->descripcion) !!}" />
+	<meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
 </head>
 
 <body>
 	<div class="contenedor">
 		<header>
-			<h1>
-				Ya yo soy Hincha Oficial del Embajador, <br>¿Y tu que esperas? 
-			</h1>
+			<h1>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->titulo) !!}</h1>
 		</header>
 		<div class="contenido">
 			<!--IMAGEN-->
-			<img src="images/1.jpg" class="img-content">
+			<img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-content">
 			<!--TEXTO-->
 			<div class="texto">
+				<p>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->descripcion) !!}</p>
 				<h2><b>Descarga la App Oficial de Millonarios FC</b></h2>
 				<h3><b>¡Y disfruta de la experiencia del Ballet Azul en cualquier momento!</b></h3>
-				yy
 			</div>
 		</div>
 		<footer>
