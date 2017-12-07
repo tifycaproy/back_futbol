@@ -80,7 +80,7 @@
                 <div class="slim">
                     <input name="archivo" type="file" accept="image/jpeg, image/png, image/gif" />
                 </div>
-                <label><span>Mínimo 512 x 256 píxeles | JPG, PNG y GIF</span></label>
+                <label><span>Mínimo 360 x 60 píxeles | JPG, PNG y GIF</span></label>
                 @if($banner->foto<>'')
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'banners/' . $banner->foto }}" style="max-width: 100%"></p>
@@ -113,8 +113,8 @@ $(document).ready(function(){
       label: 'Arrastra tu imagen ó haz click aquí',
       ratio: 'free',
       minSize: {
-        width: 500,
-        height: 250
+        width: 360,
+        height: 60
       },
       size: {
         width: 1024,
