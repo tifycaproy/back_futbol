@@ -75,6 +75,12 @@
                         <a href="{{ route("usuarios.index") }}"><i class="fa fa-fw fa-user"></i> Usuarios</a>
                     </li>
                     <li>
+                        <a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("ventanas.index") }}"><i class="fa fa-fw fa-pencil"></i> Ventanas para compartir</a>
+                    </li>
+                    <li>
                         <a href="{{ route("noticias.index") }}"><i class="fa fa-fw fa-pencil"></i> Noticias</a>
                     </li>
                     <li>
