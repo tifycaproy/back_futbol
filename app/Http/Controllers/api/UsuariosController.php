@@ -94,7 +94,7 @@ class UsuariosController extends Controller
                         <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
                         <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
                         <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
-                        <p>Muchas gracias,<br>El equipo de Selección Colombia.</p>
+                        <p>Muchas gracias,<br>El equipo de Millonarios.</p>
                     </td>
                     <td width="20"> </td>
                 </tr>
@@ -139,7 +139,7 @@ class UsuariosController extends Controller
                         <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
                         <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
                         <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
-                        <p>Muchas gracias,<br>El equipo de Selección Colombia.</p>
+                        <p>Muchas gracias,<br>El equipo de Millonarios.</p>
                     </td>
                     <td width="20"> </td>
                 </tr>
@@ -322,7 +322,7 @@ class UsuariosController extends Controller
                             <p>Por favor ingrese el siguiente <strong>PIN</strong> en el app para finalizar.</p>
                             <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
                             <p>Si usted no ha solicitado esta solicitud de cambio de contraseña, pos favor omita este mensaje o responda para notificarlo. Este cambio de contraseña es válido por los <strong>siguientes 30 minutos</strong>.</p>
-                            <p>Muchas gracias,<br>El equipo de Selección Colombia.</p>
+                            <p>Muchas gracias,<br>El equipo de Millonarios.</p>
                         </td>
                         <td width="20"> </td>
                     </tr>

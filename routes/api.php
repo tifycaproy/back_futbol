@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function(){
 });
 Route::get('configuracion', 'api\ConfiguracionController@index');
 Route::get('banners', 'api\BannersController@index');
+Route::get('ventanas_compartir', 'api\CompartirController@index');
 
 //noticias
 Route::get('noticias', 'api\NoticiasController@index');
