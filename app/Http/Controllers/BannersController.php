@@ -33,6 +33,7 @@ class BannersController extends Controller
             $id=decodifica($id);
 
             $data=[
+                'titulo' => $request->titulo,
                 'target' => $request->target,
                 'url' => $request->url,
                 'seccion_destino' => $request->seccion_destino,

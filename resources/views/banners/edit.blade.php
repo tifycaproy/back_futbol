@@ -35,7 +35,13 @@
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" class="form-control" name="titulo" value="{{ old('titulo', $banner->titulo) }}" maxlength="100">
+            </div>
+        </div>
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Target</label>
                 <select name="target" class="form-control">
@@ -45,7 +51,9 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+    </div> 
+    <div class="row">
+        <div class="col-lg-6">
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                 <label>url</label>
                 <input type="text" class="form-control" name="url" value="{{ old('url', $banner->url) }}" maxlength="200">
@@ -54,7 +62,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="form-group">
                 <label>Sección destino</label>
                 <select name="seccion_destino" class="form-control">

@@ -28,6 +28,7 @@
                 <thead>
                     <tr>
                         <th>Sección</th>
+                        <th>Titulo</th>
                         <th width="60"></th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                 @foreach($banners as $banner)
                     <tr>
                         <td><a href="{{ route('banners.edit', codifica($banner->id) ) }}" title="Editar">{{ $banner->seccion }}</a></td>
+                        <td><a href="{{ route('banners.edit', codifica($banner->id) ) }}" title="Editar">{{ $banner->titulo }}</a></td>
                         <td>
                             <a href="{{ route('banners.edit', codifica($banner->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                         </td>

@@ -53,7 +53,7 @@ $data=array(
 	"Banners"=>array(
 		"Ruta"=>"/banners",
 		"Método"=>"GET",
-		"Éxito (Array)"=>['seccion','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
+		"Éxito (Array)"=>['seccion','titulo','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
 	), 
 
 	"Ventanas para compartir"=>array(
