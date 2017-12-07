@@ -4,7 +4,7 @@ echo "Compartir";
 echo "<pre>";
 print_r($_GET);
 echo "</pre>";
-echo 33;
+echo 334;
 ?>
 
  
