@@ -122,7 +122,7 @@ $data=array(
 	),
 
 	"Registrarse 2"=>array(
-		"Ruta"=>"/usuarios",
+		"Ruta"=>"/usuarios2",
 		"Método"=>"POST",
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
@@ -166,7 +166,7 @@ $data=array(
 	),
 
 	"Iniciar sessión 2"=>array(
-		"Ruta"=>"/auth",
+		"Ruta"=>"/auth2",
 		"Método"=>"POST",
 		"Parámetros"=>array(
 			"email" => "varchar(200) / requerido / único",
