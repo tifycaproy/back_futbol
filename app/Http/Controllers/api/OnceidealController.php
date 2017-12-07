@@ -63,7 +63,7 @@ class OnceidealController extends Controller
             	Onceideal::create($data);
             }
             unset($data);
-            $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "$" . codifica($idcalendario->calendario_alineacion_id);
+            $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "." . codifica($idcalendario->calendario_alineacion_id);
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -91,7 +91,7 @@ class OnceidealController extends Controller
                         "y"=>$idonce["y" . $l],
                     ];
                 }
-                $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "$" . codifica($idcalendario->calendario_alineacion_id);
+                $data["url"]=config('app.share_url') . 'compartir/onceideal/' . codifica($idusuario) . "." . codifica($idcalendario->calendario_alineacion_id);
 	            return ["status" => "exito", "data" => $data];
             	$idonce->update($request);
             }else{
