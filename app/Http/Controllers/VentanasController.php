@@ -21,7 +21,7 @@ class VentanasController extends Controller
     {
         $id=decodifica($id);
         $ventana=Compartir::find($id);
-        return view('ventanas.edit')->with('ventana',$ventana)->with('secciones_destino',$secciones_destino);
+        return view('ventanas.edit')->with('ventana',$ventana);
     }
 
     public function update(Request $request, $id)
