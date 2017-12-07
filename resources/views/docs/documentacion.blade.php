@@ -102,6 +102,41 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
+		"Éxito"=>"token, idusuario, codigo",
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
+		)
+	),
+
+	"Iniciar sessión"=>array(
+		"Ruta"=>"/auth",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"email" => "varchar(200) / requerido / único",
+			"clave" => "varchar(20) / requerido"
+		),
+		"Éxito"=>"token, idusuario, codigo",
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
+		)
+	),
+
+	"Registrarse 2"=>array(
+		"Ruta"=>"/usuarios",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"nombre" => "varchar(60) / requerido",
+			"apellido" => "varchar(60) / opcional",
+			"apodo" => "varchar(30) / opcional",
+			"email" => "varchar(100) / requerido / único",
+			"clave" => "varchar(20) / requerido",
+			"celular" => "varchar(30) / opcional",
+			"pais" => "varchar(100) / opcional",
+			"ciudad" => "varchar(100) / opcional",
+			"fecha_nacimiento" => "fecha / opcional / yy-mm-dd",
+			"genero" => "Masculino,Femenino",
+			"foto" => "base64 / opcional",
+		),
 		"Éxito"=>"mensaje_pin",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
@@ -130,7 +165,7 @@ $data=array(
 		)
 	),
 
-	"Iniciar sessión"=>array(
+	"Iniciar sessión 2"=>array(
 		"Ruta"=>"/auth",
 		"Método"=>"POST",
 		"Parámetros"=>array(
