@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function(){
     return $request->user();
 });
 Route::get('configuracion', 'api\ConfiguracionController@index');
+Route::get('banners', 'api\BannersController@index');
+Route::get('ventanas_compartir', 'api\CompartirController@index');
 
 //noticias
 Route::get('noticias', 'api\NoticiasController@index');
@@ -25,13 +27,19 @@ Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
 //usuarios
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
+Route::get('reenviar_pin_confirmacion/{email}', 'api\UsuariosController@reenviar_pin_confirmacion');
+Route::post('validar_cuenta', 'api\UsuariosController@validar_cuenta');
 Route::post('auth', 'api\UsuariosController@iniciar_secion');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
 Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
+Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_referidos');
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
+
+//registrar referidos
+Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
 
 //Calendario
 Route::get('copas', 'api\CalendarioController@copas');

@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use App\Calendario;
 use App\Onceideal;
 use App\Jugador;
+use App\Compartir;
 
 class CompartirController extends Controller
 {
 
     public function onceideal($ruta)
     {
-        list($idusuario,$idcalendario) = explode('$', $ruta);
+        list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
 
@@ -35,5 +36,12 @@ class CompartirController extends Controller
             }
         }
         return view('compartir.onceideal')->with("data",$data);
+    }
+
+    public function general($seccion)
+    {
+        if($seccion=Compartir::where('seccion',$seccion)->first()){
+            return view('compartir.general')->with('seccion',$seccion);
+        }
     }
 }

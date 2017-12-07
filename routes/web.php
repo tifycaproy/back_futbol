@@ -81,6 +81,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('encuestas_eliminar/{id}', 'EncuestasController@destroy')->name('encuestas_eliminar');
     Route::resource('encuestas', 'EncuestasController');
 
+//Banners
+    Route::resource('banners', 'BannersController');
+
+//Ventanas para compartir 
+    Route::resource('ventanas', 'VentanasController');
 
 
 });
@@ -90,3 +95,4 @@ Route::get('documentacion', function () {
 });
 
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
+Route::get('compartir/{seccion}', 'CompartirController@general');

@@ -46,9 +46,22 @@ $data=array(
 			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas','url_academia',
 			'tit_1','tit_1_1','tit_1_2','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
 			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
-			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15',
+			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15','patrocinante','url_vistas'
 		],
 	),
+
+	"Banners"=>array(
+		"Ruta"=>"/banners",
+		"Método"=>"GET",
+		"Éxito (Array)"=>['seccion','titulo','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
+	), 
+
+	"Ventanas para compartir"=>array(
+		"Ruta"=>"/ventanas_compartir",
+		"Método"=>"GET",
+		"Éxito (Array)"=>['seccion','url'],
+	), 
+
 	"Noticias"=>array(
 		"Ruta"=>"/noticias?page={pagina}",
 		"Método"=>"GET",
@@ -80,7 +93,6 @@ $data=array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
 			"apodo" => "varchar(30) / opcional",
-			"referido" => "varchar(30) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
 			"celular" => "varchar(30) / opcional",
@@ -90,11 +102,34 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"mensaje_pin",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
+			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
 		)
 	),
+
+	"Reenviar pin de confirmación"=>array(
+		"Ruta"=>"/reenviar_pin_confirmacion/{email}",
+		"Método"=>"GET",
+		"Éxito"=>"mensaje_pin",
+		"Falla"=>array(
+			"error"=>["El email es requerido","El email es invorrecto"],
+		)
+	),
+
+	"Validar cuenta"=>array(
+		"Ruta"=>"/validar_cuenta",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"email" => "varchar(200) / requerido / único",
+			"pin" => "varchar(4)",
+		),
+		"Éxito"=>["token","idusuario","codigo"],
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
+		)
+	),
+
 	"Iniciar sessión"=>array(
 		"Ruta"=>"/auth",
 		"Método"=>"POST",
@@ -102,9 +137,9 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
+			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos","La cuenta aun no ha sido confirmada")
 		)
 	),
 	"iniciar sesión con redes"=>array(
@@ -117,7 +152,7 @@ $data=array(
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
 			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
@@ -142,7 +177,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)

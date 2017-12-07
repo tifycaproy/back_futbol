@@ -1,0 +1,84 @@
+body, html{
+	height: 100%;
+}
+body{
+	background: -moz-radial-gradient(50% 50%, circle cover, #252994 0, #000000 100%);/* FF3.6+ */
+	background: -webkit-radial-gradient(50% 50%, circle cover, #252994 0, #000000 100%);/* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(50% 50%, circle cover, #252994 0, #000000 100%);/* Opera 11.10+ */
+	background: -ms-radial-gradient(50% 50%, circle cover, #252994 0, #000000 100%);/* IE10+ */
+	background: radial-gradient(50% 50%, circle cover, #252994 0, #000000 100%);/* W3C */
+	color: white;
+	font-family: arial;
+
+}
+.contenedor{
+	height: 80%;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3em;
+	text-align: center;
+	/*background-image: url("../images/logo_bg.png");
+	background-size: auto 100%;
+	background-repeat: no-repeat;*/
+}
+.img-content{
+	width: 100%;
+}
+h1{
+	text-transform: uppercase;
+}
+
+footer{
+ width: 100%;
+ text-align: left;
+}
+.logo{
+	width: 10%;
+	float: left;
+}
+.footer{
+	text-align: center;
+}
+.footer-btn img{
+	padding-top: 1em;
+	width: 20%;
+	text-align: center;
+}
+@media only screen and (min-width: 280px) and (max-width: 736px){
+	.contenedor{
+		width: 90%;
+		margin-top: 3em;
+	}
+	h1{
+	font-size: 18px;
+	}
+	footer{
+		text-align: center;
+	}
+	.logo{
+		float: none;
+		width: 20%;
+	}
+	.footer-btn img{
+		width: 40%;
+	}
+}
+@media only screen and (min-width: 737px) and (max-width: 1024px){
+	.contenedor{
+		width: 60%;
+	}
+	h1{
+	font-size: 20px;
+	}
+	footer{
+		text-align: center;
+	}
+	.logo{
+		float: none;
+		width: 20%;
+	}
+	.footer-btn img{
+		width: 30%;
+	}
+}
