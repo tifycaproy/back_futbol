@@ -198,7 +198,7 @@ class UsuariosController extends Controller
             </table></p>';
             if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
             //fin de email
-            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
 
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
@@ -243,7 +243,7 @@ class UsuariosController extends Controller
             </table></p>';
             if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
             //fin de email
-            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
