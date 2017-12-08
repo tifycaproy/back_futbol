@@ -76,7 +76,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="footer">
-			<div><a href=""><img src="img/android.png"></a>&nbsp;&nbsp;<a href=""><img src="img/ios.png"></a></div>
+			<div><a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="img/android.png"></a>&nbsp;&nbsp;<a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="img/ios.png"></a></div>
 		</td>
 	</tr>
 </table>
