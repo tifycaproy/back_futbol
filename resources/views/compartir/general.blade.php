@@ -33,8 +33,8 @@
 			<img src="images/logo_millos.png" class="logo">
 			<div class="footer">
 				<div class="footer-btn">
-					<a href=""><img src="images/btn1.png"></a>
-					<a href=""><img src="images/btn2.png"></a>
+					<a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="images/btn1.png"></a>
+					<a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="images/btn2.png"></a>
 				</div>
 			</div>
 			
