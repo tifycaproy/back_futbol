@@ -16,7 +16,103 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+// Versión 1
+ 
     public function registro_usuario(Request $request)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+            $errors=[];
+            if(!isset($request["email"])) $errors[]="El email es requerido";
+            if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
+            if(!isset($request["clave"])) $errors[]="La clave es requerida";
+            
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            $email=$request["email"];
+
+            // Referidos
+            if($referente=Referido::where('email',$email)->first()){
+                $request["referido"]=$referente->usuario_id;
+            }
+
+            if(Usuario::where('email',$email)->first()){
+                return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
+            }
+            if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
+                return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
+            }
+
+            $request["clave"]=password_hash($request["clave"], PASSWORD_DEFAULT);
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    //list(, $Base64Img) = explode(',', $Base64Img);
+                    //$image = base64_decode($Base64Img);
+                    $filepath='usuarios/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }
+            $nuevo=Usuario::create($request);
+            $idusuario=$nuevo->id;
+            return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+
+   public function iniciar_secion(Request $request)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+
+            $errors=[];
+            if(!isset($request["email"])) $errors[]="El email es requerido";
+            if(!isset($request["clave"])) $errors[]="La clave es requerida";
+            
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            
+            $email=$request["email"];
+            $usuario=Usuario::where('email',$email)->first();
+            if($usuario){
+                if(password_verify($request["clave"], $usuario->clave)){
+                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+                }else{
+                    return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
+                }
+            }else{
+                return["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
+            }
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+
+//versión 2
+    public function registro_usuario2(Request $request)
     {
         $request=json_decode($request->getContent());
         $request=get_object_vars($request);
@@ -102,7 +198,7 @@ class UsuariosController extends Controller
             </table></p>';
             if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
             //fin de email
-            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
 
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
@@ -147,7 +243,7 @@ class UsuariosController extends Controller
             </table></p>';
             if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
             //fin de email
-            return ["status" => "exito",'data'=>['mensaje_pin'=>'Aquí va el mensaje']];
+            return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -183,7 +279,7 @@ class UsuariosController extends Controller
     }
 
 
-    public function iniciar_secion(Request $request)
+    public function iniciar_secion2(Request $request)
     {
         $request=json_decode($request->getContent());
         $request=get_object_vars($request);
