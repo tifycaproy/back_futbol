@@ -47,7 +47,7 @@
                 <select name="target" class="form-control">
                     <option value="Interno"@if(old('target', $banner->target)=='Interno') selected @endif>Interno</option>
                     <option value="Externo"@if(old('target', $banner->target)=='Externo') selected @endif>Externo</option>
-                    <option value="Externo"@if(old('Seccion', $banner->target)=='Seccion') selected @endif>Seccion</option>
+                    <option value="Seccion"@if(old('Seccion', $banner->target)=='Seccion') selected @endif>Seccion</option>
                 </select>
             </div>
         </div>

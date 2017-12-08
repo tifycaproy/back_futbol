@@ -26,10 +26,15 @@ Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
 //usuarios
+// v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
+Route::post('auth', 'api\UsuariosController@iniciar_secion');
+//v2
+Route::post('usuarios2', 'api\UsuariosController@registro_usuario2');
+Route::post('auth2', 'api\UsuariosController@iniciar_secion2');
+
 Route::get('reenviar_pin_confirmacion/{email}', 'api\UsuariosController@reenviar_pin_confirmacion');
 Route::post('validar_cuenta', 'api\UsuariosController@validar_cuenta');
-Route::post('auth', 'api\UsuariosController@iniciar_secion');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
