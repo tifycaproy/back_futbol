@@ -15,10 +15,12 @@ yarn-error.log
 
 # Elastic Beanstalk Files
 
-.elasticbeanstalk/*
+#.elasticbeanstalk/*
 
-!.elasticbeanstalk/*.cfg.yml
+#!.elasticbeanstalk/*.cfg.yml
 
-!.elasticbeanstalk/*.global.yml
+#!.elasticbeanstalk/*.global.yml
 
 /config/database.php
+
+*.zip
