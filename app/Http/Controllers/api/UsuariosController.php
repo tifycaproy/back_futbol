@@ -267,7 +267,7 @@ class UsuariosController extends Controller
             $email=$request["email"];
             if($usuario=Usuario::where('pinseguridad',$request["pin"])->where('email',$email)->first(['id'])){
                 $result=["status" => "exito", "data" => ["token" => crea_token($usuario->id),"codigo" => codifica($usuario->id),"idusuario" => $usuario->id]];
-                $usuario->update(['estatus'=>'Activo']);
+                Usuario::where('pinseguridad',$request["pin"])->where('email',$email)->update(['estatus'=>'Activo']);
                 return $result;
             }else{
                 $result=["status" => "fallo", "error" => ["email o pin incorrectos"]];
