@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Referidos</title>
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="{{asset('/') }}compartir/css/css.css">
     <base href="{{asset('/') }}compartir/" />
 
 	<title>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}</title>
