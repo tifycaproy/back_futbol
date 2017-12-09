@@ -20,9 +20,10 @@ class VideovrController extends Controller
             		'titulo' => $video->titulo,
             		'descripcion' => $video->descripcion,
             		'foto' => config('app.url') . 'videosvr/' . $video->foto,
-            		'video' => config('app.url') . 'videosvr/' . $video->video,
+            		'video' => $video->video,
             	];
             }
+//                    'video' => config('app.url') . 'videosvr/' . $video->video,
             return ["status"=>'exito', 'data' => $data];
 
         } catch (Exception $e) {
