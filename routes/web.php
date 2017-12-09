@@ -95,4 +95,5 @@ Route::get('documentacion', function () {
 });
 
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
-Route::get('compartir/{seccion}', 'CompartirController@general');
+Route::get('compartir/alineacion', 'CompartirController@alineacion');
+Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
