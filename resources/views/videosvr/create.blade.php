@@ -36,6 +36,12 @@
                 @endif
             </div>
         </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Video</label>
+                <input type="text" class="form-control" name="video" value="{{ old('video') }}" maxlength="200" required>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -55,12 +61,6 @@
                 </div>
                 <label><span>Mínimo 500 x 250 píxeles | JPEG, PNG y GIF</span></label>
               </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Archivo a cargar</label>
-                <input type="file" name="video">
-            </div>
         </div>
     </div>
     <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('videosvr.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
