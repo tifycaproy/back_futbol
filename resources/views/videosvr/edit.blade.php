@@ -43,6 +43,14 @@
                 @endif
             </div>
         </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Video</label>
+                <input type="text" class="form-control" name="video" value="{{ old('video', $video->video) }}" maxlength="200" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
                 <label>Descripción</label>
@@ -64,16 +72,6 @@
                 @endif
 
               </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Archivo a cargar</label>
-                <input type="file" name="video">
-                @if($video->video<>'')
-                <h5>Video actual</h5>
-                <p><a href="{{ config('app.url') . 'videosvr/' . $video->video }}" target="_blank">{{ $video->video }}</a></p>
-                @endif
-            </div>
         </div>
     </div>
     <div class="row">
