@@ -38,7 +38,7 @@ class CompartirController extends Controller
         return view('compartir.onceideal')->with("data",$data);
     }
 
-    public function general($seccion)
+    public function general($seccion, $id='')
     {
         if($seccion=Compartir::where('seccion',$seccion)->first()){
             return view('compartir.general')->with('seccion',$seccion);
