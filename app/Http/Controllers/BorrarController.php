@@ -17,7 +17,7 @@ class BorrarController extends Controller
         ];
 
         Mail::send('emails.prueba', $data, function($message) use ($data) {
-            //$message->from('app@appmillonariosfc.com');
+            $message->from('gabanchsra31@hotmail.com');
             $message->to($data['email'], $data['nombre'])->subject('Prueba de email');
         });
 
