@@ -49,16 +49,23 @@ if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['s
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/tiendas.jpg";
 	$descripcion="¡ADQUIERE LOS PRODUCTOS OFICIALES DE TU EQUIPO!";
 	$titulo="Tienda Virtual";
-	
-	 }elseif($_GET['seccion']=='futbolbase' || $_GET['seccion']=='fútbolbase' || $_GET['seccion']=='futbolbase'){
-	$url="";
-	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/futbol_base.jpeg";
-	$descripcion="¡CONOCE A LAS FUTURAS ESTRELLAS DEL CUADRO EMBAJADOR!";
-	$titulo="Fútbol Base";
-	
-	
-	
-	}else{
+
+}elseif($_GET['seccion']=='futbolbase' || $_GET['seccion']=='fútbolbase' || $_GET['seccion']=='futbolbase'){
+    $url="";
+    $imagen="https://s3.amazonaws.com/cmsmillos/compartir/futbol_base.jpeg";
+    $descripcion="¡CONOCE A LAS FUTURAS ESTRELLAS DEL CUADRO EMBAJADOR!";
+    $titulo="Fútbol Base";
+
+
+}elseif($_GET['seccion']=='realidadvirtual' || $_GET['seccion']=='realidad_virtual'){
+$url="";
+$imagen="https://s3.amazonaws.com/cmsmillos/compartir/vr.jpeg";
+$descripcion="¡VIVE UNA EXPERIENCIA EMBAJADORA EN REALIDAD VIRTUAL!";
+$titulo="Realidad Virtual";
+
+
+
+}else{
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/compartaelapp.jpeg";
 	$descripcion="¡COMPARTE LA APP CON TODOS TUS AMIGOS EMBAJADORES Y CONVIÉRTETE EN HINCHA OFICIAL!";
