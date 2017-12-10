@@ -49,4 +49,5 @@ class CompartirController extends Controller
             return view('compartir.general')->with('seccion',$seccion);
         }
     }
+
 }
