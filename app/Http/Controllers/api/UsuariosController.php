@@ -195,7 +195,7 @@ class UsuariosController extends Controller
         try{
             $usuario=Usuario::where('email',$email)->first();
             if(!$usuario){
-                return ["status" => "fallo", "error" => ["El email es invorrecto"]];
+                return ["status" => "fallo", "error" => ["El email es incorrecto"]];
             }
             $clave_recuperacion=$usuario->pinseguridad;
 

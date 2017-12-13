@@ -148,7 +148,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>"mensaje_pin",
 		"Falla"=>array(
-			"error"=>["El email es requerido","El email es invorrecto"],
+			"error"=>["El email es requerido","El email es incorrecto"],
 		)
 	),
 
