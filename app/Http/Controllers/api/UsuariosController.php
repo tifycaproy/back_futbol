@@ -173,35 +173,17 @@ class UsuariosController extends Controller
             $idusuario=$nuevo->id;
 
             //email con pin de ingreso
-            $headers = "MIME-Version: 1.0\n"; 
-            $headers .= "Content-type: text/html; charset=utf-8\n"; 
-            $headers .= "X-Priority: 3\n"; 
-            $headers .= "X-MSmail-Priority: Normal\n"; 
-            $headers .= "X-mailer: php\n"; 
-            $headers .= "From: appoficial@millonarios.com.co\n"; 
-            $subject="Pin de validación de cuenta";
-            $cuerpo = '
-            <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
-                <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="' . config('app.share_url' ) . 'img/logo.jpg"></td></tr>
-                <tr>
-                    <td width="20"> </td>
-                    <td style="padding-bottom: 20px">
-                        <p>¡Hola, Hincha Oficial!</p>
-                        <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
-                        <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
-                        <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
-                        <p>Muchas gracias,<br>El equipo de Millonarios.</p>
-                    </td>
-                    <td width="20"> </td>
-                </tr>
-                <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="' . config('app.share_url' ) . 'img/logoG.jpg"></td></tr>
-            </table></p>';
-            if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
+            $data=[
+                "email"=>$email,
+                'clave_recuperacion'=>$clave_recuperacion,
+            ];
+            Mail::send('emails.enviar_pin', $data, function($message) use ($data) {
+                $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Pin de validación de cuenta');
+            });
             //fin de email
+
             return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
-
-
-            return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
+            //return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -218,31 +200,15 @@ class UsuariosController extends Controller
             $clave_recuperacion=$usuario->pinseguridad;
 
             //email con pin de ingreso
-            $headers = "MIME-Version: 1.0\n"; 
-            $headers .= "Content-type: text/html; charset=utf-8\n"; 
-            $headers .= "X-Priority: 3\n"; 
-            $headers .= "X-MSmail-Priority: Normal\n"; 
-            $headers .= "X-mailer: php\n"; 
-            $headers .= "From: appoficial@millonarios.com.co\n"; 
-            $subject="Pin de validación de cuenta";
-            $cuerpo = '
-            <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
-                <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="' . config('app.share_url' ) . 'img/logo.jpg"></td></tr>
-                <tr>
-                    <td width="20"> </td>
-                    <td style="padding-bottom: 20px">
-                        <p>¡Hola, Hincha Oficial!</p>
-                        <p>Gracias por completar el proceso de registro; por favor, ingresa el siguiente PIN en la APP para verificar tu cuenta:</p>
-                        <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
-                        <p>Si no haz realizado esta solicitud, omite este mensaje o responde para notificarlo.</p>
-                        <p>Muchas gracias,<br>El equipo de Millonarios.</p>
-                    </td>
-                    <td width="20"> </td>
-                </tr>
-                <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="' . config('app.share_url' ) . 'img/logoG.jpg"></td></tr>
-            </table></p>';
-            if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
+            $data=[
+                "email"=>$email,
+                'clave_recuperacion'=>$clave_recuperacion,
+            ];
+            Mail::send('emails.enviar_pin', $data, function($message) use ($data) {
+                $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Pin de validación de cuenta');
+            });
             //fin de email
+
             return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
         } catch (Exception $e) {
@@ -400,31 +366,15 @@ class UsuariosController extends Controller
                 $clave_recuperacion=rand(1000,9999);
                 Usuario::find($usuario->id)->update(['pinseguridad' => $clave_recuperacion]);
 
-
-                $headers = "MIME-Version: 1.0\n"; 
-                $headers .= "Content-type: text/html; charset=utf-8\n"; 
-                $headers .= "X-Priority: 3\n"; 
-                $headers .= "X-MSmail-Priority: Normal\n"; 
-                $headers .= "X-mailer: php\n"; 
-                $headers .= "From: appoficial@millonarios.com.co\n"; 
-                $subject="Recuperación de clave";
-                $cuerpo = '
-                <p><table width="480px" style="border-collapse: collapse; border: 1px solid #E5E5E5" align="center">
-                    <tr><td colspan="3" height="100px" align="center" bgcolor="#090909"><img src="' . config('app.share_url' ) . 'img/logo.jpg"></td></tr>
-                    <tr>
-                        <td width="20"> </td>
-                        <td style="padding-bottom: 20px">
-                            <p>Su solicitud de <strong>cambio de contraseña</strong> ha sido procesada exitosamente.</p>
-                            <p>Por favor ingrese el siguiente <strong>PIN</strong> en el app para finalizar.</p>
-                            <p style="font-size: 24px; font-weight: bold; text-align: center">' . $clave_recuperacion . '</p>
-                            <p>Si usted no ha solicitado esta solicitud de cambio de contraseña, pos favor omita este mensaje o responda para notificarlo. Este cambio de contraseña es válido por los <strong>siguientes 30 minutos</strong>.</p>
-                            <p>Muchas gracias,<br>El equipo de Millonarios.</p>
-                        </td>
-                        <td width="20"> </td>
-                    </tr>
-                    <tr><td colspan="3" bgcolor="#090909" align="center" height="45"><img src="' . config('app.share_url' ) . 'img/logoG.jpg"></td></tr>
-                </table></p>';
-                if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);  
+                //email con pin de recuperación
+                $data=[
+                    "email"=>$email,
+                    'clave_recuperacion'=>$clave_recuperacion,
+                ];
+                Mail::send('emails.recuperar_clave', $data, function($message) use ($data) {
+                    $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Recuperación de clave');
+                });
+                //fin de email
 
                 return ["status" => "exito", "data" => "Se ha enviado un email con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
             }else{
