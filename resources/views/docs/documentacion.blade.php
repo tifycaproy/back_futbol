@@ -148,7 +148,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>"mensaje_pin",
 		"Falla"=>array(
-			"error"=>["El email es requerido","El email es invorrecto"],
+			"error"=>["El email es requerido","El email es incorrecto"],
 		)
 	),
 
@@ -266,7 +266,7 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"copa",
 			"partido (array)"=>[
-				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info"
 			],
 		)
 	),
@@ -276,7 +276,7 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"copa",
 			"partido (array)"=>[
-				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info"
 			],
 		)
 	),
@@ -284,7 +284,7 @@ $data=array(
 		"Ruta"=>"/single_calendario/{idpartido}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>array(
-			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info",
 			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
 		)
 	),
@@ -312,7 +312,7 @@ $data=array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
 		"Éxito"=>array(
-			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info",
 			"jugadores (array)"=>['idjugador','nombre','foto','banner'],
 		)
 	),

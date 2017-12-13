@@ -7,6 +7,7 @@ use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
 use App\Referido;
+use App\Mail;
 
 
 class UsuariosController extends Controller
@@ -195,7 +196,7 @@ class UsuariosController extends Controller
         try{
             $usuario=Usuario::where('email',$email)->first();
             if(!$usuario){
-                return ["status" => "fallo", "error" => ["El email es invorrecto"]];
+                return ["status" => "fallo", "error" => ["El email es incorrecto"]];
             }
             $clave_recuperacion=$usuario->pinseguridad;
 
