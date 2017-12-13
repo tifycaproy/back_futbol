@@ -10,7 +10,7 @@
 	<title>TU ONCE IDEAL</title>
 	<meta property="og:url"                content="{{ Request::fullUrl() }}" />
 	<meta property="og:type"               content="article" />
-	<meta property="og:title"              content="TU ONCE IDEAL" />
+	<meta property="og:title"              content="MI ONCE IDEAL PARA EL PRÓXIMO PARTIDO" />
 	<meta property="og:description"        content="¡Escoge tu once ideal y comparte con tus amigos! Descarga ya la App Oficial de Millonarios FC" />
 	<meta property="og:image"              content="{{ $data['foto'] }}" />
 <style type="text/css">
@@ -46,7 +46,7 @@
 <table class="tablappal">
 	<tr style="background: #074C9C; text-align: center;">
 		<td colspan="2">
-			<h1>¡ESTE ES MI ONCE IDEAL!</h1>
+			<h1>¡MI ONCE IDEAL PARA EL PRÓXIMO PARTIDO!</h1>
 			<table class="tabla_banderas">
 				<tr>
 					<td><img src="{{ $data['bandera_1'] }}" class="banderas"></td>

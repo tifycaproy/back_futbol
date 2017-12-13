@@ -25,8 +25,8 @@
 			<!--TEXTO-->
 			<div class="texto">
 				<p>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->descripcion) !!}</p>
-				<h2><b>Descarga la App Oficial de Millonarios FC</b></h2>
-				<h3><b>¡Y disfruta de la experiencia del Ballet Azul en cualquier momento!</b></h3>
+				<h2><b>{{ $seccion->footer1 }}</b></h2>
+				<h3><b>{{ $seccion->footer2 }}</b></h3>
 			</div>
 		</div>
 		<footer>
