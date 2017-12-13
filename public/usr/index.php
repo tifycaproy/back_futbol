@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 
 if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['seccion']=='alineaciónoficial'){
 
@@ -8,42 +8,42 @@ if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['s
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/tabla.jpg";
 	$descripcion="¡ASÍ VA EL EMBAJADOR EN LA LIGA AGUILA!";
 	$titulo="Alineación";
-	
-	
+
+
 	}elseif($_GET['seccion']=='tabla' || $_GET['seccion']=='tabla' || $_GET['tabla']=='tabla'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/tabla.jpg";
 	$descripcion="¡ASÍ VA EL EMBAJADOR EN LA LIGA AGUILA!";
 	$titulo="Tabla";
-	
-	
-	
+
+
+
 	}elseif($_GET['seccion']=='calendario' || $_GET['seccion']=='calendario' || $_GET['seccion']=='calendario'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/calendario.jpg";
 	$descripcion="¡NO TE PIERDAS NINGÚN PARTIDO DE MILLONARIOS Y CONOCE TODA LA INFORMACIÓN OFICIAL!";
 	$titulo="Calendario";
-	
-	
-	
+
+
+
 	}elseif($_GET['seccion']=='noticias' || $_GET['seccion']=='noticias' || $_GET['seccion']=='noticias'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/noticias.jpeg";
 	$descripcion="¡CONOCE LAS ÚLTIMAS NOTICIAS DEL EMBAJADOR!";
 	$titulo="Noticias";
-	
+
     }elseif($_GET['seccion']=='estadisticas' || $_GET['seccion']=='estadisticas' || $_GET['seccion']=='estadisticas'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/estadisticas.jpg";
 	$descripcion="¡CONOCE LAS ESTADÍSTICAS DEL BALLET AZUL EN ESTA TEMPORADA!";
 	$titulo="Estadisticas";
-	
+
 	 }elseif($_GET['seccion']=='equipo' || $_GET['seccion']=='equipo' || $_GET['seccion']=='equipo'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/equipo.jpeg";
 	$descripcion="¡CONOCE LA PLANTILLA EMBAJADORA Y APLAUDE A TU JUGADOR FAVORITO!";
 	$titulo="Equipo";
-	
+
 	 }elseif($_GET['seccion']=='tiendavirtual' || $_GET['seccion']=='tiendavirtual' || $_GET['seccion']=='tiendavirtual'){
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/tiendas.jpg";
@@ -65,16 +65,16 @@ $titulo="Realidad Virtual";
 
 
 
-}else{
+}else{*/
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/compartaelapp.jpeg";
 	$descripcion="¡COMPARTE LA APP CON TODOS TUS AMIGOS EMBAJADORES Y CONVIÉRTETE EN HINCHA OFICIAL!";
 	$titulo="Comparte tu pasión";
-	
-	
-	
-	
-}
+
+
+
+
+/*}*/
 
 ?>
 
