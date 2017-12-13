@@ -1,174 +1,189 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"> <html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
 
-    
-<style>
-.text-center{
-text-align:center;
 
-}
-/* The Modal (background) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 40px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: black;
-}
-.modal-content > img {
-	width: 100%;
-	z-index: 99999999999;
-	height: 100%;
-}
+    <style>
+        .text-center {
+            text-align: center;
+            }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  width: 95%;
-  max-width: 1200px;
-}
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: black;
+            }
 
-/* The Close Button */
-.close {
-	color: white;
-	position: absolute;
-	top: 0px;
-	right: 25px;
-	font-size: 40px;
-	font-weight: bold;
-}
+        .modal-content > img {
+            width: 100%;
+            z-index: 99999999999;
+            height: 100%;
+            }
 
-.close:hover,
-.close:focus {
-  color: #999;
-  text-decoration: none;
-  cursor: pointer;
-}
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            width: 95%;
+            max-width: 1200px;
+            }
 
-.mySlides {
-  display: none;
-}
+        /* The Close Button */
+        .close {
+            color: white;
+            position: absolute;
+            top: 0px;
+            right: 25px;
+            font-size: 40px;
+            font-weight: bold;
+            }
 
-.cursor {
-  cursor: pointer
-}
+        .close:hover,
+        .close:focus {
+            color: #999;
+            text-decoration: none;
+            cursor: pointer;
+            }
 
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
+        .mySlides {
+            display: none;
+            }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
+        .cursor {
+            cursor: pointer
+            }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+            }
 
-img {
-  margin-bottom: -4px;
-}
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            }
 
-.caption-container {
-  text-align: center;
-  background-color: black;
-  padding: 2px 16px;
-  color: white;
-}
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            }
 
-.demo {
-  opacity: 0.6;
-}
+        img {
+            margin-bottom: -4px;
+            }
 
-.active,
-.demo:hover {
-  opacity: 1;
-}
+        .caption-container {
+            text-align: center;
+            background-color: black;
+            padding: 2px 16px;
+            color: white;
+            }
 
-img.hover-shadow {
-  transition: 0.3s
-}
-.center-image{
+        .demo {
+            opacity: 0.6;
+            }
 
-text-align: center;
-font-size: 16px;
-color: #fff;
-}
-.center-image img {
-	width: 100%;
-	height: auto;
-}
-.proximamente{
+        .active,
+        .demo:hover {
+            opacity: 1;
+            }
+
+        img.hover-shadow {
+            transition: 0.3s
+            }
+
+        .center-image {
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            }
+
+        .center-image img {
+            width: 100%;
+            height: auto;
+            }
+
+        .proximamente {
+            }
+
+        .hover-shadow:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+            }
+
+        .main-img{
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            }
+        .main-img img {
+            padding: 0;
+            margin: 0 auto;
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: 100vh;
+            }
+    </style>
 
 
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-}
-</style>
-    
-    
     <link href="css/especial.css" rel="stylesheet" type="text/css">
     <link href="css/simulador.css" rel="stylesheet" type="text/css">
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery/jquery-min.js"></script>
- 
-<meta charset="utf-8">
+
+    <meta charset="utf-8">
 </head>
 <body>
-<span class="center-image">
+
 <?php
 
-
+/*
 
 if($_GET['id']==1 || $_GET['idcopa']==1){
 echo "<img src=\"libertadores.jpg\">";
 }elseif($_GET['id']==2 || $_GET['idcopa']==2){
 echo "<img src=\"tabla.jpg\">";
-}
-
+}*/
 ?>
-<br>
-<h3 class="proximamente">Proximamente...</h3>
+<div class="main-img"><img src="calculo_proximamente.jpg" alt="Millonarios Calcula el Resultado de los Embajadores en los Próximos torneos"></div>
 
-</span>
 </body>
 </html>
