@@ -32,6 +32,8 @@ class VentanasController extends Controller
             $data=[
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
+                'footer1' => $request->footer1,
+                'footer2' => $request->footer2,
             ];
             $fileName = "";
             if($request->archivo){

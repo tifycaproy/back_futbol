@@ -49,6 +49,20 @@
         </div>
     </div> 
     <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Título footer 1</label>
+                <input type="text" class="form-control" name="footer1" value="{{ old('footer1', $ventana->footer1) }}" maxlength="200" required>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Título footer 2</label>
+                <input type="text" class="form-control" name="footer2" value="{{ old('footer2', $ventana->footer2) }}" maxlength="200" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Foto</label>
