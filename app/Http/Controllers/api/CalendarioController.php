@@ -49,6 +49,7 @@ class CalendarioController extends Controller
                     'fecha'=>$fecha->fecha,
                     'fecha_etapa'=>$fecha->fecha_etapa,
                     'estadio'=>$fecha->estadio,
+                    'info'=>$fecha->info,
                 ];
             }
             $data["data"][]=[
@@ -105,6 +106,7 @@ class CalendarioController extends Controller
                     'fecha_etapa'=>$fecha->fecha_etapa,
                     'estadio'=>$fecha->estadio,
                     'estadio'=>$fecha->estadio,
+                    'info'=>$fecha->info,
             ];
             $noticias=$fecha->noticias;
             $data["data"]['noticias']=[];
@@ -137,6 +139,7 @@ class CalendarioController extends Controller
             'fecha'=>date('Y-m-d H:i',strtotime($fecha->fecha)),
             'fecha_etapa'=>$fecha->fecha_etapa,
             'estadio'=>$fecha->estadio,
+            'info'=>$fecha->info,
         ];
         $jugadores=[];
         $convocados=Convocado::orderby('orden','desc')->get();
