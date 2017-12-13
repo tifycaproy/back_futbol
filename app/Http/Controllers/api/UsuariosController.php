@@ -7,6 +7,7 @@ use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
 use App\Referido;
+use App\Mail;
 
 
 class UsuariosController extends Controller

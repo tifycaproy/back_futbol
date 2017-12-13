@@ -78,6 +78,7 @@ class CalendarioController extends Controller
                     'fecha'=>$fecha->fecha,
                     'fecha_etapa'=>$fecha->fecha_etapa,
                     'estadio'=>$fecha->estadio,
+                    'info'=>$fecha->info,
                 ];
             }
             $data["data"][]=[
@@ -102,6 +103,7 @@ class CalendarioController extends Controller
                     "goles_2"=>$fecha->goles_2,
                     'fecha'=>$fecha->fecha,
                     'fecha_etapa'=>$fecha->fecha_etapa,
+                    'estadio'=>$fecha->estadio,
                     'estadio'=>$fecha->estadio,
             ];
             $noticias=$fecha->noticias;

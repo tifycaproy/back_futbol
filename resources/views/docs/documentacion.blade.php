@@ -276,7 +276,7 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"copa",
 			"partido (array)"=>[
-				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info"
 			],
 		)
 	),
