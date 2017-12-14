@@ -179,7 +179,7 @@ class UsuariosController extends Controller
                 'clave_recuperacion'=>$clave_recuperacion,
             ];
             Mail::send('emails.enviar_pin', $data, function($message) use ($data) {
-                $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Pin de validación de cuenta');
+                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
             });
             //fin de email
 
@@ -206,7 +206,7 @@ class UsuariosController extends Controller
                 'clave_recuperacion'=>$clave_recuperacion,
             ];
             Mail::send('emails.enviar_pin', $data, function($message) use ($data) {
-                $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Pin de validación de cuenta');
+                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
             });
             //fin de email
 
@@ -373,7 +373,7 @@ class UsuariosController extends Controller
                     'clave_recuperacion'=>$clave_recuperacion,
                 ];
                 Mail::send('emails.recuperar_clave', $data, function($message) use ($data) {
-                    $message->from('app@appmillonariosfc.com')->to($data['email'])->subject('Recuperación de clave');
+                    $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
                 });
                 //fin de email
 
