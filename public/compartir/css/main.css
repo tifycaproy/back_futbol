@@ -1,0 +1,105 @@
+@font-face {
+	font-family: 'GillSans-Light';
+    src: url('../font/original_GillSans-Light.eot?#iefix') format('embedded-opentype'), 
+         url('../font/original_GillSans-Light.woff') format('woff'),
+         url('../font/original_GillSans-Light.ttf') format('truetype'),
+         url('../font/original_GillSans-Light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+body, html{
+	height: 100%;
+	padding: 0px !important;
+	margin: 0px !important;	
+	height: 100%;
+	
+}
+body{
+	background: #161F3D;
+	color: white;
+	font-family:'GillSans-Light', Sans-Serif;
+
+
+}
+.texto{
+	font-family:'GillSans-Light', Sans-Serif;
+	text-transform: uppercase;
+}
+.container-fluid{
+	text-align: center;
+	padding:  0px !important;
+	height: 100%;
+}
+h1{
+	text-transform: uppercase; ;
+}
+.img-fluid{
+	min-width: 100% !important;
+}
+.logo_millos{
+	width: 30%;
+}
+.separador{
+	width: 90%;
+}
+.fondo{
+	background-image: url("../images/logo_bg.svg");
+	background-size: cover;
+}
+input{
+		background: none !important;
+		color: white !important;
+	}
+input[type=submit]{
+		background: blue !important;
+		border: none;
+	}
+
+
+/* Ordenadores de sobremesa y portátiles */
+@media only screen 
+and (min-width : 1024px) {
+	h1{
+		font-size: 30px;
+	}
+	.logo_millos{
+		width: 45%;
+	}
+	.tiendas{
+		margin-top: 2rem;
+		width: 40%;
+	}
+}
+/* Smartphones (portrait & landscape) */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px){
+	h1{
+		font-size: 50px;
+	}
+	h2{
+		font-size: 40px;
+	}
+	
+	.tiendas{
+		margin-top: 1rem;
+		width: 70%;
+	}
+	input{
+		padding: 2.3rem 1rem !important;
+		font-size: 2.5em !important;
+		border-radius: 20px !important;
+		background: none !important;
+	}
+	
+}
+/* iPads (portrait & landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	.tiendas{
+		margin-top: 2rem;
+		width: 70%;
+	}
+}
