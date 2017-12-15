@@ -5,8 +5,8 @@
 if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['seccion']=='alineaciónoficial'){
 
 	$url="";
-	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/tabla.jpg";
-	$descripcion="¡ASÍ VA EL EMBAJADOR EN LA LIGA AGUILA!";
+	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/alineacion.jpg";
+	$descripcion="¡CONOCE LA ALINEACIÓN OFICIAL Y CADA EVENTO DEL PARTIDO EN TIEMPO REAL!";
 	$titulo="Alineación";
 	
 	
