@@ -57,8 +57,8 @@ class CompartirController extends Controller
     {
         try{
          $errors=[];
-         $idusuario=decodifica_token($codigo);
-         if($idusuario=="") $errors[]="El token es incorrecto";
+         $idusuario=decodifica($codigo);
+         if($idusuario=="") $errors[]="El codigo es incorrecto";
          if(count($errors)>0){
              return ["status" => "fallo", "error" => $errors];
          }
