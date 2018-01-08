@@ -55,19 +55,24 @@ class CompartirController extends Controller
 
     public function referidos($codigo)
     {
-        try{
+
+       try{
             //Validaciones
-            $errors=[];
-            $idusuario=decodifica_token($codigo);
-            if($idusuario=="") $errors[]="El token es incorrecto";
-            if(count($errors)>0){
-                return ["status" => "fallo", "error" => $errors];
-            }
- 
-       $codigo_referido = $idusuario;
-       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();;
-       $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
-       return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+           $errors=[];
+           $idusuario=decodifica_token($codigo);
+           if($idusuario=="") $errors[]="El token es incorrecto";
+           if(count($errors)>0){
+               return ["status" => "fallo", "error" => $errors];
+           }
+
+           $codigo_referido = $idusuario;
+           $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+           $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
+           return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+       } catch (Exception $e) {
+        return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+    } 
+
     }
 
     public function email($codigo)
