@@ -57,7 +57,6 @@ class CompartirController extends Controller
     {
 
        try{
-            //Validaciones
            $errors=[];
            $idusuario=decodifica_token($codigo);
            if($idusuario=="") $errors[]="El token es incorrecto";
