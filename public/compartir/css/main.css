@@ -30,14 +30,14 @@ body{
 	padding:  0px !important;
 	height: 100%;
 }
-h1{
+.nombre{
 	text-transform: uppercase; ;
 }
 .img-fluid{
 	min-width: 100% !important;
 }
 .logo_millos{
-	width: 30%;
+	width: 40%;
 }
 .separador{
 	width: 90%;
@@ -46,13 +46,22 @@ h1{
 	background-image: url("../images/logo_bg.svg");
 	background-size: cover;
 }
-input{
-		background: none !important;
-		color: white !important;
+.size-lg{
+	font-size: 80px;
+	font-weight: bold;
 	}
-input[type=submit]{
-		background: blue !important;
-		border: none;
+input{
+
+		font-weight: bold;
+	}
+.btn-submit {
+		background: rgba(47,78,152,1); ;
+		border-style: none;
+		border-width: 0px;
+		border-color: blue;
+		color: white;
+		font-size: 1.5em;
+
 	}
 
 
@@ -67,6 +76,7 @@ and (min-width : 1024px) {
 	}
 	.tiendas{
 		margin-top: 2rem;
+		margin-bottom: 2rem;
 		width: 40%;
 	}
 }
@@ -88,10 +98,8 @@ and (max-device-width : 480px){
 	input{
 		padding: 2.3rem 1rem !important;
 		font-size: 2.5em !important;
-		border-radius: 20px !important;
-		background: none !important;
 	}
-	
+
 }
 /* iPads (portrait & landscape) */
 @media only screen 

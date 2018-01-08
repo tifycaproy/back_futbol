@@ -8,6 +8,8 @@ use App\Calendario;
 use App\Onceideal;
 use App\Jugador;
 use App\Compartir;
+use App\Referido;
+use App\Usuario;
 
 class CompartirController extends Controller
 {
@@ -43,11 +45,33 @@ class CompartirController extends Controller
         return view('compartir.alineacion');
     }
 
-    public function general($seccion, $id='')
+    public function general($seccion, $id)
     {
         if($seccion=Compartir::where('seccion',$seccion)->first()){
+
             return view('compartir.general')->with('seccion',$seccion);
         }
+    }
+
+    public function referidos($codigo)
+    {
+       $codigo_referido = $codigo;
+       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();;
+       $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
+       return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+    }
+
+    public function email($codigo)
+    {
+       $codigo_referido = $codigo;
+       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();;
+       $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
+
+       return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+    }
+    public function descargar()
+    {
+      return view('compartir.referidos.descargar');
     }
 
 }
