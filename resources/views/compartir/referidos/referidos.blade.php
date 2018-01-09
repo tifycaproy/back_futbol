@@ -79,7 +79,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
      //login facebook
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1899860873375949',
+            appId: '1859980400683639',
             autoLogAppEvents: true,
             xfbml: true,
             version: 'v2.11'
