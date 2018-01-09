@@ -62,15 +62,18 @@ class CompartirController extends Controller
          if(count($errors)>0){
              return ["status" => "fallo", "error" => $errors];
          }
-
          $codigo_referido = $idusuario;
+         $nombre="";
          $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
-         $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
+         if(isset($zusuarios->nombre)){
+           $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+         }
          return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
      } catch (Exception $e) {
         return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-    } 
-   } 
+    }     
+  } 
+
     public function email($codigo)
     {
        $codigo_referido = $codigo;
