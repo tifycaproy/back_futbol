@@ -5,8 +5,6 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-signin-client_id" content="532872190545-h87jgs562eijh6pfqkrahk53snqbla0s.apps.googleusercontent.com">
 	<title>Millonarios FC</title>
-	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap-grid.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/main.css') }}" />
