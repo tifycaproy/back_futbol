@@ -71,6 +71,8 @@ class ConfiguracionController extends Controller
             'tit_14_2_2'=> $request->tit_14_2_2,
             'tit_14_3'=> $request->tit_14_3,
             'tit_15'=> $request->tit_15,
+            'video_referidos'=> $request->video_referidos,
+            'terminos_referidos'=> $request->terminos_referidos,
         ];
         if($request->patrocinante){
             $foto=json_decode($request->patrocinante);

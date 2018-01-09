@@ -529,7 +529,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuarios=Usuario::where('referido',$idusuario)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes']);
+            $usuarios=Usuario::where('referido',$idusuario)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','estatus']);
             $data=[];
             foreach ($usuarios as $usuario) {
                 $usuario=$usuario->toArray();

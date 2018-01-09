@@ -128,8 +128,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+
+
+
         jQuery('.datetimepicker').datetimepicker({
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',allowTimes:[<?php
+                $u='';
+                $date=strtotime('2011-11-17 05:00');
+                for($l=1; $l<=69; $l++){
+                    echo $u . "'" . date('H:i',$date) .  "'";
+                    $u=',';
+                    $date=strtotime('+ 15 minute',$date);
+                }
+            ?>]
+
         });
     })
 </script>
