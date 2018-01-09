@@ -8,10 +8,8 @@
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap-grid.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/main.css') }}" />
-
 	<script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
 
-	
 </head>
 
 <body>

@@ -55,8 +55,7 @@ class CompartirController extends Controller
 
     public function referidos($codigo)
     {
-
-     try{
+        try{
          $errors=[];
          $idusuario=decodifica($codigo);
          if($idusuario=="") $errors[]="El codigo es incorrecto";
@@ -74,8 +73,6 @@ class CompartirController extends Controller
         return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
     }     
   } 
-
-    
 
     public function email($codigo)
     {
