@@ -74,12 +74,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('videosvr_eliminar/{id}', 'VideovrsController@destroy')->name('videosvr_eliminar');
     Route::resource('videosvr', 'VideovrsController');
 
-//Monumentales
-    Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');
-    Route::resource('monumentales', 'MonumentalesController');
-
+//encuestas
     Route::get('encuestas_eliminar/{id}', 'EncuestasController@destroy')->name('encuestas_eliminar');
     Route::resource('encuestas', 'EncuestasController');
+    Route::get('respuestas_eliminar/{id}', 'RespuestasController@destroy')->name('respuestas_eliminar');
+    Route::resource('respuestas', 'RespuestasController');
+
 
 //Banners
     Route::resource('banners', 'BannersController');
