@@ -45,53 +45,52 @@
             </div>
         </div>
         <div class="col-lg-3">
+            <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
+                <label>Fecha de inicio</label>
+                <input type="date" class="form-control" name="fecha_inicio" value="{{ old('fecha_inicio', $encuesta->fecha_inicio) }}" maxlength="10" required>
+                @if ($errors->has('fecha_inicio'))
+                    <p class="help-block">{{ $errors->first('fecha_inicio') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-3">
             <div class="form-group{{ $errors->has('fecha_fin') ? ' has-error' : '' }}">
                 <label>Fecha de finalización</label>
-                <input type="date" class="form-control" name="fecha_fin" value="{{ old('fecha_fin', date('Y-m-d',strtotime($encuesta->fecha_fin))) }}" maxlength="10" required>
+                <input type="date" class="form-control" name="fecha_fin" value="{{ old('fecha_fin', $encuesta->fecha_fin) }}" maxlength="10" required>
                 @if ($errors->has('fecha_fin'))
                     <p class="help-block">{{ $errors->first('fecha_fin') }}</p>
                 @endif
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
-                <label>Activa</label>
-                <select name="activa" class="form-control">
-                    <option value="1"@if(old('activa', $encuesta->activa)=='1') selected @endif>Si</option>
-                    <option value="0"@if(old('activa', $encuesta->activa)=='0') selected @endif>No</option>
+                <label>Tipo de voto</label>
+                <select name="tipo_voto" class="form-control">
+                    <option value="Único"@if(old('tipo_voto', $encuesta->tipo_voto)=='Único') selected @endif>Único</option>
+                    <option value="Múltiple simple"@if(old('tipo_voto', $encuesta->tipo_voto)=='Múltiple simple') selected @endif>Múltiple simple</option>
+                    <option value="Múltiple libre"@if(old('tipo_voto', $encuesta->tipo_voto)=='Múltiple libre') selected @endif>Múltiple libre</option>
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12"><!-- class tr active success warning danger -->
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Monumentales</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($monumentales as $monumental)
-                        <?php
-                        $seleccionada=false;
-                        foreach($encuesta->seleccionadas as $seleccionadas){
-                            if($seleccionadas->monumental_id==$monumental->id) $seleccionada=true;
-                        }
-                        ?>
-                        <tr>
-                            <td><input @if($seleccionada) checked @endif type="checkbox" name="monumentales[]" value="{{ $monumental->id }}" id="monumental{{ $monumental->id }}">  <label for="monumental{{ $monumental->id }}">{{ $monumental->nombre }}</label></td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Motrar resuntado cuando</label>
+                <select name="mostrar_resultados" class="form-control">
+                    <option value="Siempre"@if(old('mostrar_resultados', $encuesta->mostrar_resultados)=='Siempre') selected @endif>Siempre</option>
+                    <option value="Solo si ya votó"@if(old('mostrar_resultados', $encuesta->mostrar_resultados)=='Solo si ya votó') selected @endif>Solo si ya votó</option>
+                    <option value="Al finalizar la encuesta"@if(old('mostrar_resultados', $encuesta->mostrar_resultados)=='Al finalizar la encuesta') selected @endif>Al finalizar la encuesta</option>
+                </select>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('encuestas.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a> <a href="{{ route('encuestas.create') }}" class="btn btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a> <a href="{{ route('encuestas_eliminar', codifica($encuesta->id) ) }}" class="btn btn-danger"><i class="fa fa-fw fa-ban"></i> Eliminar</a>
+        </div>
+        <div class="col-lg-6">
+            <a href="{{ route("respuestas.index") }}" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Administrar Respuestas</a> 
         </div>
     </div>
 </form>
