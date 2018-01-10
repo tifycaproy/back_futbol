@@ -1,6 +1,5 @@
 @extends ('compartir.referidos.header')
 <?php 
-      $base_url = 'http://localhost/millonarios_backend/';
       $codigo_referido=$codigo; 
       $nombre_referido=$nombre;
  ?>
