@@ -14,4 +14,10 @@ class Encuesta extends Model
     {
         return $this->hasMany('App\EncuestaRespuesta');
     }
+    /*
+    public function respuestas($idusuario)
+    {
+        return $this->hasMany('App\EncuestaRespuesta');
+    }
+    */
 }
