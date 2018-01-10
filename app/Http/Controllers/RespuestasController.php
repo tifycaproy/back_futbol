@@ -12,7 +12,7 @@ class RespuestasController extends Controller
 {
     public function index()
     {
-        $respuestas=EncuestaRespuesta::paginate(25);
+        $respuestas=EncuestaRespuesta::where('encuesta_id',$_SESSION['encuesta_id'])->paginate(25);
         return view('respuestas.index')->with('respuestas',$respuestas);
     }
 
@@ -132,16 +132,7 @@ class RespuestasController extends Controller
             $id=decodifica($id);
 
             $data=[
-                'nombre' => $request->nombre,
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-                'nacionalidad' => $request->nacionalidad,
-                'n_camiseta' => $request->n_camiseta,
-                'posicion' => $request->posicion,
-                'peso' => $request->peso,
-                'estatura' => $request->estatura,
-                'instagram' => $request->instagram,
-                'activo' => $request->activo,
-                'calendario_id' => $request->calendario_id,
+                'respuesta' => $request->respuesta,
             ];
 
             if($request->foto){
@@ -178,6 +169,24 @@ class RespuestasController extends Controller
                     'ACL' => 'public-read',
                 ));
                 $data['banner']=$fileName_banner;
+            }
+
+            if($request->miniatura){
+                $foto=json_decode($request->miniatura);
+                $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
+                $fileName_miniatura = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                $picture=$foto->output->image;
+                $filepath = 'respuestas/' . $fileName_miniatura;
+
+                $s3 = S3Client::factory(config('app.s3'));
+                $result = $s3->putObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $filepath,
+                    'SourceFile' => $picture,
+                    'ContentType' => 'image',
+                    'ACL' => 'public-read',
+                ));
+                $data['miniatura']=$fileName_miniatura;
             }
 
             EncuestaRespuesta::find($id)->update($data);
