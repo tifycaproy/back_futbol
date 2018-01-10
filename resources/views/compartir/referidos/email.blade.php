@@ -1,75 +1,76 @@
 @extends ('compartir.referidos.header')
 <?php $codigo_referido=$codigo;
-      $nombre=$nombre;
-      
- ?>
+$nombre=$nombre;
+
+?>
 
 @section ('content')
 
-		<!--contenido-->
-		<section class="row justify-content-center mt-3 p-0">
-			<div class="col-12 col-lg-5 pl-5 pr-4">
-				<!--formulario-->
+<!--contenido-->
+<section class="row justify-content-center mt-3 no-gutters"><!-- clase no-gutter-->
+  
+ <div class="col-12 col-lg-5 pl-5 pr-4">
+    <!--formulario-->
 
-				<form name="form1" id="form1" role="form" action="" method="POST" class="mt-3 ">
-					<div class="form-group">
-						<input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido;?>">
-						<input type="text" name="nombre" class="form-control form-control-lg" id="nombre"  placeholder="Nombre" maxlength="60" required>
+    <form name="form1" id="form1" role="form" action="" method="POST" class="mt-3 ">
+       <div class="form-group">
+          <input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido;?>">
+          <input type="text" name="nombre" class="form-control form-control-lg" id="nombre"  placeholder="Nombre" maxlength="60" required>
 
-					</div>
-					<div class="form-group">
+      </div>
+      <div class="form-group">
 
-						<input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido" maxlength="60" required>
+          <input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido" maxlength="60" required>
 
-					</div>
-					<div class="form-row">
-						<div class="form-group col-3">
+      </div>
+      <div class="form-row">
+          <div class="form-group col-3">
 
-							<input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="+57" onchange="validarpais( this.value );"
-							placeholder="+57" minlength="2" maxlength="4" required>
+             <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="+57" onchange="validarpais( this.value );"
+             placeholder="+57" minlength="2" maxlength="4" required>
 
-						</div>
-						<div class="form-group col-9">
+         </div>
+         <div class="form-group col-9">
 
-							<input type="text" class="form-control form-control-lg" id="celular" name="celular" placeholder="Celular" maxlength="11" onchange="validarcelular(this.value );">
+             <input type="text" class="form-control form-control-lg" id="celular" name="celular" placeholder="Celular" maxlength="11" onchange="validarcelular(this.value );">
 
-						</div>
-					</div>
-					<div class="form-group">
+         </div>
+     </div>
+     <div class="form-group">
 
-						<input type="email" name="email" class="form-control form-control-lg" id="email"  placeholder="Correo" maxlength="100" required>
+      <input type="email" name="email" class="form-control form-control-lg" id="email"  placeholder="Correo" maxlength="100" required>
 
-					</div>
-					<div class="form-group">
+  </div>
+  <div class="form-group">
 
-						<input type="password" class="form-control form-control-lg" id="clave" name="clave"  placeholder="Contraseña" maxlength="60" required>
+      <input type="password" class="form-control form-control-lg" id="clave" name="clave"  placeholder="Contraseña" maxlength="60" required>
 
-					</div>
-					<div class="form-group ">
-						<input id="" type="submit" class="btn btn-submit btn-lg btn-block" value="Régistrate">
-						<div class="respuesta"></div>
-					</div>
-					<input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
-					
+  </div>
+  <div class="form-group ">
+      <input id="" type="submit" class="btn btn-submit btn-lg btn-block" value="Régistrate">
+      <div class="respuesta"></div>
+  </div>
+  <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+  
 
-				</form>
-				<!--fin formulario-->
-			</div>
-		</section>
+</form>
+<!--fin formulario-->
+</div>
+</section>
 
 
-	</div>
-	<!-- fin contenido-->
+</div>
+<!-- fin contenido-->
 
 </div>
 <!-- FIN CONTENEDOR-->
 @push('scripts')
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-	        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-	        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script type="text/javascript" language="javascript">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script type="text/javascript" language="javascript">
     function validarpais(pais) {
         var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
         var res = patt.test(pais);
@@ -144,18 +145,18 @@
             var cambio = JSON.stringify(data_referido);
             var ira    = "{{ url('descargar')}}";
             
-			$.ajaxSetup({
-			        headers: {
-			            'X-CSRF-TOKEN': $('[name="_token"]').val()
-			        }
-			});
+            $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('[name="_token"]').val()
+             }
+         });
 
-           $.ajax({
-           	url: "{{ url('/usuarios')}}",
-           	dataType: 'json',
-           	type: "POST",
-            data: cambio,
-           	success: function (data) {
+            $.ajax({
+                url: "{{ url('/usuarios')}}",
+                dataType: 'json',
+                type: "POST",
+                data: cambio,
+                success: function (data) {
                     //console.log(data);
                     if (data.status == 'exito') {
                     	document.location = ira;
@@ -169,11 +170,11 @@
                 },
 
             });
-       });
+        });
 
     });
 
-	</script>
+</script>
 @endpush
 
 @stop

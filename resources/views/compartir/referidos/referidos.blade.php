@@ -6,11 +6,10 @@
  ?>
 
 @section ('content')
-
-<section class="row justify-content-center  ">
-	<div class="col-12 col-lg-7 col-xl-4">
-
-		<img src="{{ asset ('compartir/images/separador.svg') }}" alt="" class="separador  m-3">
+<section class="row justify-content-center  no-gutters">
+<div class="col-12 col-lg-7 col-xl-3 no-gutters"><!-- clase no-gutter-->
+ 	 
+     <img src="{{ asset ('compartir/images/separador.svg') }}" alt="" class="separador  m-3">
 
 		<a href="javascript:void(0);" name="facebook"><img src="{{ asset ('compartir/images/btn_face.svg') }}" alt="" class="col-11 mt-3 mb-3 facebook"></a>
 
@@ -79,7 +78,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
      //login facebook
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1859980400683639',
+            appId: '1859980400683639', 
             autoLogAppEvents: true,
             xfbml: true,
             version: 'v2.11'

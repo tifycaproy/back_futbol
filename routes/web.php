@@ -111,7 +111,7 @@ Route::get('descargar', 'CompartirController@descargar');
 
 Route::resource('usuarios', 'api\UsuariosController');
 Route::post('usuarios', [
-        'uses' => 'api\UsuariosController@registro_usuario',
+        'uses' => 'api\UsuariosController@registro_usuario2',
         'as'   => 'usuarios'
     ]);
 Route::post('auth_redes', [
