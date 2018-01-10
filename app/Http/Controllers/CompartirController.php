@@ -77,8 +77,11 @@ class CompartirController extends Controller
     public function email($codigo)
     {
        $codigo_referido = $codigo;
-       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();;
-       $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
+       $nombre="";
+       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+       if(isset($zusuarios->nombre)){
+           $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+       }
 
        return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
     }
