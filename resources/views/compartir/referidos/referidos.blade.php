@@ -222,7 +222,8 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
             // On error
             function (error) {
                 $("#login-button").removeAttr('disabled');
-                alert('Error : Login Failed');
+                //alert('Error : Login Failed');
+                alert("Tu navegador está bloqueando las ventanas emergentes, Por favor, permite este sitio en tu configuración para poder acceder.");
             }
         );
 
