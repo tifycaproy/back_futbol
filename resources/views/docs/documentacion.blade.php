@@ -227,7 +227,7 @@ $data=array(
 		)
 	),
 	"Actualizar usuario"=>array(
-		"Ruta"=>"/usuarios/token",
+		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"PUT",
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
@@ -403,44 +403,39 @@ $data=array(
 		"Ruta"=>"/encuesta/{token}",
 		"Método"=>"GET",
 		"Éxito"=>['idencuesta','titulo','fecha_inicio','fecha_fin','puedevotar (0 ó 1)','puedevervotos (0 ó 1)',
-		'respuestas (array)'=>['idrespuesta','nombre','banner']
+		'respuestas (array)'=>['idrespuesta','respuesta','foto']
 		],
 		"Falla"=>array(
 			"error"=>["El token es incorrecto","No hay encuestas activas"],
 		)
 	),
-	"Single Monumental"=>array(
-		"Ruta"=>"/single_monumental/{idmonumental}",
-		"Método"=>"GET",
-		"Éxito"=>['nombre','foto','total_votos','instagram',
-			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
-		],
-		"Falla"=>array(
-			"error"=>["idmonumental incorrecto"],
-		)
-	),
-	"Votar Monumental"=>array(
-		"Ruta"=>"/votar_monumental",
+	"Votar"=>array(
+		"Ruta"=>"/encuesta_votar",
 		"Método"=>"POST",
 		"Parámetros"=>array(
 			"idencuesta" => "integer / requerido",
-			"idmonumental" => "integer / requerido",
-			"imei" => "varchar(45) / requerido",
+			"idrespuesta" => "integer / requerido",
+			"token" => "requerido",
 		),
-		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
+		"Éxito"=>'puedevervotos (0 ó 1)',
 		"Falla"=>array(
-			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido","Usted ya ha votado por esta monumental"),
+			"error"=>array("El idencuesta es requerido","El token es requerido","El idrespuesta es requerido"),
 		)
 	),
-	"Monumentales Anual"=>array(
-		"Ruta"=>"/monumentales_anuales",
+	"Single respuesta"=>array(
+		"Ruta"=>"/single_respuesta/{idrespuesta}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','banner'],
+		"Éxito"=>['respuesta','banner','votos',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
+		"Falla"=>array(
+			"error"=>["idrespuesta incorrecto"],
+		)
 	),
-	"Ranking Monumentales"=>array(
-		"Ruta"=>"/ranking_monumentales",
+	"Ranking Encuesta"=>array(
+		"Ruta"=>"/ranking_encuestas/{idencuesta}",
 		"Método"=>"GET",
-		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
+		"Éxito"=>['idrespuesta','respuesta','miniatura','votos'],
 	),
 
 //Onceideal

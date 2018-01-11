@@ -76,8 +76,10 @@ Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
 //Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
 Route::get('encuesta/{token}', 'api\EncuestasController@encuesta');
+Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar');
+Route::get('single_respuesta/{id}', 'api\EncuestasController@single_respuesta');
+Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas');
 
-Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
 
 Route::get('videos360', 'api\VideovrController@videos360');
 
