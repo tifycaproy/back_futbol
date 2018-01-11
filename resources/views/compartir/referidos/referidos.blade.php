@@ -45,22 +45,8 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     var ira    = "{{ url('descargar')}}";
     function getMobileOperatingSystem() {
 
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        window.location.href = ira;
 
-        // Windows Phone must come first because its UA also contains "Android"
-        if (/windows phone/i.test(userAgent)) {
-            window.location.href = 'compartir/descargar.php';
-            return "Windows Phone";
-        } else if (/android/i.test(userAgent)) {
-            window.location.href = 'https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC';
-            return "Android";
-        } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            window.location.href = 'https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8';
-            return "iOS";
-        } else {
-            window.location.href = ira;
-            return "unknown";
-        }
     }
 	
     $(document).ready(function () {
