@@ -72,13 +72,12 @@ Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
 Route::post('onceideal', 'api\OnceidealController@guardar_once');
 Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
-//Monumentales
-Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
-Route::get('monumentales_encuesta', 'api\MonumentalesController@monumentales_encuesta');
-Route::get('single_monumental/{id}', 'api\MonumentalesController@single_monumental');
+//Encuestas
+
+//Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
+Route::get('encuesta/{token}', 'api\EncuestasController@encuesta');
+
 Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
-Route::get('monumentales_anuales', 'api\MonumentalesController@monumentales_anuales');
-Route::get('ranking_monumentales', 'api\MonumentalesController@ranking_monumentales');
 
 Route::get('videos360', 'api\VideovrController@videos360');
 

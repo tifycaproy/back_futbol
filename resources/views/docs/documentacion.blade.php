@@ -46,7 +46,8 @@ $data=array(
 			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas','url_academia',
 			'tit_1','tit_1_1','tit_1_2','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
 			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
-			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15','patrocinante','url_vistas'
+			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15','patrocinante','url_vistas',
+			'video_referidos','terminos_referidos',
 		],
 	),
 
@@ -245,7 +246,7 @@ $data=array(
 	"consultar referidos"=>array(
 		"Ruta"=>"/consultar_referidos/{token}",
 		"Método"=>"GET",
-		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
+		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','created_at'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -398,20 +399,14 @@ $data=array(
 	),
 
 //monumentales
-	"Noticias Monumentales"=>array(
-		"Ruta"=>"/noticias_monumentales?page={pagina}",
+	"Encuesta"=>array(
+		"Ruta"=>"/encuesta/{token}",
 		"Método"=>"GET",
-		"Éxito (Array)"=>[
-			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
+		"Éxito"=>['idencuesta','titulo','fecha_inicio','fecha_fin','puedevotar (0 ó 1)','puedevervotos (0 ó 1)',
+		'respuestas (array)'=>['idrespuesta','nombre','banner']
 		],
-	),
-	"Encuesta Monumentales"=>array(
-		"Ruta"=>"/monumentales_encuesta",
-		"Método"=>"GET",
-		"Éxito"=>['idencuesta','titulo','fecha_fin','total_votos'],
-		'monumentales (array)'=>['idmonumental','nombre','banner'],
 		"Falla"=>array(
-			"error"=>["No hay encuestas activas"],
+			"error"=>["El token es incorrecto","No hay encuestas activas"],
 		)
 	),
 	"Single Monumental"=>array(
@@ -447,6 +442,7 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
 	),
+
 //Onceideal
 	"Registrar Once ideal"=>array(
 		"Ruta"=>"/onceideal",

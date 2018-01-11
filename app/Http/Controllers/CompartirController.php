@@ -8,6 +8,8 @@ use App\Calendario;
 use App\Onceideal;
 use App\Jugador;
 use App\Compartir;
+use App\Referido;
+use App\Usuario;
 
 class CompartirController extends Controller
 {
@@ -43,11 +45,49 @@ class CompartirController extends Controller
         return view('compartir.alineacion');
     }
 
-    public function general($seccion, $id='')
+    public function general($seccion, $id)
     {
         if($seccion=Compartir::where('seccion',$seccion)->first()){
+
             return view('compartir.general')->with('seccion',$seccion);
         }
+    }
+
+    public function referidos($codigo)
+    {
+        try{
+         $errors=[];
+         $idusuario=decodifica($codigo);
+         if($idusuario=="") $errors[]="El codigo es incorrecto";
+         if(count($errors)>0){
+             return ["status" => "fallo", "error" => $errors];
+         }
+         $codigo_referido = $idusuario;
+         $nombre="";
+         $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+         if(isset($zusuarios->nombre)){
+           $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+         }
+         return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+     } catch (Exception $e) {
+        return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+    }     
+  } 
+
+    public function email($codigo)
+    {
+       $codigo_referido = $codigo;
+       $nombre="";
+       $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+       if(isset($zusuarios->nombre)){
+           $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+       }
+
+       return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+    }
+    public function descargar()
+    {
+      return view('compartir.referidos.descargar');
     }
 
 }

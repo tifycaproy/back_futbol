@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MonumentalAnual extends Model
+class EncuestaVotos extends Model
 {
-    protected $table = 'monumentales_anual';
+    protected $table = 'encuestas_votos';
 	protected $guarded = ['id'];
 
-//relaciones
 }

@@ -8,14 +8,5 @@ class Monumental extends Model
 {
     protected $table = 'monumentales';
 	protected $guarded = ['id'];
-
-//relaciones
-	public function votos()
-    {
-    	return $this->hasMany('App\MonumentalVotos');
-    }
-	public function noticias()
-    {
-    	return $this->hasMany('App\Noticia','aparevetimelinemonumentales');
-    }
 }
+

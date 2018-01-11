@@ -74,12 +74,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('videosvr_eliminar/{id}', 'VideovrsController@destroy')->name('videosvr_eliminar');
     Route::resource('videosvr', 'VideovrsController');
 
-//Monumentales
-    Route::get('monumentales_eliminar/{id}', 'MonumentalesController@destroy')->name('monumentales_eliminar');
-    Route::resource('monumentales', 'MonumentalesController');
-
+//encuestas
     Route::get('encuestas_eliminar/{id}', 'EncuestasController@destroy')->name('encuestas_eliminar');
     Route::resource('encuestas', 'EncuestasController');
+    Route::get('respuestas_eliminar/{id}', 'RespuestasController@destroy')->name('respuestas_eliminar');
+    Route::resource('respuestas', 'RespuestasController');
+
 
 //Banners
     Route::resource('banners', 'BannersController');
@@ -94,9 +94,38 @@ Route::get('documentacion', function () {
     return view('docs.documentacion');
 });
 
+//Fecha: 04012018//
+//agregado por ym. para el compartir referidos
+Route::resource('compartir', 'CompartirController');
+
+Route::get('compartir/referidos/{codigo}', [
+        'uses' => 'CompartirController@referidos',
+        'as'   => 'compartir/referidos'
+    ]);
+
+Route::get('compartir/referidos/{codigo}/email', [
+        'uses' => 'CompartirController@email',
+        'as'   => 'compartir.email'
+    ]);
+Route::get('descargar', 'CompartirController@descargar');
+
+Route::resource('usuarios', 'api\UsuariosController');
+Route::post('usuarios', [
+        'uses' => 'api\UsuariosController@registro_usuario2',
+        'as'   => 'usuarios'
+    ]);
+Route::post('auth_redes', [
+        'uses' => 'api\UsuariosController@auth_redes',
+        'as'   => 'auth_redes'
+    ]);
+
+/////////////////////////////
+
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 //Route::get('compartir/alineacion', 'CompartirController@alineacion');
+
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 
 
 Route::get('borrar', 'BorrarController@borrar');
+
