@@ -38,11 +38,17 @@ class EncuestasController extends Controller
                 'puedevervotos' => $puedevervotos,
                 'respuestas' => [],
             ];
-            foreach ($encuesta->respuestas as $respuesta) {
+            foreach ($encuesta->respuestas as $respuesta){
+                if($encuesta->tipo_voto=='Múltiple libre'){
+                    $yavoto=0;
+                }else{
+                    $yavoto=EncuestaVotos::where('respuesta_id',$respuesta->id)->where('usuario_id', $idusuario)->first() ? 1 : 0 ;
+                }
                 $data['respuestas'][]=[
                     'idrespuesta' => $respuesta->id,
                     'respuesta' => $respuesta->respuesta,
                     'foto'=>config('app.url') . 'respuestas/' . $respuesta->foto,
+                    'yavoto' => $yavoto,
                 ];
             }
             return ["status" => "exito", "data" => $data];

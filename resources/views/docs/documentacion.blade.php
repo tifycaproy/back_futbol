@@ -403,7 +403,7 @@ $data=array(
 		"Ruta"=>"/encuesta/{token}",
 		"Método"=>"GET",
 		"Éxito"=>['idencuesta','titulo','fecha_inicio','fecha_fin','puedevotar (0 ó 1)','puedevervotos (0 ó 1)',
-		'respuestas (array)'=>['idrespuesta','respuesta','foto']
+		'respuestas (array)'=>['idrespuesta','respuesta','foto', 'yavoto (0 ó 1)']
 		],
 		"Falla"=>array(
 			"error"=>["El token es incorrecto","No hay encuestas activas"],
