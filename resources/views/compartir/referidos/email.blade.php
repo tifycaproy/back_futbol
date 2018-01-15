@@ -1,7 +1,6 @@
 @extends ('compartir.referidos.header')
 <?php $codigo_referido=$codigo;
 $nombre=$nombre;
-
 ?>
 
 @section ('content')
@@ -74,32 +73,24 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
     function validarpais(pais) {
         var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
         var res = patt.test(pais);
-
         if (!res) {
             alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
             //document.form1.pais.value = "";
             return false;
         }
-
         // return true;
-
-
     }
-
     function validarcelular(celular) {
         //  valor = /([0-9]{10})$/;
-
         var patt = new RegExp("^[0-9]{10}$");
         var res = patt.test(celular);
         if (!res) {
             alert("Número de celular no válido, debe contener sólo números");
             //document.form1.celular.value = "";
         }
-
     }
     $ = jQuery;
     jQuery(document).ready(function () {
-
         $("input#email").bind('change', function () {
             var email = $(this).val();
             expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -108,28 +99,22 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                 //document.form1.email.value = "";
             }
             ;
-
         });
         function getMobileOperatingSystem() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
             // Windows Phone must come first because its UA also contains "Android"
             if (/windows phone/i.test(userAgent)) {
                 return "Windows Phone";
             }
-
             if (/android/i.test(userAgent)) {
                 return "Android";
             }
-
             // iOS detection from: http://stackoverflow.com/a/9039885/177710
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 return "iOS";
             }
-
             return "unknown";
         }
-
         var dispositivo = getMobileOperatingSystem();
         $("#form1").submit(function (event) {
             event.preventDefault();
@@ -141,39 +126,33 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             data_referido.clave = $('#clave').val();
             data_referido.referido = $('#codigo').val();
             data_referido.celular = telefono;
-            //data_referido._token = '{{csrf_token()}}'
+            data_referido._token   = $('_token').val();
             var cambio = JSON.stringify(data_referido);
-            var ira    = "{{ url('descargar')}}";
-            
+            var ira    = "{{ url('descargar')}}";      
             $.ajaxSetup({
              headers: {
                  'X-CSRF-TOKEN': $('[name="_token"]').val()
              }
          });
-
             $.ajax({
-                url: "{{ url('/usuarios')}}",
+                url: "{{ url('/registro')}}",
                 dataType: 'json',
                 type: "POST",
                 data: cambio,
                 success: function (data) {
                     //console.log(data);
                     if (data.status == 'exito') {
-                    	document.location = ira;
+                      document.location = ira;
                     } else {
-                    	alert(data.error[0]);
+                      alert(data.error[0]);
                     }
                 },
-
                 error: function (xhr, status) {
-                	alert('Disculpe, existió un problema');
+                  alert('Disculpe, existió un problema');
                 },
-
             });
         });
-
     });
-
 </script>
 @endpush
 
