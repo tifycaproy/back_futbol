@@ -13,8 +13,13 @@
 	<meta property="og:title"              content="MI ONCE IDEAL PARA EL PRÓXIMO PARTIDO" />
 	<meta property="og:description"        content="¡Escoge tu once ideal y comparte con tus amigos! Descarga ya la App Oficial de Millonarios FC" />
 	<meta property="og:image"              content="{{ $data['foto'] }}" />
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
+	<script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
+
 <style type="text/css">
-	@font-face {
+	/* @font-face {
 	    font-family: 'Gill Sans MT';
 	    src: url('fonts/GillSansMT-Bold.eot');
 	    src: url('fonts/GillSansMT-Bold.eot?#iefix') format('embedded-opentype'),
@@ -22,15 +27,15 @@
 	        url('fonts/GillSansMT-Bold.ttf') format('truetype');
 	    font-weight: bold;
 	    font-style: normal;
-	}
-	body, html{background: #1D1F3A}
-	*{font-family: 'Gill Sans MT'; font-weight: bold; font-style: normal; color: #FFF;}
+	}*/
+	/*body, html{background: #1D1F3A}
+	*{font-family: 'Gill Sans MT'; font-weight: bold; font-style: normal; color: #FFF;}*/
 	.tablappal{border: none; width: 500px; border-collapse: collapse; margin: 0 auto;}
 	table td{padding:0;}
-	h1{font-size: 24px; margin:6px 0 5px 0;}
+	/*h1{font-size: 24px; margin:6px 0 5px 0;}*/
 	.banderas{height: 35px}
 	.tabla_banderas{margin:0 auto; width: 130px;}
-	p{margin: 2px 0 7px 0}
+	/*p{margin: 2px 0 7px 0}*/
 	.cancha{padding: 15px 10px; width: 318px;}
 	.cancha img{width: 318px}
 	.tabla_jugadores{width: 100%;}
