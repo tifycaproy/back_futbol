@@ -48,7 +48,8 @@
 </head>
 <body>
 
-<table class="tablappal">
+
+<!--<table class="tablappal">
 	<tr style="background: #074C9C; text-align: center;">
 		<td colspan="2">
 			<h1>¡MI ONCE IDEAL PARA EL PRÓXIMO PARTIDO!</h1>
@@ -84,8 +85,93 @@
 			<div><a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="img/android.png"></a>&nbsp;&nbsp;<a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="img/ios.png"></a></div>
 		</td>
 	</tr>
-</table>
+</table>-->
+	<!--CONTENEDOR-->
+	<div class="container-fluid "> 
+		<header class="row justify-content-center mt-5 no-gutters">
 
+			<div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+				<img src="{{ asset('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
+				<img src="{{ asset('compartir/images/separador.svg') }}" alt="" class="separador  mb-3">
+	     	</div>			
+		</header>
+		<!--contenido-->
+		<div class=""> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+			<section class="row justify-content-center no-gutters "> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+				<!-- titulo-->
+				<div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"><!-- AÑADIDO CONTENEDOR (15/01/2018)-->
+					<h1>¡ESTE ES MI ONCE IDEAL!</h1>
+				</div>
+			</section>
+			<section class="row justify-content-center mt-3 no-gutters">
+
+				<div class="row align-items-center justify-content-around mb-3">
+					<div class="col-3 col-xl-3 col-lg-3">
+						<img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
+						<!--<h4>Nombre del Equipop</h4>-->
+					</div>
+					
+						<h1>Vs</h1>
+				
+					<div class="col-3 col-xl-3 col-lg-3">
+						<img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
+						<!--<h4>Nombre del Equipop</h4>-->
+					</div>
+
+					<div class="col-12">
+						<h2>{{ $data['copa'] }}</h2>
+					</div>
+				</div>
+
+				<div class="col-12 col-lg-5 col-xl-6 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+					<!-- Imagen-->
+					<!--<img src="{{ asset ('compartir/images/soccer_field.svg') }}" class="img-fluid" alt="">-->
+					<table class="tablappal">
+						<tr>
+							<td class="cancha"><img src="{{ $data['foto'] }}"></td>
+							<td valign="top">
+								<table class="tabla_jugadores"><?php
+								$n=1;
+								foreach($data['jugadores'] as $jugador){
+									if($n==1) echo "<tr>"; ?>
+										<td>
+											<img src="{{  $jugador['foto'] }}">
+											<p>{{ $jugador['nombre'] }}</p>
+											</td><?php
+											if($n==0) echo "<tr>";
+											$n=1-$n;
+										}?>
+									</table>
+								</td>
+							</tr>
+
+						</table>  
+					</div>
+			</section>
+			<section class="row justify-content-center mt-3 no-gutters">
+				<div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+					<div class="texto mt-5 pl-4 pr-4">
+						<!-- Texto-->
+						<h2>¡No dejemos de seguir nunca al más grande!</h2>
+
+						<h2 class="mt-5"><b>DESCARGA LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
+						
+					</div>
+				</div>
+			</section>
+			<section class="row justify-content-center no-gutters pb-5">
+				<div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+					<a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="{{ asset('compartir/images/btn_appstore.svg') }}" alt="" class="tiendas"></a>
+				</div>
+				<div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+					<a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="{{ asset('compartir/images/btn_googleplay.svg') }}" alt="" class="tiendas"></a>
+				</div>
+			</section>
+		</div>
+		<!-- fin contenido-->
+
+	</div>
+	<!-- FIN CONTENEDOR-->
 
 </body>
 </html>
