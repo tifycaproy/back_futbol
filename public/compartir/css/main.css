@@ -1,4 +1,4 @@
-/** Generated @ www.fontreactor.com **/
+/** Generated @ www.fontreactor.com ***/
 @font-face {
 	font-family: 'Tahoma';
     src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'), 
@@ -104,6 +104,9 @@ and (max-device-width : 480px){
 	}
 	h2{
 		font-size: 1.4em;
+	}
+	h4{
+		font-size: 0.9em;
 	}
 	
 	.tiendas{
