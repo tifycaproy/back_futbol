@@ -60,7 +60,7 @@
 
 				<div class="col-12 col-lg-5 col-xl-6 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
 					<!-- Imagen-->
-					<img src="{{ asset ('{{ $data['foto'] }}') }}" class="img-fluid" alt="">
+					<img src="{{ $data['foto'] }}" class="img-fluid" alt="">
 					</div>
 			</section>
 			<section class="row justify-content-center mt-3 no-gutters">
