@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php 
+      $codigo_referido=$codigo; 
+      
+ ?>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-signin-client_id" content="532872190545-h87jgs562eijh6pfqkrahk53snqbla0s.apps.googleusercontent.com">
+<meta property="og:image" content="http://millos.2waysports.com/compartir/images/logo_millos.png"/>
+<meta property="og:url" content="http://millos.2waysports.com/compartir/referidos/<?php echo $codigo . $nombre; ?>"/>	
 	<title>Millonarios FC</title>
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap-grid.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap.min.css') }}" />

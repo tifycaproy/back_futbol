@@ -1,12 +1,21 @@
-/*@font-face {
-	font-family: 'GillSans-Light';
-    src: url('../font/original_GillSans-Light.eot?#iefix') format('embedded-opentype'), 
-         url('../font/original_GillSans-Light.woff') format('woff'),
-         url('../font/original_GillSans-Light.ttf') format('truetype'),
-         url('../font/original_GillSans-Light.svg') format('svg');
+/** Generated @ www.fontreactor.com ***/
+@font-face {
+	font-family: 'Tahoma';
+    src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'), 
+         url('../font/original_tahoma.woff') format('woff'),
+         url('../font/original_tahoma.ttf') format('truetype'),
+         url('../font/original_tahoma.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
-}*/
+
+	font-family: 'Tahoma-Bold';
+    src: url('../font/original_tahomabd.eot?#iefix') format('embedded-opentype'), 
+         url('../font/original_tahomabd.woff') format('woff'),
+         url('../font/original_tahomabd.ttf') format('truetype'),
+         url('../font/original_tahomabd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 body, html{
 	height: 100%;
 	padding: 0px !important;
@@ -18,7 +27,7 @@ body, html{
 body{
 	background: #161F3D;
 	color: white;
-	/*font-family:'GillSans-Light', Sans-Serif;*/
+	font-family:'Tahoma-Bold', Sans-Serif;
 	background-image: url('../images/fondo.png');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -30,7 +39,7 @@ body{
 
 }
 .texto{
-	font-family:'GillSans-Light', Sans-Serif;
+	font-family:'Tahoma', Sans-Serif;
 	text-transform: uppercase;
 }
 .container-fluid{
@@ -91,10 +100,13 @@ and (min-width : 1024px) {
 and (min-device-width : 320px) 
 and (max-device-width : 480px){
 	h1{
-		font-size: 50px;
+		font-size: 1.5em;
 	}
 	h2{
-		font-size: 40px;
+		font-size: 1.4em;
+	}
+	h4{
+		font-size: 0.9em;
 	}
 	
 	.tiendas{

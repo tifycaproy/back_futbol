@@ -478,7 +478,7 @@ class UsuariosController extends Controller
                     unset($request["foto"]);
                 }
             }
-            if(isset($request->referido)) unisset($request->referido);
+            if(isset($request->referido)) unset($request->referido);
             Usuario::find($idusuario)->update($request);
             return ["status" => "exito"];
         } catch (Exception $e) {

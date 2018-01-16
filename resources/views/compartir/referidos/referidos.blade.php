@@ -3,7 +3,6 @@
       $codigo_referido=$codigo; 
       $nombre_referido=$nombre;
  ?>
-
 @section ('content')
 <section class="row justify-content-center  no-gutters">
 <div class="col-12 col-lg-7 col-xl-3 no-gutters"><!-- clase no-gutter-->
@@ -95,18 +94,16 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
         FB.getLoginStatus(function (response) {
             console.log('APP FB');
             if (response.status == 'connected') {
-                FB.api('/me', {locale: 'es_ES', fields: 'name, email'}, function (response) {
+                FB.api('/me', {locale: 'es_ES', fields: 'name,email,link,first_name,middle_name,last_name,gender,birthday,hometown'}, function (response) {
 
-                    var fullName = response.name;
-                    fullName = fullName.split(' '),
-                        firstName = fullName[0];
-                    lastName = fullName[1] + " " + fullName[2];
+
+
                     var data_referido = new Object();
-                    data_referido.nombre = firstName;
-                    data_referido.apellido = lastName;
+                    data_referido.nombre = response.first_name;
+                    data_referido.apellido = response.last_name;
                     data_referido.email = response.email;
                     data_referido.userID_facebook = response.id;
-                    data_referido.referido = $('#codigo').val();
+                    data_referido.codigo = $('#codigo').val();
                     registrar_usuario(data_referido);
 
                 });
