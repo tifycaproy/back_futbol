@@ -47,7 +47,7 @@ class CompartirController extends Controller
     public function general($seccion, $id)
     {
         if($seccion=='alineacion'){
-          return view('compartir.alineacion');
+          return view('compartir.alineacion')->with('seccion',$seccion);
         }else{
         if($seccion=Compartir::where('seccion',$seccion)->first()){
 
