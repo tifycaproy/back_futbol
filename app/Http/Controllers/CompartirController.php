@@ -19,7 +19,6 @@ class CompartirController extends Controller
         list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
-
         $fecha=Calendario::find($idcalendario);
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
         $data=[
@@ -47,10 +46,14 @@ class CompartirController extends Controller
 
     public function general($seccion, $id)
     {
+        if($seccion=='alineacion'){
+          return view('compartir.alineacion');
+        }else{
         if($seccion=Compartir::where('seccion',$seccion)->first()){
 
             return view('compartir.general')->with('seccion',$seccion);
         }
+    }
     }
 
     public function referidos($codigo)
