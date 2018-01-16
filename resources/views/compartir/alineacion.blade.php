@@ -9,11 +9,6 @@
 	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('compartir/css/main.css') }}" />
 	<script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
-	<meta property="og:url"                content="{{ Request::fullUrl() }}" />
-	<meta property="og:type"               content="article" />
-	<meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}" />
-	<meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->descripcion) !!}" />
-	<meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
 
 	<base href="{{asset('/') }}compartir/" />
 </head>
@@ -58,7 +53,8 @@
 				<div class="col-12 col-lg-5 col-xl-6 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
 
 					<!-- Imagen-->
-					<img src="{{ asset ('images/alineacion.jpg') }}" class="img-fluid" alt="">
+					<center><img src="images/alineacion.jpg"></center>
+
 				</div>
 			</section>
 			<section class="row justify-content-center mt-3 no-gutters">
