@@ -3,7 +3,6 @@
       $codigo_referido=$codigo; 
       $nombre_referido=$nombre;
  ?>
-
 @section ('content')
 <section class="row justify-content-center  no-gutters">
 <div class="col-12 col-lg-7 col-xl-3 no-gutters"><!-- clase no-gutter-->
