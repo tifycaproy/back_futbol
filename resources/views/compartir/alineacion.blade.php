@@ -2,18 +2,24 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Alineación</title>
-	<link rel="stylesheet" href="{{asset('/') }}compartir/css/css.css">
-
-	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap-grid.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('compartir/css/bootstrap.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('compartir/css/main.css') }}" />
-	<script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
 
 	<base href="{{asset('/') }}compartir/" />
+
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
+	<link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
+	<script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
+
+
+	<title>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}</title>
+	<meta property="og:url"                content="{{ Request::fullUrl() }}" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}" />
+	<meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->descripcion) !!}" />
+	<meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
 </head>
 
-<body style="background: #1E1F3B;min-height: 100%;">
+<body>
 
 	<!--CONTENEDOR-->
 	<div class="container-fluid "> 
