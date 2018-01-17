@@ -119,9 +119,7 @@ class RespuestasController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'nombre' => 'required',
-            'fecha_nacimiento' => 'required',
-            'n_camiseta' => 'required',
+            'respuesta' => 'required',
             ];
 
         try {

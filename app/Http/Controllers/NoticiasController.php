@@ -11,7 +11,7 @@ use App\Jugador;
 use App\Jugadorfb;
 use App\NoticiaJugador;
 use App\NoticiaJugadorfb;
-use App\Monumental;
+use App\Encuesta;
 use App\Calendario;
 use App\Calendariofb;
 
@@ -25,10 +25,10 @@ class NoticiasController extends Controller
 
     public function create()
     {
-        $monumentales=Monumental::orderby('nombre')->get();
+        $encuestas=Encuesta::whereDate('fecha_inicio','<=', date('Y-m-d'))->orderby('fecha_fin')->get();
         $partidos=Calendario::orderby('fecha','desc')->get();
         $partidosfb=Calendariofb::orderby('fecha','desc')->get();
-        return view('noticias.create')->with('monumentales',$monumentales)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
+        return view('noticias.create')->with('encuestas',$encuestas)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
     }
 
     public function store(Request $request)
@@ -91,13 +91,13 @@ class NoticiasController extends Controller
 
     public function edit($id)
     {
-        $monumentales=Monumental::orderby('nombre')->get();
+        $encuestas=Encuesta::whereDate('fecha_inicio','<=', date('Y-m-d'))->orderby('fecha_fin')->get();
         $partidos=Calendario::orderby('fecha','desc')->get();
         $partidosfb=Calendariofb::orderby('fecha','desc')->get();
         $id=decodifica($id);
         $noticia=Noticia::find($id);
         $_SESSION['noticia_id']=$id;
-        return view('noticias.edit')->with('noticia',$noticia)->with('monumentales',$monumentales)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
+        return view('noticias.edit')->with('noticia',$noticia)->with('encuestas',$encuestas)->with('partidos',$partidos)->with('partidosfb',$partidosfb);
     }
 
     public function update(Request $request, $id)

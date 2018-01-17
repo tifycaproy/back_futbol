@@ -10,24 +10,27 @@ use App\Jugador;
 use App\Compartir;
 use App\Referido;
 use App\Usuario;
+use App\Configuracion;
+
 
 class CompartirController extends Controller
 {
 
     public function onceideal($ruta)
     {
-        list($idusuario,$idcalendario) = explode('.', $ruta);
+      list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
         $fecha=Calendario::find($idcalendario);
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
         $data=[
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "copa"=>$fecha->copa->titulo,
             "foto" => config('app.url') . 'onceideal/' . $once->foto,
         ];
-
         for($l=1; $l<=11; $l++){
             if($jugador=Jugador::find($once["idjugador" . $l])){
                 $data['jugadores'][]=[
@@ -36,24 +39,35 @@ class CompartirController extends Controller
                 ];
             }
         }
-        return view('compartir.onceideal')->with("data",$data);
+        return view('compartir.onceideal')->with("data",$data);   
     }
 
-    public function alineacion()
+    public function alineacion($id)
     {
-        return view('compartir.alineacion');
+        $imagen="https://s3.amazonaws.com/cmsmillos/compartir/alineacion.jpg";
+        $data["status"]='exito';
+        $configuración=Configuracion::first();
+        $fecha=$configuración->partido_alineacion;
+        $data = [
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "equipo_2"=>$fecha->equipo2->nombre,
+            "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "copa"=>$fecha->copa->titulo,
+            "foto"=>$imagen,
+        ];
+
+        return view('compartir.alineacion')->with("data",$data);
+        
     }
 
     public function general($seccion, $id)
     {
-        if($seccion=='alineacion'){
-          return view('compartir.alineacion')->with('seccion',$seccion);
-        }else{
+       
         if($seccion=Compartir::where('seccion',$seccion)->first()){
 
             return view('compartir.general')->with('seccion',$seccion);
         }
-    }
     }
 
     public function referidos($codigo)
