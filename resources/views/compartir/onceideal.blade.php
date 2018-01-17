@@ -38,14 +38,14 @@
                 <div class="row align-items-center justify-content-around mb-3 no-gutters">
                     <div class="col-3 col-xl-3 col-lg-3">
                         <img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
-                        <!--<h4>Nombre del Equipop</h4>-->
+                        <h4>{{ $data['equipo_1'] }}</h4>
                     </div>
                     
                         <h1>Vs</h1>
                 
                     <div class="col-3 col-xl-3 col-lg-3">
                         <img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
-                        <!--<h4>Nombre del Equipop</h4>-->
+                        <h4>{{ $data['equipo_2'] }}</h4>
                     </div>
                     <div class="col-12 mt-3">
                         <h2>{{ $data['copa'] }}</h2>

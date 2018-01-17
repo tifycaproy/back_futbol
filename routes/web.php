@@ -77,6 +77,11 @@ Route::get('documentacion', function () {
 //Fecha: 04012018//
 //agregado por ym. para el compartir referidos
 Route::resource('compartir', 'CompartirController');
+
+Route::get('compartir/alineacion/{ruta}', [
+        'uses' => 'CompartirController@alineacion',
+        'as'   => 'compartir/alineacion'
+    ]);
 Route::get('compartir/referidos/{codigo}', [
         'uses' => 'CompartirController@referidos',
         'as'   => 'compartir/referidos'
