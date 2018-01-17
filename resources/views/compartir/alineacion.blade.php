@@ -32,31 +32,28 @@
             </section>
 
             <section class="row justify-content-center mt-3 no-gutters">
-
-             <section class="col-12- no-gutters">
+                <section class="col-12 no-gutters">
                 <div class="row align-items-center justify-content-around mb-3 no-gutters">
                     <div class="col-3 col-xl-3 col-lg-3">
-                        <img src="images/logo_bg.png" alt="" class="tiendas">
-                        <h4>Nombre del Equipoa</h4>
+                        <img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
+                        <h4>{{ $data['equipo_1'] }}</h4>
                     </div>
                     
-                    <h1>Vs</h1>
-                    
+                        <h1>Vs</h1>
+                
                     <div class="col-3 col-xl-3 col-lg-3">
-                        <img src="images/logo_bg.png" alt="" class="tiendas">
-                        <h4>Nombre del Equipob</h4>
+                        <img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
+                        <h4>{{ $data['equipo_2'] }}</h4>
                     </div>
                     <div class="col-12 mt-3">
-                        <h2>Liga</h2>
+                        <h2>{{ $data['copa'] }}</h2>
                     </div>
                 </div>
             </section>
-                
-                <div class="col-12 col-lg-5 col-xl-4  pl-2 pr-2">
+                <div class="col-12 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <!-- Imagen-->
-                    <img src="images/alineacion.jpg" class="img-fluid">
+                    <img src="{{ $data['foto'] }}" class="img-fluid" alt="">
                 </div>
-                
             </section>
             <section class="row justify-content-center mt-3 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
@@ -79,5 +76,6 @@
         </div>
         <!-- fin contenido-->
     </div>
+    <!-- FIN CONTENEDOR-->
 </body>
 </html>
