@@ -82,22 +82,24 @@ $titulo="Realidad Virtual";
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<script src="js/bootstrap.min.js"></script>
+
 	<title>Alineación</title>
 
-	<link rel="stylesheet" href="css/css.css">
-	<base href="http://millos-prod.2waysports.com/compartir/index.php" />
+	<base href="http://millos-dev.2waysports.com/compartir/index.php" />
 
 
 	<title>Noticias</title>
+
 	<meta property="og:url"                content="http://millos-dev.2waysports.com/compartir/index.php" />
 	<meta property="og:type"               content="article" />
 	<meta property="og:title"              content="<?php echo $titulo;?>" />
 	<meta property="og:description"        content="<?php echo $descripcion;?>" />
 	<meta property="og:image"              content="<?php echo $imagen;?>" />
-	<link rel="stylesheet" href="css/bootstrap-grid.min.css" />
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/main.css" />
-	<script src="js/bootstrap.min.js"></script>
 	
 
 
