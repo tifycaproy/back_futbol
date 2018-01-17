@@ -25,6 +25,8 @@ class CompartirController extends Controller
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
         $data=[
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "copa"=>$fecha->copa->titulo,
             "foto" => config('app.url') . 'onceideal/' . $once->foto,
