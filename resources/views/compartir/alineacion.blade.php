@@ -27,7 +27,7 @@
             <section class="row justify-content-center no-gutters "> 
                 <!-- titulo-->
                 <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1">
-                    <h1>¡ALINEACIÓN OFICIAL!</h1>
+                    <h1>{{ $seccion->titulo }}</h1>
                 </div>
             </section>
 
@@ -52,15 +52,15 @@
             </section>
                 <div class="col-12 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <!-- Imagen-->
-                    <img src="{{ $data['foto'] }}" class="img-fluid" alt="">
+                    <img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">
                 </div>
             </section>
             <section class="row justify-content-center mt-3 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <div class="texto mt-5 pl-4 pr-4">
                         <!-- Texto-->
-                        <h2>¡No dejemos de seguir nunca al más grande!</h2>
-                        <h2 class="mt-5"><b>DESCARGA LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
+                        <h2>{{ $seccion->descripcion }}</h2>
+                        <h2 class="mt-5"><b>{{ $seccion->footer1 }}</b></h2>
                         
                     </div>
                 </div>
