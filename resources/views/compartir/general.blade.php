@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<base href="{{asset('/') }}compartir/" />
-
+ 
 	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
 	<link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
 	<link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
@@ -46,7 +47,7 @@
 					<!--<div class="col-12 col-lg-5 ">-->
 						<div class="col-12 col-lg-5 col-xl-3 pl-2 pr-2"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->		
 							<!-- Imagen-->
-							<img src="images/1.jpg" class="img-fluid" alt="">
+							<img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">
 
 						</div>
 
