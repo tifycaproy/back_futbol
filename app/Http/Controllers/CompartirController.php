@@ -13,6 +13,7 @@ use App\Usuario;
 use App\Configuracion;
 
 
+
 class CompartirController extends Controller
 {
 
@@ -44,7 +45,10 @@ class CompartirController extends Controller
 
     public function alineacion($id)
     {
-        $imagen="https://s3.amazonaws.com/cmsmillos/compartir/alineacion.jpg";
+        $seccion='alineacion';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+
+         
         $data["status"]='exito';
         $configuración=Configuracion::first();
         $fecha=$configuración->partido_alineacion;
@@ -54,20 +58,22 @@ class CompartirController extends Controller
             "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "copa"=>$fecha->copa->titulo,
-            "foto"=>$imagen,
+            
         ];
 
-        return view('compartir.alineacion')->with("data",$data);
+        return view('compartir.alineacion')->with("seccion",$seccion)->with("data",$data);
         
     }
 
     public function general($seccion, $id)
     {
-       
+              
         if($seccion=Compartir::where('seccion',$seccion)->first()){
 
             return view('compartir.general')->with('seccion',$seccion);
         }
+
+
     }
 
     public function referidos($codigo)
