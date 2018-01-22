@@ -58,31 +58,22 @@
 		<!-- FIN CONTENEDOR-->
 
 	<script type="text/javascript">
-
-
         function getMobileOperatingSystem() {
             console.log("executing redirect to the stores...");
-
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
             if (/android/i.test(userAgent)) {
-                window.location.href = 'https://play.google.com/store/apps/details?id=com.Wise.SeleccionColombiaOficial&hl=es';
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC';
                 return "Android";
             } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = 'https://itunes.apple.com/co/app/seleccion-colombia-oficial/id1210353281?mt=8';
+                window.location.href = 'https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8';
                 return "iOS";
             } else {
-
                 return false;
             }
         }
-
-
         setTimeout(function () {
-
             getMobileOperatingSystem()
         }, 10000);
-
 	</script>
 	</body>
 
