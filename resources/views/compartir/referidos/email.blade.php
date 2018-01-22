@@ -31,7 +31,7 @@ $nombre=$nombre;
          </div>
          <div class="form-group col-9">
 
-             <input type="text" class="form-control form-control-lg" id="celular" name="celular" placeholder="Celular" maxlength="11" onchange="validarcelular(this.value );">
+             <input type="text" class="form-control form-control-lg" id="celular" name="celular" placeholder="Celular" required maxlength="11" >
 
          </div>
      </div>
@@ -80,15 +80,6 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
         }
         // return true;
     }
-    function validarcelular(celular) {
-        //  valor = /([0-9]{10})$/;
-        var patt = new RegExp("^[0-9]{10}$");
-        var res = patt.test(celular);
-        if (!res) {
-            alert("Número de celular no válido, debe contener sólo números");
-            //document.form1.celular.value = "";
-        }
-    }
     $ = jQuery;
     jQuery(document).ready(function () {
         $("input#email").bind('change', function () {
@@ -100,6 +91,44 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             }
             ;
         });
+
+        $("input#celular").bind('keydown', function (event) {
+         if(event.shiftKey)
+         {
+          event.preventDefault();
+        }
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9)    {
+
+        }
+        else {
+          if (event.keyCode < 95) {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+              event.preventDefault();
+            }
+          } 
+          else {
+            if (event.keyCode < 96 || event.keyCode > 105) {
+              event.preventDefault();
+            }
+          }
+        }        
+        ;
+      });
+
+        $("input#celular").bind('change', function () {
+            var celular = $(this).val();
+            expr = new RegExp("^[0-9]{10}$");
+            if (!expr.test(celular)) {
+                alert("Error: Número de celular no Válido " + celular + " es incorrecto.");
+                document.form1.celular.value = "";
+                document.form1.pais.focus();
+            }
+            ;
+        });
+
+      
+               
+
         function getMobileOperatingSystem() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             // Windows Phone must come first because its UA also contains "Android"

@@ -55,7 +55,7 @@ body{
 	min-width: 100% !important;
 }
 .logo_millos{
-	width: 40%;
+	width: 60%;
 }
 .separador{
 	width: 90%;
@@ -80,14 +80,20 @@ input{
 	}
 
 
-/* Ordenadores de sobremesa y portátiles */
+/* Ordenadores de sobremesa y portÃ¡tiles */
 @media only screen 
 and (min-width : 1024px) {
 	h1{
-		font-size: 30px;
+		font-size: 1.8rem;
+	}
+	h2{
+		font-size: 1.4rem;
+	}
+	h4{
+		font-size: 1.2rem;
 	}
 	.logo_millos{
-		width: 45%;
+		width: 60%;
 	}
 	.tiendas{
 		margin-top: 2rem;
@@ -100,13 +106,13 @@ and (min-width : 1024px) {
 and (min-device-width : 320px) 
 and (max-device-width : 480px){
 	h1{
-		font-size: 1.5em;
+		font-size: 1.3rem;
 	}
 	h2{
-		font-size: 1.4em;
+		font-size: 1rem;
 	}
 	h4{
-		font-size: 0.9em;
+		font-size: 0.7rem;
 	}
 	
 	.tiendas{
