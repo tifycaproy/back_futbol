@@ -83,3 +83,13 @@ Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas'
 
 Route::get('videos360', 'api\VideovrController@videos360');
 
+//Muro
+Route::post('muro', 'api\MuroController@postear');
+Route::get('muro', 'api\MuroController@index');
+Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
+Route::post('muro_comentar', 'api\MuroController@muro_comentar');
+Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
+Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir');
+Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir');
+
+

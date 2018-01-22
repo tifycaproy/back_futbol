@@ -475,6 +475,84 @@ $data=array(
 			"titulo","descripcion","foto","video",
 		),
 	),
+//muro
+	"Muro"=>array(
+		"Ruta"=>"/muro?token={token}&page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'idpost','mensaje','fecha','foto','idusuario','apodo','foto_usuario','ncomentarios','naplausos'
+		],
+	),
+	"Muro postear"=>array(
+		"Ruta"=>"/muro",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"token" => "token / requerido",
+			"mensaje" => "textarea / requerido",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El mensaje es requerido")
+		)
+	),
+	"Consultar perfil"=>array(
+		"Ruta"=>"/perfil_usuario/{idusuario}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'id','apodo','fecha','foto'
+		],
+		"Falla"=>array(
+			"error"=>array("Idusuario incorrecto")
+		)
+	),
+	"Muro comentar"=>array(
+		"Ruta"=>"/muro_comentar",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "token / requerido",
+			"token" => "token / requerido",
+			"comentario" => "textarea / comentario",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El comentario es requerido","El idpost es requerido","El idpost es incorrecto")
+		)
+	),
+	"Consultar comentarios del post"=>array(
+		"Ruta"=>"/comentarios_post/{idpost}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'idcomentario','comentario','fecha','idusuario','apodo','foto_usuario','naplausos'
+		],
+		"Falla"=>array(
+			"error"=>array("Idpost incorrecto")
+		)
+	),
+	"Muro aplaudir post"=>array(
+		"Ruta"=>"/muro_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "token / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto","El usuario ya aplaudió este post")
+		)
+	),
+	"Muro aplaudir comentario"=>array(
+		"Ruta"=>"/muro_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idcomentario" => "token / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idcomentario es requerido","El idcomentario es incorrecto","El usuario ya aplaudió este comentario")
+		)
+	),
 
 );
 
