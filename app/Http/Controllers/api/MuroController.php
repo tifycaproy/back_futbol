@@ -42,8 +42,6 @@ class MuroController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    //list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
                     $filepath='posts/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
@@ -150,11 +148,33 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='posts/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }else{
+                $request["foto"]='';
+            }
 
             MuroComentario::create([
                 'muro_id' => $idpost,
                 'usuario_id' => $idusuario,
-                'comentario' => $request["comentario"]
+                'comentario' => $request["comentario"],
+                'foto' => $request["foto"]
             ]);
             return ["status" => "exito", "data" => []];
 
@@ -194,6 +214,7 @@ class MuroController extends Controller
                     'idcomentario'=>codifica($comentario->id),
                     'comentario'=>$comentario->comentario,
                     'fecha'=>$comentario->created_at->toDateTimeString(),
+                    'foto'=>$comentario->foto,
                     'usuario'=>$usuario,
                     'naplausos'=>$comentario->aplausos->count(),
                     'yaaplaudio' => $yaaplaudio,
@@ -224,12 +245,14 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if(MuroAplauso::where('muro_id',$idpost)->where('usuario_id',$idusuario)->first())
-                return ["status" => "fallo", "error" => ["El usuario ya aplaudió este post"]];
-            MuroAplauso::create([
-                'muro_id' => $idpost,
-                'usuario_id' => $idusuario,
-            ]);
+            if($aplauso=MuroAplauso::where('muro_id',$idpost)->where('usuario_id',$idusuario)->first()){
+                $aplauso->delete();
+            }else{
+                MuroAplauso::create([
+                    'muro_id' => $idpost,
+                    'usuario_id' => $idusuario,
+                ]);
+            }
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -256,12 +279,14 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if(MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first())
-                return ["status" => "fallo", "error" => ["El usuario ya aplaudió este comentario"]];
-            MuroComentarioAplauso::create([
-                'comentario_id' => $idcomentario,
-                'usuario_id' => $idusuario,
-            ]);
+            if($aplauso=MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first()){
+                $aplauso->delete();
+            }else{
+                MuroComentarioAplauso::create([
+                    'comentario_id' => $idcomentario,
+                    'usuario_id' => $idusuario,
+                ]);
+            }
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {

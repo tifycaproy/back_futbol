@@ -514,6 +514,7 @@ $data=array(
 			"idpost" => "token / requerido",
 			"token" => "token / requerido",
 			"comentario" => "textarea / comentario",
+			"foto" => "base64 / opcional",
 		),
 		"Éxito"=>"Debe redireccionar a los comentarios del post",
 		"Falla"=>array(
@@ -524,7 +525,7 @@ $data=array(
 		"Ruta"=>"/comentarios_post/{idpost}",
 		"Método"=>"GET",
 		"Éxito"=>[
-			'idcomentario','comentario','fecha','naplausos','yaaplaudio',
+			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',
 			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
 		],
 		"Falla"=>array(
