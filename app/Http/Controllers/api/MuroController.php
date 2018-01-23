@@ -193,6 +193,8 @@ class MuroController extends Controller
             $data["status"]='exito';
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
+                if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
+                
                 $usuario=$comentario->usuario;
                 $usuario=$usuario->toArray();
                 $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
