@@ -74,27 +74,30 @@ class MuroController extends Controller
             if($post->foto<>'') $post->foto=config('app.url') . 'posts/' . $post->foto;
 
             $usuario=$post->usuario;
-            if($usuario->foto==''){
-                if($usuario->foto_redes<>""){
-                    $foto_usuario=$usuario->foto_redes;
+            $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
                 }else{
-                    $foto_usuario="";
+                    $usuario["foto"]="";
                 }
             }else{
-                $foto_usuario=config('app.url') . 'usuarios/' . $usuario['foto'];
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
-            $apodo=$usuario->apodo<>'' ? $usuario->apodo : $usuario->nombre;
-
+            $usuario["codigo"]=codifica($usuario['idusuario']);
+            unset($usuario["foto_redes"]);
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
                 'foto'=>$post->foto,
                 'fecha'=>$post->created_at->toDateTimeString(),
-                'idusuario'=>codifica($post->usuario_id),
-                'apodo'=>$apodo,
-                'foto_usuario'=>$foto_usuario,
+                'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
+                'yaaplaudio' => $yaaplaudio,
             ];
         }
         return $data;
@@ -170,25 +173,29 @@ class MuroController extends Controller
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
                 $usuario=$comentario->usuario;
-                if($usuario->foto==''){
-                    if($usuario->foto_redes<>""){
-                        $foto_usuario=$usuario->foto_redes;
+                $usuario=$usuario->toArray();
+                $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+                if($usuario["foto"]==''){
+                    if($usuario["foto_redes"]<>""){
+                        $usuario["foto"]=$usuario["foto_redes"];
                     }else{
-                        $foto_usuario="";
+                        $usuario["foto"]="";
                     }
                 }else{
-                    $foto_usuario=config('app.url') . 'usuarios/' . $usuario['foto'];
+                    $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
                 }
-                $apodo=$usuario->apodo<>'' ? $usuario->apodo : $usuario->nombre;
+                $usuario["codigo"]=codifica($usuario['idusuario']);
+                unset($usuario["foto_redes"]);
+                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
 
                 $data["data"][]=[
                     'idcomentario'=>codifica($comentario->id),
                     'comentario'=>$comentario->comentario,
                     'fecha'=>$comentario->created_at->toDateTimeString(),
-                    'idusuario'=>codifica($comentario->usuario_id),
-                    'apodo'=>$apodo,
-                    'foto_usuario'=>$foto_usuario,
+                    'usuario'=>$usuario,
                     'naplausos'=>$comentario->aplausos->count(),
+                    'yaaplaudio' => $yaaplaudio,
                 ];
             }
             return $data;

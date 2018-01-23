@@ -480,7 +480,8 @@ $data=array(
 		"Ruta"=>"/muro?token={token}&page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
-			'idpost','mensaje','fecha','foto','idusuario','apodo','foto_usuario','ncomentarios','naplausos'
+			'idpost','mensaje','fecha','foto','ncomentarios','naplausos','yaaplaudio (0 ó 1)',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
 		],
 	),
 	"Muro postear"=>array(
@@ -523,7 +524,8 @@ $data=array(
 		"Ruta"=>"/comentarios_post/{idpost}",
 		"Método"=>"GET",
 		"Éxito"=>[
-			'idcomentario','comentario','fecha','idusuario','apodo','foto_usuario','naplausos'
+			'idcomentario','comentario','fecha','naplausos','yaaplaudio',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
 		],
 		"Falla"=>array(
 			"error"=>array("Idpost incorrecto")
