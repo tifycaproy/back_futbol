@@ -194,7 +194,7 @@ class MuroController extends Controller
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
                 if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
-                
+
                 $usuario=$comentario->usuario;
                 $usuario=$usuario->toArray();
                 $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
@@ -291,6 +291,18 @@ class MuroController extends Controller
             }
             return ["status" => "exito", "data" => []];
 
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+    public function destroy($idpost, $token)
+    {
+        try{
+            $idpost=decodifica($idpost);
+            $idusuario=decodifica_token($token);
+            if($post=Muro::where('id',$idpost)->where('usuario_id',$idusuario)->first())
+                $post->delete();
+            return ["status" => "exito", "data" => []];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 

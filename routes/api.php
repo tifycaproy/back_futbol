@@ -91,5 +91,6 @@ Route::post('muro_comentar', 'api\MuroController@muro_comentar');
 Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
 Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir');
 Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir');
+Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 
 
