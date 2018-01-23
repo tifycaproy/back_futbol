@@ -522,7 +522,7 @@ $data=array(
 		)
 	),
 	"Consultar comentarios del post"=>array(
-		"Ruta"=>"/comentarios_post/{idpost}",
+		"Ruta"=>"/comentarios_post/{idpost}?page={pagina}",
 		"Método"=>"GET",
 		"Éxito"=>[
 			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',
