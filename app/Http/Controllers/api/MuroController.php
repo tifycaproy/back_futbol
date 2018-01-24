@@ -189,7 +189,7 @@ class MuroController extends Controller
             if($idpost=='')  return ["status" => "fallo", "error" => ['Idpost incorrecto']];
 
 
-            $comentarios=MuroComentario::orderby('created_at','desc')->paginate(25);
+            $comentarios=MuroComentario::where('muro_id', $idpost)->orderby('created_at','desc')->paginate(25);
             $data["status"]='exito';
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
