@@ -475,6 +475,83 @@ $data=array(
 			"titulo","descripcion","foto","video",
 		),
 	),
+//muro
+	"Muro"=>array(
+		"Ruta"=>"/muro?token={token}&page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'idpost','mensaje','fecha','foto','ncomentarios','naplausos','yaaplaudio (0 ó 1)',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
+		],
+	),
+	"Muro postear"=>array(
+		"Ruta"=>"/muro",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"token" => "token / requerido",
+			"mensaje" => "textarea / requerido",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El mensaje es requerido")
+		)
+	),
+	"Consultar perfil"=>array(
+		"Ruta"=>"/perfil_usuario/{idusuario}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'id','apodo','fecha','foto'
+		],
+		"Falla"=>array(
+			"error"=>array("Idusuario incorrecto")
+		)
+	),
+	"Muro comentar"=>array(
+		"Ruta"=>"/muro_comentar",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "token / requerido",
+			"token" => "token / requerido",
+			"comentario" => "textarea / comentario",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El comentario es requerido","El idpost es requerido","El idpost es incorrecto")
+		)
+	),
+	"Consultar comentarios del post"=>array(
+		"Ruta"=>"/comentarios_post/{idpost}?page={pagina}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
+		],
+		"Falla"=>array(
+			"error"=>array("Idpost incorrecto")
+		)
+	),
+	"Muro aplaudir post"=>array(
+		"Ruta"=>"/muro_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "token / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto","El usuario ya aplaudió este post")
+		)
+	),
+	"Eliminar Post"=>array(
+		"Ruta"=>"/muro/{idpost}/{token}",
+		"Método"=>"DELETE",
+		"Éxito"=>"Debe redireccionar al muro",
+		"Falla"=>array(
+			"error"=>array("Ha ocurrido un error, por favor intenta de nuevo")
+		)
+	),
 
 );
 
