@@ -46,7 +46,7 @@ $nombre=$nombre;
 
   </div>
   <div class="form-group ">
-      <input id="" type="submit" class="btn btn-submit btn-lg btn-block" value="Régistrate">
+      <input id="" type="submit" class="btn btn-submit btn-lg btn-block" value="Regístrate">
       <div class="respuesta"></div>
   </div>
   <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>

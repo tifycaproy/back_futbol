@@ -36,7 +36,7 @@
             <section class="row justify-content-center mt-3 no-gutters">
                 <section class="col-12 no-gutters">
                 <div class="row align-items-center justify-content-center mb-3 no-gutters">
-                    <div class="col-3 col-xl-2 col-lg-2">
+                    <div class="col-3 col-xl-3 col-lg-3">
                         <img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
                         <h4>{{ $data['equipo_1'] }}</h4>
                     </div>
