@@ -1,5 +1,5 @@
 <?php
-
+header("Location:". $_GET['seccion'] );
 
 
 if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['seccion']=='alineaciónoficial'){

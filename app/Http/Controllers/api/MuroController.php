@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+use Aws\S3\S3Client;
 use App\Http\Controllers\Controller;
 use App\Usuario;
 use App\Muro;
@@ -41,8 +42,6 @@ class MuroController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    //list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
                     $filepath='posts/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
@@ -74,27 +73,30 @@ class MuroController extends Controller
             if($post->foto<>'') $post->foto=config('app.url') . 'posts/' . $post->foto;
 
             $usuario=$post->usuario;
-            if($usuario->foto==''){
-                if($usuario->foto_redes<>""){
-                    $foto_usuario=$usuario->foto_redes;
+            $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
                 }else{
-                    $foto_usuario="";
+                    $usuario["foto"]="";
                 }
             }else{
-                $foto_usuario=config('app.url') . 'usuarios/' . $usuario['foto'];
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
-            $apodo=$usuario->apodo<>'' ? $usuario->apodo : $usuario->nombre;
-
+            $usuario["codigo"]=codifica($usuario['idusuario']);
+            unset($usuario["foto_redes"]);
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
                 'foto'=>$post->foto,
                 'fecha'=>$post->created_at->toDateTimeString(),
-                'idusuario'=>codifica($post->usuario_id),
-                'apodo'=>$apodo,
-                'foto_usuario'=>$foto_usuario,
+                'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
+                'yaaplaudio' => $yaaplaudio,
             ];
         }
         return $data;
@@ -146,11 +148,33 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='posts/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }else{
+                $request["foto"]='';
+            }
 
             MuroComentario::create([
                 'muro_id' => $idpost,
                 'usuario_id' => $idusuario,
-                'comentario' => $request["comentario"]
+                'comentario' => $request["comentario"],
+                'foto' => $request["foto"]
             ]);
             return ["status" => "exito", "data" => []];
 
@@ -165,30 +189,37 @@ class MuroController extends Controller
             if($idpost=='')  return ["status" => "fallo", "error" => ['Idpost incorrecto']];
 
 
-            $comentarios=MuroComentario::orderby('created_at','desc')->get();
+            $comentarios=MuroComentario::where('muro_id', $idpost)->orderby('created_at','desc')->paginate(25);
             $data["status"]='exito';
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
+                if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
+
                 $usuario=$comentario->usuario;
-                if($usuario->foto==''){
-                    if($usuario->foto_redes<>""){
-                        $foto_usuario=$usuario->foto_redes;
+                $usuario=$usuario->toArray();
+                $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+                if($usuario["foto"]==''){
+                    if($usuario["foto_redes"]<>""){
+                        $usuario["foto"]=$usuario["foto_redes"];
                     }else{
-                        $foto_usuario="";
+                        $usuario["foto"]="";
                     }
                 }else{
-                    $foto_usuario=config('app.url') . 'usuarios/' . $usuario['foto'];
+                    $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
                 }
-                $apodo=$usuario->apodo<>'' ? $usuario->apodo : $usuario->nombre;
+                $usuario["codigo"]=codifica($usuario['idusuario']);
+                unset($usuario["foto_redes"]);
+                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
 
                 $data["data"][]=[
                     'idcomentario'=>codifica($comentario->id),
                     'comentario'=>$comentario->comentario,
                     'fecha'=>$comentario->created_at->toDateTimeString(),
-                    'idusuario'=>codifica($comentario->usuario_id),
-                    'apodo'=>$apodo,
-                    'foto_usuario'=>$foto_usuario,
+                    'foto'=>$comentario->foto,
+                    'usuario'=>$usuario,
                     'naplausos'=>$comentario->aplausos->count(),
+                    'yaaplaudio' => $yaaplaudio,
                 ];
             }
             return $data;
@@ -216,12 +247,14 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if(MuroAplauso::where('muro_id',$idpost)->where('usuario_id',$idusuario)->first())
-                return ["status" => "fallo", "error" => ["El usuario ya aplaudió este post"]];
-            MuroAplauso::create([
-                'muro_id' => $idpost,
-                'usuario_id' => $idusuario,
-            ]);
+            if($aplauso=MuroAplauso::where('muro_id',$idpost)->where('usuario_id',$idusuario)->first()){
+                $aplauso->delete();
+            }else{
+                MuroAplauso::create([
+                    'muro_id' => $idpost,
+                    'usuario_id' => $idusuario,
+                ]);
+            }
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -248,14 +281,28 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if(MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first())
-                return ["status" => "fallo", "error" => ["El usuario ya aplaudió este comentario"]];
-            MuroComentarioAplauso::create([
-                'comentario_id' => $idcomentario,
-                'usuario_id' => $idusuario,
-            ]);
+            if($aplauso=MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first()){
+                $aplauso->delete();
+            }else{
+                MuroComentarioAplauso::create([
+                    'comentario_id' => $idcomentario,
+                    'usuario_id' => $idusuario,
+                ]);
+            }
             return ["status" => "exito", "data" => []];
 
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+    public function destroy($idpost, $token)
+    {
+        try{
+            $idpost=decodifica($idpost);
+            $idusuario=decodifica_token($token);
+            if($post=Muro::where('id',$idpost)->where('usuario_id',$idusuario)->first())
+                $post->delete();
+            return ["status" => "exito", "data" => []];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 

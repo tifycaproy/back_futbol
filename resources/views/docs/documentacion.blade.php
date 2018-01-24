@@ -480,7 +480,8 @@ $data=array(
 		"Ruta"=>"/muro?token={token}&page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
-			'idpost','mensaje','fecha','foto','idusuario','apodo','foto_usuario','ncomentarios','naplausos'
+			'idpost','mensaje','fecha','foto','ncomentarios','naplausos','yaaplaudio (0 ó 1)',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
 		],
 	),
 	"Muro postear"=>array(
@@ -513,6 +514,7 @@ $data=array(
 			"idpost" => "token / requerido",
 			"token" => "token / requerido",
 			"comentario" => "textarea / comentario",
+			"foto" => "base64 / opcional",
 		),
 		"Éxito"=>"Debe redireccionar a los comentarios del post",
 		"Falla"=>array(
@@ -520,10 +522,11 @@ $data=array(
 		)
 	),
 	"Consultar comentarios del post"=>array(
-		"Ruta"=>"/comentarios_post/{idpost}",
+		"Ruta"=>"/comentarios_post/{idpost}?page={pagina}",
 		"Método"=>"GET",
 		"Éxito"=>[
-			'idcomentario','comentario','fecha','idusuario','apodo','foto_usuario','naplausos'
+			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
 		],
 		"Falla"=>array(
 			"error"=>array("Idpost incorrecto")
@@ -541,16 +544,12 @@ $data=array(
 			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto","El usuario ya aplaudió este post")
 		)
 	),
-	"Muro aplaudir comentario"=>array(
-		"Ruta"=>"/muro_aplaudir",
-		"Método"=>"POST",
-		"Parámetros"=>array(
-			"idcomentario" => "token / requerido",
-			"token" => "token / requerido",
-		),
-		"Éxito"=>"Debe redireccionar a los comentarios del post",
+	"Eliminar Post"=>array(
+		"Ruta"=>"/muro/{idpost}/{token}",
+		"Método"=>"DELETE",
+		"Éxito"=>"Debe redireccionar al muro",
 		"Falla"=>array(
-			"error"=>array("El token es requerido","El idcomentario es requerido","El idcomentario es incorrecto","El usuario ya aplaudió este comentario")
+			"error"=>array("Ha ocurrido un error, por favor intenta de nuevo")
 		)
 	),
 
