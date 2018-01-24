@@ -42,8 +42,7 @@
                     </div>
                     
                         <h1 class="ml-5 mr-5">Vs</h1>
-                
-                    <div class="col-3 col-xl-3 col-lg-3">
+                     <div class="col-3 col-xl-3 col-lg-3">
                         <img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
                         <h4>{{ $data['equipo_2'] }}</h4>
                     </div>
