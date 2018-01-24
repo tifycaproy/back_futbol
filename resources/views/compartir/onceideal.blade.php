@@ -61,8 +61,8 @@
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <div class="texto mt-3 pl-4 pr-4">
                         <!-- Texto-->
-                        <h2>¡No dejemos de seguir nunca al más grande!</h2>
-                        <h2 class="mt-3"><b>DESCARGA LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
+                        <h2>¡NO DEJEMO NUNCA DE SEGUIR A LA MÁS GRANDE!</h2>
+                        <h2 class="mt-3"><b>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</b></h2>
                         
                     </div>
                 </div>
