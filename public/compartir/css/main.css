@@ -60,6 +60,9 @@ body{
 .logo_millos{
 	width: 40%;
 }
+.logo_millos_alineacion{
+		width: 30%;
+	}
 .separador{
 	width: 90%;
 }
@@ -99,8 +102,15 @@ and (min-width : 1024px) {
 		margin-top: 1rem;
 		width: 50%;
 	}
+	.logo_millos_alineacion{
+		width: 30%;
+	}
+
 	.tiendas{
-		width: 40%;
+		width: 30%;
+	}
+	.escudos{
+		width: 20%;
 	}
 }
 /* Smartphones (portrait & landscape) */
@@ -108,17 +118,19 @@ and (min-width : 1024px) {
 and (min-device-width : 320px) 
 and (max-device-width : 480px){
 	h1{
-		font-size: 1.2rem;
+		font-size: 1rem;
 	}
 	h2{
 		font-size: 0.9rem;
 	}
-	h4{
+	h4, p{
 		font-size: 0.7rem;
+		margin-bottom: 0px;
 	}
-	
+	.escudos{
+		width: 45%;
+	}
 	.tiendas{
-		margin-top: 1rem;
 		width: 60%;
 	}
 	input{
@@ -134,10 +146,21 @@ and (max-device-width : 480px){
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
-
+h1{
+		font-size: 1.6rem;
+	}
+	h2{
+		font-size: 1.4rem;
+	}
+	.escudos{
+		width: 30%;
+	}
+.logo_millos_alineacion{
+		width: 30%;
+	}
 	.tiendas{
-
-		width: 70%;
+	margin-top: 0.4rem;
+		width: 50%;
 	}
 	.nombre{
 		font-size: 3em;
