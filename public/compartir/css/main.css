@@ -20,7 +20,6 @@ body, html{
 	height: 100%;
 	padding: 0px !important;
 	margin: 0px !important;	
-	height: 100%;
 
 	
 }
@@ -34,6 +33,10 @@ body{
 	/*background-position: center center;*/
 
 
+}
+.containerp{
+	height: 100% !important;
+	overflow: hidden;
 }
 .fondo{
 
@@ -55,7 +58,7 @@ body{
 	min-width: 100% !important;
 }
 .logo_millos{
-	width: 60%;
+	width: 40%;
 }
 .separador{
 	width: 90%;
@@ -84,20 +87,19 @@ input{
 @media only screen 
 and (min-width : 1024px) {
 	h1{
-		font-size: 1.8rem;
+		font-size: 1.6rem;
 	}
 	h2{
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 	}
 	h4{
 		font-size: 1.2rem;
 	}
 	.logo_millos{
-		width: 60%;
+		margin-top: 1rem;
+		width: 50%;
 	}
 	.tiendas{
-		margin-top: 2rem;
-		margin-bottom: 2rem;
 		width: 40%;
 	}
 }
@@ -106,10 +108,10 @@ and (min-width : 1024px) {
 and (min-device-width : 320px) 
 and (max-device-width : 480px){
 	h1{
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 	}
 	h2{
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 	h4{
 		font-size: 0.7rem;
@@ -117,7 +119,7 @@ and (max-device-width : 480px){
 	
 	.tiendas{
 		margin-top: 1rem;
-		width: 70%;
+		width: 60%;
 	}
 	input{
 		padding: 2.3rem 1rem !important;
@@ -134,7 +136,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) {
 
 	.tiendas{
-		margin-top: 2rem;
+
 		width: 70%;
 	}
 	.nombre{
