@@ -71,13 +71,15 @@ integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bB
 integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script type="text/javascript" language="javascript">
     function validarpais(pais) {
-        var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
-        var res = patt.test(pais);
-        if (!res) {
-            alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
-            //document.form1.pais.value = "";
-            return false;
-        }
+        //var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
+        //var res = patt.test(pais);
+        var res="+"+pais;
+        document.form1.pais.value = res; 
+        //if (!res) {
+          //  alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
+            
+            //return false;
+        //}
         // return true;
     }
     $ = jQuery;
@@ -98,7 +100,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
          {
           event.preventDefault();
         }
-        if (event.keyCode == 43 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 241 || event.keyCode == 171)    {
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 241 )    {
 
         }
         else {
