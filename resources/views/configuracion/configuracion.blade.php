@@ -394,12 +394,26 @@
     </div>
     <div class="row">
          <div class="col-lg-12">
-            <h3><i class="fa fa-fw fa-calendar-check-o"></i> Patrocinante</h3>
+            <h3><i class="fa fa-fw fa-external-link-square"></i> Referidos</h3>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Video</label>
+                <input type="text" class="form-control" name="video_referidos" value="{{ $configuracion->video_referidos }}" maxlength="200">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="terminos_referidos" rows="5" class="form-control">{{ old('terminos_referidos', $configuracion->terminos_referidos) }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3><i class="fa fa-fw fa-money"></i> Patrocinante</h3>
             <div class="form-group">
                 <div class="slim slim">
                   <input name="patrocinante" type="file" accept="image/jpeg, image/png, image/gif" />
@@ -409,7 +423,7 @@
                 <h5>Imagen actual</h5>
                 <p><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}" style="max-width: 100%"></p>
                 @endif
-              </div>
+            </div>
         </div>
     </div>
     <div class="row">

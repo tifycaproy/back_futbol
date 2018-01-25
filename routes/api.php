@@ -72,13 +72,25 @@ Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
 Route::post('onceideal', 'api\OnceidealController@guardar_once');
 Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
-//Monumentales
-Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
-Route::get('monumentales_encuesta', 'api\MonumentalesController@monumentales_encuesta');
-Route::get('single_monumental/{id}', 'api\MonumentalesController@single_monumental');
-Route::post('votar_monumental', 'api\MonumentalesController@votar_monumental');
-Route::get('monumentales_anuales', 'api\MonumentalesController@monumentales_anuales');
-Route::get('ranking_monumentales', 'api\MonumentalesController@ranking_monumentales');
+//Encuestas
+
+//Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
+Route::get('encuesta/{token}', 'api\EncuestasController@encuesta');
+Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar');
+Route::get('single_respuesta/{id}', 'api\EncuestasController@single_respuesta');
+Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas');
+
 
 Route::get('videos360', 'api\VideovrController@videos360');
+
+//Muro
+Route::post('muro', 'api\MuroController@postear');
+Route::get('muro', 'api\MuroController@index');
+Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
+Route::post('muro_comentar', 'api\MuroController@muro_comentar');
+Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
+Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir');
+Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir');
+Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
+
 

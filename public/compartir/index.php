@@ -1,5 +1,4 @@
 <?php
-
 header("Location:". $_GET['seccion'] );
 
 
@@ -80,53 +79,122 @@ $titulo="Realidad Virtual";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Referidos</title>
-	<link rel="stylesheet" href="css/css.css">
-	<base href="http://millos-prod.2waysports.com/compartir/index.php" />
+
+	<link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<script src="js/bootstrap.min.js"></script>
+
+	<title>Alineación</title>
+
+	<base href="http://millos-dev.2waysports.com/compartir/index.php" />
+
 
 	<title>Noticias</title>
+<<<<<<< HEAD
 	<meta property="og:url"                content="http://millos-prod.2waysports.com/compartir/index.php" />
+=======
+
+	<meta property="og:url"                content="http://millos-dev.2waysports.com/compartir/index.php" />
+>>>>>>> staging
 	<meta property="og:type"               content="article" />
 	<meta property="og:title"              content="<?php echo $titulo;?>" />
 	<meta property="og:description"        content="<?php echo $descripcion;?>" />
 	<meta property="og:image"              content="<?php echo $imagen;?>" />
+<<<<<<< HEAD
 
 
 	$_GET['seccion']
+=======
+	
+
+
+>>>>>>> staging
 </head>
 
-<body>
-	<div class="contenedor">
-		<header>
-			<h2><b><?php echo $titulo;?></b></h2>
-			<h3><b><?php echo $descripcion;?></b></h3>
-		</header>
-		<div class="contenido">
-			<!--IMAGEN-->
-			<img src="<?php echo $imagen;?>" class="img-content">
-			<!--TEXTO-->
-			<div class="texto">
-				
-				
-				<h4>
-				Yo ya soy Hincha Oficial del Embajador, <br>¿Y tu que esperas? <br>Descarga el app
-			</h4>
-			</div>
-		</div>
-		<footer>
-			<img src="images/logo_millos.png" class="logo">
-			<div class="footer">
-				<div class="footer-btn">
-					<a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC" target="_blank"><img src="images/btn1.png"></a>
-					<a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8" target="_blank"><img src="images/btn2.png"></a>
-				</div>
-			</div>
-			
-		</footer>
-	</div>
-</body>
+    <!--CONTENEDOR-->
+    <div class="container-fluid "> 
+        <header class="row justify-content-center mt-5 no-gutters">
+            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                <img src="images/logo_millos.png" class="logo_millos" alt="">
+                <img src="images/separador.svg" alt="" class="separador  mb-3">
+            </div>            
+        </header>
+        <!--contenido-->
+        <div class=""> 
+            <section class="row justify-content-center no-gutters "> 
+                <!-- titulo-->
+                <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1">
+                    <h1><?php echo $titulo;?></h1>
+                    <h3><?php echo $descripcion;?></h3>
+                </div>
+            </section>
 
+            <section class="row justify-content-center mt-3 no-gutters">
+
+             <section class="col-12- no-gutters">
+                <div class="row align-items-center justify-content-around mb-3 no-gutters">
+                    <div class="col-3 col-xl-3 col-lg-3">
+                        <img src="images/logo_bg.png" alt="" class="tiendas">
+                        <h4>Nombre del Equipoa</h4>
+                    </div>
+                    
+                    <h1>Vs</h1>
+                    
+                    <div class="col-3 col-xl-3 col-lg-3">
+                        <img src="images/logo_bg.png" alt="" class="tiendas">
+                        <h4>Nombre del Equipob</h4>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <h2>Liga</h2>
+                    </div>
+                </div>
+            </section>
+                
+                <div class="col-12 col-lg-5 col-xl-4  pl-2 pr-2">
+                    <!-- Imagen-->
+                    <img src="<?php echo $imagen;?>" class="img-fluid">
+                </div>
+                
+            </section>
+            <section class="row justify-content-center mt-3 no-gutters">
+                <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                    <div class="texto mt-5 pl-4 pr-4">
+                        <!-- Texto-->
+                        <h2>¡No dejemos de seguir nunca al más grande!</h2>
+                        <h2 class="mt-5"><b>DESCARGA LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
+                        
+                    </div>
+                </div>
+            </section>
+            <section class="row justify-content-center no-gutters pb-5">
+                <div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                    <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="images/btn_appstore.svg" alt="" class="tiendas"></a>
+                </div>
+                <div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                    <a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="images/btn_googleplay.svg" alt="" class="tiendas"></a>
+                </div>
+            </section>
+        </div>
+        <!-- fin contenido-->
+    </div>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

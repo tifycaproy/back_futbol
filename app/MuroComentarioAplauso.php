@@ -4,10 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MonumentalVotos extends Model
+class MuroComentarioAplauso extends Model
 {
-    protected $table = 'monumentales_votos';
+    protected $table = 'muro_comentarios_aplausos';
 	protected $guarded = ['id'];
-
-//relaciones
 }
