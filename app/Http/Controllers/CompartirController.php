@@ -17,7 +17,7 @@ use App\Configuracion;
 class CompartirController extends Controller
 {
 
-    public function onceideal($ruta,$id)
+    public function onceideal($ruta)
     {
        list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
@@ -73,7 +73,7 @@ class CompartirController extends Controller
 
  public function show($seccion)
     {
-        
+
         if($seccion=Compartir::where('seccion',$seccion)->first()){
 
             return view('compartir.general')->with('seccion',$seccion);
