@@ -63,9 +63,11 @@ class MuroController extends Controller
         } 
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $posts=Muro::orderby('created_at','desc')->paginate(25);
+        $token=$request["token"];
+        $idusuario=decodifica_token($token);
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($posts as $post) {
@@ -87,7 +89,7 @@ class MuroController extends Controller
             }
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
-            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,

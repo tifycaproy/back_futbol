@@ -26,7 +26,7 @@ $nombre=$nombre;
           <div class="form-group col-3">
 
              <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="+57" onchange="validarpais( this.value );"
-             placeholder="+57" minlength="2" maxlength="4" required>
+             maxlength="2" required>
 
          </div>
          <div class="form-group col-9">
@@ -71,15 +71,15 @@ integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bB
 integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script type="text/javascript" language="javascript">
     function validarpais(pais) {
-        //var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
-        //var res = patt.test(pais);
+        var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
+        
         var res="+"+pais;
-        document.form1.pais.value = res; 
-        //if (!res) {
-          //  alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
+        var res2 = patt.test(res);
+        if (!res2) {
+           alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
             
-            //return false;
-        //}
+            return false;
+        }else{ document.form1.pais.value = res; }
         // return true;
     }
     $ = jQuery;
