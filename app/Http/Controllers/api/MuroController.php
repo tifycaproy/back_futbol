@@ -184,12 +184,13 @@ class MuroController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
-    public function comentarios_post($idpost)
+    public function comentarios_post(Request $request, $idpost)
     {
         try{
             $idpost=decodifica($idpost);
             if($idpost=='')  return ["status" => "fallo", "error" => ['Idpost incorrecto']];
-
+            $token=$request["token"];
+            $idusuario=decodifica_token($token);
 
             $comentarios=MuroComentario::where('muro_id', $idpost)->orderby('created_at','desc')->paginate(25);
             $data["status"]='exito';
@@ -212,7 +213,7 @@ class MuroController extends Controller
                 }
                 $usuario["codigo"]=codifica($usuario['idusuario']);
                 unset($usuario["foto_redes"]);
-                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$usuario['idusuario'])->first() ? 1 : 0;
+                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
 
                 $data["data"][]=[
                     'idcomentario'=>codifica($comentario->id),

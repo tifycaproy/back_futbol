@@ -64,7 +64,7 @@ $data=array(
 	), 
 
 	"Noticias"=>array(
-		"Ruta"=>"/noticias?page={pagina}",
+		"Ruta"=>"/noticias/{token}?page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
 			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
@@ -244,9 +244,12 @@ $data=array(
 		)
 	),
 	"consultar referidos"=>array(
-		"Ruta"=>"/consultar_referidos/{token}",
+		"Ruta"=>"/consultar_referidos/{token}?page={pagina}",
 		"Método"=>"GET",
-		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','created_at'],
+		"Éxito"=>[
+			"activos",
+			"referidos (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','activo','created_at'],
+		]
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -522,7 +525,7 @@ $data=array(
 		)
 	),
 	"Consultar comentarios del post"=>array(
-		"Ruta"=>"/comentarios_post/{idpost}?page={pagina}",
+		"Ruta"=>"/comentarios_post/{idpost}?token={token}&page={pagina}",
 		"Método"=>"GET",
 		"Éxito"=>[
 			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',

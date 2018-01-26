@@ -21,7 +21,7 @@ Route::get('banners', 'api\BannersController@index');
 Route::get('ventanas_compartir', 'api\CompartirController@index');
 
 //noticias
-Route::get('noticias', 'api\NoticiasController@index');
+Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
