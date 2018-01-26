@@ -119,7 +119,7 @@ if (isset($_GET['seccion'])) {
                 <section class="row justify-content-center no-gutters ">    
                     <!-- titulo-->
                     <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> 
-                      <h1><?php echo $descripcion;?></h1>
+                      <h2><?php echo $descripcion;?></h2>
                     </div>
                 </section>
                 <section class="row justify-content-center mt-3 no-gutters">
