@@ -536,12 +536,24 @@ $data=array(
 		"Ruta"=>"/muro_aplaudir",
 		"Método"=>"POST",
 		"Parámetros"=>array(
-			"idpost" => "token / requerido",
+			"idpost" => "idpost / requerido",
 			"token" => "token / requerido",
 		),
 		"Éxito"=>"Debe redireccionar al home del muro",
 		"Falla"=>array(
-			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto","El usuario ya aplaudió este post")
+			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto")
+		)
+	),
+	"Muro aplaudir comentario"=>array(
+		"Ruta"=>"/muro_comentario_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idcomentario" => "idcomentario / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idcomentario es requerido","El idcomentario es incorrecto")
 		)
 	),
 	"Eliminar Post"=>array(

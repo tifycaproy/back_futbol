@@ -26,7 +26,7 @@ $nombre=$nombre;
           <div class="form-group col-3">
 
              <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="+57" onchange="validarpais( this.value );"
-             placeholder="+57" minlength="2" maxlength="4" required>
+             maxlength="2" required>
 
          </div>
          <div class="form-group col-9">
@@ -72,12 +72,14 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
 <script type="text/javascript" language="javascript">
     function validarpais(pais) {
         var patt = new RegExp("^[+][1-9][0-9]?[0-9]?$");
-        var res = patt.test(pais);
-        if (!res) {
-            alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
-            //document.form1.pais.value = "";
+        
+        var res="+"+pais;
+        var res2 = patt.test(res);
+        if (!res2) {
+           alert('Código de país no es válido. Por favor, asegúrese de colocar un "+" antes del Código');
+            
             return false;
-        }
+        }else{ document.form1.pais.value = res; }
         // return true;
     }
     $ = jQuery;
@@ -98,7 +100,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
          {
           event.preventDefault();
         }
-        if (event.keyCode == 43 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 241 || event.keyCode == 171)    {
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 241 )    {
 
         }
         else {

@@ -21,11 +21,11 @@
 </head>
 <body>
     <!--CONTENEDOR-->
-    <div class="container-fluid "> 
+    <div class="container-fluid containerp"> 
         <header class="row justify-content-center mt-1 no-gutters">
             <div class="col-12  col-lg-6 col-xl-3 no-gutters"> 
-                <img src="{{ asset('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
-                <img src="{{ asset('compartir/images/separador.svg') }}" alt="" class="separador  mb-3">
+                <img src="{{ asset('compartir/images/logo_millos.png') }}" class="logo_millos_alineacion" alt="">
+                <!--img src="{{ asset('compartir/images/separador.svg') }}" alt="" class="separador  mb-3"-->
             </div>            
         </header>
         <!--contenido-->
@@ -36,42 +36,41 @@
                     <h1>{{ $seccion->titulo }}</h1>
                 </div>
             </section>
-
-            <section class="row justify-content-center mt-3 no-gutters">
+            <section class="row justify-content-center no-gutters">
                 <section class="col-12 no-gutters">
-                <div class="row align-items-center justify-content-center mb-3 no-gutters">
+                <div class="row align-items-center justify-content-center no-gutters">
                     <div class="col-3 col-xl-2 col-lg-2">
-                        <img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
+                        <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
                         <h4>{{ $data['equipo_1'] }}</h4>
                     </div>
                     
                         <h1 class="ml-5 mr-5">Vs</h1>
                 
                     <div class="col-3 col-xl-3 col-lg-3">
-                        <img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
-                        <h4>{{ $data['equipo_2'] }}</h4>
+                        <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
+                        <p class="texto">{{ $data['equipo_2'] }}</p>
                     </div>
-                    <div class="col-12 mt-3">
-                        <h2>{{ $data['copa'] }}</h2>
+                    <div class="col-12">
+                        <p class="texto">{{ $data['copa'] }}</p>
                     </div>
                 </div>
             </section>
-                <div class="col-12 col-lg-5 col-xl-4 pl-2 pr-2 ">
+                <div class="col-12 col-md-10 col-lg-5 col-xl-4 pl-2 pr-2 ">
                     <!-- Imagen-->
                     <img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">
                 </div>
             </section>
-            <section class="row justify-content-center mt-3 no-gutters">
+            <section class="row justify-content-center mt-1 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4">
-                    <div class="texto mt-3 pl-4 pr-4">
+                    <div class="texto pl-4 pr-4">
                         <!-- Texto-->
                         <h2>{{ $seccion->descripcion }}</h2>
-                        <h2 class="mt-3"><b>{{ $seccion->footer1 }}</b></h2>
+                        <h2 class=""><b>{{ $seccion->footer1 }}</b></h2>
                         
                     </div>
                 </div>
             </section>
-            <section class="row justify-content-center no-gutters pb-5">
+            <section class="row justify-content-center no-gutters pb-1">
                 <div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="{{ asset('compartir/images/btn_appstore.svg') }}" alt="" class="tiendas"></a>
                 </div>

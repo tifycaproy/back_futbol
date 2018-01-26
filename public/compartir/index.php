@@ -1,7 +1,6 @@
 <?php
 header("Location:". $_GET['seccion'] );
 
-
 if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['seccion']=='alineaciónoficial'){
 
 	$url="";
@@ -68,7 +67,7 @@ $titulo="Realidad Virtual";
 }else{
 	$url="";
 	$imagen="https://s3.amazonaws.com/cmsmillos/compartir/compartaelapp.jpeg";
-	$descripcion="¡COMPARTE LA APP CON TODOS TUS AMIGOS EMBAJADORES Y CONVIÉRTETE EN HINCHA OFICIAL!";
+	$descripcion="¡CONVIÉRTETE EN HINCHA OFICIAL Y COMPARTE TU PASIÓN POR EL EMBAJADOR!";
 	$titulo="Comparte tu pasión";
 	
 	
@@ -88,31 +87,19 @@ $titulo="Realidad Virtual";
 	<link rel="stylesheet" href="css/main.css" />
 	<script src="js/bootstrap.min.js"></script>
 
-	<title>Alineación</title>
+	<title><?php echo $titulo;?></title>
 
-	<base href="http://millos-dev.2waysports.com/compartir/index.php" />
+	<base href="http://millos-prod.2waysports.com/compartir/index.php" />
+
 
 
 	<title>Noticias</title>
-<<<<<<< HEAD
 	<meta property="og:url"                content="http://millos-prod.2waysports.com/compartir/index.php" />
-=======
-
-	<meta property="og:url"                content="http://millos-dev.2waysports.com/compartir/index.php" />
->>>>>>> staging
 	<meta property="og:type"               content="article" />
 	<meta property="og:title"              content="<?php echo $titulo;?>" />
 	<meta property="og:description"        content="<?php echo $descripcion;?>" />
 	<meta property="og:image"              content="<?php echo $imagen;?>" />
-<<<<<<< HEAD
 
-
-	$_GET['seccion']
-=======
-	
-
-
->>>>>>> staging
 </head>
 
     <!--CONTENEDOR-->
@@ -164,8 +151,8 @@ $titulo="Realidad Virtual";
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <div class="texto mt-5 pl-4 pr-4">
                         <!-- Texto-->
-                        <h2>¡No dejemos de seguir nunca al más grande!</h2>
-                        <h2 class="mt-5"><b>DESCARGA LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
+                        <h2>¡NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE!</h2>
+                        <h2 class="mt-5"><b>DESCARGA AHORA MISMO LA APP OFICIAL DEL MILLONARIOS FC</b></h2>
                         
                     </div>
                 </div>
