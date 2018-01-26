@@ -73,58 +73,85 @@ if (isset($_GET['seccion'])) {
 } else {
     $url = "";
     $imagen = "https://s3.amazonaws.com/cmsmillos/compartir/compartaelapp.jpeg";
-    $descripcion = "¡COMPARTE LA APP CON TODOS TUS AMIGOS EMBAJADORES Y CONVIÉRTETE EN HINCHA OFICIAL!";
+    $descripcion = "¡CONVIÉRTETE EN HINCHA OFICIAL Y COMPARTE TU PASIÓN POR EL EMBAJADOR!";
     $titulo = "Comparte tu pasión";
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Referidos</title>
-    <link rel="stylesheet" href="css/css.css">
-    <base href="http://millos-prod.2waysports.com/compartir/index.php"/>
 
-    <title>Noticias</title>
-    <meta property="og:url" content="http://millos-dev.2waysports.com/compartir/index.php"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="<?php echo $titulo; ?>"/>
-    <meta property="og:description" content="<?php echo $descripcion; ?>"/>
-    <meta property="og:image" content="<?php echo $imagen; ?>"/>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/bootstrap.min.js"></script>
+
+    <title><?php echo $titulo;?></title>
+
+    <base href="http://millos-dev.2waysports.com/compartir/index.php" />
+
+
+    
+
+    <meta property="og:url"                content="http://millos-dev.2waysports.com/compartir/index.php" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="<?php echo $titulo;?>" />
+    <meta property="og:description"        content="<?php echo $descripcion;?>" />
+    <meta property="og:image"              content="<?php echo $imagen;?>" />
+    
+
 
 </head>
 
-<body>
-<div class="contenedor">
-    <header>
-        <h2><b><?php echo $titulo; ?></b></h2>
-        <h3><b><?php echo $descripcion; ?></b></h3>
-    </header>
-    <div class="contenido">
-        <!--IMAGEN-->
-        <img src="<?php echo $imagen; ?>" class="img-content">
-        <!--TEXTO-->
-        <div class="texto">
+    <!--CONTENEDOR-->
+    <div class="container-fluid containerp"> 
+        <header class="row justify-content-center no-gutters">
+            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                <img src="images/logo_millos.png" class="logo_millos" alt="">
+                <img src="images/separador.svg" alt="" class="separador">
+            </div>            
+        </header>
+        <!--contenido-->
+        <div class="">
+                <section class="row justify-content-center no-gutters ">    
+                    <!-- titulo-->
+                    <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> 
+                      <h1><?php echo $descripcion;?></h1>
+                    </div>
+                </section>
+                <section class="row justify-content-center mt-3 no-gutters">
+                    <!--<div class="col-12 col-lg-5 ">-->
+                        <div class="col-11 col-lg-5 col-xl-3">        
+                            <!-- Imagen-->
+                            <img src="<?php echo $imagen;?>" class="img-fluid" alt="">
+                        </div>
+                    </section>
 
-
-            <h4>
-                Yo ya soy Hincha Oficial del Embajador, <br>¿Y tu que esperas? <br>Descarga el app
-            </h4>
-        </div>
-    </div>
-    <footer>
-        <img src="images/logo_millos.png" class="logo">
-        <div class="footer">
-            <div class="footer-btn">
-                <a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC" target="_blank"><img src="images/btn1.png"></a>
-                <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8" target="_blank"><img src="images/btn2.png"></a>
-            </div>
-        </div>
-
-    </footer>
-</div>
-</body>
-
+                    <section class="row justify-content-center mt-1 no-gutters">
+                        <!--<div class="col-12 col-lg-5">-->
+                            <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
+                                <div class="texto mt-1 pl-4 pr-4">
+                                    <!-- Texto-->
+                                    <!-- <p>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->descripcion) !!}</p> -->
+                                    <h2>DESCARGA AHORA MISMO LA APP OFICIAL MILLONARIOS FC</h2>
+                                    <h2 class="mt-1"><b>NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE</b></h2>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="row justify-content-center no-gutters pb-1">
+                            <div class="col-6 col-xl-4 col-lg-4">
+                                <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="images/btn_appstore.svg" alt="" class="tiendas"></a>
+                            </div>
+                            <div class="col-6 col-xl-4 col-lg-4">
+                                <a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="images/btn_googleplay.svg" alt="" class="tiendas"></a>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- fin contenido-->
+                </div>
+                <!-- FIN CONTENEDOR-->
+    </body>
 </html>
