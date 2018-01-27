@@ -248,8 +248,8 @@ $data=array(
 		"Método"=>"GET",
 		"Éxito"=>[
 			"activos",
-			"referidos (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','activo','created_at'],
-		]
+			"referidos (array)"=>array('nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','activo','created_at'),
+		],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)

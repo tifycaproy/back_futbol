@@ -530,9 +530,11 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            
             $usuarios=Usuario::where('referido',$idusuario)->select(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','estatus','activo'])->paginate(10);
-            $data=[];
+            $data=[
+                'activos' => Usuario::where('referido',$idusuario)->where('activo',1)->count(),
+                'referidos'=>[]
+            ];
             foreach ($usuarios as $usuario) {
                 $usuario=$usuario->toArray();
 
@@ -546,7 +548,7 @@ class UsuariosController extends Controller
                     $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
                 }
                 unset($usuario["foto_redes"]);
-                $data[]=$usuario;
+                $data['referidos'][]=$usuario;
             }
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
