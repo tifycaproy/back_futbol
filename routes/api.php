@@ -43,6 +43,8 @@ Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
 Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_referidos');
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
+Route::get('usuarios_activos', 'api\UsuariosController@usuarios_activos');
+
 //registrar referidos
 Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
 

@@ -514,10 +514,6 @@ class UsuariosController extends Controller
 
         $result=["status" => "exito"];
         return $result;
-
-
-
-
     }
     public function consultar_referidos($token)
     {
@@ -554,5 +550,10 @@ class UsuariosController extends Controller
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
+    }
+    public function usuarios_activos()
+    {
+        Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',date('Y-m-d'))->update(['activo'=>0]);
+        echo date("Y-m-d H:i:s");
     }
 }
