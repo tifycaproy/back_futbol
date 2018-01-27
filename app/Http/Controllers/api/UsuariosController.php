@@ -553,7 +553,8 @@ class UsuariosController extends Controller
     }
     public function usuarios_activos()
     {
-        Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',date('Y-m-d'))->update(['activo'=>0]);
+        $fecha=date('Y-m-d',strtotime((date('Y-m-d')) . '- 7 days'));
+        Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
         echo date("Y-m-d H:i:s");
     }
 }
