@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Noticia;
+use App\Usuario;
 
 
 class NoticiasController extends Controller
@@ -14,8 +15,17 @@ class NoticiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($token='')
     {
+        if($token<>''){
+            $idusuario=decodifica_token($token);
+            if($idusuario<>''){
+                Usuario::find($idusuario)->update([
+                    'activo'=>1,
+                    'ultimo_ingreso' => date('Y-m-d h:i'),
+                ]);
+            }
+        }
         $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparecetimelineppal',1)->orderby('fecha','desc','id')->paginate(25);
         $data["status"]='exito';
         $data["data"]=[];
