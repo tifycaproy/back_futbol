@@ -421,7 +421,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at']);
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at','referido']);
             $usuario=$usuario->toArray();
             $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
@@ -437,6 +437,17 @@ class UsuariosController extends Controller
             }
             $usuario["codigo"]=codifica($idusuario);
             unset($usuario["foto_redes"]);
+            if($usuario["referido"]=='' or $usuario["referido"]==0){
+                $usuario["referido"]='';
+            }else{
+                if($referido=Usuario::find($usuario["referido"],['apodo', 'nombre'])){
+                    $usuario["referido"]=$referido['apodo'];
+                    if($usuario["apodo"]=='' or is_null($usuario["apodo"])) $usuario["referido"]=$referido["nombre"];
+                }else{
+                    $usuario["referido"]='';
+                }
+
+            }
             return ["status" => "exito", "data" => $usuario];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intente de nuevo"]];
@@ -514,10 +525,6 @@ class UsuariosController extends Controller
 
         $result=["status" => "exito"];
         return $result;
-
-
-
-
     }
     public function consultar_referidos($token)
     {
@@ -530,8 +537,11 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuarios=Usuario::where('referido',$idusuario)->get(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','estatus']);
-            $data=[];
+            $usuarios=Usuario::where('referido',$idusuario)->select(['nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','estatus','activo'])->paginate(10);
+            $data=[
+                'activos' => Usuario::where('referido',$idusuario)->where('activo',1)->count(),
+                'referidos'=>[]
+            ];
             foreach ($usuarios as $usuario) {
                 $usuario=$usuario->toArray();
 
@@ -545,11 +555,17 @@ class UsuariosController extends Controller
                     $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
                 }
                 unset($usuario["foto_redes"]);
-                $data[]=$usuario;
+                $data['referidos'][]=$usuario;
             }
             return ["status" => "exito", "data" => $data];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
+    }
+    public function usuarios_activos()
+    {
+        $fecha=date('Y-m-d',strtotime((date('Y-m-d')) . '- 7 days'));
+        Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
+        echo date("Y-m-d H:i:s");
     }
 }
