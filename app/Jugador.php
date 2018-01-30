@@ -12,7 +12,7 @@ class Jugador extends Model
 //relaciones
     public function noticias()
     {
-        return $this->belongsToMany('App\Noticia', 'noticias_jugadores', 'jugadores_id', 'noticias_id')->select('noticias.id','link','titulo','descripcion','fecha','foto','destacada','tipo');
+        return $this->belongsToMany('App\Noticia', 'noticias_jugadores', 'jugadores_id', 'noticias_id')->select('noticias.id','link','titulo','descripcion','fecha','foto','destacada','tipo')->orderby('fecha','desc','noticias.id');
     }
     public function convocado()
     {

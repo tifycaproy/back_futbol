@@ -21,7 +21,7 @@ Route::get('banners', 'api\BannersController@index');
 Route::get('ventanas_compartir', 'api\CompartirController@index');
 
 //noticias
-Route::get('noticias', 'api\NoticiasController@index');
+Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 
@@ -42,6 +42,8 @@ Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::put('usuarios/{token}', 'api\UsuariosController@actualizar_usuario');
 Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_referidos');
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
+
+Route::get('usuarios_activos', 'api\UsuariosController@usuarios_activos');
 
 //registrar referidos
 Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
