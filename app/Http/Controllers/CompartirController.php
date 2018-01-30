@@ -17,8 +17,9 @@ use App\Configuracion;
 class CompartirController extends Controller
 {
 
-    public function onceideal($ruta,$id)
+    public function onceideal($ruta)
     {
+       //dd($ruta); 
        list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
