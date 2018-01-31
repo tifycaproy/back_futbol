@@ -1,6 +1,6 @@
 <?php
-
-
+$footer1= "DESCARGA AHORA MISMO LA APP OFICIAL MILLONARIOS FC";
+$footer2 = "NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE";
 if (isset($_GET['seccion'])) {
     if ($_GET['seccion'] == 'alineacion' || $_GET['seccion'] == 'alineación' || $_GET['seccion'] == 'alineaciónoficial') {
 
@@ -105,7 +105,7 @@ if (isset($_GET['seccion'])) {
 
 
 </head>
-
+<body>
     <!--CONTENEDOR-->
     <div class="container-fluid containerp"> 
         <header class="row justify-content-center no-gutters">
@@ -116,17 +116,18 @@ if (isset($_GET['seccion'])) {
         </header>
         <!--contenido-->
         <div class="">
+            <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
                 <section class="row justify-content-center no-gutters ">    
                     <!-- titulo-->
-                    <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> 
-                      <h1><?php echo $descripcion;?></h1>
+                    <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
+                        <h1><?php echo $descripcion; ?></h1>
                     </div>
                 </section>
                 <section class="row justify-content-center mt-3 no-gutters">
                     <!--<div class="col-12 col-lg-5 ">-->
-                        <div class="col-11 col-lg-5 col-xl-3">        
+                        <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
                             <!-- Imagen-->
-                            <img src="<?php echo $imagen;?>" class="img-fluid" alt="">
+                            <img src="<?php echo $imagen?>" class="img-fluid" alt="">
                         </div>
                     </section>
 
@@ -136,8 +137,8 @@ if (isset($_GET['seccion'])) {
                                 <div class="texto mt-1 pl-4 pr-4">
                                     <!-- Texto-->
                                     <!-- <p>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->descripcion) !!}</p> -->
-                                    <h2>DESCARGA AHORA MISMO LA APP OFICIAL MILLONARIOS FC</h2>
-                                    <h2 class="mt-1"><b>NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE</b></h2>
+                                    <h2><?php echo $footer1;?> </h2>
+                                    <h2 class="mt-1"><b><?php echo $footer2;?></b></h2>
                                 </div>
                             </div>
                         </section>
