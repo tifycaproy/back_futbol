@@ -17,8 +17,9 @@ use App\Configuracion;
 class CompartirController extends Controller
 {
 
-    public function onceideal($ruta,$id)
+    public function onceideal($ruta)
     {
+       //dd($ruta); 
        list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
@@ -48,6 +49,40 @@ class CompartirController extends Controller
         return view('compartir.general')->with('seccion',$seccion);
       }    
     }
+
+    public function onceidealr($ruta,$id)
+    {
+       //dd($ruta); 
+       list($idusuario,$idcalendario) = explode('.', $ruta);
+        $idusuario=decodifica($idusuario);
+        $idcalendario=decodifica($idcalendario);
+        //dd($idusuario,$idcalendario);
+        $fecha=Calendario::find($idcalendario);
+        $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
+        if(isset($fecha)){  
+            $data=[
+                "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+                "equipo_1"=>$fecha->equipo1->nombre,
+                "equipo_2"=>$fecha->equipo2->nombre,
+                "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+                "copa"=>$fecha->copa->titulo,
+                "foto" => config('app.url') . 'onceideal/' . $once->foto,
+            ];
+            for($l=1; $l<=11; $l++){
+                if($jugador=Jugador::find($once["idjugador" . $l])){
+                    $data['jugadores'][]=[
+                        'nombre' => $jugador->nombre,
+                        'foto'=>config('app.url') . 'jugadores/' . $jugador->foto,
+                    ];
+                }
+            }
+            return view('compartir.onceideal')->with("data",$data);   
+        }else{ $seccion='calendario';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        return view('compartir.general')->with('seccion',$seccion);
+      }    
+    }
+
 
     public function alineacion($id)
     {
