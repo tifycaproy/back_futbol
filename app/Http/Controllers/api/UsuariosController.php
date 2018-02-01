@@ -10,6 +10,7 @@ use App\Referido;
 use Mail;
 
 
+
 class UsuariosController extends Controller
 {
     /**
@@ -572,7 +573,6 @@ class UsuariosController extends Controller
     public function subirUsuarios()
     {
         $usuarios = Usuario::first()->get();
-        $usuario->updated_at = \Carbon\Carbon;
         dd($usuario);     
     }
 }
