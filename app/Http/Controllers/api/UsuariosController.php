@@ -572,7 +572,7 @@ class UsuariosController extends Controller
     public function subirUsuarios()
     {
         $usuarios = Usuario::first()->get();
-        $usuario->updated_at = \Carbon\Carbon
+        $usuario->updated_at = \Carbon\Carbon;
         dd($usuario);     
     }
 }
