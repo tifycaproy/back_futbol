@@ -40,6 +40,7 @@ class EncuestasController extends Controller
                 'fecha_fin' => $request->fecha_fin,
                 'tipo_voto' => $request->tipo_voto,
                 'mostrar_resultados' => $request->mostrar_resultados,
+                'activa' => $request->activa,
             ]);
 
             return redirect()->route('encuestas.edit', codifica($encuesta->id))->with("notificacion","Se ha guardado correctamente su información");
@@ -84,6 +85,7 @@ class EncuestasController extends Controller
                 'fecha_fin' => $request->fecha_fin,
                 'tipo_voto' => $request->tipo_voto,
                 'mostrar_resultados' => $request->mostrar_resultados,
+                'activa' => $request->activa,
             ];
             Encuesta::find($id)->update($data);
 
