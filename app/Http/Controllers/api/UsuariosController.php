@@ -573,6 +573,9 @@ class UsuariosController extends Controller
     public function subirUsuarios()
     {
         $usuarios = Usuario::all();
-        dd($usuarios->first());     
+        foreach($usuarios as $usuario){
+        $usuario->updated_at = date("Y-m-d H:i:s");
+        $usuario->save();
+     }
     }
 }
