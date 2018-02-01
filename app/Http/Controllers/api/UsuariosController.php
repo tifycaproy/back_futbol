@@ -572,7 +572,7 @@ class UsuariosController extends Controller
 
     public function subirUsuarios()
     {
-        $usuarios = Usuario::all()->first()->get();
-        dd($usuarios);     
+        $usuarios = Usuario::all();
+        dd($usuarios->first());     
     }
 }
