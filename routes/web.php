@@ -97,7 +97,7 @@ Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 /////////////////////////////
 Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
-
+Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 //Route::get('compartir/alineacion', 'CompartirController@alineacion');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::get('borrar', 'BorrarController@borrar');
