@@ -25,7 +25,7 @@ class EncuestasController extends Controller
             return ["status" => "fallo", "error" => $errors];
         }
         //fin validaciones
-        if($encuesta=Encuesta::whereDate('fecha_inicio','<=', date('Y-m-d'))->orderby('fecha_fin')->first()){
+        if($encuesta=Encuesta::where('activa',1)->whereDate('fecha_inicio','<=', date('Y-m-d'))->orderby('fecha_fin')->first()){
             $votos=EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->count();
             $puedevotar=(($encuesta->tipo_voto<>'Único' or $votos==0) and strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) >= strtotime(date('Y-m-d'))) ? 1 : 0;
             $puedevervotos=($encuesta->mostrar_resultados=='Siempre' or ($encuesta->mostrar_resultados=='Solo si ya votó' and $votos>0) or strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) < strtotime(date('Y-m-d'))) ? 1 : 0;
