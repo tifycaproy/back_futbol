@@ -10,6 +10,7 @@ use App\Referido;
 use Mail;
 
 
+
 class UsuariosController extends Controller
 {
     /**
@@ -567,5 +568,14 @@ class UsuariosController extends Controller
         $fecha=date('Y-m-d',strtotime((date('Y-m-d')) . '- 7 days'));
         Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
         echo date("Y-m-d H:i:s");
+    }
+
+    public function subirUsuarios()
+    {
+        $usuarios = Usuario::all()->take(10);
+        foreach($usuarios as $usuario){
+        $usuario->updated_at = date("Y-m-d H:i:s");
+        $usuario->save();
+     }
     }
 }
