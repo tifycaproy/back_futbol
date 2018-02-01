@@ -39,5 +39,13 @@ return [
        'url' => 'https://api.sendinblue.com/v2.0',
        'key' => env('SENDINBLUE_KEY'),
     ],
+    
+    'firebase' => [
+    'api_key' => 'API_KEY', // Only used for JS integration
+    'auth_domain' => 'AUTH_DOMAIN', // Only used for JS integration
+    'database_url' => 'https://your-database-at.firebaseio.com',
+    'secret' => 'DATABASE_SECRET',
+    'storage_bucket' => 'STORAGE_BUCKET', // Only used for JS integration
+    ],
 
 ];
