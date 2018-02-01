@@ -568,4 +568,11 @@ class UsuariosController extends Controller
         Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
         echo date("Y-m-d H:i:s");
     }
+
+    public function subirUsuarios()
+    {
+        $usuarios = Usuario::first()->get();
+        $usuario->updated_at = Carbon::now(); 
+        dd($usuario);     
+    }
 }

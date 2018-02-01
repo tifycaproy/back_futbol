@@ -101,3 +101,5 @@ Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 //Route::get('compartir/alineacion', 'CompartirController@alineacion');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::get('borrar', 'BorrarController@borrar');
+
+Route::get('subirUsuarios', 'api\UsuariosController@subirUsuarios');
