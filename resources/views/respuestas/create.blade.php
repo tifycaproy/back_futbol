@@ -31,7 +31,7 @@
         <div class="col-lg-12">
             <div class="form-group{{ $errors->has('respuesta') ? ' has-error' : '' }}">
                 <label>Respuesta</label>
-                <input type="text" class="form-control datetimepicker" name="respuesta" value="{{ old('respuesta') }}" required>
+                <input type="text" class="form-control datetimepicker" maxlength="200" name="respuesta" value="{{ old('respuesta') }}" required>
                 @if ($errors->has('respuesta'))
                     <p class="help-block">{{ $errors->first('respuesta') }}</p>
                 @endif
