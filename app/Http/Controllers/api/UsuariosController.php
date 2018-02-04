@@ -570,4 +570,39 @@ class UsuariosController extends Controller
         echo date("Y-m-d H:i:s");
     }
 
+<<<<<<< HEAD
+=======
+
+    public function consultarFoto($idusuario)
+    {
+        try{
+            
+           
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','foto','foto_redes']);
+
+            if(!$usuario){
+                return ["status" => "fallo", "error" => 'El usuario no existe'];
+            }
+
+            $usuario=$usuario->toArray();
+    
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
+                }else{
+                    $usuario["foto"]="";
+                }
+            }else{
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+                 unset($usuario["foto_redes"]);
+            }
+            return ["status" => "exito", "data" => $usuario];
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intente de nuevo"]];
+        }
+    }
+
+>>>>>>> dev
 }
+
+
