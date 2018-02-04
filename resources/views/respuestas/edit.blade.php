@@ -38,7 +38,7 @@
         <div class="col-lg-4">
             <div class="form-group{{ $errors->has('respuesta') ? ' has-error' : '' }}">
                 <label>Respuesta</label>
-                <input type="text" class="form-control" name="respuesta" value="{{ old('respuesta',$respuesta->respuesta) }}" required>
+                <input type="text" class="form-control" name="respuesta" maxlength="200" value="{{ old('respuesta',$respuesta->respuesta) }}" required>
                 @if ($errors->has('respuesta'))
                     <p class="help-block">{{ $errors->first('respuesta') }}</p>
                 @endif

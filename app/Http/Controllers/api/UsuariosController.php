@@ -10,6 +10,7 @@ use App\Referido;
 use Mail;
 
 
+
 class UsuariosController extends Controller
 {
     /**
@@ -568,4 +569,5 @@ class UsuariosController extends Controller
         Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
         echo date("Y-m-d H:i:s");
     }
+
 }

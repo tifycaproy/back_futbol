@@ -30,7 +30,7 @@
         <div class="col-lg-6">
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                 <label>Título</label>
-                <input type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" maxlength="200" required autofocus>
+                <input type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" maxlength="250" required autofocus>
                 @if ($errors->has('titulo'))
                     <p class="help-block">{{ $errors->first('titulo') }}</p>
                 @endif
@@ -73,6 +73,15 @@
                     <option value="Siempre"@if(old('mostrar_resultados')=='Siempre') selected @endif>Siempre</option>
                     <option value="Solo si ya votó"@if(old('mostrar_resultados')=='Solo si ya votó') selected @endif>Solo si ya votó</option>
                     <option value="Al finalizar la encuesta"@if(old('mostrar_resultados')=='Al finalizar la encuesta') selected @endif>Al finalizar la encuesta</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Activa</label>
+                <select name="activa" class="form-control">
+                    <option value="1"@if(old('activa')=='1') selected @endif>Si</option>
+                    <option value="0"@if(old('activa')=='0') selected @endif>No</option>
                 </select>
             </div>
         </div>
