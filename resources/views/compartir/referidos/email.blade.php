@@ -22,11 +22,16 @@ $nombre=$nombre;
           <input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido" maxlength="60" required>
 
       </div>
+        <div class="form-group">
+
+          <input type="text" name="cedula" class="form-control form-control-lg" id="cedula" placeholder="Cédula y/o Pasaporte" maxlength="50" required>
+
+      </div>
       <div class="form-row">
           <div class="form-group col-3">
 
-             <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="+57" onchange="validarpais( this.value );"
-             maxlength="2" required>
+             <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="57" onchange="validarpais( this.value );"
+             maxlength="3" required>
 
          </div>
          <div class="form-group col-9">
@@ -82,6 +87,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
         }else{ document.form1.pais.value = res; }
         // return true;
     }
+
     $ = jQuery;
     jQuery(document).ready(function () {
         $("input#email").bind('change', function () {
@@ -91,6 +97,20 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                 alert("Error: La dirección de correo " + email + " es incorrecta.");
                 //document.form1.email.value = "";
             }
+            ;
+        });
+
+     $("input#cedula").bind('change', function () {
+            var ced = $(this).val();
+            cedula = ced.toUpperCase();
+            expr = /(^([0-9]|[A-Z]){1}([0-9]){1,50}$)/;
+            if (!expr.test(cedula)) {
+                alert("Error: La cedula " + cedula + " es incorrecta.");
+                document.form1.cedula.value = "";
+                document.form1.apellido.focus();
+            }else{ 
+               document.form1.cedula.value = cedula;
+              }
             ;
         });
 
@@ -154,8 +174,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             ;
         });
 
-      
-               
+                 
 
         function getMobileOperatingSystem() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -179,6 +198,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             var data_referido = new Object();
             data_referido.nombre = $('#nombre').val();
             data_referido.apellido = $('#apellido').val();
+            data_referido.ci       =$('#cedula').val();
             data_referido.email = $('#email').val();
             data_referido.clave = $('#clave').val();
             data_referido.referido = $('#codigo').val();

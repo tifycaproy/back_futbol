@@ -10,6 +10,7 @@ use App\Referido;
 use Mail;
 
 
+
 class UsuariosController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class UsuariosController extends Controller
      */
 
 // Versión 1
- 
+
     public function registro_usuario(Request $request)
     {
         $request=json_decode($request->getContent());
@@ -30,7 +31,7 @@ class UsuariosController extends Controller
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
-            
+
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -77,7 +78,7 @@ class UsuariosController extends Controller
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
 
    public function iniciar_secion(Request $request)
@@ -90,12 +91,12 @@ class UsuariosController extends Controller
             $errors=[];
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
-            
+
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            
+
             $email=$request["email"];
             $usuario=Usuario::where('email',$email)->first();
             if($usuario){
@@ -109,51 +110,54 @@ class UsuariosController extends Controller
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
 
 //versión 2
     public function registro_usuario2(Request $request)
     {
-        $request=json_decode($request->getContent());
-        $request=get_object_vars($request);
-        try{
+        $request = json_decode($request->getContent());
+        $request = get_object_vars($request);
+        try {
             //Validaciones
             $errors=[];
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
-            
+            if(!isset($request["ci"])) $errors[]="La cédula es requerida";
+
             if(count($errors)>0){
+
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $email=$request["email"];
+            $email = $request["email"];
 
             // Referidos
-            if($referente=Referido::where('email',$email)->first()){
-                $request["referido"]=$referente->usuario_id;
+            if ($referente = Referido::where('email', $email)->first()) {
+                $request["referido"] = $referente->usuario_id;
             }
 
-            if(Usuario::where('email',$email)->first()){
+            if (Usuario::where('email', $email)->first()) {
                 return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
             }
-            if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
-                return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
+
+            if(Usuario::where('ci',$ci)->first()){
+                return ["status" => "fallo", "error" => ["La cédula ya se encuentra registrada"]];
             }
 
-//ojo
+            if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
 
-            $request["clave"]=password_hash($request["clave"], PASSWORD_DEFAULT);
-            if(isset($request["foto"])){
-                $foto=$request["foto"];
-                if($foto<>''){
+                return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
+            }
+            $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
+            if (isset($request["foto"])) {
+                $foto = $request["foto"];
+                if ($foto <> '') {
                     list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    //list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
-                    $filepath='usuarios/' . $request["foto"];
+                    $extensio = $tipo == 'data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+                    $filepath = 'usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
                     $result = $s3->putObject(array(
@@ -166,31 +170,80 @@ class UsuariosController extends Controller
 
                 }
             }
-            $clave_recuperacion=rand(1000,9999);
-            $request["pinseguridad"]=$clave_recuperacion;
-            $request["estatus"]='Pendiente';
+            $clave_recuperacion = rand(1000, 9999);
+            $request["pinseguridad"] = $clave_recuperacion;
+            $request["estatus"] = 'Pendiente';
 
-            $nuevo=Usuario::create($request);
-            $idusuario=$nuevo->id;
+            $nuevo = Usuario::create($request);
+            $idusuario = $nuevo->id;
 
             //email con pin de ingreso
-            $data=[
-                "email"=>$email,
-                'clave_recuperacion'=>$clave_recuperacion,
+            $data = [
+                "email" => $email,
+                'clave_recuperacion' => $clave_recuperacion,
             ];
-            Mail::send('emails.enviar_pin', $data, function($message) use ($data) {
+            Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
                 $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
             });
             //fin de email
 
-            return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
-            //return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
+            $colombia = $this->sms_colombia($request);
+            //Envienado mensaje de texto
+            if ($colombia) {
+                $curl = curl_init();
+                //celular a donde va a enviar el mensaje
+                $celular = $request['celular'];
+                $header = "Basic " . base64_encode( env('SMS_USER'). ":" . env('SMS_PASS'));
+                $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: ". $clave_recuperacion );
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "{ \"from\":\"SMS VERIFICACION DE CUENTA\", \"to\":\"$celular\", \"text\":\"$mensaje\" }",
+                    CURLOPT_HTTPHEADER => array(
+                        "accept: application/json",
+                        "authorization: " . $header,
+                        "content-type: application/json"
+                    ),
 
+                ));
+
+               // $response = curl_exec($curl);
+               // $err = curl_error($curl);
+
+                curl_close($curl);
+
+
+            }
+
+            return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+            return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+
+
+
+
+
     }
 
+    //verificar si es de colombia para realizar envio de sms
+    public function sms_colombia($request)
+    {
+        $cel = $request['celular'];
+        //si tiene el signo mas se le remueve
+        $cel = str_replace("+", "", $cel);
+        $cel = str_replace(" ", "", $cel);
+        if (isset($cel) && (strlen($cel) >= '10') && (strlen($cel) <= '12') && strpos($cel, '57')==0  ) {
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function reenviar_pin_confirmacion($email)
     {
         try{
@@ -210,11 +263,13 @@ class UsuariosController extends Controller
             });
             //fin de email
 
+
+
             return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
 
     public function validar_cuenta(Request $request)
@@ -242,7 +297,7 @@ class UsuariosController extends Controller
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
 
 
@@ -256,12 +311,12 @@ class UsuariosController extends Controller
             $errors=[];
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
-            
+
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            
+
             $email=$request["email"];
             $usuario=Usuario::where('email',$email)->first();
             if($usuario){
@@ -278,7 +333,7 @@ class UsuariosController extends Controller
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
     public function auth_redes(Request $request)
     {
@@ -290,7 +345,7 @@ class UsuariosController extends Controller
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
             if(!isset($request["userID_facebook"]) and !isset($request["userID_google"])) $errors[]="userID_facebook o userID_google son requeridos";
-            
+
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -346,7 +401,7 @@ class UsuariosController extends Controller
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
     public function recuperar_clave(Request $request)
     {
@@ -376,14 +431,45 @@ class UsuariosController extends Controller
                     $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
                 });
                 //fin de email
+                $colombia = $this->sms_colombia($request);
+                //Envienado mensaje de texto
+                if ($colombia) {
+                    $curl = curl_init();
+                    //celular a donde va a enviar el mensaje
+                    $celular = $request['celular'];
+                    $header = "Basic " . base64_encode( env('SMS_USER'). ":" . env('SMS_PASS'));
+                    $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: ". $clave_recuperacion );
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "{ \"from\":\"SMS CAMBIO DE CONTRASEÑA\", \"to\":\"$celular\", \"text\":\"$mensaje\" }",
+                        CURLOPT_HTTPHEADER => array(
+                            "accept: application/json",
+                            "authorization: " . $header,
+                            "content-type: application/json"
+                        ),
 
+                    ));
+
+                    // $response = curl_exec($curl);
+                    // $err = curl_error($curl);
+
+                    curl_close($curl);
+
+
+                }
                 return ["status" => "exito", "data" => "Se ha enviado un email con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
             }else{
                 return ["status" => "fallo", "error" => ["email incorrecto"]];
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
     public function ingresar_con_pin(Request $request)
     {
@@ -407,7 +493,7 @@ class UsuariosController extends Controller
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
+        }
     }
 
     public function consultar_usuario($token)
@@ -421,7 +507,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at','referido']);
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','ci','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at','referido']);
             $usuario=$usuario->toArray();
             $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
@@ -568,4 +654,37 @@ class UsuariosController extends Controller
         Usuario::where('activo',1)->whereDate('ultimo_ingreso','<',$fecha)->update(['activo'=>0]);
         echo date("Y-m-d H:i:s");
     }
+
+
+    public function consultarFoto($idusuario)
+    {
+        try{
+
+
+            $usuario=Usuario::where('id',$idusuario)->first(['id as idusuario','foto','foto_redes']);
+
+            if(!$usuario){
+                return ["status" => "fallo", "error" => 'El usuario no existe'];
+            }
+
+            $usuario=$usuario->toArray();
+
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
+                }else{
+                    $usuario["foto"]="";
+                }
+            }else{
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+                 unset($usuario["foto_redes"]);
+            }
+            return ["status" => "exito", "data" => $usuario];
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intente de nuevo"]];
+        }
+    }
+
 }
+
+
