@@ -120,12 +120,14 @@ class UsuariosController extends Controller
         $request = get_object_vars($request);
         try {
             //Validaciones
-            $errors = [];
-            if (!isset($request["email"])) $errors[] = "El email es requerido";
-            if (!isset($request["nombre"])) $errors[] = "El nombre es requerido";
-            if (!isset($request["clave"])) $errors[] = "La clave es requerida";
+            $errors=[];
+            if(!isset($request["email"])) $errors[]="El email es requerido";
+            if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
+            if(!isset($request["clave"])) $errors[]="La clave es requerida";
+            if(!isset($request["ci"])) $errors[]="La cédula es requerida";
+            
+            if(count($errors)>0){
 
-            if (count($errors) > 0) {
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
@@ -139,7 +141,13 @@ class UsuariosController extends Controller
             if (Usuario::where('email', $email)->first()) {
                 return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
             }
-            if (isset($request["apodo"])) if ($request["apodo"] <> '') if (Usuario::where('apodo', $request["apodo"])->first()) {
+
+            if(Usuario::where('ci',$ci)->first()){
+                return ["status" => "fallo", "error" => ["La cédula ya se encuentra registrada"]];
+            }
+
+            if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
+
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
             $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
