@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Configuracion;
+use App\Usuario;
 
 
 class ConfiguracionController extends Controller
@@ -29,6 +30,8 @@ class ConfiguracionController extends Controller
         $data["data"]=$configuracion;
         $data["data"]["patrocinante"]=config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
         $data["data"]["url_vistas"]=config('app.share_url');
+        $data["data"]["total_hinchas "]=Usuario::count();
+
         return $data;
     }
 }
