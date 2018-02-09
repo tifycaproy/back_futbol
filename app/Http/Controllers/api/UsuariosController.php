@@ -125,7 +125,7 @@ class UsuariosController extends Controller
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
             if(!isset($request["ci"])) $errors[]="La cédula es requerida";
-            
+
             if(count($errors)>0){
 
                 return ["status" => "fallo", "error" => $errors];
@@ -188,8 +188,6 @@ class UsuariosController extends Controller
             //fin de email
 
             $colombia = $this->sms_colombia($request);
-
-
             //Envienado mensaje de texto
             if ($colombia) {
                 $curl = curl_init();
@@ -264,6 +262,8 @@ class UsuariosController extends Controller
                 $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
             });
             //fin de email
+
+
 
             return ["status" => "exito",'data'=>['mensaje_pin'=>'Procede a validar tu cuenta para poder entrar al app']];
 
@@ -431,7 +431,38 @@ class UsuariosController extends Controller
                     $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
                 });
                 //fin de email
+                $colombia = $this->sms_colombia($request);
+                //Envienado mensaje de texto
+                if ($colombia) {
+                    $curl = curl_init();
+                    //celular a donde va a enviar el mensaje
+                    $celular = $request['celular'];
+                    $header = "Basic " . base64_encode( env('SMS_USER'). ":" . env('SMS_PASS'));
+                    $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: ". $clave_recuperacion );
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "{ \"from\":\"SMS CAMBIO DE CONTRASEÑA\", \"to\":\"$celular\", \"text\":\"$mensaje\" }",
+                        CURLOPT_HTTPHEADER => array(
+                            "accept: application/json",
+                            "authorization: " . $header,
+                            "content-type: application/json"
+                        ),
 
+                    ));
+
+                    // $response = curl_exec($curl);
+                    // $err = curl_error($curl);
+
+                    curl_close($curl);
+
+
+                }
                 return ["status" => "exito", "data" => "Se ha enviado un email con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
             }else{
                 return ["status" => "fallo", "error" => ["email incorrecto"]];
