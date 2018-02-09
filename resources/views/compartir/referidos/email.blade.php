@@ -107,6 +107,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             if (!expr.test(cedula)) {
                 alert("Error: La cedula " + cedula + " es incorrecta.");
                 document.form1.cedula.value = "";
+                document.form1.apellido.focus();
             }else{ 
                document.form1.cedula.value = cedula;
               }
