@@ -106,7 +106,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             expr = /(^([0-9]|[A-Z]){1}([0-9]){1,50}$)/;
             if (!expr.test(cedula)) {
                 alert("Error: La cedula " + cedula + " es incorrecta.");
-                
+                document.form1.cedula.value = "";
             }else{ 
                document.form1.cedula.value = cedula;
               }
