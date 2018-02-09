@@ -132,6 +132,7 @@ class UsuariosController extends Controller
             }
             //fin validaciones
             $email = $request["email"];
+            $ci = $request["ci"];
 
             // Referidos
             if ($referente = Referido::where('email', $email)->first()) {
