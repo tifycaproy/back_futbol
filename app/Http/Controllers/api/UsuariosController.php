@@ -142,9 +142,6 @@ class UsuariosController extends Controller
             if (isset($request["apodo"])) if ($request["apodo"] <> '') if (Usuario::where('apodo', $request["apodo"])->first()) {
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
-
-//ojo
-
             $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
             if (isset($request["foto"])) {
                 $foto = $request["foto"];
@@ -152,8 +149,6 @@ class UsuariosController extends Controller
                     list($tipo, $Base64Img) = explode(';', $foto);
                     $extensio = $tipo == 'data:image/png' ? '.png' : '.jpg';
                     $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
-                    //list(, $Base64Img) = explode(',', $Base64Img);
-                    //$image = base64_decode($Base64Img);
                     $filepath = 'usuarios/' . $request["foto"];
 
                     $s3 = S3Client::factory(config('app.s3'));
@@ -189,24 +184,9 @@ class UsuariosController extends Controller
 
             //Envienado mensaje de texto
             if ($colombia) {
-                /* $data = array( "to" => "+573005684575",
-                     "from" => "Selección Colombia",
-                     "text" => "Su solicitud de cambio de contraseña se ha realizado exitosamente. Su nueva contraseña es:".$clave_recuperacion,
-                     "web_url" => "seleccioncolombiaoficial.com",
-                     "tag" => "App SC",
-                     "type" => ""
-                 );*/
-
-
                 $curl = curl_init();
-
-
-                //autentificacion  con credenciales     para infobip
-
-
                 //celular a donde va a enviar el mensaje
                 $celular = $request['celular'];
-
                 $header = "Basic " . base64_encode( env('SMS_USER'). ":" . env('SMS_PASS'));
                 $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: ". $clave_recuperacion );
                 curl_setopt_array($curl, array(
@@ -226,28 +206,15 @@ class UsuariosController extends Controller
 
                 ));
 
-                $response = curl_exec($curl);
-                $err = curl_error($curl);
+               // $response = curl_exec($curl);
+               // $err = curl_error($curl);
 
                 curl_close($curl);
-
-                if ($err) {
-                    // echo "cURL Error #:" . $err;
-                } else {
-                    // echo $response;
-                }
 
 
             }
 
-
-
-
-
-
             return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
-            //return ["status" => "exito", "data" => ["token" => crea_token($idusuario),"idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
-
         } catch (Exception $e) {
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
@@ -261,16 +228,10 @@ class UsuariosController extends Controller
     //verificar si es de colombia para realizar envio de sms
     public function sms_colombia($request)
     {
-
-
-
-
         $cel = $request['celular'];
         //si tiene el signo mas se le remueve
         $cel = str_replace("+", "", $cel);
         $cel = str_replace(" ", "", $cel);
-
-        //
         if (isset($cel) && (strlen($cel) >= '10') && (strlen($cel) <= '12') && strpos($cel, '57')==0  ) {
             return true;
         }else{
