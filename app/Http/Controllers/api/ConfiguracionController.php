@@ -30,7 +30,7 @@ class ConfiguracionController extends Controller
         $data["data"]=$configuracion;
         $data["data"]["patrocinante"]=config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
         $data["data"]["url_vistas"]=config('app.share_url');
-        $data["data"]["total_hinchas "]=Usuario::count();
+        $data["data"]["total_hinchas"]=Usuario::count();
 
         return $data;
     }
