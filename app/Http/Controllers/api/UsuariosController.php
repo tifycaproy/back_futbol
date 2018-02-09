@@ -655,7 +655,6 @@ class UsuariosController extends Controller
         echo date("Y-m-d H:i:s");
     }
 
-
     public function consultarFoto($idusuario)
     {
         try{
