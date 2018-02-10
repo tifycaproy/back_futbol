@@ -187,8 +187,9 @@ class UsuariosController extends Controller
                 $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
             });
             //fin de email
-
-            $colombia = $this->sms_colombia($request);
+              if(isset($request["celular"])){
+                  $colombia = $this->sms_colombia($request);
+              }
             //Envienado mensaje de texto
             if ($colombia) {
                 $curl = curl_init();
@@ -432,7 +433,9 @@ class UsuariosController extends Controller
                     $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
                 });
                 //fin de email
-                $colombia = $this->sms_colombia($request);
+                if(isset($request["celular"])){
+                    $colombia = $this->sms_colombia($request);
+                }
                 //Envienado mensaje de texto
                 if ($colombia) {
                     $curl = curl_init();
