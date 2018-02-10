@@ -1,4 +1,5 @@
 <?php
+
 $footer1= "DESCARGA AHORA MISMO LA APP OFICIAL MILLONARIOS FC";
 $footer2 = "NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE";
 if (isset($_GET['seccion'])) {
@@ -71,7 +72,10 @@ if (isset($_GET['seccion'])) {
 
     }
 } else {
-    $url = "";
+    $enlace_actual = $_SERVER['REQUEST_URI'];
+    echo $enlace_actual;
+    exit;
+    $url = url('/compartir/usr/'.$seccion);
     $imagen = "https://s3.amazonaws.com/cmsmillos/compartir/compartaelapp.jpeg";
     $descripcion = "¡CONVIÉRTETE EN HINCHA OFICIAL Y COMPARTE TU PASIÓN POR EL EMBAJADOR!";
     $titulo = "Comparte tu pasión";

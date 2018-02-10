@@ -120,6 +120,14 @@ class UsuariosController extends Controller
         $request = get_object_vars($request);
         try {
             //Validaciones
+<<<<<<< HEAD
+            $errors = [];
+            if (!isset($request["email"])) $errors[] = "El email es requerido";
+            if (!isset($request["nombre"])) $errors[] = "El nombre es requerido";
+            if (!isset($request["clave"])) $errors[] = "La clave es requerida";
+            if (!isset($request["ci"])) $errors[] = "La cedula es requerida";
+            if (count($errors) > 0) {
+=======
             $errors=[];
             if(!isset($request["email"])) $errors[]="El email es requerido";
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
@@ -128,6 +136,7 @@ class UsuariosController extends Controller
 
             if(count($errors)>0){
 
+>>>>>>> 45432ff86f5e9ea62a6943edf793bfbaeb87697e
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
@@ -142,6 +151,12 @@ class UsuariosController extends Controller
             if (Usuario::where('email', $email)->first()) {
                 return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
             }
+<<<<<<< HEAD
+            if (Usuario::where('ci', $ci)->first()) {
+                return ["status" => "fallo", "error" => ["La cedula ya se encuentra registrada"]];
+            }
+            if (isset($request["apodo"])) if ($request["apodo"] <> '') if (Usuario::where('apodo', $request["apodo"])->first()) {
+=======
 
             if(Usuario::where('ci',$ci)->first()){
                 return ["status" => "fallo", "error" => ["La cédula ya se encuentra registrada"]];
@@ -149,6 +164,7 @@ class UsuariosController extends Controller
 
             if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
 
+>>>>>>> 45432ff86f5e9ea62a6943edf793bfbaeb87697e
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
             $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
