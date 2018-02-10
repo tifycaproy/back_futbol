@@ -188,6 +188,8 @@ class UsuariosController extends Controller
             //fin de email
               if(isset($request["celular"])){
                   $colombia = $this->sms_colombia($request);
+              } else{
+                  $colombia=false;
               }
             //Envienado mensaje de texto
             if ($colombia) {
@@ -434,6 +436,8 @@ class UsuariosController extends Controller
                 //fin de email
                 if(isset($request["celular"])){
                     $colombia = $this->sms_colombia($request);
+                }else{
+                    $colombia=false;
                 }
                 //Envienado mensaje de texto
                 if ($colombia) {
