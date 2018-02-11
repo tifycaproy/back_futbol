@@ -3,7 +3,8 @@
 <?php
       $codigo_referido=$codigo;
       $titulo="¡YA SOY HINCHA EMBAJADOR OFICIAL!";
-      $descripcion="La APP MILLONARIOS FC OFICIAL te trae el contenido más exclusivo del Embajador al alcance de tu mano! Regístrate y descárgala en el siguiente link:";
+      $descripcion="";
+      //$descripcion="La APP MILLONARIOS FC OFICIAL te trae el contenido más exclusivo del Embajador al alcance de tu mano! Regístrate y descárgala en el siguiente link:";
 
  ?>
 
@@ -22,7 +23,7 @@
 	<meta property="og:url" content="<?php echo env('APP_SHARE_URL')."compartir/referidos/". $codigo ; ?>"/>
 	<meta property="og:type"               content="article" />
     <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $titulo) !!}" />
-     <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />
+     <!--<meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />-->
      <meta property="og:image" content="https://s3.amazonaws.com/cmsmillos/logo_bsc.jpg"/>
 
 
