@@ -1,7 +1,7 @@
 /** Generated @ www.fontreactor.com ***/
 @font-face {
 	font-family: 'Tahoma';
-    src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'), 
+    src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'),
          url('../font/original_tahoma.woff') format('woff'),
          url('../font/original_tahoma.ttf') format('truetype'),
          url('../font/original_tahoma.svg') format('svg');
@@ -9,7 +9,7 @@
 	font-style: normal;
 
 	font-family: 'Tahoma-Bold';
-    src: url('../font/original_tahomabd.eot?#iefix') format('embedded-opentype'), 
+    src: url('../font/original_tahomabd.eot?#iefix') format('embedded-opentype'),
          url('../font/original_tahomabd.woff') format('woff'),
          url('../font/original_tahomabd.ttf') format('truetype'),
          url('../font/original_tahomabd.svg') format('svg');
@@ -19,7 +19,7 @@
 body, html{
 	height: 100%;
 	padding: 0px !important;
-	margin: 0px !important;	
+	margin: 0px !important;
 
 	
 }
@@ -87,7 +87,7 @@ input{
 
 
 /* Ordenadores de sobremesa y portÃ¡tiles */
-@media only screen 
+@media only screen
 and (min-width : 1024px) {
 	h1{
 		font-size: 1.6rem;
@@ -114,8 +114,8 @@ and (min-width : 1024px) {
 	}
 }
 /* Smartphones (portrait & landscape) */
-@media only screen 
-and (min-device-width : 320px) 
+@media only screen
+and (min-device-width : 320px)
 and (max-device-width : 480px){
 	h1{
 		font-size: 1rem;
@@ -133,18 +133,18 @@ and (max-device-width : 480px){
 	.tiendas{
 		width: 60%;
 	}
-	input{
+	/*input{
 		padding: 2.3rem 1rem !important;
 		font-size: 2.5em !important;
-	}
+	}*/
 	.nombre{
-		font-size: 3.5em;
+		font-size: 1.5em;
 	}
 
 }
 /* iPads (portrait & landscape) */
-@media only screen 
-and (min-device-width : 768px) 
+@media only screen
+and (min-device-width : 768px)
 and (max-device-width : 1024px) {
 h1{
 		font-size: 1.6rem;
@@ -163,6 +163,6 @@ h1{
 		width: 50%;
 	}
 	.nombre{
-		font-size: 3em;
+		font-size: 1.5em;
 	}
 }
