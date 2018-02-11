@@ -1,12 +1,12 @@
 @extends ('compartir.referidos.header')
-<?php 
-      $codigo_referido=$codigo; 
+<?php
+      $codigo_referido=$codigo;
       $nombre_referido=$nombre;
  ?>
 @section ('content')
 <section class="row justify-content-center  no-gutters">
 <div class="col-12 col-lg-7 col-xl-3 no-gutters"><!-- clase no-gutter-->
- 	 
+
      <img src="{{ asset ('compartir/images/separador.svg') }}" alt="" class="separador  m-3">
 
 		<a href="javascript:void(0);" name="facebook"><img src="{{ asset ('compartir/images/btn_face.svg') }}" alt="" class="col-11 mt-3 mb-3 facebook"></a>
@@ -47,7 +47,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
         window.location.href = ira;
 
     }
-	
+
     $(document).ready(function () {
 
         $('.google').bind('touchstart click', function (e) {
@@ -58,11 +58,11 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
             e.preventDefault;
             ingresar();
         });
-    });   
+    });
      //login facebook
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1859980400683639', 
+            appId: '1859980400683639',
             autoLogAppEvents: true,
             xfbml: true,
             version: 'v2.11'
@@ -115,7 +115,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
         });
     }
 
-    
+
     function registrar_usuario(data_referido) {
         //verificar dirección de registro de redes
         var cambio = JSON.stringify(data_referido);
@@ -187,8 +187,8 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                         var user_info = JSON.parse(success.body);
                         console.log(user_info);
                         var data_referido = new Object();
-                        data_referido.nombre = user_info.displayName;
-                        data_referido.apellido = user_info.emails[0].value;
+                        data_referido.nombre = success.result.name.givenName;
+                        data_referido.apellido = success.result.name.familyName;
                         data_referido.email = user_info.emails[0].value;
                         data_referido.userID_google = user_info.id;
                         data_referido.referido = $('#codigo').val();
@@ -211,7 +211,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
         );
 
     }
-       
+
 
 </script>
 
