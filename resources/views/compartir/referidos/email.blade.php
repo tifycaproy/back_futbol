@@ -1,5 +1,6 @@
 @extends ('compartir.referidos.header')
 <?php $codigo_referido=$codigo;
+$codigo_referido_id=$codigo_id;
 $nombre=$nombre;
 ?>
 
@@ -13,7 +14,7 @@ $nombre=$nombre;
 
     <form name="form1" id="form1" role="form" action="" method="POST" class="mt-3 ">
        <div class="form-group">
-          <input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido;?>">
+          <input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido_id;?>">
           <input type="text" name="nombre" class="form-control form-control-lg" id="nombre"  placeholder="Nombre" maxlength="60" required>
 
       </div>
