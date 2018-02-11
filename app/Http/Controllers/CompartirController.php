@@ -102,6 +102,7 @@ public function alineacion($id)
   $data["status"]='exito';
   $configuración=Configuracion::first();
   $fecha=$configuración->partido_alineacion;
+  dd($Configuración);
   $data = [
     "equipo_1"=>$fecha->equipo1->nombre,
     "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
@@ -169,7 +170,16 @@ public function email($codigo)
 }
 public function descargar()
 {
+  $usuario1 = Usuario::where('email','=','hendrickaponte@gmail.com')->first();
+  if($usuario)
+    $usuario->forceDelete();
+  else
+    printf('No existe');
+
+
   return view('compartir.referidos.descargar');
 }
 
 }
+
+hendrickaponte@gmail.com

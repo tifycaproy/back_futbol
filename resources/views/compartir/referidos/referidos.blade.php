@@ -103,7 +103,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                     data_referido.apellido = response.last_name;
                     data_referido.email = response.email;
                     data_referido.userID_facebook = response.id;
-                    data_referido.codigo = $('#codigo').val();
+                    data_referido.codigo = '<?php echo $codigo_referido;?>';
                     registrar_usuario(data_referido);
 
                 });
@@ -191,7 +191,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                         data_referido.apellido = user_info.emails[0].value;
                         data_referido.email = user_info.emails[0].value;
                         data_referido.userID_google = user_info.id;
-                        data_referido.referido = $('#codigo').val();
+                        data_referido.codigo = '<?php echo $codigo_referido;?>';
                         registrar_usuario(data_referido);
 
                     },

@@ -388,13 +388,14 @@ class UsuariosController extends Controller
                     'clave' => $clave,
                     'userID_facebook' => $userID_facebook,
                     'userID_google' => $userID_google,
+                    'referido' => $request["codigo"]
                 ];
                 if(isset($request["foto_redes"])){
                     $data['foto_redes']=$request["foto_redes"];
                 }
                 // Referidos
                 if($referente=Referido::where('email',$email)->first()){
-                    $data["referido"]=$referente->usuario_id;
+                             $data["referido"]=$referente->usuario_id;
                 }
 
                 $usuario=Usuario::create($data);
