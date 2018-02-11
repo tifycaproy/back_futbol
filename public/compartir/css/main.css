@@ -48,7 +48,6 @@ body {
 
 .container-fluid {
     text-align: center;
-    padding: 0px !important;
     height: 100%;
     }
 
@@ -90,6 +89,10 @@ input {
     font-size: 1.5em;
     }
 
+.col-12.col-lg-5.pl-5.pr-4 {
+    padding: 0 2% !important;
+    }
+
 /* Ordenadores de sobremesa y portÃ¡tiles */
 @media only screen
 and (min-width: 1024px) {
@@ -123,7 +126,6 @@ and (min-width: 1024px) {
         }
     }
 
-
 /* iPads (portrait & landscape) */
 @media only screen
 and (min-device-width: 768px)
@@ -150,13 +152,12 @@ and (max-device-width: 1024px) {
         }
     
     .nombre {
-        font-size: 1.5em;
+        font-size: 3em;
         }
     }
 
-
 /* Smartphones (portrait & landscape) */
-@media  (max-device-width: 480px) {
+@media (max-device-width: 480px) {
     
     h1 {
         font-size: 3em;
@@ -168,7 +169,7 @@ and (max-device-width: 1024px) {
     
     h4, p {
         font-size: 0.7rem;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         }
     
     .escudos {
@@ -181,6 +182,10 @@ and (max-device-width: 1024px) {
     
     h1.nombre {
         font-size: 5em;
+        }
+    
+    input.form-control {
+        font-size: 2em;
         }
         
     }
