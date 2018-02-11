@@ -381,7 +381,7 @@ class UsuariosController extends Controller
                 $clave=password_hash($clave, PASSWORD_DEFAULT);
 
                 $apellido=isset($request["apellido"]) ? $request["apellido"] : "";
-                $referido = decodifica();
+    
                 $data=[
                     'email' => $email,
                     'nombre' => $request["nombre"],
