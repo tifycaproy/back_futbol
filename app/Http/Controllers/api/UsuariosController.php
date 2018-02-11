@@ -381,6 +381,7 @@ class UsuariosController extends Controller
                 $clave=password_hash($clave, PASSWORD_DEFAULT);
 
                 $apellido=isset($request["apellido"]) ? $request["apellido"] : "";
+                $referido = decodifica($request["codigo"]);
                 $data=[
                     'email' => $email,
                     'nombre' => $request["nombre"],
@@ -388,7 +389,7 @@ class UsuariosController extends Controller
                     'clave' => $clave,
                     'userID_facebook' => $userID_facebook,
                     'userID_google' => $userID_google,
-                    'referido' => $request["codigo"]
+                    'referido' => $referido
                 ];
                 if(isset($request["foto_redes"])){
                     $data['foto_redes']=$request["foto_redes"];
