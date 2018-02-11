@@ -152,7 +152,7 @@ and (max-device-width: 1024px) {
         }
     
     .nombre {
-        font-size: 3em;
+        font-size: 4em;
         }
     }
 
@@ -181,7 +181,7 @@ and (max-device-width: 1024px) {
         }
     
     h1.nombre {
-        font-size: 5em;
+        font-size: 2.5em;
         }
     
     input.form-control {
