@@ -170,9 +170,6 @@ public function email($codigo)
  return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre)->with('codigo_id',$idusuario);
 }
 
-
- return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
-}
 public function descargar()
 {
   return view('compartir.referidos.descargar');
