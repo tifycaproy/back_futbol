@@ -135,7 +135,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                     if (data.status == 'exito') {
                         document.location = ira;
                     }else if (data.status == 'correo_existe') {
-                        alert('El correo ya se encuentra registrado, continúa para descargar la aplicación')
+                        alert('El correo ya se encuentra registrado, continúa para descargar la aplicación');
                         document.location = ira;
                     }
                      else {
