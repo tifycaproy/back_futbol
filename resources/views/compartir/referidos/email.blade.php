@@ -1,6 +1,6 @@
 @extends ('compartir.referidos.header')
 <?php $codigo_referido=$codigo;
-$codigo_referido_id=$codigoid;
+$codigo_referido_id=$codigo_id;
 $nombre=$nombre;
 ?>
 

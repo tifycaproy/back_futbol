@@ -151,7 +151,7 @@ public function referidos($codigo)
    if(isset($zusuarios->nombre)){
      $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
    }
-   return view('compartir.referidos.referidos')->with('codigo',$codigo)->with('nombre',$nombre);
+   return view('compartir.referidos.referidos')->with('codigo',$codigo)->with('codigo_id',$idusuario)->with('nombre',$nombre);
  } catch (Exception $e) {
   return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
