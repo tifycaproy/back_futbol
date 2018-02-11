@@ -160,11 +160,16 @@ public function referidos($codigo)
 public function email($codigo)
 {
  $codigo_referido = $codigo;
+ $idusuario = decodifica($codigo);
  $nombre="";
- $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+ $zusuarios =  Usuario::where('id','=',$idusuario)->first();
  if(isset($zusuarios->nombre)){
-   $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+   $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
  }
+
+ return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre)->with('codigo_id',$idusuario);
+}
+
 
  return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
 }
