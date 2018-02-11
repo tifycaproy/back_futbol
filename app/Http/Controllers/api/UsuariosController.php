@@ -344,8 +344,8 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if (Usuario::where('email','=',$request["email"])) {
-                return ["status" => "correo_existe", "error" => 'El correo ya se encuentra registrado'];
+             if (Usuario::where('email','=',$request["email"])->first()) {
+                return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
          }
          $userID_facebook="";
          if(isset($request["userID_facebook"])) $userID_facebook=$request["userID_facebook"];
