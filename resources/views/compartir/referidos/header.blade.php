@@ -19,11 +19,11 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-signin-client_id" content="532872190545-h87jgs562eijh6pfqkrahk53snqbla0s.apps.googleusercontent.com">
 
-	<meta property="og:url" content="http://millos.2waysports.com/compartir/referidos/<?php echo $codigo ; ?>"/>
+	<meta property="og:url" content="<?php echo env('APP_SHARE_URL')."compartir/referidos/". $codigo ; ?>"/>
 	<meta property="og:type"               content="article" />
     <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $titulo) !!}" />
      <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />
-     <meta property="og:image" content="http://millos.2waysports.com/compartir/images/logo_millos.png"/>
+     <meta property="og:image" content="<?php echo env('APP_SHARE_URL')."/compartir/images/logo_millos.png";?>"/>
 
 
 
