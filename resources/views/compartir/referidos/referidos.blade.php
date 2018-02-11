@@ -18,7 +18,7 @@
 
 		<a href="{{ route('compartir.email',$codigo_referido) }}"><img src="{{ asset ('compartir/images/btn_email.svg') }}" alt="" class="col-11 mt-3 mb-3"></a>
 
-        <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+        <input name="_token" value="{{ csrf_token() }}" type="hidden">
 	</div>
 </section>
 
