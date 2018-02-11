@@ -19,14 +19,14 @@ class CompartirController extends Controller
 
   public function onceideal($ruta)
   {
-       //dd($ruta); 
+       //dd($ruta);
    list($idusuario,$idcalendario) = explode('.', $ruta);
    $idusuario=decodifica($idusuario);
    $idcalendario=decodifica($idcalendario);
         //dd($idusuario,$idcalendario);
    $fecha=Calendario::find($idcalendario);
    $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
-   if(isset($fecha)){  
+   if(isset($fecha)){
     $data=[
       "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
       "equipo_1"=>$fecha->equipo1->nombre,
@@ -43,23 +43,23 @@ class CompartirController extends Controller
         ];
       }
     }
-    return view('compartir.onceideal')->with("data",$data);   
+    return view('compartir.onceideal')->with("data",$data);
   }else{ $seccion='calendario';
   $seccion=Compartir::where('seccion',$seccion)->first();
   return view('compartir.general')->with('seccion',$seccion);
-}    
+}
 }
 
 public function onceidealr($ruta,$id)
 {
-       //dd($ruta); 
+       //dd($ruta);
  list($idusuario,$idcalendario) = explode('.', $ruta);
  $idusuario=decodifica($idusuario);
  $idcalendario=decodifica($idcalendario);
         //dd($idusuario,$idcalendario);
  $fecha=Calendario::find($idcalendario);
  $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
- if(isset($fecha)){  
+ if(isset($fecha)){
   $data=[
     "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
     "equipo_1"=>$fecha->equipo1->nombre,
@@ -76,11 +76,11 @@ public function onceidealr($ruta,$id)
       ];
     }
   }
-  return view('compartir.onceideal')->with("data",$data);   
+  return view('compartir.onceideal')->with("data",$data);
 }else{ $seccion='calendario';
 $seccion=Compartir::where('seccion',$seccion)->first();
 return view('compartir.general')->with('seccion',$seccion);
-}    
+}
 }
 
 public function usuario($id)
@@ -98,7 +98,7 @@ public function alineacion($id)
   $seccion='alineacion';
   $seccion=Compartir::where('seccion',$seccion)->first();
 
-  
+
   $data["status"]='exito';
   $configuración=Configuracion::first();
   $fecha=$configuración->partido_alineacion;
@@ -109,11 +109,11 @@ public function alineacion($id)
     "equipo_2"=>$fecha->equipo2->nombre,
     "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
     "copa"=>$fecha->copa->titulo,
-    
+
   ];
 
   return view('compartir.alineacion')->with("seccion",$seccion)->with("data",$data);
-  
+
 }
 
 public function show($seccion)
@@ -123,11 +123,11 @@ public function show($seccion)
 
     return view('compartir.general')->with('seccion',$seccion);
   }
-  
+
 }
 public function general($seccion, $id)
 {
-  
+
   if($seccion=Compartir::where('seccion',$seccion)->first()){
 
     return view('compartir.general')->with('seccion',$seccion);
@@ -149,13 +149,13 @@ public function referidos($codigo)
    $nombre="";
    $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
    if(isset($zusuarios->nombre)){
-     $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+     $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
    }
-   return view('compartir.referidos.referidos')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+   return view('compartir.referidos.referidos')->with('codigo',$codigo)->with('nombre',$nombre);
  } catch (Exception $e) {
   return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-}     
-} 
+}
+}
 
 public function email($codigo)
 {
@@ -163,7 +163,7 @@ public function email($codigo)
  $nombre="";
  $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
  if(isset($zusuarios->nombre)){
-   $nombre = $zusuarios->nombre." ".$zusuarios->apellido;   
+   $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
  }
 
  return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
