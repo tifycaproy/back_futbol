@@ -390,7 +390,7 @@ class UsuariosController extends Controller
                     'clave' => $clave,
                     'userID_facebook' => $userID_facebook,
                     'userID_google' => $userID_google,
-                    'referido' => $request["codigo"]
+                    'referido' => decodifica($request["codigo"])
                 ];
                 if(isset($request["foto_redes"])){
                     $data['foto_redes']=$request["foto_redes"];
