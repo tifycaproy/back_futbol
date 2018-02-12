@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Webup\LaravelSendinBlue\SendinBlueServiceProvider::class,
+        Askedio\Laravel5ProfanityFilter\Providers\ProfanityFilterServiceProvider::class,
 
     ],
 
