@@ -160,7 +160,7 @@ and (max-device-width: 1024px) {
 @media (max-device-width: 480px) {
     
     h1 {
-        font-size: 1.8em;
+        font-size: 1.4rem;
         }
     
     h2 {
