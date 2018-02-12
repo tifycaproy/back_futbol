@@ -192,7 +192,7 @@ class MuroController extends Controller
             $token=$request["token"];
             $idusuario=decodifica_token($token);
 
-            $comentarios=MuroComentario::where('muro_id', $idpost)->orderby('created_at','desc')->paginate(25);
+            $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
             $data["status"]='exito';
             $data["data"]=[];
             foreach ($comentarios as $comentario) {
