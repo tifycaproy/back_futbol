@@ -435,8 +435,11 @@ public function recuperar_clave(Request $request)
                 $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
             });
                 //fin de email
-            $colombia = $this->sms_colombia($request);
-                //Envienado mensaje de texto
+            $colombia = false;
+
+            if(isset($request["celular"])){
+                $colombia = $this->sms_colombia($request);
+            }  //Enviando mensaje de texto
             if ($colombia) {
                 $curl = curl_init();
                     //celular a donde va a enviar el mensaje
