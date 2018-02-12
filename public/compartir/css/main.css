@@ -35,7 +35,6 @@ body {
 
 .containerp {
     height: 100% !important;
-    overflow: hidden;
     }
 
 .fondo {
@@ -163,9 +162,6 @@ and (max-device-width: 1024px) {
         font-size: 1.2rem;
         }
     
-    .containerp {
-        overflow-y: scroll;
-        }
     
     .containerp h1 {
         margin: 0 auto;
