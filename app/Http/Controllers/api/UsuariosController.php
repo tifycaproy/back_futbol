@@ -344,7 +344,8 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            if (Usuario::where('email','=',$request["email"])->first()) {
+            $usuario = Usuario::where('email','=',$request["email"])->first();
+            if ($usuario && isset($request["codigo"])) {
                 return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
             }
             $userID_facebook="";
@@ -392,17 +393,20 @@ class UsuariosController extends Controller
                 }
                 // Referidos
                 if($referente=Referido::where('email',$email)->first()){
-                   $data["referido"]=$referente->usuario_id;
-               }
+                 $data["referido"]=$referente->usuario_id;
+             }
 
-               $usuario=Usuario::create($data);
-               return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-           }
+             $usuario=Usuario::create($data);
+             return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+         }
 
-       } catch (Exception $e) {
+     } catch (Exception $e) {
         return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
     }
 }
+
+
+
 public function recuperar_clave(Request $request)
 {
     $request=json_decode($request->getContent());
@@ -481,17 +485,17 @@ public function ingresar_con_pin(Request $request)
         if(!isset($request["email"])) $errors[]="El email es requerido";
         if(!isset($request["pin"])) $errors[]="El pin es requerido";
         if(count($errors)>0){
-         return ["status" => "fallo", "error" => $errors];
-     }
+           return ["status" => "fallo", "error" => $errors];
+       }
             //fin validaciones
-     $email=$request["email"];
-     $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
-     if($usuario){
-         return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-     }else{
-         return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
-     }
- } catch (Exception $e) {
+       $email=$request["email"];
+       $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
+       if($usuario){
+           return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+       }else{
+           return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+       }
+   } catch (Exception $e) {
     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
 }
