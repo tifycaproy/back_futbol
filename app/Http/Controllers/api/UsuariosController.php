@@ -353,7 +353,6 @@ class UsuariosController extends Controller
             $userID_google="";
             if(isset($request["userID_google"])) $userID_google=$request["userID_google"];
 
-
             $email=$request["email"];
 
             $usuario=Usuario::where('email',$email)->first();
@@ -379,30 +378,43 @@ class UsuariosController extends Controller
 
                 $apellido=isset($request["apellido"]) ? $request["apellido"] : "";
 
-                $data=[
+                if(!isset($request["codigo"])){ 
+                    $codigo_referido=$request["codigo"];
+
+                    $data=[
+                        'email' => $email,
+                        'nombre' => $request["nombre"],
+                        'apellido' => $apellido,
+                        'clave' => $clave,
+                        'userID_facebook' => $userID_facebook,
+                        'userID_google' => $userID_google,
+                        'referido' => $codigo_referido
+                    ];
+                }else{
+                   $data=[
                     'email' => $email,
                     'nombre' => $request["nombre"],
                     'apellido' => $apellido,
                     'clave' => $clave,
                     'userID_facebook' => $userID_facebook,
                     'userID_google' => $userID_google,
-                    'referido' => $request["codigo"]
                 ];
-                if(isset($request["foto_redes"])){
-                    $data['foto_redes']=$request["foto_redes"];
-                }
+            }
+            if(isset($request["foto_redes"])){
+                $data['foto_redes']=$request["foto_redes"];
+            }
                 // Referidos
-                if($referente=Referido::where('email',$email)->first()){
-                 $data["referido"]=$referente->usuario_id;
-             }
+            if($referente=Referido::where('email',$email)->first()){
+               $data["referido"]=$referente->usuario_id;
+           }
 
-             $usuario=Usuario::create($data);
-             return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-         }
+           $usuario=Usuario::create($data);
+           return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+       }
 
-     } catch (Exception $e) {
-        return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-    }
+   } catch (Exception $e) {
+    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+}
 }
 
 
@@ -488,17 +500,17 @@ public function ingresar_con_pin(Request $request)
         if(!isset($request["email"])) $errors[]="El email es requerido";
         if(!isset($request["pin"])) $errors[]="El pin es requerido";
         if(count($errors)>0){
-           return ["status" => "fallo", "error" => $errors];
-       }
+         return ["status" => "fallo", "error" => $errors];
+     }
             //fin validaciones
-       $email=$request["email"];
-       $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
-       if($usuario){
-           return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-       }else{
-           return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
-       }
-   } catch (Exception $e) {
+     $email=$request["email"];
+     $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
+     if($usuario){
+         return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+     }else{
+         return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+     }
+ } catch (Exception $e) {
     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
 }
