@@ -23,7 +23,7 @@
 	<meta property="og:url" content="<?php echo env('APP_SHARE_URL')."compartir/referidos/". $codigo ; ?>"/>
 	<meta property="og:type"               content="article" />
     <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $titulo) !!}" />
-     <!--<meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />-->
+     <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />
      <meta property="og:image" content="https://s3.amazonaws.com/cmsmillos/logo_bsc.jpg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
