@@ -21,7 +21,7 @@
 	<meta name="google-signin-client_id" content="532872190545-h87jgs562eijh6pfqkrahk53snqbla0s.apps.googleusercontent.com">
 
 	<meta property="og:url" content="<?php echo env('APP_SHARE_URL')."compartir/referidos/". $codigo ; ?>"/>
-	<meta property="og:type"               content="article" />
+	<meta property="og:type"               content="website" />
     <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $titulo) !!}" />
      <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $descripcion) !!}" />
      <meta property="og:image" content="https://s3.amazonaws.com/cmsmillos/logo_bsc.jpg"/>
