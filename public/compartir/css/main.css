@@ -35,7 +35,6 @@ body {
 
 .containerp {
     height: 100% !important;
-    overflow: hidden;
     }
 
 .fondo {
@@ -160,7 +159,12 @@ and (max-device-width: 1024px) {
 @media (max-device-width: 480px) {
     
     h1 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        }
+    
+    
+    .containerp h1 {
+        margin: 0 auto;
         }
     
     h2 {
@@ -181,7 +185,7 @@ and (max-device-width: 1024px) {
         }
     
     h1.nombre {
-        font-size: 2.5em;
+        font-size: 1.8em;
         }
     
     input.form-control {
