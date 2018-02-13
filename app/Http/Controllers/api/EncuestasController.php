@@ -17,6 +17,7 @@ class EncuestasController extends Controller
      */
     public function encuesta($token)
     {
+        dd(Encuesta::all());
         //Validaciones
         $errors=[];
         $idusuario=decodifica_token($token);
