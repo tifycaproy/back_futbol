@@ -143,9 +143,9 @@ class UsuariosController extends Controller
             return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
         }
 
-        if(Usuario::where('ci',$ci)->first()){
-            return ["status" => "fallo", "error" => ["La cédula ya se encuentra registrada"]];
-        }
+            if(Usuario::where('ci',$ci)->first()){
+                return ["status" => "fallo", "error" => ["La cédula o pasaporte  ya se encuentra registrado"]];
+            }
 
         if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
 

@@ -121,6 +121,7 @@ class EncuestasController extends Controller
     public function ranking_encuestas($id)
     {
         $respuestas=EncuestaRespuesta::where('encuesta_id',$id)->where('votos','<>',0)->orderby('votos','desc')->get();
+        if($respuestas->count() > 0){
         foreach ($respuestas as $respuesta) {
             $data['respuestas'][]=[
                 'idrespuesta' => $respuesta->id,
@@ -131,5 +132,8 @@ class EncuestasController extends Controller
         }
 
         return $data;
+        }
+        else
+              return ["respuestas" => []];
     }
 }
