@@ -33,8 +33,10 @@ class MuroController extends Controller
             if(isset($request["mensaje"])){
             $resultado = app('profanityFilter')->filter($request["mensaje"], true);
 
+            if($resultado!=""){
             if($resultado['hasMatch']){
                 $errors[]="Disculpa, no se pudo realizar tu post."; 
+            }
             }
             }
             if(count($errors)>0){
