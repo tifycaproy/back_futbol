@@ -109,6 +109,7 @@ return [
         'corota',
         'jopo',
         'culiear',
-        'culero'
+        'culero',
+        'marica'
     ],
 ];
