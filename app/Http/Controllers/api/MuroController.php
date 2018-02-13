@@ -30,13 +30,13 @@ class MuroController extends Controller
             $idusuario=decodifica_token($token);
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
-
+            if(isset($request["mensaje"])){
             $resultado = app('profanityFilter')->filter($request["mensaje"], true);
 
             if($resultado["hasMatch"]){
                 $errors[]="Disculpa, no se pudo realizar tu post."; 
             }
-
+            }
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
