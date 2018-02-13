@@ -3,7 +3,7 @@
 <?php
       $codigo_referido=$codigo;
       $titulo="¡YA SOY HINCHA EMBAJADOR OFICIAL!";
-      $descripcion="¡YO SOY HINCHA EMBAJADOR OFICIAL! Demuestra tu compromiso por el AZUL y PROBEMOS que SOMOS la hinchada más GRANDE del país";
+      $descripcion="Demuestra tu compromiso por el AZUL y PROBEMOS que SOMOS la hinchada más GRANDE del país";
       //$descripcion="La APP MILLONARIOS FC OFICIAL te trae el contenido más exclusivo del Embajador al alcance de tu mano! Regístrate y descárgala en el siguiente link:";
 
  ?>
