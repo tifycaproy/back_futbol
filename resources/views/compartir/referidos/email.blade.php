@@ -106,7 +106,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
             cedula = ced.toUpperCase();
             expr = /(^([0-9]|[A-Z]){1,50}$)/;
             if (!expr.test(cedula)) {
-                alert("Error: La cedula " + cedula + " es incorrecta.");
+                alert("Error: La cédula o pasaporte" + cedula + " es incorrecta.");
                 document.form1.cedula.value = "";
                 document.form1.apellido.focus();
             }else{ 
