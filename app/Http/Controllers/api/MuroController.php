@@ -157,14 +157,15 @@ class MuroController extends Controller
             if($idpost=="") $errors[]="El idpost es incorrecto";
 
             if(isset($request["comentario"])){
-            $resultado = app('profanityFilter')->filter($request["mensaje"], true);
+            $resultado = app('profanityFilter')->filter($request["comentario"], true);
 
-            if($resultado!=""){
-            if($resultado['hasMatch']){
-                $errors[]="Disculpa, no se pudo realizar tu post."; 
+            if($resultado!="" && $request["comentario"] != " "){
+            if($resultado["hasMatch"]){
+                $errors[]="Disculpa, no se pudo realizar tu comentario.";
             }
             }
             }
+
 
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
