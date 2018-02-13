@@ -134,6 +134,6 @@ class EncuestasController extends Controller
         return $data;
         }
         else
-              return ["status" => "exito", "data" => [],  'puedevervotos' => 1, 'puedevotar' => 1];
+              return ["respuesta" => ""];
     }
 }
