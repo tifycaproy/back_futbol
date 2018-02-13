@@ -31,7 +31,7 @@ class MuroController extends Controller
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
             if(isset($request["mensaje"])){
-            $resultado = app('profanityFilter')->filter($request["mensaje"], true);
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
 
             if($resultado!=""){
             if($resultado['hasMatch']){
@@ -157,7 +157,7 @@ class MuroController extends Controller
             if($idpost=="") $errors[]="El idpost es incorrecto";
 
             if(isset($request["comentario"])){
-            $resultado = app('profanityFilter')->filter($request["comentario"], true);
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
 
             if($resultado!="" && $request["comentario"] != " "){
             if($resultado["hasMatch"]){
