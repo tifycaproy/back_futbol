@@ -382,7 +382,7 @@ public function auth_redes(Request $request)
 
             $apellido=isset($request["apellido"]) ? $request["apellido"] : "";
 
-            if(!isset($request["codigo"])){ 
+            if(isset($request["codigo"])){ 
                 $codigo_referido=$request["codigo"];
 
                 $data=[
