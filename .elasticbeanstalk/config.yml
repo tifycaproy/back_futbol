@@ -1,16 +1,20 @@
 branch-defaults:
   dev:
     environment: dev-env
+  master:
+    environment: prod-env
+  staging:
+    environment: stg-env
 environment-defaults:
   dev-env:
     branch: dev
     repository: millonarios_backend
 global:
   application_name: millonarios
-  default_ec2_keyname: barcelonasc
-  default_platform: arn:aws:elasticbeanstalk:sa-east-1::platform/PHP 7.0 running on
-    64bit Amazon Linux/2.5.0
-  default_region: sa-east-1
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/PHP 7.1 running on
+    64bit Amazon Linux/2.6.0
+  default_region: us-east-1
   include_git_submodules: true
   instance_profile: null
   platform_name: null

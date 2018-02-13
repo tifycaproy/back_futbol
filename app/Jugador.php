@@ -12,7 +12,7 @@ class Jugador extends Model
 //relaciones
     public function noticias()
     {
-        return $this->belongsToMany('App\Noticia', 'noticias_jugadores', 'jugadores_id', 'noticias_id')->select('noticias.id','link','titulo','descripcion','fecha','foto','destacada','tipo');
+        return $this->belongsToMany('App\Noticia', 'noticias_jugadores', 'jugadores_id', 'noticias_id')->select('noticias.id','link','titulo','descripcion','fecha','foto','destacada','tipo')->orderby('fecha','desc','noticias.id');
     }
     public function convocado()
     {
@@ -25,6 +25,10 @@ class Jugador extends Model
         return $this->belongsTo('App\Calendario','calendario_id');
     }
 
+    public function aplausos_up($idcalendario)
+    {
+        return $this->hasMany('App\Aplauso','jugadores_id')->where('aplausos.calendario_id',$idcalendario);
+    }
     public function aplausos()
     {
         return $this->hasMany('App\Aplauso','jugadores_id');

@@ -20,13 +20,14 @@ class VideovrController extends Controller
             		'titulo' => $video->titulo,
             		'descripcion' => $video->descripcion,
             		'foto' => config('app.url') . 'videosvr/' . $video->foto,
-            		'video' => config('app.url') . 'videosvr/' . $video->video,
+            		'video' => $video->video,
             	];
             }
+//                    'video' => config('app.url') . 'videosvr/' . $video->video,
             return ["status"=>'exito', 'data' => $data];
 
         } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenmte de nuevo"]];
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
 }

@@ -21,4 +21,3 @@ yarn-error.log
 
 !.elasticbeanstalk/*.global.yml
 
-/config/database.php

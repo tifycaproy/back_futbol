@@ -6,28 +6,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Aws\S3\S3Client;
 
-use App\MonumentalEncuesta;
-use App\Monumental;
-use App\MonumentalEncuestaMonumental;
+use App\Encuesta;
 
 class EncuestasController extends Controller
 {
     public function index()
     {
-        $encuestas=MonumentalEncuesta::orderby('fecha_fin','desc')->paginate(25);
+        $encuestas=Encuesta::orderby('fecha_fin','desc')->paginate(25);
         return view('encuestas.index')->with('encuestas',$encuestas);
     }
 
     public function create()
     {
-        $monumentales=Monumental::orderby('nombre')->get();
-        return view('encuestas.create')->with('monumentales',$monumentales);
+        return view('encuestas.create');
     }
 
     public function store(Request $request)
     {
         $rules = [
             'titulo' => 'required',
+            'fecha_inicio' => 'required',
             'fecha_fin' => 'required',
         ];
 
@@ -36,18 +34,14 @@ class EncuestasController extends Controller
             if ($validator->fails()){
                 return back()->withErrors($validator)->withInput();
             }
-            $encuesta=MonumentalEncuesta::create([
+            $encuesta=Encuesta::create([
                 'titulo' => $request->titulo,
+                'fecha_inicio' => $request->fecha_inicio,
                 'fecha_fin' => $request->fecha_fin,
+                'tipo_voto' => $request->tipo_voto,
+                'mostrar_resultados' => $request->mostrar_resultados,
                 'activa' => $request->activa,
             ]);
-//            MonumentalEncuestaMonumental::where('noticias_id',$_SESSION['noticia_id'])->delete();
-            foreach ($request->monumentales as $idmonumental) {
-                MonumentalEncuestaMonumental::create([
-                    'monumental_encuesta_id' => $encuesta->id,
-                    'monumental_id' => $idmonumental,
-                ]);
-            }
 
             return redirect()->route('encuestas.edit', codifica($encuesta->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -65,16 +59,16 @@ class EncuestasController extends Controller
     public function edit($id)
     {
         $id=decodifica($id);
-        $monumentales=Monumental::orderby('nombre')->get();
-        $encuesta=MonumentalEncuesta::find($id);
+        $encuesta=Encuesta::find($id);
         $_SESSION['encuesta_id']=$id;
-        return view('encuestas.edit')->with('encuesta',$encuesta)->with('monumentales',$monumentales);
+        return view('encuestas.edit')->with('encuesta',$encuesta);
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
             'titulo' => 'required',
+            'fecha_inicio' => 'required',
             'fecha_fin' => 'required',
             ];
 
@@ -87,18 +81,13 @@ class EncuestasController extends Controller
 
             $data=[
                 'titulo' => $request->titulo,
+                'fecha_inicio' => $request->fecha_inicio,
                 'fecha_fin' => $request->fecha_fin,
+                'tipo_voto' => $request->tipo_voto,
+                'mostrar_resultados' => $request->mostrar_resultados,
                 'activa' => $request->activa,
             ];
-            MonumentalEncuesta::find($id)->update($data);
-
-            MonumentalEncuestaMonumental::where('monumental_encuesta_id',$id)->delete();
-            foreach ($request->monumentales as $idmonumental) {
-                MonumentalEncuestaMonumental::create([
-                    'monumental_encuesta_id' => $id,
-                    'monumental_id' => $idmonumental,
-                ]);
-            }
+            Encuesta::find($id)->update($data);
 
             return redirect()->route('encuestas.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -112,7 +101,7 @@ class EncuestasController extends Controller
     {
         $id=decodifica($id);
         try{
-            MonumentalEncuesta::find($id)->delete();
+            Encuesta::find($id)->delete();
             return redirect()->route('encuestas.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
@@ -131,9 +120,9 @@ class EncuestasController extends Controller
     }
     public function update_jugadores(Request $request)
     {
-        MonumentalEncuestaJugador::where('encuestas_id',$_SESSION['encuesta_id'])->delete();
+        EncuestaJugador::where('encuestas_id',$_SESSION['encuesta_id'])->delete();
         foreach ($request->jugadores as $idjugador) {
-            MonumentalEncuestaJugador::create([
+            EncuestaJugador::create([
                 'encuestas_id' => $_SESSION['encuesta_id'],
                 'jugadores_id' => $idjugador,
             ]);

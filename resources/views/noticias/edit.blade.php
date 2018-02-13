@@ -146,6 +146,23 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label>Respuesta de encuesta asociada</label>
+                <select name="id_respuesta_noticia" class="form-control">
+                    <option value="0">No aplica</option>
+            @foreach($encuestas as $encuesta)
+                @foreach($encuesta->respuestas as $respuesta)
+                    <option value="{{ $respuesta->id }}"@if($respuesta->id==old('id_respuesta_noticia',$noticia->id_respuesta_noticia)) selected @endif>{{$encuesta->titulo}} -> {{$respuesta->respuesta}}</option>
+                @endforeach
+            @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Foto</label>
                 <div class="slim">

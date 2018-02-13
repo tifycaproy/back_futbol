@@ -46,11 +46,27 @@ $data=array(
 			'url_tabla','url_simulador','url_juramento','url_livestream','url_tienda','url_estadisticas','url_academia',
 			'tit_1','tit_1_1','tit_1_2','tit_2','tit_3','tit_4','tit_4_1','tit_4_2','tit_5','tit_6','tit_6_1','tit_6_1_1','tit_6_1_2','tit_6_2','tit_6_3','tit_6_3_1','tit_6_3_2','tit_7',
 			'tit_7_1','tit_7_2','tit_8','tit_9','tit_10','tit_10_1','tit_10_2','tit_11','tit_11_1','tit_11_1_1','tit_11_1_2','tit_11_1_3','tit_11_1_4',
-			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_3','tit_15',
+			'tit_12','tit_13','tit_14','tit_14_1','tit_14_2','tit_14_2_1','tit_14_2_2','tit_14_3','tit_15',
+			'tit_16','tit_16_1','tit_16_2','tit_16_3','tit_16_3_1','tit_16_3_2','tit_16_3_3','tit_16_3_4',
+			'patrocinante','url_vistas',
+			'video_referidos','terminos_referidos',
 		],
 	),
+
+	"Banners"=>array(
+		"Ruta"=>"/banners",
+		"Método"=>"GET",
+		"Éxito (Array)"=>['seccion','titulo','target (Interno,Externo,Seccion)','url','seccion_destino','foto'],
+	), 
+
+	"Ventanas para compartir"=>array(
+		"Ruta"=>"/ventanas_compartir",
+		"Método"=>"GET",
+		"Éxito (Array)"=>['seccion','url'],
+	), 
+
 	"Noticias"=>array(
-		"Ruta"=>"/noticias?page={pagina}",
+		"Ruta"=>"/noticias/{token}?page={pagina}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>[
 			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
@@ -80,7 +96,6 @@ $data=array(
 			"nombre" => "varchar(60) / requerido",
 			"apellido" => "varchar(60) / opcional",
 			"apodo" => "varchar(30) / opcional",
-			"referido" => "varchar(30) / opcional",
 			"email" => "varchar(100) / requerido / único",
 			"clave" => "varchar(20) / requerido",
 			"celular" => "varchar(30) / opcional",
@@ -90,11 +105,12 @@ $data=array(
 			"genero" => "Masculino,Femenino",
 			"foto" => "base64 / opcional",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
-			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado","El apodo del referido no existe")
+			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
 		)
 	),
+
 	"Iniciar sessión"=>array(
 		"Ruta"=>"/auth",
 		"Método"=>"POST",
@@ -102,9 +118,66 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"clave" => "varchar(20) / requerido"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos")
+		)
+	),
+
+	"Registrarse 2"=>array(
+		"Ruta"=>"/usuarios2",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"nombre" => "varchar(60) / requerido",
+			"apellido" => "varchar(60) / opcional",
+			"apodo" => "varchar(30) / opcional",
+			"email" => "varchar(100) / requerido / único",
+			"clave" => "varchar(20) / requerido",
+			"celular" => "varchar(30) / opcional",
+			"pais" => "varchar(100) / opcional",
+			"ciudad" => "varchar(100) / opcional",
+			"fecha_nacimiento" => "fecha / opcional / yy-mm-dd",
+			"genero" => "Masculino,Femenino",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"mensaje_pin",
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos", "El email ya se encuentra registrado","El apodo ya se encuentra registrado")
+		)
+	),
+
+	"Reenviar pin de confirmación"=>array(
+		"Ruta"=>"/reenviar_pin_confirmacion/{email}",
+		"Método"=>"GET",
+		"Éxito"=>"mensaje_pin",
+		"Falla"=>array(
+			"error"=>["El email es requerido","El email es incorrecto"],
+		)
+	),
+
+	"Validar cuenta"=>array(
+		"Ruta"=>"/validar_cuenta",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"email" => "varchar(200) / requerido / único",
+			"pin" => "varchar(4)",
+		),
+		"Éxito"=>["token","idusuario","codigo"],
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
+		)
+	),
+
+	"Iniciar sessión 2"=>array(
+		"Ruta"=>"/auth2",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"email" => "varchar(200) / requerido / único",
+			"clave" => "varchar(20) / requerido"
+		),
+		"Éxito"=>"token, idusuario, codigo",
+		"Falla"=>array(
+			"error"=>array("Error en validación de datos" , "Usuario o clave incorrectos","La cuenta aun no ha sido confirmada")
 		)
 	),
 	"iniciar sesión con redes"=>array(
@@ -117,7 +190,7 @@ $data=array(
 			"userID_facebook o userID_google" => "varchar(20) / requerido",
 			"foto_redes" => "(URL opcional)"
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "userID_facebook o userID_google son requeridos")
 		)
@@ -142,7 +215,7 @@ $data=array(
 			"email" => "varchar(200) / requerido / único",
 			"pin" => "varchar(4)",
 		),
-		"Éxito"=>"token, idusuario",
+		"Éxito"=>"token, idusuario, codigo",
 		"Falla"=>array(
 			"error"=>array("Error en validación de datos" , "Usuario o PIN incorrectos")
 		)
@@ -150,13 +223,13 @@ $data=array(
 	"Consultar usuario"=>array(
 		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"GET",
-		"Éxito"=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento'],
+		"Éxito"=>['idusuario','ci','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento','referido'],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
 	),
 	"Actualizar usuario"=>array(
-		"Ruta"=>"/usuarios/token",
+		"Ruta"=>"/usuarios/{token}",
 		"Método"=>"PUT",
 		"Parámetros"=>array(
 			"nombre" => "varchar(60) / requerido",
@@ -173,9 +246,12 @@ $data=array(
 		)
 	),
 	"consultar referidos"=>array(
-		"Ruta"=>"/consultar_referidos/{token}",
+		"Ruta"=>"/consultar_referidos/{token}?page={pagina}",
 		"Método"=>"GET",
-		"Éxito (array)"=>['nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at'],
+		"Éxito"=>[
+			"activos",
+			"referidos (array)"=>array('nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','estatus','activo','created_at'),
+		],
 		"Falla"=>array(
 			"error"=>"Invalid token",
 		)
@@ -196,7 +272,7 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"copa",
 			"partido (array)"=>[
-				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info"
 			],
 		)
 	),
@@ -206,7 +282,7 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"copa",
 			"partido (array)"=>[
-				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio"
+				"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info"
 			],
 		)
 	),
@@ -214,7 +290,7 @@ $data=array(
 		"Ruta"=>"/single_calendario/{idpartido}",
 		"Método"=>"GET",
 		"Éxito (Array)"=>array(
-			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info",
 			"noticias (Array)"=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'],
 		)
 	),
@@ -242,7 +318,7 @@ $data=array(
 		"Ruta"=>"/convocados",
 		"Método"=>"GET",
 		"Éxito"=>array(
-			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio",
+			"idpartido","estado","equipo_1","bandera_1","goles_1","equipo_2","bandera_2","goles_2", "fecha", "fecha_etapa", "estadio","info",
 			"jugadores (array)"=>['idjugador','nombre','foto','banner'],
 		)
 	),
@@ -328,55 +404,45 @@ $data=array(
 	),
 
 //monumentales
-	"Noticias Monumentales"=>array(
-		"Ruta"=>"/noticias_monumentales?page={pagina}",
+	"Encuesta"=>array(
+		"Ruta"=>"/encuesta/{token}",
 		"Método"=>"GET",
-		"Éxito (Array)"=>[
-			'id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)'
-		],
-	),
-	"Encuesta Monumentales"=>array(
-		"Ruta"=>"/monumentales_encuesta",
-		"Método"=>"GET",
-		"Éxito"=>['idencuesta','titulo','fecha_fin','total_votos'],
-		'monumentales (array)'=>['idmonumental','nombre','banner'],
-		"Falla"=>array(
-			"error"=>["No hay encuestas activas"],
-		)
-	),
-	"Single Monumental"=>array(
-		"Ruta"=>"/single_monumental/{idmonumental}",
-		"Método"=>"GET",
-		"Éxito"=>['nombre','foto','total_votos','instagram',
-			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		"Éxito"=>['idencuesta','titulo','fecha_inicio','fecha_fin','puedevotar (0 ó 1)','puedevervotos (0 ó 1)',
+		'respuestas (array)'=>['idrespuesta','respuesta','foto', 'yavoto (0 ó 1)']
 		],
 		"Falla"=>array(
-			"error"=>["idmonumental incorrecto"],
+			"error"=>["El token es incorrecto","No hay encuestas activas"],
 		)
 	),
-	"Votar Monumental"=>array(
-		"Ruta"=>"/votar_monumental",
+	"Votar"=>array(
+		"Ruta"=>"/encuesta_votar",
 		"Método"=>"POST",
 		"Parámetros"=>array(
 			"idencuesta" => "integer / requerido",
-			"idmonumental" => "integer / requerido",
-			"imei" => "varchar(45) / requerido",
+			"idrespuesta" => "integer / requerido",
+			"token" => "requerido",
 		),
-		"Éxito"=>"no devuelve datos, simplemente se debería refrescar la vista",
+		"Éxito"=>'puedevervotos (0 ó 1)',
 		"Falla"=>array(
-			"error"=>array("El idencuesta es requerido","El imei es requerido","El idmonumental es requerido","Usted ya ha votado por esta monumental"),
+			"error"=>array("El idencuesta es requerido","El token es requerido","El idrespuesta es requerido"),
 		)
 	),
-	"Monumentales Anual"=>array(
-		"Ruta"=>"/monumentales_anuales",
+	"Single respuesta"=>array(
+		"Ruta"=>"/single_respuesta/{idrespuesta}",
 		"Método"=>"GET",
-		"Éxito"=>['nombre','banner'],
+		"Éxito"=>['respuesta','banner','votos',
+			'noticias (array)'=>['id','link','titulo','descripcion','fecha','foto','destacada (1 ó 0)','tipo (Normal,Video,Infografia,Galeria,Stat)']
+		],
+		"Falla"=>array(
+			"error"=>["idrespuesta incorrecto"],
+		)
 	),
-	"Ranking Monumentales"=>array(
-		"Ruta"=>"/ranking_monumentales",
+	"Ranking Encuesta"=>array(
+		"Ruta"=>"/ranking_encuestas/{idencuesta}",
 		"Método"=>"GET",
-		"Éxito"=>['idmonumental','nombre','miniatura','total_votos','porcentaje'],
+		"Éxito"=>['idrespuesta','respuesta','miniatura','votos'],
 	),
+
 //Onceideal
 	"Registrar Once ideal"=>array(
 		"Ruta"=>"/onceideal",
@@ -388,8 +454,9 @@ $data=array(
 				"x" => "integer / requerido",
 				"y" => "integer / requerido"
 			],
+			"foto" => 'base64',
 		),
-		"Éxito"=>"no devuelve datos",
+		"Éxito"=>["url"],
 		"Falla"=>array(
 			"error"=>array("El token es requerido","Debe colocar todos los jugadores"),
 		)
@@ -397,7 +464,10 @@ $data=array(
 	"Consultar Once ideal"=>array(
 		"Ruta"=>"/onceideal/{token}",
 		"Método"=>"GET",
-		"Éxito (Array de 11)"=>["idjugador","x","y"],
+		"Éxito"=>[
+			"jugadores (Array de 11)"=>["idjugador","x","y"],
+			"url"=>'',
+		],
 		"Falla"=>array(
 			"error"=>array("El token es requerido", "No tiene once ideal cargado"),
 		)
@@ -409,6 +479,95 @@ $data=array(
 		"Éxito (Array)"=>array(
 			"titulo","descripcion","foto","video",
 		),
+	),
+//muro
+	"Muro"=>array(
+		"Ruta"=>"/muro?token={token}&page={pagina}",
+		"Método"=>"GET",
+		"Éxito (Array)"=>[
+			'idpost','mensaje','fecha','foto','ncomentarios','naplausos','yaaplaudio (0 ó 1)',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
+		],
+	),
+	"Muro postear"=>array(
+		"Ruta"=>"/muro",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"token" => "token / requerido",
+			"mensaje" => "textarea / requerido",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El mensaje es requerido")
+		)
+	),
+	"Consultar perfil"=>array(
+		"Ruta"=>"/perfil_usuario/{idusuario}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'id','apodo','fecha','foto'
+		],
+		"Falla"=>array(
+			"error"=>array("Idusuario incorrecto")
+		)
+	),
+	"Muro comentar"=>array(
+		"Ruta"=>"/muro_comentar",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "token / requerido",
+			"token" => "token / requerido",
+			"comentario" => "textarea / comentario",
+			"foto" => "base64 / opcional",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido", "El comentario es requerido","El idpost es requerido","El idpost es incorrecto")
+		)
+	),
+	"Consultar comentarios del post"=>array(
+		"Ruta"=>"/comentarios_post/{idpost}?token={token}&page={pagina}",
+		"Método"=>"GET",
+		"Éxito"=>[
+			'idcomentario','comentario','fecha','foto','naplausos','yaaplaudio',
+			'usuario'=>['idusuario','nombre','apellido','apodo','email','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','codigo','fecha_vencimiento']
+		],
+		"Falla"=>array(
+			"error"=>array("Idpost incorrecto")
+		)
+	),
+	"Muro aplaudir post"=>array(
+		"Ruta"=>"/muro_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idpost" => "idpost / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar al home del muro",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idpost es requerido","El idpost es incorrecto")
+		)
+	),
+	"Muro aplaudir comentario"=>array(
+		"Ruta"=>"/muro_comentario_aplaudir",
+		"Método"=>"POST",
+		"Parámetros"=>array(
+			"idcomentario" => "idcomentario / requerido",
+			"token" => "token / requerido",
+		),
+		"Éxito"=>"Debe redireccionar a los comentarios del post",
+		"Falla"=>array(
+			"error"=>array("El token es requerido","El idcomentario es requerido","El idcomentario es incorrecto")
+		)
+	),
+	"Eliminar Post"=>array(
+		"Ruta"=>"/muro/{idpost}/{token}",
+		"Método"=>"DELETE",
+		"Éxito"=>"Debe redireccionar al muro",
+		"Falla"=>array(
+			"error"=>array("Ha ocurrido un error, por favor intenta de nuevo")
+		)
 	),
 
 );

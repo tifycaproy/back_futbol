@@ -1,0 +1,195 @@
+/** Generated @ www.fontreactor.com ***/
+@font-face {
+    font-family: 'Tahoma';
+    src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'),
+    url('../font/original_tahoma.woff') format('woff'),
+    url('../font/original_tahoma.ttf') format('truetype'),
+    url('../font/original_tahoma.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    
+    font-family: 'Tahoma-Bold';
+    src: url('../font/original_tahomabd.eot?#iefix') format('embedded-opentype'),
+    url('../font/original_tahomabd.woff') format('woff'),
+    url('../font/original_tahomabd.ttf') format('truetype'),
+    url('../font/original_tahomabd.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+body, html {
+    height: 100%;
+    padding: 0px !important;
+    margin: 0px !important;
+    }
+
+body {
+    background: #161f3d;
+    color: white;
+    font-family: 'Tahoma-Bold', Sans-Serif;
+    background-image: url('../images/fondo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-position: center center;*/
+    }
+
+.containerp {
+    height: 100% !important;
+    }
+
+.fondo {
+    }
+
+.texto {
+    font-family: 'Tahoma', Sans-Serif;
+    text-transform: uppercase;
+    }
+
+.container-fluid {
+    text-align: center;
+    height: 100%;
+    }
+
+.nombre {
+    font-weight: bold;
+    }
+
+.img-fluid {
+    min-width: 100% !important;
+    }
+
+.logo_millos {
+    width: 40%;
+    }
+
+.logo_millos_alineacion {
+    width: 30%;
+    }
+
+.separador {
+    width: 90%;
+    }
+
+.size-lg {
+    font-size: 80px;
+    font-weight: bold;
+    }
+
+input {
+    font-weight: bold;
+    }
+
+.btn-submit {
+    background: rgba(47, 78, 152, 1);;
+    border-style: none;
+    border-width: 0px;
+    border-color: blue;
+    color: white;
+    font-size: 1.5em;
+    }
+
+.col-12.col-lg-5.pl-5.pr-4 {
+    padding: 0 2% !important;
+    }
+
+/* Ordenadores de sobremesa y portÃ¡tiles */
+@media only screen
+and (min-width: 1024px) {
+    h1 {
+        font-size: 3em;
+        }
+    
+    h2 {
+        font-size: 1.2rem;
+        }
+    
+    h4 {
+        font-size: 1.2rem;
+        }
+    
+    .logo_millos {
+        margin-top: 1rem;
+        width: 50%;
+        }
+    
+    .logo_millos_alineacion {
+        width: 30%;
+        }
+    
+    .tiendas {
+        width: 30%;
+        }
+    
+    .escudos {
+        width: 20%;
+        }
+    }
+
+/* iPads (portrait & landscape) */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+    h1 {
+        font-size: 1.6rem;
+        }
+    
+    h2 {
+        font-size: 1.4rem;
+        }
+    
+    .escudos {
+        width: 30%;
+        }
+    
+    .logo_millos_alineacion {
+        width: 30%;
+        }
+    
+    .tiendas {
+        margin-top: 0.4rem;
+        width: 50%;
+        }
+    
+    .nombre {
+        font-size: 4em;
+        }
+    }
+
+/* Smartphones (portrait & landscape) */
+@media (max-device-width: 480px) {
+    
+    h1 {
+        font-size: 1.2rem;
+        }
+    
+    
+    .containerp h1 {
+        margin: 0 auto;
+        }
+    
+    h2 {
+        font-size: .9rem;
+        }
+    
+    h4, p {
+        font-size: 0.7rem;
+        margin-bottom: 0;
+        }
+    
+    .escudos {
+        width: 45%;
+        }
+    
+    .tiendas {
+        width: 60%;
+        }
+    
+    h1.nombre {
+        font-size: 1.8em;
+        }
+    
+    input.form-control {
+        font-size: 1em;
+        }
+        
+    }
