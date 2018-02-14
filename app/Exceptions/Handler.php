@@ -48,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof UserDoradoExcetion) {
+            return response()->json(['status' => 'fallo','error'=>["usted no es un usuario dorado!"]]);
+        }
+
         return parent::render($request, $exception);
     }
 }
