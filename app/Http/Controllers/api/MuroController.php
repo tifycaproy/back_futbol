@@ -35,7 +35,7 @@ class MuroController extends Controller
 
             if($resultado!=""){
             if($resultado['hasMatch']){
-                $errors[]="Disculpa, no se pudo realizar tu post."; 
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
             }
             }
             }
@@ -161,7 +161,7 @@ class MuroController extends Controller
 
             if($resultado!="" && $request["comentario"] != " "){
             if($resultado["hasMatch"]){
-                $errors[]="Disculpa, no se pudo realizar tu comentario.";
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
             }
             }
             }
