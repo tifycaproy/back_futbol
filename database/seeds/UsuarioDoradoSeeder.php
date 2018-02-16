@@ -1,6 +1,7 @@
 <?php
 
 use App\SeccionesDoradas;
+use App\FuncionesDoradas;
 use Illuminate\Database\Seeder;
 
 class UsuarioDoradoSeeder extends Seeder
@@ -24,6 +25,7 @@ class UsuarioDoradoSeeder extends Seeder
             'estadisticas',
             'realidad_virtual',
             'futbol_base',
+            'academia',
             'tienda_virtual'
         ];
 
@@ -33,6 +35,24 @@ class UsuarioDoradoSeeder extends Seeder
             $seed->solo_dorado = false;
             $seed->funciones_doradas = false;
             $seed->mensaje_dorado = 'Mensaje invitando a comprar membresía específico de sección';
+            $seed->save();
+        }
+
+        $funciones = [
+            'muro_postear',
+            'muro_comentar',
+            'muro_post_aplaudir',
+            'muro_comentario_aplaudir',
+            'enviar_once_ideal',
+            'aplaudir_single_jugador'
+        ];
+
+        foreach ($funciones as $funcion) {
+            $seed = new FuncionesDoradas();
+            $seed->nombre = $funcion;
+            $seed->solo_dorado = false;
+            $seed->max_dorado = 0;
+            $seed->max_normal = 0;
             $seed->save();
         }
     }
