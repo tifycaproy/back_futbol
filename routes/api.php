@@ -94,4 +94,7 @@ Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir');
 Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir');
 Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 
+//SeccionesDoradas
+Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
+
 
