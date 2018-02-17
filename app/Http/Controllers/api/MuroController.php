@@ -35,7 +35,7 @@ class MuroController extends Controller
 
             if($resultado!=""){
             if($resultado['hasMatch']){
-                $errors[]="Disculpa, no se pudo realizar tu post."; 
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
             }
             }
             }
@@ -161,7 +161,7 @@ class MuroController extends Controller
 
             if($resultado!="" && $request["comentario"] != " "){
             if($resultado["hasMatch"]){
-                $errors[]="Disculpa, no se pudo realizar tu comentario.";
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
             }
             }
             }
@@ -331,6 +331,26 @@ class MuroController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
+
+    public function topAplausos()
+    {
+        //Traemos los posts
+        $posts = Muro::all();
+        //Contamos cuantos aplausos tienen
+        foreach($posts as $post){
+            $post->cantidad_aplausos = $post->aplausos()->count();
+            if($post->foto)
+            $post->foto=config('app.url') . 'posts/' . $post->foto;
+            $usuario = Usuario::find($post->usuario_id);
+            $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+            $post->usuario_tlf = $usuario->telefono;
+        }
+        //Retornamos vista con los primeros 10
+          $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+        dd($result);
+
+    }
+
 
 
 }
