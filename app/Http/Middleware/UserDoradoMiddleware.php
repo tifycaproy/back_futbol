@@ -18,9 +18,7 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
     {
-        dd(['token' => $request->route('token'),
-            'tipo' => $tipo,
-            'nombre' => $nombre]);
+        dd($request->token);
 
         $token = $request->route('token');
 
