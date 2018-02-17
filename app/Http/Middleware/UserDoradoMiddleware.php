@@ -19,10 +19,10 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
     {
-        $request=json_decode($request->getContent());
-        $request=get_object_vars($request);
+        $request1=json_decode($request->getContent());
+        $request1=get_object_vars($request1);
 
-        $token = $request["token"];
+        $token = $request1["token"];
 
         $usuario = Usuario::find($token);
 
