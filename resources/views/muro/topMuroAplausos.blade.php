@@ -1,9 +1,9 @@
-@extends('layouts.admin')
 
 @section('css')
     <link href="css/slim.min.css" rel="stylesheet">
 @endsection
 
+@section('content')
 <div class="container">
 	<div class="row">
 	 @foreach ($posts as $post)
@@ -23,5 +23,6 @@
               </div>
 
 	 @endforeach
-</div
 </div>
+</div>
+@endsection

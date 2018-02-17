@@ -342,10 +342,8 @@ class MuroController extends Controller
             if($post->foto)
             $post->foto=config('app.url') . 'posts/' . $post->foto;
         }
-
-
+        //Retornamos vista con los primeros 10
         return view('muro.topMuroAplausos')->with('posts',$posts->sortByDesc('cantidad_aplausos')->take(10));
-        //Mostramos los primeros 10
 
     }
 
