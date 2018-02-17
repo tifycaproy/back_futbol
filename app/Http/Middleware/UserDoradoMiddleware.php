@@ -28,13 +28,13 @@ class UserDoradoMiddleware
 
         if($tipo == 'seccion')
         {
-            $seccion = SeccionesDoradas::where('nombre',$nombre);
+            $seccion = SeccionesDoradas::where('nombre',$nombre)->first();
             if($seccion->solo_dorado && !$usuario->dorado)
                 throw new UserDoradoException();
         }
         else if($tipo == 'funcion')
         {
-            $funcion = FuncionesDoradas::where('nombre',$nombre);
+            $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
             if($funcion->solo_dorado && !$usuario->dorado)
                 throw new UserDoradoException();
         }
