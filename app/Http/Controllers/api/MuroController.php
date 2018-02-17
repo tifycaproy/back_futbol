@@ -346,7 +346,8 @@ class MuroController extends Controller
             $post->usuario_tlf = $usuario->telefono;
         }
         //Retornamos vista con los primeros 10
-        return $posts->sortByDesc('cantidad_aplausos')->take(10);
+          $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+        dd($result);
 
     }
 
