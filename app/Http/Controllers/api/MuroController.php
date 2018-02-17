@@ -332,5 +332,16 @@ class MuroController extends Controller
         } 
     }
 
+    public function topAplausos()
+    {
+        $posts = Muro::all();
+
+        foreach($posts as $post){
+            $post->cantidad_aplausos = $post->aplausos()->count();
+            dd($post);
+        }
+    }
+
+
 
 }
