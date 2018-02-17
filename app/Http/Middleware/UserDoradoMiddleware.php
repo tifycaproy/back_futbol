@@ -18,9 +18,10 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
     {
-        dd($request->token);
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
 
-        $token = $request->route('token');
+        $token = $request->["token"];
 
         $usuario = Usuario::find($token);
 
@@ -39,3 +40,4 @@ class UserDoradoMiddleware
         return $next($request);
     }
 }
+gi

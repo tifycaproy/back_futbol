@@ -14,7 +14,7 @@ class AddDoradoToNoticiasTable extends Migration
     public function up()
     {
         Schema::table('noticias', function (Blueprint $table) {
-            //
+            $table->boolean('dorado')->default(false);
         });
     }
 
