@@ -332,5 +332,24 @@ class MuroController extends Controller
         } 
     }
 
+    public function topAplausos()
+    {
+        //Traemos los posts
+        $posts = Muro::all();
+        //Contamos cuantos aplausos tienen
+        foreach($posts as $post){
+            $post->cantidad_aplausos = $post->aplausos()->count();
+            if($post->foto)
+            $post->foto=config('app.url') . 'posts/' . $post->foto;
+            $usuario = Usuario::find($post->usuario_id);
+            $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+            $post->usuario_tlf = $usuario->telefono;
+        }
+        //Retornamos vista con los primeros 10
+        return $posts->sortByDesc('cantidad_aplausos')->take(10);
+
+    }
+
+
 
 }
