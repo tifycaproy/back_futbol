@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Exceptions\UserDoradoException;
 use App\Usuario;
 use App\SeccionesDoradas;
+use App\FuncionesDoradas;
 use Closure;
 
 class UserDoradoMiddleware
