@@ -334,12 +334,19 @@ class MuroController extends Controller
 
     public function topAplausos()
     {
+        //Traemos los posts
         $posts = Muro::all();
-
+        //Contamos cuantos aplausos tienen
         foreach($posts as $post){
             $post->cantidad_aplausos = $post->aplausos()->count();
-            dd($post);
+            if($post->foto)
+            $post->foto=config('app.url') . 'posts/' . $post->foto;
         }
+
+
+        return view('muro.topMuroAplausos')->with('posts',$posts->sortByDesc('cantidad_aplausos')->take(10));
+        //Mostramos los primeros 10
+
     }
 
 
