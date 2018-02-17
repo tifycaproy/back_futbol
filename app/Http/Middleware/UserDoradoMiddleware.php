@@ -34,7 +34,7 @@ class UserDoradoMiddleware
         }
         else if($tipo == 'funcion')
         {
-            $funcion = FuncionesDoradas::where('nombre',$nombre)
+            $funcion = FuncionesDoradas::where('nombre',$nombre);
             if($funcion->solo_dorado && !$usuario->dorado)
                 throw new UserDoradoException();
         }
