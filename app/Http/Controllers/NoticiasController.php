@@ -127,6 +127,7 @@ class NoticiasController extends Controller
                 'id_calendario_noticia' => $request->id_calendario_noticia,
                 'id_calendario_noticiafb' => $request->id_calendario_noticiafb,
                 'id_respuesta_noticia' => $request->id_respuesta_noticia,
+                'solo_dorado' => $request->soloUsuariosDorados,
                 'destacada' => $request->destacada,
                 'tipo' => $request->tipo,
             ];
