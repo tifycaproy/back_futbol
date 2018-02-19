@@ -3,16 +3,16 @@
     font-family: 'Tahoma';
     src: url('../font/original_tahoma.eot?#iefix') format('embedded-opentype'),
     url('../font/original_tahoma.woff') format('woff'),
-    url('../font/original_tahoma.ttf') format('truetype');
-    /*url('../font/original_tahoma.svg') format('svg');*/
+    url('../font/original_tahoma.ttf') format('truetype'),
+    url('../font/original_tahoma.svg') format('svg');
     font-weight: normal;
     font-style: normal;
     
     font-family: 'Tahoma-Bold';
     src: url('../font/original_tahomabd.eot?#iefix') format('embedded-opentype'),
     url('../font/original_tahomabd.woff') format('woff'),
-    url('../font/original_tahomabd.ttf') format('truetype');
-    /*url('../font/original_tahomabd.svg') format('svg');*/
+    url('../font/original_tahomabd.ttf') format('truetype'),
+    url('../font/original_tahomabd.svg') format('svg');
     font-weight: normal;
     font-style: normal;
     }
@@ -99,10 +99,6 @@ and (min-width: 1024px) {
         font-size: 3em;
         }
     
-    .containerp h1 {
-        font-size: 1.8em;
-        }
-    
     h2 {
         font-size: 1.2rem;
         }
@@ -160,12 +156,12 @@ and (max-device-width: 1024px) {
     }
 
 /* Smartphones (portrait & landscape) */
-
-@media (max-device-width: 767px) {
+@media (max-device-width: 480px) {
     
     h1 {
         font-size: 1.2rem;
         }
+    
     
     .containerp h1 {
         margin: 0 auto;
@@ -194,21 +190,6 @@ and (max-device-width: 1024px) {
     
     input.form-control {
         font-size: 1em;
-        }
-        
-    }
-
-@media (max-device-width: 414px) and (orientation: portrait) {
-    .logo_millos {
-        width: 35%;
-        }
-    
-    h1 {
-        font-size: 1rem;
-        }
-    
-    h2 {
-        font-size: .8rem;
         }
         
     }
