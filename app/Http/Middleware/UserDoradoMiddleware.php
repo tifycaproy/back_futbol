@@ -23,20 +23,23 @@ class UserDoradoMiddleware
         $request1=get_object_vars($request1);
 
         $token = $request1["token"];
+        $token = decodifica_token($token);
 
-        $usuario = Usuario::find($token);
+        $usuario = Usuario::where('id',$token)->first();
 
         if($tipo == 'seccion')
         {
             $seccion = SeccionesDoradas::where('nombre',$nombre)->first();
             if($seccion->solo_dorado && !$usuario->dorado)
-                throw new UserDoradoException();
+                 return response()->json(['status' => 'fallo','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+
         }
         else if($tipo == 'funcion')
         {
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
             if($funcion->solo_dorado && !$usuario->dorado)
-                throw new UserDoradoException();
+                 return response()->json(['status' => 'fallo','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+
         }
         return $next($request);
     }
