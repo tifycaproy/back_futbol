@@ -75,7 +75,10 @@
                         <a href="{{ route("usuarios.index") }}"><i class="fa fa-fw fa-user"></i> Usuarios</a>
                     </li>
                     <li>
-                        <a href="{{ route("dorados.index") }}"><i class="fa fa-fw fa-pencil"></i> Secciones Doradas</a>
+                        <a href="{{ url('secciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Secciones Doradas</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('funciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Funciones Doradas</a>
                     </li>
                     <li>
                         <a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a>

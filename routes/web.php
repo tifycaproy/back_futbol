@@ -24,7 +24,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ranking_referidos', 'UserController@ranking_referidos')->name('ranking_referidos');
 
 //Secciones Doradas
-    Route::resource('dorados', 'DoradosController');
+    Route::get('secciones_doradas', 'DoradosController@indexSecciones');
+
+//Funciones Doradas
+    Route::get('funciones_doradas', 'DoradosController@indexFunciones');
 
 //notiicas
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
