@@ -31,6 +31,7 @@
                 <thead>
                     <tr>
                         <th>Título</th>
+                        <th>Solo Dorados</th>
                         <th>Fecha</th>
                         <th width="80"></th>
                     </tr>
@@ -39,6 +40,7 @@
                 @foreach($noticias as $noticia)
                     <tr>
                         <td><a href="{{ route('noticias.edit', codifica($noticia->id) ) }}" title="Editar">{{ $noticia->titulo }}</a></td>
+                        <td><input name="agree" type="checkbox" value="{{$noticia->solo_dorado}}" disabled></td>
                         <td><a href="{{ route('noticias.edit', codifica($noticia->id) ) }}" title="Editar">{{ volteafecha($noticia->fecha) }}</a></td>
                         <td>
                             <a href="{{ route('noticias.edit', codifica($noticia->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>

@@ -146,6 +146,13 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
+            <div class="form-group">
+                <label>Solo para usuarios Dorados</label>
+                <select name="soloUsuariosDorados" class="form-control">
+                    <option value="0"@if(old('soloUsuariosDorados', $noticia->solo_dorado)=='0') selected @endif>No</option>
+                    <option value="1"@if(old('soloUsuariosDorados', $noticia->solo_dorado)=='1') selected @endif>Si</option>
+                </select>
+            </div>
         </div>
         <div class="col-lg-8">
             <div class="form-group">

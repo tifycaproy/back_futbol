@@ -75,6 +75,7 @@ class VideovrsController extends Controller
                 'descripcion' => $request->descripcion,
                 'foto' => $foto1,
                 'video' => $request->video,
+                'dorado' => $request->soloUsuariosDorados,
             ]);
 //                'video' => $video,
             return redirect()->route('videosvr.edit', codifica($video->id))->with("notificacion","Se ha guardado correctamente su información");
@@ -114,7 +115,7 @@ class VideovrsController extends Controller
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
                 'video' => $request->video,
-                
+                'dorado' => $request->soloUsuariosDorados,
             ];
 
             if($request->foto){

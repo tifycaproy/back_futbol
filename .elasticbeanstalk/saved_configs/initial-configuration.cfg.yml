@@ -1,0 +1,62 @@
+AWSConfigurationTemplateVersion: 1.1.0.0
+EnvironmentConfigurationMetadata:
+  DateCreated: '1512584983000'
+  DateModified: '1512595287154'
+  Description: Configuration created from the EB CLI using "eb config save".
+EnvironmentTier:
+  Name: WebServer
+  Type: Standard
+OptionSettings:
+  aws:autoscaling:launchconfiguration:
+    EC2KeyName: barcelonasc
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+    InstanceType: t2.micro
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: true
+    RollingUpdateType: Health
+  aws:elasticbeanstalk:application:environment:
+    APP_DEBUG: true
+    APP_ENV: dev
+    APP_KEY: base64:LxF8NdKWs8zAIiMcxTVvVHHLC/nY3GPXMS/0gcobUbA=
+    APP_LOG_LEVEL: debug
+    APP_NAME: Millonarios FC
+    APP_SHARE_URL: http://millos-dev.2waysports.com/
+    APP_URL: http://cmsmillos-dev.s3-website-us-east-1.amazonaws.com/
+    BROADCAST_DRIVER: log
+    CACHE_DRIVER: file
+    DB_CONNECTION: mysql
+    DB_DATABASE: millonarios_develop
+    DB_HOST: awsfcf2waysports.co6n6hotu5cp.us-east-1.rds.amazonaws.com
+    DB_PASSWORD: Shok7788!
+    DB_PORT: '3336'
+    DB_USERNAME: admin
+    QUEUE_DRIVER: sync
+    S3_BUCKET: cmsmillos-dev
+    S3_KEY: AKIAJERSMXZVD6U2DCYA
+    S3_REGION: us-east-1
+    S3_SECRET: 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
+    SESSION_DRIVER: database
+  aws:elasticbeanstalk:cloudwatch:logs:
+    DeleteOnTerminate: true
+    StreamLogs: true
+  aws:elasticbeanstalk:command:
+    BatchSize: '30'
+    BatchSizeType: Percentage
+  aws:elasticbeanstalk:container:php:phpini:
+    display_errors: 'On'
+    document_root: /public
+    max_execution_time: '300'
+    memory_limit: 1024M
+  aws:elasticbeanstalk:environment:
+    ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:elasticbeanstalk:hostmanager:
+    LogPublicationControl: true
+  aws:elb:loadbalancer:
+    CrossZone: true
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:sa-east-1::platform/PHP 7.0 running on 64bit
+    Amazon Linux/2.5.0
