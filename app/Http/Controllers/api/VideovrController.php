@@ -21,6 +21,7 @@ class VideovrController extends Controller
             		'descripcion' => $video->descripcion,
             		'foto' => config('app.url') . 'videosvr/' . $video->foto,
             		'video' => $video->video,
+                    'dorado' => $video->dorado
             	];
             }
 //                    'video' => config('app.url') . 'videosvr/' . $video->video,
