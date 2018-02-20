@@ -40,7 +40,7 @@
                         {{ csrf_field() }}
                         <tr>
                             <td>{{$seccion->nombre}}</td>
-                            <td><input name="solo_dorado" id="solo_dorado" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
+                            <td><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($seccion->solo_dorado) checked=checked @endif ></td>
                             {{--<td><input name="agree" type="checkbox" value="{{$seccion->funciones_doradas}}"></td>--}}
                             <td>
 

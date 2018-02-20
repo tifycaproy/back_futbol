@@ -24,16 +24,15 @@ class SeccionesDoradasController extends Controller
         {
      		$seccion = SeccionesDoradas::find($idseccion)->first();
      		$seccion->solo_dorado = true;
-     		$seccion->save(); 
-     		$secciones = SeccionesDoradas::all();
-	        return view('dorados.secciones.index')->with('secciones', $secciones);
+     		$seccion->save();
+     		return redirect()->to('/secciones_doradas'); 
         }
         else{
         	$seccion = SeccionesDoradas::find($idseccion)->first();
      		$seccion->solo_dorado = false;
      		$seccion->save(); 	
     		$secciones = SeccionesDoradas::all();
- 	        return view('dorados.secciones.index')->with('secciones', $secciones);
+ 	        return redirect()->to('/secciones_doradas');
         }
 
     }
