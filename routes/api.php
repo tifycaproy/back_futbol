@@ -99,3 +99,5 @@ Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
 Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController@editarSeccion');
 
+Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');
+
