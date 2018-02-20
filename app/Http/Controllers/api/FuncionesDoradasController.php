@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\FuncionesDoradas;
+use Illuminate\Http\Request;
 
 class FuncionesDoradasController extends Controller
 {
@@ -17,7 +18,7 @@ class FuncionesDoradasController extends Controller
      		return redirect()->to('/funciones_doradas'); 
         }
         else{
-        	$funcion = SeccionesDoradas::find($idfuncion);
+        	$funcion = FuncionesDoradas::find($idfuncion);
      		$funcion->solo_dorado = false;
      		$funcion->save(); 	
  	        return redirect()->to('/funciones_doradas');

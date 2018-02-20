@@ -22,16 +22,15 @@ class SeccionesDoradasController extends Controller
     {
         if($request->has('solo_dorado'))
         {
-     		$seccion = SeccionesDoradas::find($idseccion)->first();
+     		$seccion = SeccionesDoradas::find($idseccion);
      		$seccion->solo_dorado = true;
      		$seccion->save();
      		return redirect()->to('/secciones_doradas'); 
         }
         else{
-        	$seccion = SeccionesDoradas::find($idseccion)->first();
+        	$seccion = SeccionesDoradas::find($idseccion);
      		$seccion->solo_dorado = false;
      		$seccion->save(); 	
-    		$secciones = SeccionesDoradas::all();
  	        return redirect()->to('/secciones_doradas');
         }
 
