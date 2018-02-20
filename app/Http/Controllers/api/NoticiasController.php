@@ -26,7 +26,8 @@ class NoticiasController extends Controller
                 ]);
             }
         }
-        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')
+
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
             ->where('active',1)
             ->where('aparecetimelineppal',1)
             ->orderby('fecha','desc','id')
@@ -55,7 +56,11 @@ class NoticiasController extends Controller
     }
     public function noticias_monumentales(Request $request)
     {
+<<<<<<< HEAD
         $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparevetimelinemonumentales','<>',0)->orderby('fecha','desc','id')->paginate(25);
+=======
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')->where('active',1)->where('aparevetimelinemonumentales','<>',0)->orderby('fecha','desc','id')->paginate(25);
+>>>>>>> dev
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {
@@ -66,7 +71,11 @@ class NoticiasController extends Controller
     }
     public function noticias_futbolbase(Request $request)
     {
+<<<<<<< HEAD
         $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->where('active',1)->where('aparecefutbolbase','<>',0)->orderby('fecha','desc','id')->paginate(25);
+=======
+        $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')->where('active',1)->where('aparecefutbolbase','<>',0)->orderby('fecha','desc','id')->paginate(25);
+>>>>>>> dev
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($noticias as $noticia) {

@@ -31,6 +31,7 @@
                 <thead>
                     <tr>
                         <th>Título</th>
+                        <th>Solo Dorados</th>
                         <th width="60"></th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@
                 @foreach($videosvr as $video)
                     <tr>
                         <td><a href="{{ route('videosvr.edit', codifica($video->id) ) }}" title="Editar">{{ $video->titulo }}</a></td>
+                        <td><input name="agree" type="checkbox" value="{{$video->dorado}}" disabled></td>
                         <td>
                             <a href="{{ route('videosvr.edit', codifica($video->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                             <a href="{{ route('videosvr_eliminar', codifica($video->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
