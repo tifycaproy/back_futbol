@@ -45,6 +45,7 @@ class UsuarioDoradoSeeder extends Seeder
             'muro_comentario_aplaudir',
             'enviar_once_ideal',
             'aplaudir_single_jugador'
+            'encuesta_votar'
         ];
 
         foreach ($funciones as $funcion) {

@@ -77,7 +77,7 @@ Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
 //Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
 Route::get('encuesta/{token}', 'api\EncuestasController@encuesta');
-Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar');
+Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar')->middleware(['user.dorado:funcion,encuesta_votar']);
 Route::get('single_respuesta/{id}', 'api\EncuestasController@single_respuesta');
 Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas');
 
@@ -85,7 +85,7 @@ Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas'
 Route::get('videos360', 'api\VideovrController@videos360');
 
 //Muro
-Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);;
+Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);
 Route::get('muro', 'api\MuroController@index');
 Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
 Route::post('muro_comentar', 'api\MuroController@muro_comentar')->middleware(['user.dorado:funcion,muro_comentar']);
