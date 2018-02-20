@@ -97,3 +97,5 @@ Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
+Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController@editarSeccion');
+

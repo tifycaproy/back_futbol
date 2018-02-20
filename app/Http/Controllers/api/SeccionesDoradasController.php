@@ -16,4 +16,10 @@ class SeccionesDoradasController extends Controller
     {
         return response()->json(SeccionesDoradas::all());
     }
+
+    public function editarSeccion(Request $request)
+    {
+        dd($request);
+    }
 }
+

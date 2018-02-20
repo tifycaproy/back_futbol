@@ -40,17 +40,20 @@
                     </thead>
                     <tbody>
                     @foreach($secciones as $seccion)
+                    <form action="{{ url('api/seccionesdoradas/' . $seccion->id . '/edit') }}" method="POST" class="">
+                        {{ csrf_field() }}
                         <tr>
                             <td>{{$seccion->nombre}}</td>
-                            <td><input name="agree" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
+                            <td><input name="solo_dorado" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
                             {{--<td><input name="agree" type="checkbox" value="{{$seccion->funciones_doradas}}"></td>--}}
                             <td>
 
-                                <a href="{{ url('/seccionesdoradas/' . $seccion->id . '/edit') }}" type="submit" class="btn btn-primary"> Guardar
-                                </a>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
 
                             </td>
                         </tr>
+                         </form>
+
                     @endforeach
                     </tbody>
                 </table>
