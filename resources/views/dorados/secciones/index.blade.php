@@ -19,10 +19,7 @@
                 <div class="alert alert-danger">{{ $notificacion_error }}</div>
             @endif
         </div>
-        <div class="col-lg-2">
-            <p class="text-right"><a href="javascript:void(0);" class="btn btn-sm btn-primary"><i
-                            class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
-        </div>
+        
     </div>
 
     <div class="row">
@@ -35,7 +32,6 @@
                         <th>Solo Dorado</th>
                         {{--<th>Funciones Dorado</th>--}}
                         <th>Guardar</th>
-                        <th width="80"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,7 +40,7 @@
                         {{ csrf_field() }}
                         <tr>
                             <td>{{$seccion->nombre}}</td>
-                            <td><input name="solo_dorado" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
+                            <td><input name="solo_dorado" id="solo_dorado" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
                             {{--<td><input name="agree" type="checkbox" value="{{$seccion->funciones_doradas}}"></td>--}}
                             <td>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\SeccionesDoradas;
+use Illuminate\Http\Request;
 
 class SeccionesDoradasController extends Controller
 {
