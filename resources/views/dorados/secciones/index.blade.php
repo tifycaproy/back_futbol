@@ -45,9 +45,8 @@
                             <td><input name="agree" type="checkbox" value="{{$seccion->solo_dorado}}"></td>
                             {{--<td><input name="agree" type="checkbox" value="{{$seccion->funciones_doradas}}"></td>--}}
                             <td>
-                                <a href="javascript:void(0);" type="submit" class="btn btn-primary"> Guardar
-                                </a>
-                                <a href="javascript:void(0);" type="submit" class="btn btn-danger"> Eliminar
+
+                                <a href="{{ url('/seccionesdoradas/' . $seccion->id . '/edit') }}" type="submit" class="btn btn-primary"> Guardar
                                 </a>
 
                             </td>
