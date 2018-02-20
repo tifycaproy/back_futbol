@@ -18,9 +18,24 @@ class SeccionesDoradasController extends Controller
         return response()->json(SeccionesDoradas::all());
     }
 
-    public function editarSeccion(Request $request)
+    public function editarSeccion(Request $request,$idseccion)
     {
-        dd($request);
+        if($request->has('solo_dorado'))
+        {
+     		$seccion = SeccionesDoradas::find($idseccion)->first();
+     		$seccion->solo_dorado = true;
+     		$seccion->save(); 
+     		$secciones = SeccionesDoradas::all();
+	        return view('dorados.secciones.index')->with('secciones', $secciones);
+        }
+        else{
+        	$seccion = SeccionesDoradas::find($idseccion)->first();
+     		$seccion->solo_dorado = false;
+     		$seccion->save(); 	
+    		$secciones = SeccionesDoradas::all();
+ 	        return view('dorados.secciones.index')->with('secciones', $secciones);
+        }
+
     }
 }
 
