@@ -1,3 +1,9 @@
+ <!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
  <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
   <input name="merchantId"    type="hidden"  value="508029"   >
   <input name="accountId"     type="hidden"  value="512321" >
@@ -14,3 +20,6 @@
   <input name="confirmationUrl"    type="hidden"  value="http://millos-dev.2waysports.com/pagos/payu/confirmation" >
   <input name="Submit"        type="submit"  value="Enviar" >
 </form>
+
+</body>
+</html>
