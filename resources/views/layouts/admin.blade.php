@@ -107,6 +107,9 @@
                     <li>
                         <a href="{{ route("encuestas.index") }}"><i class="fa fa-fw fa-pencil"></i> Encuestas</a>
                     </li>
+                    <li>
+                        <a href="{{ route("post.index") }}"><i class="fa fa-fw fa-pencil"></i> Posts</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
