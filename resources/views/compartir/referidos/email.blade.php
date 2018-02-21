@@ -1,5 +1,6 @@
 @extends ('compartir.referidos.header')
 <?php $codigo_referido=$codigo;
+$codigo_referido_id=$codigo_id;
 $nombre=$nombre;
 ?>
 
@@ -13,36 +14,36 @@ $nombre=$nombre;
 
     <form name="form1" id="form1" role="form" action="" method="POST" class="mt-3 ">
        <div class="form-group">
-          <input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido;?>">
-          <input type="text" name="nombre" class="form-control form-control-lg" id="nombre"  placeholder="Nombre" maxlength="60" required>
+          <input name="codigo" type="hidden" id="codigo" value="<?php echo $codigo_referido_id;?>">
+          <input type="text" name="nombre" class="form-control form-control-md" id="nombre"  placeholder="Nombre" maxlength="60" required>
 
       </div>
       <div class="form-group">
 
-          <input type="text" name="apellido" class="form-control form-control-lg" id="apellido" placeholder="Apellido" maxlength="60" required>
+          <input type="text" name="apellido" class="form-control form-control-md" id="apellido" placeholder="Apellido" maxlength="60" required>
 
       </div>
         <div class="form-group">
 
-          <input type="text" name="cedula" class="form-control form-control-lg" id="cedula" placeholder="Cédula y/o Pasaporte" maxlength="50" required>
+          <input type="text" name="cedula" class="form-control form-control-md" id="cedula" placeholder="Cédula y/o Pasaporte" maxlength="50" required>
 
       </div>
       <div class="form-row">
           <div class="form-group col-3">
 
-             <input type="text" class="form-control form-control-lg" id="pais" name="pais" placeholder="57" onchange="validarpais( this.value );"
+             <input type="text" class="form-control form-control-md" id="pais" name="pais" placeholder="57" onchange="validarpais( this.value );"
              maxlength="3" required>
 
          </div>
          <div class="form-group col-9">
 
-             <input type="text" class="form-control form-control-lg" id="celular" name="celular" placeholder="Celular" required maxlength="11" >
+             <input type="text" class="form-control form-control-md" id="celular" name="celular" placeholder="Celular" required maxlength="11" >
 
          </div>
      </div>
      <div class="form-group">
 
-      <input type="email" name="email" class="form-control form-control-lg" id="email"  placeholder="Correo" maxlength="100" required>
+      <input type="email" name="email" class="form-control form-control-md" id="email"  placeholder="Correo" maxlength="100" required>
 
   </div>
   <div class="form-group">

@@ -30,13 +30,15 @@ class MuroController extends Controller
             $idusuario=decodifica_token($token);
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
+            if(isset($request["mensaje"])){
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
 
-            $resultado = app('profanityFilter')->filter($request["mensaje"], true);
-
-            if($resultado["hasMatch"]){
-                $errors[]="Disculpa, no se pudo realizar tu post."; 
+            if($resultado!=""){
+            if($resultado['hasMatch']){
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
             }
-
+            }
+            }
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -154,11 +156,16 @@ class MuroController extends Controller
             $idpost=decodifica($request["idpost"]);
             if($idpost=="") $errors[]="El idpost es incorrecto";
 
-            $resultado = app('profanityFilter')->filter($request["comentario"], true);
+            if(isset($request["comentario"])){
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
 
+            if($resultado!="" && $request["comentario"] != " "){
             if($resultado["hasMatch"]){
-                $errors[]="Disculpa, no se pudo publicar tu comentario."; 
+                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
             }
+            }
+            }
+
 
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
@@ -324,6 +331,26 @@ class MuroController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
+
+    public function topAplausos()
+    {
+        //Traemos los posts
+        $posts = Muro::all();
+        //Contamos cuantos aplausos tienen
+        foreach($posts as $post){
+            $post->cantidad_aplausos = $post->aplausos()->count();
+            if($post->foto)
+            $post->foto=config('app.url') . 'posts/' . $post->foto;
+            $usuario = Usuario::find($post->usuario_id);
+            $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+            $post->usuario_tlf = $usuario->telefono;
+        }
+        //Retornamos vista con los primeros 10
+          $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+        dd($result);
+
+    }
+
 
 
 }

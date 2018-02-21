@@ -22,6 +22,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('update_password/{id}', 'UserController@update_password')->name('update_password');
     Route::resource('usuarios', 'UserController');
     Route::get('ranking_referidos', 'UserController@ranking_referidos')->name('ranking_referidos');
+
+//Secciones Doradas
+    Route::get('secciones_doradas', 'DoradosController@indexSecciones');
+
+//Funciones Doradas
+    Route::get('funciones_doradas', 'DoradosController@indexFunciones');
+
 //notiicas
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');

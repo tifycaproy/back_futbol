@@ -2,6 +2,7 @@
 <?php
       $codigo_referido=$codigo;
       $nombre_referido=$nombre;
+      $codigo_referido_id=$codigo_id;
  ?>
 @section ('content')
 <section class="row justify-content-center  no-gutters">
@@ -103,7 +104,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                     data_referido.apellido = response.last_name;
                     data_referido.email = response.email;
                     data_referido.userID_facebook = response.id;
-                    data_referido.codigo = $('#codigo').val();
+                    data_referido.codigo = '<?php echo $codigo_referido_id;?>';
                     registrar_usuario(data_referido);
 
                 });
@@ -133,7 +134,11 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
             success: function (data) {
                     if (data.status == 'exito') {
                         document.location = ira;
-                    } else {
+                    }else if (data.status == 'correo_existe') {
+                        alert('El correo ya se encuentra registrado, continúa para descargar la aplicación');
+                        document.location = ira;
+                    }
+                     else {
                         alert(data.error[0]);
                     }
                 },
@@ -191,7 +196,7 @@ onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
                         data_referido.apellido = success.result.name.familyName;
                         data_referido.email = user_info.emails[0].value;
                         data_referido.userID_google = user_info.id;
-                        data_referido.referido = $('#codigo').val();
+                        data_referido.codigo = '<?php echo $codigo_referido_id;?>';
                         registrar_usuario(data_referido);
 
                     },

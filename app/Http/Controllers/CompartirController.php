@@ -151,7 +151,7 @@ public function referidos($codigo)
    if(isset($zusuarios->nombre)){
      $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
    }
-   return view('compartir.referidos.referidos')->with('codigo',$codigo)->with('nombre',$nombre);
+   return view('compartir.referidos.referidos')->with('codigo',$codigo)->with('codigo_id',$idusuario)->with('nombre',$nombre);
  } catch (Exception $e) {
   return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
@@ -160,14 +160,16 @@ public function referidos($codigo)
 public function email($codigo)
 {
  $codigo_referido = $codigo;
+ $idusuario = decodifica($codigo);
  $nombre="";
- $zusuarios =  Usuario::where('id','=',$codigo_referido)->first();
+ $zusuarios =  Usuario::where('id','=',$idusuario)->first();
  if(isset($zusuarios->nombre)){
    $nombre = $zusuarios->nombre." ".$zusuarios->apellido;
  }
 
- return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre);
+ return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre)->with('codigo_id',$idusuario);
 }
+
 public function descargar()
 {
   return view('compartir.referidos.descargar');

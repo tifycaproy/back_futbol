@@ -13,7 +13,7 @@ class VideovrController extends Controller
     public function videos360()
     {
         try{
-            $videosvr=Videovr::get(['titulo','descripcion','foto','video']);
+            $videosvr=Videovr::get(['titulo','descripcion','foto','video','dorado']);
             $data=[];
             foreach ($videosvr as $video) {
             	$data[]=[
@@ -21,6 +21,7 @@ class VideovrController extends Controller
             		'descripcion' => $video->descripcion,
             		'foto' => config('app.url') . 'videosvr/' . $video->foto,
             		'video' => $video->video,
+                    'dorado' => $video->dorado
             	];
             }
 //                    'video' => config('app.url') . 'videosvr/' . $video->video,
