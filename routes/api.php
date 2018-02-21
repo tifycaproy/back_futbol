@@ -101,3 +101,5 @@ Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController
 
 Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');
 
+//Pagos
+Route::get('pago/payu/{tokenUsuario}/{idMembresia}', 'api\PagosController@showPayu');

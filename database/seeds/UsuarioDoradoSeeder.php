@@ -14,9 +14,7 @@ class UsuarioDoradoSeeder extends Seeder
     public function run()
     {
         $seecciones = [
-            'noticias',
             'muro',
-            'chat',
             'calendario',
             'tu_escoges',
             'tabla',
