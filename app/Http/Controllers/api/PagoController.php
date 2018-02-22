@@ -16,4 +16,11 @@ class PagoController extends Controller
 
     }
 
+    public function responsePayu(Request $request)
+    {
+
+    	 dd($request);
+
+    }
+
 }
