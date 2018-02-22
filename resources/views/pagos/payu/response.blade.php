@@ -17,11 +17,11 @@ $lapPaymentMethod = $request->lapPaymentMethod;
 $transactionId = $request->transactionId;
 
 if ($request['transactionState'] == 4 ) {
-	$estadoTx = "Transaction approved";
+	$estadoTx = "Transacción aprobada";
 }
 
 else if ($request['transactionState'] == 6 ) {
-	$estadoTx = "Transaction rejected";
+	$estadoTx = "Transaction rechazada";
 }
 
 else if ($request['transactionState'] == 104 ) {
@@ -29,7 +29,7 @@ else if ($request['transactionState'] == 104 ) {
 }
 
 else if ($request['transactionState'] == 7 ) {
-	$estadoTx = "Pending payment";
+	$estadoTx = "Pago pendiente";
 }
 
 else {
@@ -39,10 +39,10 @@ else {
 
 if (strtoupper($firma) == strtoupper($firmacreada)) {
 ?>
-	<h2>Transaction Summary</h2>
+	<h2>Resúmen de transacción</h2>
 	<table>
 	<tr>
-	<td>Transaction status</td>
+	<td>Estado de transacción</td>
 	<td><?php echo $estadoTx; ?></td>
 	</tr>
 	<tr>
@@ -51,11 +51,11 @@ if (strtoupper($firma) == strtoupper($firmacreada)) {
 	<td><?php echo $transactionId; ?></td>
 	</tr>
 	<tr>
-	<td>Reference sale</td>
+	<td>Referencia de venta</td>
 	<td><?php echo $reference_pol; ?></td>
 	</tr>
 	<tr>
-	<td>Reference transaction</td>
+	<td>Reference de transacción</td>
 	<td><?php echo $referenceCode; ?></td>
 	</tr>
 	<tr>
@@ -74,19 +74,19 @@ if (strtoupper($firma) == strtoupper($firmacreada)) {
 	}
 	?>
 	<tr>
-	<td>total amount</td>
+	<td>Monto total</td>
 	<td>$<?php echo number_format($TX_VALUE); ?></td>
 	</tr>
 	<tr>
-	<td>Currency</td>
+	<td>Moneda</td>
 	<td><?php echo $currency; ?></td>
 	</tr>
 	<tr>
-	<td>Description</td>
+	<td>Descripción</td>
 	<td><?php echo ($extra1); ?></td>
 	</tr>
 	<tr>
-	<td>Entity:</td>
+	<td>Entidad:</td>
 	<td><?php echo ($lapPaymentMethod); ?></td>
 	</tr>
 	</table>
