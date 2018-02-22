@@ -14,7 +14,7 @@ class PagoController extends Controller
     	$datos = new \stdClass();
     	$datos->ApiKey = '4Vj8eK4rloUd272L48hsrarnUA';
     	$datos->merchantId = '508029';
-    	$datos->reference = 'TestPayUMillonarios1234';
+    	$datos->reference = 'TestPayUMillonarios'. rand(0, 10000);
     	$datos->Amount = '20000';
     	$datos->currency = 'COP';
     	$datos->signature = md5($datos->ApiKey .'~'. $datos->merchantId.'~'. $datos->reference . '~' . $datos->Amount . '~' . $datos->currency);
