@@ -21,6 +21,25 @@ class ConfiguracionController extends Controller
 
     public function configuracion_actualizar(Request $request)
     {
+
+        $fileNameImgDorados = "";
+        if ($request->archivo) {
+            $foto = json_decode($request->fileNameImgDorados);
+            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileNameImgDorados = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+            $picture = $foto->output->image;
+            $filepath = 'noticias/' . $fileNameImgDorados;
+
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+        }
+
         $data = [
             'calendario_convodados_id' => $request->calendario_convodados_id,
             'calendario_aplausos_id' => $request->calendario_aplausos_id,
@@ -83,7 +102,7 @@ class ConfiguracionController extends Controller
             'video_referidos' => $request->video_referidos,
             'terminos_referidos' => $request->terminos_referidos,
 
-            'url_imagen_beneficios_dorados' => $request->url_imagen_beneficios_dorados,
+            'url_imagen_beneficios_dorados' => $fileNameImgDorados,
             'footer_formulario_dorados' => $request->footer_formulario_dorados,
             'texto_bienvenida_dorados' => $request->texto_bienvenida_dorados,
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,

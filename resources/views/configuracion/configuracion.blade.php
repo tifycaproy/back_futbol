@@ -152,9 +152,13 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Url Imagen Beneficios</label>
-                    <input type="text" class="form-control" name="url_imagen_beneficios_dorados" value="{{ $configuracion->url_imagen_beneficios_dorados}}"
-                           maxlength="200">
+                    <label>Imagen Beneficios</label>
+                    <div class="slim">
+                        <input name="fileNameImgDorados" type="file" accept="image/jpeg, image/png, image/gif" />
+                    </div>
+                    <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                    {{--<input type="text" class="form-control" name="url_imagen_beneficios_dorados" value="{{ $configuracion->url_imagen_beneficios_dorados}}"
+                           maxlength="200">--}}
                 </div>
             </div>
             <div class="col-lg-6">
