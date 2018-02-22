@@ -14,9 +14,7 @@ class UsuarioDoradoSeeder extends Seeder
     public function run()
     {
         $seecciones = [
-            'noticias',
             'muro',
-            'chat',
             'calendario',
             'tu_escoges',
             'tabla',
@@ -45,6 +43,7 @@ class UsuarioDoradoSeeder extends Seeder
             'muro_comentario_aplaudir',
             'enviar_once_ideal',
             'aplaudir_single_jugador'
+            'encuesta_votar'
         ];
 
         foreach ($funciones as $funcion) {

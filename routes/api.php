@@ -61,7 +61,7 @@ Route::get('single_calendariofb/{id}', 'api\CalendariofbController@single_calend
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
 Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
-Route::post('aplaudir', 'api\JugadoresController@aplaudir');
+Route::post('aplaudir', 'api\JugadoresController@aplaudir')->middleware(['user.dorado:funcion,aplaudir_single_jugador']);;
 
 Route::get('nominafb', 'api\JugadoresfbController@nomina');
 Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb');
@@ -70,14 +70,14 @@ Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb'
 Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
 
 //Onceideal
-Route::post('onceideal', 'api\OnceidealController@guardar_once');
+Route::post('onceideal', 'api\OnceidealController@guardar_once')->middleware(['user.dorado:funcion,enviar_once_ideal']);;
 Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
 //Encuestas
 
 //Route::get('noticias_monumentales', 'api\NoticiasController@noticias_monumentales');
 Route::get('encuesta/{token}', 'api\EncuestasController@encuesta');
-Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar');
+Route::post('encuesta_votar', 'api\EncuestasController@encuesta_votar')->middleware(['user.dorado:funcion,encuesta_votar']);
 Route::get('single_respuesta/{id}', 'api\EncuestasController@single_respuesta');
 Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas');
 
@@ -85,16 +85,24 @@ Route::get('ranking_encuestas/{id}', 'api\EncuestasController@ranking_encuestas'
 Route::get('videos360', 'api\VideovrController@videos360');
 
 //Muro
-Route::post('muro', 'api\MuroController@postear');
+
+Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);
 Route::get('muro', 'api\MuroController@index');
 Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
-Route::post('muro_comentar', 'api\MuroController@muro_comentar');
+Route::post('muro_comentar', 'api\MuroController@muro_comentar')->middleware(['user.dorado:funcion,muro_comentar']);
 Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
-Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir');
-Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir');
+Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir')->middleware(['user.dorado:funcion,muro_post_aplaudir']);
+Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir')->middleware(['user.dorado:funcion,muro_comentario_aplaudir']);
 Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
+Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController@editarSeccion');
 
+Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');
+
+//Pagos
+Route::get('pago/payu/{tokenUsuario}/{idMembresia}', 'api\PagoController@showPayu');
+
+Route::get('pago/payu/response', 'api\PagoController@responsePayu');
