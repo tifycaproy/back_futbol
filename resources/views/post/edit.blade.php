@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
 <div class="row">
      <div class="col-lg-6">
         <h1 class="page-header">POST</h1>

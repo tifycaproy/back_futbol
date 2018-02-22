@@ -109,6 +109,6 @@ Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::get('borrar', 'BorrarController@borrar');
 
-//Posts
+//Posts////
 Route::resource('post', 'PostController');
 Route::get('post_eliminar/{id}', 'PostController@destroy')->name('post_eliminar');
