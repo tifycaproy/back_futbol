@@ -18,8 +18,8 @@
   <input name="signature"     type="hidden"  value="{{$datos->signature}}"  >
   <input name="test"          type="hidden"  value="1" >
   <input name="buyerEmail"    type="hidden"  value="prueba@pagomillonarios.com" >
-  <input name="responseUrl"    type="hidden"  value="http://millos-dev.2waysports.com/pago/payu/response" >
-  <input name="confirmationUrl"    type="hidden"  value="http://millos-dev.2waysports.com/pago/payu/confirmation" >
+  <input name="responseUrl"    type="hidden"  value="http://millos-dev.2waysports.com/api/pago/payu/response" >
+  <input name="confirmationUrl"    type="hidden"  value="http://millos-dev.2waysports.com/api/pago/payu/confirmation" >
   <input name="Submit"        type="submit"  value="Pagar con PayU" >
 </form>
 

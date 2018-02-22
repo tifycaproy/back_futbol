@@ -25,9 +25,7 @@ class PagoController extends Controller
 
     public function responsePayu(Request $request)
     {
-    	 dd($request);
-    	 return view('pagos.payu.formulario');
-
+    	 return view('pagos.payu.formulario')->with('request',$request);
     }
 
 }
