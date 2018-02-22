@@ -11,8 +11,13 @@ class PagoController extends Controller
 
 	public function showPayu($tokenUsuario,$idMembresia)
     {
+    	$ApiKey = '4Vj8eK4rloUd272L48hsrarnUA';
+    	$merchantId = '508029';
+    	$reference = 'TestPayUMillonarios';
+    	$Amount = '20000';
+    	$currency = 'COP';
 
-    	 return view('pagos.payu.formulario');
+    	 return view('pagos.payu.formulario')->with('datos',$datos);
 
     }
 
