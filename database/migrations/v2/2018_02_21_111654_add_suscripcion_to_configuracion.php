@@ -19,6 +19,7 @@ class AddSuscripcionToConfiguracion extends Migration
             $table->text('texto_bienvenida_dorados');
             $table->text('video_de_bienvenida_dorados');
             $table->text('url_tyc_dorados');
+            $table->text('url_popup_dorado');
         });
     }
 

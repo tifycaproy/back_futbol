@@ -1,5 +1,5 @@
 <?php
-//header("Location:". $_GET['seccion'] );
+header("Location:". $_GET['seccion'] );
 
 if($_GET['seccion']=='alineacion' || $_GET['seccion']=='alineación' || $_GET['seccion']=='alineaciónoficial'){
 
@@ -89,18 +89,16 @@ $titulo="Realidad Virtual";
 
 	<title><?php echo $titulo;?></title>
 
-	<base href="http://millos-dev.2waysports.com/compartir/index.php" />
+	<base href="http://millos-prod.2waysports.com/compartir/index.php" />
 
 
-	
 
-	<meta property="og:url"                content="http://millos-dev.2waysports.com/compartir/index.php" />
+	<title>Noticias</title>
+	<meta property="og:url"                content="http://millos-prod.2waysports.com/compartir/index.php" />
 	<meta property="og:type"               content="article" />
 	<meta property="og:title"              content="<?php echo $titulo;?>" />
 	<meta property="og:description"        content="<?php echo $descripcion;?>" />
 	<meta property="og:image"              content="<?php echo $imagen;?>" />
-	
-
 
 </head>
 

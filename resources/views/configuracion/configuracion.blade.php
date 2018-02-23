@@ -157,17 +157,28 @@
                         <input name="fileNameImgDorados" type="file" accept="image/jpeg, image/png, image/gif" />
                     </div>
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
-                    {{--<input type="text" class="form-control" name="url_imagen_beneficios_dorados" value="{{ $configuracion->url_imagen_beneficios_dorados}}"
-                           maxlength="200">--}}
+                    @if($configuracion->url_imagen_beneficios_dorados)
+                        <h5>Imagen actual</h5>
+                        <p><a href="{{ config('app.url') . 'configuracion/' . $configuracion->url_imagen_beneficios_dorados }}" target="_blank"><img src="{{ config('app.url') . 'configuracion/' . $configuracion->url_imagen_beneficios_dorados }}"
+                                style="max-width: 100%"></a></p>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Footer Formulario</label>
-                    <input type="text" class="form-control" name="footer_formulario_dorados"
-                           value="{{ $configuracion->footer_formulario_dorados }}" maxlength="200">
+                    <label>Popup Dorado</label>
+                    <div class="slim">
+                        <input name="fileNameImgPopupDorados" type="file" accept="image/jpeg, image/png, image/gif" />
+                    </div>
+                    <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                    @if($configuracion->url_popup_dorado)
+                        <h5>Imagen actual</h5>
+                        <p><a href="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_dorado }}" target="_blank"><img src="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_dorado }}"
+                                style="max-width: 100%"></a></p>
+                    @endif
                 </div>
             </div>
+            
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -194,6 +205,11 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Footer Formulario</label>
+                    <input type="text" class="form-control" name="footer_formulario_dorados"
+                           value="{{ $configuracion->footer_formulario_dorados }}" maxlength="200">
+                </div>
             </div>
         </div>
 
@@ -592,10 +608,10 @@
                         <input name="patrocinante" type="file" accept="image/jpeg, image/png, image/gif"/>
                     </div>
                     <label><span>Mínimo 30 x 30 píxeles | JPG, PNG y GIF</span></label>
-                    @if($configuracion->patrocinante<>'')
+                    @if($configuracion->patrocinante)
                         <h5>Imagen actual</h5>
-                        <p><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}"
-                                style="max-width: 100%"></p>
+                        <p><a href="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}" target="_blank"><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}"
+                                style="max-width: 100%"></a></p>
                     @endif
                 </div>
             </div>
