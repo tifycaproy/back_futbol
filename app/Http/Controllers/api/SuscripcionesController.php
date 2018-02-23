@@ -7,6 +7,7 @@ use App\RazonesCancelarSuscripciones;
 use App\Suscripciones;
 use App\Usuario;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Controller;
 
 class SuscripcionesController extends Controller
 {
