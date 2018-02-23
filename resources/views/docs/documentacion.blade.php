@@ -590,11 +590,37 @@ $data = array(
         ],
     ),
     "Consulta Suscripciones" => array(
-        "Ruta" => "/suscripciones",
+        "Ruta" => "/suscripciones/tipos",
         "Método" => "GET",
         "Éxito (Array)" => [
             'id', 'descripcion', 'costo_menor', 'costo_mayor',
         ],
+    ),
+    "Razones de Cancelacion Suscripcion" => array(
+        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
+        "Método" => "GET",
+        "Éxito (Array)" => [
+            'id', 'descripcion',
+        ],
+    ),
+    "Beneficios de Suscripcion" => array(
+        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
+        "Método" => "GET",
+        "Éxito (Array)" => [
+            'id', 'descripcion', 'url'
+        ],
+    ),
+    "Cancelar Suscripcion" => array(
+        "Ruta" => "/suscripciones/cancelar",
+        "Método" => "POST",
+        "Parámetros" => array(
+            "razon" => "idrazon",
+            "token" => "token / requerido",
+        ),
+        "Éxito" => "Ya no eres Dorado :'(",
+        "Falla" => array(
+            "error" => array("El token es requerido", "El idcomentario es requerido", "El token es incorrecto!")
+        )
     ),
 
 );

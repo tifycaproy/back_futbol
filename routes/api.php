@@ -106,3 +106,9 @@ Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController
 Route::get('pago/payu/{tokenUsuario}/{idMembresia}', 'api\PagoController@showPayu');
 
 Route::get('pago/payu/response', 'api\PagoController@responsePayu');
+
+//Suscripciones
+Route::get('suscripciones/tipos', 'api\SuscripcionesControllers@index');
+Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesControllers@razonesCancelar');
+Route::get('suscripciones/beneficios', 'api\SuscripcionesControllers@beneficiosDorados');
+Route::post('suscripciones/cancelar', 'api\SuscripcionesControllers@cancelar');
