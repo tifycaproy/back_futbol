@@ -21,7 +21,6 @@ class ConfiguracionController extends Controller
 
     public function configuracion_actualizar(Request $request)
     {
-
         $fileNameImgDorados = "";
         if ($request->fileNameImgDorados) {
             $foto = json_decode($request->fileNameImgDorados);
@@ -38,6 +37,47 @@ class ConfiguracionController extends Controller
                 'ContentType' => 'image',
                 'ACL' => 'public-read',
             ));
+            $data = [ 'url_imagen_beneficios_dorados' => $fileNameImgDorados];
+            Configuracion::find(1)->update($data);
+        }
+        $fileName_foto = "";
+        if ($request->patrocinante) {
+            $foto = json_decode($request->patrocinante);
+            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+            $picture = $foto->output->image;
+            $filepath = 'patrocinantes/' . $fileName_foto;
+
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+            $data = [ 'patrocinante' => $fileName_foto];
+            Configuracion::find(1)->update($data);
+        }
+
+        $fileNameImgPopupDorados = "";
+        if ($request->fileNameImgPopupDorados) {
+            $foto = json_decode($request->fileNameImgPopupDorados);
+            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileNameImgPopupDorados = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+            $picture = $foto->output->image;
+            $filepath = 'configuracion/' . $fileNameImgPopupDorados;
+
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+            $data = ['url_popup_dorado' => $fileNameImgPopupDorados];
+            Configuracion::find(1)->update($data);
         }
 
         $data = [
@@ -102,32 +142,11 @@ class ConfiguracionController extends Controller
             'video_referidos' => $request->video_referidos,
             'terminos_referidos' => $request->terminos_referidos,
 
-            'url_imagen_beneficios_dorados' => $fileNameImgDorados,
             'footer_formulario_dorados' => $request->footer_formulario_dorados,
             'texto_bienvenida_dorados' => $request->texto_bienvenida_dorados,
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,
-            'url_tyc_dorados' => $request->url_tyc_dorados,
-            'url_popup_dorado' => $request->url_popup_dorado
+            'url_tyc_dorados' => $request->url_tyc_dorados
         ];
-
-
-        if ($request->patrocinante) {
-            $foto = json_decode($request->patrocinante);
-            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
-            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
-            $picture = $foto->output->image;
-            $filepath = 'patrocinantes/' . $fileName_foto;
-
-            $s3 = S3Client::factory(config('app.s3'));
-            $result = $s3->putObject(array(
-                'Bucket' => config('app.s3_bucket'),
-                'Key' => $filepath,
-                'SourceFile' => $picture,
-                'ContentType' => 'image',
-                'ACL' => 'public-read',
-            ));
-            $data['patrocinante'] = $fileName_foto;
-        }
 
         Configuracion::find(1)->update($data);
         return redirect()->route('configuracion')->with("notificacion", "Se ha guardado correctamente su información");
