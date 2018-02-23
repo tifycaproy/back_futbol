@@ -23,7 +23,7 @@ class ConfiguracionController extends Controller
             'tit_12', 'tit_13', 'tit_14', 'tit_14_1', 'tit_14_2', 'tit_14_2_1', 'tit_14_2_2', 'tit_14_3', 'tit_15','tit_16', 'tit_16_1', 'tit_16_2', 'tit_16_3', 'tit_16_3_1', 'tit_16_3_2', 'tit_16_3_3', 'tit_16_3_4',
             'patrocinante', 'video_referidos', 'terminos_referidos',
             'url_imagen_beneficios_dorados', 'footer_formulario_dorados', 'texto_bienvenida_dorados',
-            'video_de_bienvenida_dorados', 'url_tyc_dorados'
+            'video_de_bienvenida_dorados', 'url_tyc_dorados','url_popup_dorado'
         ]);
 
         $data["status"] = 'exito';

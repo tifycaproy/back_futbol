@@ -107,6 +107,7 @@ class ConfiguracionController extends Controller
             'texto_bienvenida_dorados' => $request->texto_bienvenida_dorados,
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,
             'url_tyc_dorados' => $request->url_tyc_dorados,
+            'url_popup_dorado' => $request->url_popup_dorado
         ];
 
 
