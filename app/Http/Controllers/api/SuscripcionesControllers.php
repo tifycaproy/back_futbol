@@ -35,7 +35,7 @@ class SuscripcionesControllers extends Controller
 
         $idusuario = decodifica_token($request["token"]);
         if ($idusuario == "") {
-            return response()->json(['status' => 'error', 'error' => ["Usuario no encontrado!"]]);
+            return response()->json(['status' => 'error', 'error' => ["El token es incorrecto!"]]);
         }
 
         $usuario = Usuario::where('id', $idusuario)->first();
