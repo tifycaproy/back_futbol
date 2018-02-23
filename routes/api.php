@@ -95,6 +95,7 @@ Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir')->middleware(['u
 Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir')->middleware(['user.dorado:funcion,muro_comentario_aplaudir']);
 Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
+
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
@@ -106,3 +107,6 @@ Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController
 Route::get('pago/payu/{tokenUsuario}/{idMembresia}', 'api\PagoController@showPayu');
 
 Route::get('pago/payu/response', 'api\PagoController@responsePayu');
+
+//Suscripciones
+Route::get('suscripciones', 'api\SuscripcionesControllers@index');
