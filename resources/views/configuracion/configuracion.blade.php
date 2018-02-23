@@ -157,17 +157,24 @@
                         <input name="fileNameImgDorados" type="file" accept="image/jpeg, image/png, image/gif" />
                     </div>
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
-                    {{--<input type="text" class="form-control" name="url_imagen_beneficios_dorados" value="{{ $configuracion->url_imagen_beneficios_dorados}}"
-                           maxlength="200">--}}
+                    @if($configuracion->url_imagen_beneficios_dorados)
+                        <h5 align="center">Url: <a target="_blank" href="{{ $configuracion->url_imagen_beneficios_dorados}}" title="">{{ $configuracion->url_imagen_beneficios_dorados}}</a></h5>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Footer Formulario</label>
-                    <input type="text" class="form-control" name="footer_formulario_dorados"
-                           value="{{ $configuracion->footer_formulario_dorados }}" maxlength="200">
+                    <label>Popup Dorado</label>
+                    <div class="slim">
+                        <input name="fileNameImgPopupDorados" type="file" accept="image/jpeg, image/png, image/gif" />
+                    </div>
+                    <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
+                    @if($configuracion->url_popup_dorado)
+                        <h5 align="center">Url: <a target="_blank" href="{{ $configuracion->url_popup_dorado}}" title="">{{ $configuracion->url_popup_dorado}}</a></h5>
+                    @endif
                 </div>
             </div>
+            
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -194,6 +201,11 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Footer Formulario</label>
+                    <input type="text" class="form-control" name="footer_formulario_dorados"
+                           value="{{ $configuracion->footer_formulario_dorados }}" maxlength="200">
+                </div>
             </div>
         </div>
 
