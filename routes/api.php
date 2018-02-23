@@ -110,3 +110,4 @@ Route::get('pago/payu/response', 'api\PagoController@responsePayu');
 
 //Suscripciones
 Route::get('suscripciones', 'api\SuscripcionesControllers@index');
+Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesControllers@razonesCancelar');
