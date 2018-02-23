@@ -11,6 +11,8 @@ class PagoController extends Controller
 
 	public function showPayu($tokenUsuario,$idMembresia)
     {
+        //TODO - Traer datos de usuario
+        //TODO - Traer info de costos por membresia
     	$datos = new \stdClass();
     	$datos->ApiKey = '4Vj8eK4rloUd272L48hsrarnUA';
     	$datos->merchantId = '508029';
