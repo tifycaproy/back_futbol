@@ -589,6 +589,13 @@ $data = array(
             'id', 'nombre', 'solo_dorado (boolean)', 'funciones_doradas (boolean)', 'mensaje_dorado'
         ],
     ),
+    "Consulta Suscripciones" => array(
+        "Ruta" => "/suscripciones",
+        "Método" => "GET",
+        "Éxito (Array)" => [
+            'id', 'descripcion', 'costo_menor', 'costo_mayor',
+        ],
+    ),
 
 );
 
