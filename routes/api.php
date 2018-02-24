@@ -115,3 +115,5 @@ Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesControl
 Route::get('suscripciones/beneficios', 'api\SuscripcionesController@beneficiosDorados');
 Route::post('suscripciones/cancelar', 'api\SuscripcionesController@cancelar');
 
+Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@statusSuscripcion');
+

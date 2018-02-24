@@ -8,6 +8,7 @@ use App\Suscripciones;
 use App\Usuario;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
+use App\UsuariosSuscripciones;
 
 class SuscripcionesController extends Controller
 {
@@ -44,4 +45,35 @@ class SuscripcionesController extends Controller
         $usuario->update(['dorado' => '0']);
         return response()->json(['status' => 'exito', 'data' => ["Ya no eres Dorado :'("]]);
     }
+
+    public function statusSuscripcion($tokenUsuario){
+
+        $idusuario = decodifica_token($tokenUsuario);
+        
+        $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO')->get();
+        
+        if($suscripcion)
+        {    
+            return response()->json(['status' => 'exito', 'data' => ["El usuario tiene suscripcion activa"]]);
+        }
+        else
+        {
+            $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','RECHAZADO');
+            if($suscripcion)
+            { 
+                return response()->json(['status' => 'fallo', 'data' => ["El usuario tiene suscripcion rechazada"]]);
+            }
+            else
+            {
+                $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','RECHAZADO');
+                if($suscripcion)
+                { 
+                   return response()->json(['status' => 'pendiente', 'data' => ["El usuario tiene suscripcion pendiente"]]);
+               }
+               else
+                return response()->json(['status' => 'no_existe', 'data' => ["El usuario nunca ha solicitado suscripcion"]]);
+        }
+    }
+
+}
 }

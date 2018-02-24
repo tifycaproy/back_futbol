@@ -60,8 +60,9 @@ class PagoController extends Controller
             $usuariosSuscripcion->id_usuario = $idusuario;
             $usuariosSuscripcion->id_tipo_membresia = $request->extra3;
             $usuariosSuscripcion->fecha_inicio = $fecha_inicio_suscripcion;
-            $usuariosSuscripcion->fecha_fin = $fecha_inicio_suscripcion->addDays($suscripcion->duracion);
+            $usuariosSuscripcion->fecha_fin = \Carbon\Carbon::now()->addDays($suscripcion->duracion);
             $usuariosSuscripcion->metodo_pago = 'payU';
+            $usuariosSuscripcion->status = 'APROBADO';
             $usuariosSuscripcion->save();
             //Guardamos info de usuario
             $usuario->dorado = true;
