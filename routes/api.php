@@ -107,6 +107,8 @@ Route::get('pago/payu/{tokenUsuario}/{idSuscripcion}', 'api\PagoController@showP
 
 Route::get('pago/payu/response', 'api\PagoController@responsePayu');
 
+Route::post('pago/payu/confirmation', 'api\PagoController@confirmationPayu');
+
 //Suscripciones
 Route::get('suscripciones/tipos', 'api\SuscripcionesController@index');
 Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesController@razonesCancelar');
