@@ -16,6 +16,16 @@ Route::group(['middleware' => 'auth'], function () {
 //configuración
     Route::get('configuracion', 'ConfiguracionController@index')->name('configuracion');
     Route::put('configuracion_actualizar', 'ConfiguracionController@configuracion_actualizar')->name('configuracion_actualizar');
+    Route::get('configuracionDorada', 'ConfiguracionController@configuracionDorada')->name('configuracionDorada');
+
+    Route::post('add_suscrip', 'ConfiguracionController@add_suscrip')->name('add_suscrip');
+    Route::post('delete_suscrip', 'ConfiguracionController@delete_suscrip')->name('delete_suscrip');
+
+    Route::post('add_bene', 'ConfiguracionController@add_bene')->name('add_bene');
+    Route::post('delete_bene', 'ConfiguracionController@delete_bene')->name('delete_bene');
+
+    Route::post('add_cancel', 'ConfiguracionController@add_cancel')->name('add_cancel');
+    Route::post('delete_cancel', 'ConfiguracionController@delete_cancel')->name('delete_cancel');
 //usuarios
     Route::get('usuarios_eliminar/{id}', 'UserController@destroy')->name('usuarios_eliminar');
     Route::get('edit_password/{id}', 'UserController@edit_password')->name('edit_password');
