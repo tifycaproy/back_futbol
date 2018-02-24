@@ -6,7 +6,7 @@
 <body>
 <p>Monto : {{$datos->Amount}} </p>
 <p>Email usuario : {{$datos->buyerEmail}}
- <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+ <form method="post" name="formulario" id="formulario" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
   <input name="merchantId"    type="hidden"  value="{{$datos->merchantId}}"   >
   <input name="accountId"     type="hidden"  value="512321" >
   <input name="ApiKey"     type="hidden"  value="{{$datos->ApiKey}}" >
@@ -24,6 +24,14 @@
   <input name="confirmationUrl"    type="hidden"  value="http://millos-dev.2waysports.com/api/pago/payu/confirmation" >
   <input name="Submit"        type="submit"  value="Pagar con PayU" >
 </form>
+
+<script type="text/javascript">
+    window.onload=function(){
+        
+          document.forms["formulario"].submit();
+
+    }
+</script>
 
 </body>
 </html>
