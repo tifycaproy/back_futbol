@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Calendario;
 use App\Configuracion;
+use App\Suscripciones;
+use App\BeneficiosDorados;
+use App\CancelarSuscripcion;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 
@@ -151,4 +154,83 @@ class ConfiguracionController extends Controller
         Configuracion::find(1)->update($data);
         return redirect()->route('configuracion')->with("notificacion", "Se ha guardado correctamente su información");
     }
+
+    public function configuracionDorada()
+    {
+        $envio = array(
+            "suscripciones" =>Suscripciones::all(),
+            "beneficios" =>BeneficiosDorados::all(),
+            "cancelar" =>CancelarSuscripcion::all()
+        );
+        return view('configuracion.configuracionDorada', $envio);
+    }
+
+    public function add_suscrip(Request $request)
+    {
+        if(is_null($request->id)){
+            $suscripciones = Suscripciones::create( $request->all() );
+            return $suscripciones;
+        }else{
+            $suscripciones = Suscripciones::findOrFail( $request->id );
+            $suscripciones->costo_mayor = $request->costo_mayor;
+            $suscripciones->costo_menor = $request->costo_menor;
+            $suscripciones->descripcion = $request->descripcion;
+                $suscripciones->save();
+            return $suscripciones;
+        }
+      
+    }
+
+    public function delete_suscrip(Request $request)
+    {
+        if(!is_null($request->id)){
+            Suscripciones::find( $request->id )->forceDelete();
+        }
+        return 1;
+    }
+
+    public function add_bene(Request $request)
+    {
+        if(is_null($request->id)){
+            $beneficios = BeneficiosDorados::create( $request->all() );
+            return $beneficios;
+        }else{
+            $beneficios = BeneficiosDorados::findOrFail( $request->id );
+            $beneficios->descripcion = $request->descripcion;
+                $beneficios->save();
+            return $beneficios;
+        }
+      
+    }
+
+    public function delete_bene(Request $request)
+    {
+        if(!is_null($request->id)){
+            BeneficiosDorados::find( $request->id )->forceDelete();
+        }
+        return 1;
+    }
+
+    public function add_cancel(Request $request)
+    {
+        if(is_null($request->id)){
+            $cancelar = CancelarSuscripcion::create( $request->all() );
+            return $cancelar;
+        }else{
+            $cancelar = CancelarSuscripcion::findOrFail( $request->id );
+            $cancelar->descripcion = $request->descripcion;
+                $cancelar->save();
+            return $cancelar;
+        }
+      
+    }
+
+    public function delete_cancel(Request $request)
+    {
+        if(!is_null($request->id)){
+            CancelarSuscripcion::find( $request->id )->forceDelete();
+        }
+        return 1;
+    }
 }
+

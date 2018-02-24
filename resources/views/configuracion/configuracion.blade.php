@@ -212,6 +212,11 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="{{ route('configuracionDorada') }}" type="submit" class="btn btn-success btn-lg btn-block confDorada">Configuracion Dorada</a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-lg-12">
