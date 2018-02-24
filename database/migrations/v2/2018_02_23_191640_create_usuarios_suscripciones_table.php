@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRazonesCancelarSuscripcionsTable extends Migration
+class CreateUsuariosSuscripcionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateRazonesCancelarSuscripcionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('razones_cancelar_suscripciones', function (Blueprint $table) {
+        Schema::create('usuarios_suscripciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('descripcion');
+            $table->integer('id_usuario');
+            $table->integer('id_tipo_membresia');
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_fin');
+            $table->string('metodo_pago');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateRazonesCancelarSuscripcionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cancelar_suscripcions');
+        Schema::dropIfExists('usuarios_suscripciones');
     }
 }
