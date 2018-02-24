@@ -32,10 +32,8 @@ class SuscripcionesController extends Controller
 
     public function cancelar(Request $request)
     {
-        $request = json_decode($request->getContent());
-        $request = get_object_vars($request);
-
-        $idusuario = decodifica_token($request["token"]);
+        
+        $idusuario = decodifica_token($request->token);
         if ($idusuario == "") {
             return response()->json(['status' => 'error', 'error' => ["El token es incorrecto!"]]);
         }
