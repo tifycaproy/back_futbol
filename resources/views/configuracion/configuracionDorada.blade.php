@@ -194,19 +194,12 @@
 <script>
 $(document).ready(function(){
     var token = $( "input[name='_token']" ).val();
-    $('.dinero').keyup(function(event) {
-
-      if(event.which >= 37 && event.which <= 40){
+$(".dinero").on("keypress keyup blur",function (event) {
+    $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
-      }
-      $(this).val(function(index, value) {
-        return value
-          .replace(/\D/g, "")
-          .replace(/([0-9])([0-9]{2})$/, '$1.$2')  
-          .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",")
-        ;
-      });
-    });
+    }
+});
 
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
 
