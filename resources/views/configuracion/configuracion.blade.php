@@ -159,7 +159,7 @@
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
                     @if($configuracion->url_imagen_beneficios_dorados)
                         <h5>Imagen actual</h5>
-                        <p><a href="{{ config('app.url') . 'configuracion/' . $configuracion->url_imagen_beneficios_dorados }}" target="_blank"><img src="{{ config('app.url') . 'configuracion/' . $configuracion->url_imagen_beneficios_dorados }}"
+                        <p><a href="{{ $configuracion->url_imagen_beneficios_dorados }}" target="_blank"><img src="{{$configuracion->url_imagen_beneficios_dorados }}"
                                 style="max-width: 100%"></a></p>
                     @endif
                 </div>
@@ -173,7 +173,7 @@
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
                     @if($configuracion->url_popup_dorado)
                         <h5>Imagen actual</h5>
-                        <p><a href="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_dorado }}" target="_blank"><img src="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_dorado }}"
+                        <p><a href="{{ $configuracion->url_popup_dorado }}" target="_blank"><img src="{{ $configuracion->url_popup_dorado }}"
                                 style="max-width: 100%"></a></p>
                     @endif
                 </div>
