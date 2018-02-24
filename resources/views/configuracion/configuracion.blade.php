@@ -145,8 +145,11 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <h3><i class="fa fa-fw fa-external-link"></i>Suscripcion Dorados</h3>
+            </div>
+            <div class="col-lg-4">
+                <a type="submit" class="btn btn-success confDorada"><i class="fa fa-fw fa-check"></i> Guardar</a>
             </div>
         </div>
         <div class="row">
