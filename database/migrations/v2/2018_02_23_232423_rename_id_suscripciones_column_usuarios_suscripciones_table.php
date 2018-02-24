@@ -12,10 +12,13 @@ class RenameIdSuscripcionesColumnUsuariosSuscripcionesTable extends Migration
      * @return void
      */
     
-Schema::table('usuarios_suscripciones', function($table)
-{
-    $table->renameColumn('id_tipo_membresia', 'id_usuario_suscripciones');
-});
+    public function up()
+    {
+    	Schema::table('usuarios_suscripciones', function($table)
+    	{
+    		$table->renameColumn('id_tipo_membresia', 'id_usuario_suscripciones');
+    	});
+    }
 
     /**
      * Reverse the migrations.
@@ -24,7 +27,7 @@ Schema::table('usuarios_suscripciones', function($table)
      */
     public function down()
     {
-        
+    	
     }
 }
 

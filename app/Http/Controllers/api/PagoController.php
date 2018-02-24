@@ -47,7 +47,7 @@ class PagoController extends Controller
         //Revisar estado de transaccion -> 4 = exitoso
         if($request->state_pol == 4){
             //Buscamos al usuario
-            $usuario = Usuario::where('email',$request->buyerEmail)->first();
+            $usuario = Usuario::where('email',$request->email_buyer)->first();
             //Traemos el ID
             $idusuario = $usuario->id;
             //Buscamos la suscripción
