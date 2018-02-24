@@ -648,10 +648,6 @@
                     width: 30,
                     height: 30
                 },
-                size: {
-                    width: 256,
-                    height: 256
-                },
                 download: false,
                 labelLoading: 'Cargando imagen...',
                 statusImageTooSmall: 'La imagen es muy pequeña. El tamaño mínimo es $0 píxeles.',
