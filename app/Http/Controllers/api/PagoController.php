@@ -15,7 +15,7 @@ class PagoController extends Controller
 	public function showPayu($tokenUsuario,$idSuscripcion)
     {
         //TODO - Traer datos de usuario
-        $idusuario = decodifica($tokenUsuario);
+        $idusuario = decodifica_token($tokenUsuario);
 
         $usuario = Usuario::find($idusuario);
 
@@ -67,6 +67,26 @@ class PagoController extends Controller
             //Guardamos info de usuario
             $usuario->dorado = true;
             $usuario->save();
+        }elseif($request->state_pol == 6){
+            //Buscamos al usuario
+            $usuario = Usuario::where('email',$request->email_buyer)->first();
+            //Traemos el ID
+            $idusuario = $usuario->id;
+            //Buscamos la suscripción
+            $suscripcion = Suscripciones::find($request->extra3);
+            //Calcular la duracion
+            $fecha_inicio_suscripcion = \Carbon\Carbon::now();
+
+            //Guardamos info en usuarios suscripcion
+            $usuariosSuscripcion = new UsuariosSuscripciones;
+            $usuariosSuscripcion->id_usuario = $idusuario;
+            $usuariosSuscripcion->id_tipo_membresia = $request->extra3;
+            $usuariosSuscripcion->fecha_inicio = $fecha_inicio_suscripcion;
+            $usuariosSuscripcion->fecha_fin = \Carbon\Carbon::now()->addDays($suscripcion->duracion);
+            $usuariosSuscripcion->metodo_pago = 'payU';
+            $usuariosSuscripcion->status = 'RECHAZADO';
+            $usuariosSuscripcion->save();
+
         }
 
     }

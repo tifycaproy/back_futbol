@@ -53,8 +53,8 @@ class SuscripcionesController extends Controller
         if ($idusuario == "") {
             return response()->json(['status' => 'error', 'error' => ["El token es incorrecto!"]]);
         }
-        
-        $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO')->get();
+
+        $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO');
         
         if($suscripcion)
         {    
