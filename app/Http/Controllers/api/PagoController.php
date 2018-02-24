@@ -53,12 +53,12 @@ class PagoController extends Controller
             //Buscamos la suscripción
             $suscripcion = Suscripciones::find($request->extra3);
             //Calcular la duracion
-            $fecha_inicio_suscripcion = Carbon\Carbon::now();
+            $fecha_inicio_suscripcion = \Carbon\Carbon::now();
             $fecha_fin_suscripcion = $fecha_inicio_suscripcion->addDays($suscripcion->duracion);
             //Guardamos info en usuarios suscripcion
             $usuariosSuscripcion = new UsuariosSuscripciones;
             $usuariosSuscripcion->id_usuario = $idusuario;
-            $usuariosSuscripcion->id_tipo_suscripcion = $request->extra3;
+            $usuariosSuscripcion->id_tipo_membresia = $request->extra3;
             $usuariosSuscripcion->fecha_inicio = $fecha_inicio_suscripcion;
             $usuariosSuscripcion->fecha_fin = $fecha_fin_suscripcion;
             $usuariosSuscripcion->metodo_pago = 'payU';
