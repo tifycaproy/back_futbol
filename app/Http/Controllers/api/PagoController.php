@@ -39,7 +39,7 @@ class PagoController extends Controller
 
     public function responsePayu(Request $request)
     {
-        if($request->transactionState == 7)
+        if($request['transactionState'] == 7)
         {
              $usuario = Usuario::where('email',$request->buyerEmail)->first();
             //Traemos el ID
