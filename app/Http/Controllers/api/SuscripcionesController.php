@@ -45,7 +45,7 @@ class SuscripcionesController extends Controller
         if($suscripcion)
         {
                     $suscripcion->status = 'CANCELADO';
-            
+                    $suscripcion->fecha_fin = \Carbon\Carbon::now();
                     $suscripcion->save();
             }
         return response()->json(['status' => 'exito', 'data' => ["Ya no eres Dorado :'("]]);
