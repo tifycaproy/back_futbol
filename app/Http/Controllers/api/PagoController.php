@@ -14,16 +14,23 @@ class PagoController extends Controller
 
 	public function showPayu($tokenUsuario,$idSuscripcion)
     {
-        //TODO - Traer datos de usuario
+        //Traer datos de usuario
         $idusuario = decodifica_token($tokenUsuario);
-
         $usuario = Usuario::find($idusuario);
-
         //Traer info de costos por membresia TODO -- calcular si el usuario es mayor o menor de edad y traer respectivamente 
         $suscripcion = Suscripciones::find($idSuscripcion);
         //Buscamos el costo y guardamos
         $costo = $suscripcion->costo_mayor;
-
+        //Creamos suscripcion pendiente
+        $usuariosSuscripcion = new UsuariosSuscripciones;
+            $usuariosSuscripcion->id_usuario = $idusuario;
+            $usuariosSuscripcion->id_tipo_membresia = $idSuscripcion;
+            $usuariosSuscripcion->fecha_inicio = \Carbon\Carbon::now();
+            $usuariosSuscripcion->fecha_fin = \Carbon\Carbon::now()->addDays($suscripcion->duracion);
+            $usuariosSuscripcion->metodo_pago = 'payU';
+            $usuariosSuscripcion->status = 'PENDIENTE';
+            $usuariosSuscripcion->save();
+        //Cargamos datos a enviar
     	$datos = new \stdClass();
     	$datos->ApiKey = '4Vj8eK4rloUd272L48hsrarnUA';
     	$datos->merchantId = '508029';
