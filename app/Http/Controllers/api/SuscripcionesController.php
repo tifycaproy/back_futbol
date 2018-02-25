@@ -40,6 +40,13 @@ class SuscripcionesController extends Controller
         $usuario = Usuario::where('id', $idusuario)->first();
 
         $usuario->update(['dorado' => false]);
+
+        $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO')->first();
+
+        $suscripcion->status = 'CANCELADO';
+
+        $suscripcion->save();
+
         return response()->json(['status' => 'exito', 'data' => ["Ya no eres Dorado :'("]]);
     }
 
@@ -66,7 +73,7 @@ class SuscripcionesController extends Controller
             }
             else
             {
-                $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','PENDIENTE');
+                $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','PENDIENTE')->first();
                 if($suscripcion)
                 { 
                    return response()->json(['status' => 'pendiente', 'data' => ["El usuario tiene suscripcion pendiente"]]);
