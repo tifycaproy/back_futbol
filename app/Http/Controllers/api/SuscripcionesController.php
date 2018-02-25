@@ -42,11 +42,12 @@ class SuscripcionesController extends Controller
         $usuario->update(['dorado' => false]);
 
         $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO')->first();
-
-        $suscripcion->status = 'CANCELADO';
-
-        $suscripcion->save();
-
+        if($suscripcion)
+        {
+                    $suscripcion->status = 'CANCELADO';
+            
+                    $suscripcion->save();
+            }
         return response()->json(['status' => 'exito', 'data' => ["Ya no eres Dorado :'("]]);
     }
 
