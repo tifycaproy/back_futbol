@@ -82,7 +82,12 @@ class PagoController extends Controller
             $suscripcion = Suscripciones::find($request->extra3);
             //Calcular la duracion
             $fecha_inicio_suscripcion = \Carbon\Carbon::now();
-
+            //Borramos los status anteriores
+            $suscripcionesActuales = UsuariosSuscripciones::where('id_usuario',$idusuario)->get();
+            if($suscripcionesActuales)
+            {
+                UsuariosSuscripciones::where('id_usuario',$idusuario)->delete();
+            }
             //Guardamos info en usuarios suscripcion
             $usuariosSuscripcion = new UsuariosSuscripciones;
             $usuariosSuscripcion->id_usuario = $idusuario;
@@ -104,7 +109,12 @@ class PagoController extends Controller
             $suscripcion = Suscripciones::find($request->extra3);
             //Calcular la duracion
             $fecha_inicio_suscripcion = \Carbon\Carbon::now();
-
+            //Borramos suscripciones actuales
+            $suscripcionesActuales = UsuariosSuscripciones::where('id_usuario',$idusuario)->get();
+            if($suscripcionesActuales)
+            {
+                UsuariosSuscripciones::where('id_usuario',$idusuario)->delete();
+            }
             //Guardamos info en usuarios suscripcion
             $usuariosSuscripcion = new UsuariosSuscripciones;
             $usuariosSuscripcion->id_usuario = $idusuario;
