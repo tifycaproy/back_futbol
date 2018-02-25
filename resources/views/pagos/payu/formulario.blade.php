@@ -13,8 +13,8 @@
   <input name="description"   type="hidden"  value="Test PAYU"  >
   <input name="referenceCode" type="hidden"  value="{{$datos->reference}}" >
   <input name="amount"        type="hidden"  value="{{$datos->Amount}}"   >
-  <input name="tax"           type="hidden"  value="3193"  >
-  <input name="taxReturnBase" type="hidden"  value="16806" >
+  <input name="tax"           type="hidden"  value="0"  >
+  <input name="taxReturnBase" type="hidden"  value="{{$datos->Amount}}" >
   <input name="currency"      type="hidden"  value="{{$datos->currency}}" >
   <input name="signature"     type="hidden"  value="{{$datos->signature}}"  >
   <input name="test"          type="hidden"  value="1" >

@@ -39,6 +39,27 @@ class PagoController extends Controller
 
     public function responsePayu(Request $request)
     {
+        if($request->transactionState == 7)
+        {
+             $usuario = Usuario::where('email',$request->buyerEmail)->first();
+            //Traemos el ID
+            $idusuario = $usuario->id;
+            //Buscamos la suscripción
+            $suscripcion = Suscripciones::find($request->extra3);
+            //Calcular la duracion
+            $fecha_inicio_suscripcion = \Carbon\Carbon::now();
+
+            //Guardamos info en usuarios suscripcion
+            $usuariosSuscripcion = new UsuariosSuscripciones;
+            $usuariosSuscripcion->id_usuario = $idusuario;
+            $usuariosSuscripcion->id_tipo_membresia = $request->extra3;
+            $usuariosSuscripcion->fecha_inicio = $fecha_inicio_suscripcion;
+            $usuariosSuscripcion->fecha_fin = \Carbon\Carbon::now()->addDays($suscripcion->duracion);
+            $usuariosSuscripcion->metodo_pago = 'payU';
+            $usuariosSuscripcion->status = 'PENDIENTE';
+            $usuariosSuscripcion->save();
+        }
+
     	 return view('pagos.payu.response')->with('request',$request);
     }
 
