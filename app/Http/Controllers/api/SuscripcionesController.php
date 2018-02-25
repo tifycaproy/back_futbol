@@ -67,17 +67,17 @@ class SuscripcionesController extends Controller
         }
         else
         {
-            $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','RECHAZADO')->first();
+            $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','PENDIENTE')->first();
             if($suscripcion)
             { 
-                return response()->json(['status' => 'fallo', 'data' => ["El usuario tiene suscripcion rechazada"]]);
+                return response()->json(['status' => 'pendiente', 'data' => ["El usuario tiene suscripcion pendiente"]]);
             }
             else
             {
-                $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','PENDIENTE')->first();
+                $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status','RECHAZADO')->first();
                 if($suscripcion)
                 { 
-                   return response()->json(['status' => 'pendiente', 'data' => ["El usuario tiene suscripcion pendiente"]]);
+                   return response()->json(['status' => 'fallo', 'data' => ["El usuario tiene suscripcion rechazada"]]);
                }
                else
                 return response()->json(['status' => 'no_existe', 'data' => ["El usuario nunca ha solicitado suscripcion"]]);
