@@ -13,7 +13,7 @@ class AddStatusToUsuariosSuscripcionesTable extends Migration
      */
     public function up()
     {
-        Schema::table('suscripciones', function (Blueprint $table) {
+        Schema::table('usuarios_suscripciones', function (Blueprint $table) {
             $table->text('status');
         });
     }
