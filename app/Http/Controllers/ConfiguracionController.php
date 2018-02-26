@@ -8,7 +8,7 @@ use App\Calendario;
 use App\Configuracion;
 use App\Suscripciones;
 use App\BeneficiosDorados;
-use App\CancelarSuscripcion;
+use App\RazonesCancelarSuscripciones;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 
@@ -160,7 +160,7 @@ class ConfiguracionController extends Controller
         $envio = array(
             "suscripciones" =>Suscripciones::all(),
             "beneficios" =>BeneficiosDorados::all(),
-            "cancelar" =>CancelarSuscripcion::all()
+            "cancelar" =>RazonesCancelarSuscripciones::all()
         );
         return view('configuracion.configuracionDorada', $envio);
     }
@@ -197,10 +197,35 @@ class ConfiguracionController extends Controller
         }else{
             $beneficios = BeneficiosDorados::findOrFail( $request->id );
             $beneficios->descripcion = $request->descripcion;
+            $beneficios->url = $request->url;
                 $beneficios->save();
             return $beneficios;
         }
       
+    }
+
+    public function add_beneImg(Request $request)
+    {
+        if ($request->fileNameImgBene) {
+            $foto = json_decode($request->fileNameImgBene);
+            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+            $picture = $foto->output->image;
+            $filepath = 'configuracion/' . $fileName_foto;
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+            return config('app.url').'configuracion/'.$fileName_foto;
+            
+        }
+        return null;
+        
+        
     }
 
     public function delete_bene(Request $request)
@@ -214,10 +239,10 @@ class ConfiguracionController extends Controller
     public function add_cancel(Request $request)
     {
         if(is_null($request->id)){
-            $cancelar = CancelarSuscripcion::create( $request->all() );
+            $cancelar = RazonesCancelarSuscripciones::create( $request->all() );
             return $cancelar;
         }else{
-            $cancelar = CancelarSuscripcion::findOrFail( $request->id );
+            $cancelar = RazonesCancelarSuscripciones::findOrFail( $request->id );
             $cancelar->descripcion = $request->descripcion;
                 $cancelar->save();
             return $cancelar;
@@ -228,7 +253,7 @@ class ConfiguracionController extends Controller
     public function delete_cancel(Request $request)
     {
         if(!is_null($request->id)){
-            CancelarSuscripcion::find( $request->id )->forceDelete();
+            RazonesCancelarSuscripciones::find( $request->id )->forceDelete();
         }
         return 1;
     }
