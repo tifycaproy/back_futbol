@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Suscripciones;
 use App\Usuario;
 use App\UsuariosSuscripciones;
+use Carbon\Carbon;
 
 class PagoController extends Controller
 {
@@ -17,10 +18,16 @@ class PagoController extends Controller
         //Traer datos de usuario
         $idusuario = decodifica_token($tokenUsuario);
         $usuario = Usuario::find($idusuario);
+        //Verificar si usario existe
+        if(!$usuario){ return ['status' => 'fallo','error'=>["Usuario No registrado"]];}
         //Traer info de costos por membresia TODO -- calcular si el usuario es mayor o menor de edad y traer respectivamente 
         $suscripcion = Suscripciones::find($idSuscripcion);
         //Buscamos el costo y guardamos
-        $costo = $suscripcion->costo_mayor;
+        $edad = !$usuario->fecha_nacimiento ? null : Carbon::parse($usuario->fecha_nacimiento)->age;
+        ;
+        $costo = $suscripcion->costo_menor;
+        if( $edad >= 18){$costo = $suscripcion->costo_mayor;}
+        if(is_null($edad)){$costo = $suscripcion->costo_mayor;}
         //Creamos suscripcion pendiente
         $usuariosSuscripcion = new UsuariosSuscripciones;
             $usuariosSuscripcion->id_usuario = $idusuario;
