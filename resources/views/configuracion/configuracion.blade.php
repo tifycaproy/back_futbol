@@ -158,7 +158,9 @@
                     </div>
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
                     @if($configuracion->url_imagen_beneficios_dorados)
-                        <h5 align="center">Url: <a target="_blank" href="{{ $configuracion->url_imagen_beneficios_dorados}}" title="">{{ $configuracion->url_imagen_beneficios_dorados}}</a></h5>
+                        <h5>Imagen actual</h5>
+                        <p><a href="{{ $configuracion->url_imagen_beneficios_dorados }}" target="_blank"><img src="{{$configuracion->url_imagen_beneficios_dorados }}"
+                                style="max-width: 100%"></a></p>
                     @endif
                 </div>
             </div>
@@ -170,7 +172,9 @@
                     </div>
                     <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
                     @if($configuracion->url_popup_dorado)
-                        <h5 align="center">Url: <a target="_blank" href="{{ $configuracion->url_popup_dorado}}" title="">{{ $configuracion->url_popup_dorado}}</a></h5>
+                        <h5>Imagen actual</h5>
+                        <p><a href="{{ $configuracion->url_popup_dorado }}" target="_blank"><img src="{{ $configuracion->url_popup_dorado }}"
+                                style="max-width: 100%"></a></p>
                     @endif
                 </div>
             </div>
@@ -206,6 +210,11 @@
                     <input type="text" class="form-control" name="footer_formulario_dorados"
                            value="{{ $configuracion->footer_formulario_dorados }}" maxlength="200">
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="{{ route('configuracionDorada') }}" type="submit" class="btn btn-success btn-lg btn-block confDorada">Configuracion Dorada</a>
             </div>
         </div>
 
@@ -604,10 +613,10 @@
                         <input name="patrocinante" type="file" accept="image/jpeg, image/png, image/gif"/>
                     </div>
                     <label><span>Mínimo 30 x 30 píxeles | JPG, PNG y GIF</span></label>
-                    @if($configuracion->patrocinante<>'')
+                    @if($configuracion->patrocinante)
                         <h5>Imagen actual</h5>
-                        <p><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}"
-                                style="max-width: 100%"></p>
+                        <p><a href="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}" target="_blank"><img src="{{ config('app.url') . 'patrocinantes/' . $configuracion->patrocinante }}"
+                                style="max-width: 100%"></a></p>
                     @endif
                 </div>
             </div>
@@ -638,10 +647,6 @@
                 minSize: {
                     width: 30,
                     height: 30
-                },
-                size: {
-                    width: 256,
-                    height: 256
                 },
                 download: false,
                 labelLoading: 'Cargando imagen...',
