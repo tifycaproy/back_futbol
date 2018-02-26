@@ -23,6 +23,6 @@ class CreateRazonesCancelarSuscripcionsTable extends Migration
 
     public function down()
     {
-        //Schema::dropIfExists('razones_cancelar_suscripciones');
+        Schema::dropIfExists('razones_cancelar_suscripciones');
     }
 }
