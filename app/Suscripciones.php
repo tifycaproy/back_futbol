@@ -9,7 +9,7 @@ class Suscripciones extends Model
     protected $table = 'suscripciones';
 
     protected $fillable = [
-        'id', 'descripcion', 'costo_menor', 'costo_mayor',
+        'id', 'descripcion', 'costo_menor', 'costo_mayor', 'duracion'
     ];
 
     protected $hidden = [

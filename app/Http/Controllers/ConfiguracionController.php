@@ -175,6 +175,7 @@ class ConfiguracionController extends Controller
             $suscripciones->costo_mayor = $request->costo_mayor;
             $suscripciones->costo_menor = $request->costo_menor;
             $suscripciones->descripcion = $request->descripcion;
+            $suscripciones->duracion = $request->duracion;
                 $suscripciones->save();
             return $suscripciones;
         }

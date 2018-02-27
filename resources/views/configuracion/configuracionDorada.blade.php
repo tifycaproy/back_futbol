@@ -28,16 +28,22 @@
         <section class="content container-fluid">
             <div class="row">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                             <label >Costo Menor</label>
                             <div class="input-group">
                                 <input type="text" class="form-control dinero" id="costo_menor" placeholder="Costo Menor" value=""><span class="input-group-addon"><i class="fa fa-dollar"></i></span>                      
                             </div>
                      </div>
-                     <div class="col-xs-6">
+                     <div class="col-xs-4">
                             <label >Costo Mayor </label>
                             <div class="input-group">
                                 <input type="text" class="form-control dinero" id="costo_mayor" placeholder="Costo Mayor" value=""><span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                            </div>
+                     </div>
+                     <div class="col-xs-4">
+                            <label >Duracion </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control numeros" id="duracion" placeholder="Duracion" value=""><span class="input-group-addon">Dias</span>
                             </div>
                      </div>
                 </div><br>
@@ -63,6 +69,7 @@
                       <tr align="center">
                         <th align="center" >Costo Menor</th>
                         <th align="center" >Costo Mayor</th>
+                        <th align="center" >Duracion</th>
                         <th align="center" >Descripcion</th>
                         <th align="center" >Acción</th>
                       </tr>
@@ -71,9 +78,10 @@
                     <tbody>
                         @if(count($suscripciones)> 0)
                             @foreach($suscripciones as $s)
-                            <tr  data-costo_menor="{{$s->costo_menor}}" data-costo_mayor="{{$s->costo_mayor}}" data-descripcion="{{$s->descripcion}}" data-id="{{$s->id}}">
+                            <tr  data-costo_menor="{{$s->costo_menor}}" data-costo_mayor="{{$s->costo_mayor}}" data-descripcion="{{$s->descripcion}}" data-id="{{$s->id}}" data-duracion="{{$s->duracion}}">
                                 <td>{{$s->costo_menor}}</td>
                                 <td>{{$s->costo_mayor}}</td>
+                                <td>{{$s->duracion}} Dias</td>
                                 <td>{{$s->descripcion}}</td>
                                 <td>
                                     <a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a>
@@ -232,6 +240,10 @@ $(".dinero").on("keypress keyup blur",function (event) {
     }
 });
 
+$('.numeros').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'');
+});
+
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
 
       $("#add_suscrip").on('click',function()
@@ -250,6 +262,7 @@ $(".dinero").on("keypress keyup blur",function (event) {
                 costo_menor:$( "#costo_menor" ).val(),
                 costo_mayor:$( "#costo_mayor" ).val(),
                 descripcion:$( "#descripcion" ).val(),
+                duracion:$( "#duracion" ).val()
             },
             success:function( respuesta )
             {
@@ -259,11 +272,12 @@ $(".dinero").on("keypress keyup blur",function (event) {
                         $(this).remove();
                     }
                 });
-                var boton = '<tr  data-costo_menor="'+respuesta.costo_menor+'" data-costo_mayor="' + respuesta.costo_mayor +'" data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id +'"><td>'+respuesta.costo_menor+'</td><td>'+respuesta.costo_mayor+'</td><td>'+respuesta.descripcion+'</td><td><a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a><a id="delete" type="submit" class="btn btn-danger btn-xs delete" >eliminar</a></td></tr>';
+                var boton = '<tr  data-costo_menor="'+respuesta.costo_menor+'" data-costo_mayor="' + respuesta.costo_mayor +'" data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id +'" data-duracion="' + respuesta.duracion +'"><td>'+respuesta.costo_menor+'</td><td>'+respuesta.costo_mayor+'</td><td>'+respuesta.duracion+' Dias</td><td>'+respuesta.descripcion+'</td><td><a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a><a id="delete" type="submit" class="btn btn-danger btn-xs delete" >eliminar</a></td></tr>';
                   $('#suscriptab tbody').append( boton );
                 $( "#costo_menor" ).val("");
                 $( "#costo_mayor" ).val("");
                 $( "#descripcion" ).val("");
+                $( "#duracion" ).val("");
                 $("#secreto").val("");
               }else{
                 alert("Error al guardar");
@@ -284,10 +298,12 @@ $(".dinero").on("keypress keyup blur",function (event) {
         var costo_menor = row2.data('costo_menor');
         var costo_mayor = row2.data('costo_mayor');
         var descripcion = row2.data('descripcion');
+        var duracion = row2.data('duracion');
         $("#secreto").val(id);
         $( "#costo_menor" ).val(costo_menor);
         $( "#costo_mayor" ).val(costo_mayor);
         $( "#descripcion" ).val(descripcion);
+        $( "#duracion" ).val(duracion);
         $("#add_suscrip").val( id ).text( 'Actualizar' );
       });
 
@@ -306,6 +322,7 @@ $(".dinero").on("keypress keyup blur",function (event) {
             {
                 $( "#costo_menor" ).val("");$( "#costo_mayor" ).val("");
                 $( "#descripcion" ).val("");$("#secreto").val("");
+                $( "#duracion" ).val("");$("#add_suscrip").text('Agregar');
             }
           });
 
