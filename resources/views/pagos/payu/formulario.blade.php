@@ -20,14 +20,14 @@
   <input name="test"          type="hidden"  value="1" >
   <input name="buyerEmail"    type="hidden"  value="{{$datos->buyerEmail}}" >
   <input name="extra3"    type="hidden"  value="{{$datos->extra3}}" >
-  <input name="responseUrl"    type="hidden"  value="http://millos-stg.2waysports.com/api/pago/payu/response" >
-  <input name="confirmationUrl"    type="hidden"  value="http://millos-stg.2waysports.com/api/pago/payu/confirmation" >
+  <input name="responseUrl"    type="hidden"  value="{{ env('APP_SHARE_URL') }}/api/pago/payu/response" >
+  <input name="confirmationUrl"    type="hidden"  value="{{ env('APP_SHARE_URL') }}/api/pago/payu/confirmation" >
   <input name="Submit"        type="submit"  value="Pagar con PayU" >
 </form>
 
 <script type="text/javascript">
     window.onload=function(){
-        
+
           document.forms["formulario"].submit();
 
     }
