@@ -16,12 +16,30 @@ Route::group(['middleware' => 'auth'], function () {
 //configuración
     Route::get('configuracion', 'ConfiguracionController@index')->name('configuracion');
     Route::put('configuracion_actualizar', 'ConfiguracionController@configuracion_actualizar')->name('configuracion_actualizar');
+    Route::get('configuracionDorada', 'ConfiguracionController@configuracionDorada')->name('configuracionDorada');
+
+    Route::post('add_suscrip', 'ConfiguracionController@add_suscrip')->name('add_suscrip');
+    Route::post('delete_suscrip', 'ConfiguracionController@delete_suscrip')->name('delete_suscrip');
+
+    Route::post('add_bene', 'ConfiguracionController@add_bene')->name('add_bene');
+    Route::post('delete_bene', 'ConfiguracionController@delete_bene')->name('delete_bene');
+    Route::post('add_beneImg', 'ConfiguracionController@add_beneImg')->name('add_beneImg');
+
+    Route::post('add_cancel', 'ConfiguracionController@add_cancel')->name('add_cancel');
+    Route::post('delete_cancel', 'ConfiguracionController@delete_cancel')->name('delete_cancel');
 //usuarios
     Route::get('usuarios_eliminar/{id}', 'UserController@destroy')->name('usuarios_eliminar');
     Route::get('edit_password/{id}', 'UserController@edit_password')->name('edit_password');
     Route::put('update_password/{id}', 'UserController@update_password')->name('update_password');
     Route::resource('usuarios', 'UserController');
     Route::get('ranking_referidos', 'UserController@ranking_referidos')->name('ranking_referidos');
+
+//Secciones Doradas
+    Route::get('secciones_doradas', 'DoradosController@indexSecciones');
+
+//Funciones Doradas
+    Route::get('funciones_doradas', 'DoradosController@indexFunciones');
+
 //notiicas
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');
@@ -101,3 +119,7 @@ Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 //Route::get('compartir/alineacion', 'CompartirController@alineacion');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::get('borrar', 'BorrarController@borrar');
+
+//Posts////
+Route::resource('post', 'PostController');
+Route::get('post_eliminar/{id}', 'PostController@destroy')->name('post_eliminar');

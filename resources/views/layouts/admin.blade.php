@@ -15,6 +15,7 @@
     <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" rel="stylesheet">
+    <link href="css/slim.min.css" rel="stylesheet">
 @yield('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -75,6 +76,12 @@
                         <a href="{{ route("usuarios.index") }}"><i class="fa fa-fw fa-user"></i> Usuarios</a>
                     </li>
                     <li>
+                        <a href="{{ url('secciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Secciones Doradas</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('funciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Funciones Doradas</a>
+                    </li>
+                    <li>
                         <a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a>
                     </li>
                     <li>
@@ -107,6 +114,9 @@
                     <li>
                         <a href="{{ route("encuestas.index") }}"><i class="fa fa-fw fa-pencil"></i> Encuestas</a>
                     </li>
+                    <li>
+                        <a href="{{ route("post.index") }}"><i class="fa fa-fw fa-pencil"></i> Posts</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -130,6 +140,7 @@
     <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
+
 @yield('javascript')
 
     <!-- Bootstrap Core JavaScript -->
@@ -139,5 +150,6 @@
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="js/slim.jquery.js"></script>
 </body>
 </html>
