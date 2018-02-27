@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStatusToUsuariosSuscripcionesTable extends Migration
+class AddMasDatosToUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddStatusToUsuariosSuscripcionesTable extends Migration
      */
     public function up()
     {
-        Schema::table('usuarios_suscripciones', function (Blueprint $table) {
-            $table->text('status');
+        Schema::table('usuarios', function (Blueprint $table) {
+            $table->boolean('abonado')->default(false);
+            $table->boolean('socio')->default(false);
+            $table->text('direccion');
         });
     }
 
@@ -25,6 +27,8 @@ class AddStatusToUsuariosSuscripcionesTable extends Migration
      */
     public function down()
     {
-        
+        Schema::table('noticias', function (Blueprint $table) {
+            //
+        });
     }
 }
