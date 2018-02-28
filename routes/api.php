@@ -61,7 +61,7 @@ Route::get('single_calendariofb/{id}', 'api\CalendariofbController@single_calend
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
 Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
-Route::post('aplaudir', 'api\JugadoresController@aplaudir')->middleware(['user.dorado:funcion,aplaudir_single_jugador']);;
+Route::post('aplaudir', 'api\JugadoresController@aplaudir')->middleware(['user.dorado:funcion,aplaudir_single_jugador']);
 
 Route::get('nominafb', 'api\JugadoresfbController@nomina');
 Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb');
@@ -70,7 +70,7 @@ Route::get('single_jugadorfb/{id}', 'api\JugadoresfbController@single_jugadorfb'
 Route::get('aplausos_equipo', 'api\AplausosController@aplausos_equipo');
 
 //Onceideal
-Route::post('onceideal', 'api\OnceidealController@guardar_once')->middleware(['user.dorado:funcion,enviar_once_ideal']);;
+Route::post('onceideal', 'api\OnceidealController@guardar_once')->middleware(['user.dorado:funcion,enviar_once_ideal']);
 Route::get('onceideal/{token}', 'api\OnceidealController@leer_once');
 
 //Encuestas
@@ -103,14 +103,17 @@ Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController
 Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');
 
 //Pagos
-Route::get('pago/payu/{tokenUsuario}/{idMembresia}', 'api\PagoController@showPayu');
+Route::get('pago/payu/{tokenUsuario}/{idSuscripcion}', 'api\PagoController@showPayu');
 
 Route::get('pago/payu/response', 'api\PagoController@responsePayu');
 
-//Suscripciones
-Route::get('suscripciones/tipos', 'api\SuscripcionesControllers@index');
-Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesControllers@razonesCancelar');
-Route::get('suscripciones/beneficios', 'api\SuscripcionesControllers@beneficiosDorados');
-Route::post('suscripciones/cancelar', 'api\SuscripcionesControllers@cancelar');
+Route::post('pago/payu/confirmation', 'api\PagoController@confirmationPayu');
 
+//Suscripciones
+Route::get('suscripciones/tipos', 'api\SuscripcionesController@index');
+Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesController@razonesCancelar');
+Route::get('suscripciones/beneficios', 'api\SuscripcionesController@beneficiosDorados');
+Route::post('suscripciones/cancelar', 'api\SuscripcionesController@cancelar');
+
+Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@statusSuscripcion');
 

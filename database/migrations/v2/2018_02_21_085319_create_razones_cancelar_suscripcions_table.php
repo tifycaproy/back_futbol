@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCancelarSuscripcionsTable extends Migration
+class CreateRazonesCancelarSuscripcionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,13 +20,9 @@ class CreateCancelarSuscripcionsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
-        Schema::dropIfExists('cancelar_suscripcions');
+        Schema::dropIfExists('razones_cancelar_suscripciones');
     }
 }

@@ -17,19 +17,20 @@ $lapPaymentMethod = $request->lapPaymentMethod;
 $transactionId = $request->transactionId;
 
 if ($request['transactionState'] == 4 ) {
-	$estadoTx = "Transacción aprobada";
+	$estadoTx = "APROBADA";
+
 }
 
 else if ($request['transactionState'] == 6 ) {
-	$estadoTx = "Transaction rechazada";
+	$estadoTx = "RECHAZADA";
 }
 
 else if ($request['transactionState'] == 104 ) {
-	$estadoTx = "Error";
+	$estadoTx = "ERROR";
 }
 
 else if ($request['transactionState'] == 7 ) {
-	$estadoTx = "Pago pendiente";
+	$estadoTx = "PENDIENTE";
 }
 
 else {
@@ -90,6 +91,10 @@ if (strtoupper($firma) == strtoupper($firmacreada)) {
 	<td><?php echo ($lapPaymentMethod); ?></td>
 	</tr>
 	</table>
+	<script type="text/javascript">
+        alert('<?php echo $estadoTx; ?>');
+    </script>
+
 <?php
 }
 else

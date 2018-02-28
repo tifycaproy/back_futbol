@@ -15,6 +15,7 @@
     </div>
 </div>
 <input type="hidden" id="secreto" value="" >
+<input type="hidden" id="imagen_secret" value="" >
 <div class="row">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Suscripciones</a></li>
@@ -27,16 +28,22 @@
         <section class="content container-fluid">
             <div class="row">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                             <label >Costo Menor</label>
                             <div class="input-group">
                                 <input type="text" class="form-control dinero" id="costo_menor" placeholder="Costo Menor" value=""><span class="input-group-addon"><i class="fa fa-dollar"></i></span>                      
                             </div>
                      </div>
-                     <div class="col-xs-6">
+                     <div class="col-xs-4">
                             <label >Costo Mayor </label>
                             <div class="input-group">
                                 <input type="text" class="form-control dinero" id="costo_mayor" placeholder="Costo Mayor" value=""><span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                            </div>
+                     </div>
+                     <div class="col-xs-4">
+                            <label >Duracion </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control numeros" id="duracion" placeholder="Duracion" value=""><span class="input-group-addon">Dias</span>
                             </div>
                      </div>
                 </div><br>
@@ -62,6 +69,7 @@
                       <tr align="center">
                         <th align="center" >Costo Menor</th>
                         <th align="center" >Costo Mayor</th>
+                        <th align="center" >Duracion</th>
                         <th align="center" >Descripcion</th>
                         <th align="center" >Acción</th>
                       </tr>
@@ -70,9 +78,10 @@
                     <tbody>
                         @if(count($suscripciones)> 0)
                             @foreach($suscripciones as $s)
-                            <tr  data-costo_menor="{{$s->costo_menor}}" data-costo_mayor="{{$s->costo_mayor}}" data-descripcion="{{$s->descripcion}}" data-id="{{$s->id}}">
+                            <tr  data-costo_menor="{{$s->costo_menor}}" data-costo_mayor="{{$s->costo_mayor}}" data-descripcion="{{$s->descripcion}}" data-id="{{$s->id}}" data-duracion="{{$s->duracion}}">
                                 <td>{{$s->costo_menor}}</td>
                                 <td>{{$s->costo_mayor}}</td>
+                                <td>{{$s->duracion}} Dias</td>
                                 <td>{{$s->descripcion}}</td>
                                 <td>
                                     <a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a>
@@ -98,6 +107,19 @@
                           <textarea name="descripcion_bene" rows="3" id="descripcion_bene" class="form-control"></textarea>
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                     <form method="POST" id="formulario" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Imagen Beneficios</label>
+                            <div class="slim">
+                                <input id="imagen_bene" name="fileNameImgBene" type="file" accept="image/jpeg, image/png, image/gif" />
+                            </div>
+                            <label><span> JPG y PNG</span></label>
+                        </div>
+                      </form>
+                  </div>
+                </div>
             </div>
            <br>
            <div class="form-group"> 
@@ -113,6 +135,7 @@
                     <thead>
                       <tr align="center">
                         <th align="center" >Descripcion</th>
+                        <th align="center" >Url</th>
                         <th align="center" >Acción</th>
                       </tr>
                     </thead>
@@ -120,8 +143,9 @@
                     <tbody>
                         @if(count($beneficios)> 0)
                             @foreach($beneficios as $b)
-                            <tr   data-descripcion="{{$b->descripcion}}" data-id="{{$b->id}}">
+                            <tr   data-descripcion="{{$b->descripcion}}" data-id="{{$b->id}}"  data-url="{{$b->url}}">
                                 <td>{{$b->descripcion}}</td>
+                                <td><a target="_blank" href="{{$b->url}}" title="imagen">{{$b->url}}</a></td>
                                 <td>
                                     <a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a>
                                     <a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a>
@@ -188,17 +212,36 @@
 
   </div>
 </div>
+
+<div  class="modal modal-success fade" id="modalCargando">
+  <div  class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" align="center">Procesando Datos</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br><br><br><br><br><br>
 @endsection
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
     var token = $( "input[name='_token']" ).val();
+    var imagen ;
 $(".dinero").on("keypress keyup blur",function (event) {
     $(this).val($(this).val().replace(/[^0-9\.]/g,''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
+});
+
+$('.numeros').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'');
 });
 
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
@@ -219,6 +262,7 @@ $(".dinero").on("keypress keyup blur",function (event) {
                 costo_menor:$( "#costo_menor" ).val(),
                 costo_mayor:$( "#costo_mayor" ).val(),
                 descripcion:$( "#descripcion" ).val(),
+                duracion:$( "#duracion" ).val()
             },
             success:function( respuesta )
             {
@@ -228,11 +272,12 @@ $(".dinero").on("keypress keyup blur",function (event) {
                         $(this).remove();
                     }
                 });
-                var boton = '<tr  data-costo_menor="'+respuesta.costo_menor+'" data-costo_mayor="' + respuesta.costo_mayor +'" data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id +'"><td>'+respuesta.costo_menor+'</td><td>'+respuesta.costo_mayor+'</td><td>'+respuesta.descripcion+'</td><td><a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a><a id="delete" type="submit" class="btn btn-danger btn-xs delete" >eliminar</a></td></tr>';
+                var boton = '<tr  data-costo_menor="'+respuesta.costo_menor+'" data-costo_mayor="' + respuesta.costo_mayor +'" data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id +'" data-duracion="' + respuesta.duracion +'"><td>'+respuesta.costo_menor+'</td><td>'+respuesta.costo_mayor+'</td><td>'+respuesta.duracion+' Dias</td><td>'+respuesta.descripcion+'</td><td><a id="edit_suscrip" type="submit" class="btn btn-success btn-xs edit_suscrip" >Editar</a><a id="delete" type="submit" class="btn btn-danger btn-xs delete" >eliminar</a></td></tr>';
                   $('#suscriptab tbody').append( boton );
                 $( "#costo_menor" ).val("");
                 $( "#costo_mayor" ).val("");
                 $( "#descripcion" ).val("");
+                $( "#duracion" ).val("");
                 $("#secreto").val("");
               }else{
                 alert("Error al guardar");
@@ -253,10 +298,12 @@ $(".dinero").on("keypress keyup blur",function (event) {
         var costo_menor = row2.data('costo_menor');
         var costo_mayor = row2.data('costo_mayor');
         var descripcion = row2.data('descripcion');
+        var duracion = row2.data('duracion');
         $("#secreto").val(id);
         $( "#costo_menor" ).val(costo_menor);
         $( "#costo_mayor" ).val(costo_mayor);
         $( "#descripcion" ).val(descripcion);
+        $( "#duracion" ).val(duracion);
         $("#add_suscrip").val( id ).text( 'Actualizar' );
       });
 
@@ -275,6 +322,7 @@ $(".dinero").on("keypress keyup blur",function (event) {
             {
                 $( "#costo_menor" ).val("");$( "#costo_mayor" ).val("");
                 $( "#descripcion" ).val("");$("#secreto").val("");
+                $( "#duracion" ).val("");$("#add_suscrip").text('Agregar');
             }
           });
 
@@ -284,69 +332,92 @@ $(".dinero").on("keypress keyup blur",function (event) {
 
 ////////////////////////////////////////BENEFICIOS ///////////////////////////////////////
 
-      $("#add_bene").on('click',function()
-      {
+  $("#add_bene").on('click',function(){
 
+    if ( $("#descripcion_bene").val() && $("#imagen_bene").val()){
 
-        if ( $("#descripcion_bene").val()){
-          $.ajax({
-            url: '{{ route("add_bene") }}',
-            type: "POST",
-            headers: {'X-CSRF-TOKEN': token},
-            datatype: 'json',
-            data:{
-                id :$("#secreto").val(),
-                descripcion:$( "#descripcion_bene" ).val(),
-            },
-            success:function( respuesta )
-            {
-              if(respuesta != null){
-                $("#benetab tbody tr").each(function (index){
-                    if ($(this).data('id') == respuesta.id) {
-                        $(this).remove();
-                    }
-                });
-                var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id +'"><td>'+respuesta.descripcion+'</td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
-                  $('#benetab tbody').append( boton );
-                $( "#descripcion_bene" ).val("");
-                $("#secreto").val("");
-              }else{
-                alert("Error al guardar");
-              }
-            }
-          });
-          $("#add_bene").text('Agregar');
-        }else alert("Llenar campos.");
+      var formData = new FormData($("#formulario")[0]);
+      $.ajax({    
+          url: '{{ route("add_beneImg") }}',
+          type: "POST",
+          headers: {'X-CSRF-TOKEN': token},
+          data: formData,
+          contentType: false,
+          processData: false,
+          beforeSend: function(){
+            $('#modalCargando').modal('show');
+          },
+          success: function(datos)
+          {
+            $("#imagen_secret").val(datos);
+            $("#imagen_bene").val("");
+            $('.slim').slim('destroy');
+            slimPrint();
+              $.ajax({
+                url: '{{ route("add_bene") }}',
+                type: "POST",
+                headers: {'X-CSRF-TOKEN': token},
+                datatype: 'json',
+                data:{
+                    id :$("#secreto").val(),
+                    descripcion:$( "#descripcion_bene" ).val(),
+                    url:$("#imagen_secret").val()
+                },
+
+                success:function( respuesta )
+                {
+                  if(respuesta != null){
+                    $("#benetab tbody tr").each(function (index){
+                        if ($(this).data('id') == respuesta.id) {
+                            $(this).remove();
+                        }
+                    });
+                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
+                    $('#benetab tbody').append( boton );
+                    $( "#descripcion_bene" ).val("");
+                    $("#imagen_secret").val("");
+                    $("#secreto").val("");
+                    $('#modalCargando').modal('hide');
+                  }else{
+                    alert("Error al guardar");
+                  }
+                }
+              });
+              $("#add_bene").text('Agregar');
+
+          }
+      });
+    }else alert("Llenar campos.");
+  });
+
+  $("#benetab").on('click','a.edit_bene', function()
+  {
+    row2 = $(this).parents('tr');
+    var id = row2.data('id');
+    var descripcion = row2.data('descripcion');
+    $("#secreto").val(id);
+    $( "#descripcion_bene" ).val(descripcion);
+    $("#add_bene").val( id ).text( 'Actualizar' );
+  });
+
+  $("#benetab").on('click','a.delete_bene', function()
+  {
+    var row2 = $(this).parents('tr');row2.hide();
+      $.ajax({
+        url: '{{ route("delete_bene") }}',
+        type: "POST",
+        headers: {'X-CSRF-TOKEN': token},
+        datatype: 'json',
+        data:{
+          id: row2.attr('data-id')
+        },
+        success:function( respuesta )
+        {
+            $( "#descripcion_bene" ).val("");$("#secreto").val("");
+        }
       });
 
-      $("#benetab").on('click','a.edit_bene', function()
-      {
-        row2 = $(this).parents('tr');
-        var id = row2.data('id');
-        var descripcion = row2.data('descripcion');
-        $("#secreto").val(id);
-        $( "#descripcion_bene" ).val(descripcion);
-        $("#add_bene").val( id ).text( 'Actualizar' );
-      });
-
-      $("#benetab").on('click','a.delete_bene', function()
-      {
-        var row2 = $(this).parents('tr');row2.hide();
-          $.ajax({
-            url: '{{ route("delete_bene") }}',
-            type: "POST",
-            headers: {'X-CSRF-TOKEN': token},
-            datatype: 'json',
-            data:{
-              id: row2.attr('data-id')
-            },
-            success:function( respuesta )
-            {
-                $( "#descripcion_bene" ).val("");$("#secreto").val("");
-            }
-          });
-
-      });
+  });
 
 ////////////////////////////////////////BENEFICIOS ///////////////////////////////////////
 
@@ -417,6 +488,35 @@ $(".dinero").on("keypress keyup blur",function (event) {
       });
 
 ////////////////////////////////////////CANCELAR ///////////////////////////////////////
+slimPrint();
+function slimPrint() {
+    $('.slim').slim({
+      label: 'Arrastra tu imagen ó haz click aquí',
+      ratio: 'free',
+      minSize: {
+          width: 30,
+          height: 30
+      },
+      download: false,
+      labelLoading: 'Cargando imagen...',
+      statusImageTooSmall: 'La imagen es muy pequeña. El tamaño mínimo es $0 píxeles.',
+      statusUnknownResponse: 'Ha ocurrido un error inesperado.',
+      statusUploadSuccess: 'Imagen guardada',
+      statusFileType: 'El formato de imagen no es permitido. Solamente: $0.',
+      statusFileSize: 'El tamaño máximo de imagen es 2MB.',
+      buttonConfirmLabel: 'Aceptar',
+      buttonConfirmTitle: 'Aceptar',
+      buttonCancelLabel: 'Cancelar',
+      buttonCancelLabel: "Cancelar",
+      buttonCancelTitle: "Cancelar",
+      buttonEditTitle: "Editar",
+      buttonRemoveTitle: "Eliminar",
+      buttonRotateTitle: "Rotar",
+      buttonUploadTitle: "Guardar"
+  });
+}
+
+
 
 });
 </script>
