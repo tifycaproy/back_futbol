@@ -42,7 +42,7 @@ class UsuarioDoradoSeeder extends Seeder
             'muro_post_aplaudir',
             'muro_comentario_aplaudir',
             'enviar_once_ideal',
-            'aplaudir_single_jugador'
+            'aplaudir_single_jugador',
             'encuesta_votar'
         ];
 
