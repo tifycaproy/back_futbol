@@ -21,6 +21,10 @@ class UserDoradoMiddleware
      {
         $request1=json_decode($request->getContent());
         $request1=get_object_vars($request1);
+        
+        if(!isset($request1["token"])) {
+            return $next($request);
+        }
 
         $token = $request1["token"];
         $token = decodifica_token($token);
