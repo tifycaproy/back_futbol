@@ -571,6 +571,17 @@ public function actualizar_usuario(Request $request, $token)
         $idusuario=decodifica_token($token);
         if($idusuario=="") $errors[]="El token es incorrecto";
         if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
+
+        if(isset($request["apodo"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apodo"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo actualizar tu apodo, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
         if(count($errors)>0){
             return ["status" => "fallo", "error" => $errors];
         }
