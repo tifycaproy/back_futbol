@@ -27,3 +27,5 @@ class AddTipoPostToMuroTable extends Migration
     {
         //
     }
+
+}
