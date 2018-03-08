@@ -574,7 +574,7 @@ public function ingresar_con_pin(Request $request)
        if($usuario){
            return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
        }else{
-           return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+           return ["status" => "fallo", "error" => ["Disculpa, PIN incorrecto"]];
        }
    } catch (Exception $e) {
     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
