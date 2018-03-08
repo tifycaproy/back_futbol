@@ -32,6 +32,27 @@ class UsuariosController extends Controller
             if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
             if(!isset($request["clave"])) $errors[]="La clave es requerida";
 
+            //Validaciones filtro de profanidad
+            if(isset($request["nombre"]))
+            {
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
+                if($resultado!=""){
+                    if($resultado['hasMatch']){
+                        $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                    }
+                }            
+            }
+
+            if(isset($request["apellido"]))
+            {
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
+                if($resultado!=""){
+                    if($resultado['hasMatch']){
+                        $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                    }
+                }            
+            }
+
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -126,6 +147,27 @@ class UsuariosController extends Controller
         if(!isset($request["clave"])) $errors[]="La clave es requerida";
         if(!isset($request["ci"])) $errors[]="La cédula es requerida";
 
+        //Validaciones filtro de profanidad
+        if(isset($request["nombre"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
+        if(isset($request["apellido"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
         if(count($errors)>0){
 
             return ["status" => "fallo", "error" => $errors];
@@ -143,9 +185,9 @@ class UsuariosController extends Controller
             return ["status" => "fallo", "error" => ["El email ya se encuentra registrado"]];
         }
 
-            if(Usuario::where('ci',$ci)->first()){
-                return ["status" => "fallo", "error" => ["La cédula o pasaporte  ya se encuentra registrado"]];
-            }
+        if(Usuario::where('ci',$ci)->first()){
+            return ["status" => "fallo", "error" => ["La cédula o pasaporte  ya se encuentra registrado"]];
+        }
 
         if(isset($request["apodo"])) if($request["apodo"]<>'') if(Usuario::where('apodo',$request["apodo"])->first()){
 
@@ -344,6 +386,27 @@ public function auth_redes(Request $request)
         if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
         if(!isset($request["userID_facebook"]) and !isset($request["userID_google"])) $errors[]="userID_facebook o userID_google son requeridos";
 
+        //Validaciones filtro de profanidad
+        if(isset($request["nombre"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
+        if(isset($request["apellido"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
         if(count($errors)>0){
             return ["status" => "fallo", "error" => $errors];
         }
@@ -395,7 +458,7 @@ public function auth_redes(Request $request)
                     'referido' => $codigo_referido
                 ];
             }else{
-             $data=[
+               $data=[
                 'email' => $email,
                 'nombre' => $request["nombre"],
                 'apellido' => $apellido,
@@ -409,12 +472,12 @@ public function auth_redes(Request $request)
         }
                 // Referidos
         if($referente=Referido::where('email',$email)->first()){
-         $data["referido"]=$referente->usuario_id;
-     }
+           $data["referido"]=$referente->usuario_id;
+       }
 
-     $usuario=Usuario::create($data);
-     return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
- }
+       $usuario=Usuario::create($data);
+       return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+   }
 
 } catch (Exception $e) {
     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -503,17 +566,17 @@ public function ingresar_con_pin(Request $request)
         if(!isset($request["pin"])) $errors[]="El pin es requerido";
         if(count($errors)>0){
 
-         return ["status" => "fallo", "error" => $errors];
-     }
+           return ["status" => "fallo", "error" => $errors];
+       }
             //fin validaciones
-     $email=$request["email"];
-     $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
-     if($usuario){
-         return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-     }else{
-         return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
-     }
- } catch (Exception $e) {
+       $email=$request["email"];
+       $usuario=Usuario::where('email',$email)->where('pinseguridad',$request["pin"])->first(['id']);
+       if($usuario){
+           return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+       }else{
+           return ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+       }
+   } catch (Exception $e) {
     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
 }
@@ -566,11 +629,44 @@ public function actualizar_usuario(Request $request, $token)
     $request=json_decode($request->getContent());
     $request=get_object_vars($request);
     try{
-            //Validaciones
+        //Validaciones
         $errors=[];
         $idusuario=decodifica_token($token);
         if($idusuario=="") $errors[]="El token es incorrecto";
         if(!isset($request["nombre"])) $errors[]="El nombre es requerido";
+
+        //Validaciones filtro de profanidad
+        if(isset($request["nombre"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
+        if(isset($request["apellido"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se puedo guardar tu nombre, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
+
+        if(isset($request["apodo"]))
+        {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apodo"], true);
+            if($resultado!=""){
+                if($resultado['hasMatch']){
+                    $errors[]="No se pudo actualizar tu apodo, contiene lenguaje inapropiado."; 
+                }
+            }            
+        }
+
         if(count($errors)>0){
             return ["status" => "fallo", "error" => $errors];
         }

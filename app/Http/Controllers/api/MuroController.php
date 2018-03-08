@@ -31,13 +31,13 @@ class MuroController extends Controller
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
             if(isset($request["mensaje"])){
-            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
 
-            if($resultado!=""){
-            if($resultado['hasMatch']){
-                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
-            }
-            }
+                if($resultado!=""){
+                    if($resultado['hasMatch']){
+                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
+                    }
+                }
             }
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
@@ -45,23 +45,75 @@ class MuroController extends Controller
             //fin validaciones
             $request["usuario_id"]=$idusuario;
             unset($request["token"]);
-            if(isset($request["foto"])){
-                $foto=$request["foto"];
-                if($foto<>''){
-                    list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    $filepath='posts/' . $request["foto"];
 
-                    $s3 = S3Client::factory(config('app.s3'));
-                    $result = $s3->putObject(array(
-                        'Bucket' => config('app.s3_bucket'),
-                        'Key' => $filepath,
-                        'SourceFile' => $foto,
-                        'ContentType' => 'image',
-                        'ACL' => 'public-read',
-                    ));
+            if(isset($request["tipo_post"]))
+            {
+                if(isset($request["foto"]) && $request["tipo_post"] == 'foto') 
+                {
+                    $foto=$request["foto"];
+                    if($foto<>'')
+                    {
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["foto"];
 
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+
+                    }
+                }
+
+                if(isset($request["foto"]) && $request["tipo_post"] == 'gif') 
+                {
+                    $foto=$request["foto"];
+                    if($foto<>'')
+                    {
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extension='.gif';
+                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extension;
+                        $filepath='posts/' . $request["foto"];
+
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image/gif',
+                            'ACL' => 'public-read',
+                        ));
+
+                    }
+                }
+            }
+            elseif(!isset($request["tipo_post"]))
+            {
+                if(isset($request["foto"])) 
+                {
+                    $foto=$request["foto"];
+                    if($foto<>'')
+                    {
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["foto"];
+
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+
+                    }
                 }
             }
             Muro::create($request);
@@ -157,13 +209,13 @@ class MuroController extends Controller
             if($idpost=="") $errors[]="El idpost es incorrecto";
 
             if(isset($request["comentario"])){
-            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
 
-            if($resultado!="" && $request["comentario"] != " "){
-            if($resultado["hasMatch"]){
-                $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
-            }
-            }
+                if($resultado!="" && $request["comentario"] != " "){
+                    if($resultado["hasMatch"]){
+                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
+                    }
+                }
             }
 
 
@@ -326,31 +378,31 @@ class MuroController extends Controller
             $idusuario=decodifica_token($token);
             if($post=Muro::where('id',$idpost)->where('usuario_id',$idusuario)->first())
                 $post->delete();
-            return ["status" => "exito", "data" => []];
-        } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
-    }
-
-    public function topAplausos()
-    {
-        //Traemos los posts
-        $posts = Muro::all();
-        //Contamos cuantos aplausos tienen
-        foreach($posts as $post){
-            $post->cantidad_aplausos = $post->aplausos()->count();
-            if($post->foto)
-            $post->foto=config('app.url') . 'posts/' . $post->foto;
-            $usuario = Usuario::find($post->usuario_id);
-            $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
-            $post->usuario_tlf = $usuario->telefono;
+                return ["status" => "exito", "data" => []];
+            } catch (Exception $e) {
+                return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+            } 
         }
+
+        public function topAplausos()
+        {
+        //Traemos los posts
+            $posts = Muro::all();
+        //Contamos cuantos aplausos tienen
+            foreach($posts as $post){
+                $post->cantidad_aplausos = $post->aplausos()->count();
+                if($post->foto)
+                    $post->foto=config('app.url') . 'posts/' . $post->foto;
+                $usuario = Usuario::find($post->usuario_id);
+                $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+                $post->usuario_tlf = $usuario->telefono;
+            }
         //Retornamos vista con los primeros 10
-          $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
-        dd($result);
+            $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+            dd($result);
+
+        }
+
+
 
     }
-
-
-
-}
