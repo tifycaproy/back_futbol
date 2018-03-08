@@ -266,7 +266,6 @@ class UsuariosController extends Controller
         }
 
         return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
-
     }
 
     //verificar si es de colombia para realizar envio de sms
@@ -457,7 +456,7 @@ class UsuariosController extends Controller
                         'referido' => $codigo_referido
                     ];
                 }else{
-                 $data=[
+                   $data=[
                     'email' => $email,
                     'nombre' => $request["nombre"],
                     'apellido' => $apellido,
@@ -471,14 +470,14 @@ class UsuariosController extends Controller
             }
                 // Referidos
             if($referente=Referido::where('email',$email)->first()){
-             $data["referido"]=$referente->usuario_id;
-         }
+               $data["referido"]=$referente->usuario_id;
+           }
 
-         $usuario=Usuario::create($data);
-         return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-     }
+           $usuario=Usuario::create($data);
+           return ["status" => "exito", "data" => ["token" => crea_token($usuario->id),"idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+       }
 
- } catch (Exception $e) {
+   } catch (Exception $e) {
     return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
 }
 }
@@ -668,7 +667,7 @@ public function consultar_usuario($token)
         return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intente de nuevo"]];
     }
 }
-}
+
 
 public function actualizar_usuario(Request $request, $token)
 {
@@ -745,6 +744,7 @@ public function actualizar_usuario(Request $request, $token)
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
     }
+}
 
     public function registrar_referido(Request $request)
     {
