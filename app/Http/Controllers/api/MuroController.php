@@ -21,13 +21,15 @@ class MuroController extends Controller
      */
     public function postear(Request $request)
     {
-        $request=json_decode($request->getContent());
-        $request=get_object_vars($request);
+
+        //$request=json_decode($request->getContent());
+        //$request=get_object_vars($request);
+
         try{
             //Validaciones
             $errors=[];
             $token=$request["token"];
-            $idusuario=decodifica_token($token);
+            $idusuario=($token);
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
             if(isset($request["mensaje"])){
@@ -43,7 +45,7 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $request["usuario_id"]=$idusuario;
+            $request["usuario_id"]=$token;
             unset($request["token"]);
 
             if(isset($request["tipo_post"]))
@@ -90,6 +92,30 @@ class MuroController extends Controller
                         ));
 
                     }
+                }
+
+                if(isset($request["foto"]) && $request["tipo_post"] == 'video') 
+                {
+
+                    $foto=$request["foto"];
+                    //dd($foto->getRealPath());
+                    if($foto<>'')
+                    {
+                        if ($foto->getClientOriginalExtension() == "mp4") {
+                            $extension=$foto->getClientOriginalExtension();
+                            $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
+                            $filepath='posts/videos'.$nombre ;
+                            $s3 = S3Client::factory(config('app.s3'));
+                            $result = $s3->putObject(array(
+                                'Bucket' => config('app.s3_bucket'),
+                                'Key' => $filepath,
+                                'SourceFile' => $foto->getRealPath(),
+                                'ContentType' => $foto->getMimeType(),
+                                'ACL' => 'public-read',
+                            ));
+                        }
+                    }
+                    dd($foto->getMimeType());
                 }
             }
             elseif(!isset($request["tipo_post"]))
