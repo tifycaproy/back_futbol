@@ -514,7 +514,7 @@ class UsuariosController extends Controller
                 $link_clave_recuperacion = config('app.url') . '/resetpassword?email=' . $email . '&token=' . $clave_recuperacion;
 
 
-                dd($link_clave_recuperacion);
+                //dd($link_clave_recuperacion);
                 $data = [
                     "email" => $email,
                     'link_clave_recuperacion' => $link_clave_recuperacion

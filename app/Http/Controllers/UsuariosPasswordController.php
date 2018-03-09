@@ -28,9 +28,6 @@ class UsuariosPasswordController extends Controller
         $password = $request->password;
         $password_confirmation = $request->password_confirmation;
 
-        if ($password_confirmation == $password) {
-
-        }
 
         if ($usuario = Usuario::where('pinseguridad', $token)->where('email', $email)->first(['id'])) {
 
@@ -44,9 +41,9 @@ class UsuariosPasswordController extends Controller
 
                 $user->save();
 
-                $user = Usuario::find($usuario)->first();
+                //$user = Usuario::find($usuario)->first();
 
-                dd($user);
+                //dd($user);
 
 
                 return redirect('/resetpassword/success');
