@@ -16,6 +16,7 @@ class ConfiguracionController extends Controller
      */
     public function index()
     {
+        $data["data"]["pop_inicial"] = "";
         $configuracion = Configuracion::first([
             'url_tabla', 'url_simulador', 'url_juramento', 'url_livestream', 'url_tienda', 'url_estadisticas', 'url_academia',
             'tit_1', 'tit_1_1', 'tit_1_2', 'tit_2', 'tit_3', 'tit_4', 'tit_4_1', 'tit_4_2', 'tit_5', 'tit_6', 'tit_6_1', 'tit_6_1_1', 'tit_6_1_2', 'tit_6_2', 'tit_6_3', 'tit_6_3_1', 'tit_6_3_2', 'tit_7',
@@ -29,7 +30,7 @@ class ConfiguracionController extends Controller
         $data["status"] = 'exito';
         $data["data"] = $configuracion;
         $data["data"]["patrocinante"] = config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
-        $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial;
+        if($configuracion->url_popup_inicial) $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial;
         $data["data"]["url_vistas"] = config('app.share_url');
         $data["data"]["total_hinchas"] = Usuario::count();
 
