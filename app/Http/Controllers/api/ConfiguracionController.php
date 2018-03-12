@@ -30,7 +30,7 @@ class ConfiguracionController extends Controller
         $data["status"] = 'exito';
         $data["data"] = $configuracion;
         $data["data"]["patrocinante"] = config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
-        if($configuracion->url_popup_inicial) $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial;
+        if(!empty($configuracion->url_popup_inicial)) $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial;
         $data["data"]["url_vistas"] = config('app.share_url');
         $data["data"]["total_hinchas"] = Usuario::count();
 
