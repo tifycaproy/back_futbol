@@ -511,10 +511,10 @@ class UsuariosController extends Controller
 
                 //email con pin de recuperación
 
-                $link_clave_recuperacion = config('app.url') . '/resetpassword?email=' . $email . '&token=' . $clave_recuperacion;
+                $link_clave_recuperacion = env('APP_SHARE_URL') . 'resetpassword?email=' . $email . '&token=' . $clave_recuperacion;
 
 
-                dd($link_clave_recuperacion);
+                //dd($link_clave_recuperacion);
                 $data = [
                     "email" => $email,
                     'link_clave_recuperacion' => $link_clave_recuperacion
