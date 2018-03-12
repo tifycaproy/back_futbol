@@ -48,7 +48,7 @@ class MuroController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
-            $request["usuario_id"]=$token;
+            $request["usuario_id"]=$idusuario;
             unset($request["token"]);
 
             if(isset($request["foto"]) && $request["tipo_post"] == 'video'){
