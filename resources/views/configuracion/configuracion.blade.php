@@ -623,6 +623,38 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
+                <h3><i class="fa fa-bell"></i> Popup Inicial</h3>
+
+                <div class="form-group">
+                    <div class="slim slim">
+                        <input name="popup_inicial" type="file" accept="image/jpeg, image/png, image/gif"/>
+                    </div>
+                    <label><span>Mínimo 30 x 30 píxeles | JPG, PNG y GIF</span></label>
+                    @if($configuracion->url_popup_inicial)
+                        <h5>Imagen actual</h5>
+                        <p><a href="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial }}" target="_blank"><img src="{{ config('app.url') . 'configuracion/' . $configuracion->url_popup_inicial }}"
+                                style="max-width: 100%"></a></p>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Activar/Desactivar Popup</label>
+                    <select name="act_pop_inicial" class="form-control">
+                            <option value="1" @if($configuracion->act_pop_inicial == 1) selected @endif>Activo</option>
+                            <option value="0"  @if($configuracion->act_pop_inicial == 0) selected @endif>Desactivado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Link Popup</label>
+                    <input type="text" class="form-control" name="link_pop_inicial"
+                           value="{{ $configuracion->link_pop_inicial }}" maxlength="200">
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
                 <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>
             </div>
         </div>

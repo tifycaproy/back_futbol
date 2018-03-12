@@ -14,7 +14,7 @@ class AddTipoPostToMuroTable extends Migration
     public function up()
     {
         Schema::table('muro', function (Blueprint $table) {
-            $table->text('tipo_post');
+           $table->text('tipo_post');
         });
     }
 
