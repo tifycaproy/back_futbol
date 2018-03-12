@@ -6,8 +6,58 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Aws\S3\S3Client;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $s3;
+
+    public function __construct()
+    {
+        $s3 = S3Client::factory(config('app.s3'));
+    }
+
+
+    public function saveFile($file, $path)
+    {
+        $fileName = "";
+        if ($file) {
+            $foto = json_decode($file);
+            $extension = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extension;
+            $picture = $foto->output->image;
+            $filepath = $path . $fileName;
+
+            if ($foto->input->type == 'image/gif') {
+                $path = $foto->input->name;
+                $extension = pathinfo($path, PATHINFO_EXTENSION);
+                $data = file_get_contents($path);
+                $picture = 'data:image/' . $extension . ';base64,' . base64_encode($data);
+                $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extension;
+            }
+
+
+            $this->s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+        }
+
+        return $fileName;
+    }
+
+    public function deleteFile($file)
+    {
+
+        $this->s3->deleteObject(array(
+            'Bucket' => config('app.s3_bucket'),
+            'Key' => $file
+        ));
+    }
+
 }

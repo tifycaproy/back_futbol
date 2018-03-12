@@ -44,7 +44,11 @@ class NoticiasController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $fileName = "";
+
+
+            $fileName = $this->saveFile($request->archivo, "noticias/");
+
+            /*$fileName = "";
             if ($request->archivo) {
                 $foto = json_decode($request->archivo);
                 $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
@@ -60,7 +64,8 @@ class NoticiasController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-            }
+            }*/
+
             $noticia = Noticia::create([
                 'titulo' => $request->titulo,
                 'link' => $request->link,
@@ -132,7 +137,12 @@ class NoticiasController extends Controller
                 'tipo' => $request->tipo,
             ];
 
-            $fileName = "";
+            $noticia = Noticia::find($id)->first();
+            $this->deleteFile($noticia->foto);
+            $data['foto'] = $this->saveFile($request->archivo, "noticias/");
+            Noticia::find($id)->update($data);
+
+            /*$fileName = "";
             if ($request->archivo) {
                 $foto = json_decode($request->archivo);
                 $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
@@ -161,7 +171,7 @@ class NoticiasController extends Controller
                     'ACL' => 'public-read',
                 ));
                 $data['foto'] = $fileName;
-            }
+            }*/
             Noticia::find($id)->update($data);
             return redirect()->route('noticias.edit', codifica($id))->with("notificacion", "Se ha guardado correctamente su información");
 
@@ -175,7 +185,9 @@ class NoticiasController extends Controller
     {
         $id = decodifica($id);
         try {
-            Noticia::find($id)->delete();
+            $noticia = Noticia::find($id)->first();
+            $this->deleteFile($noticia->foto);
+            $noticia->delete();
             return redirect()->route('noticias.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error", "Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
