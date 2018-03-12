@@ -187,7 +187,7 @@ class NoticiasController extends Controller
         try {
             $noticia = Noticia::find($id)->first();
             $this->deleteFile($noticia->foto);
-            $noticia->delete();
+            Noticia::find($id)->delete();
             return redirect()->route('noticias.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error", "Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
