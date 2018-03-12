@@ -32,12 +32,12 @@ class MuroController extends Controller
             //Validaciones
             $errors=[];
             $token=$request["token"];
-            $idusuario=($token);
+            $idusuario=decodifica_token($token);
+
             if($idusuario=="") $errors[]="El token es incorrecto";
             if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
             if(isset($request["mensaje"])){
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
-
                 if($resultado!=""){
                     if($resultado['hasMatch']){
                         $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
@@ -51,7 +51,7 @@ class MuroController extends Controller
             $request["usuario_id"]=$token;
             unset($request["token"]);
 
-            if(isset($request["foto"]) && $request["tipo_post"] == 'video') {
+            if(isset($request["foto"]) && $request["tipo_post"] == 'video'){
                 $foto=$request["foto"];
                 if($foto<>''){
                     if ($foto->getClientOriginalExtension() == "mp4") {
@@ -84,6 +84,7 @@ class MuroController extends Controller
                     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
                 }
             }
+
             if(isset($request["tipo_post"]))
             {
                 if(isset($request["foto"]) && $request["tipo_post"] == 'foto') 
@@ -173,9 +174,13 @@ class MuroController extends Controller
         $data["status"]='exito';
         $data["data"]=[];
         foreach ($posts as $post) {
-
-            if($post->foto<>'') $post->foto=config('app.url') . 'posts/' . $post->foto;
-
+            if($post->foto<>''){
+                if($post->tipo_post == "video"){
+                    $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
+                }else{
+                    $post->foto=config('app.url') . 'posts/' . $post->foto;
+                }
+            } 
             $usuario=$post->usuario;
             $usuario=$usuario->toArray();
             $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));

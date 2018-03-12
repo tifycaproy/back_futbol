@@ -12,6 +12,7 @@ class UrlPopupInicial extends Migration
         Schema::table('configuracion', function (Blueprint $table) {
             $table->text('url_popup_inicial');
             $table->integer('act_pop_inicial');
+            $table->text('link_pop_inicial');
         });
     }
     public function down()
