@@ -12,7 +12,6 @@ use App\Jugadorfb;
 use App\Noticia;
 use App\NoticiaJugador;
 use App\NoticiaJugadorfb;
-use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 
 class NoticiasController extends Controller
@@ -43,7 +42,6 @@ class NoticiasController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
-
 
 
             $fileName = $this->saveFile($request->archivo, "noticias/");
@@ -138,7 +136,7 @@ class NoticiasController extends Controller
             ];
 
             $noticia = Noticia::find($id)->first();
-            $this->deleteFile($noticia->foto);
+            $this->deleteFile($noticia->foto, "noticias/");
             $data['foto'] = $this->saveFile($request->archivo, "noticias/");
             Noticia::find($id)->update($data);
 
@@ -186,7 +184,7 @@ class NoticiasController extends Controller
         $id = decodifica($id);
         try {
             $noticia = Noticia::find($id)->first();
-            $this->deleteFile($noticia->foto);
+            $this->deleteFile($noticia->foto, "noticias/");
             Noticia::find($id)->delete();
             return redirect()->route('noticias.index');
         } catch (\Illuminate\Database\QueryException $e) {

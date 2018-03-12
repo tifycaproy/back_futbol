@@ -44,13 +44,13 @@ class Controller extends BaseController
         return $fileName;
     }
 
-    public function deleteFile($file)
+    public function deleteFile($file, $path)
     {
         $s3 = S3Client::factory(config('app.s3'));
 
         $s3->deleteObject(array(
             'Bucket' => config('app.s3_bucket'),
-            'Key' => $file
+            'Key' => $path.$file
         ));
     }
 
