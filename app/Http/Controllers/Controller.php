@@ -12,14 +12,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected $s3;
-
-    public function __construct()
-    {
-        $s3 = S3Client::factory(config('app.s3'));
-    }
-
-
     public function saveFile($file, $path)
     {
         $fileName = "";
@@ -38,8 +30,9 @@ class Controller extends BaseController
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extension;
             }
 
+            $s3 = S3Client::factory(config('app.s3'));
 
-            $this->s3->putObject(array(
+            $s3->putObject(array(
                 'Bucket' => config('app.s3_bucket'),
                 'Key' => $filepath,
                 'SourceFile' => $picture,
@@ -53,8 +46,9 @@ class Controller extends BaseController
 
     public function deleteFile($file)
     {
+        $s3 = S3Client::factory(config('app.s3'));
 
-        $this->s3->deleteObject(array(
+        $s3->deleteObject(array(
             'Bucket' => config('app.s3_bucket'),
             'Key' => $file
         ));
