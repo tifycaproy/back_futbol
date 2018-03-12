@@ -75,6 +75,7 @@ class MuroController extends Controller
                 if(isset($request["foto"]) && $request["tipo_post"] == 'gif') 
                 {
                     $foto=$request["foto"];
+
                     if($foto<>'')
                     {
                         list($tipo, $Base64Img) = explode(';', $foto);
@@ -98,13 +99,12 @@ class MuroController extends Controller
                 {
 
                     $foto=$request["foto"];
-                    //dd($foto->getRealPath());
                     if($foto<>'')
                     {
                         if ($foto->getClientOriginalExtension() == "mp4") {
                             $extension=$foto->getClientOriginalExtension();
                             $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
-                            $filepath='posts/videos'.$nombre ;
+                            $filepath='posts/videos/'.$nombre ;
                             $s3 = S3Client::factory(config('app.s3'));
                             $result = $s3->putObject(array(
                                 'Bucket' => config('app.s3_bucket'),
@@ -115,7 +115,7 @@ class MuroController extends Controller
                             ));
                         }
                     }
-                    dd($foto->getMimeType());
+                    dd($result['@metadata']['effectiveUri']);
                 }
             }
             elseif(!isset($request["tipo_post"]))
