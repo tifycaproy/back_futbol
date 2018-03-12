@@ -21,13 +21,10 @@ class MuroController extends Controller
      */
     public function postear(Request $request)
     {
-
-
         if($request["tipo_post"] != 'video') {
             $request=json_decode($request->getContent());
             $request=get_object_vars($request);
         }
-
         try{
             //Validaciones
             $errors=[];
