@@ -33,8 +33,9 @@ class EquiposController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $fileName = "";
-            if($request->archivo){
+            $fileName = $this->saveFile($request->archivo, 'equipos/');
+
+            /*if($request->archivo){
                 $foto=json_decode($request->archivo);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
@@ -53,7 +54,8 @@ class EquiposController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-            }
+            }*/
+
             $equipo=Equipo::create([
                 'nombre' => $request->nombre,
                 'bandera' => $fileName,
@@ -91,11 +93,21 @@ class EquiposController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
             $id=decodifica($id);
+
+            $equipo = Equipo::where('id', $id)->first();
+
             $data=[
                 'nombre' => $request->nombre,
             ];
 
-            $fileName = "";
+
+            $this->deleteFile($equipo->bandera, 'equipos/');
+            $fileName = $this->saveFile($request->archivo, 'equipos/');
+            $data['bandera']=$fileName;
+
+            $equipo->update($data);
+
+            /*$fileName = "";
             if($request->archivo){
                 $foto=json_decode($request->archivo);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
@@ -117,7 +129,7 @@ class EquiposController extends Controller
                 ));
                 $data['bandera']=$fileName;
             }
-            Equipo::find($id)->update($data);
+            Equipo::find($id)->update($data);*/
             return redirect()->route('equipos.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
@@ -130,7 +142,9 @@ class EquiposController extends Controller
     {
         $id=decodifica($id);
         try{
-            Equipo::find($id)->delete();
+            $equipo = Equipo::where('id', $id)->first();
+            $this->deleteFile($equipo->bandera, 'equipos/');
+            $equipo->delete();
             return redirect()->route('equipos.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
