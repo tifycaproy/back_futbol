@@ -35,6 +35,7 @@ Route::get('reenviar_pin_confirmacion/{email}', 'api\UsuariosController@reenviar
 Route::post('validar_cuenta', 'api\UsuariosController@validar_cuenta');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
+Route::post('recuperar_clave_link', 'api\UsuariosController@recuperar_clave_link');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
 Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::get('usuarios/image/by/id/{idusuario}', 'api\UsuariosController@consultarFoto');

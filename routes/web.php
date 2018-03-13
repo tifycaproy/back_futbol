@@ -8,7 +8,8 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+**/
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -75,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
 //jugadores Futbol Base
     Route::get('jugadoresfb_eliminar/{id}', 'JugadoresfbController@destroy')->name('jugadoresfb_eliminar');
     Route::resource('jugadoresfb', 'JugadoresfbController');
-   
+
 //videos vr
     Route::get('videosvr_eliminar/{id}', 'VideovrsController@destroy')->name('videosvr_eliminar');
     Route::resource('videosvr', 'VideovrsController');
@@ -97,20 +98,20 @@ Route::get('documentacion', function () {
 Route::resource('compartir', 'CompartirController');
 
 Route::get('compartir/alineacion/{ruta}', [
-        'uses' => 'CompartirController@alineacion',
-        'as'   => 'compartir/alineacion'
-    ]);
+    'uses' => 'CompartirController@alineacion',
+    'as' => 'compartir/alineacion'
+]);
 Route::get('compartir/referidos/{codigo}', [
-        'uses' => 'CompartirController@referidos',
-        'as'   => 'compartir/referidos'
-    ]);
+    'uses' => 'CompartirController@referidos',
+    'as' => 'compartir/referidos'
+]);
 Route::get('compartir/referidos/{codigo}/email', [
-        'uses' => 'CompartirController@email',
-        'as'   => 'compartir.email'
-    ]);
+    'uses' => 'CompartirController@email',
+    'as' => 'compartir.email'
+]);
 Route::get('descargar', 'CompartirController@descargar');
 
-Route::post('registro','api\UsuariosController@registro_usuario2');
+Route::post('registro', 'api\UsuariosController@registro_usuario2');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 /////////////////////////////
 Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
@@ -123,3 +124,9 @@ Route::get('borrar', 'BorrarController@borrar');
 //Posts////
 Route::resource('post', 'PostController');
 Route::get('post_eliminar/{id}', 'PostController@destroy')->name('post_eliminar');
+
+Route::get('resetpassword/passwordnotfound', 'UsuariosPasswordController@passwordnotfound');
+Route::get('resetpassword/notfound', 'UsuariosPasswordController@notfound');
+Route::get('resetpassword/success', 'UsuariosPasswordController@success');
+Route::get('resetpassword', 'UsuariosPasswordController@show');
+Route::post('resetpassword', 'UsuariosPasswordController@update');
