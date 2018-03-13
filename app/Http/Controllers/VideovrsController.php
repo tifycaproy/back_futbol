@@ -33,8 +33,9 @@ class VideovrsController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $foto1 = "";
-            if($request->foto){
+            $foto1 =  $this->saveFile($request->foto, 'videosvr/');
+
+            /*if($request->foto){
                 $foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
@@ -50,7 +51,7 @@ class VideovrsController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-            }
+            }*/
             /*
             $video="";
             if ($fileName=$_FILES['video']['name']){
@@ -111,6 +112,9 @@ class VideovrsController extends Controller
             }
             $id=decodifica($id);
 
+            $vr = Videovr::where('id', $id)->first();
+
+
             $data=[
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
@@ -119,7 +123,9 @@ class VideovrsController extends Controller
             ];
 
             if($request->foto){
-                $foto=json_decode($request->foto);
+                $this->deleteFile($vr->foto, 'videosvr/');
+                $data['foto']=  $this->saveFile($request->foto, 'videosvr/');
+                /*$foto=json_decode($request->foto);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
                 $picture=$foto->output->image;
@@ -142,10 +148,10 @@ class VideovrsController extends Controller
                     'ContentType' => 'image',
                     'ACL' => 'public-read',
                 ));
-                $data['foto']=$fileName;
+                $data['foto']=$fileName;*/
             }
 
-            Videovr::find($id)->update($data);
+            $vr->update($data);
             return redirect()->route('videosvr.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
@@ -158,7 +164,9 @@ class VideovrsController extends Controller
     {
         $id=decodifica($id);
         try{
-            Videovr::find($id)->delete();
+            $vr = Videovr::where('id', $id)->first();
+            $this->deleteFile($vr->foto, 'videosvr/');
+            $vr->delete();
             return redirect()->route('videosvr.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");

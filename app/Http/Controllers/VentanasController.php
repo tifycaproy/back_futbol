@@ -3,40 +3,51 @@
 namespace App\Http\Controllers;
 
 @session_start();
-use Illuminate\Http\Request;
-use Aws\S3\S3Client;
 
 use App\Compartir;
+use Illuminate\Http\Request;
 
 class VentanasController extends Controller
 {
     public function index()
     {
-       $ventanas=Compartir::paginate(25);
-        return view('ventanas.index')->with('ventanas',$ventanas);
+        $ventanas = Compartir::paginate(25);
+        return view('ventanas.index')->with('ventanas', $ventanas);
     }
 
 
     public function edit($id)
     {
-        $id=decodifica($id);
-        $ventana=Compartir::find($id);
-        return view('ventanas.edit')->with('ventana',$ventana);
+        $id = decodifica($id);
+        $ventana = Compartir::find($id);
+        return view('ventanas.edit')->with('ventana', $ventana);
     }
 
     public function update(Request $request, $id)
     {
-        try {
-            $id=decodifica($id);
 
-            $data=[
+        try {
+            $id = decodifica($id);
+
+            $compartir = Compartir::where('id', $id)->first();
+
+            $data = [
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
                 'footer1' => $request->footer1,
                 'footer2' => $request->footer2,
             ];
-            $fileName = "";
-            if($request->archivo){
+
+            if ($request->archivo) {
+                $this->deleteFile($compartir->foto, 'ventanas/');
+                $fileName = $this->saveFile($request->archivo, 'ventanas/');
+                $data['foto'] = $fileName;
+            }
+
+            $compartir->update($data);
+
+
+            /*if($request->archivo){
                 $foto=json_decode($request->archivo);
                 $extensio=$foto->output->type=='image/png' ? '.png' : '.jpg';
                 $fileName = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
@@ -65,13 +76,14 @@ class VentanasController extends Controller
                 ));
                 $data['foto']=$fileName;
             }
-            Compartir::find($id)->update($data);
-            return redirect()->route('ventanas.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+            Compartir::find($id)->update($data);*/
+            return redirect()->route('ventanas.edit', codifica($id))->with("notificacion", "Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
-            \Log::info('Error creating item: '.$e);
+            \Log::info('Error creating item: ' . $e);
             return \Response::json(['created' => false], 500);
         }
+
     }
 
 }

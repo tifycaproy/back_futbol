@@ -60,11 +60,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
             $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
-
-            $fileName = $this->saveFile($request["foto"],"usuarios/");
-            $request["foto"] = $fileName;
-
-            /*if (isset($request["foto"])) {
+            if (isset($request["foto"])) {
                 $foto = $request["foto"];
                 if ($foto <> '') {
                     list($tipo, $Base64Img) = explode(';', $foto);
@@ -82,8 +78,7 @@ class UsuariosController extends Controller
                         'ACL' => 'public-read',
                     ));
                 }
-            }*/
-
+            }
             $nuevo = Usuario::create($request);
             $idusuario = $nuevo->id;
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario), "idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
@@ -169,10 +164,7 @@ class UsuariosController extends Controller
             return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
         }
         $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
-        $fileName = $this->saveFile($request["foto"],"usuarios/");
-        $request["foto"] = $fileName;
-
-        /*if (isset($request["foto"])) {
+        if (isset($request["foto"])) {
             $foto = $request["foto"];
             if ($foto <> '') {
                 list($tipo, $Base64Img) = explode(';', $foto);
@@ -188,7 +180,7 @@ class UsuariosController extends Controller
                     'ACL' => 'public-read',
                 ));
             }
-        }*/
+        }
         $clave_recuperacion = rand(1000, 9999);
         $request["pinseguridad"] = $clave_recuperacion;
         $request["estatus"] = 'Pendiente';
@@ -647,17 +639,7 @@ class UsuariosController extends Controller
             }
             //fin validaciones
             if (isset($request["clave"])) $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
-
-            if (isset($request->referido)) unset($request->referido);
-
-            $user = Usuario::where('id', $idusuario)->first();
-            $this->deleteFile($user->foto, "usuarios/");
-            $fileName = $this->saveFile($request["foto"],"usuarios/");
-            $request["foto"] = $fileName;
-
-            $user->update($request);
-
-            /*if (isset($request["foto"])) {
+            if (isset($request["foto"])) {
                 $foto = $request["foto"];
                 if ($foto <> '') {
                     list($tipo, $Base64Img) = explode(';', $foto);
@@ -675,9 +657,9 @@ class UsuariosController extends Controller
                 } else {
                     unset($request["foto"]);
                 }
-            }*/
-
-
+            }
+            if (isset($request->referido)) unset($request->referido);
+            Usuario::find($idusuario)->update($request);
             return ["status" => "exito"];
         } catch (Exception $e) {
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
