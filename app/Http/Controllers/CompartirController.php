@@ -175,5 +175,4 @@ class CompartirController extends Controller
         $noticia=Noticia::find($id);
         return view('compartir.noticia',['noticia'=>$noticia]);
     }
-
 }

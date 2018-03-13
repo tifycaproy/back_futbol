@@ -49,7 +49,7 @@
                                 <div class="texto mt-1 pl-4 pr-4">
                                     <!-- Texto-->
                                     <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
-                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p> 
                                 </div>
                             </div>
                         </section>
