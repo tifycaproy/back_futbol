@@ -51,7 +51,7 @@ class MuroController extends Controller
             $request["usuario_id"]=$idusuario;
             unset($request["token"]);
 
-            if(isset($request["foto"]) && $request["tipo_post"] == 'video'){
+            if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
                 $foto=$request["foto"];
                 if($foto<>''){
                     if ($foto->getClientOriginalExtension() == "mp4") {
@@ -87,7 +87,7 @@ class MuroController extends Controller
 
             if(isset($request["tipo_post"]))
             {
-                if(isset($request["foto"]) && $request["tipo_post"] == 'foto') 
+                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'foto') 
                 {
                     $foto=$request["foto"];
                     if($foto<>'')
@@ -109,7 +109,7 @@ class MuroController extends Controller
                     }
                 }
 
-                if(isset($request["foto"]) && $request["tipo_post"] == 'gif') 
+                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'gif') 
                 {
                     $foto=$request["foto"];
 
@@ -131,9 +131,8 @@ class MuroController extends Controller
 
                     }
                 }
-
-                
             }
+            
             elseif(!isset($request["tipo_post"]))
             {
                 if(isset($request["foto"])) 
