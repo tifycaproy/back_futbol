@@ -12,7 +12,7 @@ use App\Referido;
 use App\Usuario;
 use App\Configuracion;
 use App\Noticia;
-
+use App\Videovr;
 
 
 class CompartirController extends Controller
@@ -199,8 +199,8 @@ class CompartirController extends Controller
     {
         $seccion='noticias';
         $seccion=Compartir::where('seccion',$seccion)->first();
-        $noticia=Noticia::find($id);
-        return view('compartir.videovr',['noticia'=>$noticia, 'seccion'=>$seccion]);
+        $videovr=Videovr::find($id);
+        return view('compartir.videovr',['videovr'=>$videovr, 'seccion'=>$seccion]);
     }
 }
 //videovr
