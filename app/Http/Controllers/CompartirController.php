@@ -172,7 +172,9 @@ class CompartirController extends Controller
 
     public function noticia($id)
     {
+        $seccion='noticias';
+        $seccion=Compartir::where('seccion',$seccion)->first();
         $noticia=Noticia::find($id);
-        return view('compartir.noticia',['noticia'=>$noticia]);
+        return view('compartir.noticia',['noticia'=>$noticia, 'seccion'=>$seccion]);
     }
 }

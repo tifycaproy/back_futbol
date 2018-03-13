@@ -51,8 +51,8 @@
                             <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
                 <!-- Texto-->
                             <p>&nbsp;</p> 
-                            <h2>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</h2>
-                            <h2 class=""><b>¡Y DISFRUTA DE LA EXPERIENCIA DEL BALLET AZUL EN CUALQUIER MOMENTO!</b></h2>
+                            <h2>{{ $seccion->footer1 }}</h2>
+                            <h2 class=""><b>{{ $seccion->footer2 }}</b></h2>
                             <p>&nbsp;</p> 
                         </div>
                     </div>
