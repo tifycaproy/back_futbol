@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Funciones Doradas
     Route::get('funciones_doradas', 'DoradosController@indexFunciones');
 
-//notiicas
+//noticias
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');
     Route::resource('noticias', 'NoticiasController');
@@ -117,6 +117,8 @@ Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 Route::get('compartir/usr/{id}', 'CompartirController@usuario');
+Route::get('compartir/noticia/{id}', 'CompartirController@noticia');
+
 //Route::get('compartir/alineacion', 'CompartirController@alineacion');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::get('borrar', 'BorrarController@borrar');

@@ -129,9 +129,8 @@ class MuroController extends Controller
 
                     }
                 }
-
-                
             }
+            
             elseif(!isset($request["tipo_post"]))
             {
                 if(isset($request["foto"])) 
