@@ -16,6 +16,31 @@ class BannersController extends Controller
         return view('banners.index')->with('banners',$banners);
     }
 
+    public function create()
+    {
+        $secciones_destino=[
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+        ];
+        return view('banners.create')->with('secciones_destino',$secciones_destino);
+    }
+
+    public function store(Request $request)
+    {
+
+        $filename = $this->saveFile($request->archivo, 'banners/');
+
+        $data=[
+            'titulo' => $request->titulo,
+            'target' => $request->target,
+            'url' => $request->url,
+            'seccion' => $request->seccion,
+            'seccion_destino' => $request->seccion_destino,
+            'foto' => $filename,
+        ];
+        $save = Banner::create($data);
+        return redirect()->route('banners.index');
+
+    }
 
     public function edit($id)
     {
