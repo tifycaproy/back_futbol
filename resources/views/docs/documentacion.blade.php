@@ -503,7 +503,7 @@ $data = array(
         "Ruta" => "/videos360",
         "Método" => "GET",
         "Éxito (Array)" => array(
-            "titulo", "descripcion", "foto", "video",
+            "id", "titulo", "descripcion", "foto", "video",
         ),
     ),
 //muro
