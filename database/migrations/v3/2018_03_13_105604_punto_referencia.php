@@ -13,7 +13,15 @@ class PuntoReferencia extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('punto_referencia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('cordx');
+            $table->text('cordy');
+            $table->text('descripcion');
+            $table->text('nombre');
+            $table->timestamps();
+            $table->softDeletes();
+        });    
     }
 
     /**
@@ -23,6 +31,6 @@ class PuntoReferencia extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('punto_referencia');    
     }
 }

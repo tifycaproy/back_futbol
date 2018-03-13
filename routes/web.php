@@ -130,3 +130,7 @@ Route::get('resetpassword/notfound', 'UsuariosPasswordController@notfound');
 Route::get('resetpassword/success', 'UsuariosPasswordController@success');
 Route::get('resetpassword', 'UsuariosPasswordController@show');
 Route::post('resetpassword', 'UsuariosPasswordController@update');
+
+//PUNTOREFERENCIA
+Route::resource('puntoreferencia', 'PuntoReferenciaController');
+
