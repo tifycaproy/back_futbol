@@ -135,4 +135,7 @@ Route::post('resetpassword', 'UsuariosPasswordController@update');
 
 //PUNTOREFERENCIA
 Route::resource('puntoreferencia', 'PuntoReferenciaController');
-
+Route::post('add_coorImg', 'PuntoReferenciaController@add_coorImg')->name('add_coorImg');
+Route::post('add_coor', 'PuntoReferenciaController@add_coor')->name('add_coor');
+Route::post('delete_coor', 'PuntoReferenciaController@delete_coor')->name('delete_coor');
+Route::get('puntoreferencia_eliminar/{id}', 'PuntoReferenciaController@destroy')->name('puntoreferencia_eliminar');

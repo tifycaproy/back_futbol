@@ -37,10 +37,10 @@
                 <tbody>
                 @foreach($pr as $punto)
                     <tr>
-                        <td><a href="{{ route('punto.edit', codifica($punto->id) ) }}" title="Editar">{{ $punto->usuario->nombre }}</a></td>
+                        <td><a href="{{ route('puntoreferencia.edit', codifica($punto->id) ) }}" title="Editar">{{ $punto->nombre }}</a></td>
                         <td>
-                            <a href="{{ route('punto.edit', codifica($punto->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
-                            <a href="{{ route('post_eliminar', codifica($punto->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                            <a href="{{ route('puntoreferencia.edit', codifica($punto->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                            <a href="{{ route('puntoreferencia_eliminar', codifica($punto->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
                         </td>
                     </tr>
                 @endforeach

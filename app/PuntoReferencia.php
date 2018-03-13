@@ -12,7 +12,7 @@ class PuntoReferencia extends Model
     protected $table = 'punto_referencia';
     protected $fillable = [ 'cordx', 'cordy', 'descripcion', 'nombre'];
 
-    function personal(){
+    function imagenes(){
 		return $this->hasMany('App\PuntoReferenciaImagen');
 	}
 }

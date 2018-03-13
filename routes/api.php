@@ -118,3 +118,6 @@ Route::post('suscripciones/cancelar', 'api\SuscripcionesController@cancelar');
 
 Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@statusSuscripcion');
 
+//Punto referencia
+Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia');
+

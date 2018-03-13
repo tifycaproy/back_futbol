@@ -13,7 +13,7 @@ class PuntoReferenciaImagen extends Model
     protected $table = 'punto_referencia_imagen';
     protected $fillable = [ 'descripcion', 'imagen', 'url', 'punto_referencia_id'];
 
-    function personal(){
+    function punto_referencia(){
 		return $this->belongsTo('App\PuntoReferencia','punto_referencia_id');
 	}
 }
