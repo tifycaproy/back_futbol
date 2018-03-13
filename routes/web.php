@@ -111,9 +111,8 @@ Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 Route::get('compartir/noticia/{id}', 'CompartirController@noticia');
-
-
 Route::get('compartir/partido/{id}', 'CompartirController@partido');
+Route::get('compartir/videovr/{id}', 'CompartirController@videovr');
 
 //Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::resource('compartir', 'CompartirController');

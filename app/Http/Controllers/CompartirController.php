@@ -183,8 +183,7 @@ class CompartirController extends Controller
         $seccion=Compartir::where('seccion',$seccion)->first();
 
         $data["status"]='exito';
-        $configuracion=Configuracion::first();
-        $fecha=$configuracion->partido_alineacion;
+        $fecha=Calendario::find($id);
         $data = [
             "equipo_1"=>$fecha->equipo1->nombre,
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
@@ -195,6 +194,13 @@ class CompartirController extends Controller
         ];
 
         return view('compartir.partido')->with("seccion",$seccion)->with("data",$data);
-
+    }
+    public function videovr($id)
+    {
+        $seccion='noticias';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $noticia=Noticia::find($id);
+        return view('compartir.videovr',['noticia'=>$noticia, 'seccion'=>$seccion]);
     }
 }
+//videovr
