@@ -11,6 +11,7 @@ use App\Compartir;
 use App\Referido;
 use App\Usuario;
 use App\Configuracion;
+use App\Noticia;
 
 
 
@@ -169,9 +170,10 @@ class CompartirController extends Controller
         return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre)->with('codigo_id',$idusuario);
     }
 
-    public function descargar()
+    public function noticia($id)
     {
-        return view('compartir.referidos.descargar');
+        $noticia=Noticia::find($id);
+        return view('compartir.noticia',['noticia'=>$noticia]);
     }
 
 }
