@@ -28,42 +28,46 @@
         </header>
         <!--contenido-->
         <div class="">
-            <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
-                <section class="row justify-content-center no-gutters ">    
-                    <!-- titulo-->
-                    <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                        <h1>{{ $noticia->titulo }}</h1>
+    <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
+        <section class="row justify-content-center no-gutters ">    
+            <!-- titulo-->
+            <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
+                <h1>{{ $noticia->titulo }}</h1>
+            </div>
+        </section>
+        <section class="row justify-content-center mt-3 no-gutters">
+            <!--<div class="col-12 col-lg-5 ">-->
+                <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
+                    <!-- Imagen-->
+                    @if($noticia->foto<>'') <img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" class="img-fluid" alt="">@endif
+                </div>
+            </section>
+
+            <section class="row justify-content-center mt-1 no-gutters">
+                <!--<div class="col-12 col-lg-5">-->
+                    <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
+                        <div class="texto mt-1 pl-4 pr-4">
+                            <!-- Texto-->
+                            <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
+                <!-- Texto-->
+                            <p>&nbsp;</p> 
+                            <h2>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</h2>
+                            <h2 class=""><b>¡Y DISFRUTA DE LA EXPERIENCIA DEL BALLET AZUL EN CUALQUIER MOMENTO!</b></h2>
+                            <p>&nbsp;</p> 
+                        </div>
                     </div>
                 </section>
-                <section class="row justify-content-center mt-3 no-gutters">
-                    <!--<div class="col-12 col-lg-5 ">-->
-                        <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
-                            <!-- Imagen-->
-                            @if($noticia->foto<>'') <img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" class="img-fluid" alt="">@endif
-                        </div>
-                    </section>
-
-                    <section class="row justify-content-center mt-1 no-gutters">
-                        <!--<div class="col-12 col-lg-5">-->
-                            <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
-                                <div class="texto mt-1 pl-4 pr-4">
-                                    <!-- Texto-->
-                                    <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
-                                    <p>&nbsp;</p> 
-                                </div>
-                            </div>
-                        </section>
-                        <section class="row justify-content-center no-gutters pb-1">
-                            <div class="col-6 col-xl-4 col-lg-4">
-                                <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="images/btn_appstore.svg" alt="" class="tiendas"></a>
-                            </div>
-                            <div class="col-6 col-xl-4 col-lg-4">
-                                <a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="images/btn_googleplay.svg" alt="" class="tiendas"></a>
-                            </div>
-                        </section>
+                <section class="row justify-content-center no-gutters pb-1">
+                    <div class="col-6 col-xl-4 col-lg-4">
+                        <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="images/btn_appstore.svg" alt="" class="tiendas"></a>
                     </div>
-                    <!-- fin contenido-->
-                </div>
-                <!-- FIN CONTENEDOR-->
+                    <div class="col-6 col-xl-4 col-lg-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.millonarios.MillonariosFC"><img src="images/btn_googleplay.svg" alt="" class="tiendas"></a>
+                    </div>
+                </section>
+            </div>
+            <!-- fin contenido-->
+        </div>
+        <!-- FIN CONTENEDOR-->
     </body>
 </html>
