@@ -136,8 +136,12 @@ class NoticiasController extends Controller
             ];
 
             $noticia = Noticia::where('id', $id)->first();
-            $this->deleteFile($noticia->foto, "noticias/");
-            $data['foto'] = $this->saveFile($request->archivo, "noticias/");
+
+            if ($request->archivo) {
+                $this->deleteFile($noticia->foto, "noticias/");
+                $data['foto'] = $this->saveFile($request->archivo, "noticias/");
+            }
+
             $noticia->update($data);
 
             /*$fileName = "";

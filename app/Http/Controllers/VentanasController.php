@@ -38,9 +38,12 @@ class VentanasController extends Controller
                 'footer2' => $request->footer2,
             ];
 
-            $this->deleteFile($compartir->foto, 'ventanas/');
-            $fileName = $this->saveFile($request->archivo, 'ventanas/');
-            $data['foto'] = $fileName;
+            if ($request->archivo) {
+                $this->deleteFile($compartir->foto, 'ventanas/');
+                $fileName = $this->saveFile($request->archivo, 'ventanas/');
+                $data['foto'] = $fileName;
+            }
+
             $compartir->update($data);
 
 
