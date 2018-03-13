@@ -24,6 +24,7 @@ class ConfiguracionController extends Controller
 
     public function configuracion_actualizar(Request $request)
     {
+
         $fileNameImgDorados = "";
         if ($request->fileNameImgDorados) {
             $foto = json_decode($request->fileNameImgDorados);
@@ -44,7 +45,6 @@ class ConfiguracionController extends Controller
             Configuracion::find(1)->update($data);
         }
         $fileName_foto = "";
-
         if ($request->patrocinante) {
             $foto = json_decode($request->patrocinante);
             $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
@@ -80,6 +80,26 @@ class ConfiguracionController extends Controller
                 'ACL' => 'public-read',
             ));
             $data = ['url_popup_dorado' => config('app.url').'configuracion/'.$fileNameImgPopupDorados];
+            Configuracion::find(1)->update($data);
+        }
+
+        $fileNamePopupInicial= "";
+        if ($request->popup_inicial) {
+            $foto = json_decode($request->popup_inicial);
+            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
+            $fileNamePopupInicial = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
+            $picture = $foto->output->image;
+            $filepath = 'configuracion/' . $fileNamePopupInicial;
+
+            $s3 = S3Client::factory(config('app.s3'));
+            $result = $s3->putObject(array(
+                'Bucket' => config('app.s3_bucket'),
+                'Key' => $filepath,
+                'SourceFile' => $picture,
+                'ContentType' => 'image',
+                'ACL' => 'public-read',
+            ));
+            $data = [ 'url_popup_inicial' => $fileNamePopupInicial];
             Configuracion::find(1)->update($data);
         }
 
@@ -148,7 +168,9 @@ class ConfiguracionController extends Controller
             'footer_formulario_dorados' => $request->footer_formulario_dorados,
             'texto_bienvenida_dorados' => $request->texto_bienvenida_dorados,
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,
-            'url_tyc_dorados' => $request->url_tyc_dorados
+            'url_tyc_dorados' => $request->url_tyc_dorados,
+            'act_pop_inicial' => $request->act_pop_inicial,
+            'link_pop_inicial' => $request->link_pop_inicial
         ];
 
         Configuracion::find(1)->update($data);

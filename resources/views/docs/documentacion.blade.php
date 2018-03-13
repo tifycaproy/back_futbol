@@ -221,6 +221,19 @@ $data = array(
             "error" => array("Error en validación de datos", "Email incorrecto")
         )
     ),
+    "Recuperar clave link" => array(
+        "Ruta" => "/recuperar_clave_link",
+        "Método" => "POST",
+        "Parámetros" => array(
+            "email" => "varchar(200) / requerido / único",
+        ),
+        "Éxito" => array(
+            "Se ha enviado un email con su link de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)",
+        ),
+        "Falla" => array(
+            "error" => array("Error en validación de datos", "Email incorrecto")
+        )
+    ),
     "Ingresar con pin" => array(
         "Ruta" => "/ingresar_con_pin",
         "Método" => "POST",
