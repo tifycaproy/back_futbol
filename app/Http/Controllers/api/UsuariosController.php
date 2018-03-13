@@ -286,7 +286,7 @@ class UsuariosController extends Controller
                 $usuario->update(['estatus' => 'Activo']);
                 return $result;
             } else {
-                $result = ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+                $result = ["status" => "fallo", "error" => ["Disculpa, PIN incorrecto"]];
                 return $result;
             }
         } catch (Exception $e) {
