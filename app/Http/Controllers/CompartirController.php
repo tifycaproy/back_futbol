@@ -182,7 +182,6 @@ class CompartirController extends Controller
         $seccion='calendario';
         $seccion=Compartir::where('seccion',$seccion)->first();
 
-
         $data["status"]='exito';
         $configuracion=Configuracion::first();
         $fecha=$configuracion->partido_alineacion;
@@ -195,7 +194,7 @@ class CompartirController extends Controller
 
         ];
 
-        return view('compartir.alineacion')->with("seccion",$seccion)->with("data",$data);
+        return view('compartir.partido')->with("seccion",$seccion)->with("data",$data);
 
     }
 }
