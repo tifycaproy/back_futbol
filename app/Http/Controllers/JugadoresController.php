@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Calendario;
 use App\Convocado;
 use App\Jugador;
+use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 
 class JugadoresController extends Controller
@@ -56,7 +57,7 @@ class JugadoresController extends Controller
                 ));
             }*/
 
-            $fileName_banner = $this->saveFile($request->foto, 'jugadores/');
+            $fileName_banner = $this->saveFile($request->banner, 'jugadores/');
 
             /*if($request->banner){
                 $foto=json_decode($request->banner);

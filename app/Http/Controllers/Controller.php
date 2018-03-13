@@ -18,7 +18,7 @@ class Controller extends BaseController
         if ($file) {
             $foto = json_decode($file);
             $extension = $foto->output->type == 'image/png' ? '.png' : '.jpg';
-            $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extension;
+            $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . (string)(rand(1, 9)) . $extension;
             $picture = $foto->output->image;
             $filepath = $path . $fileName;
 
@@ -27,7 +27,7 @@ class Controller extends BaseController
                 $extension = pathinfo($path, PATHINFO_EXTENSION);
                 $data = file_get_contents($path);
                 $picture = 'data:image/' . $extension . ';base64,' . base64_encode($data);
-                $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extension;
+                $fileName = (string)(date("YmdHis")) . (string)(rand(1, 9)) . (string)(rand(1, 9)) . $extension;
             }
 
             $s3 = S3Client::factory(config('app.s3'));
@@ -47,7 +47,6 @@ class Controller extends BaseController
     public function deleteFile($file, $path)
     {
         $s3 = S3Client::factory(config('app.s3'));
-
 
         $result = $s3->deleteObject(array(
             'Bucket' => config('app.s3_bucket'),

@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Funciones Doradas
     Route::get('funciones_doradas', 'DoradosController@indexFunciones');
 
-//notiicas
+//noticias
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');
     Route::resource('noticias', 'NoticiasController');
