@@ -93,10 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('documentacion', function () {
     return view('docs.documentacion');
 });
-//Fecha: 04012018//
-//agregado por ym. para el compartir referidos
-Route::resource('compartir', 'CompartirController');
-
+//Compartir 
 Route::get('compartir/alineacion/{ruta}', [
     'uses' => 'CompartirController@alineacion',
     'as' => 'compartir/alineacion'
@@ -110,17 +107,20 @@ Route::get('compartir/referidos/{codigo}/email', [
     'as' => 'compartir.email'
 ]);
 Route::get('descargar', 'CompartirController@descargar');
-
-Route::post('registro', 'api\UsuariosController@registro_usuario2');
-Route::post('auth_redes', 'api\UsuariosController@auth_redes');
-/////////////////////////////
 Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 Route::get('compartir/noticia/{id}', 'CompartirController@noticia');
 
-//Route::get('compartir/alineacion', 'CompartirController@alineacion');
-Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
+
+Route::get('compartir/partido/{id}', 'CompartirController@partido');
+
+//Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
+Route::resource('compartir', 'CompartirController');
+//fin compartir
+Route::post('registro', 'api\UsuariosController@registro_usuario2');
+Route::post('auth_redes', 'api\UsuariosController@auth_redes');
+
 Route::get('borrar', 'BorrarController@borrar');
 
 //Posts////
@@ -132,3 +132,6 @@ Route::get('resetpassword/notfound', 'UsuariosPasswordController@notfound');
 Route::get('resetpassword/success', 'UsuariosPasswordController@success');
 Route::get('resetpassword', 'UsuariosPasswordController@show');
 Route::post('resetpassword', 'UsuariosPasswordController@update');
+
+/*
+*/

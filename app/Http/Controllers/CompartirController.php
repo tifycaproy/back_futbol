@@ -177,4 +177,25 @@ class CompartirController extends Controller
         $noticia=Noticia::find($id);
         return view('compartir.noticia',['noticia'=>$noticia, 'seccion'=>$seccion]);
     }
+    public function partido($id)
+    {
+        $seccion='calendario';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+
+
+        $data["status"]='exito';
+        $configuracion=Configuracion::first();
+        $fecha=$configuracion->partido_alineacion;
+        $data = [
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "equipo_2"=>$fecha->equipo2->nombre,
+            "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "copa"=>$fecha->copa->titulo,
+
+        ];
+
+        return view('compartir.alineacion')->with("seccion",$seccion)->with("data",$data);
+
+    }
 }

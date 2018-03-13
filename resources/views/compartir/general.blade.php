@@ -51,6 +51,7 @@
                                     <!-- <p>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $seccion->descripcion) !!}</p> -->
                                     <h2>{{ $seccion->footer1 }}</h2>
                                     <h2 class="mt-1"><b>{{ $seccion->footer2 }}</b></h2>
+                                    <p>&nbsp;</p> 
                                 </div>
                             </div>
                         </section>
