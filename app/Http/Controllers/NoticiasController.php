@@ -135,10 +135,10 @@ class NoticiasController extends Controller
                 'tipo' => $request->tipo,
             ];
 
-            $noticia = Noticia::find($id)->first();
+            $noticia = Noticia::where('id', $id)->first();
             $this->deleteFile($noticia->foto, "noticias/");
             $data['foto'] = $this->saveFile($request->archivo, "noticias/");
-            Noticia::find($id)->update($data);
+            $noticia->update($data);
 
             /*$fileName = "";
             if ($request->archivo) {
@@ -170,7 +170,6 @@ class NoticiasController extends Controller
                 ));
                 $data['foto'] = $fileName;
             }*/
-            Noticia::find($id)->update($data);
             return redirect()->route('noticias.edit', codifica($id))->with("notificacion", "Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
@@ -180,12 +179,15 @@ class NoticiasController extends Controller
     }
 
     public function destroy($id)
+
     {
+
         $id = decodifica($id);
+
         try {
-            $noticia = Noticia::find($id)->first();
+            $noticia = Noticia::where('id', $id)->first();
             $this->deleteFile($noticia->foto, "noticias/");
-            Noticia::find($id)->delete();
+            $noticia->delete();
             return redirect()->route('noticias.index');
         } catch (\Illuminate\Database\QueryException $e) {
             return back()->with("notificacion_error", "Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");

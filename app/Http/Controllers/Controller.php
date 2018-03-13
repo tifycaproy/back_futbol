@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Aws\S3\S3Client;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
@@ -48,9 +48,10 @@ class Controller extends BaseController
     {
         $s3 = S3Client::factory(config('app.s3'));
 
-        $s3->deleteObject(array(
+
+        $result = $s3->deleteObject(array(
             'Bucket' => config('app.s3_bucket'),
-            'Key' => $path.$file
+            'Key' => $path . $file
         ));
     }
 
