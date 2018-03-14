@@ -15,6 +15,7 @@ class PuntoReferenciaController extends Controller
     	$data["data"]=[];
     	foreach (PuntoReferencia::all() as $punto ) {
     		$data["data"][]=[
+                'titulo'=>$punto->nombre,
                 'latitud'=>$punto->cordx,
                 'longitud'=>$punto->cordy,
                 'fecha'=>$punto->created_at->toDateTimeString(),
