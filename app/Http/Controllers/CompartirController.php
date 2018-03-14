@@ -204,7 +204,7 @@ class CompartirController extends Controller
     }
     public function jugador($id)
     {
-        $seccion='jugador';
+        $seccion='jugador_aplausos';
         $seccion=Compartir::where('seccion',$seccion)->first();
         $jugador=Jugador::find($id);
         $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
@@ -221,6 +221,13 @@ class CompartirController extends Controller
     public function jugador_single($id)
     {
         $seccion='jugador';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+        return view('compartir.jugador_single',['jugador'=>$jugador, 'seccion'=>$seccion]);
+    }
+    public function tueliges($id)
+    {
+        $seccion='tueliges';
         $seccion=Compartir::where('seccion',$seccion)->first();
         $jugador=Jugador::find($id);
         return view('compartir.jugador_single',['jugador'=>$jugador, 'seccion'=>$seccion]);
