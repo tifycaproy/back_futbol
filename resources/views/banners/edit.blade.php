@@ -46,9 +46,9 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group" id="partido">
+            <div class="form-group" hidden="hidden" id="partido">
                 <label>Partido asociado</label>
-                <select name="partido" id="partido" class="form-control">
+                <select name="partido"  id="partido" class="form-control">
                     <option value="0">No aplica</option>
                     @foreach($partidos as $partido)
                     <option value="{{ $partido->id }}"@if(old('partido', $banner->partido)==$partido->id) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group" id="partidofb">
+            <div class="form-group" hidden="hidden" id="partidofb">
                 <label>Partido Futbol Base asociado</label>
                 <select name="partidofb" id="partidofb" class="form-control">
                     <option value="0">No aplica</option>
@@ -140,22 +140,22 @@
 @section('javascript')
 <script type="text/javascript">
 $(document).ready(function(){
-    var type = $('#type').val();
-    if(type == 'Publicitario') {
-        $("#partido").hide();
-        $("#partidofb").hide();
-    }
     setTimeout(function(){
         $(".alert").slideUp(500);
     },10000)
+    if(type == 'Partido') {
+        $("#partido").show();
+        $("#partidofb").show();
+    }
+
 
     $('#type').on('change', function(e){
         var type = $('#type').val();
-        if(type == 'Partido') {
+        if(type == 'Partido' ) {
             $("#partido").show();
             $("#partidofb").show();
         }
-        if(type == 'Publicitario') {
+        if(type == 'Publicitario' || type == 'Seleccione') {
             $('select#partidofb option[value="0"]').attr("selected", true);
             $('select#partido option[value="0"]').attr("selected", true);
             $("#partido").hide();
