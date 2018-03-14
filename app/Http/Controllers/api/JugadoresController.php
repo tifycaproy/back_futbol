@@ -126,6 +126,7 @@ class JugadoresController extends Controller
     {
         $request=json_decode($request->getContent());
         $request=get_object_vars($request);
+
         try{
             //Validaciones
             $errors=[];
@@ -135,16 +136,18 @@ class JugadoresController extends Controller
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
-            if(Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
-                return ["status" => "fallo", "error" => ["Ya aplaudiste a este jugador en este partido"]];
+            if($aplauso=Aplauso::where('jugadores_id',$request["idjugador"])->where('calendario_id',$request["idpartido"])->where('imei',$request["imei"])->first()){
+                $aplauso->delete();
+            }else{
+                Aplauso::create([
+                    'jugadores_id'=>$request["idjugador"],
+                    'calendario_id'=>$request["idpartido"],
+                    'imei'=>$request["imei"],
+                ]);
             }
 
             //fin validaciones
-            Aplauso::create([
-                'jugadores_id'=>$request["idjugador"],
-                'calendario_id'=>$request["idpartido"],
-                'imei'=>$request["imei"],
-            ]);
+            
 
             return ["status" => "exito"];
         } catch (Exception $e) {
