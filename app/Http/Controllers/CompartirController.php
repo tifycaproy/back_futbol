@@ -14,6 +14,7 @@ use App\Configuracion;
 use App\Noticia;
 use App\Videovr;
 use App\Aplauso;
+use App\EncuestaRespuesta;
 
 class CompartirController extends Controller
 {
@@ -229,8 +230,8 @@ class CompartirController extends Controller
     {
         $seccion='tueliges';
         $seccion=Compartir::where('seccion',$seccion)->first();
-        $jugador=Jugador::find($id);
-        return view('compartir.jugador_single',['jugador'=>$jugador, 'seccion'=>$seccion]);
+        $respuesta=EncuestaRespuesta::find($id);
+        return view('compartir.tueliges',['respuesta'=>$respuesta, 'seccion'=>$seccion]);
     }
 }
 //

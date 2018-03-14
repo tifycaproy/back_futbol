@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}</title>
-    <meta name=“viewport” content=“width=device-width, initial-scale=1">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
@@ -36,33 +35,17 @@
                     <h1>{{ $seccion->titulo }}</h1>
                 </div>
             </section>
-            <section class="row justify-content-center no-gutters">
-                <section class="col-12 no-gutters">
-                <div class="row align-items-center justify-content-center no-gutters">
-                    <div class="col-3 col-xl-2 col-lg-2">
-                        <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
-                        <h4>{{ $data['equipo_1'] }}</h4>
-                    </div>
-                    
-                        <h1 class="ml-5 mr-5">Vs</h1>
-                
-                    <div class="col-3 col-xl-3 col-lg-3">
-                        <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
-                        <p class="texto">{{ $data['equipo_2'] }}</p>
-                    </div>
-                    <div class="col-12">
-                        <p class="texto">{{ $data['copa'] }}</p>
-                    </div>
-                </div>
-            </section>
-                <div class="col-12 col-md-10 col-lg-5 col-xl-4 pl-2 pr-2 ">
-                    <!-- Imagen-->
-                    <img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">
-                </div>
-            </section>
             <section class="row justify-content-center mt-1 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4">
                     <div class="texto pl-4 pr-4">
+                        @if($respuesta->banner<>'') <img src="{{ config('app.url') . 'respuestas/' . $respuesta->banner }}" class="img-fluid" alt="">@endif
+                        <div class="votos">
+                            <ul>
+                                <li><img src="{{ asset('compartir/images/Icon_pulgar.png') }}"></li>
+                                <li>TOTAL VOTOS</li>
+                                <li><h3>{{ $respuesta->votos }}</h3></li>
+                            </ul>
+                        </div>
                         <!-- Texto-->
                         <h2>{{ $seccion->footer1 }}</h2>
                         <h2 class=""><b>{{ $seccion->footer2 }}</b></h2>
