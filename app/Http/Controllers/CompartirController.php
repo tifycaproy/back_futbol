@@ -207,10 +207,7 @@ class CompartirController extends Controller
         $seccion='jugador';
         $seccion=Compartir::where('seccion',$seccion)->first();
         $jugador=Jugador::find($id);
-
-
         $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
-
         $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
         if($idcalendario==0){
             if($partidoaaplaudor=Aplauso::orderby('created_at','desc')->first(['calendario_id'])){
@@ -218,12 +215,15 @@ class CompartirController extends Controller
             }
         }
         $jugador->apalusos_ultimo_partido = Aplauso::where('calendario_id',$idcalendario)->where('jugadores_id',$id)->count();
-
         $jugador->aplausos_acumulado=Aplauso::where('jugadores_id',$id)->count();
-
-
-
         return view('compartir.jugador',['jugador'=>$jugador, 'seccion'=>$seccion]);
     }
+    public function jugador_single($id)
+    {
+        $seccion='jugador';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+        return view('compartir.jugador_single',['jugador'=>$jugador, 'seccion'=>$seccion]);
+    }
 }
-//videovr
+//
