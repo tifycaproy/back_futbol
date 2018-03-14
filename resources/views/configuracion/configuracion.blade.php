@@ -646,10 +646,28 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Link Popup</label>
+                    <label>URL Popup</label>
                     <input type="text" class="form-control" name="link_pop_inicial"
                            value="{{ $configuracion->link_pop_inicial }}" maxlength="200">
                 </div>
+                <div class="form-group">
+                    <label>Target</label>
+                    <select name="target_popup" class="form-control">
+                        <option value="Interno"  @if($configuracion->target_popup == "Interno") selected @endif>Interno</option>
+                        <option value="Externo"  @if($configuracion->target_popup == "Externo") selected @endif>Externo</option>
+                        <option value="Seccion"  @if($configuracion->target_popup == "Seccion") selected @endif>Seccion</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Sección destino</label>
+                    <select name="seccion_destino_popup" class="form-control">
+                        @foreach($secciones_destino as $seccion_destino)
+                            <option value="{{$seccion_destino}}" @if($configuracion->seccion_destino_popup == $seccion_destino) selected @endif>{{$seccion_destino}}</option>
+                        @endforeach
+                    </select>
+                </div>
+             
 
             </div>
         </div>

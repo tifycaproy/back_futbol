@@ -11,15 +11,18 @@ use App\BeneficiosDorados;
 use App\RazonesCancelarSuscripciones;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
-
+use App\Banner;
 class ConfiguracionController extends Controller
 {
 
     public function index()
     {
+        $secciones_destino=[
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+        ];
         $configuracion = Configuracion::first();
         $partidos = Calendario::where("equipo_1", 1)->orwhere('equipo_2', 1)->orderby('fecha', 'desc')->get();
-        return view('configuracion.configuracion')->with('configuracion', $configuracion)->with('partidos', $partidos);
+        return view('configuracion.configuracion')->with('configuracion', $configuracion)->with('partidos', $partidos)->with('secciones_destino',$secciones_destino);;
     }
 
     public function configuracion_actualizar(Request $request)
@@ -170,7 +173,9 @@ class ConfiguracionController extends Controller
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,
             'url_tyc_dorados' => $request->url_tyc_dorados,
             'act_pop_inicial' => $request->act_pop_inicial,
-            'link_pop_inicial' => $request->link_pop_inicial
+            'link_pop_inicial' => $request->link_pop_inicial,
+            'target_popup' => $request->target_popup,
+            'seccion_destino_popup' => $request->seccion_destino_popup
         ];
 
         Configuracion::find(1)->update($data);
