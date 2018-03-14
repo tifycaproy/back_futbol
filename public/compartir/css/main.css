@@ -92,6 +92,11 @@ input {
     padding: 0 2% !important;
     }
 
+.ul_aplausos{list-style:none; margin:20px auto; padding:0; height: 70px; width: 320px; display: table;}
+.ul_aplausos li{height: 70px; display: table-cell; vertical-align: middle; width: 160px; text-align: center;}
+.ul_aplausos li:first-child{background: #fff; color: #8A7B52; border-radius: 5px 0 0 5px; font-size: 10px;}
+.ul_aplausos li:last-child{background: #161F3D; border-radius: 0 5px 5px 0; font-size: 10px;}
+
 /* Ordenadores de sobremesa y portÃ¡tiles */
 @media only screen
 and (min-width: 1024px) {

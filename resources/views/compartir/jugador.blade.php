@@ -49,8 +49,11 @@
                         <div class="texto mt-1 pl-4 pr-4">
                             <!-- Texto-->
                             <p>{!! nl2br($jugador->descripcion) !!}</p>
+                            <ul class="ul_aplausos">
+                                <li>Aplausos último partido<h3>{{ $jugador->apalusos_ultimo_partido }}</h3></li>
+                                <li>Historial de aplausos<h3>{{ $jugador->aplausos_acumulado }}</h3></li>
+                            </ul>
                 <!-- Texto-->
-                            <p>&nbsp;</p> 
                             <h2>{{ $seccion->footer1 }}</h2>
                             <h2 class="mt-1"><b>{{ $seccion->footer2 }}</b></h2>
                             <p>&nbsp;</p> 
