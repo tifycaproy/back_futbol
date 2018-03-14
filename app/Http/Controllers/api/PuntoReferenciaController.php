@@ -11,7 +11,18 @@ class PuntoReferenciaController extends Controller
 
     public function punto_referencia()
     {
-        return PuntoReferencia::with(['imagenes'])->orderBy('id', 'Desc');
+    	$data["status"]='exito';
+    	$data["data"]=[];
+    	foreach (PuntoReferencia::all() as $punto ) {
+    		$data["data"][]=[
+                'latitud'=>$punto->cordx,
+                'longitud'=>$punto->cordy,
+                'fecha'=>$punto->created_at->toDateTimeString(),
+                'imagenes' => $punto->imagenes
+            ];
+
+    	}
+        return $data;
     }
 
 }
