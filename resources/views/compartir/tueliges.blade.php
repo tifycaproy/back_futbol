@@ -15,7 +15,7 @@
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}" />
     <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->descripcion) !!}" />
-    <meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
+    @if($respuesta->banner<>'')<meta property="og:image"              content="{{ config('app.url') . 'respuestas/' . $respuesta->banner }}" />@endif
   
 </head>
 <body>
