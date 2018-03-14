@@ -202,5 +202,12 @@ class CompartirController extends Controller
         $videovr=Videovr::find($id);
         return view('compartir.videovr',['videovr'=>$videovr, 'seccion'=>$seccion]);
     }
+    public function jugador($id)
+    {
+        $seccion='jugador';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+        return view('compartir.jugador',['jugador'=>$jugador, 'seccion'=>$seccion]);
+    }
 }
 //videovr
