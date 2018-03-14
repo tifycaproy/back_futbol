@@ -286,7 +286,7 @@ class UsuariosController extends Controller
                 $usuario->update(['estatus' => 'Activo']);
                 return $result;
             } else {
-                $result = ["status" => "fallo", "error" => ["email o pin incorrectos"]];
+                $result = ["status" => "fallo", "error" => ["Disculpa, PIN incorrecto"]];
                 return $result;
             }
         } catch (Exception $e) {
@@ -760,4 +760,29 @@ class UsuariosController extends Controller
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intente de nuevo"]];
         }
     }
+
+    public function actualizarNotificacionToken(Request $request)
+    {
+        //Traemos el token de usuario
+        $tokenUsuario = $request->token;
+        //Traemos la notificacionToken
+        $notificacionToken = $request->$notificacionToken;
+        //Traemos el id según el token
+        $idUsuario = decodifica_token($tokenUsuario);
+        //Buscamos al usuario
+        $usuario = Usuario::where('id',$idUsuario)->first();
+        if(!$usuario){
+            //Si no existe, retornamos error
+         return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
+         }
+        else 
+        {
+            //Si existe, actualizamos el token y guardamos
+            $usuario->notificacionToken = $notificacionToken;
+            $usuario->save();
+            return ["status" => "exito"];
+        }
+
+
+ }
 }

@@ -19,11 +19,12 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
      {
-        
-        if($request["tipo_post"] != 'video') {
+        ;
+        if($request["tipo_post"] != 'video' || !isset($request["tipo_post"])) {
+
             $request1=json_decode($request->getContent());
             $request1=get_object_vars($request1);
-
+            
             if(!isset($request1["token"])) {
                 return $next($request);
             }
@@ -31,7 +32,7 @@ class UserDoradoMiddleware
             $request1["token"] = $request["token"];
         }
 
-        $token = $request1["token"];
+        $token = $request["token"];
         $token = decodifica_token($token);
 
         $usuario = Usuario::where('id',$token)->first();
