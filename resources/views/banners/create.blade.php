@@ -36,6 +36,39 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
+                <label>Tipo Banner</label>
+                <select name="type" id="type" class="form-control">
+                    <option value="Publicitario">Publicitario</option>
+                    <option value="Partido">Partido</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group" id="partido">
+                <label>Partido asociado</label>
+                <select name="partido"  class="form-control">
+                    <option value="0">No aplica</option>
+                    @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticia')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group" id="partidofb">
+                <label>Partido Futbol Base asociado</label>
+                <select name="partidofb"  class="form-control">
+                    <option value="0">No aplica</option>
+                    @foreach($partidosfb as $partido)
+                    <option value="{{ $partido->id }}"@if($partido->id==old('id_calendario_noticiafb')) selected @endif>{{$partido->equipo1->nombre}} Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }} - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
                 <label>Título</label>
                 <input type="text" class="form-control" name="titulo"  maxlength="100">
             </div>
@@ -98,9 +131,23 @@
 @section('javascript')
 <script type="text/javascript">
 $(document).ready(function(){
+    $("#partido").hide();
+    $("#partidofb").hide();
     setTimeout(function(){
         $(".alert").slideUp(500);
     },10000)
+
+    $('#type').on('change', function(e){
+        var type = $('#type').val();
+        if(type == 'Partido') {
+            $("#partido").show();
+            $("#partidofb").show();
+        }else{
+            $("#partido").hide();
+            $("#partidofb").hide();
+        }
+
+    });
 })
 </script>
 

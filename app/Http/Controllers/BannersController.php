@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 @session_start();
 use Illuminate\Http\Request;
 use Aws\S3\S3Client;
-
+use App\Calendario;
+use App\Calendariofb;
 use App\Banner;
 
 class BannersController extends Controller
@@ -21,7 +22,9 @@ class BannersController extends Controller
         $secciones_destino=[
             '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
         ];
-        return view('banners.create')->with('secciones_destino',$secciones_destino);
+        $partidos = Calendario::orderby('fecha', 'desc')->get();
+        $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
+        return view('banners.create')->with('secciones_destino',$secciones_destino)->with('partidos', $partidos)->with('partidosfb', $partidosfb);
     }
 
     public function store(Request $request)
@@ -36,6 +39,10 @@ class BannersController extends Controller
             'seccion' => $request->seccion,
             'seccion_destino' => $request->seccion_destino,
             'foto' => $filename,
+            'type' => $request->type,
+            'partido' => $request->partido,
+            'partidofb' => $request->partidofb,
+
         ];
         $save = Banner::create($data);
         return redirect()->route('banners.index');
