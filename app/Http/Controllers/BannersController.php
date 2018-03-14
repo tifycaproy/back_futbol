@@ -56,7 +56,9 @@ class BannersController extends Controller
         $secciones_destino=[
             '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
         ];
-        return view('banners.edit')->with('banner',$banner)->with('secciones_destino',$secciones_destino);
+        $partidos = Calendario::orderby('fecha', 'desc')->get();
+        $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
+        return view('banners.edit')->with('banner',$banner)->with('secciones_destino',$secciones_destino)->with('partidos', $partidos)->with('partidosfb', $partidosfb);
     }
 
     public function update(Request $request, $id)
@@ -68,7 +70,11 @@ class BannersController extends Controller
                 'titulo' => $request->titulo,
                 'target' => $request->target,
                 'url' => $request->url,
+                'seccion' => $request->seccion,
                 'seccion_destino' => $request->seccion_destino,
+                'type' => $request->type,
+                'partido' => $request->partido,
+                'partidofb' => $request->partidofb,
             ];
             $fileName = "";
             if($request->archivo){
