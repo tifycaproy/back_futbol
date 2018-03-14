@@ -10,12 +10,12 @@
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
     <script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
-    <title>{{ $noticia->titulo }}</title>
+    <title>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content={{ $noticia->titulo }}" />
-    <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $noticia->descripcion) !!}" />
-    @if($noticia->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $noticia->foto }}" />@endif
+    <meta property="og:title"              content="{{ $jugador->nombre }}" />
+    <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $jugador->descripcion) !!}" />
+    @if($jugador->banner<>'') <meta property="og:image"              content="{{ config('app.url') . 'videosvr/' . $jugador->banner }}" />@endif
 </head>
 <body>
     <!--CONTENEDOR-->
@@ -32,14 +32,14 @@
         <section class="row justify-content-center no-gutters ">    
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                <h1>{{ $noticia->titulo }}</h1>
+                <h1 style="font-size: 22px;">&#x7B;&#x7B; {!! nl2br($seccion->titulo) !!} &#x7D;&#x7D;</h1>
             </div>
         </section>
         <section class="row justify-content-center mt-3 no-gutters">
             <!--<div class="col-12 col-lg-5 ">-->
                 <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
                     <!-- Imagen-->
-                    @if($noticia->foto<>'') <img src="{{ config('app.url') . 'noticias/' . $noticia->foto }}" class="img-fluid" alt="">@endif
+                    @if($jugador->banner<>'') <img src="{{ config('app.url') . 'jugadores/' . $jugador->banner }}" class="img-fluid" alt="">@endif
                 </div>
             </section>
 
@@ -48,9 +48,12 @@
                     <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
                         <div class="texto mt-1 pl-4 pr-4">
                             <!-- Texto-->
-                            <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
+                            <p>{!! nl2br($jugador->descripcion) !!}</p>
+                            <ul class="ul_aplausos">
+                                <li>Aplausos último partido<h3>{{ $jugador->apalusos_ultimo_partido }}</h3></li>
+                                <li>Historial de aplausos<h3>{{ $jugador->aplausos_acumulado }}</h3></li>
+                            </ul>
                 <!-- Texto-->
-                            <p>&nbsp;</p> 
                             <h2>{{ $seccion->footer1 }}</h2>
                             <h2 class="mt-1"><b>{{ $seccion->footer2 }}</b></h2>
                             <p>&nbsp;</p> 

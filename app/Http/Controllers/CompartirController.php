@@ -13,7 +13,7 @@ use App\Usuario;
 use App\Configuracion;
 use App\Noticia;
 use App\Videovr;
-
+use App\Aplauso;
 
 class CompartirController extends Controller
 {
@@ -201,6 +201,29 @@ class CompartirController extends Controller
         $seccion=Compartir::where('seccion',$seccion)->first();
         $videovr=Videovr::find($id);
         return view('compartir.videovr',['videovr'=>$videovr, 'seccion'=>$seccion]);
+    }
+    public function jugador($id)
+    {
+        $seccion='jugador';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+
+
+        $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
+
+        $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
+        if($idcalendario==0){
+            if($partidoaaplaudor=Aplauso::orderby('created_at','desc')->first(['calendario_id'])){
+                $idcalendario=$partidoaaplaudor->calendario_id;
+            }
+        }
+        $jugador->apalusos_ultimo_partido = Aplauso::where('calendario_id',$idcalendario)->where('jugadores_id',$id)->count();
+
+        $jugador->aplausos_acumulado=Aplauso::where('jugadores_id',$id)->count();
+
+
+
+        return view('compartir.jugador',['jugador'=>$jugador, 'seccion'=>$seccion]);
     }
 }
 //videovr
