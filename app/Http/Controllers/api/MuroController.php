@@ -113,7 +113,7 @@ class MuroController extends Controller
 
                     if($foto<>'')
                     {
-                        list($tipo, $Base64Img) = explode(';', $foto);
+                       /* list($tipo, $Base64Img) = explode(';', $foto);
                         $extension='.gif';
                         $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extension;
                         $filepath='posts/' . $request["foto"];
@@ -126,7 +126,7 @@ class MuroController extends Controller
                             'ContentType' => 'image/gif',
                             'ACL' => 'public-read',
                         ));
-
+                        */
                     }
                 }
             }
