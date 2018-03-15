@@ -174,7 +174,12 @@ class MuroController extends Controller
             if($post->foto<>''){
                 if($post->tipo_post == "video"){
                     $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
-                }else{
+                } 
+                else if ($post->tipo_post == "gif")
+                {
+                    $post->foto = $post->foto;
+                }
+                else{
                     $post->foto=config('app.url') . 'posts/' . $post->foto;
                 }
             } 
