@@ -21,7 +21,7 @@ class MuroController extends Controller
      */
     public function postear(Request $request)
     {
-        
+
         if($request["tipo_post"] != 'video') {
             $request=json_decode($request->getContent());
             $request=get_object_vars($request);
@@ -70,7 +70,7 @@ class MuroController extends Controller
                             $muro->mensaje = $request["mensaje"];
                             $muro->foto = $nombre;
                             $muro->tipo_post = 'video';
-                                $muro->save();
+                            $muro->save();
                             return ["status" => "exito", "data" => []];
                         }else{
                             return ["status" => "Peso no permitido", "error" => $errors];
@@ -113,20 +113,13 @@ class MuroController extends Controller
 
                     if($foto<>'')
                     {
-                       /* list($tipo, $Base64Img) = explode(';', $foto);
-                        $extension='.gif';
-                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extension;
-                        $filepath='posts/' . $request["foto"];
-
-                        $s3 = S3Client::factory(config('app.s3'));
-                        $result = $s3->putObject(array(
-                            'Bucket' => config('app.s3_bucket'),
-                            'Key' => $filepath,
-                            'SourceFile' => $foto,
-                            'ContentType' => 'image/gif',
-                            'ACL' => 'public-read',
-                        ));
-                        */
+                        $muro = new Muro();
+                        $muro->usuario_id = $idusuario;
+                        $muro->mensaje = $request["mensaje"];
+                        $muro->foto = $foto;
+                        $muro->tipo_post = 'gif';
+                        $muro->save();
+                        return ["status" => "exito", "data" => []];
                     }
                 }
             }
