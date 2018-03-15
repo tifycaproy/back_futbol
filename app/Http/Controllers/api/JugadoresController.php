@@ -24,6 +24,7 @@ class JugadoresController extends Controller
         foreach ($judadores as $jugador) {
             $data['data'][] = [
                 'idjugador' => $jugador->id,
+                "nombre" => $jugador->nombre,
                 "banner" => config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
@@ -31,6 +32,7 @@ class JugadoresController extends Controller
         foreach ($judadores as $jugador) {
             $data['data'][] = [
                 'idjugador' => $jugador->id,
+                "nombre" => $jugador->nombre,
                 "banner" => config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
@@ -38,6 +40,7 @@ class JugadoresController extends Controller
         foreach ($judadores as $jugador) {
             $data['data'][] = [
                 'idjugador' => $jugador->id,
+                "nombre" => $jugador->nombre,
                 "banner" => config('app.url') . 'jugadores/' . $jugador->banner,
             ];
         }
