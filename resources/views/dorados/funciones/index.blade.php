@@ -1,3 +1,5 @@
+
+
 @extends('layouts.admin')
 
 @section('content')
@@ -19,40 +21,44 @@
         <div class="alert alert-danger">{{ $notificacion_error }}</div>
         @endif
     </div>
-  
-    </div>
 
-    <div class="row">
-        <div class="col-lg-12"><!-- class tr active success warning danger -->
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Funcion</th>
-                            <th>Solo Dorado</th>
-                            <th>Guardar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($funciones as $funcion)
-                        <form action="{{ url('api/funcionesdoradas/' . $funcion->id . '/edit') }}" method="POST" class="">
-                            {{ csrf_field() }}
-                            <tr>
-                                <td>{{$funcion->nombre}}</td>
-                                <td><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($funcion->solo_dorado == true) checked=checked @endif ></td>
-                                 <td>
+</div>
 
-                                    <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+<div class="row">
+    <div class="col-lg-12"><!-- class tr active success warning danger -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Funcion</th>
+                    <th>Solo Dorado</th>
+                    <th>Max Dorado</th>
+                    <th>Max Normal</th>
+                    <th>Guardar</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($funciones as $funcion)
+                <form action="{{ url('api/funcionesdoradas/' . $funcion->id . '/edit') }}" method="POST" class="">
+                    {{ csrf_field() }}
+                    <tr>
+                        <td>{{$funcion->nombre}}</td>
+                        <td><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($funcion->solo_dorado == true) checked=checked @endif ></td>
 
-                                </td>
-                            </tr>
-                        </form>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        <td> @if($funcion->solo_dorado == true)<input name="max_dorado" id="max_dorado"  type="number" value="{{ old('max_dorado', $funcion->max_dorado) }}" >@endif
+                            @if($funcion->solo_dorado == false)<input name="max_dorado" id="max_dorado"  disabled="disabled" type="number" value="{{ old('max_dorado', $funcion->max_dorado) }}" >@endif
+                        </td>
+                        <td>@if($funcion->solo_dorado == true)<input name="max_normal" id="max_normal" disabled="disabled"  type="number" value="{{ old('max_dorado', $funcion->max_normal) }}">@endif
+                            @if($funcion->solo_dorado == false)<input name="max_normal" id="max_normal" type="number" value="{{ old('max_dorado', $funcion->max_normal) }}">@endif
+                        </td>
+                        <td><input type="submit" class="btn btn-primary btn-sm" value="Guardar"></td>
+                    </tr>
+                </form>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-    @endsection
-
+</div>
+@endsection
 
