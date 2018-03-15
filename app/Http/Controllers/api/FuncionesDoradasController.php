@@ -8,20 +8,26 @@ use Illuminate\Http\Request;
 
 class FuncionesDoradasController extends Controller
 {
- public function editarFuncion(Request $request,$idfuncion)
+    public function editarFuncion(Request $request,$idfuncion)
     {
+
         if($request->has('solo_dorado'))
         {
-     		$funcion = FuncionesDoradas::find($idfuncion);
-     		$funcion->solo_dorado = true;
-     		$funcion->save();
-     		return redirect()->to('/funciones_doradas'); 
+            $funcion = FuncionesDoradas::find($idfuncion);
+            $funcion->solo_dorado = true;
+            $funcion->max_dorado = $request->max_dorado;
+            $funcion->max_normal = $request->max_normal;
+            $funcion->save();
+            return redirect()->to('/funciones_doradas');
         }
         else{
-        	$funcion = FuncionesDoradas::find($idfuncion);
-     		$funcion->solo_dorado = false;
-     		$funcion->save(); 	
- 	        return redirect()->to('/funciones_doradas');
+
+            $funcion = FuncionesDoradas::find($idfuncion);
+            $funcion->solo_dorado = false;
+            $funcion->max_dorado = $request->max_dorado;
+            $funcion->max_normal = $request->max_normal;
+            $funcion->save();
+            return redirect()->to('/funciones_doradas');
         }
 
     }
