@@ -167,7 +167,6 @@ class ConfiguracionController extends Controller
             'tit_16_3_4' => $request->tit_16_3_4,
             'video_referidos' => $request->video_referidos,
             'terminos_referidos' => $request->terminos_referidos,
-
             'footer_formulario_dorados' => $request->footer_formulario_dorados,
             'texto_bienvenida_dorados' => $request->texto_bienvenida_dorados,
             'video_de_bienvenida_dorados' => $request->video_de_bienvenida_dorados,
@@ -175,7 +174,8 @@ class ConfiguracionController extends Controller
             'act_pop_inicial' => $request->act_pop_inicial,
             'link_pop_inicial' => $request->link_pop_inicial,
             'target_popup' => $request->target_popup,
-            'seccion_destino_popup' => $request->seccion_destino_popup
+            'seccion_destino_popup' => $request->seccion_destino_popup,
+            'id_partido_banner' => $request->id_partido_banner,
         ];
 
         Configuracion::find(1)->update($data);

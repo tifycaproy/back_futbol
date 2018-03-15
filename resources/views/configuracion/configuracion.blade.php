@@ -80,6 +80,19 @@
                     </select>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <label>Banner Partido</label>
+                <select name="id_partido_banner" class="form-control">
+                    @foreach($partidos as $partido)
+                    <option value="{{ $partido->id }}"
+                            @if($partido->id==$configuracion->id_partido_banner) selected @endif>{{$partido->equipo1->nombre}}
+                        Vs {{$partido->equipo2->nombre}} - {{ $partido->estado }}
+                        - {{ date('d/m/Y H:n',strtotime($partido->fecha)) }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
         </div>
         <div class="row">
             <div class="col-lg-12">
