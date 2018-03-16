@@ -23,7 +23,6 @@ class PuntoReferenciaController extends Controller
         return view('mapa.PuntoReferencia')->with('id',null);
     }
 
-
     public function store(Request $request)
     {
         if($request->id != null){
@@ -43,7 +42,6 @@ class PuntoReferenciaController extends Controller
     {
         return view('mapa.PuntoReferencia')->with('pr',PuntoReferencia::find(decodifica($id)));
     }
-
 
     public function edit($id)
     {

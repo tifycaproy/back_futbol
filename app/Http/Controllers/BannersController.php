@@ -13,7 +13,7 @@ class BannersController extends Controller
 {
     public function index()
     {
-       $banners=Banner::paginate(25);
+        $banners=Banner::paginate(25);
         return view('banners.index')->with('banners',$banners);
     }
 
