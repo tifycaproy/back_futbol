@@ -766,7 +766,7 @@ class UsuariosController extends Controller
         //Traemos el token de usuario
         $tokenUsuario = $request->token;
         //Traemos la notificacionToken
-        $notificacionToken = $request->$notificacionToken;
+        $notificacionToken = $request->notificacionToken;
         //Traemos el id según el token
         $idUsuario = decodifica_token($tokenUsuario);
         //Buscamos al usuario
