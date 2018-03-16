@@ -46,7 +46,7 @@ class UserDoradoMiddleware
         {
 
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
-            $posts=Muro::where('usuario_id', $usuario->id)->count();
+            $posts=Muro::where('usuario_id', $token)->count();
 
             if($funcion->solo_dorado && $usuario->dorado && $posts >= $funcion->max_dorado)
                 return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post"]]);
