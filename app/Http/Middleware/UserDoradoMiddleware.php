@@ -48,11 +48,12 @@ class UserDoradoMiddleware
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
             $posts=Muro::where('usuario_id', $token)->count();
 
-            if($funcion->solo_dorado && $usuario->dorado && $posts >= $funcion->max_dorado)
+            if( !$usuario->dorado && $funcion->solo_dorado && $posts >= $funcion->max_normal)
                 return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post"]]);
 
-            if($funcion->solo_dorado && !$usuario->dorado && $posts >= $funcion->max_normal)
-                return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post"]]);
+            if($funcion->solo_dorado && $posts >= $funcion->max_dorado)
+                return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post "]]);
+
 
             if($funcion->solo_dorado && !$usuario->dorado)
                  return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
