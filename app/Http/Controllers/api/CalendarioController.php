@@ -126,7 +126,7 @@ class CalendarioController extends Controller
     {
         $data["status"]='exito';
         $configuración=Configuracion::first();
-        $fecha=$configuración->partido;
+                $fecha=$configuración->partido;
         $data["data"]=[
             'idpartido'=>$fecha->id,
             'estado' =>$fecha->estado,

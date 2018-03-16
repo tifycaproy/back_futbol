@@ -47,6 +47,8 @@ class UserDoradoMiddleware
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
             if($funcion->solo_dorado && !$usuario->dorado)
                  return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+
+
         }
         
         return $next($request);
