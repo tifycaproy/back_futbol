@@ -52,9 +52,9 @@ class UserDoradoMiddleware
                 $posts=Muro::where('usuario_id', $token)->count();
 
             if($usuario->dorado){
-
+                
                 if($posts >= $funcion->max_dorado)
-                    return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Dorado"]]);
+                    return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Dorado "]]);
             }else{
 
                 if($posts >= $funcion->max_normal)

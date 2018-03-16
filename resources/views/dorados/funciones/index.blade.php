@@ -33,7 +33,7 @@
                     <th>Funcion</th>
                     <th>Solo Dorado</th>
                     <th>Max Dorado</th>
-                    <th>Max Tradicional</th>
+                    <th>Max Normal</th>
                     <th>Guardar</th>
                 </tr>
                 </thead>
