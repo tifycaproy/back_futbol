@@ -38,7 +38,7 @@
                     <input id="email" type="text" hidden name="email" required value="{{$email}}">
                     <input id="token" type="text" hidden name="token" required value="{{$token}}">
 
-                    <label for="password" class="col-md-4 control-label">Password</label>
+                    <label for="password" class="col-md-4 control-label">Contraseña</label>
                     <div class="col-md-2">
                         <input id="password" type="password" class="form-control" name="password" required>
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">Password Confirmation</label>
+                    <label for="password" class="col-md-4 control-label">Confirmar Contraseña</label>
 
                     <div class="col-md-2">
                         <input id="password" type="password" class="form-control" name="password_confirmation" required>
