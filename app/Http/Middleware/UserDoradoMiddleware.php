@@ -6,6 +6,7 @@ use App\Exceptions\UserDoradoException;
 use App\Usuario;
 use App\SeccionesDoradas;
 use App\FuncionesDoradas;
+use App\Muro;
 use Closure;
 
 class UserDoradoMiddleware
@@ -19,7 +20,7 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
      {
-        ;
+
         if($request["tipo_post"] != 'video' || !isset($request["tipo_post"])) {
 
             $request1=json_decode($request->getContent());
@@ -44,9 +45,27 @@ class UserDoradoMiddleware
         }
         else if($tipo == 'funcion')
         {
+
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
-            if($funcion->solo_dorado && !$usuario->dorado)
-                 return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+
+
+            if($funcion->solo_dorado && !$usuario->dorado )
+                return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+                $posts=Muro::where('usuario_id', $token)->count();
+
+            if($nombre == 'muro_postear')
+
+                if($usuario->dorado){
+
+                    if($posts >= $funcion->max_dorado)
+                        return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Dorado "]]);
+                }else{
+
+                    if($posts >= $funcion->max_normal)
+                        return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Tradicional"]]);
+
+                }
+
         }
         
         return $next($request);
