@@ -10,6 +10,7 @@ use App\PuntoReferencia;
 use App\PuntoReferenciaImagen;
 use Illuminate\Support\Facades\Auth;
 use Aws\S3\S3Client;
+use Carbon\Carbon;
 class PuntoReferenciaController extends Controller
 {
 
@@ -22,6 +23,9 @@ class PuntoReferenciaController extends Controller
                 'titulo' => $punto->nombre,
                 'latitud' => $punto->cordy,
                 'longitud' => $punto->cordx,
+                'direccion' => $punto->cordx,
+                'fecha_evento' => Carbon::parse($punto->hora_evento)->format('Y-m-d'),
+                'hora' => Carbon::parse($punto->hora_evento)->format('g:i A'),
                 'imagenes' => $punto->imagenes
             ];
         }

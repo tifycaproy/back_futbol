@@ -9,6 +9,7 @@ use App\PuntoReferencia;
 use App\PuntoReferenciaImagen;
 use Illuminate\Support\Facades\Auth;
 use Aws\S3\S3Client;
+use Carbon\Carbon;
 class PuntoReferenciaController extends Controller
 {
 
@@ -34,6 +35,8 @@ class PuntoReferenciaController extends Controller
         $pr->cordx = $request->latitud;
         $pr->cordy = $request->longitud;
         $pr->nombre = $request->nombre;
+        $pr->hora_evento = $request->hora_evento;
+        $pr->direccion = $request->direccion;
             $pr->save();
         return $pr->id;
     }
@@ -59,6 +62,8 @@ class PuntoReferenciaController extends Controller
         $pr->cordx = $request->latitud;
         $pr->cordy = $request->longitud;
         $pr->nombre = $request->nombre;
+        $pr->hora_evento = $request->hora_evento;
+        $pr->direccion = $request->direccion;
             $pr->save();
         return $pr->id;
     }
