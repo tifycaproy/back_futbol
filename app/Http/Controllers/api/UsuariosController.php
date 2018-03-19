@@ -222,7 +222,7 @@ class UsuariosController extends Controller
                     "content-type: application/json"
                 ),
             ));
-            // $response = curl_exec($curl);
+             $response = curl_exec($curl);
             // $err = curl_error($curl);
             curl_close($curl);
         }
@@ -476,7 +476,7 @@ class UsuariosController extends Controller
                             "content-type: application/json"
                         ),
                     ));
-                    // $response = curl_exec($curl);
+                     $response = curl_exec($curl);
                     // $err = curl_error($curl);
                     curl_close($curl);
                 }
@@ -775,7 +775,7 @@ class UsuariosController extends Controller
             //Si no existe, retornamos error
          return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
          }
-        else 
+        else
         {
             //Si existe, actualizamos el token y guardamos
             $usuario->notificacionToken = $notificacionToken;
