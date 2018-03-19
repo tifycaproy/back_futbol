@@ -89,6 +89,12 @@ class EncuestasController extends Controller
                     EncuestaRespuesta::find($request["idrespuesta"])->update([
                         'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
                     ]);
+                } 
+            }
+
+            if($votos > 0){
+                if($encuesta->tipo_voto == 'Único' || $encuesta->tipo_voto == 'Múltiple simple'){
+                    EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->first()->delete();
                 }
             }
             $data=[

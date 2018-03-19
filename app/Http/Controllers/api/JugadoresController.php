@@ -145,10 +145,7 @@ class JugadoresController extends Controller
                     'imei'=>$request["imei"],
                 ]);
             }
-
             //fin validaciones
-            
-
             return ["status" => "exito"];
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
