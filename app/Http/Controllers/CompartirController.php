@@ -11,8 +11,10 @@ use App\Compartir;
 use App\Referido;
 use App\Usuario;
 use App\Configuracion;
-
-
+use App\Noticia;
+use App\Videovr;
+use App\Aplauso;
+use App\EncuestaRespuesta;
 
 class CompartirController extends Controller
 {
@@ -169,9 +171,67 @@ class CompartirController extends Controller
         return view('compartir.referidos.email')->with('codigo',$codigo_referido)->with('nombre',$nombre)->with('codigo_id',$idusuario);
     }
 
-    public function descargar()
+    public function noticia($id)
     {
-        return view('compartir.referidos.descargar');
+        $seccion='noticias';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $noticia=Noticia::find($id);
+        return view('compartir.noticia',['noticia'=>$noticia, 'seccion'=>$seccion]);
     }
+    public function partido($id)
+    {
+        $seccion='calendario';
+        $seccion=Compartir::where('seccion',$seccion)->first();
 
+        $data["status"]='exito';
+        $fecha=Calendario::find($id);
+        $data = [
+            "equipo_1"=>$fecha->equipo1->nombre,
+            "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "equipo_2"=>$fecha->equipo2->nombre,
+            "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "copa"=>$fecha->copa->titulo,
+
+        ];
+
+        return view('compartir.partido')->with("seccion",$seccion)->with("data",$data);
+    }
+    public function videovr($id)
+    {
+        $seccion='noticias';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $videovr=Videovr::find($id);
+        return view('compartir.videovr',['videovr'=>$videovr, 'seccion'=>$seccion]);
+    }
+    public function jugador($id)
+    {
+        $seccion='jugador_aplausos';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+        $partidoaaplaudor=Configuracion::first(['calendario_aplausos_id']);
+        $idcalendario=$partidoaaplaudor->calendario_aplausos_id;
+        if($idcalendario==0){
+            if($partidoaaplaudor=Aplauso::orderby('created_at','desc')->first(['calendario_id'])){
+                $idcalendario=$partidoaaplaudor->calendario_id;
+            }
+        }
+        $jugador->apalusos_ultimo_partido = Aplauso::where('calendario_id',$idcalendario)->where('jugadores_id',$id)->count();
+        $jugador->aplausos_acumulado=Aplauso::where('jugadores_id',$id)->count();
+        return view('compartir.jugador',['jugador'=>$jugador, 'seccion'=>$seccion]);
+    }
+    public function jugador_single($id)
+    {
+        $seccion='jugador';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $jugador=Jugador::find($id);
+        return view('compartir.jugador_single',['jugador'=>$jugador, 'seccion'=>$seccion]);
+    }
+    public function tueliges($id)
+    {
+        $seccion='tueliges';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        $respuesta=EncuestaRespuesta::find($id);
+        return view('compartir.tueliges',['respuesta'=>$respuesta, 'seccion'=>$seccion]);
+    }
 }
+//

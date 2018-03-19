@@ -98,12 +98,12 @@
 <p>· Tienda virtual: Los usuarios pódran acceder y comprar los productos oficiales que se encuentran en a la tienda virtual ofcial de de azul & blanco
  millonarios f.c S.A</p>
 
-<h2>3. EXCLUSIÓN DE RESPONSABILIDAD, MODIFICACIONES, DENEGACIÓN Y RETIRADA DE LA APLICACIÓN: LOS PROPIETARIOS podrán en cualquier momento, efectuar
+<p>3. EXCLUSIÓN DE RESPONSABILIDAD, MODIFICACIONES, DENEGACIÓN Y RETIRADA DE LA APLICACIÓN: LOS PROPIETARIOS podrán en cualquier momento, efectuar
  modificaciones en LA APLICACIÓN, así como de suspender el acceso en cualquier momento y sin previo aviso. LOS PROPIETARIOS no garantizan la utilidad de LA
  APLICACIÓN para la realización de las actividades o funcionalidades descritas en los presentes Términos y Condiciones, ni su infalibilidad y en consecuencia no
  garantiza la operación permanente y libre de fallas de LA APLICACIÓN, ni asume responsabilidad por los daños sufridos al Usuario por el no uso o imposibilidad
  de uso de la información o servicios prestados a través de LA APLICACIÓN. Así mismo, no garantiza que los contenidos y servicios contenidos en LA APLICACIÓN se
- encuentren operando o disponible en todo momento, ni que se encuentren actualizados y sean fiables en su totalidad.</h2>
+ encuentren operando o disponible en todo momento, ni que se encuentren actualizados y sean fiables en su totalidad.</p>
 
 <p>LOS PROPIETARIOS no serán responsables por la pérdida de información de los usuarios por, fuerza mayor o caso fortuito, por la pérdida, extravío o robo del
  dispositivo móvil que suponga el acceso de terceros a la aplicación móvil, por errores en el uso, digitación o accesos por parte del usuario a LA APLICACIÓN,

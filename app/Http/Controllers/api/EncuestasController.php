@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Encuesta;
 use App\EncuestaRespuesta;
 use App\EncuestaVotos;
+use Carbon\Carbon;
 
 class EncuestasController extends Controller
 {
@@ -29,6 +30,10 @@ class EncuestasController extends Controller
             $votos=EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->count();
             $puedevotar=(($encuesta->tipo_voto<>'Único' or $votos==0) and strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) >= strtotime(date('Y-m-d'))) ? 1 : 0;
             $puedevervotos=($encuesta->mostrar_resultados=='Siempre' or ($encuesta->mostrar_resultados=='Solo si ya votó' and $votos>0) or strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) < strtotime(date('Y-m-d'))) ? 1 : 0;
+
+            if(Carbon::parse($encuesta->fecha_fin) < \Carbon\Carbon::now())
+                $puedevervotos = 1;
+
             $data=[
                 'idencuesta' => $encuesta->id,
                 'titulo' => $encuesta->titulo,
@@ -84,6 +89,12 @@ class EncuestasController extends Controller
                     EncuestaRespuesta::find($request["idrespuesta"])->update([
                         'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
                     ]);
+                } 
+            }
+
+            if($votos > 0){
+                if($encuesta->tipo_voto == 'Único' || $encuesta->tipo_voto == 'Múltiple simple'){
+                    EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->first()->delete();
                 }
             }
             $data=[

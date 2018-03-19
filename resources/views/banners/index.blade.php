@@ -19,6 +19,9 @@
         <div class="alert alert-danger">{{ $notificacion_error }}</div>
     @endif
     </div>
+    <div class="col-lg-2">
+        <p class="text-right"><a href="{{ route('banners.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</a></p>
+    </div>
 </div>
 
 <div class="row">
