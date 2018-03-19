@@ -44,8 +44,10 @@
                     <tr>
                         <td>{{$funcion->nombre}}</td>
                         <td><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($funcion->solo_dorado == true) checked=checked @endif ></td>
-                        <td><input name="max_dorado" id="max_dorado" type="number" value="{{ old('max_dorado', $funcion->max_dorado) }}"></td>
-                        <td><input name="max_normal" id="max_normal" type="number" value="{{ old('max_dorado', $funcion->max_normal) }}"></td>
+
+                        <td>@if($funcion->nombre == 'muro_postear')<input name="max_dorado" id="max_dorado" type="number"  value="{{ old('max_dorado', $funcion->max_dorado) }}"> @endif</td>
+                        <td>@if($funcion->nombre == 'muro_postear')<input name="max_normal" id="max_normal" type="number" value="{{ old('max_dorado', $funcion->max_normal) }}">@endif</td>
+
                         <td><input type="submit" class="btn btn-primary btn-sm" value="Guardar"></td>
                     </tr>
                 </form>
