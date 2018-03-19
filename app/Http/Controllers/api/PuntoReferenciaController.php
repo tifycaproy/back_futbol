@@ -23,7 +23,7 @@ class PuntoReferenciaController extends Controller
                 'titulo' => $punto->nombre,
                 'latitud' => $punto->cordy,
                 'longitud' => $punto->cordx,
-                'direccion' => $punto->cordx,
+                'direccion' => $punto->direccion,
                 'fecha_evento' => Carbon::parse($punto->hora_evento)->format('Y-m-d'),
                 'hora' => Carbon::parse($punto->hora_evento)->format('g:i A'),
                 'imagenes' => $punto->imagenes
