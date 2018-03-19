@@ -57,7 +57,7 @@ class UserDoradoMiddleware
 
                 if($usuario->dorado){
 
-                    if($posts >= $funcion->max_dorado && $funcion->solo_dorado)
+                    if($posts >= $funcion->max_dorado)
                         return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Dorado "]]);
                 }else{
 
