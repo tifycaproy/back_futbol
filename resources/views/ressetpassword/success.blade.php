@@ -28,7 +28,7 @@
         <section class="row justify-content-center no-gutters ">
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->
-                <h1>Contraseña restablecida!!</h1>
+                <h1>Contraseña actualizada.</h1>
             </div>
         </section>
         <section class="row justify-content-center mt-3 no-gutters">
@@ -44,7 +44,7 @@
             <div class="col-12 col-lg-6 col-xl-4">
                 <!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->
                 <div class="texto mt-1 pl-4 pr-4">
-                    <!-- Texto-->
+                   <h5> ¡Continúa disfrutando el mejor contenido del Embajador! </h5>
                 </div>
             </div>
         </section>

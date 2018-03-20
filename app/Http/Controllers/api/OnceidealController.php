@@ -95,7 +95,7 @@ class OnceidealController extends Controller
 	            return ["status" => "exito", "data" => $data];
             	$idonce->update($request);
             }else{
-	            return ['status' => 'fallo','error'=>["No tiene once ideal cargado"]];
+	            return ['status' => 'fallo','error'=>["No tienes once ideal cargado"]];
             }
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
