@@ -21,7 +21,6 @@ class AddNuevoMenuConfig extends Migration
             $table->text('sub_titulo_2_2');
             $table->text('sub_titulo_2_3');
             $table->text('sub_titulo_2_4');
-            $table->text('sub_titulo_2_5');
         });
     }
     public function down()

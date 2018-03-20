@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </section>
-                <div class="col-12 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                <div class="col-10 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <!-- Imagen-->
                     <img src="{{ $data['foto'] }}" class="img-fluid" alt="">
                 </div>
