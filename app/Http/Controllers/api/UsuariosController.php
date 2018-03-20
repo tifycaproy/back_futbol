@@ -32,7 +32,7 @@ class UsuariosController extends Controller
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
                 }
             }
@@ -40,7 +40,7 @@ class UsuariosController extends Controller
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
                 }
             }
@@ -132,18 +132,38 @@ class UsuariosController extends Controller
             $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
             if ($resultado != "") {
                 if ($resultado['hasMatch']) {
-                    $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                    $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                 }
             }
+            $string = $request["nombre"];
+            $bads = array('millonarios', 'oficial','embajador',
+                'albiazul','millos');
+            foreach($bads as $bad) {
+                if (stripos($string,$bad) !== false) {
+                    $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
+                }
+
+            }
+
         }
         if (isset($request["apellido"])) {
             $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
             if ($resultado != "") {
                 if ($resultado['hasMatch']) {
-                    $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                    $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                 }
             }
-        }
+            $string = $request["apellido"];
+            $bads = array('millonarios', 'oficial','embajador',
+                'albiazul','millos');
+            foreach($bads as $bad) {
+                if (stripos($string,$bad) !== false) {
+                    $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
+                }
+
+            }
+        }     
+
         if (count($errors) > 0) {
             return ["status" => "fallo", "error" => $errors];
         }
@@ -222,7 +242,7 @@ class UsuariosController extends Controller
                     "content-type: application/json"
                 ),
             ));
-             $response = curl_exec($curl);
+            $response = curl_exec($curl);
             // $err = curl_error($curl);
             curl_close($curl);
         }
@@ -341,18 +361,39 @@ class UsuariosController extends Controller
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
+                }
+                $string = $request["nombre"];
+                $bads = array('millonarios', 'oficial','embajador',
+                    'albiazul','millos');
+                foreach($bads as $bad) {
+                    if (stripos($string,$bad) !== false) {
+                         $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
+                    }
+
                 }
             }
             if (isset($request["apellido"])) {
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
                 }
+                $string = $request["apellido"];
+                $bads = array('millonarios', 'oficial','embajador',
+                    'albiazul','millos');
+                foreach($bads as $bad) {
+                    if (stripos($string,$bad) !== false) {
+                         $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
+                    }
+
+                }
             }
+
+
+
             if (count($errors) > 0) {
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -476,7 +517,7 @@ class UsuariosController extends Controller
                             "content-type: application/json"
                         ),
                     ));
-                     $response = curl_exec($curl);
+                    $response = curl_exec($curl);
                     // $err = curl_error($curl);
                     curl_close($curl);
                 }
@@ -525,7 +566,7 @@ class UsuariosController extends Controller
                 //fin de email
                 return ["status" => "exito", "data" => "Se ha enviado un email con su link de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
             } else {
-                return ["status" => "fallo", "error" => ["email incorrecto"]];
+                return ["status" => "fallo", "error" => ["El e-mail no es válido"]];
             }
         } catch (Exception $e) {
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -614,17 +655,37 @@ class UsuariosController extends Controller
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
+                }
+
+                $string = $request["nombre"];
+                $bads = array('millonarios', 'oficial','embajador',
+                    'albiazul','millos');
+                foreach($bads as $bad) {
+                    if (stripos($string,$bad) !== false) {
+                         $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
+                    }
+
                 }
             }
             if (isset($request["apellido"])) {
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
                 if ($resultado != "") {
                     if ($resultado['hasMatch']) {
-                        $errors[] = "No se puedo guardar tu nombre, contiene lenguaje inapropiado.";
+                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
                     }
                 }
+                $string = $request["apellido"];
+                $bads = array('millonarios', 'oficial','embajador',
+                    'albiazul','millos');
+                foreach($bads as $bad) {
+                    if (stripos($string,$bad) !== false) {
+                         $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
+                    }
+
+                }
+
             }
             if (isset($request["apodo"])) {
                 $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apodo"], true);
@@ -633,7 +694,18 @@ class UsuariosController extends Controller
                         $errors[] = "No se pudo actualizar tu apodo, contiene lenguaje inapropiado.";
                     }
                 }
+
+                $string = $request["apodo"];
+                $bads = array('millonarios', 'oficial','embajador',
+                    'albiazul','millos');
+                foreach($bads as $bad) {
+                    if (stripos($string,$bad) !== false) {
+                         $errors[] = "No se pudo actualizar tu apodo, esta palabra es de uso exclusivo de la App Oficial";
+                    }
+
+                }
             }
+
             if (count($errors) > 0) {
                 return ["status" => "fallo", "error" => $errors];
             }
@@ -774,15 +846,15 @@ class UsuariosController extends Controller
         if(!$usuario){
             //Si no existe, retornamos error
          return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
-         }
-        else
-        {
+     }
+     else
+     {
             //Si existe, actualizamos el token y guardamos
-            $usuario->notificacionToken = $notificacionToken;
-            $usuario->save();
-            return ["status" => "exito"];
-        }
+        $usuario->notificacionToken = $notificacionToken;
+        $usuario->save();
+        return ["status" => "exito"];
+    }
 
 
- }
+}
 }
