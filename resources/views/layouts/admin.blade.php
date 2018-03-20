@@ -117,6 +117,9 @@
                     <li>
                         <a href="{{ route("post.index") }}"><i class="fa fa-fw fa-pencil"></i> Posts</a>
                     </li>
+                    <li>
+                        <a href="{{ route("puntoreferencia.index") }}"><i class="fa fa-fw fa-pencil"></i> Puntos de referencia</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Funciones Doradas
     Route::get('funciones_doradas', 'DoradosController@indexFunciones');
 
-//notiicas
+//noticias
     Route::get('noticias_eliminar/{id}', 'NoticiasController@destroy')->name('noticias_eliminar');
     Route::get('rederactto_noticiasgaleria/{id}', 'NoticiasController@rederactto_noticiasgaleria')->name('rederactto_noticiasgaleria');
     Route::resource('noticias', 'NoticiasController');
@@ -93,10 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('documentacion', function () {
     return view('docs.documentacion');
 });
-//Fecha: 04012018//
-//agregado por ym. para el compartir referidos
-Route::resource('compartir', 'CompartirController');
-
+//Compartir 
 Route::get('compartir/alineacion/{ruta}', [
     'uses' => 'CompartirController@alineacion',
     'as' => 'compartir/alineacion'
@@ -110,15 +107,22 @@ Route::get('compartir/referidos/{codigo}/email', [
     'as' => 'compartir.email'
 ]);
 Route::get('descargar', 'CompartirController@descargar');
-
-Route::post('registro', 'api\UsuariosController@registro_usuario2');
-Route::post('auth_redes', 'api\UsuariosController@auth_redes');
-/////////////////////////////
 Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 Route::get('compartir/usr/{id}', 'CompartirController@usuario');
-//Route::get('compartir/alineacion', 'CompartirController@alineacion');
-Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
+Route::get('compartir/noticia/{id}', 'CompartirController@noticia');
+Route::get('compartir/partido/{id}', 'CompartirController@partido');
+Route::get('compartir/videovr/{id}', 'CompartirController@videovr');
+Route::get('compartir/jugador/{id}', 'CompartirController@jugador');
+Route::get('compartir/jugador_single/{id}', 'CompartirController@jugador_single');
+Route::get('compartir/tueliges/{id}', 'CompartirController@tueliges');
+
+//Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
+Route::resource('compartir', 'CompartirController');
+//fin compartir
+Route::post('registro', 'api\UsuariosController@registro_usuario2');
+Route::post('auth_redes', 'api\UsuariosController@auth_redes');
+
 Route::get('borrar', 'BorrarController@borrar');
 
 //Posts////
@@ -130,3 +134,11 @@ Route::get('resetpassword/notfound', 'UsuariosPasswordController@notfound');
 Route::get('resetpassword/success', 'UsuariosPasswordController@success');
 Route::get('resetpassword', 'UsuariosPasswordController@show');
 Route::post('resetpassword', 'UsuariosPasswordController@update');
+
+
+//PUNTOREFERENCIA
+Route::resource('puntoreferencia', 'PuntoReferenciaController');
+Route::post('add_coorImg', 'PuntoReferenciaController@add_coorImg')->name('add_coorImg');
+Route::post('add_coor', 'PuntoReferenciaController@add_coor')->name('add_coor');
+Route::post('delete_coor', 'PuntoReferenciaController@delete_coor')->name('delete_coor');
+Route::get('puntoreferencia_eliminar/{id}', 'PuntoReferenciaController@destroy')->name('puntoreferencia_eliminar');

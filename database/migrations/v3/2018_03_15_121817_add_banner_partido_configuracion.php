@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTipoPostToMuroTable extends Migration
+class AddBannerPartidoConfiguracion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTipoPostToMuroTable extends Migration
      */
     public function up()
     {
-        Schema::table('muro', function (Blueprint $table) {
-           $table->text('tipo_post');
+        Schema::table('configuracion', function (Blueprint $table) {
+            $table->text('id_partido_banner');
+
         });
     }
 
@@ -27,5 +28,4 @@ class AddTipoPostToMuroTable extends Migration
     {
         //
     }
-
 }

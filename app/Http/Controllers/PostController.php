@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('post.index')->with('posts',Muro::paginate(25));
+        return view('post.index')->with('posts',Muro::orderby('id', 'desc')->paginate(25));
     }
 
     public function create()

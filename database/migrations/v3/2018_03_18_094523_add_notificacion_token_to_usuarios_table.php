@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTipoPostToMuroTable extends Migration
+class AddNotificacionTokenToUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTipoPostToMuroTable extends Migration
      */
     public function up()
     {
-        Schema::table('muro', function (Blueprint $table) {
-           $table->text('tipo_post');
+        Schema::table('usuarios', function (Blueprint $table) {
+           $table->text('notificacionToken');
         });
     }
 
