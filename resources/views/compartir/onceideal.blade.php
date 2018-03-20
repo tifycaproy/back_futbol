@@ -29,7 +29,7 @@
         <div class=""> <!-- ETIQUETA REMPLAZADA-->
             <section class="row justify-content-center no-gutters "> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                 <!-- titulo-->
-                <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"><!-- AÑADIDO CONTENEDOR (15/01/2018)-->
+                <div class="col-10 col-lg-6 col-xl-4 pl-1 pr-1"><!-- AÑADIDO CONTENEDOR (15/01/2018)-->
                     <h1>¡ESTE ES MI ONCE IDEAL!</h1>
                 </div>
             </section>
