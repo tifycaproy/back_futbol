@@ -8,8 +8,8 @@
         <div class="body">
             <h1 style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; text-transform:uppercase; font-size:2.2em; margin-top:-1em;">¡Hincha Embajador!</h1>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;"> Para entrar nuevamente a tu cuenta,</p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;">ingresa a este link: </p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:2.5em; margin:1.2em auto;">{{ $link_clave_recuperacion }}</p>
+            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;">Ingresa a este link: </p>
+            <a style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:2.0em; margin:1.2em auto;">{{ $link_clave_recuperacion }}</a>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">Para generar una nueva contraseña,ingresa</p>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">a nuestra Sección "Perfil" en la pestaña</p>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">"INFO CUENTA"; allí encontrarás el campo </p>
