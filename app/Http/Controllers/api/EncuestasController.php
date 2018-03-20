@@ -95,6 +95,9 @@ class EncuestasController extends Controller
             if($votos > 0){
                 if($encuesta->tipo_voto == 'Único' || $encuesta->tipo_voto == 'Múltiple simple'){
                     EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->first()->delete();
+                    EncuestaRespuesta::find($request["idrespuesta"])->update([
+                        'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
+                    ]);
                 }
             }
             $data=[
@@ -131,6 +134,7 @@ class EncuestasController extends Controller
     }
     public function ranking_encuestas($id)
     {
+
         $respuestas=EncuestaRespuesta::where('encuesta_id',$id)->where('votos','<>',0)->orderby('votos','desc')->get();
         if($respuestas->count() > 0){
         foreach ($respuestas as $respuesta) {
