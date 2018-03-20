@@ -41,11 +41,11 @@ return [
     ],
     
     'firebase' => [
-    'api_key' => 'AIzaSyCI58q_-hZwjFctMCniJsOeQPbQsiP137g', // Only used for JS integration
-    'auth_domain' => 'millos-backend.firebaseapp.com', // Only used for JS integration
-    'database_url' => 'https://millos-backend.firebaseio.com',
-    'secret' => 'lXQLa0SAuHuQUusr4E8BcX7jLzmrY6NvhfIt713t',
-    'storage_bucket' => 'millos-backend.appspot.com', // Only used for JS integration
+    'api_key' => 'AIzaSyCgzju5BGVfEsjxg4g1EbD4UeCMoEss-AI', // Only used for JS integration
+    'auth_domain' => 'millos-fc-app.firebaseapp.com', // Only used for JS integration
+    'database_url' => 'https://millos-fc-app.firebaseio.com',
+    'secret' => '09zkv7DtInEOfc0w3fwnZfqtVZkBjDOkvB4NqGoQ',
+    'storage_bucket' => 'millos-fc-app.appspot.com', // Only used for JS integration
     ],
 
 ];
