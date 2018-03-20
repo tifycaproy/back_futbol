@@ -191,6 +191,11 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+            $usuarios_aplausos = MuroAplauso
+                ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
+                ->where('muro_id',$post->id)
+                ->get(['nombre']);
+
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
@@ -199,6 +204,7 @@ class MuroController extends Controller
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
+                'usuarios_aplausos'=>  $usuarios_aplausos,
                 'yaaplaudio' => $yaaplaudio,
             ];
         }
