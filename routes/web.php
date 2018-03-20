@@ -117,7 +117,7 @@ Route::get('compartir/jugador/{id}', 'CompartirController@jugador');
 Route::get('compartir/jugador_single/{id}', 'CompartirController@jugador_single');
 Route::get('compartir/tueliges/{id}', 'CompartirController@tueliges');
 
-//Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
+Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::resource('compartir', 'CompartirController');
 //fin compartir
 Route::post('registro', 'api\UsuariosController@registro_usuario2');
