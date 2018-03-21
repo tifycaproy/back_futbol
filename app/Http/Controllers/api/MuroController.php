@@ -214,6 +214,10 @@ class MuroController extends Controller
                    $user[]=$usuarios_aplausos;
                 }
             }
+
+
+
+
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
@@ -504,7 +508,51 @@ class MuroController extends Controller
                 'naplausos'=>$post->aplausos->count(),
                 'yaaplaudio' => $yaaplaudio,
             ];
-        
+                $comentariosArray = array();
+            $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
+            foreach ($comentarios as $comentario) {
+                if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
+
+                $usuario=$comentario->usuario;
+                $usuario=$usuario->toArray();
+                $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+                if($usuario["foto"]==''){
+                    if($usuario["foto_redes"]<>""){
+                        $usuario["foto"]=$usuario["foto_redes"];
+                    }else{
+                        $usuario["foto"]="";
+                    }
+                }else{
+                    $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+                }
+                $usuario["codigo"]=codifica($usuario['idusuario']);
+                unset($usuario["foto_redes"]);
+                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+
+                $comentariosArray[]=[
+                    'idcomentario'=>codifica($comentario->id),
+                    'comentario'=>$comentario->comentario,
+                    'fecha'=>$comentario->created_at->toDateTimeString(),
+                    'foto'=>$comentario->foto,
+                    'usuario'=>$usuario,
+                    'naplausos'=>$comentario->aplausos->count(),
+                    'yaaplaudio' => $yaaplaudio,
+                ];
+            }
+                          
+                 $data["data"][]=[
+                'idpost'=>codifica($post->id),
+                'mensaje'=>$post->mensaje,
+                'foto'=>$post->foto,
+                'fecha'=>$post->created_at->toDateTimeString(),
+                'usuario' => $usuario,
+                'ncomentarios'=>$post->comentarios->count(),
+                'naplausos'=>$post->aplausos->count(),
+                'yaaplaudio' => $yaaplaudio,
+                'comentarios' => $comentariosArray
+            ];
+
         return $data;
     
     }
