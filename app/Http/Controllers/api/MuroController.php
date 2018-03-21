@@ -50,6 +50,7 @@ class MuroController extends Controller
 
             if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
                 $foto=$request["foto"];
+                dd($request["foto"]);
                 if($foto<>''){
                     if ($foto->getClientOriginalExtension() == "mp4") {
                         if($foto->getSize() <= 7000000){
