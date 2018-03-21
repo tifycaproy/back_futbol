@@ -191,10 +191,30 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+
             $usuarios_aplausos = MuroAplauso
                 ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
                 ->where('muro_id',$post->id)
-                ->get(['nombre']);
+                ->get();
+
+            $user = array();
+            foreach ($usuarios_aplausos as $usuarios_aplausos) {
+
+                if($usuarios_aplausos->apodo){
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->apodo,
+                    );
+                    $user[]=$usuarios_aplausos;
+
+                }else{
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
+                    );
+                    $user[]=$usuarios_aplausos;
+                }
+            }
 
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
@@ -204,9 +224,11 @@ class MuroController extends Controller
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
-                'usuarios_aplausos'=>  $usuarios_aplausos,
-                'yaaplaudio' => $yaaplaudio,
+                'usuarios_aplausos'=>$user,
+                'yaaplaudio'=>$yaaplaudio,
             ];
+
+
         }
         return $data;
     }
