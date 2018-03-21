@@ -27,7 +27,7 @@
         <section class="row justify-content-center no-gutters ">
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->
-                <h1>Recuperar Contraseña</h1>
+                <h1>Recuperar tu contraseña</h1>
             </div>
         </section>
 
@@ -38,7 +38,7 @@
                     <input id="email" type="text" hidden name="email" required value="{{$email}}">
                     <input id="token" type="text" hidden name="token" required value="{{$token}}">
 
-                    <label for="password" class="col-md-4 control-label">Contraseña</label>
+                    <label for="password" class="col-md-4 control-label">Ingresa la nueva contraseña</label>
                     <div class="col-md-2">
                         <input id="password" type="password" class="form-control" name="password" required>
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">Confirmar Contraseña</label>
+                    <label for="password" class="col-md-4 control-label">Confirma tu contraseña</label>
 
                     <div class="col-md-2">
                         <input id="password" type="password" class="form-control" name="password_confirmation" required>
@@ -68,7 +68,7 @@
             <div class="form-group">
                 <div>
                     <button type="submit">
-                        Actualizar Contraseña
+                        Actualizar
                     </button>
                 </div>
             </div>

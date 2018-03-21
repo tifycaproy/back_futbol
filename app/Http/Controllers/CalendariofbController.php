@@ -14,7 +14,7 @@ class CalendariofbController extends Controller
 {
     public function index()
     {
-        $calendarios=Calendariofb::where('copas_id',$_SESSION['copa_id'])->orderby('fecha','desc')->paginate(25);
+        $calendarios=Calendariofb::where('copas_id',$_SESSION['copa_id'])->orderby('fecha','asc')->paginate(25);
         return view('calendariosfb.index')->with('calendarios',$calendarios)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 

@@ -140,7 +140,7 @@ class UsuariosController extends Controller
                 'albiazul','millos');
             foreach($bads as $bad) {
                 if (stripos($string,$bad) !== false) {
-                    $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
+                    $errors[] = "No se puede guardar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
                 }
 
             }
@@ -158,7 +158,7 @@ class UsuariosController extends Controller
                 'albiazul','millos');
             foreach($bads as $bad) {
                 if (stripos($string,$bad) !== false) {
-                    $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
+                    $errors[] = "No se puede guardar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
                 }
 
             }
