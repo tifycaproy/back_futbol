@@ -6,16 +6,10 @@
             <img style="max-width:100%; width:auto; height:auto; display:block; margin:0 auto;" src="https://s3.amazonaws.com/cmsmillos/email/logo_millos_email.png" alt="Millonarios FC">
         </div>
         <div class="body">
-            <h1 style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; text-transform:uppercase; font-size:2.2em; margin-top:-1em;">¡Hincha Embajador!</h1>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;"> Para entrar nuevamente a tu cuenta,</p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;">Ingresa a este link: </p>
+            <h1 style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; text-transform:uppercase; font-size:2.2em; margin-top:-1em;">¡HINCHA EMBAJADOR!</h1>
+            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em;"> Para recuperar tu contraseña ingresa en el siguiente link:</p>
             <u><a href="{{ $link_clave_recuperacion }}"><p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:2.0em; margin:1.2em auto;">Link de Recuperación</p></a></u>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">Para generar una nueva contraseña,ingresa</p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">a nuestra Sección "Perfil" en la pestaña</p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">"INFO CUENTA"; allí encontrarás el campo </p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;"> de la contraseña. </p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.2em; margin:.3em auto;">Este cambio de contraseña es válido por los siguientes 30 minutos.</p>
-            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.8em; margin:.3em auto;">Sigue disfrutando de nuestra APP Oficial.</p>
+            <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">Luego, ingresa tu correo con la NUEVA contraseña en la App Oficial y podrás seguir disfrutando del mejor contenido del Embajador.</p>
             <p class="agradecimiento" style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.8em; margin:.3em auto;">Muchas Gracias, Millonarios FC</p>
             <div style="margin: 0 0 0 80px"></div>
         </div>
