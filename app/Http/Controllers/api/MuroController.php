@@ -192,29 +192,6 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
-            $usuarios_aplausos = MuroAplauso
-                ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
-                ->where('muro_id',$post->id)
-                ->get();
-
-            $user = array();
-            foreach ($usuarios_aplausos as $usuarios_aplausos) {
-
-                if($usuarios_aplausos->apodo){
-                    $usuarios_aplausos= array(
-                        'id'=>$usuarios_aplausos->id,
-                        'nombre'=>$usuarios_aplausos->apodo,
-                    );
-                    $user[]=$usuarios_aplausos;
-
-                }else{
-                    $usuarios_aplausos= array(
-                        'id'=>$usuarios_aplausos->id,
-                        'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
-                    );
-                    $user[]=$usuarios_aplausos;
-                }
-            }
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
@@ -223,7 +200,6 @@ class MuroController extends Controller
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
-                'usuarios_aplausos'=>$user,
                 'yaaplaudio' => $yaaplaudio,
             ];
         }
@@ -459,6 +435,57 @@ class MuroController extends Controller
             } 
         }
 
+     public function single_post($idpost,$token)
+    {
+        
+        $post=Muro::find($idpost);
+        $idusuario=decodifica_token($token);
+        $data["status"]='exito';
+        $data["data"]=[];
+     
+            if($post->foto<>''){
+                if($post->tipo_post == "video"){
+                    $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
+                } 
+                else if ($post->tipo_post == "gif")
+                {
+                    $post->foto = $post->foto;
+                }
+                else{
+                    $post->foto=config('app.url') . 'posts/' . $post->foto;
+                }
+            } 
+            $usuario=$post->usuario;
+            $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
+                }else{
+                    $usuario["foto"]="";
+                }
+            }else{
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+            }
+            $usuario["codigo"]=codifica($usuario['idusuario']);
+            unset($usuario["foto_redes"]);
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+            $data["data"][]=[
+                'idpost'=>codifica($post->id),
+                'mensaje'=>$post->mensaje,
+                'foto'=>$post->foto,
+                'fecha'=>$post->created_at->toDateTimeString(),
+                'usuario' => $usuario,
+                'ncomentarios'=>$post->comentarios->count(),
+                'naplausos'=>$post->aplausos->count(),
+                'yaaplaudio' => $yaaplaudio,
+            ];
+        
+        return $data;
+    
+    }
+
         public function topAplausos()
         {
         //Traemos los posts
@@ -503,20 +530,20 @@ class MuroController extends Controller
                 'notification'=>array('title'=>$title,'body'=>$message),
                 'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
 
-                $payload = json_encode($fields);
+            $payload = json_encode($fields);
 
-                echo $payload;
+            echo $payload;
 
-                $curl_session = curl_init();
-                curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
-                curl_setopt($curl_session, CURLOPT_POST, true);
-                curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-                curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
-                $result = curl_exec($curl_session);
-
-            }
+            $curl_session = curl_init();
+            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+            curl_setopt($curl_session, CURLOPT_POST, true);
+            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+            $result = curl_exec($curl_session);
 
         }
+
+    }
