@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alineación</title>
-    <meta name=“viewport” content=“width=device-width, initial-scale=1">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
@@ -66,7 +65,7 @@
                         <!-- Texto-->
                         <h2>{{ $seccion->descripcion }}</h2>
                         <h2 class=""><b>{{ $seccion->footer1 }}</b></h2>
-                        
+                        <p>&nbsp;</p> 
                     </div>
                 </div>
             </section>

@@ -4,8 +4,11 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Configuracion;
 use App\Noticia;
 use App\Usuario;
+use App\Copa;
+use App\Calendario;
 
 
 class NoticiasController extends Controller
@@ -17,6 +20,9 @@ class NoticiasController extends Controller
      */
     public function index(Request $request ,$token='')
     {
+        $id_partido_banner = Configuracion::first(['id_partido_banner']);
+        $partido=Calendario::find($id_partido_banner);
+
         if($token<>''){
             $idusuario=decodifica_token($token);
             if($idusuario<>''){
@@ -34,6 +40,7 @@ class NoticiasController extends Controller
             ->paginate(25);
 
         $data["status"]='exito';
+        $data["partido"]= $partido;
         $data["data"]=[];
         foreach ($noticias as $noticia) {
             if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;

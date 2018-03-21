@@ -18,13 +18,13 @@
 </head>
 <body>
     <!--CONTENEDOR-->
-    <div class="container-fluid "> 
-        <header class="row justify-content-center mt-1 no-gutters">
-            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+  <div class="container-fluid "> 
+        <!-- <header class="row justify-content-center mt-0 no-gutters">
+            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> 
                 <img src="{{ asset('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
                 <img src="{{ asset('compartir/images/separador.svg') }}" alt="" class="separador  mb-3">
             </div>            
-        </header>
+        </header>-->
         <!--contenido-->
         <div class=""> <!-- ETIQUETA REMPLAZADA-->
             <section class="row justify-content-center no-gutters "> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
@@ -33,9 +33,9 @@
                     <h1>¡ESTE ES MI ONCE IDEAL!</h1>
                 </div>
             </section>
-            <section class="row justify-content-center mt-3 no-gutters">
+            <section class="row justify-content-center mt-0 no-gutters">
                 <section class="col-12 no-gutters">
-                <div class="row align-items-center justify-content-center mb-3 no-gutters">
+                <div class="row align-items-center justify-content-center mb-1 no-gutters">
                     <div class="col-3 col-xl-2 col-lg-2">
                         <img src="{{ $data['bandera_1'] }}" alt="" class="tiendas">
                         <h4>{{ $data['equipo_1'] }}</h4>
@@ -46,27 +46,27 @@
                         <img src="{{ $data['bandera_2'] }}" alt="" class="tiendas">
                         <h4>{{ $data['equipo_2'] }}</h4>
                     </div>
-                    <div class="col-12 mt-3">
+                    <div class="col-12 mt-0">
                         <h2>{{ $data['copa'] }}</h2>
                     </div>
                 </div>
             </section>
-                <div class="col-12 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+                <div class="col-8 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <!-- Imagen-->
                     <img src="{{ $data['foto'] }}" class="img-fluid" alt="">
                 </div>
             </section>
-            <section class="row justify-content-center mt-3 no-gutters">
+            <section class="row justify-content-center mt-0 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
-                    <div class="texto mt-3 pl-4 pr-4">
+                    <div class="texto mt-0 pl-0 pr-0">
                         <!-- Texto-->
                         <h2>¡NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE!</h2>
-                        <h2 class="mt-3"><b>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</b></h2>
+                        <h2 class="mt-0"><b>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</b></h2>
                         
                     </div>
                 </div>
             </section>
-            <section class="row justify-content-center no-gutters pb-5">
+            <section class="row justify-content-center no-gutters pb-0">
                 <div class="col-6 col-xl-4 col-lg-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <a href="https://itunes.apple.com/co/app/millonarios-fc-oficial/id1315497014?mt=8"><img src="{{ asset('compartir/images/btn_appstore.svg') }}" alt="" class="tiendas"></a>
                 </div>

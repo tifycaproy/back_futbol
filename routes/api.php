@@ -27,6 +27,7 @@ Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 // v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
 Route::post('auth', 'api\UsuariosController@iniciar_secion');
+Route::post('usuarios/token', 'api\UsuariosController@actualizarNotificacionToken');
 //v2
 Route::post('usuarios2', 'api\UsuariosController@registro_usuario2');
 Route::post('auth2', 'api\UsuariosController@iniciar_secion2');
@@ -35,6 +36,7 @@ Route::get('reenviar_pin_confirmacion/{email}', 'api\UsuariosController@reenviar
 Route::post('validar_cuenta', 'api\UsuariosController@validar_cuenta');
 Route::post('auth_redes', 'api\UsuariosController@auth_redes');
 Route::post('recuperar_clave', 'api\UsuariosController@recuperar_clave');
+Route::post('recuperar_clave_link', 'api\UsuariosController@recuperar_clave_link');
 Route::post('ingresar_con_pin', 'api\UsuariosController@ingresar_con_pin');
 Route::get('usuarios/{token}', 'api\UsuariosController@consultar_usuario');
 Route::get('usuarios/image/by/id/{idusuario}', 'api\UsuariosController@consultarFoto');
@@ -116,4 +118,7 @@ Route::get('suscripciones/beneficios', 'api\SuscripcionesController@beneficiosDo
 Route::post('suscripciones/cancelar', 'api\SuscripcionesController@cancelar');
 
 Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@statusSuscripcion');
+
+//Punto referencia
+Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia');
 
