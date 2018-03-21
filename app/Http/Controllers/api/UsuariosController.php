@@ -216,6 +216,8 @@ class UsuariosController extends Controller
             $curl = curl_init();
             //celular a donde va a enviar el mensaje
             $celular = $request['celular'];
+            $celular = str_replace("+", "", $celular);
+            $celular = str_replace(" ", "", $celular);
             $header = "Basic " . base64_encode(env('SMS_USER') . ":" . env('SMS_PASS'));
             $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: " . $clave_recuperacion);
             curl_setopt_array($curl, array(
