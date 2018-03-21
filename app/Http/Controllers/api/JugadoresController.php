@@ -157,7 +157,7 @@ class JugadoresController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             $idusuario = null;
-            if(isset($request["token"]){
+            if(isset($request["token"])){
                 $idusuario=decodifica_token($request["token"]);
             }
             
