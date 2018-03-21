@@ -503,9 +503,9 @@ public function recuperar_clave(Request $request)
                     // $err = curl_error($curl);
                 curl_close($curl);
             }
-            return ["status" => "exito", "data" => "Se ha enviado un email con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
+            return ["status" => "exito", "data" => "Se ha enviado un e-mail con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
         } else {
-            return ["status" => "fallo", "error" => ["email incorrecto"]];
+            return ["status" => "fallo", "error" => ["Disculpe, el e-mail ingresado no es correcto"]];
         }
     } catch (Exception $e) {
         return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -540,7 +540,7 @@ public function recuperar_clave_link(Request $request)
                 $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
             });
                 //fin de email
-            return ["status" => "exito", "data" => "Se ha enviado un email con su link de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
+            return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
         } else {
             return ["status" => "fallo", "error" => ["El e-mail no es válido"]];
         }
