@@ -18,8 +18,8 @@
 </head>
 <body>
     <!--CONTENEDOR-->
-  <!--  <div class="container-fluid "> 
-        <header class="row justify-content-center mt-0 no-gutters">
+  <div class="container-fluid "> 
+        <!-- <header class="row justify-content-center mt-0 no-gutters">
             <div class="col-12  col-lg-6 col-xl-3 no-gutters"> 
                 <img src="{{ asset('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
                 <img src="{{ asset('compartir/images/separador.svg') }}" alt="" class="separador  mb-3">
