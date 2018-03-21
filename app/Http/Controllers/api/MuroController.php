@@ -498,16 +498,6 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
-            $data["data"][]=[
-                'idpost'=>codifica($post->id),
-                'mensaje'=>$post->mensaje,
-                'foto'=>$post->foto,
-                'fecha'=>$post->created_at->toDateTimeString(),
-                'usuario' => $usuario,
-                'ncomentarios'=>$post->comentarios->count(),
-                'naplausos'=>$post->aplausos->count(),
-                'yaaplaudio' => $yaaplaudio,
-            ];
                 $comentariosArray = array();
             $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
             foreach ($comentarios as $comentario) {
