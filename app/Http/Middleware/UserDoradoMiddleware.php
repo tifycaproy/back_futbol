@@ -48,13 +48,12 @@ class UserDoradoMiddleware
 
             $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
 
-
             if($funcion->solo_dorado && !$usuario->dorado )
                 return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
                 $posts=Muro::where('usuario_id', $token)->count();
 
-            if($nombre == 'muro_postear')
 
+            if($nombre == 'muro_postear' && $funcion->limitar)
                 if($usuario->dorado){
 
                     if($posts >= $funcion->max_dorado)
