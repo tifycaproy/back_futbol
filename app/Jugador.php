@@ -37,6 +37,4 @@ class Jugador extends Model
     {
         return $this->hasMany('App\Alineacion');
     }
-
-
 }

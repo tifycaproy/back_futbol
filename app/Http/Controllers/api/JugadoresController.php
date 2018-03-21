@@ -7,7 +7,7 @@ use App\Configuracion;
 use App\Http\Controllers\Controller;
 use App\Jugador;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class JugadoresController extends Controller
 {
@@ -60,11 +60,12 @@ class JugadoresController extends Controller
         $idusuario=decodifica_token($token);
         if ($jugador = Jugador::find($id)) {
             if(!empty($jugador->alineacion->last())){
-                
-                $aplauso = DB::table('aplausos')->where('jugadores_id', '=', $id)->get();
-                
-                return $aplauso;
-                return $jugador->alineacion->last();
+                $aplauso = Aplauso::where('calendario_id', $jugador->alineacion->last()->calendario_id)->where('jugadores_id', $id)->where('usuario_id', $idusuario)->get();
+                if(count($aplauso) > 0){
+                    $ultimo_aplauso = 1;
+                }else{
+                    $ultimo_aplauso = 0;
+                }
             }
             $data["status"] = 'exito';
             $data["data"] = [
@@ -78,7 +79,7 @@ class JugadoresController extends Controller
                 'estatura' => $jugador->estatura,
                 'banner' => config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
-                'ultimo_aplauso' => ""
+                'ultimo_aplauso' => $ultimo_aplauso
             ];
             $partidoaaplaudor = Configuracion::first(['calendario_aplausos_id']);
             if ($partidoaaplaudor->calendario_aplausos_id <> 0 and $partidoaaplaudor->calendario_aplausos_id == $jugador->calendario_id) {
@@ -150,6 +151,11 @@ class JugadoresController extends Controller
             if (count($errors) > 0) {
                 return ["status" => "fallo", "error" => $errors];
             }
+            $idusuario = null;
+            if(isset($request["token"]){
+                $idusuario=decodifica_token($request["token"]);
+            }
+            
             if ($aplauso = Aplauso::where('jugadores_id', $request["idjugador"])->where('calendario_id', $request["idpartido"])->where('imei', $request["imei"])->first()) {
                 $aplauso->delete();
             } else {
@@ -157,6 +163,7 @@ class JugadoresController extends Controller
                     'jugadores_id' => $request["idjugador"],
                     'calendario_id' => $request["idpartido"],
                     'imei' => $request["imei"],
+                    'usuario_id' => $idusuario
                 ]);
             }
             //fin validaciones
