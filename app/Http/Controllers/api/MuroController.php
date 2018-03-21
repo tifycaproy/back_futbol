@@ -485,8 +485,6 @@ class MuroController extends Controller
             curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
             curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
             $result = curl_exec($curl_session);
-            echo $result;
-
 
         }
 
