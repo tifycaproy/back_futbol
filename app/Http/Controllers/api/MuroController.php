@@ -50,6 +50,144 @@ class MuroController extends Controller
 
             if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
                 $foto=$request["foto"];
+                dd($request["foto"]);
+                if($foto<>''){
+                    if ($foto->getClientOriginalExtension() == "mp4") {
+                        if($foto->getSize() <= 7000000){
+                            $extension=$foto->getClientOriginalExtension();
+                            $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
+                            $filepath='posts/videos/'.$nombre ;
+                            $s3 = S3Client::factory(config('app.s3'));
+                            $result = $s3->putObject(array(
+                                'Bucket' => config('app.s3_bucket'),
+                                'Key' => $filepath,
+                                'SourceFile' => $foto->getRealPath(),
+                                'ContentType' => $foto->getMimeType(),
+                                'ACL' => 'public-read',
+                            ));
+                            $muro = new Muro();
+                            $muro->usuario_id = $idusuario;
+                            $muro->mensaje = $request["mensaje"];
+                            $muro->foto = $nombre;
+                            $muro->tipo_post = 'video';
+                            $muro->save();
+                            return ["status" => "exito", "data" => []];
+                        }else{
+                            return ["status" => "Peso no permitido", "error" => $errors];
+                        }
+                    }else{
+                        return ["status" => "Debe ser formato MP4", "error" => $errors];
+                    }
+                }else{
+                    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+                }
+            }
+
+            if(isset($request["tipo_post"]))
+            {
+                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'foto') 
+                {
+                    $foto=$request["foto"];
+                    if($foto<>'')
+                    {
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["foto"];
+
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+
+                    }
+                }
+
+                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'gif') 
+                {
+                    $foto=$request["foto"];
+
+                    if($foto<>'')
+                    {
+                        $muro = new Muro();
+                        $muro->usuario_id = $idusuario;
+                        $muro->mensaje = $request["mensaje"];
+                        $muro->foto = $foto;
+                        $muro->tipo_post = 'gif';
+                        $muro->save();
+                        return ["status" => "exito", "data" => []];
+                    }
+                }
+            }
+            
+            elseif(!isset($request["tipo_post"]))
+            {
+                if(isset($request["foto"])) 
+                {
+                    $foto=$request["foto"];
+                    if($foto<>'')
+                    {
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["foto"];
+
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+
+                    }
+                }
+            }
+            Muro::create($request);
+            return ["status" => "exito", "data" => []];
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        } 
+    }
+
+    public function postear_prueba(Request $request)
+    {
+        if($request["tipo_post"] != 'video') {
+            $request=json_decode($request->getContent());
+            $request=get_object_vars($request);
+        }
+        try{
+            //Validaciones
+            $errors=[];
+            $token=$request["token"];
+            $idusuario=decodifica_token($token);
+
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
+            if(isset($request["mensaje"])){
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
+                if($resultado!=""){
+                    if($resultado['hasMatch']){
+                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
+                    }
+                }
+            }
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            $request["usuario_id"]=$idusuario;
+            unset($request["token"]);
+
+            if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
+                $foto=$request["foto"];
+                return var_dump($request["foto"]);
                 if($foto<>''){
                     if ($foto->getClientOriginalExtension() == "mp4") {
                         if($foto->getSize() <= 7000000){

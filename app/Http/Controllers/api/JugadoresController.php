@@ -163,6 +163,7 @@ class JugadoresController extends Controller
             
             if ($aplauso = Aplauso::where('jugadores_id', $request["idjugador"])->where('calendario_id', $request["idpartido"])->where('imei', $request["imei"])->first()) {
                 $aplauso->delete();
+                $aplauso = 0;
             } else {
                 Aplauso::create([
                     'jugadores_id' => $request["idjugador"],
@@ -170,9 +171,10 @@ class JugadoresController extends Controller
                     'imei' => $request["imei"],
                     'usuario_id' => $idusuario
                 ]);
+                $aplauso = 1;
             }
             //fin validaciones
-            return ["status" => "exito"];
+            return ["status" => "exito","aplauso" => $aplauso ];
         } catch (Exception $e) {
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
