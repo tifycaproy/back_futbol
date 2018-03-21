@@ -55,18 +55,23 @@ class JugadoresController extends Controller
         return $data;
     }
 
-    public function single_jugador($id, $token)
+    public function single_jugador($id, $token = null)
     {
-        $idusuario=decodifica_token($token);
+        
+        $ultimo_aplauso = 0;
         if ($jugador = Jugador::find($id)) {
-            if(!empty($jugador->alineacion->last())){
-                $aplauso = Aplauso::where('calendario_id', $jugador->alineacion->last()->calendario_id)->where('jugadores_id', $id)->where('usuario_id', $idusuario)->get();
-                if(count($aplauso) > 0){
-                    $ultimo_aplauso = 1;
-                }else{
-                    $ultimo_aplauso = 0;
+            if($token != null){
+                $idusuario=decodifica_token($token);
+                if(!empty($jugador->alineacion->last())){
+                    $aplauso = Aplauso::where('calendario_id', $jugador->alineacion->last()->calendario_id)->where('jugadores_id', $id)->where('usuario_id', $idusuario)->get();
+                    if(count($aplauso) > 0){
+                        $ultimo_aplauso = 1;
+                    }else{
+                        $ultimo_aplauso = 0;
+                    }
                 }
             }
+
             $data["status"] = 'exito';
             $data["data"] = [
                 'idjugador' => $jugador->id,
