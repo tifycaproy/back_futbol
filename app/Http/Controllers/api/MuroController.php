@@ -21,6 +21,7 @@ class MuroController extends Controller
      */
     public function postear(Request $request)
     {
+
         if($request["tipo_post"] != 'video') {
             $request=json_decode($request->getContent());
             $request=get_object_vars($request);
@@ -50,144 +51,6 @@ class MuroController extends Controller
 
             if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
                 $foto=$request["foto"];
-                dd($request["foto"]);
-                if($foto<>''){
-                    if ($foto->getClientOriginalExtension() == "mp4") {
-                        if($foto->getSize() <= 7000000){
-                            $extension=$foto->getClientOriginalExtension();
-                            $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
-                            $filepath='posts/videos/'.$nombre ;
-                            $s3 = S3Client::factory(config('app.s3'));
-                            $result = $s3->putObject(array(
-                                'Bucket' => config('app.s3_bucket'),
-                                'Key' => $filepath,
-                                'SourceFile' => $foto->getRealPath(),
-                                'ContentType' => $foto->getMimeType(),
-                                'ACL' => 'public-read',
-                            ));
-                            $muro = new Muro();
-                            $muro->usuario_id = $idusuario;
-                            $muro->mensaje = $request["mensaje"];
-                            $muro->foto = $nombre;
-                            $muro->tipo_post = 'video';
-                            $muro->save();
-                            return ["status" => "exito", "data" => []];
-                        }else{
-                            return ["status" => "Peso no permitido", "error" => $errors];
-                        }
-                    }else{
-                        return ["status" => "Debe ser formato MP4", "error" => $errors];
-                    }
-                }else{
-                    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-                }
-            }
-
-            if(isset($request["tipo_post"]))
-            {
-                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'foto') 
-                {
-                    $foto=$request["foto"];
-                    if($foto<>'')
-                    {
-                        list($tipo, $Base64Img) = explode(';', $foto);
-                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                        $filepath='posts/' . $request["foto"];
-
-                        $s3 = S3Client::factory(config('app.s3'));
-                        $result = $s3->putObject(array(
-                            'Bucket' => config('app.s3_bucket'),
-                            'Key' => $filepath,
-                            'SourceFile' => $foto,
-                            'ContentType' => 'image',
-                            'ACL' => 'public-read',
-                        ));
-
-                    }
-                }
-
-                if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'gif') 
-                {
-                    $foto=$request["foto"];
-
-                    if($foto<>'')
-                    {
-                        $muro = new Muro();
-                        $muro->usuario_id = $idusuario;
-                        $muro->mensaje = $request["mensaje"];
-                        $muro->foto = $foto;
-                        $muro->tipo_post = 'gif';
-                        $muro->save();
-                        return ["status" => "exito", "data" => []];
-                    }
-                }
-            }
-            
-            elseif(!isset($request["tipo_post"]))
-            {
-                if(isset($request["foto"])) 
-                {
-                    $foto=$request["foto"];
-                    if($foto<>'')
-                    {
-                        list($tipo, $Base64Img) = explode(';', $foto);
-                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                        $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                        $filepath='posts/' . $request["foto"];
-
-                        $s3 = S3Client::factory(config('app.s3'));
-                        $result = $s3->putObject(array(
-                            'Bucket' => config('app.s3_bucket'),
-                            'Key' => $filepath,
-                            'SourceFile' => $foto,
-                            'ContentType' => 'image',
-                            'ACL' => 'public-read',
-                        ));
-
-                    }
-                }
-            }
-            Muro::create($request);
-            return ["status" => "exito", "data" => []];
-
-        } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
-    }
-
-    public function postear_prueba(Request $request)
-    {
-        if($request["tipo_post"] != 'video') {
-            $request=json_decode($request->getContent());
-            $request=get_object_vars($request);
-        }
-        try{
-            //Validaciones
-            $errors=[];
-            $token=$request["token"];
-            $idusuario=decodifica_token($token);
-
-            if($idusuario=="") $errors[]="El token es incorrecto";
-            if(!isset($request["mensaje"])) $errors[]="El mensaje es requerido";
-            if(isset($request["mensaje"])){
-                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["mensaje"], true);
-                if($resultado!=""){
-                    if($resultado['hasMatch']){
-                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado."; 
-                    }
-                }
-            }
-            if(count($errors)>0){
-                return ["status" => "fallo", "error" => $errors];
-            }
-            //fin validaciones
-            $request["usuario_id"]=$idusuario;
-            unset($request["token"]);
-
-            if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
-                $foto=$request["foto"];
-                return var_dump($request["foto"]);
                 if($foto<>''){
                     if ($foto->getClientOriginalExtension() == "mp4") {
                         if($foto->getSize() <= 7000000){
@@ -329,31 +192,6 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
-
-            $usuarios_aplausos = MuroAplauso
-                ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
-                ->where('muro_id',$post->id)
-                ->get();
-
-            $user = array();
-            foreach ($usuarios_aplausos as $usuarios_aplausos) {
-
-                if($usuarios_aplausos->apodo){
-                    $usuarios_aplausos= array(
-                        'id'=>$usuarios_aplausos->id,
-                        'nombre'=>$usuarios_aplausos->apodo,
-                    );
-                    $user[]=$usuarios_aplausos;
-
-                }else{
-                    $usuarios_aplausos= array(
-                        'id'=>$usuarios_aplausos->id,
-                        'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
-                    );
-                    $user[]=$usuarios_aplausos;
-                }
-            }
-
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
@@ -362,11 +200,8 @@ class MuroController extends Controller
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
                 'naplausos'=>$post->aplausos->count(),
-                'usuarios_aplausos'=>$user,
-                'yaaplaudio'=>$yaaplaudio,
+                'yaaplaudio' => $yaaplaudio,
             ];
-
-
         }
         return $data;
     }
@@ -457,6 +292,11 @@ class MuroController extends Controller
                 'comentario' => $request["comentario"],
                 'foto' => $request["foto"]
             ]);
+
+            $usuario = Usuario::where('id',$idusuario)->first();
+            if($usuario->notificacionToken)
+                $this->enviarNotificacion($usuario,$idpost);
+
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -609,6 +449,45 @@ class MuroController extends Controller
 
         }
 
+        public function enviarNotificacion(Usuario $usuario, $id_post){
+            //Mensaje de notificación
+            $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+            //Título de notificación
+            $title = '¡Tienes una nueva notificación!';
+            //Sección a la que se apunta
+            $seccion = 'muro';
+            //ID del post
+            //$id_post = '1';
 
+            //Configuración FCM
+            $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
+            $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
+            //Token de usuario FCM
+            $key = $usuario->notificacionToken;
+            $headers = array(
+                'Authorization:key=' .$server_key,
+                'Content-Type:application/json'
+            );
+
+            $fields = array('to'=>$key,
+                'notification'=>array('title'=>$title,'body'=>$message,'seccion'=>$seccion,'id_post'=>$id_post));
+
+            $payload = json_encode($fields);
+
+            echo $payload;
+
+            $curl_session = curl_init();
+            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+            curl_setopt($curl_session, CURLOPT_POST, true);
+            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+            $result = curl_exec($curl_session);
+            echo $result;
+
+
+        }
 
     }
