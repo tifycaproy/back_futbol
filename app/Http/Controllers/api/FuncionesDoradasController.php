@@ -15,6 +15,7 @@ class FuncionesDoradasController extends Controller
         {
             $funcion = FuncionesDoradas::find($idfuncion);
             $funcion->solo_dorado = true;
+            $funcion->limitar = true;
             $funcion->max_dorado = $request->max_dorado;
             $funcion->max_normal = $request->max_normal;
             $funcion->save();
@@ -24,6 +25,7 @@ class FuncionesDoradasController extends Controller
 
             $funcion = FuncionesDoradas::find($idfuncion);
             $funcion->solo_dorado = false;
+            $funcion->limitar = false;
             $funcion->max_dorado = $request->max_dorado;
             $funcion->max_normal = $request->max_normal;
             $funcion->save();

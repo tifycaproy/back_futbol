@@ -44,7 +44,9 @@
             <div class="col-12 col-lg-6 col-xl-4">
                 <!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->
                 <div class="texto mt-1 pl-4 pr-4">
-                    <h5> ¡Continúa disfrutando el mejor contenido del Embajador! </h5>
+
+                   <h5> ¡Continúa disfrutando el mejor contenido del Embajador! </h5>
+                   
                 </div>
             </div>
         </section>
