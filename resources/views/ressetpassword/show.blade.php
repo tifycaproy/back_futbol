@@ -27,7 +27,9 @@
         <section class="row justify-content-center no-gutters ">
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->
-                <h1>Recuperar tu contraseña</h1>
+
+                <h1>Recupera tu contraseña</h1>
+
             </div>
         </section>
 

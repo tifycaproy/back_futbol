@@ -233,5 +233,10 @@ class CompartirController extends Controller
         $respuesta=EncuestaRespuesta::find($id);
         return view('compartir.tueliges',['respuesta'=>$respuesta, 'seccion'=>$seccion]);
     }
+
+      public function descargar()
+    {
+        return view('compartir.referidos.descargar');
+    }
 }
 //
