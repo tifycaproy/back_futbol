@@ -62,7 +62,7 @@ Route::get('single_calendariofb/{id}', 'api\CalendariofbController@single_calend
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
-Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
+Route::get('single_jugador/{id}/{token}', 'api\JugadoresController@single_jugador');
 Route::post('aplaudir', 'api\JugadoresController@aplaudir')->middleware(['user.dorado:funcion,aplaudir_single_jugador']);
 
 Route::get('nominafb', 'api\JugadoresfbController@nomina');

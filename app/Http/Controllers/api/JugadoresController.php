@@ -7,7 +7,7 @@ use App\Configuracion;
 use App\Http\Controllers\Controller;
 use App\Jugador;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class JugadoresController extends Controller
 {
@@ -55,9 +55,17 @@ class JugadoresController extends Controller
         return $data;
     }
 
-    public function single_jugador($id)
+    public function single_jugador($id, $token)
     {
+        $idusuario=decodifica_token($token);
         if ($jugador = Jugador::find($id)) {
+            if(!empty($jugador->alineacion->last())){
+                
+                $aplauso = DB::table('aplausos')->where('jugadores_id', '=', $id)->get();
+                
+                return $aplauso;
+                return $jugador->alineacion->last();
+            }
             $data["status"] = 'exito';
             $data["data"] = [
                 'idjugador' => $jugador->id,
@@ -70,6 +78,7 @@ class JugadoresController extends Controller
                 'estatura' => $jugador->estatura,
                 'banner' => config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
+                'ultimo_aplauso' => ""
             ];
             $partidoaaplaudor = Configuracion::first(['calendario_aplausos_id']);
             if ($partidoaaplaudor->calendario_aplausos_id <> 0 and $partidoaaplaudor->calendario_aplausos_id == $jugador->calendario_id) {
