@@ -619,14 +619,13 @@ class MuroController extends Controller
 
     public function SearchMuro(Request $request)
     {
-        $muro = DB::table('muro')
-            ->join('usuarios', 'usuarios.id', '=', 'muro.usuario_id')
-            ->select('usuarios.nombre','usuarios.apellido','usuarios.apodo', 'muro.*') 
-            ->where('usuarios.nombre', 'like', '%'.$request->busqueda.'%')
-            ->orWhere('usuarios.apellido', 'like', '%'.$request->busqueda.'%')
-            ->orWhere('usuarios.apodo', 'like', '%'.$request->busqueda.'%');
+        $muro = DB::table('usuarios')
+            ->select('nombre','apellido','apodo', 'id') 
+            ->where('nombre', 'like', '%'.$request->busqueda.'%')
+            ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
+            ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
 
-        return $muro->select('nombre','apellido','apodo','usuario_id')->distinct()->get();
+        return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
     }
 
 }
