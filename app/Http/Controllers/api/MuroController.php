@@ -621,13 +621,12 @@ class MuroController extends Controller
     {
         $muro = DB::table('muro')
             ->join('usuarios', 'usuarios.id', '=', 'muro.usuario_id')
-            ->select('usuarios.nombre','usuarios.apellido','usuarios.apodo', 'muro.*')
+            ->select('usuarios.nombre','usuarios.apellido','usuarios.apodo', 'muro.*') 
             ->where('usuarios.nombre', 'like', '%'.$request->busqueda.'%')
             ->orWhere('usuarios.apellido', 'like', '%'.$request->busqueda.'%')
-            ->orWhere('usuarios.apodo', 'like', '%'.$request->busqueda.'%')
-            ->get();
+            ->orWhere('usuarios.apodo', 'like', '%'.$request->busqueda.'%');
 
-        return $muro;
+        return $muro->select('nombre','apellido','apodo','usuario_id')->distinct()->get();
     }
 
 }
