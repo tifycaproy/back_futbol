@@ -64,6 +64,7 @@ class JugadoresController extends Controller
                 $idusuario=decodifica_token($token);
                 if(!empty($jugador->alineacion->last())){
                     $aplauso = Aplauso::where('calendario_id', $jugador->alineacion->last()->calendario_id)->where('jugadores_id', $id)->where('usuario_id', $idusuario)->get();
+
                     if(count($aplauso) > 0){
                         $ultimo_aplauso = 1;
                     }else{
