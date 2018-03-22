@@ -82,7 +82,7 @@ $data = array(
         "Ruta" => "/noticias/{token}?page={pagina}",
         "Método" => "GET",
        
-        "Éxito" =>
+       "Éxito (Array)" => array(
          "idpartido", "estado", "equipo_1", "bandera_1", "goles_1", "equipo_2", "bandera_2", "goles_2", "fecha", "fecha_etapa", "estadio", "info",
         "Noticias (array)" =>['id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)', 'solo_dorado(boolean)'
         ],
