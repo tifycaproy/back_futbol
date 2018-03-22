@@ -584,7 +584,7 @@ class MuroController extends Controller
     //Retornamos vista con los primeros 10
         $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
         dd($result);
-
+    }
 
         public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
