@@ -96,6 +96,9 @@ Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
 Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir')->middleware(['user.dorado:funcion,muro_post_aplaudir']);
 Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir')->middleware(['user.dorado:funcion,muro_comentario_aplaudir']);
 Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
+
+Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
+
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
 Route::post('SearchMuro', 'api\MuroController@SearchMuro');
 //SeccionesDoradas

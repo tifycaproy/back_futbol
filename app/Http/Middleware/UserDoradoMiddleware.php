@@ -57,11 +57,11 @@ class UserDoradoMiddleware
                 if($usuario->dorado){
 
                     if($posts >= $funcion->max_dorado)
-                        return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Dorado "]]);
+                        return response()->json(['status' => 'limite_post','error'=>["Has alcanzado el límite de publicaciones de spam acordadas en nuestras políticas"]]);
                 }else{
 
                     if($posts >= $funcion->max_normal)
-                        return response()->json(['status' => 'limite_post','error'=>["Disculpe, Ha llegado al limite de post Hincha Tradicional"]]);
+                        return response()->json(['status' => 'limite_post','error'=>["Has alcanzado el límite de publicaciones de spam acordadas en nuestras políticas"]]);
 
                 }
 

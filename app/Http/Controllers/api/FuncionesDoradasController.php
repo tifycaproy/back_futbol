@@ -15,17 +15,16 @@ class FuncionesDoradasController extends Controller
         {
             $funcion = FuncionesDoradas::find($idfuncion);
             $funcion->solo_dorado = true;
-            $funcion->limitar = true;
+            $funcion->limitar = $request->has('limitar');
             $funcion->max_dorado = $request->max_dorado;
             $funcion->max_normal = $request->max_normal;
             $funcion->save();
             return redirect()->to('/funciones_doradas');
         }
         else{
-
             $funcion = FuncionesDoradas::find($idfuncion);
             $funcion->solo_dorado = false;
-            $funcion->limitar = false;
+            $funcion->limitar = $request->has('limitar');
             $funcion->max_dorado = $request->max_dorado;
             $funcion->max_normal = $request->max_normal;
             $funcion->save();
