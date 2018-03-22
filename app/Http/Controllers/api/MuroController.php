@@ -222,6 +222,7 @@ class MuroController extends Controller
                     );
                    $user[]=$usuarios_aplausos;
                 }
+                
             }
 
 
