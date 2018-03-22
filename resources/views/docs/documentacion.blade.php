@@ -81,6 +81,9 @@ $data = array(
     "Noticias" => array(
         "Ruta" => "/noticias/{token}?page={pagina}",
         "Método" => "GET",
+        "partido (array)" => [
+                "idpartido", "estado", "equipo_1", "bandera_1", "goles_1", "equipo_2", "bandera_2", "goles_2", "fecha", "fecha_etapa", "estadio", "info"
+        ],
         "Éxito (Array)" => [
             'id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)', 'solo_dorado(boolean)'
         ],
@@ -512,6 +515,7 @@ $data = array(
         "Método" => "GET",
         "Éxito (Array)" => [
             'idpost', 'mensaje', 'fecha', 'foto', 'ncomentarios', 'naplausos', 'yaaplaudio (0 ó 1)',
+            'usuarios_aplausos' => ['id', 'nombre', 'foto'],
             'usuario' => ['idusuario', 'nombre', 'apellido', 'apodo', 'email', 'celular', 'pais', 'ciudad', 'fecha_nacimiento', 'genero', 'foto', 'created_at', 'codigo', 'fecha_vencimiento']
         ],
     ),
@@ -528,6 +532,7 @@ $data = array(
             "error" => array("El token es requerido", "El mensaje es requerido")
         )
     ),
+
     "Consultar perfil" => array(
         "Ruta" => "/perfil_usuario/{idusuario}",
         "Método" => "GET",
