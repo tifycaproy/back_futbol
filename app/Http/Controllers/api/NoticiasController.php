@@ -105,16 +105,16 @@ class NoticiasController extends Controller
     public function single_noticia($idNoticia){
 
        $noticia=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
-       ->where('id',$idNoticia);
+       ->where('id',$idNoticia)->first();
 
        $data["status"]='exito';
        $data["data"]=[];
        if($noticia->foto<>'') 
         $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
-    $data["data"][]=$noticia;   
+       $data["data"][]=$noticia;   
 
     return $data;
 
 
-}
+    }
 }
