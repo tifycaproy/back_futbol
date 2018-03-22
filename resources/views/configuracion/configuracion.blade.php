@@ -237,6 +237,22 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Título 0.1</label>
+                    <input type="text" class="form-control" name="titulo_0_1" value="{{ $configuracion->titulo_0_1 }}"
+                           maxlength="30">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Título 0.2</label>
+                    <input type="text" class="form-control" name="titulo_0_2" value="{{ $configuracion->titulo_0_2 }}"
+                           maxlength="30">
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label>Título 1</label>
@@ -597,6 +613,91 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h3><i class="fa fa-fw fa-list-ul"></i> Sub titulos</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 1.1</label>
+                        <input type="text" class="form-control" name="sub_titulo_1_1" value="{{ $configuracion->sub_titulo_1_1 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 1.2</label>
+                        <input type="text" class="form-control" name="sub_titulo_1_2" value="{{ $configuracion->sub_titulo_1_2 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 1.3</label>
+                        <input type="text" class="form-control" name="sub_titulo_1_3" value="{{ $configuracion->sub_titulo_1_3 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 1.4</label>
+                        <input type="text" class="form-control" name="sub_titulo_1_4" value="{{ $configuracion->sub_titulo_1_4 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 1.5</label>
+                        <input type="text" class="form-control" name="sub_titulo_1_5" value="{{ $configuracion->sub_titulo_1_5 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 2.1</label>
+                        <input type="text" class="form-control" name="sub_titulo_2_1" value="{{ $configuracion->sub_titulo_2_1 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 2.2</label>
+                        <input type="text" class="form-control" name="sub_titulo_2_2" value="{{ $configuracion->sub_titulo_2_2 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>Sub Titulo 2.3</label>
+                        <input type="text" class="form-control" name="sub_titulo_2_3" value="{{ $configuracion->sub_titulo_2_3 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Sub Titulo 2.4</label>
+                        <input type="text" class="form-control" name="sub_titulo_2_4" value="{{ $configuracion->sub_titulo_2_4 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Sub Titulo 2.5</label>
+                        <input type="text" class="form-control" name="sub_titulo_2_5" value="{{ $configuracion->sub_titulo_2_5 }}"
+                               maxlength="30">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <h3><i class="fa fa-fw fa-external-link-square"></i> Referidos</h3>
@@ -618,6 +719,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="row">
             <div class="col-lg-6">
                 <h3><i class="fa fa-fw fa-money"></i> Patrocinante</h3>
