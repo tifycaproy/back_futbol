@@ -193,24 +193,24 @@ class MuroController extends Controller
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
             $usuarios_aplausos = MuroAplauso
-                ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
-                ->where('muro_id',$post->id)
-                ->get();
+            ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
+            ->where('muro_id',$post->id)
+            ->get();
             $user = array();
-           foreach ($usuarios_aplausos as $usuarios_aplausos) {
+            foreach ($usuarios_aplausos as $usuarios_aplausos) {
 
-            if($usuarios_aplausos->foto_redes)
-                $foto = $usuarios_aplausos->foto_redes;
-            else if($usuarios_aplausos->foto)
-                $foto = config('app.url') . 'usuarios/' . $usuario->foto;
-            else 
-                $foto = "";
+                if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;
+                else if($usuarios_aplausos->foto)
+                    $foto = config('app.url') . 'usuarios/' . $usuario->foto;
+                else 
+                    $foto = "";
 
-              if($usuarios_aplausos->apodo){
+                if($usuarios_aplausos->apodo){
                     $usuarios_aplausos= array(
                         'id'=>$usuarios_aplausos->id,
-                       'nombre'=>$usuarios_aplausos->apodo,
-                       'foto' => $foto,
+                        'nombre'=>$usuarios_aplausos->apodo,
+                        'foto' => $foto,
                     );
                     $user[]=$usuarios_aplausos;
 
@@ -220,9 +220,9 @@ class MuroController extends Controller
                         'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
                         'foto' => $foto,
                     );
-                   $user[]=$usuarios_aplausos;
+                    $user[]=$usuarios_aplausos;
                 }
-                
+
             }
 
 
@@ -336,7 +336,7 @@ class MuroController extends Controller
             if($usuarioRecibeNotif->notificacionToken)
             {
                 $usuario = Usuario::find($idusuario);
-                $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken);
+                $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'comentario');
             }
 
             return ["status" => "exito", "data" => []];
@@ -418,7 +418,18 @@ class MuroController extends Controller
                     'muro_id' => $idpost,
                     'usuario_id' => $idusuario,
                 ]);
+                
+                $usuarioRecibeNotifId = Muro::find($idpost)->usuario_id; 
+                $usuarioRecibeNotif = Usuario::where('id',$usuarioRecibeNotifId)->first();
+
+                if($usuarioRecibeNotif->notificacionToken)
+                {
+                    $usuario = Usuario::find($idusuario);
+                    $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'aplauso');
+                }
+
             }
+
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -472,14 +483,14 @@ class MuroController extends Controller
             } 
         }
 
-     public function single_post($idpost,$token)
-    {
-        
-        $post=Muro::find($idpost);
-        $idusuario=decodifica_token($token);
-        $data["status"]='exito';
-        $data["data"]=[];
-     
+        public function single_post($idpost,$token)
+        {
+            
+            $post=Muro::find($idpost);
+            $idusuario=decodifica_token($token);
+            $data["status"]='exito';
+            $data["data"]=[];
+            
             if($post->foto<>''){
                 if($post->tipo_post == "video"){
                     $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
@@ -508,7 +519,7 @@ class MuroController extends Controller
             $usuario["codigo"]=codifica($usuario['idusuario']);
             unset($usuario["foto_redes"]);
             $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
-                $comentariosArray = array();
+            $comentariosArray = array();
             $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
             foreach ($comentarios as $comentario) {
                 if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
@@ -540,8 +551,8 @@ class MuroController extends Controller
                     'yaaplaudio' => $yaaplaudio,
                 ];
             }
-                          
-                 $data["data"][]=[
+            
+            $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
                 'foto'=>$post->foto,
@@ -553,9 +564,9 @@ class MuroController extends Controller
                 'comentarios' => $comentariosArray
             ];
 
-        return $data;
-    
-    }
+            return $data;
+            
+        }
 
         public function topAplausos()
         {
@@ -576,9 +587,12 @@ class MuroController extends Controller
 
         }
 
-        public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken){
+        public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
-            $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+            if($tipo == 'comentario')
+                $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+            else if ($tipo == 'aplauso')
+                $message = $usuario->nombre . ' ha aplaudido tu publicación';
             //Título de notificación
             $title = '¡Tienes una nueva notificación!';
             //Sección a la que se apunta
@@ -602,8 +616,6 @@ class MuroController extends Controller
                 'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
 
             $payload = json_encode($fields);
-
-            echo $payload;
 
             $curl_session = curl_init();
             curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
