@@ -718,23 +718,23 @@ class MuroController extends Controller
             
         }
 
-    public function topAplausos()
-    {
+        public function topAplausos()
+        {
     //Traemos los posts
-        $posts = Muro::all();
+            $posts = Muro::all();
     //Contamos cuantos aplausos tienen
-        foreach($posts as $post){
-            $post->cantidad_aplausos = $post->aplausos()->count();
-            if($post->foto)
-                $post->foto=config('app.url') . 'posts/' . $post->foto;
-            $usuario = Usuario::find($post->usuario_id);
-            $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
-            $post->usuario_tlf = $usuario->telefono;
-        }
+            foreach($posts as $post){
+                $post->cantidad_aplausos = $post->aplausos()->count();
+                if($post->foto)
+                    $post->foto=config('app.url') . 'posts/' . $post->foto;
+                $usuario = Usuario::find($post->usuario_id);
+                $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+                $post->usuario_tlf = $usuario->telefono;
+            }
     //Retornamos vista con los primeros 10
-        $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
-        dd($result);
-    }
+            $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+            dd($result);
+        }
 
         public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
@@ -758,23 +758,23 @@ class MuroController extends Controller
                 'Authorization:key=' .$server_key,
                 'Content-Type:application/json'
             );
-             $fields = array('to'=>$key,
-               'notification'=>array('title'=>$title,'body'=>$message),
-               'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
+            $fields = array('to'=>$key,
+             'notification'=>array('title'=>$title,'body'=>$message),
+             'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
 
             $payload = json_encode($fields);
 
-              $curl_session = curl_init();
-                curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
-                curl_setopt($curl_session, CURLOPT_POST, true);
-                curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
-               curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-                curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
-                $result = curl_exec($curl_session);
+            $curl_session = curl_init();
+            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+            curl_setopt($curl_session, CURLOPT_POST, true);
+            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+            $result = curl_exec($curl_session);
 
-    }
+        }
 
 
     public function SearchMuro(Request $request)
@@ -788,4 +788,4 @@ class MuroController extends Controller
         return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
     }
 
-}
+    }
