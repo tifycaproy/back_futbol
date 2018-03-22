@@ -293,7 +293,10 @@ class MuroController extends Controller
                     }
                 }
             }
-            Muro::find($idpost)->update($request);
+    
+            Muro::where('id',$idpost)
+                ->where('usuario_id', $idusuario)
+                ->update($request);
 
             return ["status" => "exito", "data" => []];
 
