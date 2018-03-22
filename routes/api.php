@@ -89,7 +89,6 @@ Route::get('videos360', 'api\VideovrController@videos360');
 //Muro
 
 Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);
-Route::post('muro_prueba', 'api\MuroController@postear_prueba');
 Route::get('muro', 'api\MuroController@index');
 Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
 Route::post('muro_comentar', 'api\MuroController@muro_comentar')->middleware(['user.dorado:funcion,muro_comentar']);
@@ -101,6 +100,7 @@ Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
 
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
+Route::post('SearchMuro', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 

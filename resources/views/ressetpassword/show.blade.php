@@ -24,15 +24,7 @@
     <!--contenido-->
     <div class="">
         <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
-        <section class="row justify-content-center no-gutters ">
-            <!-- titulo-->
-            <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->
-
-                <h1>Recupera tu contraseña</h1>
-
-            </div>
-        </section>
-
+     
         <form class="form-horizontal" method="POST" action="{{ url('/resetpassword') }}">
             <div align="center">
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
