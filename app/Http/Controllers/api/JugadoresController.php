@@ -47,7 +47,7 @@ class JugadoresController extends Controller
         $judadores = Jugador::where('activo', 1)->select('id', 'nombre', 'banner')->where('posicion', 'Delantero')->get();
         foreach ($judadores as $jugador) {
             $data['data'][] = [
-                "djugador" => $jugador->id,
+                "idjugador" => $jugador->id,
                 "nombre" => $jugador->nombre,
                 "banner" => config('app.url') . 'jugadores/' . $jugador->banner,
             ];
