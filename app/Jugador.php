@@ -33,6 +33,8 @@ class Jugador extends Model
     {
         return $this->hasMany('App\Aplauso','jugadores_id');
     }
-
-
+    public function alineacion()
+    {
+        return $this->hasMany('App\Alineacion');
+    }
 }

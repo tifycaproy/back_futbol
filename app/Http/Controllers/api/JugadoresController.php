@@ -55,9 +55,23 @@ class JugadoresController extends Controller
         return $data;
     }
 
-    public function single_jugador($id)
+    public function single_jugador($id, $token = null)
     {
+        
+        $ultimo_aplauso = 0;
         if ($jugador = Jugador::find($id)) {
+            if($token != null){
+                $idusuario=decodifica_token($token);
+                if(!empty($jugador->alineacion->last())){
+                    $aplauso = Aplauso::where('calendario_id', $jugador->alineacion->last()->calendario_id)->where('jugadores_id', $id)->where('usuario_id', $idusuario)->get();
+                    if(count($aplauso) > 0){
+                        $ultimo_aplauso = 1;
+                    }else{
+                        $ultimo_aplauso = 0;
+                    }
+                }
+            }
+
             $data["status"] = 'exito';
             $data["data"] = [
                 'idjugador' => $jugador->id,
@@ -70,6 +84,7 @@ class JugadoresController extends Controller
                 'estatura' => $jugador->estatura,
                 'banner' => config('app.url') . 'jugadores/' . $jugador->banner,
                 'instagram' => $jugador->instagram,
+                'ultimo_aplauso' => $ultimo_aplauso
             ];
             $partidoaaplaudor = Configuracion::first(['calendario_aplausos_id']);
             if ($partidoaaplaudor->calendario_aplausos_id <> 0 and $partidoaaplaudor->calendario_aplausos_id == $jugador->calendario_id) {
@@ -141,20 +156,25 @@ class JugadoresController extends Controller
             if (count($errors) > 0) {
                 return ["status" => "fallo", "error" => $errors];
             }
+            $idusuario = null;
+            if(isset($request["token"])){
+                $idusuario=decodifica_token($request["token"]);
+            }
+            
             if ($aplauso = Aplauso::where('jugadores_id', $request["idjugador"])->where('calendario_id', $request["idpartido"])->where('imei', $request["imei"])->first()) {
                 $aplauso->delete();
+                $aplauso = 0;
             } else {
                 Aplauso::create([
                     'jugadores_id' => $request["idjugador"],
                     'calendario_id' => $request["idpartido"],
                     'imei' => $request["imei"],
+                    'usuario_id' => $idusuario
                 ]);
+                $aplauso = 1;
             }
-
             //fin validaciones
-
-
-            return ["status" => "exito"];
+            return ["status" => "exito","aplauso" => $aplauso ];
         } catch (Exception $e) {
             return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
         }

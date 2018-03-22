@@ -15,7 +15,7 @@ class CalendarioController extends Controller
 {
     public function index()
     {
-        $calendarios=Calendario::where('copas_id',$_SESSION['copa_id'])->orderby('fecha','desc')->paginate(25);
+        $calendarios=Calendario::where('copas_id',$_SESSION['copa_id'])->orderby('fecha','asc')->paginate(25);
         return view('calendarios.index')->with('calendarios',$calendarios)->with('copa_titulo',$_SESSION['copa_titulo']);
     }
 

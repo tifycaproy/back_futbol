@@ -24,7 +24,6 @@
     <!--contenido-->
     <div class="">
         <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
-
         <form class="form-horizontal" method="POST" action="{{ url('/resetpassword') }}">
             <div align="center">
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

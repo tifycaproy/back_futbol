@@ -22,7 +22,7 @@ Route::get('ventanas_compartir', 'api\CompartirController@index');
 Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
-
+Route::get('noticia/{idNoticia}', 'api\NoticiasController@single_noticia');
 //usuarios
 // v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
@@ -62,7 +62,7 @@ Route::get('single_calendariofb/{id}', 'api\CalendariofbController@single_calend
 
 //Jugadores
 Route::get('nomina', 'api\JugadoresController@nomina');
-Route::get('single_jugador/{id}', 'api\JugadoresController@single_jugador');
+Route::get('single_jugador/{id}/{token?}', 'api\JugadoresController@single_jugador');
 Route::post('aplaudir', 'api\JugadoresController@aplaudir')->middleware(['user.dorado:funcion,aplaudir_single_jugador']);
 
 Route::get('nominafb', 'api\JugadoresfbController@nomina');
@@ -89,6 +89,7 @@ Route::get('videos360', 'api\VideovrController@videos360');
 //Muro
 
 Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);
+Route::post('muro/{id}', 'api\MuroController@edit_post');
 Route::get('muro', 'api\MuroController@index');
 Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
 Route::post('muro_comentar', 'api\MuroController@muro_comentar')->middleware(['user.dorado:funcion,muro_comentar']);
@@ -96,7 +97,11 @@ Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
 Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir')->middleware(['user.dorado:funcion,muro_post_aplaudir']);
 Route::post('muro_comentario_aplaudir', 'api\MuroController@muro_comentario_aplaudir')->middleware(['user.dorado:funcion,muro_comentario_aplaudir']);
 Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
+
+Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
+
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
+Route::post('SearchMuro', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 

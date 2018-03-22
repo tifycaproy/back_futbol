@@ -2,6 +2,7 @@
 
 @section('css')
     <link href="css/slim.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -64,6 +65,18 @@
                             </div>
                      </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-4">
+                            <label >Fecha/Hora del evento</label>
+                             <input  class="form-control " id="hora_evento" type="datetime-local" name="hora_evento"  placeholder="Hora del evento" value="@if($id){{Carbon\Carbon::parse($pr->hora_evento)->format('Y-m-d\TH:i')}}@endif">
+                     </div>
+                    <div class="col-xs-8">
+                            <label >Dirección</label>
+                            <textarea id="direccion" name="direccion" rows="3" class="form-control" placeholder="Dirección" >@if($id){{$pr->direccion}}@endif</textarea>                    
+                     </div>
+                </div>
+
             </div>
         </section>
         <br>
@@ -163,6 +176,10 @@
 </div>
 @endsection
 @section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> 
+
+
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9KdpmPR1HKREweEn2U0fqb_NmmE5tl4s&callback=initMap" async defer>
     </script>
@@ -230,6 +247,13 @@
       }
 
     $(document).ready(function(){
+        $(function () {
+            $('#hora_evento').datetimepicker();
+        });
+
+
+
+                   
         var token = $( "input[name='_token']" ).val();
         slimPrint();
 
@@ -285,6 +309,8 @@
                         latitud:$( "#latitud" ).val(),
                         longitud:$( "#longitud" ).val(),
                         id:$( "#secreto" ).val(),
+                        hora_evento:$( "#hora_evento" ).val(),
+                        direccion:$( "#direccion" ).val()
                     },
 
                     success:function( respuesta )

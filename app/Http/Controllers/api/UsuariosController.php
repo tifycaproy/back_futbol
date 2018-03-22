@@ -357,11 +357,11 @@ class UsuariosController extends Controller
                     'albiazul','millos');
                 foreach($bads as $bad) {
                     if (stripos($string,$bad) !== false) {
-                       $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
-                   }
-               }
-           }
-           if (isset($request["apellido"])) {
+                     $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
+                 }
+             }
+         }
+         if (isset($request["apellido"])) {
             $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
             if ($resultado != "") {
                 if ($resultado['hasMatch']) {
@@ -374,77 +374,77 @@ class UsuariosController extends Controller
             foreach($bads as $bad) {
                 if (stripos($string,$bad) !== false) {
                     $errors[] = "No se puede guardar tu apellido, contiene palabras reservadas.";
-               }
-           }
-       }
-       if (count($errors) > 0) {
-        return ["status" => "fallo", "error" => $errors];
-    }
+                }
+            }
+        }
+        if (count($errors) > 0) {
+            return ["status" => "fallo", "error" => $errors];
+        }
             //fin validaciones
-    $usuario = Usuario::where('email', '=', $request["email"])->first();
-    if ($usuario && isset($request["codigo"])) {
-        return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
-    }
-    $userID_facebook = "";
-    if (isset($request["userID_facebook"])) $userID_facebook = $request["userID_facebook"];
-    $userID_google = "";
-    if (isset($request["userID_google"])) $userID_google = $request["userID_google"];
-    $email = $request["email"];
-    $usuario = Usuario::where('email', $email)->first();
-    if ($usuario) {
-        if ($userID_facebook <> "") {
-            $data = ['userID_facebook' => $userID_facebook];
+        $usuario = Usuario::where('email', '=', $request["email"])->first();
+        if ($usuario && isset($request["codigo"])) {
+            return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
         }
-        if ($userID_google <> "") {
-            $data = ['userID_google' => $userID_google];
-        }
-        Usuario::find($usuario->id)->update($data);
-        return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-    } else {
-        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        $pass = array();
-        $alphaLength = strlen($alphabet) - 1;
-        for ($i = 0; $i < 8; $i++) {
-            $n = rand(0, $alphaLength);
-            $pass[] = $alphabet[$n];
-        }
-        $clave = implode($pass);
-        $clave = password_hash($clave, PASSWORD_DEFAULT);
-        $apellido = isset($request["apellido"]) ? $request["apellido"] : "";
-        if (isset($request["codigo"])) {
-            $codigo_referido = $request["codigo"];
-            $data = [
-                'email' => $email,
-                'nombre' => $request["nombre"],
-                'apellido' => $apellido,
-                'clave' => $clave,
-                'userID_facebook' => $userID_facebook,
-                'userID_google' => $userID_google,
-                'referido' => $codigo_referido
-            ];
+        $userID_facebook = "";
+        if (isset($request["userID_facebook"])) $userID_facebook = $request["userID_facebook"];
+        $userID_google = "";
+        if (isset($request["userID_google"])) $userID_google = $request["userID_google"];
+        $email = $request["email"];
+        $usuario = Usuario::where('email', $email)->first();
+        if ($usuario) {
+            if ($userID_facebook <> "") {
+                $data = ['userID_facebook' => $userID_facebook];
+            }
+            if ($userID_google <> "") {
+                $data = ['userID_google' => $userID_google];
+            }
+            Usuario::find($usuario->id)->update($data);
+            return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
         } else {
-            $data = [
-                'email' => $email,
-                'nombre' => $request["nombre"],
-                'apellido' => $apellido,
-                'clave' => $clave,
-                'userID_facebook' => $userID_facebook,
-                'userID_google' => $userID_google,
-            ];
-        }
-        if (isset($request["foto_redes"])) {
-            $data['foto_redes'] = $request["foto_redes"];
-        }
+            $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            $pass = array();
+            $alphaLength = strlen($alphabet) - 1;
+            for ($i = 0; $i < 8; $i++) {
+                $n = rand(0, $alphaLength);
+                $pass[] = $alphabet[$n];
+            }
+            $clave = implode($pass);
+            $clave = password_hash($clave, PASSWORD_DEFAULT);
+            $apellido = isset($request["apellido"]) ? $request["apellido"] : "";
+            if (isset($request["codigo"])) {
+                $codigo_referido = $request["codigo"];
+                $data = [
+                    'email' => $email,
+                    'nombre' => $request["nombre"],
+                    'apellido' => $apellido,
+                    'clave' => $clave,
+                    'userID_facebook' => $userID_facebook,
+                    'userID_google' => $userID_google,
+                    'referido' => $codigo_referido
+                ];
+            } else {
+                $data = [
+                    'email' => $email,
+                    'nombre' => $request["nombre"],
+                    'apellido' => $apellido,
+                    'clave' => $clave,
+                    'userID_facebook' => $userID_facebook,
+                    'userID_google' => $userID_google,
+                ];
+            }
+            if (isset($request["foto_redes"])) {
+                $data['foto_redes'] = $request["foto_redes"];
+            }
                 // Referidos
-        if ($referente = Referido::where('email', $email)->first()) {
-            $data["referido"] = $referente->usuario_id;
+            if ($referente = Referido::where('email', $email)->first()) {
+                $data["referido"] = $referente->usuario_id;
+            }
+            $usuario = Usuario::create($data);
+            return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
         }
-        $usuario = Usuario::create($data);
-        return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+    } catch (Exception $e) {
+        return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
     }
-} catch (Exception $e) {
-    return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
-}
 }
 public function recuperar_clave(Request $request)
 {
@@ -636,11 +636,11 @@ public function actualizar_usuario(Request $request, $token)
                 'albiazul','millos');
             foreach($bads as $bad) {
                 if (stripos($string,$bad) !== false) {
-                   $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
-               }
-           }
-       }
-       if (isset($request["apellido"])) {
+                 $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
+             }
+         }
+     }
+     if (isset($request["apellido"])) {
         $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
         if ($resultado != "") {
             if ($resultado['hasMatch']) {
@@ -652,11 +652,11 @@ public function actualizar_usuario(Request $request, $token)
             'albiazul','millos');
         foreach($bads as $bad) {
             if (stripos($string,$bad) !== false) {
-               $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
-           }
-       }
-   }
-   if (isset($request["apodo"])) {
+             $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
+         }
+     }
+ }
+ if (isset($request["apodo"])) {
     $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apodo"], true);
     if ($resultado != "") {
         if ($resultado['hasMatch']) {
@@ -668,9 +668,9 @@ public function actualizar_usuario(Request $request, $token)
         'albiazul','millos');
     foreach($bads as $bad) {
         if (stripos($string,$bad) !== false) {
-           $errors[] = "No se pudo actualizar tu apodo, esta palabra es de uso exclusivo de la App Oficial";
-       }
-   }
+         $errors[] = "No se pudo actualizar tu apodo, esta palabra es de uso exclusivo de la App Oficial";
+     }
+ }
 }
 if (count($errors) > 0) {
     return ["status" => "fallo", "error" => $errors];
@@ -806,10 +806,10 @@ public function actualizarNotificacionToken(Request $request)
     $usuario = Usuario::where('id',$idUsuario)->first();
     if(!$usuario){
             //Si no existe, retornamos error
-       return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
-   }
-   else
-   {
+     return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
+ }
+ else
+ {
             //Si existe, actualizamos el token y guardamos
     $usuario->notificacionToken = $notificacionToken;
     $usuario->save();

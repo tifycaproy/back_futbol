@@ -6,6 +6,7 @@ use App\Exceptions\UserDoradoException;
 use App\Usuario;
 use App\SeccionesDoradas;
 use App\FuncionesDoradas;
+use App\Muro;
 use Closure;
 
 class UserDoradoMiddleware
@@ -19,15 +20,15 @@ class UserDoradoMiddleware
      */
     public function handle($request, Closure $next, $tipo, $nombre)
      {
-        ;
+
         if($request["tipo_post"] != 'video' || !isset($request["tipo_post"])) {
 
             $request1=json_decode($request->getContent());
             $request1=get_object_vars($request1);
-            
             if(!isset($request1["token"])) {
                 return $next($request);
             }
+            
         }else{
             $request1["token"] = $request["token"];
         }
@@ -44,10 +45,25 @@ class UserDoradoMiddleware
         }
         else if($tipo == 'funcion')
         {
-            $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
-            if($funcion->solo_dorado && !$usuario->dorado)
-                 return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
 
+            $funcion = FuncionesDoradas::where('nombre',$nombre)->first();
+
+            if($funcion->solo_dorado && !$usuario->dorado )
+                return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
+                $posts=Muro::where('usuario_id', $token)->count();
+
+
+            if($nombre == 'muro_postear' && $funcion->limitar)
+                if($usuario->dorado){
+
+                    if($posts >= $funcion->max_dorado)
+                        return response()->json(['status' => 'limite_post','error'=>["Has alcanzado el límite de publicaciones de spam acordadas en nuestras políticas"]]);
+                }else{
+
+                    if($posts >= $funcion->max_normal)
+                        return response()->json(['status' => 'limite_post','error'=>["Has alcanzado el límite de publicaciones de spam acordadas en nuestras políticas"]]);
+
+                }
 
         }
         

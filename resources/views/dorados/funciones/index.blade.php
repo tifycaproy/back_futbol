@@ -32,6 +32,7 @@
                 <tr>
                     <th>Funcion</th>
                     <th>Solo Dorado</th>
+                    <th>Limitar</th>
                     <th>Max Dorado</th>
                     <th>Max Normal</th>
                     <th>Guardar</th>
@@ -43,10 +44,12 @@
                     {{ csrf_field() }}
                     <tr>
                         <td>{{$funcion->nombre}}</td>
-                        <td><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($funcion->solo_dorado == true) checked=checked @endif ></td>
-                        <td><input name="max_dorado" id="max_dorado" type="number" value="{{ old('max_dorado', $funcion->max_dorado) }}"></td>
-                        <td><input name="max_normal" id="max_normal" type="number" value="{{ old('max_dorado', $funcion->max_normal) }}"></td>
-                        <td><input type="submit" class="btn btn-primary btn-sm" value="Guardar"></td>
+                        <td style="width: 15%"><input name="solo_dorado" id="solo_dorado" type="checkbox" @if($funcion->solo_dorado == true) checked=checked @endif ></td>
+                        <td style="width: 15%">@if($funcion->nombre == 'muro_postear')<input name="limitar" title="Limitar Post @if($funcion->limitar == true) Activo @else Desactivado @endif" id="limitar" type="checkbox" @if($funcion->limitar == true) checked=checked @endif >@endif</td>
+                        <td style="width: 15%">@if($funcion->nombre == 'muro_postear')<input name="max_dorado" id="max_dorado" type="number"  value="{{ old('max_dorado', $funcion->max_dorado) }}"> @endif</td>
+                        <td style="width: 15%">@if($funcion->nombre == 'muro_postear')<input name="max_normal" id="max_normal" type="number" value="{{ old('max_dorado', $funcion->max_normal) }}">@endif</td>
+
+                        <td style="width: 10%"><input type="submit" class="btn btn-primary btn-sm" value="Guardar"></td>
                     </tr>
                 </form>
                 @endforeach

@@ -51,14 +51,22 @@
                     </div>
                 </div>
             </section>
+<<<<<<< HEAD
+                <div class="col-10 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+=======
                 <div class="col-8 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+>>>>>>> staging
                     <!-- Imagen-->
                     <img src="{{ $data['foto'] }}" class="img-fluid" alt="">
                 </div>
             </section>
             <section class="row justify-content-center mt-0 no-gutters">
                 <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
+<<<<<<< HEAD
+                    <div class="texto mt-0 pl-4 pr-4">
+=======
                     <div class="texto mt-0 pl-0 pr-0">
+>>>>>>> staging
                         <!-- Texto-->
                         <h2>¡NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE!</h2>
                         <h2 class="mt-0"><b>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</b></h2>
