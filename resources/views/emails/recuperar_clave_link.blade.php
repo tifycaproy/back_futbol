@@ -8,7 +8,7 @@
         <div class="body">
             <h1 style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; text-transform:uppercase; font-size:2.2em; margin-top:-1em;">¡HINCHA EMBAJADOR!</h1>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em;"> Para recuperar tu contraseña ingresa en el siguiente link:</p>
-            <u><a href="{{ $link_clave_recuperacion }}"><p style="text-align:center; font-family: 'PT Sans', sans-serif; color: blue; font-size:2.0em; margin:1.2em auto;">Link de recuperación</p></a></u>
+            <u><a href="{{ $link_clave_recuperacion }}"><p style="text-align:center; font-family: 'PT Sans', sans-serif; color: #1154CC; font-size:2.0em; margin:1.2em auto;">Link de recuperación</p></a></u>
             <p style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.6em; margin:.3em auto; line-height:1;">Luego, ingresa tu correo con la NUEVA contraseña en la App Oficial y podrás seguir disfrutando del mejor contenido del Embajador.</p>
             <p class="agradecimiento" style="text-align:center; font-family: 'PT Sans', sans-serif; color: white; font-size:1.8em; margin:.3em auto;">Muchas Gracias, Millonarios FC</p>
             <div style="margin: 0 0 0 80px"></div>
