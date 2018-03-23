@@ -29,7 +29,7 @@ class NoticiasController extends Controller
         $partidos = Calendario::orderby('fecha', 'desc')->get();
         $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
         $secciones_destino=[
-            'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+            'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','geolocalizacion','muro'
         ];
 
         return view('noticias.create')->with('encuestas', $encuestas)->with('partidos', $partidos)->with('partidosfb', $partidosfb)->with('secciones_destino',$secciones_destino);
@@ -91,7 +91,7 @@ class NoticiasController extends Controller
                     $tokens[] = $usuario->notificacionToken;
                 }
                 if($request->seccionNotificacion == 'news')
-                $this->enviarNotificacion($tokens,$request,$noticia->id);
+                $this->enviarNotificacion($tokens,$request,$noticia);
                 else
                     $this->enviarNotificacion($tokens,$request,'noAplica');
             }return redirect()->route('noticias.edit', codifica($noticia->id))->with("notificacion", "Se ha guardado correctamente su información");
@@ -265,7 +265,7 @@ class NoticiasController extends Controller
         return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
     }
 
-    public function enviarNotificacion($tokens,Request $request,$idnoticia){
+    public function enviarNotificacion($tokens,Request $request,$noticia){
             //Mensaje de notificación
         $message = $request->mensajeNotificacion;
             //Título de notificación
@@ -285,7 +285,7 @@ class NoticiasController extends Controller
         );
         $fields = array('registration_ids'=>$tokens,
            'notification'=>array('title'=>$title,'body'=>$message),
-           'data'=>array('seccion'=>$seccion,'id_post'=>$idnoticia));
+           'data'=>array('seccion'=>$seccion,'id_post'=>$noticia->id,'tipo_noticia'=>$noticia->tipo));
 
         $payload = json_encode($fields);
         $curl_session = curl_init();
