@@ -87,6 +87,9 @@ class EncuestasController extends Controller
                     if(!empty($encuestax->first())){
                         $encuestax->first()->delete();
                         $flag=1;
+                        EncuestaRespuesta::find($request["idrespuesta"])->update([
+                            'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
+                        ]);
                     }
                 }
             }
