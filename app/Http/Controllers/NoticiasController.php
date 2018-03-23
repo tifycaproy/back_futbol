@@ -80,6 +80,13 @@ class NoticiasController extends Controller
                 'tipo' => $request->tipo,
                 'foto' => $fileName,
             ]);
+
+            $usuarios = Usuario::where('notificacionToken','!=','')->get();
+            $tokens = array();
+            foreach($usuarios as $usuario){
+                $tokens[] = $usuario->notificacionToken;
+            }
+            $this->enviarNotificacion($tokens,$noticia->id);
             return redirect()->route('noticias.edit', codifica($noticia->id))->with("notificacion", "Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
@@ -250,4 +257,40 @@ class NoticiasController extends Controller
         }
         return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
     }
+
+    public function enviarNotificacion($tokens,$idnoticia){
+            //Mensaje de notificación
+            $message = 'Hay una nueva noticia ID - ' . $idnoticia;
+            //Título de notificación
+            $title = '¡Tienes una nueva notificación!';
+            //Sección a la que se apunta
+            $seccion = 'noticias';
+            //ID del post
+            //$id_post = '1';
+
+            //Configuración FCM
+            $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
+            $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
+            //Token de usuario FCM
+            $headers = array(
+                'Authorization:key=' .$server_key,
+                'Content-Type:application/json'
+            );
+            $fields = array('registration_ids'=>$tokens,
+             'notification'=>array('title'=>$title,'body'=>$message),
+             'data'=>array('seccion'=>$seccion,'id'=>$idnoticia));
+
+            $payload = json_encode($fields);
+
+            $curl_session = curl_init();
+            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+            curl_setopt($curl_session, CURLOPT_POST, true);
+            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+            $result = curl_exec($curl_session);
+
+            dd($result);
 }
