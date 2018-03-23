@@ -22,7 +22,7 @@ Route::get('ventanas_compartir', 'api\CompartirController@index');
 Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
-
+Route::get('noticia/{idNoticia}', 'api\NoticiasController@single_noticia');
 //usuarios
 // v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');

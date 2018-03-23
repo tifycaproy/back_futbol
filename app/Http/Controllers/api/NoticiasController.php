@@ -47,10 +47,10 @@ class NoticiasController extends Controller
         }
 
         $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
-            ->where('active',1)
-            ->where('aparecetimelineppal',1)
-            ->orderby('fecha','desc','id')
-            ->paginate(25);
+        ->where('active',1)
+        ->where('aparecetimelineppal',1)
+        ->orderby('fecha','desc','id')
+        ->paginate(25);
 
         $data["status"]='exito';
         $data["partido"]= $copa;
@@ -100,5 +100,21 @@ class NoticiasController extends Controller
             $data["data"][]=$noticia;
         }
         return $data;
+    }
+
+    public function single_noticia($idNoticia){
+
+       $noticia=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
+       ->where('id',$idNoticia)->first();
+
+       $data["status"]='exito';
+       $data["data"]=[];
+       if($noticia->foto<>'') 
+        $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
+       $data["data"][]=$noticia;   
+
+    return $data;
+
+
     }
 }

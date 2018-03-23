@@ -33,7 +33,7 @@ class UserDoradoMiddleware
             $request1["token"] = $request["token"];
         }
 
-        $token = $request["token"];
+        $token = $request1["token"];
         $token = decodifica_token($token);
 
         $usuario = Usuario::where('id',$token)->first();
