@@ -85,12 +85,11 @@ class NoticiasController extends Controller
                 'foto' => $fileName,
             ]);
             if($request->enviarNotificacion){
-               // $usuarios = Usuario::where('notificacionToken','!=','')->get();
-                dd($noticia);
+                $usuarios = Usuario::where('notificacionToken','!=','')->get();
                 $tokens = array();
-              /*  foreach($usuarios as $usuario){
+                foreach($usuarios as $usuario){
                     $tokens[] = $usuario->notificacionToken;
-                }*/
+                }
                 if($request->seccionNotificacion == 'news')
                 $this->enviarNotificacion($tokens,$request,$noticia->id);
                 else
@@ -289,7 +288,6 @@ class NoticiasController extends Controller
            'data'=>array('seccion'=>$seccion,'id_post'=>$idnoticia));
 
         $payload = json_encode($fields);
-        dd($payload);
         $curl_session = curl_init();
         curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
         curl_setopt($curl_session, CURLOPT_POST, true);
