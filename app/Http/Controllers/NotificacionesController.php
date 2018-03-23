@@ -68,7 +68,7 @@ public function enviar(Request $request)
     $secciones_destino=[
         'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','geolocalizacion','muro'
     ];
-    return view('notificaciones.create')->with('notificacion','Notificación enviada exitosamente')->('secciones_destino',$secciones_destino);
+    return view('notificaciones.create')->with('notificacion','Notificación enviada exitosamente')->with('secciones_destino',$secciones_destino);
 }
 
 }
