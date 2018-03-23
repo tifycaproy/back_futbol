@@ -188,9 +188,19 @@
     var clickLat;
     var clickLon
     function initMap() {
+      @if($id)
+        var latx = "{{$pr->cordx}}";
+        var lngy = "{{$pr->cordy}}";
+      @endif
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 4.687986, lng: -74.075813},
-          zoom: 6
+          @if($id)
+            center: {lat: parseInt(latx), lng: parseInt(lngy)},
+            zoom: 7
+          @else
+            center: {lat: 4.687986, lng: -74.075813},
+            zoom: 7
+          @endif
+
         });
 
         var infoWindow = new google.maps.InfoWindow({map: map});
