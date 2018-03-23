@@ -380,12 +380,12 @@ $data = array(
         )
     ),
     "Single del jugador" => array(
-        "Ruta" => "/single_jugador/{idjugador}",
+        "Ruta" => "/single_jugador/{idjugador}/{token}",
         "Método" => "GET",
         "Éxito" => ['idjugador', 'nombre', 'fecha_nacimiento', 'nacionalidad', 'n_camiseta', 'posicion', 'peso', 'estatura', 'banner', 'instagram',
             'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
             'idpartido', 'equipo_1', 'bandera_1', 'goles_1', 'equipo_2', 'bandera_2', 'goles_2', 'fecha', 'fecha_etapa', 'estadio',
-            'apalusos_ultimo_partido', 'aplausos_acumulado',
+            'apalusos_ultimo_partido', 'aplausos_acumulado','ultimo_aplauso',
             'noticias (array)' => ['id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)']
         ],
         "Falla" => array(
@@ -409,6 +409,7 @@ $data = array(
             "idjugador" => "integer / requerido",
             "idpartido" => "integer / requerido",
             "imei" => "varchar(45) / requerido",
+            "Token" => "varchar / requerido"
         ),
         "Éxito" => "no devuelve datos, simplemente se debería refrescar la vista",
         "Falla" => array(
@@ -633,6 +634,17 @@ $data = array(
         "Éxito" => "Ya no eres Dorado :'(",
         "Falla" => array(
             "error" => array("El token es requerido", "El idcomentario es requerido", "El token es incorrecto!")
+        )
+    ),
+
+    "Puntos de Referencia" => array(
+        "Ruta" => "/punto_referencia",
+        "Método" => "GET",
+        "Éxito (Array)" => [
+            'titulo', 'latitud','longitud','direccion','fecha_evento','hora','imagenes'
+        ],
+        "Falla" => array(
+            "[]" => array("Array vacio")
         )
     ),
 
