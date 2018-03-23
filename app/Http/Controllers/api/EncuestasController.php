@@ -79,27 +79,42 @@ class EncuestasController extends Controller
             //fin validaciones
             $encuesta=Encuesta::find($request["idencuesta"]);
             $votos=EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->count();
+
+            $flag=0;
+            if($votos > 0){
+                if($encuesta->tipo_voto == 'Múltiple simple'){
+                    $encuestax = EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->where('respuesta_id',$request["idrespuesta"]);
+                    if(!empty($encuestax->first())){
+                        $encuestax->first()->delete();
+                        $flag=1;
+                    }
+                }
+            }
+
             if((($encuesta->tipo_voto<>'Único' or $votos==0) and strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) >= strtotime(date('Y-m-d')))){
                 if(!($encuesta->tipo_voto=='Múltiple simple' and EncuestaVotos::where('usuario_id',$idusuario)->where('respuesta_id',$request["idrespuesta"])->first())){
-                    EncuestaVotos::create([
-                        'encuesta_id' => $request["idencuesta"],
-                        'respuesta_id' => $request["idrespuesta"],
-                        'usuario_id' => $idusuario,
-                    ]);
-                    EncuestaRespuesta::find($request["idrespuesta"])->update([
-                        'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
-                    ]);
+                    if($flag == 0){
+                        EncuestaVotos::create([
+                            'encuesta_id' => $request["idencuesta"],
+                            'respuesta_id' => $request["idrespuesta"],
+                            'usuario_id' => $idusuario,
+                        ]);
+                        EncuestaRespuesta::find($request["idrespuesta"])->update([
+                            'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
+                        ]);
+                    }
                 } 
             }
 
             if($votos > 0){
-                if($encuesta->tipo_voto == 'Único' || $encuesta->tipo_voto == 'Múltiple simple'){
+                if($encuesta->tipo_voto == 'Único'){
                     EncuestaVotos::where('usuario_id',$idusuario)->where('encuesta_id',$encuesta->id)->first()->delete();
                     EncuestaRespuesta::find($request["idrespuesta"])->update([
                         'votos' => EncuestaVotos::where('respuesta_id',$request["idrespuesta"])->count()
                     ]);
                 }
             }
+            
             $data=[
                 'puedevervotos' =>
                 ($encuesta->mostrar_resultados<>'Al finalizar la encuesta' or strtotime(date('Y-m-d',strtotime($encuesta->fecha_fin))) < strtotime(date('Y-m-d'))) ? 1 : 0,
