@@ -53,7 +53,7 @@ public function enviar(Request $request)
     );
     $fields = array('registration_ids'=>$tokens,
        'notification'=>array('title'=>$title,'body'=>$message),
-       'data'=>array('seccion'=>$seccion,'id_post'=>$noticia->id,'tipo_noticia'=>$noticia->tipo));
+       'data'=>array('seccion'=>$seccion,'id_post'=>'noAplica'));
 
     $payload = json_encode($fields);
     $curl_session = curl_init();
