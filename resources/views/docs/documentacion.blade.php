@@ -413,6 +413,7 @@ $data = array(
             "Token" => "varchar / requerido"
         ),
         "Éxito" => "no devuelve datos, simplemente se debería refrescar la vista",
+        "aplauso" => "Envia cero '0' si ha desaplaudido y uno '1' si ha aplaudido",
         "Falla" => array(
             "error" => array("El idjugador es requerido", "El imei es requerido", "El idpartido es requerido", "Usted ya aplaudió a este jugador en este partido")
         )
