@@ -702,6 +702,9 @@ class MuroController extends Controller
                 ];
             }
             
+            $usuario=$comentario->usuario;
+                $usuario=$usuario->toArray();
+            
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
