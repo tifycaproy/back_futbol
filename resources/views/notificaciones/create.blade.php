@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Notificaciones</a></li>
+            <li><a href=""><i class="fa fa-fw fa-pencil"></i> Notificaciones</a></li>
             <li>Enviar</li>
         </ol>
     </div>
