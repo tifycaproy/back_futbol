@@ -170,6 +170,32 @@
                 <label><span>Mínimo 512 x 256 píxeles | JPG y PNG</span></label>
               </div>
         </div>
+        <div class="col-lg-6 well" style="margin-left:100px;">
+            <div class="form-group col-lg-6">
+                <label>Enviar notificación</label>
+                <select name="enviarNotificacion" id="enviarNotificacion" class="form-control">
+                     <option value="0"@if(old('active')=='0') selected @endif>No</option>
+                    <option value="1"@if(old('active')=='1') selected @endif>Si</option>           
+                </select>
+            </div>
+            <div class="form-group col-lg-6">
+                <label>Sección destino</label>
+                <select name="seccionNotificacion" class="form-control">
+                   @foreach($secciones_destino as $seccion_destino)
+                    <option value="{{$seccion_destino}}">{{$seccion_destino}}</option>
+                    @endforeach
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Título notificación</label>
+                <textarea name="tituloNotificacion" id="tituloNotificacion" rows="1" class="form-control">{{ old('tituloNotificacion') }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Mensaje notificación</label>
+                <textarea name="mensajeNotificacion" id="mensajeNotificacion" rows="1" class="form-control">{{ old('mensajeNotificacion') }}</textarea>
+            </div>
+        </div>
     </div>
     <div class="row"><div class="col-lg-6"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>  <a href="{{ route('noticias.index') }}" class="btn btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></div>
 </form>
@@ -178,6 +204,18 @@
 @section('javascript')
 <script src="js/slim.jquery.js"></script>
 <script type="text/javascript">
+
+    $('#enviarNotificacion').on('change', function() {
+    if ($(this).val() === "1") {
+        $("#tituloNotificacion").attr("required",true);
+        $("#mensajeNotificacion").attr("required",true);
+    } else {
+        $("#tituloNotificacion").attr("required",false);
+        $("#mensajeNotificacion").attr("required",false);
+    }
+});
+
+
 $(document).ready(function(){
    $('.slim').slim({
       label: 'Arrastra tu imagen ó haz click aquí',

@@ -12,6 +12,7 @@ use App\Jugadorfb;
 use App\Noticia;
 use App\NoticiaJugador;
 use App\NoticiaJugadorfb;
+use App\Usuario;
 use Illuminate\Http\Request;
 
 class NoticiasController extends Controller
@@ -27,7 +28,11 @@ class NoticiasController extends Controller
         $encuestas = Encuesta::whereDate('fecha_inicio', '<=', date('Y-m-d'))->orderby('fecha_fin')->get();
         $partidos = Calendario::orderby('fecha', 'desc')->get();
         $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
-        return view('noticias.create')->with('encuestas', $encuestas)->with('partidos', $partidos)->with('partidosfb', $partidosfb);
+        $secciones_destino=[
+            'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+        ];
+
+        return view('noticias.create')->with('encuestas', $encuestas)->with('partidos', $partidos)->with('partidosfb', $partidosfb)->with('secciones_destino',$secciones_destino);
     }
 
     public function store(Request $request)
@@ -36,7 +41,6 @@ class NoticiasController extends Controller
             'titulo' => 'required',
             'fecha' => 'required',
         ];
-
         try {
             $validator = \Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -80,14 +84,18 @@ class NoticiasController extends Controller
                 'tipo' => $request->tipo,
                 'foto' => $fileName,
             ]);
-
-            $usuarios = Usuario::where('notificacionToken','!=','')->get();
-            $tokens = array();
-            foreach($usuarios as $usuario){
-                $tokens[] = $usuario->notificacionToken;
-            }
-            $this->enviarNotificacion($tokens,$noticia->id);
-            return redirect()->route('noticias.edit', codifica($noticia->id))->with("notificacion", "Se ha guardado correctamente su información");
+            if($request->enviarNotificacion){
+               // $usuarios = Usuario::where('notificacionToken','!=','')->get();
+                dd($noticia);
+                $tokens = array();
+              /*  foreach($usuarios as $usuario){
+                    $tokens[] = $usuario->notificacionToken;
+                }*/
+                if($request->seccionNotificacion == 'news')
+                $this->enviarNotificacion($tokens,$request,$noticia->id);
+                else
+                    $this->enviarNotificacion($tokens,$request,'noAplica');
+            }return redirect()->route('noticias.edit', codifica($noticia->id))->with("notificacion", "Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: ' . $e);
@@ -219,7 +227,7 @@ class NoticiasController extends Controller
             $join->on('jugadores.id', '=', 'noticias_jugadores.jugadores_id');
             $join->where('noticias_id', '=', $noticias_id);
         })
-            ->orderby('nombre')->get(['jugadores.*', 'noticias_jugadores.id as yaesta']);
+        ->orderby('nombre')->get(['jugadores.*', 'noticias_jugadores.id as yaesta']);
         return view('noticias.jugadores')->with('jugadores', $jugadores)->with('idnoticia', $noticias_id);
     }
 
@@ -242,7 +250,7 @@ class NoticiasController extends Controller
             $join->on('jugadoresfb.id', '=', 'noticias_jugadoresfb.jugadoresfb_id');
             $join->where('noticias_id', '=', $noticias_id);
         })
-            ->orderby('nombre')->get(['jugadoresfb.*', 'noticias_jugadoresfb.id as yaesta']);
+        ->orderby('nombre')->get(['jugadoresfb.*', 'noticias_jugadoresfb.id as yaesta']);
         return view('noticias.jugadoresfb')->with('jugadores', $jugadores)->with('idnoticia', $noticias_id);
     }
 
@@ -258,40 +266,39 @@ class NoticiasController extends Controller
         return redirect()->route('noticias.edit', codifica($_SESSION['noticia_id']));
     }
 
-    public function enviarNotificacion($tokens,$idnoticia){
+    public function enviarNotificacion($tokens,Request $request,$idnoticia){
             //Mensaje de notificación
-            $message = 'Hay una nueva noticia ID - ' . $idnoticia;
+        $message = $request->mensajeNotificacion;
             //Título de notificación
-            $title = '¡Tienes una nueva notificación!';
+        $title = $request->tituloNotificacion;
             //Sección a la que se apunta
-            $seccion = 'noticias';
+        $seccion = $request->seccionNotificacion;
             //ID del post
             //$id_post = '1';
 
             //Configuración FCM
-            $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
-            $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
+        $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
+        $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
             //Token de usuario FCM
-            $headers = array(
-                'Authorization:key=' .$server_key,
-                'Content-Type:application/json'
-            );
-            $fields = array('registration_ids'=>$tokens,
-             'notification'=>array('title'=>$title,'body'=>$message),
-             'data'=>array('seccion'=>$seccion,'id'=>$idnoticia));
+        $headers = array(
+            'Authorization:key=' .$server_key,
+            'Content-Type:application/json'
+        );
+        $fields = array('registration_ids'=>$tokens,
+           'notification'=>array('title'=>$title,'body'=>$message),
+           'data'=>array('seccion'=>$seccion,'id_post'=>$idnoticia));
 
-            $payload = json_encode($fields);
+        $payload = json_encode($fields);
+        dd($payload);
+        $curl_session = curl_init();
+        curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+        curl_setopt($curl_session, CURLOPT_POST, true);
+        curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+        curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+        $result = curl_exec($curl_session);
 
-            $curl_session = curl_init();
-            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
-            curl_setopt($curl_session, CURLOPT_POST, true);
-            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
-            $result = curl_exec($curl_session);
-
-            dd($result);
-}
+    }
 }
