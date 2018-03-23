@@ -29,7 +29,7 @@ class NoticiasController extends Controller
         $partidos = Calendario::orderby('fecha', 'desc')->get();
         $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
         $secciones_destino=[
-            'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','geolocalizacion','muro'
+            'news'
         ];
 
         return view('noticias.create')->with('encuestas', $encuestas)->with('partidos', $partidos)->with('partidosfb', $partidosfb)->with('secciones_destino',$secciones_destino);
@@ -84,6 +84,7 @@ class NoticiasController extends Controller
                 'tipo' => $request->tipo,
                 'foto' => $fileName,
             ]);
+            //Envío de notificaci´´on
             if($request->enviarNotificacion){
                 $usuarios = Usuario::where('notificacionToken','!=','')->get();
                 $tokens = array();

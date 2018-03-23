@@ -81,6 +81,9 @@
                     <li>
                         <a href="{{ url('funciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Funciones Doradas</a>
                     </li>
+                     <li>
+                        <a href="{{ route("enviarNotificaciones") }}"><i class="fa fa-fw fa-pencil"></i> Enviar notificaciones</a>
+                    </li>
                     <li>
                         <a href="{{ route("banners.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a>
                     </li>
