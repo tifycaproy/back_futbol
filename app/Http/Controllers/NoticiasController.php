@@ -294,3 +294,4 @@ class NoticiasController extends Controller
 
             dd($result);
 }
+}
