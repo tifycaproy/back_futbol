@@ -65,8 +65,10 @@ public function enviar(Request $request)
     curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
     curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
     $result = curl_exec($curl_session);
-
-    return view('notificaciones.create')->with('notificacion','Notificación enviada exitosamente');
+    $secciones_destino=[
+        'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','geolocalizacion','muro'
+    ];
+    return view('notificaciones.create')->with('notificacion','Notificación enviada exitosamente')->('secciones_destino',$secciones_destino);
 }
 
 }
