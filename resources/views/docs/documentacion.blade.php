@@ -81,9 +81,10 @@ $data = array(
     "Noticias" => array(
         "Ruta" => "/noticias/{token}?page={pagina}",
         "Método" => "GET",
-        "Éxito (Array)" => [
-            'id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)', 'solo_dorado(boolean)'
+        "Éxito" => [ 'idpartido', 'estado', 'equipo_1', 'bandera_1', 'goles_1', 'equipo_2', 'bandera_2', 'goles_2', 'fecha', 'fecha_etapa', 'estadio', 'info',
+            'noticias (array)' => ['id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)', 'solo_dorado(boolean)']
         ],
+       
     ),
     "Noticias fotos" => array(
         "Ruta" => "/noticia_fotos/{id de la noticia}",
@@ -380,12 +381,12 @@ $data = array(
         )
     ),
     "Single del jugador" => array(
-        "Ruta" => "/single_jugador/{idjugador}",
+        "Ruta" => "/single_jugador/{idjugador}/{token}",
         "Método" => "GET",
         "Éxito" => ['idjugador', 'nombre', 'fecha_nacimiento', 'nacionalidad', 'n_camiseta', 'posicion', 'peso', 'estatura', 'banner', 'instagram',
             'sepuedeaplaudir (0 ó 1, OJO: si es 0 no trae los datos del partido)',
             'idpartido', 'equipo_1', 'bandera_1', 'goles_1', 'equipo_2', 'bandera_2', 'goles_2', 'fecha', 'fecha_etapa', 'estadio',
-            'apalusos_ultimo_partido', 'aplausos_acumulado',
+            'apalusos_ultimo_partido', 'aplausos_acumulado','ultimo_aplauso',
             'noticias (array)' => ['id', 'link', 'titulo', 'descripcion', 'fecha', 'foto', 'destacada (1 ó 0)', 'tipo (Normal,Video,Infografia,Galeria,Stat)']
         ],
         "Falla" => array(
@@ -409,8 +410,10 @@ $data = array(
             "idjugador" => "integer / requerido",
             "idpartido" => "integer / requerido",
             "imei" => "varchar(45) / requerido",
+            "Token" => "varchar / requerido"
         ),
         "Éxito" => "no devuelve datos, simplemente se debería refrescar la vista",
+        "aplauso" => "Envia cero '0' si ha desaplaudido y uno '1' si ha aplaudido",
         "Falla" => array(
             "error" => array("El idjugador es requerido", "El imei es requerido", "El idpartido es requerido", "Usted ya aplaudió a este jugador en este partido")
         )
@@ -512,6 +515,7 @@ $data = array(
         "Método" => "GET",
         "Éxito (Array)" => [
             'idpost', 'mensaje', 'fecha', 'foto', 'ncomentarios', 'naplausos', 'yaaplaudio (0 ó 1)',
+            'usuarios_aplausos' => ['id', 'nombre', 'foto'],
             'usuario' => ['idusuario', 'nombre', 'apellido', 'apodo', 'email', 'celular', 'pais', 'ciudad', 'fecha_nacimiento', 'genero', 'foto', 'created_at', 'codigo', 'fecha_vencimiento']
         ],
     ),
@@ -528,6 +532,7 @@ $data = array(
             "error" => array("El token es requerido", "El mensaje es requerido")
         )
     ),
+
     "Consultar perfil" => array(
         "Ruta" => "/perfil_usuario/{idusuario}",
         "Método" => "GET",
@@ -633,6 +638,17 @@ $data = array(
         "Éxito" => "Ya no eres Dorado :'(",
         "Falla" => array(
             "error" => array("El token es requerido", "El idcomentario es requerido", "El token es incorrecto!")
+        )
+    ),
+
+    "Puntos de Referencia" => array(
+        "Ruta" => "/punto_referencia",
+        "Método" => "GET",
+        "Éxito (Array)" => [
+            'titulo', 'latitud','longitud','direccion','fecha_evento','hora','imagenes'
+        ],
+        "Falla" => array(
+            "[]" => array("Array vacio")
         )
     ),
 
