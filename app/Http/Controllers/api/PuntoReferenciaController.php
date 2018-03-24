@@ -24,6 +24,8 @@ class PuntoReferenciaController extends Controller
                 'latitud' => $punto->cordx,
                 'longitud' => $punto->cordy,
                 'direccion' => $punto->direccion,
+                'ciudad' => $punto->ciudad,
+                'pais' => $punto->pais,
                 'fecha_evento' => Carbon::parse($punto->hora_evento)->format('Y-m-d'),
                 'hora' => Carbon::parse($punto->hora_evento)->format('g:i A'),
                 'imagenes' => $punto->imagenes
