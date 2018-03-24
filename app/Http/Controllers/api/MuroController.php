@@ -701,10 +701,9 @@ class MuroController extends Controller
                     'yaaplaudio' => $yaaplaudio,
                 ];
             }
-            
-            $usuario=$comentario->usuario;
-                $usuario=$usuario->toArray();
-            
+            $usuario=$post->usuario;
+            $usuario=$usuario->toArray();
+
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
