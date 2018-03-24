@@ -810,7 +810,19 @@ public function actualizarNotificacionToken(Request $request)
  }
  else
  {
-            //Si existe, actualizamos el token y guardamos
+            
+    $eliminarToken = Usuario::where('notificacionToken',$notificacionToken)->get();
+
+    foreach($eliminarToken as $usuarioEliminar)
+    {
+        if($usuarioEliminar->id != $idUsuario)
+        {
+            $usuarioEliminar->notificacionToken = "";
+            $usuarioEliminar->save();
+        }
+    }
+
+    //Si existe, actualizamos el token y guardamos
     $usuario->notificacionToken = $notificacionToken;
     $usuario->save();
     return ["status" => "exito"];

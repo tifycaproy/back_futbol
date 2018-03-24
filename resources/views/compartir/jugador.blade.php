@@ -15,7 +15,7 @@
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{{ $jugador->nombre }}" />
     <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $jugador->descripcion) !!}" />
-    @if($jugador->banner<>'') <meta property="og:image"              content="{{ config('app.url') . 'videosvr/' . $jugador->banner }}" />@endif
+    @if($jugador->banner<>'') <meta property="og:image"              content="{{ config('app.url') . 'jugadores/' . $jugador->banner }}" />@endif
 </head>
 <body>
     <!--CONTENEDOR-->
