@@ -293,10 +293,10 @@ class MuroController extends Controller
                     }
                 }
             }
-    
+
             Muro::where('id',$idpost)
-                ->where('usuario_id', $idusuario)
-                ->update($request);
+            ->where('usuario_id', $idusuario)
+            ->update($request);
 
             return ["status" => "exito", "data" => []];
 
@@ -486,7 +486,10 @@ class MuroController extends Controller
             if($usuarioRecibeNotif->notificacionToken)
             {
                 $usuario = Usuario::find($idusuario);
-                $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'comentario');
+                if($usuarioRecibeNotif->id != $idusuario)
+                {
+                    $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'comentario');
+                }
             }
 
             return ["status" => "exito", "data" => []];
@@ -574,107 +577,90 @@ class MuroController extends Controller
 
                 if($usuarioRecibeNotif->notificacionToken)
                 {
+
                     $usuario = Usuario::find($idusuario);
-                    $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'aplauso');
+                    if($usuarioRecibeNotif->id != $idusuario)
+                        {
+                            $this->enviarNotificacion($usuario,$idpost,$usuarioRecibeNotif->notificacionToken,'aplauso');
+                        }
+                    }
+
                 }
 
-            }
-
-            return ["status" => "exito", "data" => []];
-
-        } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
-    }
-    public function muro_comentario_aplaudir(Request $request)
-    {
-        $request=json_decode($request->getContent());
-        $request=get_object_vars($request);
-        try{
-            //Validaciones
-            $errors=[];
-            $token=$request["token"];
-            $idusuario=decodifica_token($token);
-            if($idusuario=="") $errors[]="El token es incorrecto";
-            if(!isset($request["idcomentario"])){
-                $errors[]="El idcomentario es requerido";
-            }else{
-                $idcomentario=decodifica($request["idcomentario"]);
-                if($idcomentario=="") $errors[]="El idcomentario es incorrecto";
-            }
-            if(count($errors)>0){
-                return ["status" => "fallo", "error" => $errors];
-            }
-            //fin validaciones
-            if($aplauso=MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first()){
-                $aplauso->delete();
-            }else{
-                MuroComentarioAplauso::create([
-                    'comentario_id' => $idcomentario,
-                    'usuario_id' => $idusuario,
-                ]);
-            }
-            return ["status" => "exito", "data" => []];
-
-        } catch (Exception $e) {
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        } 
-    }
-    public function destroy($idpost, $token)
-    {
-        try{
-            $idpost=decodifica($idpost);
-            $idusuario=decodifica_token($token);
-            if($post=Muro::where('id',$idpost)->where('usuario_id',$idusuario)->first())
-                $post->delete();
                 return ["status" => "exito", "data" => []];
+
             } catch (Exception $e) {
                 return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
             } 
         }
-
-        public function single_post($idpost,$token)
+        public function muro_comentario_aplaudir(Request $request)
         {
-            
-            $post=Muro::find($idpost);
-            $idusuario=decodifica_token($token);
-            $data["status"]='exito';
-            $data["data"]=[];
-            
-            if($post->foto<>''){
-                if($post->tipo_post == "video"){
-                    $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
-                } 
-                else if ($post->tipo_post == "gif")
-                {
-                    $post->foto = $post->foto;
-                }
-                else{
-                    $post->foto=config('app.url') . 'posts/' . $post->foto;
-                }
-            } 
-            $usuario=$post->usuario;
-            $usuario=$usuario->toArray();
-            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
-
-            if($usuario["foto"]==''){
-                if($usuario["foto_redes"]<>""){
-                    $usuario["foto"]=$usuario["foto_redes"];
+            $request=json_decode($request->getContent());
+            $request=get_object_vars($request);
+            try{
+            //Validaciones
+                $errors=[];
+                $token=$request["token"];
+                $idusuario=decodifica_token($token);
+                if($idusuario=="") $errors[]="El token es incorrecto";
+                if(!isset($request["idcomentario"])){
+                    $errors[]="El idcomentario es requerido";
                 }else{
-                    $usuario["foto"]="";
+                    $idcomentario=decodifica($request["idcomentario"]);
+                    if($idcomentario=="") $errors[]="El idcomentario es incorrecto";
                 }
-            }else{
-                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
-            }
-            $usuario["codigo"]=codifica($usuario['idusuario']);
-            unset($usuario["foto_redes"]);
-            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
-            $comentariosArray = array();
-            $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
-            foreach ($comentarios as $comentario) {
-                if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
+                if(count($errors)>0){
+                    return ["status" => "fallo", "error" => $errors];
+                }
+            //fin validaciones
+                if($aplauso=MuroComentarioAplauso::where('comentario_id',$idcomentario)->where('usuario_id',$idusuario)->first()){
+                    $aplauso->delete();
+                }else{
+                    MuroComentarioAplauso::create([
+                        'comentario_id' => $idcomentario,
+                        'usuario_id' => $idusuario,
+                    ]);
+                }
+                return ["status" => "exito", "data" => []];
 
-                $usuario=$comentario->usuario;
+            } catch (Exception $e) {
+                return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+            } 
+        }
+        public function destroy($idpost, $token)
+        {
+            try{
+                $idpost=decodifica($idpost);
+                $idusuario=decodifica_token($token);
+                if($post=Muro::where('id',$idpost)->where('usuario_id',$idusuario)->first())
+                    $post->delete();
+                    return ["status" => "exito", "data" => []];
+                } catch (Exception $e) {
+                    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+                } 
+            }
+
+            public function single_post($idpost,$token)
+            {
+
+                $post=Muro::find($idpost);
+                $idusuario=decodifica_token($token);
+                $data["status"]='exito';
+                $data["data"]=[];
+
+                if($post->foto<>''){
+                    if($post->tipo_post == "video"){
+                        $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
+                    } 
+                    else if ($post->tipo_post == "gif")
+                    {
+                        $post->foto = $post->foto;
+                    }
+                    else{
+                        $post->foto=config('app.url') . 'posts/' . $post->foto;
+                    }
+                } 
+                $usuario=$post->usuario;
                 $usuario=$usuario->toArray();
                 $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
 
@@ -689,105 +675,126 @@ class MuroController extends Controller
                 }
                 $usuario["codigo"]=codifica($usuario['idusuario']);
                 unset($usuario["foto_redes"]);
-                $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+                $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+                $comentariosArray = array();
+                $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
+                foreach ($comentarios as $comentario) {
+                    if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
 
-                $comentariosArray[]=[
-                    'idcomentario'=>codifica($comentario->id),
-                    'comentario'=>$comentario->comentario,
-                    'fecha'=>$comentario->created_at->toDateTimeString(),
-                    'foto'=>$comentario->foto,
-                    'usuario'=>$usuario,
-                    'naplausos'=>$comentario->aplausos->count(),
+                    $usuario=$comentario->usuario;
+                    $usuario=$usuario->toArray();
+                    $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+                    if($usuario["foto"]==''){
+                        if($usuario["foto_redes"]<>""){
+                            $usuario["foto"]=$usuario["foto_redes"];
+                        }else{
+                            $usuario["foto"]="";
+                        }
+                    }else{
+                        $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+                    }
+                    $usuario["codigo"]=codifica($usuario['idusuario']);
+                    unset($usuario["foto_redes"]);
+                    $yaaplaudio=MuroComentarioAplauso::where('comentario_id',$comentario->id)->where('usuario_id',$idusuario)->first() ? 1 : 0;
+
+                    $comentariosArray[]=[
+                        'idcomentario'=>codifica($comentario->id),
+                        'comentario'=>$comentario->comentario,
+                        'fecha'=>$comentario->created_at->toDateTimeString(),
+                        'foto'=>$comentario->foto,
+                        'usuario'=>$usuario,
+                        'naplausos'=>$comentario->aplausos->count(),
+                        'yaaplaudio' => $yaaplaudio,
+                    ];
+                }
+                $usuario=$post->usuario;
+                $usuario=$usuario->toArray();
+
+                $data["data"][]=[
+                    'idpost'=>codifica($post->id),
+                    'mensaje'=>$post->mensaje,
+                    'foto'=>$post->foto,
+                    'fecha'=>$post->created_at->toDateTimeString(),
+                    'usuario' => $usuario,
+                    'ncomentarios'=>$post->comentarios->count(),
+                    'naplausos'=>$post->aplausos->count(),
                     'yaaplaudio' => $yaaplaudio,
+                    'comentarios' => $comentariosArray
                 ];
+
+                return $data;
+
             }
-            $usuario=$post->usuario;
-            $usuario=$usuario->toArray();
 
-            $data["data"][]=[
-                'idpost'=>codifica($post->id),
-                'mensaje'=>$post->mensaje,
-                'foto'=>$post->foto,
-                'fecha'=>$post->created_at->toDateTimeString(),
-                'usuario' => $usuario,
-                'ncomentarios'=>$post->comentarios->count(),
-                'naplausos'=>$post->aplausos->count(),
-                'yaaplaudio' => $yaaplaudio,
-                'comentarios' => $comentariosArray
-            ];
-
-            return $data;
-            
-        }
-
-        public function topAplausos()
-        {
+            public function topAplausos()
+            {
     //Traemos los posts
-            $posts = Muro::all();
+                $posts = Muro::all();
     //Contamos cuantos aplausos tienen
-            foreach($posts as $post){
-                $post->cantidad_aplausos = $post->aplausos()->count();
-                if($post->foto)
-                    $post->foto=config('app.url') . 'posts/' . $post->foto;
-                $usuario = Usuario::find($post->usuario_id);
-                $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
-                $post->usuario_tlf = $usuario->telefono;
-            }
+                foreach($posts as $post){
+                    $post->cantidad_aplausos = $post->aplausos()->count();
+                    if($post->foto)
+                        $post->foto=config('app.url') . 'posts/' . $post->foto;
+                    $usuario = Usuario::find($post->usuario_id);
+                    $post->usuario_nombre = $usuario->nombre . ' ' . $usuario->apellido;
+                    $post->usuario_tlf = $usuario->telefono;
+                }
     //Retornamos vista con los primeros 10
-            $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
-            dd($result);
-        }
+                $result= $posts->sortByDesc('cantidad_aplausos')->take(10);
+                dd($result);
+            }
 
-        public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
+            public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
-            if($tipo == 'comentario')
-                $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
-            else if ($tipo == 'aplauso')
-                $message = $usuario->nombre . ' ha aplaudido tu publicación';
+                if($tipo == 'comentario')
+                    $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+                else if ($tipo == 'aplauso')
+                    $message = $usuario->nombre . ' ha aplaudido tu publicación';
             //Título de notificación
-            $title = '¡Tienes una nueva notificación!';
+                $title = '¡Tienes una nueva notificación!';
             //Sección a la que se apunta
-            $seccion = 'muro';
+                $seccion = 'muro';
             //ID del post
             //$id_post = '1';
 
             //Configuración FCM
-            $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
-            $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
+                $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
+                $server_key = "AAAASVVoXPQ:APA91bE-kueGIF2y5Wmo8vvmWfYHsqp5RF8jE7hUVrkxy6ytmVDRSEvwUTfa7KrNm15NMR3xA4obbgwLUo4ZrV_z_VsBkh0p8AbvN7G8zcN2IDt-zI33SoUlOnxIhw_kQshisZRwKyLk";
             //Token de usuario FCM
-            $key = $notificacionToken;
-            $headers = array(
-                'Authorization:key=' .$server_key,
-                'Content-Type:application/json'
-            );
-            $fields = array('to'=>$key,
-             'notification'=>array('title'=>$title,'body'=>$message),
-             'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
+                $key = $notificacionToken;
+                $headers = array(
+                    'Authorization:key=' .$server_key,
+                    'Content-Type:application/json'
+                );
+                $fields = array('to'=>$key,
+                   'notification'=>array('title'=>$title,'body'=>$message),
+                   'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
 
-            $payload = json_encode($fields);
+                $payload = json_encode($fields);
 
-            $curl_session = curl_init();
-            curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
-            curl_setopt($curl_session, CURLOPT_POST, true);
-            curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
-            $result = curl_exec($curl_session);
+                $curl_session = curl_init();
+                curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+                curl_setopt($curl_session, CURLOPT_POST, true);
+                curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+                curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+                $result = curl_exec($curl_session);
+
+            }
+
+
+            public function SearchMuro(Request $request)
+            {
+                $muro = DB::table('usuarios')
+                ->select('nombre','apellido','apodo', 'id') 
+                ->where('nombre', 'like', '%'.$request->busqueda.'%')
+                ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
+                ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
+
+                return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
+            }
 
         }
-
-
-    public function SearchMuro(Request $request)
-    {
-        $muro = DB::table('usuarios')
-            ->select('nombre','apellido','apodo', 'id') 
-            ->where('nombre', 'like', '%'.$request->busqueda.'%')
-            ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
-            ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
-
-        return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
-    }
-
-    }
