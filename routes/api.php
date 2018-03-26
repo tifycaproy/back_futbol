@@ -88,7 +88,7 @@ Route::get('videos360', 'api\VideovrController@videos360');
 
 //Muro
 Route::post('muro_reporte', 'api\MuroController@muro_reporte');
-Route::get('muro_reporte', 'api\MuroController@muro_reporte');
+Route::get('reporte', 'api\MuroController@reporte');
 Route::post('muro', 'api\MuroController@postear')->middleware(['user.dorado:funcion,muro_postear']);
 Route::post('muro/{id}', 'api\MuroController@edit_post');
 Route::get('muro', 'api\MuroController@index');

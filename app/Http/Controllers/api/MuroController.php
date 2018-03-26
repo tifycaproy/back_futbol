@@ -832,4 +832,20 @@ class MuroController extends Controller
             
             }
 
+            public function reporte()
+            {
+                $data["status"]='exito';
+                foreach (MuroReporte::all() as $reporte ) {
+                    $data["data"][]=[
+                        'tipo' => $reporte->tipo,
+                        'usuario' => $reporte->usuario->email,
+                        'nombre' => $reporte->usuario->nombre." ".$reporte->usuario->apellido,
+                        'apodo' => $reporte->usuario->apodo,
+                        'post_mensaje' => $reporte->post->mensaje,
+                        'post_archivo' => config('app.url') . 'usuarios/' . $reporte->post->foto
+                    ];
+                }
+                return $data;
+            }
+
         }
