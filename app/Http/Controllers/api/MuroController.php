@@ -10,6 +10,7 @@ use App\Muro;
 use App\MuroComentario;
 use App\MuroAplauso;
 use App\MuroComentarioAplauso;
+use App\MuroReporte;
 use Illuminate\Support\Facades\DB;
 
 class MuroController extends Controller
@@ -795,6 +796,40 @@ class MuroController extends Controller
                 ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
 
                 return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
+            }
+
+            public function muro_reporte(Request $request)
+            {
+                $usuario=decodifica_token($request->token);
+                
+                if(!isset($request->token)){
+                    return ['status' => 'fallo','error'=>["Usuario Requerido"]];
+                }
+
+                if($usuario == null || empty($usuario)){
+                    return ['status' => 'fallo','error'=>["Usuario no encontrado"]];
+                }
+                
+                if(!isset($request->post_id)){
+                    return ['status' => 'fallo','error'=>["Post Requerido"]];
+                }
+                if(!isset($request->tipo)){
+                    return ['status' => 'fallo','error'=>["Reporte Requerido"]];
+                }
+
+                $result = MuroReporte::create([
+                    'tipo' => $request->tipo,
+                    'descripcion' => null,
+                    'muro_id' => $request->post_id,
+                    'usuario_id' => $usuario
+                ]);
+                
+                if(is_object($result)){
+                    return ["status" => "exito", "data" => []];
+                }else{
+                    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+                }
+            
             }
 
         }
