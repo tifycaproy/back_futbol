@@ -294,10 +294,15 @@ class MuroController extends Controller
                     }
                 }
             }
+            $muro = Muro::where('id',$idpost)
+                ->where('usuario_id', $idusuario)
+                ->update($request);
 
-            Muro::where('id',$idpost)
-            ->where('usuario_id', $idusuario)
-            ->update($request);
+            if ($muro) {
+                return ["status" => "exito", "data" => []];
+            }else {
+                return  ["status" => "fallo", "error" => ['Disculpe, usuario no autorizado']];
+            }
 
             return ["status" => "exito", "data" => []];
 

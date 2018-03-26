@@ -592,6 +592,22 @@ $data = array(
             "error" => array("El token es requerido", "El idcomentario es requerido", "El idcomentario es incorrecto")
         )
     ),
+
+    "Editar Post" => array(
+        "Ruta" => "/muro/{idpost}",
+        "Método" => "PUT",
+        "Parámetros" => array(
+            "token" => "token / requerido",
+            "mensaje" => "textarea / requerido",
+            "foto" => "base64 / opcional",
+        ),
+        "Éxito" => "Debe redireccionar al muro",
+        "Falla" => array(
+            "error" => array("Ha ocurrido un error, por favor intenta de nuevo")
+        )
+    ),
+
+
     "Eliminar Post" => array(
         "Ruta" => "/muro/{idpost}/{token}",
         "Método" => "DELETE",
