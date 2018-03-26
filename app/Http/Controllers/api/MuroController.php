@@ -726,6 +726,15 @@ public function destroy($idpost, $token)
         }
         $usuario=$post->usuario;
         $usuario=$usuario->toArray();
+        if($usuario["foto"]==''){
+            if($usuario["foto_redes"]<>""){
+                $usuario["foto"]=$usuario["foto_redes"];
+            }else{
+                $usuario["foto"]="";
+            }
+        }else{
+            $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+        }
 
         $data["data"][]=[
             'idpost'=>codifica($post->id),
