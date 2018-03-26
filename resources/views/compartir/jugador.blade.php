@@ -32,7 +32,7 @@
                 <section class="row justify-content-center no-gutters ">    
                     <!-- titulo-->
                     <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                        <h1 style="font-size: 22px;">{!! nl2br($seccion->titulo) !!}</h1>
+                        <h1 style="font-size: 18px;">{!! nl2br($seccion->titulo) !!}</h1>
                     </div>
                 </section>
                 <section class="row justify-content-center mt-3 no-gutters">
@@ -73,4 +73,4 @@
                 </div>
                 <!-- FIN CONTENEDOR-->
             </body>
-            </html>
+</html>
