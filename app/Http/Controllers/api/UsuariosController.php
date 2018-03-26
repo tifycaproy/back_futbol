@@ -817,7 +817,7 @@ public function actualizarNotificacionToken(Request $request)
     {
         if($usuarioEliminar->id != $idUsuario)
         {
-            $usuarioEliminar->notificacionToken == "";
+            $usuarioEliminar->notificacionToken = "";
             $usuarioEliminar->save();
         }
     }

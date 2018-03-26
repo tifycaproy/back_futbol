@@ -64,7 +64,22 @@
                                 <input type="text" class="form-control " id="longitud" placeholder="Longitud" value="@if($id){{$pr->cordy}}@endif"><span class="input-group-addon">LON</span>
                             </div>
                      </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-xs-6">
+                            <label >Pais</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control " id="pais" placeholder="pais" value="@if($id){{$pr->pais}}@endif"><span class="input-group-addon">Pais</span>                      
+                            </div>
+                     </div>
+                    <div class="col-xs-6">
+                            <label >Ciudad</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control " id="ciudad" placeholder="ciudad" value="@if($id){{$pr->ciudad}}@endif"><span class="input-group-addon">Ciudad</span>                      
+                            </div>
+                     </div>
                 </div>
+                <br>
                 <br>
                 <div class="row">
                     <div class="col-xs-4">
@@ -187,10 +202,14 @@
     var markers = [];
     var clickLat;
     var clickLon
+    var pais
+    var ciudad
     function initMap() {
       @if($id)
         var latx = "{{$pr->cordx}}";
         var lngy = "{{$pr->cordy}}";
+        clickLat = latx;
+        clickLon = lngy;
       @endif
         var map = new google.maps.Map(document.getElementById('map'), {
           @if($id)
@@ -232,10 +251,36 @@
         }
 
         google.maps.event.addListener(map, "click", function(event) {
-                // get lat/lon of click
-                clickLat = event.latLng.lat();
-                clickLon = event.latLng.lng();
-            });
+            // get lat/lon of click
+            clickLat = event.latLng.lat();
+            clickLon = event.latLng.lng();
+            var latxx = clickLat ;
+            var longyy = clickLon ;
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+               +latxx+","+longyy+"&sensor=false";
+          $.get(url).success(function(data) {
+             var loc1 = data.results[0];
+               $.each(loc1, function(k1,v1) {
+                  if (k1 == "address_components") {
+                     for (var i = 0; i < v1.length; i++) {
+                        for (k2 in v1[i]) {
+                           if (k2 == "types") {
+                              var types = v1[i][k2];
+                              if (types[0] =="country") {
+                                  pais = v1[i].long_name;
+
+                              } 
+                              if (types[0] == "locality") {
+                                 ciudad = v1[i].long_name;
+                             } 
+                           }
+
+                        }          
+                     }
+                  }
+               });
+          }); 
+        });
 
       }
 
@@ -270,6 +315,8 @@
         $(".coor").on('click',function(){
             $("#latitud").val(clickLat);
             $("#longitud").val(clickLon);
+            $("#pais").val(pais);
+            $("#ciudad").val(ciudad);
         });
 
         function slimPrint() {
@@ -320,7 +367,10 @@
                         longitud:$( "#longitud" ).val(),
                         id:$( "#secreto" ).val(),
                         hora_evento:$( "#hora_evento" ).val(),
-                        direccion:$( "#direccion" ).val()
+                        direccion:$( "#direccion" ).val(),
+                        pais:$( "#pais" ).val(),
+                        ciudad:$( "#ciudad" ).val()
+
                     },
 
                     success:function( respuesta )
@@ -412,7 +462,15 @@
 
           });
         ////////////////////////////////////////IMAGENES COORDENADAS ///////////////////////////////////////
+
+
+
+
+
+
     });
+
+
 </script>
 
 @endsection
