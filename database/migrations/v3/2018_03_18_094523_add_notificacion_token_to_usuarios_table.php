@@ -14,7 +14,7 @@ class AddNotificacionTokenToUsuariosTable extends Migration
     public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-           $table->text('notificacionToken');
+            $table->text('notificacionToken');
         });
     }
 

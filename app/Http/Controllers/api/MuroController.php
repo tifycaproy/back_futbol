@@ -801,7 +801,6 @@ class MuroController extends Controller
             public function muro_reporte(Request $request)
             {
                 $usuario=decodifica_token($request->token);
-                
                 if(!isset($request->token)){
                     return ['status' => 'fallo','error'=>["Usuario Requerido"]];
                 }
@@ -810,8 +809,8 @@ class MuroController extends Controller
                     return ['status' => 'fallo','error'=>["Usuario no encontrado"]];
                 }
                 
-                if(!isset($request->post_id)){
-                    return ['status' => 'fallo','error'=>["Post Requerido"]];
+                if(!isset($request->post_id) && !isset($request->comentario_id)){
+                    return ['status' => 'fallo','error'=>["Post/Comentario Requerido"]];
                 }
                 if(!isset($request->tipo)){
                     return ['status' => 'fallo','error'=>["Reporte Requerido"]];
@@ -821,6 +820,7 @@ class MuroController extends Controller
                     'tipo' => $request->tipo,
                     'descripcion' => null,
                     'muro_id' => $request->post_id,
+                    'comentario_id' => $request->comentario_id,
                     'usuario_id' => $usuario
                 ]);
                 
@@ -836,16 +836,39 @@ class MuroController extends Controller
             {
                 $data["status"]='exito';
                 foreach (MuroReporte::all() as $reporte ) {
+                    $comenatrio = null;$usuario = null;$post = null;$email = null;
+                    $nombre = null;$apellido = null;$apodo = null;
+                    $mensaje = null;$foto = null;
+                    if(!is_null($reporte->comentario_id)){
+                        $comenatrio = MuroComentario::find($reporte->comentario_id)->comentario;
+                    }
+                    if(!is_null($reporte->muro_id)){
+                        $mensaje = $reporte->mensaje; $foto = config('app.url') . 'usuarios/' .$reporte->foto;
+                    }
+                    if(!is_null($reporte->usuario_id)){
+                        $email = $reporte->usuario->email;$nombre = $reporte->usuario->nombre;
+                        $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
+                    }
+
+                    if(is_null($reporte->post_mensaje)){
+                        $ti = "comentario";
+                    }else{
+                        $ti  = "post";
+                    }
+                    
                     $data["data"][]=[
-                        'tipo' => $reporte->tipo,
-                        'usuario' => $reporte->usuario->email,
-                        'nombre' => $reporte->usuario->nombre." ".$reporte->usuario->apellido,
-                        'apodo' => $reporte->usuario->apodo,
-                        'post_mensaje' => $reporte->post->mensaje,
-                        'post_archivo' => config('app.url') . 'usuarios/' . $reporte->post->foto
+                        'reporte' => $reporte->tipo,
+                        'usuario' =>  $email,
+                        'nombre' =>  $nombre." ".$apellido,
+                        'apodo' =>  $apodo,
+                        'post_mensaje' =>  $mensaje,
+                        'post_archivo' =>  $foto,
+                        'post_comentario' =>$comenatrio,
+                        'tipo' => $ti
                     ];
                 }
                 return $data;
             }
 
         }
+
