@@ -637,8 +637,6 @@ class MuroController extends Controller
                 }
 
             }
-
-        }
         return ["status" => "exito", "data" => []];
 
     } catch (Exception $e) {
