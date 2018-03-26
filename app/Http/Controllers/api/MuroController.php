@@ -271,7 +271,6 @@ class MuroController extends Controller
 
             elseif(!isset($request["tipo_post"]))
             {
-                dd($request);
                 if(isset($request["foto"]))
                 {
                     $foto=$request["foto"];
