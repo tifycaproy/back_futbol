@@ -386,7 +386,7 @@
 
           $(".add_img").on('click',function(){
 
-            if ( $("#coor_img").val() && $("#descripcion").val()){
+            if ( $("#descripcion").val()){
 
               var formData = new FormData($("#formulario")[0]);
               $.ajax({    
