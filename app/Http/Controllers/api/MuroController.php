@@ -300,7 +300,7 @@ class MuroController extends Controller
             if ($muro) {
                 return ["status" => "exito", "data" => []];
             }else {
-                return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede editar el post"]];
             }
 
         } catch (Exception $e) {
@@ -566,7 +566,7 @@ class MuroController extends Controller
             if ($comentPost) {
                 return ["status" => "exito", "data" => []];
             }else {
-                return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+                return ['status' => 'fallo','error'=>["Disculpe, no se puedo editar el comentario"]];
             }
 
         } catch (Exception $e) {
@@ -579,9 +579,19 @@ class MuroController extends Controller
             $idpost=decodifica($idpost);
             $idcoment=decodifica($idcoment);
             $idusuario=decodifica_token($token);
-            if($post=MuroComentario::where('id',$idcoment)->where('muro_id',$idpost)->where('usuario_id',$idusuario)->first())
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if($idpost=="") $errors[]="El idpost es requerido";
+            if($idcoment=="") $errors[]="El idcoment es requerido";
+
+            if($post=MuroComentario::where('id',$idcoment)->where('muro_id',$idpost)->where('usuario_id',$idusuario)->first()){
                 $post->delete();
                 return ["status" => "exito", "data" => []];
+
+            }else{
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede eliminar el comentario"]];
+            }
+
+
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         }
