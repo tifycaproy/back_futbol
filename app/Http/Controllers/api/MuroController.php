@@ -352,18 +352,18 @@ class MuroController extends Controller
             $user = array();
             foreach ($usuarios_aplausos as $usuarios_aplausos) {
 
-               /* if($usuarios_aplausos->foto_redes)
+                if($usuarios_aplausos->foto_redes)
                     $foto = $usuarios_aplausos->foto_redes;
                 else if($usuarios_aplausos->foto)
                     $foto = config('app.url') . 'usuarios/' . $usuario->foto;
                 else 
-                    $foto = "";*/
+                    $foto = "";
 
                 if($usuarios_aplausos->apodo){
                     $usuarios_aplausos= array(
                         'id'=>$usuarios_aplausos->id,
                         'nombre'=>$usuarios_aplausos->apodo,
-                        /*'foto' => $foto,*/
+                        'foto' => $foto,
                     );
                     $user[]=$usuarios_aplausos;
 
@@ -371,7 +371,7 @@ class MuroController extends Controller
                     $usuarios_aplausos= array(
                         'id'=>$usuarios_aplausos->id,
                         'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
-                        /*'foto' => $foto,*/
+                        'foto' => $foto,
                     );
                     $user[]=$usuarios_aplausos;
                 }
