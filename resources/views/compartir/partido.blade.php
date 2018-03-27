@@ -38,31 +38,32 @@
             <section class="row justify-content-center no-gutters">
                 <section class="col-12 no-gutters">
                     <div class="row align-items-center justify-content-center no-gutters">
-                        <div class="col-3 col-xl-3 col-lg-5">
+                        <div class="col">
+                        <div class="col">
                             <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
                             <h4>{{ $data['equipo_1'] }}</h4>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col">
                             @if($data['estado'] =='Finalizado')
                             <h1>{{ $data['goles_1'] }} - {{ $data['goles_2'] }}</h1>
                             @endif
                             @if($data['estado'] !='Finalizado')
-                            <h1 class="col-lg-2">Vs</h1>
+                            <h1 class="col">Vs</h1>
                             @endif
                         </div>
 
-                        <div class="col-3 col-xl-3 col-lg-5">
+                        <div class="col">
                             <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
                             <h4>{{ $data['equipo_2'] }}</h4>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col">
                             <h6>{{ $data['copa'] }}</h6>
                         </div>
-                        <div class="col-12">
+                        <div class="col">
                             <h6>{{ $data['estadio'] }}</h6>
                         </div>
-                        <div class="col-12">
+                        <div class="col">
                             <h6>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h6>
                         </div>
                     </div>
