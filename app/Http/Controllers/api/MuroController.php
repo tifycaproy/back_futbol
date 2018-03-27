@@ -609,7 +609,7 @@ class MuroController extends Controller
             $comentarios=MuroComentario::where('muro_id', $idpost)->paginate(25);
             $data["status"]='exito';
             $data["data"]=[];
-            foreach ($comentarios as $comentario) {
+            foreach ($comentarios->reverse() as $comentario) {
                 if($comentario->foto<>'') $comentario->foto=config('app.url') . 'posts/' . $comentario->foto;
 
                 $usuario=$comentario->usuario;
