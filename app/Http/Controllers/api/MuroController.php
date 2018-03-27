@@ -823,7 +823,7 @@ public function destroy($idpost, $token)
                 'yaaplaudio' => $yaaplaudio,
             ];
         }
-
+        $comentariosArray = array_reverse($comentariosArray);
         $usuarios_aplausos = MuroAplauso
             ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
             ->where('muro_id',$post->id)
