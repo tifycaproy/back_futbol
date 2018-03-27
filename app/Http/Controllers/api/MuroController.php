@@ -355,7 +355,7 @@ class MuroController extends Controller
                 if($usuarios_aplausos->foto_redes)
                     $foto = $usuarios_aplausos->foto_redes;
                 else if($usuarios_aplausos->foto)
-                    $foto = config('app.url') . 'usuarios/' . $usuario->foto;
+                    $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
                 else 
                     $foto = "";
 
@@ -825,6 +825,15 @@ public function destroy($idpost, $token)
         }
         $usuario=$post->usuario;
         $usuario=$usuario->toArray();
+        if($usuario["foto"]==''){
+            if($usuario["foto_redes"]<>""){
+                $usuario["foto"]=$usuario["foto_redes"];
+            }else{
+                $usuario["foto"]="";
+            }
+        }else{
+            $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+        }
 
         $data["data"][]=[
             'idpost'=>codifica($post->id),
