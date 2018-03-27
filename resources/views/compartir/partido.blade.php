@@ -53,17 +53,17 @@
 
                         <div class="col-3 col-xl-3 col-lg-5">
                             <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
-                            <p class="texto">{{ $data['equipo_2'] }}</p>
+                            <h4 class="texto">{{ $data['equipo_2'] }}</h4>
                         </div>
 
                         <div class="col-12">
-                            <h5 class="texto">{{ $data['copa'] }}</h5>
+                            <h6 class="texto">{{ $data['copa'] }}</h6>
                         </div>
                         <div class="col-12">
-                            <h5 class="texto">{{ $data['estadio'] }}</h5>
+                            <h6 class="texto">{{ $data['estadio'] }}</h6>
                         </div>
                         <div class="col-12">
-                            <h5 class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h5>
+                            <h6 class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h6>
                         </div>
                     </div>
                 </section>
