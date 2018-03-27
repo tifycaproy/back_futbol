@@ -43,7 +43,7 @@ class PagoController extends Controller
     	$datos->merchantId = '508029';
         $datos->buyerEmail = $usuario->email;
     	$datos->reference = 'TestPayUMillonarios'. rand(0, 10000);
-    	$datos->Amount = number_format($costo, 2, '.', '');
+    	$datos->Amount = number_format($costo, 0, '.', '');
     	$datos->currency = 'COP';
     	$datos->signature = md5($datos->ApiKey .'~'. $datos->merchantId.'~'. $datos->reference . '~' . $datos->Amount . '~' . $datos->currency);
         $datos->extra3 = $idSuscripcion;

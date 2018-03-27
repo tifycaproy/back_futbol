@@ -149,8 +149,8 @@
             <div class="form-group">
                 <label>Solo para usuarios Dorados</label>
                 <select name="soloUsuariosDorados" class="form-control">
-                    <option value="0"@if(old('soloUsuariosDorados', $noticia->solo_dorado)=='0') selected @endif>No</option>
-                    <option value="1"@if(old('soloUsuariosDorados', $noticia->solo_dorado)=='1') selected @endif>Si</option>
+                    <option value="0"@if(old('soloUsuariosDorados', $noticia->dorado)=='0' || !$noticia->dorado) selected @endif>No</option>
+                    <option value="1"@if(old('soloUsuariosDorados', $noticia->dorado)=='1' || $noticia->dorado) selected @endif>Si</option>
                 </select>
             </div>
         </div>

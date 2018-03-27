@@ -13,8 +13,8 @@
     <title>{{ $noticia->titulo }}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content={{ $noticia->titulo }}" />
-    <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $noticia->descripcion) !!}" />
+    <meta property="og:title"              content="{{ $noticia->titulo }}" />
+    <meta property="og:description"        content="" />
     @if($noticia->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $noticia->foto }}" />@endif
 </head>
 <body>
@@ -48,7 +48,7 @@
                     <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
                         <div class="texto mt-1 pl-4 pr-4">
                             <!-- Texto-->
-                            <p style="text-align: left;">{!! nl2br($noticia->descripcion) !!}</p>
+
                 <!-- Texto-->
                             <p>&nbsp;</p> 
                             <h2>{{ $seccion->footer1 }}</h2>
