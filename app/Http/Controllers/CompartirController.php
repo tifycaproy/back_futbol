@@ -188,10 +188,16 @@ class CompartirController extends Controller
         $data = [
             "equipo_1"=>$fecha->equipo1->nombre,
             "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
+            "goles_1"=>$fecha->goles_1,
             "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
+            "goles_2"=>$fecha->goles_2,
+            "estadio"=>$fecha->estadio->nombre,
+            "fecha_etapa"=>$fecha->fecha_etapa,
+            "fecha"=>$fecha->fecha->format('d/m/Y'),
+            "hora"=>$fecha->fecha->toTimeString(),
             "copa"=>$fecha->copa->titulo,
-
+            "estado"=>$fecha->estado,
         ];
 
         return view('compartir.partido')->with("seccion",$seccion)->with("data",$data);
