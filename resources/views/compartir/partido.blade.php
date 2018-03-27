@@ -57,13 +57,13 @@
                         </div>
 
                         <div class="col-12">
-                            <h6 class="texto">{{ $data['copa'] }}</h6>
+                            <h6>{{ $data['copa'] }}</h6>
                         </div>
                         <div class="col-12">
-                            <h6 class="texto">{{ $data['estadio'] }}</h6>
+                            <h6>{{ $data['estadio'] }}</h6>
                         </div>
                         <div class="col-12">
-                            <h6 class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h6>
+                            <h6>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h6>
                         </div>
                     </div>
                 </section>
