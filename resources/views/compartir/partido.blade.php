@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-lg-2">
                             @if($data['estado'] =='Finalizado')
-                            <h1>{{ $data['goles_1'] }}</h1> - <h1>{{ $data['goles_2'] }}</h1>
+                            <h1>{{ $data['goles_1'] }} - {{ $data['goles_2'] }}</h1>
                             @endif
                             @if($data['estado'] !='Finalizado')
                             <h1 class="col-lg-2">Vs</h1>
@@ -56,11 +56,12 @@
                             <p class="texto">{{ $data['equipo_2'] }}</p>
                         </div>
                         <div class="col-12">
-                            <p class="texto">{{ $data['copa'] }}</p>
+                            <p class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('d/m/Y', strtotime($data['fecha'])) }}</p>
                         </div>
                         <div class="col-12">
-                            <p class="texto">{{ $data['fecha'] }}</p>
+                            <p class="texto">{{ $data['copa'] }}</p>
                         </div>
+
                     </div>
                 </section>
                 <div class="col-12 col-md-10 col-lg-5 col-xl-4 pl-2 pr-2 ">
