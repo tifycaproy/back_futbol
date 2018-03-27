@@ -63,7 +63,7 @@
                             <p class="texto">{{ $data['estadio'] }}</p>
                         </div>
                         <div class="col-12">
-                            <p class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('d/m/Y', strtotime($data['fecha'])) }}</p>
+                            <p class="texto">{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('h:n', strtotime($data['fecha'])) }}</p>
                         </div>
                     </div>
                 </section>
