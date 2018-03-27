@@ -20,6 +20,7 @@ class PuntoReferenciaController extends Controller
         $data["status"]='exito';
         foreach (PuntoReferencia::all() as $punto ) {
             $data["data"][]=[
+                'id' => $punto->id,
                 'titulo' => $punto->nombre,
                 'latitud' => $punto->cordx,
                 'longitud' => $punto->cordy,
