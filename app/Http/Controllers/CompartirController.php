@@ -194,7 +194,7 @@ class CompartirController extends Controller
             "goles_2"=>$fecha->goles_2,
             "estadio"=>$fecha->estadio,
             "fecha_etapa"=>$fecha->fecha_etapa,
-            "fecha"=>$fecha->fecha->format('d/m/Y'),
+            "fecha"=>$fecha->fecha->toDateString(),
             "hora"=>$fecha->fecha->toTimeString(),
             "copa"=>$fecha->copa->titulo,
             "estado"=>$fecha->estado,
