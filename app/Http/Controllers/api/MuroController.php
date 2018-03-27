@@ -823,8 +823,52 @@ public function destroy($idpost, $token)
                 'yaaplaudio' => $yaaplaudio,
             ];
         }
+
+        $usuarios_aplausos = MuroAplauso
+            ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
+            ->where('muro_id',$post->id)
+            ->get();
+            $user = array();
+            foreach ($usuarios_aplausos as $usuarios_aplausos) {
+
+                if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;
+                else if($usuarios_aplausos->foto)
+                    $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
+                else 
+                    $foto = "";
+
+                if($usuarios_aplausos->apodo){
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->apodo,
+                        'foto' => $foto,
+                    );
+                    $user[]=$usuarios_aplausos;
+
+                }else{
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
+                        'foto' => $foto,
+                    );
+                    $user[]=$usuarios_aplausos;
+                }
+
+            }
+
+
         $usuario=$post->usuario;
         $usuario=$usuario->toArray();
+        if($usuario["foto"]==''){
+            if($usuario["foto_redes"]<>""){
+                $usuario["foto"]=$usuario["foto_redes"];
+            }else{
+                $usuario["foto"]="";
+            }
+        }else{
+            $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+        }
 
         $data["data"][]=[
             'idpost'=>codifica($post->id),
@@ -835,6 +879,7 @@ public function destroy($idpost, $token)
             'ncomentarios'=>$post->comentarios->count(),
             'naplausos'=>$post->aplausos->count(),
             'yaaplaudio' => $yaaplaudio,
+            'usuarios_aplausos' => $user,
             'comentarios' => $comentariosArray
         ];
 
