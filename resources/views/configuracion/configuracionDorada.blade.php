@@ -334,7 +334,7 @@ $('.numeros').on('input', function () {
 
   $("#add_bene").on('click',function(){
 
-    if ( $("#descripcion_bene").val() && $("#imagen_bene").val()){
+    if ( $("#descripcion_bene").val() ){
 
       var formData = new FormData($("#formulario")[0]);
       $.ajax({    
