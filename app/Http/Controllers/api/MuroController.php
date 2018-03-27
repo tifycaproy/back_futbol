@@ -271,7 +271,6 @@ class MuroController extends Controller
 
             elseif(!isset($request["tipo_post"]))
             {
-                dd($request);
                 if(isset($request["foto"]))
                 {
                     $foto=$request["foto"];
@@ -294,12 +293,15 @@ class MuroController extends Controller
                     }
                 }
             }
+            $muro = Muro::where('id',$idpost)
+                ->where('usuario_id', $idusuario)
+                ->update($request);
 
-            Muro::where('id',$idpost)
-            ->where('usuario_id', $idusuario)
-            ->update($request);
-
-            return ["status" => "exito", "data" => []];
+            if ($muro) {
+                return ["status" => "exito", "data" => []];
+            }else {
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede editar el post"]];
+            }
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -499,6 +501,103 @@ class MuroController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
+
+
+    public function muro_edit_coment(Request $request, $idpost, $idcoment, $token)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+            $errors=[];
+            $idcoment=decodifica($idcoment);
+            if($idcoment=="") $errors[]="El idcomentario es incorrecto";
+            $idusuario=decodifica_token($token);
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if(!isset($request["comentario"])) $errors[]="El comentario es requerido";
+            if(!isset($idpost)) $errors[]="El idpost es requerido";
+            $idpost=decodifica($idpost);
+
+            if($idpost=="") $errors[]="El idpost es incorrecto";
+
+            if(isset($request["comentario"])){
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
+
+                if($resultado!="" && $request["comentario"] != " "){
+                    if($resultado["hasMatch"]){
+                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
+                    }
+                }
+            }
+
+
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='posts/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }else{
+                $request["foto"]='';
+            }
+
+
+            $comentPost = MuroComentario::where('id',$idcoment)
+                ->where('muro_id', $idpost)
+                ->where('usuario_id', $idusuario)
+                ->update($request);
+
+            if ($comentPost) {
+                return ["status" => "exito", "data" => []];
+            }else {
+                return ['status' => 'fallo','error'=>["Disculpe, no se puedo editar el comentario"]];
+            }
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+    }
+    public function muro_delete_coment($idpost, $idcoment, $token)
+    {
+        try{
+            $idpost=decodifica($idpost);
+            $idcoment=decodifica($idcoment);
+            $idusuario=decodifica_token($token);
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if($idpost=="") $errors[]="El idpost es requerido";
+            if($idcoment=="") $errors[]="El idcoment es requerido";
+
+            if($post=MuroComentario::where('id',$idcoment)->where('muro_id',$idpost)->where('usuario_id',$idusuario)->first()){
+                $post->delete();
+                return ["status" => "exito", "data" => []];
+
+            }else{
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede eliminar el comentario"]];
+            }
+
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+
+}
+
     public function comentarios_post(Request $request, $idpost)
     {
         try{
@@ -827,7 +926,6 @@ public function destroy($idpost, $token)
             public function muro_reporte(Request $request)
             {
                 $usuario=decodifica_token($request->token);
-                
                 if(!isset($request->token)){
                     return ['status' => 'fallo','error'=>["Usuario Requerido"]];
                 }
@@ -836,8 +934,8 @@ public function destroy($idpost, $token)
                     return ['status' => 'fallo','error'=>["Usuario no encontrado"]];
                 }
                 
-                if(!isset($request->post_id)){
-                    return ['status' => 'fallo','error'=>["Post Requerido"]];
+                if(!isset($request->post_id) && !isset($request->comentario_id)){
+                    return ['status' => 'fallo','error'=>["Post/Comentario Requerido"]];
                 }
                 if(!isset($request->tipo)){
                     return ['status' => 'fallo','error'=>["Reporte Requerido"]];
@@ -847,6 +945,7 @@ public function destroy($idpost, $token)
                     'tipo' => $request->tipo,
                     'descripcion' => null,
                     'muro_id' => $request->post_id,
+                    'comentario_id' => $request->comentario_id,
                     'usuario_id' => $usuario
                 ]);
                 
@@ -862,16 +961,39 @@ public function destroy($idpost, $token)
             {
                 $data["status"]='exito';
                 foreach (MuroReporte::all() as $reporte ) {
+                    $comenatrio = null;$usuario = null;$post = null;$email = null;
+                    $nombre = null;$apellido = null;$apodo = null;
+                    $mensaje = null;$foto = null;
+                    if(!is_null($reporte->comentario_id)){
+                        $comenatrio = MuroComentario::find($reporte->comentario_id)->comentario;
+                    }
+                    if(!is_null($reporte->muro_id)){
+                        $mensaje = $reporte->mensaje; $foto = config('app.url') . 'usuarios/' .$reporte->foto;
+                    }
+                    if(!is_null($reporte->usuario_id)){
+                        $email = $reporte->usuario->email;$nombre = $reporte->usuario->nombre;
+                        $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
+                    }
+
+                    if(is_null($reporte->post_mensaje)){
+                        $ti = "comentario";
+                    }else{
+                        $ti  = "post";
+                    }
+                    
                     $data["data"][]=[
-                        'tipo' => $reporte->tipo,
-                        'usuario' => $reporte->usuario->email,
-                        'nombre' => $reporte->usuario->nombre." ".$reporte->usuario->apellido,
-                        'apodo' => $reporte->usuario->apodo,
-                        'post_mensaje' => $reporte->post->mensaje,
-                        'post_archivo' => config('app.url') . 'usuarios/' . $reporte->post->foto
+                        'reporte' => $reporte->tipo,
+                        'usuario' =>  $email,
+                        'nombre' =>  $nombre." ".$apellido,
+                        'apodo' =>  $apodo,
+                        'post_mensaje' =>  $mensaje,
+                        'post_archivo' =>  $foto,
+                        'post_comentario' =>$comenatrio,
+                        'tipo' => $ti
                     ];
                 }
                 return $data;
             }
 
         }
+

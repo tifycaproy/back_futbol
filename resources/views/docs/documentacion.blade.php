@@ -557,6 +557,7 @@ $data = array(
             "error" => array("El token es requerido", "El comentario es requerido", "El idpost es requerido", "El idpost es incorrecto")
         )
     ),
+
     "Consultar comentarios del post" => array(
         "Ruta" => "/comentarios_post/{idpost}?token={token}&page={pagina}",
         "Método" => "GET",
@@ -566,6 +567,31 @@ $data = array(
         ],
         "Falla" => array(
             "error" => array("Idpost incorrecto")
+        )
+    ),
+
+    "Muro Editar comentario" => array(
+        "Ruta" => "/muro_edit_coment/{idpost}/{idcoment}/{token}",
+        "Método" => "POST",
+        "Parámetros" => array(
+            "comentario" => "textarea / comentario",
+            "foto" => "base64 / opcional",
+        ),
+        "Éxito" => "Debe redireccionar a los comentarios del post",
+        "Falla" => array(
+            "error" => array("Ha ocurrido un error, por favor intenta de nuevo", "El token es requerido", "El idcoment es requerido", "El idpost es requerido", "El idpost es incorrecto", "El idcoment es incorrecto")
+        )
+    ),
+    "Muro Eliminar comentario" => array(
+        "Ruta" => "/muro_comentar/{idpost}/{idcoment}/{token}",
+        "Método" => "DELETE",
+        "Parámetros" => array(
+            "comentario" => "textarea / comentario",
+            "foto" => "base64 / opcional",
+        ),
+        "Éxito" => "Debe redireccionar a los comentarios del post",
+        "Falla" => array(
+            "error" => array("Ha ocurrido un error, por favor intenta de nuevo","El token es requerido", "El idcoment es requerido", "El idpost es requerido", "El idpost es incorrecto", "El idcoment es incorrecto")
         )
     ),
     "Muro aplaudir post" => array(
@@ -592,6 +618,22 @@ $data = array(
             "error" => array("El token es requerido", "El idcomentario es requerido", "El idcomentario es incorrecto")
         )
     ),
+
+    "Editar Post" => array(
+        "Ruta" => "/muro/{idpost}",
+        "Método" => "PUT",
+        "Parámetros" => array(
+            "token" => "token / requerido",
+            "mensaje" => "textarea / requerido",
+            "foto" => "base64 / opcional",
+        ),
+        "Éxito" => "Debe redireccionar al muro",
+        "Falla" => array(
+            "error" => array("Ha ocurrido un error, por favor intenta de nuevo")
+        )
+    ),
+
+
     "Eliminar Post" => array(
         "Ruta" => "/muro/{idpost}/{token}",
         "Método" => "DELETE",

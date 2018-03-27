@@ -10,6 +10,7 @@ class UrlPopupInicial extends Migration
     public function up()
     {
         Schema::table('configuracion', function (Blueprint $table) {
+            
             $table->text('url_popup_inicial');
             $table->integer('act_pop_inicial');
             $table->text('link_pop_inicial');

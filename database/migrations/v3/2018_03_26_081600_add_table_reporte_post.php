@@ -17,6 +17,8 @@ class AddTableReportePost extends Migration
             $table->foreign('muro_id')->references('id')->on('muro')->onUpdate('cascade')->onDelete('set null');
             $table->integer('usuario_id')->unsigned()->nullable();
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('set null');
+            $table->integer('comentario_id')->unsigned()->nullable();
+            $table->foreign('comentario_id')->references('id')->on('muro_comentarios')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
         });  

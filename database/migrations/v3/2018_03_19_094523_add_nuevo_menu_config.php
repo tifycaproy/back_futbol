@@ -10,6 +10,7 @@ class AddNuevoMenuConfig extends Migration
     public function up()
     {
         Schema::table('configuracion', function (Blueprint $table) {
+            
             $table->text('titulo_0_1');
             $table->text('sub_titulo_1_1');
             $table->text('sub_titulo_1_2');

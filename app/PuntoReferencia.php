@@ -10,7 +10,7 @@ class PuntoReferencia extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'punto_referencia';
-    protected $fillable = [ 'cordx', 'cordy', 'descripcion', 'nombre'];
+    protected $fillable = [ 'cordx', 'cordy', 'descripcion', 'nombre', 'pais','ciudad','direccion','hora_evento'];
 
     function imagenes(){
 		return $this->hasMany('App\PuntoReferenciaImagen');
