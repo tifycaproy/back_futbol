@@ -271,7 +271,6 @@ class MuroController extends Controller
 
             elseif(!isset($request["tipo_post"]))
             {
-                dd($request);
                 if(isset($request["foto"]))
                 {
                     $foto=$request["foto"];
@@ -301,10 +300,8 @@ class MuroController extends Controller
             if ($muro) {
                 return ["status" => "exito", "data" => []];
             }else {
-                return  ["status" => "fallo", "error" => ['Disculpe, usuario no autorizado']];
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede editar el post"]];
             }
-
-            return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
@@ -504,6 +501,103 @@ class MuroController extends Controller
             return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
         } 
     }
+
+
+    public function muro_edit_coment(Request $request, $idpost, $idcoment, $token)
+    {
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
+        try{
+            //Validaciones
+            $errors=[];
+            $idcoment=decodifica($idcoment);
+            if($idcoment=="") $errors[]="El idcomentario es incorrecto";
+            $idusuario=decodifica_token($token);
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if(!isset($request["comentario"])) $errors[]="El comentario es requerido";
+            if(!isset($idpost)) $errors[]="El idpost es requerido";
+            $idpost=decodifica($idpost);
+
+            if($idpost=="") $errors[]="El idpost es incorrecto";
+
+            if(isset($request["comentario"])){
+                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["comentario"], true);
+
+                if($resultado!="" && $request["comentario"] != " "){
+                    if($resultado["hasMatch"]){
+                        $errors[]="Disculpa, este mensaje contiene lenguaje inapropiado.";
+                    }
+                }
+            }
+
+
+            if(count($errors)>0){
+                return ["status" => "fallo", "error" => $errors];
+            }
+            //fin validaciones
+            if(isset($request["foto"])){
+                $foto=$request["foto"];
+                if($foto<>''){
+                    list($tipo, $Base64Img) = explode(';', $foto);
+                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                    $filepath='posts/' . $request["foto"];
+
+                    $s3 = S3Client::factory(config('app.s3'));
+                    $result = $s3->putObject(array(
+                        'Bucket' => config('app.s3_bucket'),
+                        'Key' => $filepath,
+                        'SourceFile' => $foto,
+                        'ContentType' => 'image',
+                        'ACL' => 'public-read',
+                    ));
+
+                }
+            }else{
+                $request["foto"]='';
+            }
+
+
+            $comentPost = MuroComentario::where('id',$idcoment)
+                ->where('muro_id', $idpost)
+                ->where('usuario_id', $idusuario)
+                ->update($request);
+
+            if ($comentPost) {
+                return ["status" => "exito", "data" => []];
+            }else {
+                return ['status' => 'fallo','error'=>["Disculpe, no se puedo editar el comentario"]];
+            }
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+    }
+    public function muro_delete_coment($idpost, $idcoment, $token)
+    {
+        try{
+            $idpost=decodifica($idpost);
+            $idcoment=decodifica($idcoment);
+            $idusuario=decodifica_token($token);
+            if($idusuario=="") $errors[]="El token es incorrecto";
+            if($idpost=="") $errors[]="El idpost es requerido";
+            if($idcoment=="") $errors[]="El idcoment es requerido";
+
+            if($post=MuroComentario::where('id',$idcoment)->where('muro_id',$idpost)->where('usuario_id',$idusuario)->first()){
+                $post->delete();
+                return ["status" => "exito", "data" => []];
+
+            }else{
+                return ['status' => 'fallo','error'=>["Disculpe, no se puede eliminar el comentario"]];
+            }
+
+
+        } catch (Exception $e) {
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+
+}
+
     public function comentarios_post(Request $request, $idpost)
     {
         try{
