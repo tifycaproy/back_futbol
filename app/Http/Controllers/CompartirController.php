@@ -192,7 +192,7 @@ class CompartirController extends Controller
             "equipo_2"=>$fecha->equipo2->nombre,
             "bandera_2"=>config('app.url') . 'equipos/' . $fecha->equipo2->bandera,
             "goles_2"=>$fecha->goles_2,
-            "estadio"=>$fecha->estadio->nombre,
+            "estadio"=>$fecha->estadio,
             "fecha_etapa"=>$fecha->fecha_etapa,
             "fecha"=>$fecha->fecha->format('d/m/Y'),
             "hora"=>$fecha->fecha->toTimeString(),
