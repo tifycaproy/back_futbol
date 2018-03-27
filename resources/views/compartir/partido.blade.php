@@ -53,7 +53,7 @@
 
                         <div class="col-3 col-xl-3 col-lg-5">
                             <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
-                            <h4 class="texto">{{ $data['equipo_2'] }}</h4>
+                            <h4>{{ $data['equipo_2'] }}</h4>
                         </div>
 
                         <div class="col-12">
