@@ -42,7 +42,7 @@
                             <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
                             <h4>{{ $data['equipo_1'] }}</h4>
                         </div>
-                        <div class="col-lg-2" style="margin-top: 5%">
+                        <div class="col-3 col-xl-3 col-lg-2" style="margin-top: 5%">
                             @if($data['estado'] =='Finalizado')
                             <h1>{{ $data['goles_1'] }} - {{ $data['goles_2'] }}</h1>
                             @endif
