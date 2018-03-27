@@ -59,7 +59,7 @@
                             <p class="texto">{{ $data['copa'] }}</p>
                         </div>
                         <div class="col-12">
-                            <p class="texto">{{ $data['fecha'] }} | {{ $data['hora'] }}</p>
+                            <p class="texto">{{ $data['fecha'] }}</p>
                         </div>
                     </div>
                 </section>
