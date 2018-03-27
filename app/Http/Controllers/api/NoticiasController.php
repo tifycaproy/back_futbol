@@ -57,11 +57,6 @@ class NoticiasController extends Controller
         $data["data"]=[];
         foreach ($noticias as $noticia) {
             if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
-
-
-$noticia->titulo=$request->header('User-Agent');
-
-
             $data["data"][]=$noticia;
         }
 
