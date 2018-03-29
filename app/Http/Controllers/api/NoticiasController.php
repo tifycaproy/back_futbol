@@ -117,4 +117,9 @@ class NoticiasController extends Controller
 
 
     }
+    public function video_noticia()
+    {
+        $noticias=Noticia::select('id','link','titulo')->where('active',1)->where('tipo','=',"Video")->orderby('fecha','desc','id')->paginate(25);
+        return $noticias;
+    }
 }

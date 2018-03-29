@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Configuracion;
 use App\Http\Controllers\Controller;
 use App\Usuario;
-
+use App\Multimedia;
 
 class ConfiguracionController extends Controller
 {
@@ -34,6 +34,13 @@ class ConfiguracionController extends Controller
         $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/'.Configuracion::first()->url_popup_inicial;
         $data["data"]["url_vistas"] = config('app.share_url');
         $data["data"]["total_hinchas"] = Usuario::count();
+        return $data;
+    }
+
+    public function multimedia()
+    {
+        $data["status"] = 'exito';
+        $data["data"] = Multimedia::first(['url_envivo']);
         return $data;
     }
 }
