@@ -23,6 +23,7 @@ Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 Route::get('noticia/{idNoticia}', 'api\NoticiasController@single_noticia');
+Route::get('video_noticia', 'api\NoticiasController@video_noticia');
 //usuarios
 // v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
@@ -130,3 +131,5 @@ Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@
 //Punto referencia
 Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia');
 
+//Multimedia
+Route::get('multimedia', 'api\ConfiguracionController@multimedia');
