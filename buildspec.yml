@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - touch database/database.sqlite
+      - docker-php-ext-install pdo pdo_mysql zip
+      - php --ini
+  build:
+    commands:
+      - rm -rf vendor
+      - rm -rf composer.lock
+      - composer install --no-interaction --prefer-dist
+  post_build:
+    commands:
+      - pwd
+      - ls
+      - php artisan migrate --path=database/migrations/2way --database=sqlite --force
+      - vendor/bin/codecept run acceptance --steps
