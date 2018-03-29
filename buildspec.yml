@@ -14,7 +14,7 @@ phases:
   post_build:
     commands:
       - echo este buildspect viene del codigo y no tiene nada
-      - echo $BRANCH_SRC $CLAVE
+      - echo $BRANCH_SRC
       - pwd
       - ls
       - php artisan migrate --path=database/migrations/2way --database=sqlite --force
