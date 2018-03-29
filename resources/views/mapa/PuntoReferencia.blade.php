@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-xs-4">
                             <label >Fecha/Hora del evento</label>
-                             <input  class="form-control " id="hora_evento" type="datetime-local" name="hora_evento"  placeholder="Hora del evento" value="@if($id){{Carbon\Carbon::parse($pr->hora_evento)->format('Y-m-d\TH:i')}}@endif">
+                             <input  class="form-control datetimepicker" id="hora_evento" type="text" name="hora_evento"  placeholder="Hora del evento" value="@if($id){{Carbon\Carbon::parse($pr->hora_evento)->format('Y-m-d\TH:i')}}@endif">
                      </div>
                     <div class="col-xs-8">
                             <label >Dirección</label>
@@ -436,6 +436,14 @@
           });
         ////////////////////////////////////////IMAGENES COORDENADAS ///////////////////////////////////////
     });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
 </script>
 
 @endsection
