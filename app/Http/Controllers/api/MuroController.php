@@ -906,12 +906,17 @@ public function destroy($idpost, $token)
 
     public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
+        if($usuario->apodo)
+            $nombreEnvia = $usuario->apodo;
+        else
+            $nombreEnvia = $usuario->nombre;
+
         if($tipo == 'comentario')
-            $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+            $message = $nombreEnvia . ' ha hecho un comentario en tu publicación';
         else if ($tipo == 'aplauso')
-            $message = $usuario->nombre . ' ha aplaudido tu publicación';
+            $message = $nombreEnvia . ' ha aplaudido tu publicación';
         else if ($tipo == 'aplausoComentario')
-            $message = $usuario->nombre . ' ha aplaudido tu comentario';
+            $message = $nombreEnvia . ' ha aplaudido tu comentario';
             //Título de notificación
         $title = '¡Tienes una nueva notificación!';
             //Sección a la que se apunta
