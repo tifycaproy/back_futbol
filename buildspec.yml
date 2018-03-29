@@ -13,6 +13,7 @@ phases:
       - composer install --no-interaction --prefer-dist
   post_build:
     commands:
+      - echo este buildspect viene del codigo y no tiene nada
       - pwd
       - ls
       - php artisan migrate --path=database/migrations/2way --database=sqlite --force
