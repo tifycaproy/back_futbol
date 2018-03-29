@@ -686,7 +686,6 @@ class MuroController extends Controller
                 }
 
             }
-
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -976,12 +975,20 @@ public function destroy($idpost, $token)
                 if(!isset($request->tipo)){
                     return ['status' => 'fallo','error'=>["Reporte Requerido"]];
                 }
+                $postid = null;
+                if($request->post_id != null){
+                    $postid = decodifica($request->post_id);
+                }
 
+                $comentarioid = null;
+                if($request->comentario_id != null){
+                    $comentarioid = decodifica($request->comentario_id);
+                }
                 $result = MuroReporte::create([
                     'tipo' => $request->tipo,
                     'descripcion' => null,
-                    'muro_id' => $request->post_id,
-                    'comentario_id' => $request->comentario_id,
+                    'muro_id' => $postid ,
+                    'comentario_id' => $comentarioid,
                     'usuario_id' => $usuario
                 ]);
                 
@@ -1011,7 +1018,7 @@ public function destroy($idpost, $token)
                         $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
                     }
 
-                    if(is_null($reporte->post_mensaje)){
+                    if(!is_null($comenatrio)){
                         $ti = "comentario";
                     }else{
                         $ti  = "post";
@@ -1025,7 +1032,9 @@ public function destroy($idpost, $token)
                         'post_mensaje' =>  $mensaje,
                         'post_archivo' =>  $foto,
                         'post_comentario' =>$comenatrio,
-                        'tipo' => $ti
+                        'tipo' => $ti,
+                        'post_id' => $reporte->muro_id,
+                        'comentario_id' => $reporte->comentario_id
                     ];
                 }
                 return $data;
