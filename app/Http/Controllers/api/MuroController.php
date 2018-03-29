@@ -23,10 +23,8 @@ class MuroController extends Controller
     public function postear(Request $request)
     {
 
-        if($request["tipo_post"] != 'video') {
-            $request=json_decode($request->getContent());
-            $request=get_object_vars($request);
-        }
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
         try{
             //Validaciones
             $errors=[];
@@ -50,35 +48,30 @@ class MuroController extends Controller
             $request["usuario_id"]=$idusuario;
             unset($request["token"]);
 
-            if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
-                $foto=$request["foto"];
+            if(isset($request["foto"]) && isset($request["thumbnail"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
+                $foto=$request["thumbnail"];
                 if($foto<>''){
-                    if ($foto->getClientOriginalExtension() == "mp4") {
-                        if($foto->getSize() <= 7000000){
-                            $extension=$foto->getClientOriginalExtension();
-                            $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
-                            $filepath='posts/videos/'.$nombre ;
-                            $s3 = S3Client::factory(config('app.s3'));
-                            $result = $s3->putObject(array(
-                                'Bucket' => config('app.s3_bucket'),
-                                'Key' => $filepath,
-                                'SourceFile' => $foto->getRealPath(),
-                                'ContentType' => $foto->getMimeType(),
-                                'ACL' => 'public-read',
-                            ));
-                            $muro = new Muro();
-                            $muro->usuario_id = $idusuario;
-                            $muro->mensaje = $request["mensaje"];
-                            $muro->foto = $nombre;
-                            $muro->tipo_post = 'video';
-                            $muro->save();
-                            return ["status" => "exito", "data" => []];
-                        }else{
-                            return ["status" => "Peso no permitido", "error" => $errors];
-                        }
-                    }else{
-                        return ["status" => "Debe ser formato MP4", "error" => $errors];
-                    }
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["thumbnail"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["thumbnail"];
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+                        $muro = new Muro();
+                        $muro->usuario_id = $idusuario;
+                        $muro->mensaje = $request["mensaje"];
+                        $muro->foto = $request["foto"];
+                        $muro->thumbnail = $request["thumbnail"];
+                        $muro->tipo_post = 'video';
+                        $muro->save();
+                        return ["status" => "exito", "data" => []];
+                        
                 }else{
                     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
                 }
@@ -318,14 +311,10 @@ class MuroController extends Controller
         $data["data"]=[];
         foreach ($posts as $post) {
             if($post->foto<>''){
-                if($post->tipo_post == "video"){
-                    $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
-                } 
-                else if ($post->tipo_post == "gif")
+                if ($post->tipo_post == "gif")
                 {
                     $post->foto = $post->foto;
-                }
-                else{
+                }else{
                     $post->foto=config('app.url') . 'posts/' . $post->foto;
                 }
             } 
@@ -380,11 +369,14 @@ class MuroController extends Controller
 
 
 
-
+            if(!is_null($post->thumbnail)){
+                $post->thumbnail = config('app.url') . 'posts/' . $post->thumbnail;
+            }
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
                 'foto'=>$post->foto,
+                'thumbnail'=>$post->thumbnail,
                 'fecha'=>$post->created_at->toDateTimeString(),
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
