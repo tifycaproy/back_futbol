@@ -8,15 +8,15 @@ then
 fi
 echo "Se creo el archivo log Rotate de nginx"
 
-if [ -f /etc/logrotate.d/php-fpm-7.1 ]
-then
-    /opt/elasticbeanstalk/bin/log-conf -n'php-fpm' -l'/var/log/php-fpm/*log' -f /opt/elasticbeanstalk/support/conf/php-fpm.logrotate.conf
-    rm -f /etc/logrotate.d/php-fpm-7.1
-fi
-echo "Se creo el archivo log rotate de php-fpm"
+#if [ -f /etc/logrotate.d/php-fpm-7.1 ]
+#then
+#    /opt/elasticbeanstalk/bin/log-conf -n'php-fpm' -l'/var/log/php-fpm/*log' -f /opt/elasticbeanstalk/support/conf/php-fpm.logrotate.conf
+#    rm -f /etc/logrotate.d/php-fpm-7.1
+#fi
+#echo "Se creo el archivo log rotate de php-fpm"
 
-if [ -d /etc/healthd -a ! -d /var/log/nginx/healthd ]
-then
-    mkdir -p /var/log/nginx/healthd
-    chown -R nginx:nginx /var/log/nginx/healthd
-fi
+#if [ -d /etc/healthd -a ! -d /var/log/nginx/healthd ]
+#then
+#    mkdir -p /var/log/nginx/healthd
+#    chown -R nginx:nginx /var/log/nginx/healthd
+#fi
