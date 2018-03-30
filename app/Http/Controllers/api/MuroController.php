@@ -12,7 +12,7 @@ use App\MuroAplauso;
 use App\MuroComentarioAplauso;
 use App\MuroReporte;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Collection;
 class MuroController extends Controller
 {
     /**
@@ -941,13 +941,16 @@ public function destroy($idpost, $token)
 
     public function SearchMuro(Request $request)
     {
-        $muro = DB::table('usuarios')
-        ->select('nombre','apellido','apodo', 'id') 
+        $muro = Usuario::select('nombre','apellido','apodo', 'id','foto') 
         ->where('nombre', 'like', '%'.$request->busqueda.'%')
         ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
-        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
-
-        return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
+        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%')->distinct()->paginate(25);
+        $data["data"]=[];
+        foreach ($muro as $mu) {
+            if($mu->foto<>'') $mu->foto=config('app.url') . 'usuarios/' . $mu->foto;
+            $data["data"][]=$mu;
+        }
+        return $muro;
     }
 
             public function muro_reporte(Request $request)

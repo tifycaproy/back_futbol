@@ -105,7 +105,7 @@ Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
 
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
-Route::post('SearchMuro', 'api\MuroController@SearchMuro');
+Route::post('SearchMuro/{page?}', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
