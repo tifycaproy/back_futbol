@@ -46,7 +46,7 @@ class UserDoradoMiddleware
 
             if($funcion->solo_dorado && !$usuario->dorado )
                 return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
-                $posts=Muro::where('usuario_id', $token)->count();
+                $posts=Muro::where('usuario_id', $token)->where('created_at','>=',\Carbon\Carbon::now()->subHours(1))->count();
 
 
             if($nombre == 'muro_postear' && $funcion->limitar)
