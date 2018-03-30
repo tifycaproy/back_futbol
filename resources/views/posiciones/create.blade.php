@@ -8,12 +8,12 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <h1 class="page-header">Banners</h1>
+        <h1 class="page-header">Posiciones</h1>
     </div>
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li><a href="{{ route("posiciones.index") }}"><i class="fa fa-fw fa-pencil"></i> Banners</a></li>
+            <li><a href="{{ route("posiciones.index") }}"><i class="fa fa-fw fa-pencil"></i> Posiciones</a></li>
             <li>Crear</li>
         </ol>
     </div>
@@ -36,6 +36,16 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
+                <label>Copa</label>
+                <select name="copa_id" id="copa_id" class="form-control">
+                    @foreach($copas as $copa)
+                        <option value="{{ $copa->id }}">{{ $copa->titulo }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
                 <label>Equipo</label>
                 <select name="equipo_id" id="equipo_id" class="form-control">
                     @foreach($equipos as $equipo)
@@ -44,51 +54,59 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-4">
             <div class="form-group">
-                <label>PT</label>
+                <label>Posición</label>
+                <input type="number" class="form-control" name="pos"  maxlength="2" value="1">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Total Partidos</label>
                 <input type="number" class="form-control" name="pt"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>PJ</label>
+                <label>Partidos Jugados</label>
                 <input type="number" class="form-control" name="pj"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>PG</label>
+                <label>Partidos Ganados</label>
                 <input type="number" class="form-control" name="pg"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>PE</label>
+                <label>Partidos Empatados</label>
                 <input type="number" class="form-control" name="pe"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>PP</label>
+                <label>Partidos Perdidos</label>
                 <input type="number" class="form-control" name="pp"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>GF</label>
+                <label>Goles a Favor</label>
                 <input type="number" class="form-control" name="gf"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>GC</label>
+                <label>Goles en Contra</label>
                 <input type="number" class="form-control" name="gc"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <div class="form-group">
-                <label>DIF</label>
+                <label>Diferencia de goles</label>
                 <input type="number" class="form-control" name="dif"  maxlength="2" value="0">
             </div>
         </div>

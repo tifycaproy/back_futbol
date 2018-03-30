@@ -130,3 +130,6 @@ Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@
 //Punto referencia
 Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia');
 
+
+//posicion
+Route::get('posicion', 'api\PosicionController@posicion');

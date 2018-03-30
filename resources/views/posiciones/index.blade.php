@@ -31,6 +31,7 @@
                 <thead>
                     <tr>
                         <th>Pos</th>
+                        <th>Copa</th>
                         <th>Equipo</th>
                         <th>PT</th>
                         <th>PJ</th>
@@ -43,20 +44,26 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                @foreach($posiciones as $posicion)
                     <tr>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td> @foreach($copas as $copa){
+                                @if($copa->id == $posicion->copa_id){
+                                    {{ $copa->titulo }}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{ $posicion->equipo->nombre }}</td>
+                        <td>{{ $posicion->pt }}</td>
+                        <td>{{ $posicion->pj }}</td>
+                        <td>{{ $posicion->pg }}</td>
+                        <td>{{ $posicion->pe }}</td>
+                        <td>{{ $posicion->pp }}</td>
+                        <td>{{ $posicion->gf }}</td>
+                        <td>{{ $posicion->gc }}</td>
+                        <td>{{ $posicion->dif }}</td>
                     </tr>
-
+                @endforeach
                 </tbody>
             </table>
         </div>

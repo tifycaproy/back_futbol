@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Posicion;
 use App\Equipo;
+use App\Copa;
 
 class PosicionesController extends Controller
 {
@@ -17,7 +18,9 @@ class PosicionesController extends Controller
     public function index()
     {
         $posiciones = Posicion::all();
-        return view('posiciones.index');
+        $copas=Copa::where('activa',1)->get();
+
+        return view('posiciones.index')->with("posiciones",$posiciones)->with("copas",$copas);
     }
 
     /**
@@ -28,7 +31,8 @@ class PosicionesController extends Controller
     public function create()
     {
         $equipos=Equipo::orderby('nombre')->get();
-        return view('posiciones.create')->with("equipos",$equipos);
+        $copas=Copa::where('activa',1)->orderby('titulo')->get();
+        return view('posiciones.create')->with("equipos",$equipos)->with("copas",$copas);
     }
 
     /**
@@ -39,7 +43,24 @@ class PosicionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data=[
+            'pos' => $request->pos,
+            'copa_id' => $request->copa_id,
+            'equipo_id' => $request->equipo_id,
+            'pt' => $request->pt,
+            'pj' => $request->pj,
+            'pg' => $request->pg,
+            'pp' => $request->pp,
+            'pe' => $request->pe,
+            'gc' => $request->gc,
+            'gf' => $request->gf,
+            'dif' => $request->dif
+
+        ];
+        $save = Posicion::create($data);
+        return redirect()->route('posiciones.index');
+
     }
 
     /**
@@ -61,7 +82,7 @@ class PosicionesController extends Controller
      */
     public function edit($id)
     {
-        //
+      //
     }
 
     /**
