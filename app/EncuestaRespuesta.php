@@ -16,6 +16,6 @@ class EncuestaRespuesta extends Model
     }
     public function noticias()
     {
-        return $this->hasMany('App\Noticia','id_respuesta_noticia')->select('id','link','titulo','descripcion','fecha','foto','destacada','tipo')->orderby('fecha','desc','id','desc');
+        return $this->hasMany('App\Noticia','id_respuesta_noticia')->select('id','link','titulo','descripcion','fecha','foto','destacada','tipo','dorado')->orderby('fecha','desc','id','desc');
     }
 }
