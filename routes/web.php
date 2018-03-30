@@ -116,6 +116,7 @@ Route::get('compartir/videovr/{id}', 'CompartirController@videovr');
 Route::get('compartir/jugador/{id}', 'CompartirController@jugador');
 Route::get('compartir/jugador_single/{id}', 'CompartirController@jugador_single');
 Route::get('compartir/tueliges/{id}', 'CompartirController@tueliges');
+Route::get('compartir/punto_referencia/{id}', 'CompartirController@punto_referencia');
 
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
 Route::resource('compartir', 'CompartirController');
@@ -145,6 +146,5 @@ Route::get('puntoreferencia_eliminar/{id}', 'PuntoReferenciaController@destroy')
 //Notificaciones
 Route::get('enviarNotificaciones', 'NotificacionesController@index')->name('enviarNotificaciones');
 Route::post('enviarNotificacion', 'NotificacionesController@enviar')->name('enviarNotificacion');
-
-//MULTIMEDIA
-Route::resource('multimedia', 'multimediaController');
+//Posiciones
+Route::resource('posiciones', 'PosicionesController');
