@@ -146,3 +146,5 @@ Route::get('puntoreferencia_eliminar/{id}', 'PuntoReferenciaController@destroy')
 //Notificaciones
 Route::get('enviarNotificaciones', 'NotificacionesController@index')->name('enviarNotificaciones');
 Route::post('enviarNotificacion', 'NotificacionesController@enviar')->name('enviarNotificacion');
+//Posiciones
+Route::resource('posiciones', 'PosicionesController');
