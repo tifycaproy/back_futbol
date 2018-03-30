@@ -572,7 +572,7 @@ $data = array(
 
     "Muro Editar comentario" => array(
         "Ruta" => "/muro_edit_coment/{idpost}/{idcoment}/{token}",
-        "Método" => "PUT",
+        "Método" => "POST",
         "Parámetros" => array(
             "comentario" => "textarea / comentario",
             "foto" => "base64 / opcional",

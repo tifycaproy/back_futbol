@@ -531,7 +531,7 @@ class MuroController extends Controller
                 ->where('muro_id', $idpost)
                 ->where('usuario_id', $idusuario)
                 ->update(['comentario'=> $request["comentario"]]);
-          
+
             if ($comentPost) {
                 return ["status" => "exito", "data" => []];
             }else {
