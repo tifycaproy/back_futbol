@@ -526,35 +526,12 @@ class MuroController extends Controller
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
-            //fin validaciones
-            if(isset($request["foto"])){
-                $foto=$request["foto"];
-                if($foto<>''){
-                    list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    $filepath='posts/' . $request["foto"];
-
-                    $s3 = S3Client::factory(config('app.s3'));
-                    $result = $s3->putObject(array(
-                        'Bucket' => config('app.s3_bucket'),
-                        'Key' => $filepath,
-                        'SourceFile' => $foto,
-                        'ContentType' => 'image',
-                        'ACL' => 'public-read',
-                    ));
-
-                }
-            }else{
-                $request["foto"]='';
-            }
-
 
             $comentPost = MuroComentario::where('id',$idcoment)
                 ->where('muro_id', $idpost)
                 ->where('usuario_id', $idusuario)
-                ->update($request);
-
+                ->update(['comentario'=> $request["comentario"]]);
+          
             if ($comentPost) {
                 return ["status" => "exito", "data" => []];
             }else {
