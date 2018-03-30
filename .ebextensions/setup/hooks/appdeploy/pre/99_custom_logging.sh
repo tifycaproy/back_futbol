@@ -1,12 +1,12 @@
 #!/bin/bash
-set -xe
+#set -xe
 
-if [ -f /etc/logrotate.d/nginx ]
-then
-    /opt/elasticbeanstalk/bin/log-conf -n'nginx' -l'/var/log/nginx/*' -f /opt/elasticbeanstalk/support/conf/nginx.logrotate.conf
-    rm -f /etc/logrotate.d/nginx
-fi
-echo "Se creo el archivo log Rotate de nginx"
+#if [ -f /etc/logrotate.d/nginx ]
+#then
+#    /opt/elasticbeanstalk/bin/log-conf -n'nginx' -l'/var/log/nginx/*' -f /opt/elasticbeanstalk/support/conf/nginx.logrotate.conf
+#    rm -f /etc/logrotate.d/nginx
+#fi
+#echo "Se creo el archivo log Rotate de nginx"
 
 #if [ -f /etc/logrotate.d/php-fpm-7.1 ]
 #then
