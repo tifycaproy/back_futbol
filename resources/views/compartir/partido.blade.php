@@ -37,23 +37,36 @@
             </section>
             <section class="row justify-content-center no-gutters">
                 <section class="col-12 no-gutters">
-                <div class="row align-items-center justify-content-center no-gutters">
-                    <div class="col-3 col-xl-2 col-lg-2">
-                        <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
-                        <h4>{{ $data['equipo_1'] }}</h4>
+                    <div class="row align-items-center justify-content-center no-gutters">
+                        <div class="col-3 col-xl-3 col-lg-5" style="margin-top: 5%">
+                            <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
+                            <p class="mt-0 mb-0">{{ $data['equipo_1'] }}</p>
+                        </div>
+                        <div class="col-3 col-xl-3 col-lg-2" style="margin-top: 5%">
+                            @if($data['estado'] =='Finalizado')
+                            <h1>{{ $data['goles_1'] }} - {{ $data['goles_2'] }}</h1>
+                            @endif
+                            @if($data['estado'] !='Finalizado')
+                            <h1>Vs</h1>
+                            @endif
+                        </div>
+
+                        <div class="col-3 col-xl-3 col-lg-5" style="margin-top: 5%">
+                            <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
+                            <p class="mt-0 mb-0">{{ $data['equipo_2'] }}</p>
+                        </div>
+
+                        <div class="col-12" style="margin-top: 5%">
+                            <p>{{ $data['copa'] }}</p>
+                        </div>
+                        <div class="col-12">
+                            <p>{{ $data['estadio'] }}</p>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <p>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</p>
+                        </div>
                     </div>
-                    
-                        <h1 class="ml-5 mr-5">Vs</h1>
-                
-                    <div class="col-3 col-xl-3 col-lg-3">
-                        <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
-                        <p class="texto">{{ $data['equipo_2'] }}</p>
-                    </div>
-                    <div class="col-12">
-                        <p class="texto">{{ $data['copa'] }}</p>
-                    </div>
-                </div>
-            </section>
+                </section>
                 <div class="col-12 col-md-10 col-lg-5 col-xl-4 pl-2 pr-2 ">
                     <!-- Imagen-->
                     <img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">

@@ -239,17 +239,12 @@ $(".dinero").on("keypress keyup blur",function (event) {
         event.preventDefault();
     }
 });
-
 $('.numeros').on('input', function () { 
     this.value = this.value.replace(/[^0-9]/g,'');
 });
-
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
-
       $("#add_suscrip").on('click',function()
       {
-
-
         if ( $("#costo_menor").val() && $("#costo_mayor").val() && $("#descripcion").val()){
         if( parseInt($("#costo_menor").val()) < parseInt($("#costo_mayor").val()) ){
           $.ajax({
@@ -285,12 +280,9 @@ $('.numeros').on('input', function () {
             }
           });
         }else alert("[Costo Menor] debe ser menor a [Costo Mayor]");
-
-
           $("#add_suscrip").text('Agregar');
         }else alert("Llenar campos.");
       });
-
       $("#suscriptab").on('click','a.edit_suscrip', function()
       {
         row2 = $(this).parents('tr');
@@ -306,7 +298,6 @@ $('.numeros').on('input', function () {
         $( "#duracion" ).val(duracion);
         $("#add_suscrip").val( id ).text( 'Actualizar' );
       });
-
       $("#suscriptab").on('click','a.delete', function()
       {
         var row2 = $(this).parents('tr');row2.remove();
@@ -325,15 +316,10 @@ $('.numeros').on('input', function () {
                 $( "#duracion" ).val("");$("#add_suscrip").text('Agregar');
             }
           });
-
       });
-
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
-
 ////////////////////////////////////////BENEFICIOS ///////////////////////////////////////
-
   $("#add_bene").on('click',function(){
-
     if ( $("#descripcion_bene").val() ){
       var formData = new FormData($("#formulario")[0]);
       $.ajax({    
@@ -362,7 +348,6 @@ $('.numeros').on('input', function () {
                     descripcion:$( "#descripcion_bene" ).val(),
                     url:$("#imagen_secret").val()
                 },
-
                 success:function( respuesta )
                 {
                   if(respuesta != null){
@@ -383,12 +368,10 @@ $('.numeros').on('input', function () {
                 }
               });
               $("#add_bene").text('Agregar');
-
           }
       });
     }else alert("Llenar campos.");
   });
-
   $("#benetab").on('click','a.edit_bene', function()
   {
     row2 = $(this).parents('tr');
@@ -398,7 +381,6 @@ $('.numeros').on('input', function () {
     $( "#descripcion_bene" ).val(descripcion);
     $("#add_bene").val( id ).text( 'Actualizar' );
   });
-
   $("#benetab").on('click','a.delete_bene', function()
   {
     var row2 = $(this).parents('tr');row2.hide();
@@ -415,17 +397,11 @@ $('.numeros').on('input', function () {
             $( "#descripcion_bene" ).val("");$("#secreto").val("");
         }
       });
-
   });
-
 ////////////////////////////////////////BENEFICIOS ///////////////////////////////////////
-
 ////////////////////////////////////////CANCELAR ///////////////////////////////////////
-
       $("#add_cancel").on('click',function()
       {
-
-
         if ( $("#descripcion_cancel").val()){
           $.ajax({
             url: '{{ route("add_cancel") }}',
@@ -456,7 +432,6 @@ $('.numeros').on('input', function () {
           $("#add_cancel").text('Agregar');
         }else alert("Llenar campos.");
       });
-
       $("#canceltab").on('click','a.edit_cancel', function()
       {
         row2 = $(this).parents('tr');
@@ -466,7 +441,6 @@ $('.numeros').on('input', function () {
         $( "#descripcion_cancel" ).val(descripcion);
         $("#add_cancel").val( id ).text( 'Actualizar' );
       });
-
       $("#canceltab").on('click','a.delete_cancel', function()
       {
         var row2 = $(this).parents('tr');row2.hide();
@@ -483,9 +457,7 @@ $('.numeros').on('input', function () {
                 $( "#descripcion_cancel" ).val("");$("#secreto").val("");
             }
           });
-
       });
-
 ////////////////////////////////////////CANCELAR ///////////////////////////////////////
 slimPrint();
 function slimPrint() {
@@ -514,8 +486,5 @@ function slimPrint() {
       buttonUploadTitle: "Guardar"
   });
 }
-
-
-
 });
 </script>

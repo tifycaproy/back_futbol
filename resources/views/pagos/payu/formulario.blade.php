@@ -4,8 +4,8 @@
 </head>
 
 <body>
-<p>Monto : {{$datos->Amount}} </p>
-<p>Email usuario : {{$datos->buyerEmail}}
+<p>Monto : {{number_format($datos->Amount, 0, '.', ',')}} </p>
+<p>E-mail usuario : {{$datos->buyerEmail}}
  <form method="post" name="formulario" id="formulario" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
   <input name="merchantId"    type="hidden"  value="{{$datos->merchantId}}"   >
   <input name="accountId"     type="hidden"  value="512321" >

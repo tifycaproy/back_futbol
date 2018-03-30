@@ -23,10 +23,8 @@ class MuroController extends Controller
     public function postear(Request $request)
     {
 
-        if($request["tipo_post"] != 'video') {
-            $request=json_decode($request->getContent());
-            $request=get_object_vars($request);
-        }
+        $request=json_decode($request->getContent());
+        $request=get_object_vars($request);
         try{
             //Validaciones
             $errors=[];
@@ -50,35 +48,30 @@ class MuroController extends Controller
             $request["usuario_id"]=$idusuario;
             unset($request["token"]);
 
-            if(isset($request["foto"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
-                $foto=$request["foto"];
+            if(isset($request["foto"]) && isset($request["thumbnail"]) && isset($request["tipo_post"]) && $request["tipo_post"] == 'video'){
+                $foto=$request["thumbnail"];
                 if($foto<>''){
-                    if ($foto->getClientOriginalExtension() == "mp4") {
-                        if($foto->getSize() <= 7000000){
-                            $extension=$foto->getClientOriginalExtension();
-                            $nombre = (string)(date("YmdHis")) . (string)(rand(1,9)).".".$extension;
-                            $filepath='posts/videos/'.$nombre ;
-                            $s3 = S3Client::factory(config('app.s3'));
-                            $result = $s3->putObject(array(
-                                'Bucket' => config('app.s3_bucket'),
-                                'Key' => $filepath,
-                                'SourceFile' => $foto->getRealPath(),
-                                'ContentType' => $foto->getMimeType(),
-                                'ACL' => 'public-read',
-                            ));
-                            $muro = new Muro();
-                            $muro->usuario_id = $idusuario;
-                            $muro->mensaje = $request["mensaje"];
-                            $muro->foto = $nombre;
-                            $muro->tipo_post = 'video';
-                            $muro->save();
-                            return ["status" => "exito", "data" => []];
-                        }else{
-                            return ["status" => "Peso no permitido", "error" => $errors];
-                        }
-                    }else{
-                        return ["status" => "Debe ser formato MP4", "error" => $errors];
-                    }
+                        list($tipo, $Base64Img) = explode(';', $foto);
+                        $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
+                        $request["thumbnail"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
+                        $filepath='posts/' . $request["thumbnail"];
+                        $s3 = S3Client::factory(config('app.s3'));
+                        $result = $s3->putObject(array(
+                            'Bucket' => config('app.s3_bucket'),
+                            'Key' => $filepath,
+                            'SourceFile' => $foto,
+                            'ContentType' => 'image',
+                            'ACL' => 'public-read',
+                        ));
+                        $muro = new Muro();
+                        $muro->usuario_id = $idusuario;
+                        $muro->mensaje = $request["mensaje"];
+                        $muro->foto = $request["foto"];
+                        $muro->thumbnail = $request["thumbnail"];
+                        $muro->tipo_post = 'video';
+                        $muro->save();
+                        return ["status" => "exito", "data" => []];
+                        
                 }else{
                     return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
                 }
@@ -318,14 +311,10 @@ class MuroController extends Controller
         $data["data"]=[];
         foreach ($posts as $post) {
             if($post->foto<>''){
-                if($post->tipo_post == "video"){
-                    $post->foto=config('app.url') . 'posts/videos/' . $post->foto;
-                } 
-                else if ($post->tipo_post == "gif")
+                if ($post->tipo_post == "gif")
                 {
                     $post->foto = $post->foto;
-                }
-                else{
+                }else{
                     $post->foto=config('app.url') . 'posts/' . $post->foto;
                 }
             } 
@@ -380,11 +369,14 @@ class MuroController extends Controller
 
 
 
-
+            if(!is_null($post->thumbnail)){
+                $post->thumbnail = config('app.url') . 'posts/' . $post->thumbnail;
+            }
             $data["data"][]=[
                 'idpost'=>codifica($post->id),
                 'mensaje'=>$post->mensaje,
                 'foto'=>$post->foto,
+                'thumbnail'=>$post->thumbnail,
                 'fecha'=>$post->created_at->toDateTimeString(),
                 'usuario' => $usuario,
                 'ncomentarios'=>$post->comentarios->count(),
@@ -686,7 +678,6 @@ class MuroController extends Controller
                 }
 
             }
-
             return ["status" => "exito", "data" => []];
 
         } catch (Exception $e) {
@@ -907,12 +898,17 @@ public function destroy($idpost, $token)
 
     public function enviarNotificacion(Usuario $usuario, $id_post, $notificacionToken,$tipo){
             //Mensaje de notificación
+        if($usuario->apodo)
+            $nombreEnvia = $usuario->apodo;
+        else
+            $nombreEnvia = $usuario->nombre;
+
         if($tipo == 'comentario')
-            $message = $usuario->nombre . ' ha hecho un comentario en tu publicación';
+            $message = $nombreEnvia . ' ha hecho un comentario en tu publicación';
         else if ($tipo == 'aplauso')
-            $message = $usuario->nombre . ' ha aplaudido tu publicación';
+            $message = $nombreEnvia . ' ha aplaudido tu publicación';
         else if ($tipo == 'aplausoComentario')
-            $message = $usuario->nombre . ' ha aplaudido tu comentario';
+            $message = $nombreEnvia . ' ha aplaudido tu comentario';
             //Título de notificación
         $title = '¡Tienes una nueva notificación!';
             //Sección a la que se apunta
@@ -976,12 +972,20 @@ public function destroy($idpost, $token)
                 if(!isset($request->tipo)){
                     return ['status' => 'fallo','error'=>["Reporte Requerido"]];
                 }
+                $postid = null;
+                if($request->post_id != null){
+                    $postid = decodifica($request->post_id);
+                }
 
+                $comentarioid = null;
+                if($request->comentario_id != null){
+                    $comentarioid = decodifica($request->comentario_id);
+                }
                 $result = MuroReporte::create([
                     'tipo' => $request->tipo,
                     'descripcion' => null,
-                    'muro_id' => $request->post_id,
-                    'comentario_id' => $request->comentario_id,
+                    'muro_id' => $postid ,
+                    'comentario_id' => $comentarioid,
                     'usuario_id' => $usuario
                 ]);
                 
@@ -1011,7 +1015,7 @@ public function destroy($idpost, $token)
                         $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
                     }
 
-                    if(is_null($reporte->post_mensaje)){
+                    if(!is_null($comenatrio)){
                         $ti = "comentario";
                     }else{
                         $ti  = "post";
@@ -1025,7 +1029,9 @@ public function destroy($idpost, $token)
                         'post_mensaje' =>  $mensaje,
                         'post_archivo' =>  $foto,
                         'post_comentario' =>$comenatrio,
-                        'tipo' => $ti
+                        'tipo' => $ti,
+                        'post_id' => $reporte->muro_id,
+                        'comentario_id' => $reporte->comentario_id
                     ];
                 }
                 return $data;

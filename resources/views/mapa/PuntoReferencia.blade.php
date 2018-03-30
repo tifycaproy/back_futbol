@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-xs-4">
                             <label >Fecha/Hora del evento</label>
-                             <input  class="form-control " id="hora_evento" type="datetime-local" name="hora_evento"  placeholder="Hora del evento" value="@if($id){{Carbon\Carbon::parse($pr->hora_evento)->format('Y-m-d\TH:i')}}@endif">
+                             <input  class="form-control datetimepicker" id="hora_evento" type="text" name="hora_evento"  placeholder="Hora del evento" value="@if($id){{Carbon\Carbon::parse($pr->hora_evento)->format('Y-m-d\TH:i')}}@endif">
                      </div>
                     <div class="col-xs-8">
                             <label >Dirección</label>
@@ -219,18 +219,14 @@
             center: {lat: 4.687986, lng: -74.075813},
             zoom: 7
           @endif
-
         });
-
         var infoWindow = new google.maps.InfoWindow({map: map});
-
         map.addListener('click', function(e) {
             placeMarkerAndPanTo(e.latLng, map);
             if(markers.length>1){
                 markers[markers.length-2].setMap(null);
             }
         });
-
                 // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -238,7 +234,6 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             map.setCenter(pos);
@@ -249,7 +244,6 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-
         google.maps.event.addListener(map, "click", function(event) {
             // get lat/lon of click
             clickLat = event.latLng.lat();
@@ -268,22 +262,18 @@
                               var types = v1[i][k2];
                               if (types[0] =="country") {
                                   pais = v1[i].long_name;
-
                               } 
                               if (types[0] == "locality") {
                                  ciudad = v1[i].long_name;
                              } 
                            }
-
                         }          
                      }
                   }
                });
           }); 
         });
-
       }
-
       function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
           position: latLng,
@@ -291,7 +281,6 @@
         });
         markers.push(marker);
         map.panTo(latLng);
-
       }
    
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -300,25 +289,19 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
-
     $(document).ready(function(){
         $(function () {
             $('#hora_evento').datetimepicker();
         });
-
-
-
                    
         var token = $( "input[name='_token']" ).val();
         slimPrint();
-
         $(".coor").on('click',function(){
             $("#latitud").val(clickLat);
             $("#longitud").val(clickLon);
             $("#pais").val(pais);
             $("#ciudad").val(ciudad);
         });
-
         function slimPrint() {
             $('.slim').slim({
               label: 'Arrastra tu imagen ó haz click aquí',
@@ -370,9 +353,7 @@
                         direccion:$( "#direccion" ).val(),
                         pais:$( "#pais" ).val(),
                         ciudad:$( "#ciudad" ).val()
-
                     },
-
                     success:function( respuesta )
                     {
                         alert("Se ha guardado");
@@ -383,11 +364,8 @@
               }else alert("Llenar campos.");
         });
         ////////////////////////////////////////IMAGENES COORDENADAS ///////////////////////////////////////
-
           $(".add_img").on('click',function(){
-
             if ( $("#descripcion").val()){
-
               var formData = new FormData($("#formulario")[0]);
               $.ajax({    
                   url: '{{ route("add_coorImg") }}',
@@ -414,7 +392,6 @@
                             url:url,
                             id:$( "#secreto" ).val(),
                         },
-
                         success:function( respuesta )
                         {
                           if(respuesta != null){
@@ -433,13 +410,10 @@
                         }
                       });
                       $("#add_img").text('Agregar');
-
                   }
               });
             }else alert("Llenar campos.");
           });
-
-
           $("#coortab").on('click','a.delete_coor', function()
           {
             var row2 = $(this).parents('tr');row2.hide();
@@ -459,18 +433,17 @@
                     $('#modalEliminado').modal('hide');
                 }
               });
-
           });
         ////////////////////////////////////////IMAGENES COORDENADAS ///////////////////////////////////////
-
-
-
-
-
-
     });
-
-
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
 </script>
 
 @endsection

@@ -47,6 +47,7 @@
                         <!--<div class="col-12 col-lg-5">-->
                             <div class="col-12 col-lg-6 col-xl-4"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, segun cambios del diseño)-->      
                                 <div class="mt-1 pl-4 pr-4">
+
                                     <!-- Texto-->
                                     <p>{!! nl2br($jugador->descripcion) !!}</p>
                                     <ul class="ul_aplausos">

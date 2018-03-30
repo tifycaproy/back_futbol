@@ -20,6 +20,7 @@ class PuntoReferenciaController extends Controller
         $data["status"]='exito';
         foreach (PuntoReferencia::all() as $punto ) {
             $data["data"][]=[
+                'id' => $punto->id,
                 'titulo' => $punto->nombre,
                 'latitud' => $punto->cordx,
                 'longitud' => $punto->cordy,
@@ -27,7 +28,7 @@ class PuntoReferenciaController extends Controller
                 'ciudad' => $punto->ciudad,
                 'pais' => $punto->pais,
                 'fecha_evento' => Carbon::parse($punto->hora_evento)->format('Y-m-d'),
-                'hora' => Carbon::parse($punto->hora_evento)->format('g:i A'),
+                'hora' => Carbon::parse($punto->hora_evento)->format('G:i'),
                 'imagenes' => $punto->imagenes
             ];
         }
