@@ -106,6 +106,8 @@ class NoticiasController extends Controller
 
        $noticia=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
        ->where('id',$idNoticia)->first();
+       if(!$noticia)
+        return ["status" => "fallo", "error" => "La noticia no existe"];
 
        $data["status"]='exito';
        $data["data"]=[];
