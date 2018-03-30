@@ -312,7 +312,7 @@ class MuroController extends Controller
         $data["data"]=[];
         foreach ($posts as $post) {
             if($post->foto<>''){
-                if ($post->tipo_post == "gif")
+                if ($post->tipo_post == "gif" || $post->tipo_post == "video")
                 {
                     $post->foto = $post->foto;
                 }else{
