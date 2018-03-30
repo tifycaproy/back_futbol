@@ -1,3 +1,0 @@
-container_commands:
-  01-EliminarApache:
-    command: "sudo service httpd stop && sudo yum remove httpd -y"

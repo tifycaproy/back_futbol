@@ -1,3 +1,0 @@
-container_commands:
-  01-install-nginx:
-    command: "rpm -qa | grep -qw nginx || sudo yum install nginx -y"
