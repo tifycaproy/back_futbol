@@ -133,3 +133,6 @@ Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia')
 
 //Multimedia
 Route::get('multimedia', 'api\ConfiguracionController@multimedia');
+
+//perfil_nuevo
+Route::get('perfil/{id}', 'api\MuroController@perfil');
