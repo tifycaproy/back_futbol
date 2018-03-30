@@ -46,9 +46,9 @@
                 <tbody>
                 @foreach($posiciones as $posicion)
                     <tr>
-                        <td></td>
-                        <td> @foreach($copas as $copa){
-                                @if($copa->id == $posicion->copa_id){
+                        <td>{{ $posicion->pos }}</td>
+                        <td> @foreach($copas as $copa)
+                                @if($copa->id == $posicion->copa_id)
                                     {{ $copa->titulo }}
                                 @endif
                             @endforeach

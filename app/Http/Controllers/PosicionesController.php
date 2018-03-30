@@ -17,7 +17,7 @@ class PosicionesController extends Controller
      */
     public function index()
     {
-        $posiciones = Posicion::all();
+        $posiciones = Posicion::orderby('copa_id', 'desc')->orderby('pos', 'asc')->get();
         $copas=Copa::where('activa',1)->get();
 
         return view('posiciones.index')->with("posiciones",$posiciones)->with("copas",$copas);
@@ -43,6 +43,8 @@ class PosicionesController extends Controller
      */
     public function store(Request $request)
     {
+        $equipos=Equipo::orderby('nombre')->get();
+        $copas=Copa::where('activa',1)->orderby('titulo')->get();
 
         $data=[
             'pos' => $request->pos,
@@ -58,8 +60,31 @@ class PosicionesController extends Controller
             'dif' => $request->dif
 
         ];
-        $save = Posicion::create($data);
-        return redirect()->route('posiciones.index');
+        // buscamos la posicion
+        $exist=Posicion::where('copa_id', $request->copa_id)
+            ->where('equipo_id', $request->equipo_id)
+            ->first();
+
+
+        $exist2=Posicion::where('pos', $request->pos)
+            ->where('copa_id', $request->copa_id)
+            ->where('equipo_id', '!=',$request->equipo_id)
+            ->first();
+
+        // Si existe
+        if(count($exist)>=1)
+            return redirect()->route('posiciones.create')->with("notificacion_error", "Disculpe, El Equipo se encuentra registrado");
+
+        if(count($exist2)>=1)
+
+            return redirect()->route('posiciones.create')->with("notificacion_error", "Disculpe, La Posición se encuentra registrado");
+
+        if(count($exist)== null || count($exist2)== null  )
+
+            $save = Posicion::create($data);
+            return redirect()->route('posiciones.index');
+
+
 
     }
 
