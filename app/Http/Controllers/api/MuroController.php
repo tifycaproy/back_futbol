@@ -12,7 +12,7 @@ use App\MuroAplauso;
 use App\MuroComentarioAplauso;
 use App\MuroReporte;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Collection;
 class MuroController extends Controller
 {
     /**
@@ -526,34 +526,11 @@ class MuroController extends Controller
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
-            //fin validaciones
-            if(isset($request["foto"])){
-                $foto=$request["foto"];
-                if($foto<>''){
-                    list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    $filepath='posts/' . $request["foto"];
-
-                    $s3 = S3Client::factory(config('app.s3'));
-                    $result = $s3->putObject(array(
-                        'Bucket' => config('app.s3_bucket'),
-                        'Key' => $filepath,
-                        'SourceFile' => $foto,
-                        'ContentType' => 'image',
-                        'ACL' => 'public-read',
-                    ));
-
-                }
-            }else{
-                $request["foto"]='';
-            }
-
 
             $comentPost = MuroComentario::where('id',$idcoment)
                 ->where('muro_id', $idpost)
                 ->where('usuario_id', $idusuario)
-                ->update($request);
+                ->update(['comentario'=> $request["comentario"]]);
 
             if ($comentPost) {
                 return ["status" => "exito", "data" => []];
@@ -946,13 +923,16 @@ public function destroy($idpost, $token)
 
     public function SearchMuro(Request $request)
     {
-        $muro = DB::table('usuarios')
-        ->select('nombre','apellido','apodo', 'id') 
+        $muro = Usuario::select('nombre','apellido','apodo', 'id','foto') 
         ->where('nombre', 'like', '%'.$request->busqueda.'%')
         ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
-        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
-
-        return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
+        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%')->distinct()->paginate(25);
+        $data["data"]=[];
+        foreach ($muro as $mu) {
+            if($mu->foto<>'') $mu->foto=config('app.url') . 'usuarios/' . $mu->foto;
+            $data["data"][]=$mu;
+        }
+        return $muro;
     }
 
             public function muro_reporte(Request $request)
