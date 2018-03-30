@@ -1117,13 +1117,44 @@ public function destroy($idpost, $token)
             $aplausos_total += $post->aplausos->count();
             $comentario_recibidos += $post->comentarios->count();
         }
+        $userx = Usuario::select('nombre','apellido','apodo', 'id','foto','created_at as desde') 
+        ->where('id','=',$usuarioid)->get();
 
+        
+        $foto = null;
+        if($userx->first()->foto<>'') $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+        $fecha = Carbon::parse($userx->first()->desde);
+        $data["usuario"]=[
+            "nombre" => $userx->first()->nombre, 
+            "apellido" => $userx->first()->apellido, 
+            "apodo" => $userx->first()->apodo, 
+            "id" => crea_token($userx->first()->id), 
+            "foto" => $foto, 
+            "dede" => $fecha->day." de ".$this->mes($fecha->month)." ".$fecha->year
+        ];
         $data["aplausos_recibidos"] = $aplausos_total;
         $data["comentario_recibidos"] = $comentario_recibidos;
         $data["comentario_dados"] = $comentario_hechos;
         $data["publicaciones"]=count(Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->get());
         return $data;
     }
+
+    public function mes($mes)
+    {
+        if($mes == 1){return "Enero";}
+        if($mes == 2){return "Febrero";}
+        if($mes == 3){return "Marzo";}
+        if($mes == 4){return "Abril";}
+        if($mes == 5){return "Mayo";}
+        if($mes == 6){return "Junio";}
+        if($mes == 7){return "Julio";}
+        if($mes == 8){return "Agosto";}
+        if($mes == 9){return "Septiembre";}
+        if($mes == 10){return "Octubre";}
+        if($mes == 11){return "Noviembre";}
+        if($mes == 12){return "Diciembre";}
+    }   
+
 
 }
 
