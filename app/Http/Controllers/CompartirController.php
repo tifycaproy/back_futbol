@@ -15,6 +15,7 @@ use App\Noticia;
 use App\Videovr;
 use App\Aplauso;
 use App\EncuestaRespuesta;
+use App\PuntoReferencia;
 
 class CompartirController extends Controller
 {
@@ -242,6 +243,13 @@ class CompartirController extends Controller
       public function descargar()
     {
         return view('compartir.referidos.descargar');
+    }
+    public function punto_referencia($id)
+    {
+        $pr=PuntoReferencia::find($id);
+        $imagen='';
+        if($tiene_imagen=$pr->imagenes->first()) $imagen=$imagen=config('app.url') . 'punto_referencia/' . $tiene_imagen->imagen;
+        return view('compartir.punto_referencia',['pr'=>$pr, 'imagen' => $imagen]);
     }
 }
 //

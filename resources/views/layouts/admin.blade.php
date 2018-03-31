@@ -109,6 +109,9 @@
                         <a href="{{ route("copasfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario FB</a>
                     </li>
                     <li>
+                        <a href="{{ route("posiciones.index") }}"><i class="fa fa-fw fa-pencil"></i> Posiciones</a>
+                    </li>
+                    <li>
                         <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
                     </li>
                     <li>
