@@ -6,7 +6,7 @@
 <body>
 <p>Monto : {{number_format($datos->Amount, 0, '.', ',')}} </p>
 <p>E-mail usuario : {{$datos->buyerEmail}}
- <form method="post" name="formulario" id="formulario" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+ <form method="post" name="formulario" id="formulario" action="https://checkout.payulatam.com/ppp-web-gateway-payu">
   <input name="merchantId"    type="hidden"  value="{{$datos->merchantId}}"   >
   <input name="accountId"     type="hidden"  value="689898" >
   <input name="ApiKey"     type="hidden"  value="{{$datos->ApiKey}}" >
