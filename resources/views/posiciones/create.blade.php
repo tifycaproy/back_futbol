@@ -46,65 +46,57 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Equipo</label>
-                <select name="equipo_id" id="equipo_id" class="form-control">
-                    @foreach($equipos as $equipo)
-                    <option value="{{ $equipo->id }}"@if($equipo->id==old('equipo_1')) selected @endif>{{ $equipo->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
                 <label>Posición</label>
                 <input type="number" class="form-control" name="pos"  maxlength="2" value="1">
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Total Partidos</label>
                 <input type="number" class="form-control" name="pt"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Jugados</label>
                 <input type="number" class="form-control" name="pj"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Ganados</label>
                 <input type="number" class="form-control" name="pg"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Empatados</label>
                 <input type="number" class="form-control" name="pe"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Perdidos</label>
                 <input type="number" class="form-control" name="pp"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Goles a Favor</label>
                 <input type="number" class="form-control" name="gf"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Goles en Contra</label>
                 <input type="number" class="form-control" name="gc"  maxlength="2" value="0">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Diferencia de goles</label>
                 <input type="number" class="form-control" name="dif"  maxlength="2" value="0">
