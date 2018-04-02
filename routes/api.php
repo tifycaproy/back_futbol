@@ -46,6 +46,8 @@ Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_re
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
 Route::get('usuarios_activos', 'api\UsuariosController@usuarios_activos');
+//v3
+Route::post('ChatReporte', 'api\UsuariosController@ChatReporte');
 
 //registrar referidos
 Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
