@@ -1117,12 +1117,18 @@ public function destroy($idpost, $token)
             $aplausos_total += $post->aplausos->count();
             $comentario_recibidos += $post->comentarios->count();
         }
-        $userx = Usuario::select('nombre','apellido','apodo', 'id','foto','created_at as desde') 
+        $userx = Usuario::select('nombre','apellido','apodo', 'id','foto','created_at as desde', 'foto_redes') 
         ->where('id','=',$usuarioid)->get();
 
         
         $foto = null;
-        if($userx->first()->foto<>'') $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+        if(!is_null($userx->first()->foto_redes)){
+            $foto=$userx->first()->foto_redes;
+        }else{
+            if($userx->first()->foto<>''){
+                $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+            }
+        } 
         $fecha = Carbon::parse($userx->first()->desde);
         $data["usuario"]=[
             "nombre" => $userx->first()->nombre, 
