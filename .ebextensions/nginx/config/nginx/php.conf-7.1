@@ -24,5 +24,6 @@ location ~ \.php(/.*)?$ {
     include        fastcgi.conf;
     include        fastcgi_params_env;
     #fastcgi_pass   php-fpm;
-    fastcgi_pass   127.0.0.1:8000;
+    #fastcgi_pass   127.0.0.1:8000;
+    fastcgi_pass   /var/run/php-fpm/php-fpm.sock 
 }
