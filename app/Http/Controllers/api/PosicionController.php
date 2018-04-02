@@ -32,6 +32,7 @@ class PosicionController extends Controller
                 if($copa->id == $pos->copa_id){
 
                     $posicion[]=[
+                        'idposicion' => $pos->id,
                         'pos' => $pos->pos,
                         'bandera' => config('app.url') . 'equipos/' . $pos->equipo->bandera,
                         'equipo_id' => $pos->equipo->nombre,
