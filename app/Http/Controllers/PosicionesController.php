@@ -17,10 +17,8 @@ class PosicionesController extends Controller
      */
     public function index()
     {
-        $posiciones = Posicion::orderby('copa_id', 'desc')->orderby('pos', 'asc')->get();
-        $copas=Copa::where('activa',1)->get();
-
-        return view('posiciones.index')->with("posiciones",$posiciones)->with("copas",$copas);
+        $posiciones = Posicion::orderby('pos', 'asc')->get();
+        return view('posiciones.index')->with("posiciones",$posiciones);
     }
 
     /**
@@ -31,8 +29,7 @@ class PosicionesController extends Controller
     public function create()
     {
         $equipos=Equipo::orderby('nombre')->get();
-        $copas=Copa::where('activa',1)->orderby('titulo')->get();
-        return view('posiciones.create')->with("equipos",$equipos)->with("copas",$copas);
+        return view('posiciones.create')->with("equipos",$equipos);
     }
 
     /**
@@ -58,13 +55,11 @@ class PosicionesController extends Controller
 
         ];
 
-        $exist=Posicion::where('copa_id', $request->copa_id)
-            ->where('equipo_id', $request->equipo_id)
+        $exist=Posicion::where('equipo_id', $request->equipo_id)
             ->first();
 
 
         $exist2=Posicion::where('pos', $request->pos)
-            ->where('copa_id', $request->copa_id)
             ->where('equipo_id', '!=',$request->equipo_id)
             ->first();
 
@@ -138,7 +133,6 @@ class PosicionesController extends Controller
         ];
 
         $exist2=Posicion::where('pos', $request->pos)
-            ->where('copa_id', $request->copa_id)
             ->first();
 
         if(count($exist2)>=1)
