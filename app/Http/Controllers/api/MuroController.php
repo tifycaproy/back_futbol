@@ -1020,7 +1020,7 @@ public function destroy($idpost, $token)
 
     public function perfil($token)
     {
-        $usuarioid=decodifica_token($token);
+        $usuarioid=$token;
         $aplausos_total=0;
         $comentario_recibidos=0;
         $posts=Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->paginate(15);
