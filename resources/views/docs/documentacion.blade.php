@@ -308,10 +308,7 @@ $data = array(
         "Ruta" => "/posicion",
         "Método" => "GET",
         "Éxito (Array)" => array(
-            "copa",
-            "posicion (array)" => [
-                "pos", "bandera","equipo_id","pt","pj","pg","pp","pe","gc","gf","dif"
-            ],
+                "posicion_id","posicion", "bandera","equipo_id","pt","pj","pg","pp","pe","gc","gf","dif"
         )
     ),
     "Calendario" => array(

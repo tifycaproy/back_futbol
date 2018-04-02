@@ -18,8 +18,7 @@ class PosicionesController extends Controller
     public function index()
     {
         $posiciones = Posicion::orderby('pos', 'asc')->get();
-        $copas=Copa::where('activa',1)->get();
-        return view('posiciones.index')->with("posiciones",$posiciones)->with("copas",$copas);
+        return view('posiciones.index')->with("posiciones",$posiciones);
     }
 
     /**
@@ -30,8 +29,7 @@ class PosicionesController extends Controller
     public function create()
     {
         $equipos=Equipo::orderby('nombre')->get();
-        $copas=Copa::where('activa',1)->orderby('titulo')->get();
-        return view('posiciones.create')->with("equipos",$equipos)->with("copas",$copas);
+        return view('posiciones.create')->with("equipos",$equipos);
     }
 
     /**

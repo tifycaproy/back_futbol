@@ -36,10 +36,10 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Copa</label>
-                <select name="copa_id" id="copa_id" class="form-control">
-                    @foreach($copas as $copa)
-                        <option value="{{ $copa->id }}">{{ $copa->titulo }}</option>
+                <label>Equipo</label>
+                <select name="equipo_id" id="equipo_id" class="form-control">
+                    @foreach($equipos as $equipo)
+                        <option value="{{ $equipo->id }}">{{ $equipo->nombre }}</option>
                     @endforeach
                 </select>
             </div>
@@ -57,9 +57,7 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Jugados</label>
