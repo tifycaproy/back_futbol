@@ -33,7 +33,7 @@ class PosicionController extends Controller
 
                     $posicion[]=[
                         'pos' => $pos->pos,
-                        'bandera' => $pos->equipo->bandera,
+                        'bandera' => config('app.url') . 'equipos/' . $pos->equipo->bandera,
                         'equipo_id' => $pos->equipo->nombre,
                         'pt' => $pos->pt,
                         'pj' => $pos->pj,
