@@ -10,7 +10,7 @@
   <input name="merchantId"    type="hidden"  value="{{$datos->merchantId}}"   >
   <input name="accountId"     type="hidden"  value="689898" >
   <input name="ApiKey"     type="hidden"  value="{{$datos->ApiKey}}" >
-  <input name="description"   type="hidden"  value="Suscripción Millonarios"  >
+  <input name="description"   type="hidden"  value="Suscripción Millonarios - {{ $datos->descripcionSuscripcion }}"  >
   <input name="referenceCode" type="hidden"  value="{{$datos->reference}}" >
   <input name="amount"        type="hidden"  value="{{$datos->Amount}}"   >
   <input name="tax"           type="hidden"  value="0"  >
