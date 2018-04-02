@@ -297,9 +297,20 @@ $data = array(
         "Ruta" => "/partidos",
         "Método" => "GET",
         "Éxito (Array)" => array(
+            "copa_id",
             "copa",
             "partido (array)" => [
                 "idpartido", "estado", "equipo_1", "bandera_1", "goles_1", "equipo_2", "bandera_2", "goles_2", "fecha", "fecha_etapa", "estadio", "info"
+            ],
+        )
+    ),
+    "Posiciones" => array(
+        "Ruta" => "/posicion",
+        "Método" => "GET",
+        "Éxito (Array)" => array(
+            "copa",
+            "posicion (array)" => [
+                "pos", "bandera","equipo_id","pt","pj","pg","pp","pe","gc","gf","dif"
             ],
         )
     ),

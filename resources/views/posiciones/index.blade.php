@@ -41,6 +41,7 @@
                         <th>GF</th>
                         <th>GC</th>
                         <th>DIF</th>
+                        <th width="60"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,10 @@
                         <td>{{ $posicion->gf }}</td>
                         <td>{{ $posicion->gc }}</td>
                         <td>{{ $posicion->dif }}</td>
+                        <td>
+                            <a href="{{ route('posiciones.edit', codifica($posicion->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                            <a hidden href="{{ route('posicion_eliminar', codifica($posicion->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
