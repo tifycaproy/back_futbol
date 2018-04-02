@@ -148,3 +148,6 @@ Route::get('enviarNotificaciones', 'NotificacionesController@index')->name('envi
 Route::post('enviarNotificacion', 'NotificacionesController@enviar')->name('enviarNotificacion');
 //Posiciones
 Route::resource('posiciones', 'PosicionesController');
+
+//MULTIMEDIA
+Route::resource('multimedia', 'multimediaController');
