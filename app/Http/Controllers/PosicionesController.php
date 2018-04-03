@@ -42,7 +42,6 @@ class PosicionesController extends Controller
     {
         $data=[
             'pos' => $request->pos,
-            'copa_id' => $request->copa_id,
             'equipo_id' => $request->equipo_id,
             'pt' => $request->pt,
             'pj' => $request->pj,
@@ -119,7 +118,6 @@ class PosicionesController extends Controller
 
         $data=[
             'pos' => $request->pos,
-            'copa_id' => $request->copa_id,
             'equipo_id' => $request->equipo_id,
             'pt' => $request->pt,
             'pj' => $request->pj,
