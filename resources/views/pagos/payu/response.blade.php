@@ -56,7 +56,7 @@ if (strtoupper($firma) == strtoupper($firmacreada)) {
 	<td><?php echo $reference_pol; ?></td>
 	</tr>
 	<tr>
-	<td>Reference de transacción</td>
+	<td>Referencia de transacción</td>
 	<td><?php echo $referenceCode; ?></td>
 	</tr>
 	<tr>
