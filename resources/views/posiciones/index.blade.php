@@ -32,7 +32,7 @@
                     <tr>
                         <th>Pos</th>
                         <th>Equipo</th>
-                        <th>PT</th>
+                        <th>Pts</th>
                         <th>PJ</th>
                         <th>PG</th>
                         <th>PE</th>

@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <label>Total Partidos</label>
+                <label>Pts</label>
                 <input type="number" class="form-control" name="pt"  maxlength="2" value="{{ old('posicion', $posicion->pt) }}">
             </div>
         </div>
