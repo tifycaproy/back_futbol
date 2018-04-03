@@ -58,7 +58,7 @@
                         <td>{{ $posicion->dif }}</td>
                         <td>
                             <a href="{{ route('posiciones.edit', codifica($posicion->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
-                            <a hidden href="{{ route('posicion_eliminar', codifica($posicion->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                            <a href="{{ route('posicion_eliminar', codifica($posicion->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
                         </td>
                     </tr>
                 @endforeach
