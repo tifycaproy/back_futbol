@@ -21,42 +21,29 @@ class PosicionController extends Controller
     public  function posicion()
     {
         $posiciones = Posicion::all();
-        $copas=Copa::where('activa',1)->get();
         $data["status"]='exito';
         $data["data"]=[];
-        foreach ($copas as $copa){
+        $posicion=[];
+        foreach ($posiciones as $pos) {
 
-            $posicion=[];
-            foreach ($posiciones as $pos) {
-
-                if($copa->id == $pos->copa_id){
-
-                    $posicion[]=[
-                        'pos' => $pos->pos,
-                        'bandera' => $pos->equipo->bandera,
-                        'equipo_id' => $pos->equipo->nombre,
-                        'pt' => $pos->pt,
-                        'pj' => $pos->pj,
-                        'pg' => $pos->pg,
-                        'pp' => $pos->pp,
-                        'pe' => $pos->pe,
-                        'gc' => $pos->gc,
-                        'gf' => $pos->gf,
-                        'dif' => $pos->dif
-                    ];
-
-                }
-            }
-
-            if($posicion != []){
-                $data["data"][]=[
-                    'copa_id' => $pos->copa_id,
-                    "copa" => $copa->titulo,
-                    "posiciones" => $posicion
-
+                $posicion[]=[
+                    'idposicion' => $pos->id,
+                    'posicion' => $pos->pos,
+                    'bandera' => config('app.url') . 'equipos/' . $pos->equipo->bandera,
+                    'equipo_id' => $pos->equipo->nombre,
+                    'pt' => $pos->pt,
+                    'pj' => $pos->pj,
+                    'pg' => $pos->pg,
+                    'pp' => $pos->pp,
+                    'pe' => $pos->pe,
+                    'gc' => $pos->gc,
+                    'gf' => $pos->gf,
+                    'dif' => $pos->dif
                 ];
 
-            }
+        }
+        if($posicion != []){
+            $data["data"]= $posicion;
         }
 
         return $data;

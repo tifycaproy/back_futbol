@@ -14,7 +14,7 @@
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li><a href="{{ route("posiciones.index") }}"><i class="fa fa-fw fa-pencil"></i> Posiciones</a></li>
-            <li>Crear</li>
+            <li>Editar Posicion</li>
         </ol>
     </div>
 </div>
@@ -31,15 +31,16 @@
         <p class="text-right"><a href="{{ route('posiciones.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
     </div>
 </div>
-<form role="form" action="{{ route('posiciones.store') }}" method="POST">
+<form role="form" action="{{ route('posiciones.update', codifica($posicion->id)) }}" method="POST">
     {{ csrf_field() }}
+    {{ method_field('PUT') }}
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Equipo</label>
                 <select name="equipo_id" id="equipo_id" class="form-control">
                     @foreach($equipos as $equipo)
-                        <option value="{{ $equipo->id }}">{{ $equipo->nombre }}</option>
+                    <option value="{{ $equipo->id }}"@if(old('posicion', $posicion->equipo_id)==$equipo->id) selected @endif>{{ $equipo->nombre }}</option>
                     @endforeach
                 </select>
             </div>
@@ -47,13 +48,13 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Posición</label>
-                <input type="number" class="form-control" name="pos"  maxlength="2" value="1">
+                <input type="number" class="form-control" name="pos"  maxlength="2" value="{{ old('posicion', $posicion->pos) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Pts</label>
-                <input type="number" class="form-control" name="pt"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="pt"  maxlength="2" value="{{ old('posicion', $posicion->pt) }}">
             </div>
         </div>
     </div>
@@ -61,43 +62,43 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Jugados</label>
-                <input type="number" class="form-control" name="pj"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="pj"  maxlength="2" value="{{ old('posicion', $posicion->pj) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Ganados</label>
-                <input type="number" class="form-control" name="pg"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="pg"  maxlength="2" value="{{ old('posicion', $posicion->pg) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Empatados</label>
-                <input type="number" class="form-control" name="pe"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="pe"  maxlength="2" value="{{ old('posicion', $posicion->pe) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Partidos Perdidos</label>
-                <input type="number" class="form-control" name="pp"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="pp"  maxlength="2" value="{{ old('posicion', $posicion->pp) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Goles a Favor</label>
-                <input type="number" class="form-control" name="gf"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="gf"  maxlength="2" value="{{ old('posicion', $posicion->gf) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Goles en Contra</label>
-                <input type="number" class="form-control" name="gc"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="gc"  maxlength="2" value="{{ old('posicion', $posicion->gc) }}">
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Diferencia de goles</label>
-                <input type="number" class="form-control" name="dif"  maxlength="2" value="0">
+                <input type="number" class="form-control" name="dif"  maxlength="2" value="{{ old('posicion', $posicion->dif) }}">
             </div>
         </div>
     </div>
@@ -107,6 +108,6 @@
         </div>
     </div>
 </form>
-
-
 @endsection
+
+

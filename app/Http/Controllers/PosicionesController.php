@@ -17,10 +17,8 @@ class PosicionesController extends Controller
      */
     public function index()
     {
-        $posiciones = Posicion::orderby('copa_id', 'desc')->orderby('pos', 'asc')->get();
-        $copas=Copa::where('activa',1)->get();
-
-        return view('posiciones.index')->with("posiciones",$posiciones)->with("copas",$copas);
+        $posiciones = Posicion::orderby('pos', 'asc')->get();
+        return view('posiciones.index')->with("posiciones",$posiciones);
     }
 
     /**
@@ -31,8 +29,7 @@ class PosicionesController extends Controller
     public function create()
     {
         $equipos=Equipo::orderby('nombre')->get();
-        $copas=Copa::where('activa',1)->orderby('titulo')->get();
-        return view('posiciones.create')->with("equipos",$equipos)->with("copas",$copas);
+        return view('posiciones.create')->with("equipos",$equipos);
     }
 
     /**
@@ -43,12 +40,8 @@ class PosicionesController extends Controller
      */
     public function store(Request $request)
     {
-        $equipos=Equipo::orderby('nombre')->get();
-        $copas=Copa::where('activa',1)->orderby('titulo')->get();
-
         $data=[
             'pos' => $request->pos,
-            'copa_id' => $request->copa_id,
             'equipo_id' => $request->equipo_id,
             'pt' => $request->pt,
             'pj' => $request->pj,
@@ -60,14 +53,12 @@ class PosicionesController extends Controller
             'dif' => $request->dif
 
         ];
-        // buscamos la posicion
-        $exist=Posicion::where('copa_id', $request->copa_id)
-            ->where('equipo_id', $request->equipo_id)
+
+        $exist=Posicion::where('equipo_id', $request->equipo_id)
             ->first();
 
 
         $exist2=Posicion::where('pos', $request->pos)
-            ->where('copa_id', $request->copa_id)
             ->where('equipo_id', '!=',$request->equipo_id)
             ->first();
 
@@ -107,7 +98,11 @@ class PosicionesController extends Controller
      */
     public function edit($id)
     {
-      //
+        $id=decodifica($id);
+        $banner=Posicion::find($id);
+        $equipos=Equipo::orderby('nombre')->get();
+        $copas=Copa::where('activa',1)->orderby('titulo')->get();
+        return view('posiciones.edit')->with("posicion",$banner)->with("equipos",$equipos)->with("copas",$copas);
     }
 
     /**
@@ -119,7 +114,34 @@ class PosicionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id=decodifica($id);
+
+        $data=[
+            'pos' => $request->pos,
+            'equipo_id' => $request->equipo_id,
+            'pt' => $request->pt,
+            'pj' => $request->pj,
+            'pg' => $request->pg,
+            'pp' => $request->pp,
+            'pe' => $request->pe,
+            'gc' => $request->gc,
+            'gf' => $request->gf,
+            'dif' => $request->dif
+
+        ];
+
+        $exist2=Posicion::where('pos', $request->pos)
+            ->first();
+
+        if(count($exist2)>=1)
+
+            return redirect()->route('posiciones.edit', codifica($id))->with("notificacion_error", "Disculpe, La Posición se encuentra registrada");
+
+        else
+            Posicion::find($id)->update($data);
+            return redirect()->route('posiciones.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+
+
     }
 
     /**
@@ -130,6 +152,12 @@ class PosicionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id=decodifica($id);
+        try{
+            Posicion::find($id)->delete();
+            return redirect()->route('posiciones.index');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->with("notificacion_error","Se ha producido un error, es probable que exista contenido relacionado a este registro que impide que se elimine");
+        }
     }
 }

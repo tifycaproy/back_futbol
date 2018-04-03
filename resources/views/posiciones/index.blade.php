@@ -31,9 +31,8 @@
                 <thead>
                     <tr>
                         <th>Pos</th>
-                        <th>Copa</th>
                         <th>Equipo</th>
-                        <th>PT</th>
+                        <th>Pts</th>
                         <th>PJ</th>
                         <th>PG</th>
                         <th>PE</th>
@@ -41,18 +40,13 @@
                         <th>GF</th>
                         <th>GC</th>
                         <th>DIF</th>
+                        <th width="60"></th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($posiciones as $posicion)
                     <tr>
                         <td>{{ $posicion->pos }}</td>
-                        <td> @foreach($copas as $copa)
-                                @if($copa->id == $posicion->copa_id)
-                                    {{ $copa->titulo }}
-                                @endif
-                            @endforeach
-                        </td>
                         <td>{{ $posicion->equipo->nombre }}</td>
                         <td>{{ $posicion->pt }}</td>
                         <td>{{ $posicion->pj }}</td>
@@ -62,6 +56,10 @@
                         <td>{{ $posicion->gf }}</td>
                         <td>{{ $posicion->gc }}</td>
                         <td>{{ $posicion->dif }}</td>
+                        <td>
+                            <a href="{{ route('posiciones.edit', codifica($posicion->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                            <a href="{{ route('posicion_eliminar', codifica($posicion->id) ) }}" title="Eliminar"><i class="fa fa-fw fa-ban bloquear"></i></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
