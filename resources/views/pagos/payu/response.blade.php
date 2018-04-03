@@ -1,5 +1,5 @@
 <?php
-$ApiKey = "4Vj8eK4rloUd272L48hsrarnUA";
+$ApiKey = "1Hzv6cMkOrR4XSWD4M1Ibu444o";
 $merchant_id = $request->merchantId;
 $referenceCode = $request->referenceCode;
 $TX_VALUE = $request->TX_VALUE;
