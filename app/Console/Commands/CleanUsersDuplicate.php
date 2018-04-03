@@ -41,22 +41,27 @@ class CleanUsersDuplicate extends Command
     {
         $users = Usuario::select(DB::raw('count(*) as count, email'))->groupBy('email')->havingRaw('count(*) > 1')->get();
         $ids = array();
+        $this->info('Loading!');
+        $this->bar = $this->output->createProgressBar(sizeof($users));
+        $this->bar->display();
         foreach ($users as $user) {
 
             $usuario = Usuario::select('id', 'nombre', 'email', 'ultimo_ingreso')->where('email', $user->email)->orderBy('ultimo_ingreso', 'DESC')->get();
-
+            
             foreach ($usuario as $index => $u) {
-                $this->info($u . (($index == 0) ? '' : ' -> <fg=red>registro duplicado preparado para borrar!</>'));
+               // $this->info($u . (($index == 0) ? '' : ' -> <fg=red>registro duplicado preparado para borrar!</>'));
                 if ($index > 0) {
                     array_push($ids, $u);
                 }
             }
+
+            $this->bar->advance();
         }
 
         if (sizeof($ids) == 0) {
             $this->info('No se encontraron emails duplicado!');
         } else {
-            $this->info('Se encontraron ' . sizeof($ids) . ' email duplicados!');
+            $this->info(PHP_EOL.'Se encontraron ' . sizeof($ids) . ' email duplicados!');
             $borrar = $this->confirm(
                 'Desea borrar los usarios duplicados ?'
             );
