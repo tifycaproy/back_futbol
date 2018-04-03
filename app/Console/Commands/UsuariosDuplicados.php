@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Usuario;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\Usuario;
 
 class UsuariosDuplicados extends Command
 {
@@ -40,8 +40,11 @@ class UsuariosDuplicados extends Command
     public function handle()
     {
         $users = Usuario::select(DB::raw('count(*) as count, email'))->groupBy('email')->havingRaw('count(*) > 1')->get();
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $this->info($user);
+        }
+        if (sizeof($users) == 0) {
+            $this->info('No se encontraron emails duplicado!');
         }
     }
 }
