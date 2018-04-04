@@ -17,6 +17,7 @@ use App\Aplauso;
 use App\EncuestaRespuesta;
 use App\PuntoReferencia;
 use App\Multimedia;
+use function PHPSTORM_META\elementType;
 
 
 class CompartirController extends Controller
@@ -60,12 +61,17 @@ class CompartirController extends Controller
     public function onceidealr($ruta,$id)
     {
         //dd($ruta);
+        $seccion='onceideal';
+        $seccion=Compartir::where('seccion',$seccion)->first();
         list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
         //dd($idusuario,$idcalendario);
         $fecha=Calendario::find($idcalendario);
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
+        if($once == null){
+            return ['status' => 'fallo','error'=>["Disculpe, no coinciden los registros"]];
+        }
         if(isset($fecha)){
             $data=[
                 "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
@@ -83,7 +89,7 @@ class CompartirController extends Controller
                     ];
                 }
             }
-            return view('compartir.onceideal')->with("data",$data);
+            return view('compartir.onceideal')->with("data",$data)->with('seccion',$seccion);
         }else{ $seccion='calendario';
             $seccion=Compartir::where('seccion',$seccion)->first();
             return view('compartir.general')->with('seccion',$seccion);

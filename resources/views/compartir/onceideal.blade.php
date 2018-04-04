@@ -8,8 +8,8 @@
     <title>TU ONCE IDEAL</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->titulo) !!}" />
-    <meta property="og:description"        content="{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), " ", $seccion->descripcion) !!}" />
+    <meta property="og:title"              content="{{  $seccion->titulo}}" />
+    <meta property="og:description"        content="{{  $seccion->descripcion}}" />
     <meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
@@ -54,7 +54,7 @@
 
                 <div class="col-8 col-lg-5 col-xl-4 pl-2 pr-2 "><!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                     <!-- Imagen-->
-                    <img src="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" class="img-fluid" alt="">
+                    <img src="{{ config('app.url') . 'onceideal/' . $seccion['foto'] }}" class="img-fluid" alt="">
                 </div>
             </section>
             <section class="row justify-content-center mt-0 no-gutters">
