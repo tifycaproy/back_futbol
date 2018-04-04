@@ -40,7 +40,7 @@
                     <div class="row align-items-center justify-content-center no-gutters">
                         <div class="col-3 col-xl-3 col-lg-5" style="margin-top: 5%">
                             <img src="{{ $data['bandera_1'] }}" alt="" class="escudos">
-                            <h4>{{ $data['equipo_1'] }}</h4>
+                            <p class="mt-0 mb-0">{{ $data['equipo_1'] }}</p>
                         </div>
                         <div class="col-3 col-xl-3 col-lg-2" style="margin-top: 5%">
                             @if($data['estado'] =='Finalizado')
@@ -53,17 +53,17 @@
 
                         <div class="col-3 col-xl-3 col-lg-5" style="margin-top: 5%">
                             <img src="{{ $data['bandera_2'] }}" alt="" class="escudos">
-                            <h4>{{ $data['equipo_2'] }}</h4>
+                            <p class="mt-0 mb-0">{{ $data['equipo_2'] }}</p>
                         </div>
 
                         <div class="col-12" style="margin-top: 5%">
-                            <h6>{{ $data['copa'] }}</h6>
+                            <p>{{ $data['copa'] }}</p>
                         </div>
                         <div class="col-12">
-                            <h6>{{ $data['estadio'] }}</h6>
+                            <p>{{ $data['estadio'] }}</p>
                         </div>
-                        <div class="col-12">
-                            <h6>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</h6>
+                        <div class="col-12 mb-2">
+                            <p>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</p>
                         </div>
                     </div>
                 </section>

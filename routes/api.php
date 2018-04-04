@@ -23,6 +23,7 @@ Route::get('noticias/{token?}', 'api\NoticiasController@index');
 Route::get('noticia_fotos/{id}', 'api\NoticiasController@fotos');
 Route::get('noticias_futbolbase', 'api\NoticiasController@noticias_futbolbase');
 Route::get('noticia/{idNoticia}', 'api\NoticiasController@single_noticia');
+Route::get('video_noticia', 'api\NoticiasController@video_noticia');
 //usuarios
 // v1
 Route::post('usuarios', 'api\UsuariosController@registro_usuario');
@@ -45,6 +46,8 @@ Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_re
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
 Route::get('usuarios_activos', 'api\UsuariosController@usuarios_activos');
+//v3
+Route::post('ChatReporte', 'api\UsuariosController@ChatReporte');
 
 //registrar referidos
 Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
@@ -104,7 +107,7 @@ Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
 
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
-Route::post('SearchMuro', 'api\MuroController@SearchMuro');
+Route::post('SearchMuro/{page?}', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
@@ -130,3 +133,11 @@ Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@
 //Punto referencia
 Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia');
 
+//Multimedia
+Route::get('multimedia', 'api\ConfiguracionController@multimedia');
+
+//posicion
+Route::get('posicion', 'api\PosicionController@posicion');
+
+//perfil_nuevo
+Route::get('perfil/{id}', 'api\MuroController@perfil');

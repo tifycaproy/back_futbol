@@ -106,6 +106,8 @@ class NoticiasController extends Controller
 
        $noticia=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
        ->where('id',$idNoticia)->first();
+       if(!$noticia)
+        return ["status" => "fallo", "error" => "La noticia no existe"];
 
        $data["status"]='exito';
        $data["data"]=[];
@@ -116,5 +118,10 @@ class NoticiasController extends Controller
     return $data;
 
 
+    }
+    public function video_noticia()
+    {
+        $noticias=Noticia::select('id','link','titulo')->where('active',1)->where('tipo','=',"Video")->orderby('fecha','desc','id')->paginate(25);
+        return $noticias;
     }
 }

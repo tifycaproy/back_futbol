@@ -20,4 +20,9 @@ class MuroComentario extends Model
     {
         return $this->hasMany('App\MuroComentarioAplauso','comentario_id');
     }
+
+    public function muro()
+    {
+        return $this->belongsTo('App\Muro','muro_id');
+    }
 }

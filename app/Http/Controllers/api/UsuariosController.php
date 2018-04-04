@@ -6,6 +6,7 @@ use App\Usuario;
 use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 use Mail;
+use App\ChatReporte;
 class UsuariosController extends Controller
 {
     /**
@@ -828,4 +829,29 @@ public function actualizarNotificacionToken(Request $request)
     return ["status" => "exito"];
 }
 }
+
+    public function ChatReporte(Request $request)
+    {
+        if(!isset($request->usuario)){
+            return ['status' => 'fallo', 'error' => ["Falta usuario que efectua el reporte"]];
+        }
+        if(!isset($request->usuario_reportado)){
+            return ['status' => 'fallo', 'error' => ["Falta usuario reportado"]];
+        }
+        if(!isset($request->descripcion)){
+            return ['status' => 'fallo', 'error' => ["Falta motivo de reporte"]];
+        }
+
+        $ChatReporte = new ChatReporte();
+        $ChatReporte->usuario_id = $request->usuario;
+        $ChatReporte->usuario_reportado = $request->usuario_reportado;
+        $ChatReporte->descripcion = $request->descripcion;
+        if($ChatReporte->save()){
+            return ["status" => "exito", "data" => []];
+        }else{
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+    }
+
+
 }

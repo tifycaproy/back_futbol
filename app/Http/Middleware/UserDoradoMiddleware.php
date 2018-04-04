@@ -21,16 +21,12 @@ class UserDoradoMiddleware
     public function handle($request, Closure $next, $tipo, $nombre)
      {
 
-        if($request["tipo_post"] != 'video' || !isset($request["tipo_post"])) {
 
-            $request1=json_decode($request->getContent());
-            $request1=get_object_vars($request1);
-            if(!isset($request1["token"])) {
-                return $next($request);
-            }
-            
-        }else{
-            $request1["token"] = $request["token"];
+        $request1=json_decode($request->getContent());
+        $request1=get_object_vars($request1);
+
+        if(!isset($request1["token"])) {
+            return $next($request);
         }
 
         $token = $request1["token"];
@@ -50,7 +46,7 @@ class UserDoradoMiddleware
 
             if($funcion->solo_dorado && !$usuario->dorado )
                 return response()->json(['status' => 'no_dorado','error'=>["Debe ser hincha dorado para realizar esta acción"]]);
-                $posts=Muro::where('usuario_id', $token)->count();
+                $posts=Muro::where('usuario_id', $token)->where('created_at','>=',\Carbon\Carbon::now()->subHours(1))->count();
 
 
             if($nombre == 'muro_postear' && $funcion->limitar)
