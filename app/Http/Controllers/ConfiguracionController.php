@@ -188,6 +188,11 @@ class ConfiguracionController extends Controller
             'target_popup' => $request->target_popup,
             'seccion_destino_popup' => $request->seccion_destino_popup,
             'id_partido_banner' => $request->id_partido_banner,
+            'boton_1_activo' => $request->boton_1_activo,
+            'boton_1_texto'=> $request->boton_1_texto,
+            'boton_2_activo' => $request->boton_2_activo,
+            'boton_2_texto' => $request->boton_2_texto
+
         ];
 
         Configuracion::find(1)->update($data);

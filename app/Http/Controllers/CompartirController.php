@@ -16,6 +16,8 @@ use App\Videovr;
 use App\Aplauso;
 use App\EncuestaRespuesta;
 use App\PuntoReferencia;
+use App\Multimedia;
+
 
 class CompartirController extends Controller
 {
@@ -250,6 +252,22 @@ class CompartirController extends Controller
         $imagen='';
         if($tiene_imagen=$pr->imagenes->first()) $imagen=$imagen=config('app.url') . 'punto_referencia/' . $tiene_imagen->imagen;
         return view('compartir.punto_referencia',['pr'=>$pr, 'imagen' => $imagen]);
+    }
+
+    public function video_share($id)
+    {
+        $data=noticia::find($id);
+        $seccion='video';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        return view('compartir.video',['data'=>$data, 'seccion'=>$seccion]);
+    }
+
+    public function envivo_share()
+    {
+        $data=Multimedia::all()->first();
+        $seccion='envivo';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        return view('compartir.envivo',['data'=>$data,'seccion'=>$seccion]);
     }
 }
 //
