@@ -13,7 +13,7 @@
     <title>{{ $noticia->titulo }}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content={{ $noticia->titulo }}" />
+    <meta property="og:title"              content="{{ $noticia->titulo }}" />
     <meta property="og:description"        content="" />
     @if($noticia->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $noticia->foto }}" />@endif
 </head>

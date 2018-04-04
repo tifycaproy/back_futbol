@@ -345,7 +345,7 @@ class MuroController extends Controller
                 if($usuarios_aplausos->foto_redes)
                     $foto = $usuarios_aplausos->foto_redes;
                 else if($usuarios_aplausos->foto)
-                    $foto = config('app.url') . 'usuarios/' . $usuario->foto;
+                    $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
                 else 
                     $foto = "";
 
