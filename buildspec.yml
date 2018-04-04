@@ -48,10 +48,12 @@ phases:
    commands:
      - vendor/bin/parallel-lint --exclude vendor .
      - php app/console doctrine:schema:drop --force
-     - php app/console doctrine:schema:create 
+     - php app/console doctrine:schema:create
      - doctrine:fixtures:load
      - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force
      - vendor/bin/codecept run acceptance --steps
+     - echo "Ejecutando prueba de parallel"
+     - vendor/bin/parallel-lint --exclude vendor .
  #eb_codebuild_settings:
  #  CodeBuildServiceRole: s3-admin-access
  #  ComputeType: BUILD_GENERAL1_SMALL
