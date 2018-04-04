@@ -25,6 +25,8 @@ class CompartirController extends Controller
     public function onceideal($ruta)
     {
         //dd($ruta);
+        $seccion='onceideal';
+        $seccion=Compartir::where('seccion',$seccion)->first();
         list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
