@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('apodo')->unique()->nullable();
             $table->string('nombre')->nullable();
             $table->string('apellido')->nullable();
-            $table->string('password');
+            $table->string('clave');
             $table->string('userID_facebook')->nullable();
             $table->string('userID_google')->nullable();
             $table->string('celular')->nullable();
