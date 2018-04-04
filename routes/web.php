@@ -150,6 +150,7 @@ Route::get('enviarNotificaciones', 'NotificacionesController@index')->name('envi
 Route::post('enviarNotificacion', 'NotificacionesController@enviar')->name('enviarNotificacion');
 //Posiciones
 Route::resource('posiciones', 'PosicionesController');
+Route::get('posicion_eliminar/{id}', 'PosicionesController@destroy')->name('posicion_eliminar');
 
 //MULTIMEDIA
 Route::resource('multimedia', 'multimediaController');
