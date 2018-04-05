@@ -80,4 +80,106 @@ class MuroCest
         $I->assertTrue($response->status == 'exito');
         $I->assertTrue(sizeof($response->data) == 2);
     }
+
+    public function muroComentar(FunctionalTester $I)
+    {
+        //
+        $body = [
+            "idpost" => MuroCest::$post1->idpost,
+            "token" => FunctionalTester::$token1,
+            "comentario" => "Test Comentario",
+            "foto" => null,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_comentar', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+
+        //
+        $body = [
+            "idpost" => MuroCest::$post2->idpost,
+            "token" => FunctionalTester::$token2,
+            "comentario" => "Test Comentario",
+            "foto" => null,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_comentar', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+
+        //
+        $body = [
+            "idpost" => MuroCest::$post3->idpost,
+            "token" => FunctionalTester::$token0,
+            "comentario" => "Test Comentario",
+            "foto" => null,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_comentar', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+    }
+
+    public function muroAplaudir(FunctionalTester $I)
+    {
+        //
+        $body = [
+            "idpost" => MuroCest::$post1->idpost,
+            "token" => FunctionalTester::$token1,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_aplaudir', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+
+        //
+        $body = [
+            "idpost" => MuroCest::$post2->idpost,
+            "token" => FunctionalTester::$token2,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_aplaudir', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+
+        //
+        $body = [
+            "idpost" => MuroCest::$post3->idpost,
+            "token" => FunctionalTester::$token0,
+        ];
+        $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->sendPOST('/api/muro_aplaudir', $body);
+        $I->seeResponseCodeIs(200);
+        $response = json_decode($I->grabResponse());
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $I->assertTrue($response->status == 'exito');
+    }
 }
