@@ -93,7 +93,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <input type="hidden" name="icono" value="@if($id){{$pr->icono}}@endif">
+                        <input type="" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
                         <table class="tabla_puntos">
                           <tr>
                             <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}"></td>
@@ -456,6 +456,14 @@
         jQuery('.datetimepicker').datetimepicker({
             dateFormat: 'dd/mm/yy'
         });
+        if($('#icono').val()!=''){
+          $('.' + $('#icono').val()).addClass('active');
+        }
+        $('.tabla_puntos td img').click(function(){
+          $('.tabla_puntos td img').removeClass('active');
+          $('#icono').val($(this).attr("class"));
+          $(this).addClass('active');
+        })
     })
 </script>
 
