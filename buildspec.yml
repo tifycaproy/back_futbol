@@ -38,19 +38,17 @@ phases:
  pre_build:
    commands:
      - touch database/database.sqlite
-     - php --ini
  build:
    commands:
      - rm -rf vendor
      - rm -rf composer.lock
      - composer install --no-interaction --prefer-dist
+     - composer dump-autoload
  post_build:
    commands:
      - vendor/bin/parallel-lint --exclude vendor .
-     - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force
-     - vendor/bin/codecept run acceptance --steps
-     - echo "Ejecutando prueba de parallel"
-     - vendor/bin/parallel-lint --exclude vendor .
+     - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
+     - vendor/bin/codecept run
  #eb_codebuild_settings:
  #  CodeBuildServiceRole: s3-admin-access
  #  ComputeType: BUILD_GENERAL1_SMALL
