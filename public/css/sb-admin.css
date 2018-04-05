@@ -231,5 +231,5 @@ ul.alert-dropdown {
 
 .tabla_puntos{margin: 10px 0;}
 .tabla_puntos td{text-align: center}
-.tabla_puntos td img{width: 50px; padding:10px; cursor: pointer;}
+.tabla_puntos td img{width: 70px; padding:5px; cursor: pointer;}
 .tabla_puntos td img.active{background: #ddd;}
