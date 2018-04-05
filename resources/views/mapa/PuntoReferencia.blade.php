@@ -67,9 +67,9 @@
                 </div><br>
                 <div class="row">
                     <div class="col-xs-6">
-                            <label >Pais</label>
+                            <label >País</label>
                             <div class="input-group">
-                                <input type="text" class="form-control " id="pais" placeholder="pais" value="@if($id){{$pr->pais}}@endif"><span class="input-group-addon">Pais</span>                      
+                                <input type="text" class="form-control " id="pais" placeholder="pais" value="@if($id){{$pr->pais}}@endif"><span class="input-group-addon">País</span>                      
                             </div>
                      </div>
                     <div class="col-xs-6">
@@ -91,7 +91,21 @@
                             <textarea id="direccion" name="direccion" rows="3" class="form-control" placeholder="Dirección" >@if($id){{$pr->direccion}}@endif</textarea>                    
                      </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>Icono</label>
+                        <input type="hidden" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
+                        <table class="tabla_puntos">
+                          <tr>
+                            <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}" title="Bar / Restaurant"></td>
+                            <td><img class="cc" src="{{ asset('img/puntos/cc.png') }}" title="Centro comercial"></td>
+                            <td><img class="estadio" src="{{ asset('img/puntos/estadio.png') }}" title="Estadio"></td>
+                            <td><img class="hotel" src="{{ asset('img/puntos/hotel.png') }}" title="Hotel"></td>
+                            <td><img class="tienda" src="{{ asset('img/puntos/tienda.png') }}" title="Tienda"></td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
         <br>
@@ -352,7 +366,8 @@
                         hora_evento:$( "#hora_evento" ).val(),
                         direccion:$( "#direccion" ).val(),
                         pais:$( "#pais" ).val(),
-                        ciudad:$( "#ciudad" ).val()
+                        ciudad:$( "#ciudad" ).val(),
+                        icono:$( "#icono" ).val()
                     },
                     success:function( respuesta )
                     {
@@ -443,6 +458,14 @@
         jQuery('.datetimepicker').datetimepicker({
             dateFormat: 'dd/mm/yy'
         });
+        if($('#icono').val()!=''){
+          $('.' + $('#icono').val()).addClass('active');
+        }
+        $('.tabla_puntos td img').click(function(){
+          $('.tabla_puntos td img').removeClass('active');
+          $('#icono').val($(this).attr("class"));
+          $(this).addClass('active');
+        })
     })
 </script>
 

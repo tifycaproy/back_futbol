@@ -60,7 +60,7 @@
                             <p>{{ $data['copa'] }}</p>
                         </div>
                         <div class="col-12">
-                            <p>{{ $data['estadio'] }}</p>
+                            <p>Estadio {{ $data['estadio'] }}</p>
                         </div>
                         <div class="col-12 mb-2">
                             <p>{{ date('d/m/Y', strtotime($data['fecha'])) }} | {{ date('H:i', strtotime($data['fecha'])) }}</p>

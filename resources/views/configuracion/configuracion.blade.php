@@ -786,6 +786,48 @@
              
 
             </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>boton 1 activo</label>
+                        <select name="boton_1_activo" class="form-control">
+                                <option value="1" @if($configuracion->boton_1_activo == 1) selected @endif>Activo</option>
+                                <option value="0"  @if($configuracion->boton_1_activo == 0) selected @endif>Desactivado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>boton 1 Texto</label>
+                        <select name="boton_1_texto" class="form-control">
+                                <option value="1" @if($configuracion->boton_1_texto == 1) selected @endif>Activo</option>
+                                <option value="0"  @if($configuracion->boton_1_texto == 0) selected @endif>Desactivado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>boton 2 activo</label>
+                        <select name="boton_2_activo" class="form-control">
+                                <option value="1" @if($configuracion->boton_2_activo == 1) selected @endif>Activo</option>
+                                <option value="0"  @if($configuracion->boton_2_activo == 0) selected @endif>Desactivado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>boton 2 texto</label>
+                        <select name="boton_2_texto" class="form-control">
+                                <option value="1" @if($configuracion->boton_2_texto == 1) selected @endif>Activo</option>
+                                <option value="0"  @if($configuracion->boton_2_texto == 0) selected @endif>Desactivado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
