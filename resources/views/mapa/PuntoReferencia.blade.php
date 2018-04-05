@@ -94,7 +94,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <label>Icono</label>
-                        <input type="" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
+                        <p><input type="" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif"></p>
                         <table class="tabla_puntos">
                           <tr>
                             <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}"></td>
@@ -366,7 +366,8 @@
                         hora_evento:$( "#hora_evento" ).val(),
                         direccion:$( "#direccion" ).val(),
                         pais:$( "#pais" ).val(),
-                        ciudad:$( "#ciudad" ).val()
+                        ciudad:$( "#ciudad" ).val(),
+                        icono:$( "#icono" ).val()
                     },
                     success:function( respuesta )
                     {
