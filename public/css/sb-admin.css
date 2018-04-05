@@ -230,4 +230,6 @@ ul.alert-dropdown {
 .bloquear{color: #f00}
 
 .tabla_puntos{width: 100%}
-.tabla_puntos td img{max-width: 90%}
+.tabla_puntos td{text-align: center}
+.tabla_puntos td img{max-width: 90%; padding: 2%; cursor: pointer;}
+.tabla_puntos td img.active{background: #ddd;}

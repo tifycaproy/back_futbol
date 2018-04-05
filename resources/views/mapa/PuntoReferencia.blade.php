@@ -93,9 +93,14 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
+                        <input type="hidden" name="icono" value="@if($id){{$pr->icono}}@endif">
                         <table class="tabla_puntos">
                           <tr>
-                            <td><img src="{{ asset('img/puntos/bar-rest.png') }}"></td>
+                            <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}"></td>
+                            <td><img class="cc" src="{{ asset('img/puntos/cc.png') }}"></td>
+                            <td><img class="estadio" src="{{ asset('img/puntos/estadio.png') }}"></td>
+                            <td><img class="hotel" src="{{ asset('img/puntos/hotel.png') }}"></td>
+                            <td><img class="tienda" src="{{ asset('img/puntos/tienda.png') }}"></td>
                           </tr>
                         </table>
                     </div>
