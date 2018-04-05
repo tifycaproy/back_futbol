@@ -93,6 +93,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
+                        <label>Icono</label>
                         <input type="" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
                         <table class="tabla_puntos">
                           <tr>
