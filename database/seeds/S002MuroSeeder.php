@@ -19,7 +19,7 @@ class S002MuroSeeder extends Seeder
 
         foreach ($users as $user) {
             Muro::create([
-                'user_id' => $user->id,
+                'usuario_id' => $user->id,
                 'mensaje' => 'Test post del usuario: ' . $user->email,
             ]);
         }
@@ -28,13 +28,14 @@ class S002MuroSeeder extends Seeder
 
         foreach ($muros as $muro) {
             foreach ($users as $user) {
-                $comentario = array([
+                $comentario = [
                     'muro_id' => $muro->id,
                     'usuario_id' => $user->id,
                     'comentario' => 'Test comentario del usuario: ' . $user->email,
-                ]);
-                if ($muro->user_id != $user->id)
+                ];
+                if ($muro->usuario_id != $user->id) {
                     MuroComentario::create($comentario);
+                }
             }
         }
     }

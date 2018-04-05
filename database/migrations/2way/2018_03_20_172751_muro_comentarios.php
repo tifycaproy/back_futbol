@@ -18,7 +18,7 @@ class MuroComentarios extends Migration
             $table->integer('muro_id')->index();
             $table->integer('usuario_id')->index();
             $table->mediumtext('comentario');
-            $table->string('foto', 20);
+            $table->string('foto', 20)->nullable();
             $table->timestamps();
         });
     }
