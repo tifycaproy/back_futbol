@@ -20,7 +20,7 @@ class BannersController extends Controller
     public function create()
     {
         $secciones_destino=[
-            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','notification'
         ];
         $partidos = Calendario::orderby('fecha', 'desc')->get();
         $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
@@ -54,7 +54,7 @@ class BannersController extends Controller
         $id=decodifica($id);
         $banner=Banner::find($id);
         $secciones_destino=[
-            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile'
+            '','news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','notification'
         ];
         $partidos = Calendario::orderby('fecha', 'desc')->get();
         $partidosfb = Calendariofb::orderby('fecha', 'desc')->get();
