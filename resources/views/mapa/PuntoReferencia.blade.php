@@ -97,11 +97,11 @@
                         <input type="hidden" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
                         <table class="tabla_puntos">
                           <tr>
-                            <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}" alt="Bar / Restaurant"></td>
-                            <td><img class="cc" src="{{ asset('img/puntos/cc.png') }}" alt="Centro comercial"></td>
-                            <td><img class="estadio" src="{{ asset('img/puntos/estadio.png') }}" alt="Estadio"></td>
-                            <td><img class="hotel" src="{{ asset('img/puntos/hotel.png') }}" alt="Hotel"></td>
-                            <td><img class="tienda" src="{{ asset('img/puntos/tienda.png') }}" alt="Tienda"></td>
+                            <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}" title="Bar / Restaurant"></td>
+                            <td><img class="cc" src="{{ asset('img/puntos/cc.png') }}" title="Centro comercial"></td>
+                            <td><img class="estadio" src="{{ asset('img/puntos/estadio.png') }}" title="Estadio"></td>
+                            <td><img class="hotel" src="{{ asset('img/puntos/hotel.png') }}" title="Hotel"></td>
+                            <td><img class="tienda" src="{{ asset('img/puntos/tienda.png') }}" title="Tienda"></td>
                           </tr>
                         </table>
                     </div>
