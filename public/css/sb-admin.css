@@ -228,3 +228,6 @@ ul.alert-dropdown {
 
 .activo{color: #FFF!important}
 .bloquear{color: #f00}
+
+.tabla_puntos{width: 100%}
+.tabla_puntos td img{max-width: 90%}

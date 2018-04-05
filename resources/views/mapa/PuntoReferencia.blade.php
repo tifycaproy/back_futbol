@@ -93,9 +93,9 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <table align="center">
+                        <table class="tabla_puntos">
                           <tr>
-                            <td><img src="{{ asset('/img/puntos/}}bar-rest.png"></td>
+                            <td><img src="{{ asset('img/puntos/bar-rest.png') }}"></td>
                           </tr>
                         </table>
                     </div>
