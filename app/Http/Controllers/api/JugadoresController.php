@@ -106,6 +106,7 @@ class JugadoresController extends Controller
                     'fecha' => $fecha->fecha,
                     'fecha_etapa' => $fecha->fecha_etapa,
                     'estadio' => $fecha->estadio,
+                    'estado' => $fecha->estado
                 ];
                 $data["data"] = array_merge($data["data"], $partido);
             } else {
