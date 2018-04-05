@@ -695,7 +695,7 @@ $data = array(
         "Ruta" => "/punto_referencia",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id','titulo', 'latitud','longitud','direccion','ciudad','pais','fecha_evento','hora','icono','imagenes'
+            'id','titulo', 'latitud','longitud','direccion','ciudad','pais','fecha_evento','hora','icono (null,"bar-rest","cc","estadio","hotel","tienda")','imagenes'
         ],
         "Falla" => array(
             "[]" => array("Array vacio")

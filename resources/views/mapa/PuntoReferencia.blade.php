@@ -67,9 +67,9 @@
                 </div><br>
                 <div class="row">
                     <div class="col-xs-6">
-                            <label >Pais</label>
+                            <label >País</label>
                             <div class="input-group">
-                                <input type="text" class="form-control " id="pais" placeholder="pais" value="@if($id){{$pr->pais}}@endif"><span class="input-group-addon">Pais</span>                      
+                                <input type="text" class="form-control " id="pais" placeholder="pais" value="@if($id){{$pr->pais}}@endif"><span class="input-group-addon">País</span>                      
                             </div>
                      </div>
                     <div class="col-xs-6">
@@ -91,7 +91,15 @@
                             <textarea id="direccion" name="direccion" rows="3" class="form-control" placeholder="Dirección" >@if($id){{$pr->direccion}}@endif</textarea>                    
                      </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table align="center">
+                          <tr>
+                            <td><img src="{{ asset('/img/puntos/}}bar-rest.png"></td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
         <br>
