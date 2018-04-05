@@ -1,17 +1,17 @@
 <?php
 
-if (defined('DB_HOST')) {
+/*if (defined('DB_HOST')) {
     define('DB_HOST', $_SERVER['DB_HOST']);
     define('DB_USERNAME', $_SERVER['DB_USERNAME']);
     define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
-    define('DB_NAME', $_SERVER['DB_NAME']);
+    define('DB_NAME', $_SERVER['DB_NAME']);c
 }else if(!defined('DB_HOST')){
 
     define('DB_HOST', env('DB_HOST', 'forge'));
     define('DB_USERNAME', env('DB_USERNAME', 'forge'));
     define('DB_PASSWORD',  env('DB_PASSWORD', ''));
     define('DB_NAME', env('DB_DATABASE', 'forge'));
-}
+}*/
 return [
 
     /*
@@ -42,46 +42,43 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
-    'default' => env('DB_DEFAULT', 'mysql'),
-
 
     'connections' => [
 
 
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'database' => storage_path() . '/database.sqlite',
+            'prefix' => '',
+        ],
 
-            'sqlite' => [
-                'driver'   => 'sqlite',
-                'database' => storage_path().'/database.sqlite',
-                'prefix'   => '',
-            ],
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => storage_path() . '/testing.sqlite',
+            'prefix' => '',
+        ],
 
-            'sqlite_testing' => [
-                'driver'   => 'sqlite',
-                'database' => storage_path().'/testing.sqlite',
-                'prefix'   => '',
-            ],
+        'sqlite_unit_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
 
-            'sqlite_unit_testing' => [
-                'driver'   => 'sqlite',
-                'database' => ':memory:',
-                'prefix'   => '',
-            ],
-
-            // other connections
-
+        // other connections
 
 
         'mysql' => [
-            'driver'    => 'mysql',
-            'host'      => DB_HOST,
-            'database'  => DB_NAME,
-            'username'  => DB_USERNAME,
-            'password'  => DB_PASSWORD,
-            'charset'   => 'utf8',
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', defined('DB_HOST') ? $_SERVER['DB_HOST'] : '127.0.0.1'),
+            'port' => env('DB_PORT', defined('DB_PORT') ? $_SERVER['DB_PORT'] : '3306'),
+            'database' => env('DB_DATABASE', defined('DB_NAME') ? $_SERVER['DB_NAME'] : 'forge'),
+            'username' => env('DB_USERNAME', defined('DB_NAME') ? $_SERVER['DB_USERNAME'] : 'forge'),
+            'password' => env('DB_PASSWORD', defined('DB_NAME') ? $_SERVER['DB_PASSWORD'] : ''),
+            'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'engine'    => null,
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
         ],
 
         'pgsql' => [
