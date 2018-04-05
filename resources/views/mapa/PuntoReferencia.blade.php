@@ -94,7 +94,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <label>Icono</label>
-                        <p><input type="" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif"></p>
+                        <input type="hidden" name="icono" id="icono" value="@if($id){{$pr->icono}}@endif">
                         <table class="tabla_puntos">
                           <tr>
                             <td><img class="bar-rest" src="{{ asset('img/puntos/bar-rest.png') }}"></td>
