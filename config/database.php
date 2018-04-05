@@ -1,17 +1,6 @@
 <?php
 
-/*if (defined('DB_HOST')) {
-    define('DB_HOST', $_SERVER['DB_HOST']);
-    define('DB_USERNAME', $_SERVER['DB_USERNAME']);
-    define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
-    define('DB_NAME', $_SERVER['DB_NAME']);
-} else if (!defined('DB_HOST')) {
 
-    define('DB_HOST', env('DB_HOST', 'forge'));
-    define('DB_USERNAME', env('DB_USERNAME', 'forge'));
-    define('DB_PASSWORD', env('DB_PASSWORD', ''));
-    define('DB_NAME', env('DB_DATABASE', 'forge'));
-}*/
 return [
 
     /*
@@ -50,21 +39,13 @@ return [
             'prefix' => '',
         ],
 
-        // other connections
-
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => storage_path() . '/database.sqlite',
-            'prefix' => '',
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', defined('DB_HOST') ? $_SERVER['DB_HOST'] : '127.0.0.1'),
+            'port' => env('DB_PORT', defined('DB_PORT') ? $_SERVER['DB_PORT'] : '3306'),
+            'database' => env('DB_DATABASE', defined('DB_NAME') ? $_SERVER['DB_NAME'] : 'forge'),
+            'username' => env('DB_USERNAME', defined('DB_NAME') ? $_SERVER['DB_USERNAME'] : 'forge'),
+            'password' => env('DB_PASSWORD', defined('DB_NAME') ? $_SERVER['DB_PASSWORD'] : ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
