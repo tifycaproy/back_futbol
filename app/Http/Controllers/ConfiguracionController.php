@@ -191,7 +191,9 @@ class ConfiguracionController extends Controller
             'boton_1_activo' => $request->boton_1_activo,
             'boton_1_texto'=> $request->boton_1_texto,
             'tipo_popup'=> $request->tipo_popup,
-            'version_app' => $request->version_app
+            'version_app' => $request->version_app,
+            'version_ios' => $request->version_ios,  
+            'version_android' => $request->version_android
 
         ];
 
