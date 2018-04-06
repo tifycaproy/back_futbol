@@ -810,9 +810,16 @@
                            value="{{ $configuracion->boton_1_texto }}" maxlength="200">
                     </div>                    
                 </div>
-
-
-
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Version App</label>
+                        <input type="text" class="form-control" name="version_app"
+                               value="{{ $configuracion->version_app }}" maxlength="200">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
