@@ -10,3 +10,8 @@ modules:
     enabled:
         # add a framework module here
         - \Helper\Functional
+        - Asserts
+        - Laravel5:
+              environment_file: .env.testing
+        - REST:
+            depends: Laravel5

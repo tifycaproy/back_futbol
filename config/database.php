@@ -1,17 +1,6 @@
 <?php
 
-/*if (defined('DB_HOST')) {
-    define('DB_HOST', $_SERVER['DB_HOST']);
-    define('DB_USERNAME', $_SERVER['DB_USERNAME']);
-    define('DB_PASSWORD', $_SERVER['DB_PASSWORD']);
-    define('DB_NAME', $_SERVER['DB_NAME']);c
-}else if(!defined('DB_HOST')){
 
-    define('DB_HOST', env('DB_HOST', 'forge'));
-    define('DB_USERNAME', env('DB_USERNAME', 'forge'));
-    define('DB_PASSWORD',  env('DB_PASSWORD', ''));
-    define('DB_NAME', env('DB_DATABASE', 'forge'));
-}*/
 return [
 
     /*
@@ -44,28 +33,11 @@ return [
     */
 
     'connections' => [
-
-
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => storage_path() . '/database.sqlite',
+            'database' => database_path('database.sqlite'),
             'prefix' => '',
         ],
-
-        'sqlite_testing' => [
-            'driver' => 'sqlite',
-            'database' => storage_path() . '/testing.sqlite',
-            'prefix' => '',
-        ],
-
-        'sqlite_unit_testing' => [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ],
-
-        // other connections
-
 
         'mysql' => [
             'driver' => 'mysql',
