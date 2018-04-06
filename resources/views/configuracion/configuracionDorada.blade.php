@@ -100,14 +100,63 @@
     </div>
     <div id="menu1" class="tab-pane fade">
         <section class="content container-fluid">
+
             <div class="row">
-                <div class="row">
-                    <div class="col-xs-12">
-                          <label >Descripcion</label>
-                          <textarea name="descripcion_bene" rows="3" id="descripcion_bene" class="form-control"></textarea>
+                <div class="col-lg-6">
+                    <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
+                        <label>Título</label>
+                        <input type="text" class="form-control" name="titulo" id="titulo" value="{{ old('titulo') }}" maxlength="100" required autofocus>
+                        @if ($errors->has('titulo'))
+                            <p class="help-block">{{ $errors->first('titulo') }}</p>
+                        @endif
                     </div>
                 </div>
-                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Link</label>
+                        <input type="text" class="form-control" name="link" id="link" value="{{ old('link') }}" maxlength="300">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
+                        <label>Fecha</label>
+                        <input type="text" class="form-control datetimepicker" name="fecha" id="fecha" value="{{ old('fecha') }}" required>
+                        @if ($errors->has('fecha'))
+                            <p class="help-block">{{ $errors->first('fecha') }}</p>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select name="tipo" id="tipo" class="form-control">
+                            <option value="Normal"@if(old('tipo')=='Normal') selected @endif>Normal</option>
+                            <option value="Video"@if(old('tipo')=='Video') selected @endif>Video</option>
+                            <option value="Infografia"@if(old('tipo')=='Infografia') selected @endif>Infografía</option>
+                            <option value="Galeria"@if(old('tipo')=='Galeria') selected @endif>Galería</option>
+                            <option value="Stat"@if(old('tipo')=='Stat') selected @endif>Stat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Activa</label>
+                        <select name="active" id="active" class="form-control">
+                            <option value="1"@if(old('active')=='1') selected @endif>Si</option>
+                            <option value="0"@if(old('active')=='0') selected @endif>No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12">
+                      <label >Descripcion</label>
+                      <textarea name="descripcion_bene" rows="3" id="descripcion_bene" class="form-control"></textarea>
+                </div>
+
                   <div class="col-lg-12">
                      <form method="POST" id="formulario" enctype="multipart/form-data">
                         <div class="form-group">
@@ -119,13 +168,11 @@
                         </div>
                       </form>
                   </div>
-                </div>
+
             </div>
            <br>
-           <div class="form-group"> 
-                
+           <div class="form-group">
                   <button id="add_bene" class="btn btn-primary pull-right add_bene" >Agregar</button>
-               
             </div>
             <br><br>
             <section  class="content">
@@ -134,18 +181,19 @@
                     <table id="benetab" class="table table-hover table-bordered" align="center">
                     <thead>
                       <tr align="center">
-                        <th align="center" >Descripcion</th>
-                        <th align="center" >Url</th>
-                        <th align="center" >Acción</th>
+                          <th align="center" >Descripcion</th>
+                          <th align="center" >Url</th>
+                          <th align="center" >Fecha</th>
+                          <th align="center" >Acción</th>
                       </tr>
                     </thead>
-                    
                     <tbody>
                         @if(count($beneficios)> 0)
                             @foreach($beneficios as $b)
                             <tr   data-descripcion="{{$b->descripcion}}" data-id="{{$b->id}}"  data-url="{{$b->url}}">
                                 <td>{{$b->descripcion}}</td>
                                 <td><a target="_blank" href="{{$b->url}}" title="imagen">{{$b->url}}</a></td>
+                                <td>{{ date('d/m/Y H:n',strtotime($b->fecha)) }}</td>
                                 <td>
                                     <a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a>
                                     <a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a>
@@ -227,8 +275,10 @@
 
 <br><br><br><br><br><br>
 @endsection
+@section('javascript')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
     var token = $( "input[name='_token']" ).val();
@@ -239,7 +289,7 @@ $(".dinero").on("keypress keyup blur",function (event) {
         event.preventDefault();
     }
 });
-$('.numeros').on('input', function () { 
+$('.numeros').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g,'');
 });
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
@@ -322,7 +372,7 @@ $('.numeros').on('input', function () {
   $("#add_bene").on('click',function(){
     if ( $("#descripcion_bene").val() ){
       var formData = new FormData($("#formulario")[0]);
-      $.ajax({    
+      $.ajax({
           url: '{{ route("add_beneImg") }}',
           type: "POST",
           headers: {'X-CSRF-TOKEN': token},
@@ -346,9 +396,15 @@ $('.numeros').on('input', function () {
                 data:{
                     id :$("#secreto").val(),
                     descripcion:$( "#descripcion_bene" ).val(),
+                    tipo:$("#tipo").val(),
+                    fecha:$("#fecha").val(),
+                    titulo:$("#titulo").val(),
+                    link:$("#link").val(),
+                    active:$("#active").val(),
                     url:$("#imagen_secret").val()
+
                 },
-                success:function( respuesta )
+                success:function(respuesta)
                 {
                   if(respuesta != null){
                     $("#benetab tbody tr").each(function (index){
@@ -361,6 +417,9 @@ $('.numeros').on('input', function () {
                     $( "#descripcion_bene" ).val("");
                     $("#imagen_secret").val("");
                     $("#secreto").val("");
+                    $("#fecha").val("");
+                    $("#titulo").val("");
+                    $("#link").val("");
                     $('#modalCargando').modal('hide');
                   }else{
                     alert("Error al guardar");
@@ -488,3 +547,13 @@ function slimPrint() {
 }
 });
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.datetimepicker').datetimepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
+</script>
+@endsection
