@@ -755,40 +755,47 @@
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Activar/Desactivar Popup</label>
-                    <select name="act_pop_inicial" class="form-control">
-                            <option value="1" @if($configuracion->act_pop_inicial == 1) selected @endif>Activo</option>
-                            <option value="0"  @if($configuracion->act_pop_inicial == 0) selected @endif>Desactivado</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>URL Popup</label>
-                    <input type="text" class="form-control" name="link_pop_inicial"
-                           value="{{ $configuracion->link_pop_inicial }}" maxlength="200">
-                </div>
-                <div class="form-group">
                     <label>Target</label>
-                    <select name="target_popup" class="form-control">
-                        <option value="Interno"  @if($configuracion->target_popup == "Interno") selected @endif>Interno</option>
-                        <option value="Externo"  @if($configuracion->target_popup == "Externo") selected @endif>Externo</option>
-                        <option value="Seccion"  @if($configuracion->target_popup == "Seccion") selected @endif>Seccion</option>
+                    <select name="tipo_popup" id="tipo_popup" class="form-control">
+                        <option value="publicitario"  @if($configuracion->tipo_popup == "publicitario") selected @endif>Publicitario</option>
+                        <option value="informativo"  @if($configuracion->tipo_popup == "informativo") selected @endif>Informativo</option>
+                        <option value="update"  @if($configuracion->tipo_popup == "update") selected @endif>Update</option>
                     </select>
                 </div>
+                
+                <div id="no_update">
+                    <div class="form-group">
+                        <label>Activar/Desactivar Popup</label>
+                        <select name="act_pop_inicial" class="form-control">
+                                <option value="1" @if($configuracion->act_pop_inicial == 1) selected @endif>Activo</option>
+                                <option value="0"  @if($configuracion->act_pop_inicial == 0) selected @endif>Desactivado</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label>Sección destino</label>
-                    <select name="seccion_destino_popup" class="form-control">
-                        @foreach($secciones_destino as $seccion_destino)
-                            <option value="{{$seccion_destino}}" @if($configuracion->seccion_destino_popup == $seccion_destino) selected @endif>{{$seccion_destino}}</option>
-                        @endforeach
-                    </select>
-                </div>
-             
+                    <div class="form-group">
+                        <label>URL Popup</label>
+                        <input type="text" class="form-control" name="link_pop_inicial"
+                               value="{{ $configuracion->link_pop_inicial }}" maxlength="200">
+                    </div>
+                    <div class="form-group">
+                        <label>Target</label>
+                        <select name="target_popup" class="form-control">
+                            <option value="Interno"  @if($configuracion->target_popup == "Interno") selected @endif>Interno</option>
+                            <option value="Externo"  @if($configuracion->target_popup == "Externo") selected @endif>Externo</option>
+                            <option value="Seccion"  @if($configuracion->target_popup == "Seccion") selected @endif>Seccion</option>
+                        </select>
+                    </div>
 
-            </div>
+                    <div class="form-group">
+                        <label>Sección destino</label>
+                        <select name="seccion_destino_popup" class="form-control">
+                            @foreach($secciones_destino as $seccion_destino)
+                                <option value="{{$seccion_destino}}" @if($configuracion->seccion_destino_popup == $seccion_destino) selected @endif>{{$seccion_destino}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                 
 
-            <div class="row">
-                <div class="col-lg-6">
                     <div class="form-group">
                         <label>boton 1 activo</label>
                         <select name="boton_1_activo" class="form-control">
@@ -796,37 +803,16 @@
                                 <option value="0"  @if($configuracion->boton_1_activo == 0) selected @endif>Desactivado</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-lg-6">
+
                     <div class="form-group">
                         <label>boton 1 Texto</label>
-                        <select name="boton_1_texto" class="form-control">
-                                <option value="1" @if($configuracion->boton_1_texto == 1) selected @endif>Activo</option>
-                                <option value="0"  @if($configuracion->boton_1_texto == 0) selected @endif>Desactivado</option>
-                        </select>
-                    </div>
+                        <input type="text" class="form-control" name="boton_1_texto"
+                           value="{{ $configuracion->boton_1_texto }}" maxlength="200">
+                    </div>                    
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>boton 2 activo</label>
-                        <select name="boton_2_activo" class="form-control">
-                                <option value="1" @if($configuracion->boton_2_activo == 1) selected @endif>Activo</option>
-                                <option value="0"  @if($configuracion->boton_2_activo == 0) selected @endif>Desactivado</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>boton 2 texto</label>
-                        <select name="boton_2_texto" class="form-control">
-                                <option value="1" @if($configuracion->boton_2_texto == 1) selected @endif>Activo</option>
-                                <option value="0"  @if($configuracion->boton_2_texto == 0) selected @endif>Desactivado</option>
-                        </select>
-                    </div>
-                </div>
+
+
             </div>
         </div>
         <div class="row">
@@ -849,6 +835,12 @@
     <script src="js/slim.jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            console.log($("#tipo_popup").val());
+            if($("#tipo_popup").val() == "update"){
+                $("#no_update").hide();
+            }else{
+                $("#no_update").show();
+            }
             $('.slim').slim({
                 label: 'Arrastra tu imagen ó haz click aquí',
                 ratio: 'free',
@@ -873,6 +865,17 @@
                 buttonRotateTitle: "Rotar",
                 buttonUploadTitle: "Guardar"
             });
+
+            $( "#tipo_popup").change(function() {
+                if($("#tipo_popup").val() == "update"){
+                    $("#no_update").hide();
+                }else{
+                    $("#no_update").show();
+                }
+            });
+
         })
+
+
     </script>
 @endsection
