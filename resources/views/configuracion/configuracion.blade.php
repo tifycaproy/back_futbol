@@ -815,9 +815,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <label>Version App</label>
-                        <input type="text" class="form-control" name="version_app"
-                               value="{{ $configuracion->version_app }}" maxlength="200">
+                        <label>Version IOS</label>
+                        <input type="text" class="form-control" name="version_ios"
+                               value="{{ $configuracion->version_ios }}" maxlength="200">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Version Android</label>
+                        <input type="text" class="form-control" name="version_android"
+                               value="{{ $configuracion->version_android }}" maxlength="200">
                     </div>
                 </div>
             </div>
