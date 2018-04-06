@@ -9,7 +9,7 @@ class BeneficiosDorados extends Model
     protected $table = 'beneficios_dorados';
 
     protected $fillable = [
-        'id', 'descripcion', 'url',
+        'id', 'descripcion', 'url','titulo','link','fecha','active', 'tipo'
     ];
 
     protected $hidden = [

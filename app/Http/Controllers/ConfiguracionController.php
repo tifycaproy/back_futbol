@@ -238,8 +238,10 @@ class ConfiguracionController extends Controller
     {
 
         if(is_null($request->id)){
-            $beneficios = BeneficiosDorados::create( $request->all() );
+
+            $beneficios = BeneficiosDorados::create( $request->all());
             return $beneficios;
+
         }else{
             $beneficios = BeneficiosDorados::findOrFail( $request->id );
             $beneficios->descripcion = $request->descripcion;

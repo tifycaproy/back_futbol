@@ -404,7 +404,7 @@ $('.numeros').on('input', function () {
                     url:$("#imagen_secret").val()
 
                 },
-                success:function( respuesta )
+                success:function(respuesta)
                 {
                   if(respuesta != null){
                     $("#benetab tbody tr").each(function (index){
@@ -417,6 +417,9 @@ $('.numeros').on('input', function () {
                     $( "#descripcion_bene" ).val("");
                     $("#imagen_secret").val("");
                     $("#secreto").val("");
+                    $("#fecha").val("");
+                    $("#titulo").val("");
+                    $("#link").val("");
                     $('#modalCargando').modal('hide');
                   }else{
                     alert("Error al guardar");
