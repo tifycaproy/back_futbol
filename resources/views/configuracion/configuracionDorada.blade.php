@@ -411,7 +411,7 @@ $('.numeros').on('input', function () {
                             $(this).remove();
                         }
                     });
-                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.fecha+'</a></td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
+                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td><a a target="_blank" href="">'+respuesta.fecha+'</a></td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
                     $('#benetab tbody').append( boton );
                     $( "#descripcion_bene" ).val("");
                     $("#imagen_secret").val("");
