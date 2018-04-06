@@ -672,10 +672,10 @@ $data = array(
         ],
     ),
     "Beneficios de Suscripcion" => array(
-        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
+        "Ruta" => "/suscripciones/beneficios",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id', 'descripcion', 'url'
+            'id', 'link','titulo','descripcion', 'fecha', 'tipo','url'
         ],
     ),
     "Cancelar Suscripcion" => array(

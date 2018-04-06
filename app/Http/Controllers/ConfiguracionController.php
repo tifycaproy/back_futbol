@@ -190,8 +190,7 @@ class ConfiguracionController extends Controller
             'id_partido_banner' => $request->id_partido_banner,
             'boton_1_activo' => $request->boton_1_activo,
             'boton_1_texto'=> $request->boton_1_texto,
-            'boton_2_activo' => $request->boton_2_activo,
-            'boton_2_texto' => $request->boton_2_texto
+            'tipo_popup'=> $request->tipo_popup
 
         ];
 
