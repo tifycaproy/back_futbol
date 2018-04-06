@@ -678,13 +678,6 @@ $data = array(
             'id', 'link','titulo','descripcion', 'fecha', 'tipo','url'
         ],
     ),
-    "Beneficios Cancelar Suscripcion" => array(
-        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
-        "Método" => "GET",
-        "Éxito (Array)" => [
-            'id', 'descripcion', 'url'
-        ],
-    ),
     "Cancelar Suscripcion" => array(
         "Ruta" => "/suscripciones/cancelar",
         "Método" => "POST",
