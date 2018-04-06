@@ -258,6 +258,8 @@ class ConfiguracionController extends Controller
             $beneficios->fecha = $request->fecha;
             $beneficios->active = $request->active;
             $beneficios->tipo = $request->tipo;
+            if($request->url)
+                $beneficios->url = $request->url;
             $beneficios->save();
             return $beneficios;
         }
