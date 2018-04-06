@@ -755,7 +755,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Target</label>
+                    <label>Tipo Popup</label>
                     <select name="tipo_popup" id="tipo_popup" class="form-control">
                         <option value="publicitario"  @if($configuracion->tipo_popup == "publicitario") selected @endif>Publicitario</option>
                         <option value="informativo"  @if($configuracion->tipo_popup == "informativo") selected @endif>Informativo</option>
