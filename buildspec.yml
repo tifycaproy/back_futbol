@@ -7,10 +7,10 @@ phases:
    commands:
      - php -m
      - php --ini
- build:
-   commands:
      - rm -rf vendor
      - rm -rf composer.lock
+ build:
+   commands:
      - composer install --no-interaction --prefer-dist
      - composer dump-autoload
      - touch database/database.sqlite
