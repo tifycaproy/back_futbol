@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('delete_suscrip', 'ConfiguracionController@delete_suscrip')->name('delete_suscrip');
 
     Route::post('add_bene', 'ConfiguracionController@add_bene')->name('add_bene');
+    Route::get('buscar_bene', 'ConfiguracionController@buscar_bene')->name('buscar_bene');
     Route::post('delete_bene', 'ConfiguracionController@delete_bene')->name('delete_bene');
     Route::post('add_beneImg', 'ConfiguracionController@add_beneImg')->name('add_beneImg');
 

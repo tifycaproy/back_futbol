@@ -4,7 +4,7 @@ use App\SeccionesDoradas;
 use App\FuncionesDoradas;
 use Illuminate\Database\Seeder;
 
-class UsuarioDoradoSeeder extends Seeder
+class S003DoradoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,7 @@ class UsuarioDoradoSeeder extends Seeder
      */
     public function run()
     {
+
         $seecciones = [
             'muro',
             'calendario',
@@ -50,8 +51,8 @@ class UsuarioDoradoSeeder extends Seeder
             $seed = new FuncionesDoradas();
             $seed->nombre = $funcion;
             $seed->solo_dorado = false;
-            $seed->max_dorado = 0;
-            $seed->max_normal = 0;
+            $seed->max_dorado = 5;
+            $seed->max_normal = 5;
             $seed->save();
         }
     }

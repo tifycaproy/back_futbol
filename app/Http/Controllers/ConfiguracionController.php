@@ -233,16 +233,33 @@ class ConfiguracionController extends Controller
         return 1;
     }
 
+    public function buscar_bene(Request $request)
+    {
+        if(!is_null($request->id)){
+            $beneficios = BeneficiosDorados::findOrFail( $request->id );
+        }
+        return $beneficios;
+    }
+
     public function add_bene(Request $request)
     {
+
         if(is_null($request->id)){
-            $beneficios = BeneficiosDorados::create( $request->all() );
+
+            $beneficios = BeneficiosDorados::create( $request->all());
             return $beneficios;
+
         }else{
             $beneficios = BeneficiosDorados::findOrFail( $request->id );
             $beneficios->descripcion = $request->descripcion;
-            $beneficios->url = $request->url;
-                $beneficios->save();
+            $beneficios->titulo = $request->titulo;
+            $beneficios->link = $request->link;
+            $beneficios->fecha = $request->fecha;
+            $beneficios->active = $request->active;
+            $beneficios->tipo = $request->tipo;
+            if($request->url)
+                $beneficios->url = $request->url;
+            $beneficios->save();
             return $beneficios;
         }
       

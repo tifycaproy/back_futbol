@@ -8,9 +8,9 @@
     <title>TU ONCE IDEAL</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="MI ONCE IDEAL PARA EL PRÓXIMO PARTIDO" />
-    <meta property="og:description"        content="¡Escoge tu once ideal y comparte con tus amigos! Descarga ya la App Oficial de Millonarios FC" />
-    <meta property="og:image"              content="{{ $data['foto'] }}" />
+    <meta property="og:title"              content="{{  $seccion->titulo}}" />
+    <meta property="og:description"        content="{{  $seccion->descripcion}}" />
+    <meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion['foto'] }}" />
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap-grid.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
@@ -30,7 +30,7 @@
             <section class="row justify-content-center no-gutters "> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
                 <!-- titulo-->
                 <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"><!-- AÑADIDO CONTENEDOR (15/01/2018)-->
-                    <h1>¡ESTE ES MI ONCE IDEAL!</h1>
+                    <h1>{{ $seccion->titulo }}</h1>
                 </div>
             </section>
             <section class="row justify-content-center mt-0 no-gutters">
@@ -62,8 +62,8 @@
 
                     <div class="texto mt-0 pl-0 pr-0">
                         <!-- Texto-->
-                        <h2>¡NO DEJEMOS DE SEGUIR NUNCA AL MÁS GRANDE!</h2>
-                        <h2 class="mt-0"><b>DESCARGA LA APP OFICIAL DE MILLONARIOS FC</b></h2>
+                        <h2>{{ $seccion->descripcion }}</h2>
+                        <h2 class="mt-0"><b>{{ $seccion->footer1 }}</b></h2>
                         
                     </div>
                 </div>

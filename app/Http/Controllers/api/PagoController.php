@@ -39,10 +39,10 @@ class PagoController extends Controller
             $usuariosSuscripcion->save();
         //Cargamos datos a enviar
     	$datos = new \stdClass();
-    	$datos->ApiKey = '4Vj8eK4rloUd272L48hsrarnUA';
-    	$datos->merchantId = '508029';
+    	$datos->ApiKey = '1Hzv6cMkOrR4XSWD4M1Ibu444o';
+    	$datos->merchantId = '687059';
         $datos->buyerEmail = $usuario->email;
-    	$datos->reference = 'TestPayUMillonarios'. rand(0, 10000);
+    	$datos->reference = 'PayUMillonarios'. rand(0, 10000);
     	$datos->Amount = number_format($costo, 0, '.', '');
     	$datos->currency = 'COP';
     	$datos->signature = md5($datos->ApiKey .'~'. $datos->merchantId.'~'. $datos->reference . '~' . $datos->Amount . '~' . $datos->currency);

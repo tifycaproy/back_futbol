@@ -46,6 +46,9 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => $errors];
             }
             //fin validaciones
+
+
+
             $email = $request["email"];
             // Referidos
             if ($referente = Referido::where('email', $email)->first()) {
@@ -58,6 +61,7 @@ class UsuariosController extends Controller
                 return ["status" => "fallo", "error" => ["El apodo ya se encuentra registrado"]];
             }
             $request["clave"] = password_hash($request["clave"], PASSWORD_DEFAULT);
+
             if (isset($request["foto"])) {
                 $foto = $request["foto"];
                 if ($foto <> '') {
@@ -77,7 +81,10 @@ class UsuariosController extends Controller
                     ));
                 }
             }
+
+            //dd($request);
             $nuevo = Usuario::create($request);
+            dd($nuevo);
             $idusuario = $nuevo->id;
             return ["status" => "exito", "data" => ["token" => crea_token($idusuario), "idusuario" => $idusuario, "codigo" => codifica($idusuario)]];
         } catch (Exception $e) {
@@ -504,9 +511,9 @@ public function recuperar_clave(Request $request)
                     // $err = curl_error($curl);
                 curl_close($curl);
             }
-            return ["status" => "exito", "data" => "Se ha enviado un email con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
+            return ["status" => "exito", "data" => "Se ha enviado un e-mail con su PIN de recuperación. Si no lo recibe por favor revise su carpeta de correos no deseados (spam)"];
         } else {
-            return ["status" => "fallo", "error" => ["email incorrecto"]];
+            return ["status" => "fallo", "error" => ["Disculpe, el e-mail ingresado no es correcto"]];
         }
     } catch (Exception $e) {
         return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];

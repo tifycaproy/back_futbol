@@ -672,10 +672,10 @@ $data = array(
         ],
     ),
     "Beneficios de Suscripcion" => array(
-        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
+        "Ruta" => "/suscripciones/beneficios",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id', 'descripcion', 'url'
+            'id', 'link','titulo','descripcion', 'fecha', 'tipo','url'
         ],
     ),
     "Cancelar Suscripcion" => array(
@@ -695,7 +695,7 @@ $data = array(
         "Ruta" => "/punto_referencia",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id','titulo', 'latitud','longitud','direccion','fecha_evento','hora','imagenes'
+            'id','titulo', 'latitud','longitud','direccion','ciudad','pais','fecha_evento','hora','icono (null,"bar-rest","cc","estadio","hotel","tienda")','imagenes'
         ],
         "Falla" => array(
             "[]" => array("Array vacio")

@@ -39,6 +39,7 @@ class PuntoReferenciaController extends Controller
         $pr->direccion = $request->direccion;
         $pr->pais = $request->pais;
         $pr->ciudad = $request->ciudad;
+        $pr->icono = $request->icono;
             $pr->save();
         return $pr->id;
     }
@@ -68,6 +69,7 @@ class PuntoReferenciaController extends Controller
         $pr->direccion = $request->direccion;
         $pr->pais = $request->pais;
         $pr->ciudad = $request->ciudad;
+        $pr->icono = $request->icono;
             $pr->save();
         return $pr->id;
     }
