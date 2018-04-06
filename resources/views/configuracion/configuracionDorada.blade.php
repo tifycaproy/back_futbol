@@ -100,7 +100,6 @@
     </div>
     <div id="menu1" class="tab-pane fade">
         <section class="content container-fluid">
-
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
@@ -412,7 +411,7 @@ $('.numeros').on('input', function () {
                             $(this).remove();
                         }
                     });
-                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
+                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.fecha+'</a></td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
                     $('#benetab tbody').append( boton );
                     $( "#descripcion_bene" ).val("");
                     $("#imagen_secret").val("");
@@ -435,6 +434,28 @@ $('.numeros').on('input', function () {
   {
     row2 = $(this).parents('tr');
     var id = row2.data('id');
+
+      $.ajax({
+          url: '{{ route("buscar_bene") }}',
+          type: "get",
+          headers: {'X-CSRF-TOKEN': token},
+          datatype: 'json',
+          data:{
+              id: row2.attr('data-id')
+          },
+          success:function( respuesta )
+          {
+
+              $( "#titulo" ).val(respuesta.titulo);
+              $( "#link" ).val(respuesta.link);
+              $( "#fecha" ).val(respuesta.fecha);
+              console.log(respuesta.fecha);
+              $("#tipo").val(respuesta.tipo);
+              $("#active").val(respuesta.active);
+          }
+
+      });
+
     var descripcion = row2.data('descripcion');
     $("#secreto").val(id);
     $( "#descripcion_bene" ).val(descripcion);

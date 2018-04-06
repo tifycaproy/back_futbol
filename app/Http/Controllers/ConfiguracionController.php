@@ -234,6 +234,14 @@ class ConfiguracionController extends Controller
         return 1;
     }
 
+    public function buscar_bene(Request $request)
+    {
+        if(!is_null($request->id)){
+            $beneficios = BeneficiosDorados::findOrFail( $request->id );
+        }
+        return $beneficios;
+    }
+
     public function add_bene(Request $request)
     {
 
@@ -245,7 +253,6 @@ class ConfiguracionController extends Controller
         }else{
             $beneficios = BeneficiosDorados::findOrFail( $request->id );
             $beneficios->descripcion = $request->descripcion;
-            $beneficios->url = $request->url;
             $beneficios->titulo = $request->titulo;
             $beneficios->link = $request->link;
             $beneficios->fecha = $request->fecha;
