@@ -15,7 +15,7 @@
     <meta property="og:type"               content="article"/>
     <meta property="og:title"              content="{{ $seccion->titulo}}"/>
     <meta property="og:description"        content="$seccion->descripcion" />
-    <meta property="og:image"              content="{{config('app.url') . 'ventanas/' . $seccion->foto }}" />
+    @if($data->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $data->foto }}" />@endif
 </head>
 <body>
     <!--CONTENEDOR-->
