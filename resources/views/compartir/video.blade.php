@@ -13,9 +13,9 @@
     <title>VIDEO</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="video"/>
-    <meta property="og:description"        content="video" />
-    <meta property="og:image"              content="{{ $data->foto }}" />
+    <meta property="og:title"              content="{{ $seccion->titulo}}"/>
+    <meta property="og:description"        content="$seccion->descripcion" />
+    <meta property="og:image"              content="{{config('app.url') . 'ventanas/' . $seccion->foto }}" />
 </head>
 <body>
     <!--CONTENEDOR-->
