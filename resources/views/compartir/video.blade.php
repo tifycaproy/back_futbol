@@ -10,7 +10,7 @@
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
     <script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
-    <title>VIDEO</title>
+    <title>{!! nl2br($seccion->titulo) !!}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
     <meta property="og:title"              content="{{ $seccion->titulo}}"/>
