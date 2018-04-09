@@ -126,6 +126,9 @@
                     <li>
                         <a href="{{ route("puntoreferencia.index") }}"><i class="fa fa-fw fa-pencil"></i> Puntos de referencia</a>
                     </li>
+                    <li>
+                        <a href="{{ route("reporte.index") }}"><i class="fa fa-fw fa-pencil"></i> Reportes</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

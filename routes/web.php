@@ -155,3 +155,13 @@ Route::get('posicion_eliminar/{id}', 'PosicionesController@destroy')->name('posi
 
 //MULTIMEDIA
 Route::resource('multimedia', 'multimediaController');
+
+//Reportes
+Route::resource('reporte', 'ReporteController');
+Route::get('chat_eliminar/{id}', 'ReporteController@chat_eliminar')->name('chat_eliminar');
+
+Route::get('ver_reporte_post/{id}', 'ReporteController@ver_reporte_post')->name('ver_reporte_post');
+Route::get('post_reporte_eliminar/{id}', 'ReporteController@post_reporte_eliminar')->name('post_reporte_eliminar');
+Route::get('ver_reporte_comentario/{id}', 'ReporteController@ver_reporte_comentario')->name('ver_reporte_comentario');
+Route::get('comentario_reporte_eliminar/{id}', 'ReporteController@comentario_reporte_eliminar')->name('comentario_reporte_eliminar');
+
