@@ -33,7 +33,7 @@ class ConfiguracionController extends Controller
         $data["data"]["patrocinante"] = config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
         $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/'.Configuracion::first()->url_popup_inicial;
         $data["data"]["url_vistas"] = config('app.share_url');
-        $data["data"]["total_hinchas"] = Usuario::count();
+        $data["data"]["total_hinchas"] = 76438;
         return $data;
     }
 
