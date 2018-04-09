@@ -10,12 +10,12 @@
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
     <script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
-    <title>VIDEO</title>
+    <title>{!! nl2br($seccion->titulo) !!}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="video"/>
-    <meta property="og:description"        content="video" />
-    <meta property="og:image"              content="{{ $data->foto }}" />
+    <meta property="og:title"              content="{{ $seccion->titulo}}"/>
+    <meta property="og:description"        content="{{$seccion->descripcion}}" />
+    @if($data->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $data->foto }}" />@endif
 </head>
 <body>
     <!--CONTENEDOR-->
