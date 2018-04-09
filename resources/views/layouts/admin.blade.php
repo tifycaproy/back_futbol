@@ -127,8 +127,8 @@
                         <a href="{{ route("puntoreferencia.index") }}"><i class="fa fa-fw fa-pencil"></i> Puntos de referencia</a>
                     </li>
                     <li>
-                        -                        <a href="{{ route("multimedia.index") }}"><i class="fa fa-fw fa-pencil"></i> Multimedia</a>
-                    -                    </li>
+                        <a href="{{ route("multimedia.index") }}"><i class="fa fa-fw fa-pencil"></i> Multimedia</a>
+                       </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
