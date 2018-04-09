@@ -42,13 +42,13 @@ imagesy($img3)
 );
 */
 
-imagedestroy($img1);
-imagedestroy($img2);
-imagedestroy($img3);
 
 header('Content-Type: image/jpeg');
 imagejpeg($img1, null, 100);
 
+imagedestroy($img1);
+imagedestroy($img2);
+imagedestroy($img3);
 
 
 
