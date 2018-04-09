@@ -40,7 +40,8 @@ class ConfiguracionController extends Controller
     public function multimedia()
     {
         $data["status"] = 'exito';
-        $data["data"] = Multimedia::first(['url_envivo']);
+        $data["data"] = Multimedia::first(['url_envivo','foto']);
+        $data["data"]["foto"] = config('app.url') . 'noticias/' . $data["data"]["foto"];
         return $data;
     }
 }
