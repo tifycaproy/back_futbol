@@ -120,8 +120,8 @@ Route::get('compartir/jugador_single/{id}', 'CompartirController@jugador_single'
 Route::get('compartir/tueliges/{id}', 'CompartirController@tueliges');
 Route::get('compartir/punto_referencia/{id}', 'CompartirController@punto_referencia');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
-Route::get('video_share/{id}', 'CompartirController@video_share');
-Route::get('envivo_share', 'CompartirController@envivo_share');
+Route::get('compartir/video_share/{id}', 'CompartirController@video_share');
+Route::get('compartir/envivo_share', 'CompartirController@envivo_share');
 Route::resource('compartir', 'CompartirController');
 //fin compartir
 Route::post('registro', 'api\UsuariosController@registro_usuario2');
