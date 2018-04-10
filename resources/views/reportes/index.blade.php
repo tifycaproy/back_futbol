@@ -82,12 +82,18 @@
                                 <tr data-id="{{codifica($muros->post->id) }}">
                                     <td><a title="Usuario" >{{ $muros->post->usuario->email}}</a></td>
                                     <td><a title="Ver Post" >{{ substr($muros->post->mensaje, 0, 50)}} . . . </a></td>
-                                    @if(empty($muros->post->tipo_post) || $muros->post->tipo_post == null || $muros->post->tipo_post == "")
-                                        <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">@if($muros->post->foto != null){{ config('app.url') . 'posts/' . $muros->post->foto}}@endif</a></td>
-                                    @endif
+
                                     @if($muros->post->tipo_post == "video"  || $muros->post->tipo_post == "gif")
                                         <td><a target="_blank" href="{{$muros->post->foto}}" title="Ver Post">{{ $muros->post->foto}}</a></td>
+                                    @else
+                                        @if(empty($muros->post->tipo_post) || $muros->post->tipo_post == null || $muros->post->tipo_post == "" )
+                                            <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
+                                        @else
+                                            <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
+                                        @endif
                                     @endif
+
+
                                     
                                     <td>
                                         <a href="{{ route('post_reporte_eliminar', codifica($muros->id) ) }}" title="Eliminar Reporte"><i class="fa fa-fw fa-ban"></i></a>
