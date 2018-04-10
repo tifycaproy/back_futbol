@@ -204,7 +204,7 @@ class CalendarioController extends Controller
                             imagesx($img2),
                             imagesy($img2)
                         );
-
+                        imagedestroy($img2);
                     }
                 }
             }
