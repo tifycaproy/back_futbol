@@ -92,8 +92,6 @@
                                             <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
                                         @endif
                                     @endif
-
-
                                     
                                     <td>
                                         <a href="{{ route('post_reporte_eliminar', codifica($muros->id) ) }}" title="Eliminar Reporte"><i class="fa fa-fw fa-ban"></i></a>
