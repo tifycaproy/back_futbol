@@ -87,7 +87,7 @@
                                         <td><a target="_blank" href="{{$muros->post->foto}}" title="Ver Post">{{ $muros->post->foto}}</a></td>
                                     @else
                                         @if(empty($muros->post->tipo_post) || $muros->post->tipo_post == null || $muros->post->tipo_post == "" )
-                                            <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
+                                            <td></td>
                                         @else
                                             <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
                                         @endif
