@@ -30,7 +30,6 @@ switch ($formacion_id) {
         $posiciones[9]=['x' => 418,'y' => 191];
         $posiciones[10]=['x' => 268,'y' => 84];
         $posiciones[11]=['x' => 418,'y' => 28];
-
         break;
 }
 $imagen1=asset('/compartir/images/cancha.jpg');
