@@ -154,6 +154,31 @@ class CalendarioController extends Controller
     }
     public function alineacion_actualizar(Request $request)
     {
+        $juego=Calendario::find($_SESSION['calendario_id']);
+        $formacion_id=$juego->formacion_id;
+        $posiciones=[];
+        $posiciones[1]=['x' => 14,'y' => 181];
+        switch ($formacion_id) {
+            case 1:
+                //433
+                $posiciones[2]=['x' => 128,'y' => 343];$posiciones[3]=['x' => 128,'y' => 18];$posiciones[4]=['x' => 128,'y' => 234];$posiciones[5]=['x' => 128,'y' => 116];$posiciones[6]=['x' => 241,'y' => 181];$posiciones[7]=['x' => 418,'y' => 343];$posiciones[8]=['x' => 268,'y' => 307];$posiciones[9]=['x' => 418,'y' => 171];$posiciones[10]=['x' => 268,'y' => 64];$posiciones[11]=['x' => 418,'y' => 18];
+                break;
+            case 2:
+                //442
+                $posiciones[2]=['x' => 128,'y' => 343];$posiciones[3]=['x' => 128,'y' => 18];$posiciones[4]=['x' => 128,'y' => 234];$posiciones[5]=['x' => 128,'y' => 116];$posiciones[6]=['x' => 241,'y' => 234];$posiciones[7]=['x' => 268,'y' => 343];$posiciones[8]=['x' => 241,'y' => 116];$posiciones[9]=['x' => 418,'y' => 116];$posiciones[10]=['x' => 418,'y' => 234];$posiciones[11]=['x' => 268,'y' => 18];
+                break;
+            case 3:
+                //551
+                $posiciones[2]=['x' => 128,'y' => 343];$posiciones[3]=['x' => 128,'y' => 18];$posiciones[4]=['x' => 128,'y' => 234];$posiciones[5]=['x' => 128,'y' => 116];$posiciones[6]=['x' => 241,'y' => 181];$posiciones[7]=['x' => 268,'y' => 348];$posiciones[8]=['x' => 241,'y' => 265];$posiciones[9]=['x' => 418,'y' => 181];$posiciones[10]=['x' => 241,'y' => 97];$posiciones[11]=['x' => 268,'y' => 14];
+                break;
+            case 4:
+                //4411
+                $posiciones[2]=['x' => 128,'y' => 343];$posiciones[3]=['x' => 128,'y' => 18];$posiciones[4]=['x' => 128,'y' => 234];$posiciones[5]=['x' => 128,'y' => 116];$posiciones[6]=['x' => 241,'y' => 234];$posiciones[7]=['x' => 268,'y' => 343];$posiciones[8]=['x' => 241,'y' => 116];$posiciones[9]=['x' => 455,'y' => 181];$posiciones[10]=['x' => 350,'y' => 181];$posiciones[11]=['x' => 268,'y' => 18];
+                break;
+        }
+        $imagen1=asset('/compartir/images/cancha.jpg');
+        $img1 = imagecreatefromjpeg($imagen1);
+
         Alineacion::where('id','<>',0)->delete();
         $orden=count($request->jugadores);
         if($orden>0){
@@ -166,7 +191,45 @@ class CalendarioController extends Controller
                     'orden' => $orden
                 ]);
                 $orden--;
+                if($request["estado_" . $jugador]=='Titular' and $request["posicion_" . $jugador]<>0){
+                    $j=Jugador::find($jugador);
+                    if($jugador->foto <> ''){
+                        $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $jugador->foto);
+                        imagecopyresampled(
+                            $img1,
+                            $img2,
+                            $posiciones[$request["posicion_" . $jugador]]['x'], $posiciones[$request["posicion_" . $jugador]]['y'], 0, 0,
+                            70,
+                            70,
+                            imagesx($img2),
+                            imagesy($img2)
+                        );
+
+                    }
+                }
             }
+
+
+ob_clean();
+ob_start();
+//header('Content-Type: image/jpeg');
+imagejpeg($img1, null, 100);
+
+$data = ob_get_contents();
+ob_end_clean();
+if( !empty( $data ) ) {
+
+    $data = base64_encode( $data );
+
+    // Check for base64 errors
+    if ( $data !== false ) {
+
+        // Success
+        return "<img src='data:image/jpeg;base64,$data'>";
+    }
+}
+exit;
+
         }
         return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
     }

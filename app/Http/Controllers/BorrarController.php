@@ -11,25 +11,65 @@ class BorrarController extends Controller
     public function borrar()
     {
 
-$formacion_id=1;
+$formacion_id=4;
 
 $posiciones=[];
 $posiciones[1]=[
     'x' => 14,
-    'y' => 191,
+    'y' => 181,
 ];
 switch ($formacion_id) {
     case 1:
-        $posiciones[2]=['x' => 128,'y' => 353];
-        $posiciones[3]=['x' => 128,'y' => 28];
-        $posiciones[4]=['x' => 128,'y' => 244];
-        $posiciones[5]=['x' => 128,'y' => 126];
-        $posiciones[6]=['x' => 241,'y' => 191];
-        $posiciones[7]=['x' => 418,'y' => 353];
-        $posiciones[8]=['x' => 268,'y' => 317];
-        $posiciones[9]=['x' => 418,'y' => 191];
-        $posiciones[10]=['x' => 268,'y' => 84];
-        $posiciones[11]=['x' => 418,'y' => 28];
+        //433
+        $posiciones[2]=['x' => 128,'y' => 343];
+        $posiciones[3]=['x' => 128,'y' => 18];
+        $posiciones[4]=['x' => 128,'y' => 234];
+        $posiciones[5]=['x' => 128,'y' => 116];
+        $posiciones[6]=['x' => 241,'y' => 181];
+        $posiciones[7]=['x' => 418,'y' => 343];
+        $posiciones[8]=['x' => 268,'y' => 307];
+        $posiciones[9]=['x' => 418,'y' => 171];
+        $posiciones[10]=['x' => 268,'y' => 64];
+        $posiciones[11]=['x' => 418,'y' => 18];
+        break;
+    case 2:
+        //442
+        $posiciones[2]=['x' => 128,'y' => 343];
+        $posiciones[3]=['x' => 128,'y' => 18];
+        $posiciones[4]=['x' => 128,'y' => 234];
+        $posiciones[5]=['x' => 128,'y' => 116];
+        $posiciones[6]=['x' => 241,'y' => 234];
+        $posiciones[7]=['x' => 268,'y' => 343];
+        $posiciones[8]=['x' => 241,'y' => 116];
+        $posiciones[9]=['x' => 418,'y' => 116];
+        $posiciones[10]=['x' => 418,'y' => 234];
+        $posiciones[11]=['x' => 268,'y' => 18];
+        break;
+    case 3:
+        //551
+        $posiciones[2]=['x' => 128,'y' => 343];
+        $posiciones[3]=['x' => 128,'y' => 18];
+        $posiciones[4]=['x' => 128,'y' => 234];
+        $posiciones[5]=['x' => 128,'y' => 116];
+        $posiciones[6]=['x' => 241,'y' => 181];
+        $posiciones[7]=['x' => 268,'y' => 348];
+        $posiciones[8]=['x' => 241,'y' => 265];
+        $posiciones[9]=['x' => 418,'y' => 181];
+        $posiciones[10]=['x' => 241,'y' => 97];
+        $posiciones[11]=['x' => 268,'y' => 14];
+        break;
+    case 4:
+        //4411
+        $posiciones[2]=['x' => 128,'y' => 343];
+        $posiciones[3]=['x' => 128,'y' => 18];
+        $posiciones[4]=['x' => 128,'y' => 234];
+        $posiciones[5]=['x' => 128,'y' => 116];
+        $posiciones[6]=['x' => 241,'y' => 234];
+        $posiciones[7]=['x' => 268,'y' => 343];
+        $posiciones[8]=['x' => 241,'y' => 116];
+        $posiciones[9]=['x' => 455,'y' => 181];
+        $posiciones[10]=['x' => 350,'y' => 181];
+        $posiciones[11]=['x' => 268,'y' => 18];
         break;
 }
 
@@ -46,8 +86,8 @@ for($l=1; $l<=11; $l++){
         $img1,
         $img2,
         $posiciones[$l]['x'], $posiciones[$l]['y'], 0, 0,
-        50,
-        50,
+        70,
+        70,
         imagesx($img2),
         imagesy($img2)
     );
