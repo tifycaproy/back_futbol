@@ -20,7 +20,7 @@ $posiciones[1]=[
 ];
 switch ($formacion_id) {
     case 1:
-        $posiciones[2]=['x' => 14,'y' => 353];
+        $posiciones[2]=['x' => 128,'y' => 353];
         $posiciones[3]=['x' => 128,'y' => 28];
         $posiciones[4]=['x' => 128,'y' => 244];
         $posiciones[5]=['x' => 128,'y' => 126];
