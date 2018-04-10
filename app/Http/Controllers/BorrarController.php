@@ -78,10 +78,10 @@ $imagen2='http://cmsmillos.s3-website-us-east-1.amazonaws.com/jugadores/20171117
 $imagen3='http://cmsmillos.s3-website-us-east-1.amazonaws.com/jugadores/201711171810316.png';  //i3="../img/imagen2.png"
 
 $img1 = imagecreatefromjpeg($imagen1); //Se indica la imagen "base"
-$img2 = imagecreatefrompng($imagen2); // Se indican las imagenes a añadir
 $img3 = imagecreatefrompng($imagen3);
 
 for($l=1; $l<=11; $l++){
+    $img2 = imagecreatefrompng($imagen2); // Se indican las imagenes a añadir
     imagecopyresampled(
         $img1,
         $img2,
@@ -91,6 +91,7 @@ for($l=1; $l<=11; $l++){
         imagesx($img2),
         imagesy($img2)
     );
+    imagedestroy($img2);
 }
 
 ob_clean();
@@ -114,7 +115,6 @@ if( !empty( $data ) ) {
 
 
 imagedestroy($img1);
-imagedestroy($img2);
 imagedestroy($img3);
 
 

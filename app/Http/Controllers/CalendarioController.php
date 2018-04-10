@@ -208,27 +208,22 @@ class CalendarioController extends Controller
                     }
                 }
             }
+            ob_clean();
+            ob_start();
+            //header('Content-Type: image/jpeg');
+            imagejpeg($img1, null, 100);
 
-
-ob_clean();
-ob_start();
-//header('Content-Type: image/jpeg');
-imagejpeg($img1, null, 100);
-
-$data = ob_get_contents();
-ob_end_clean();
-if( !empty( $data ) ) {
-
-    $data = base64_encode( $data );
-
-    // Check for base64 errors
-    if ( $data !== false ) {
-
-        // Success
-        return "<img src='data:image/jpeg;base64,$data'>";
-    }
-}
-exit;
+            $data = ob_get_contents();
+            ob_end_clean();
+            if( !empty( $data ) ) {
+                $data = base64_encode( $data );
+                // Check for base64 errors
+                if ( $data !== false ) {
+                    // Success
+                    return "<img src='data:image/jpeg;base64,$data'>";
+                }
+            }
+            exit;
 
         }
         return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
