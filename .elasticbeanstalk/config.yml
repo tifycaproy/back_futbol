@@ -1,4 +1,6 @@
 branch-defaults:
+  codebuild:
+    environment: millonarios-codebuild
   dev:
     environment: dev-env
   master:
