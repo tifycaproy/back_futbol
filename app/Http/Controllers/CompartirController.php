@@ -58,7 +58,7 @@ class CompartirController extends Controller
         }
     }
 
-    public function onceidealr($ruta,$id)
+    public function onceidealr($ruta,$id='')
     {
         //dd($ruta);
         $seccion='onceideal';

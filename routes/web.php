@@ -109,7 +109,7 @@ Route::get('compartir/referidos/{codigo}/email', [
 ]);
 
 Route::get('descargar', 'CompartirController@descargar');
-Route::get('compartir/onceideal/{ruta}/{id}', 'CompartirController@onceidealr');
+Route::get('compartir/onceideal/{ruta}/{id?}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');
 Route::get('compartir/usr/{id}', 'CompartirController@usuario');
 Route::get('compartir/noticia/{id}', 'CompartirController@noticia');
@@ -119,9 +119,9 @@ Route::get('compartir/jugador/{id}', 'CompartirController@jugador');
 Route::get('compartir/jugador_single/{id}', 'CompartirController@jugador_single');
 Route::get('compartir/tueliges/{id}', 'CompartirController@tueliges');
 Route::get('compartir/punto_referencia/{id}', 'CompartirController@punto_referencia');
+Route::get('compartir/video_share/{id}', 'CompartirController@video_share');
+Route::get('compartir/envivo_share', 'CompartirController@envivo_share');
 Route::get('compartir/{seccion}/{id?}', 'CompartirController@general');
-Route::get('video_share/{id}', 'CompartirController@video_share');
-Route::get('envivo_share', 'CompartirController@envivo_share');
 Route::resource('compartir', 'CompartirController');
 //fin compartir
 Route::post('registro', 'api\UsuariosController@registro_usuario2');
