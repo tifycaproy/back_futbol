@@ -32,6 +32,7 @@ switch ($formacion_id) {
         $posiciones[11]=['x' => 418,'y' => 28];
         break;
 }
+
 $imagen1=asset('/compartir/images/cancha.jpg');
 $imagen2='http://cmsmillos.s3-website-us-east-1.amazonaws.com/jugadores/201711171312343.png';  //i2="../img/imagen1.png"
 $imagen3='http://cmsmillos.s3-website-us-east-1.amazonaws.com/jugadores/201711171810316.png';  //i3="../img/imagen2.png"
