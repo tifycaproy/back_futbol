@@ -197,7 +197,7 @@ class CalendarioController extends Controller
         $imagen1=asset('/compartir/images/cancha.jpg');
         $img1 = imagecreatefromjpeg($imagen1);
         foreach (Alineacion::where('estado','Titular')->where('posicion','<>',0)->get() as $jugador) {
-            $j=Jugador::find($jugador->id);
+            $j=Jugador::find($jugador->jugador_id);
             if($j->foto <> ''){
                 $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $j->foto);
                 imagecopyresampled(
