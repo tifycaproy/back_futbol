@@ -154,6 +154,24 @@ class CalendarioController extends Controller
     }
     public function alineacion_actualizar(Request $request)
     {
+        Alineacion::where('id','<>',0)->delete();
+        $orden=count($request->jugadores);
+        if($orden>0){
+            foreach ($request->jugadores as $jugador) {
+                Alineacion::create([
+                    'calendario_id' => $_SESSION['calendario_id'],
+                    'jugador_id' => $jugador,
+                    'estado' => $request["estado_" . $jugador],
+                    'posicion' => $request["posicion_" . $jugador],
+                    'orden' => $orden
+                ]);
+                $orden--;
+            }
+        }
+        return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
+    }
+    public function alineacion_imagen_compartir()
+    {
         $juego=Calendario::find($_SESSION['calendario_id']);
         $formacion_id=$juego->formacion_id;
         $posiciones=[];
@@ -178,54 +196,42 @@ class CalendarioController extends Controller
         }
         $imagen1=asset('/compartir/images/cancha.jpg');
         $img1 = imagecreatefromjpeg($imagen1);
-
-        Alineacion::where('id','<>',0)->delete();
-        $orden=count($request->jugadores);
-        if($orden>0){
-            foreach ($request->jugadores as $jugador) {
-                Alineacion::create([
-                    'calendario_id' => $_SESSION['calendario_id'],
-                    'jugador_id' => $jugador,
-                    'estado' => $request["estado_" . $jugador],
-                    'posicion' => $request["posicion_" . $jugador],
-                    'orden' => $orden
-                ]);
-                $orden--;
-                if($request["estado_" . $jugador]=='Titular' and $request["posicion_" . $jugador]<>0){
-                    $j=Jugador::find($jugador);
-                    if($j->foto <> ''){
-                        $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $j->foto);
-                        imagecopyresampled(
-                            $img1,
-                            $img2,
-                            $posiciones[$request["posicion_" . $jugador]]['x'], $posiciones[$request["posicion_" . $jugador]]['y'], 0, 0,
-                            70,
-                            70,
-                            imagesx($img2),
-                            imagesy($img2)
-                        );
-                        imagedestroy($img2);
-                    }
-                }
+        foreach (Alineacion::where('estado','Titular')->where('posicion','<>',0)->get() as $jugador) {
+            $j=Jugador::find($jugador->id);
+            if($j->foto <> ''){
+                $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $j->foto);
+                imagecopyresampled(
+                    $img1,
+                    $img2,
+                    $posiciones[$jugador->posicion]['x'], $posiciones[$jugador->posicion]['y'], 0, 0,
+                    70,
+                    70,
+                    imagesx($img2),
+                    imagesy($img2)
+                );
+                imagedestroy($img2);
             }
-            ob_clean();
-            ob_start();
-            //header('Content-Type: image/jpeg');
-            imagejpeg($img1, null, 100);
-
-            $data = ob_get_contents();
-            ob_end_clean();
-            if( !empty( $data ) ) {
-                $data = base64_encode( $data );
-                // Check for base64 errors
-                if ( $data !== false ) {
-                    // Success
-                    return "<img src='data:image/jpeg;base64,$data'>";
-                }
-            }
-            exit;
-
         }
-        return redirect()->route('alineacion')->with("notificacion","Se ha guardado correctamente su información");
+
+        ob_clean();
+        ob_start();
+        //header('Content-Type: image/jpeg'); 
+        imagejpeg($img1, null, 100);
+
+        $data = ob_get_contents();
+        ob_end_clean();
+        if( !empty( $data ) ) {
+            $data = base64_encode( $data );
+            // Check for base64 errors
+            if ( $data !== false ) {
+                // Success
+                return "<img src='data:image/jpeg;base64,$data'>";
+            }
+        }
+        exit;
+
+
+
+        return redirect()->route('alineacion')->with("notificacion","Se ha generado la imagen");
     }
 }
