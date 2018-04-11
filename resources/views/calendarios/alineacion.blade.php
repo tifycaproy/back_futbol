@@ -74,6 +74,7 @@
     <div class="row">
         <div class="col-lg-6">
             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Guardar</button>
+            <a href="{{ route('alineacion_imagen_compartir') }}" class="btn btn-success"><i class="fa fa-fw fa-link"></i> Generar imagen a compartir</a>
             <a href="{{ route('calendarios.edit', codifica($idcalendario)) }}" class="btn btn-primary"><i class="fa fa-fw fa-reply"></i> Regresar al partido</a>
         </div>
     </div>
