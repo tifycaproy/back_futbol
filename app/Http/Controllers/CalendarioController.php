@@ -251,6 +251,6 @@ class CalendarioController extends Controller
         }
         //exit;
 
-        return redirect()->route('alineacion')->with("notificacion","Se ha generado la imagen");
+        return redirect()->route('alineacion')->with("notificacion",'Se ha generado la <a href="' . config('app.url') . 'ventanas/' . $fileName . '" target="_blank">imagen a compartir</a>');
     }
 }
