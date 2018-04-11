@@ -193,8 +193,8 @@ class CalendarioController extends Controller
                 $orden--;
                 if($request["estado_" . $jugador]=='Titular' and $request["posicion_" . $jugador]<>0){
                     $j=Jugador::find($jugador);
-                    if($jugador->foto <> ''){
-                        $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $jugador->foto);
+                    if($j->foto <> ''){
+                        $img2 = imagecreatefrompng(config('app.url') . 'jugadores/' . $j->foto);
                         imagecopyresampled(
                             $img1,
                             $img2,
