@@ -10,6 +10,7 @@ use App\Equipo;
 use App\Alineacion;
 use App\Jugador;
 use App\Formacion;
+use App\Compartir;
 
 class CalendarioController extends Controller
 {
@@ -225,12 +226,30 @@ class CalendarioController extends Controller
             // Check for base64 errors
             if ( $data !== false ) {
                 // Success
-                return "<img src='data:image/jpeg;base64,$data'>";
+                //return "<img src='data:image/jpeg;base64,$data'>";
+
+                $seccion='alineacion';
+                $compartir=Compartir::where('seccion',$seccion)->first();
+
+                $this->deleteFile($compartir->foto, 'ventanas/');
+
+                $archivo=json_encode([
+                    'output' => [
+                        'type' => 'image/jpeg',
+                        'image' => 'data:image/jpeg;base64,$data'
+                    ],
+                    'input' => [
+                        'type' => '',
+                    ],
+                ]);
+
+                $fileName = $this->saveFile($archivo, 'ventanas/');
+
+                $data['foto'] = $fileName;
+                $compartir->update($data);
             }
         }
-        exit;
-
-
+        //exit;
 
         return redirect()->route('alineacion')->with("notificacion","Se ha generado la imagen");
     }
