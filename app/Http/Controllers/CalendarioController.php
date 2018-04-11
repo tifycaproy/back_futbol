@@ -244,8 +244,9 @@ class CalendarioController extends Controller
                 ]);
 
                 $fileName = $this->saveFile($archivo, 'ventanas/');
-
-                $data['foto'] = $fileName;
+                $data=[
+                    'foto'=> $fileName,
+                ];
                 $compartir->update($data);
             }
         }
