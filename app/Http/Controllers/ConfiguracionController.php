@@ -272,8 +272,18 @@ class ConfiguracionController extends Controller
     {
         if ($request->fileNameImgBene) {
 
-            $file = $this->saveFile($request->fileNameImgBene, "configuracion/");
-            return config('app.url').'configuracion/'.$file;
+            if(is_null($request->id)) {
+
+                $file = $this->saveFile($request->fileNameImgBene, "configuracion/");
+                return config('app.url') . 'configuracion/' . $file;
+            }else {
+                $beneficios = BeneficiosDorados::where('id', $request->id)->first();
+
+                if ($request->archivo) {
+                    $this->deleteFile($beneficios->foto, "noticias/");
+                    $data['foto'] = $this->saveFile($request->archivo, "noticias/");
+                }
+            }
             
         }
         return null;
