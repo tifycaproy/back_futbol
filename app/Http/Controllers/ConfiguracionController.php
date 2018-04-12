@@ -270,6 +270,7 @@ class ConfiguracionController extends Controller
 
     public function add_beneImg(Request $request)
     {
+
         if ($request->fileNameImgBene) {
 
             if(is_null($request->id)) {
@@ -277,12 +278,12 @@ class ConfiguracionController extends Controller
                 $file = $this->saveFile($request->fileNameImgBene, "configuracion/");
                 return config('app.url') . 'configuracion/' . $file;
             }else {
-                $beneficios = BeneficiosDorados::where('id', $request->id)->first();
 
-                if ($request->archivo) {
-                    $this->deleteFile($beneficios->foto, "noticias/");
-                    $data['foto'] = $this->saveFile($request->archivo, "noticias/");
-                }
+               $beneficios = BeneficiosDorados::where('id', $request->id)->first();
+               $this->deleteFile($beneficios->foto, "configuracion/");
+               
+               $data['foto'] = $this->saveFile($request->fileNameImgBene, "configuracion/");
+
             }
             
         }
