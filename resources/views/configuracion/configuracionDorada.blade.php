@@ -369,65 +369,70 @@ $('.numeros').on('input', function () {
 ////////////////////////////////////////SUSCRIPCIONES ///////////////////////////////////////
 ////////////////////////////////////////BENEFICIOS ///////////////////////////////////////
   $("#add_bene").on('click',function(){
-    if ( $("#descripcion_bene").val() ){
-      var formData = new FormData($("#formulario")[0]);
-      $.ajax({
-          url: '{{ route("add_beneImg") }}',
-          type: "POST",
-          headers: {'X-CSRF-TOKEN': token},
-          data: formData,
-          contentType: false,
-          processData: false,
-          beforeSend: function(){
-            $('#modalCargando').modal('show');
-          },
-          success: function(datos)
-          {
-            $("#imagen_secret").val(datos);
-            $("#imagen_bene").val("");
-            $('.slim').slim('destroy');
-            slimPrint();
-              $.ajax({
-                url: '{{ route("add_bene") }}',
-                type: "POST",
-                headers: {'X-CSRF-TOKEN': token},
-                datatype: 'json',
-                data:{
-                    id :$("#secreto").val(),
-                    descripcion:$( "#descripcion_bene" ).val(),
-                    tipo:$("#tipo").val(),
-                    fecha:$("#fecha").val(),
-                    titulo:$("#titulo").val(),
-                    link:$("#link").val(),
-                    active:$("#active").val(),
-                    url:$("#imagen_secret").val()
 
-                },
-                success:function(respuesta)
-                {
-                  if(respuesta != null){
-                    $("#benetab tbody tr").each(function (index){
-                        if ($(this).data('id') == respuesta.id) {
-                            $(this).remove();
-                        }
-                    });
-                    var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td>'+respuesta.fecha+'</td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
-                    $('#benetab tbody').append( boton );
-                    $( "#descripcion_bene" ).val("");
-                    $("#imagen_secret").val("");
-                    $("#secreto").val("");
-                    $("#fecha").val("");
-                    $("#titulo").val("");
-                    $("#link").val("");
-                    $('#modalCargando').modal('hide');
-                  }else{
-                    alert("Error al guardar");
-                  }
-                }
-              });
-              $("#add_bene").text('Agregar');
-          }
-      });
+    if ( $("#descripcion_bene").val()){
+        var input = document.getElementById ("imagen_bene");
+        if (input.files.length != 0) {
+
+          var formData = new FormData($("#formulario")[0]);
+          $.ajax({
+              url: '{{ route("add_beneImg") }}',
+              type: "POST",
+              headers: {'X-CSRF-TOKEN': token},
+              data: formData,
+              contentType: false,
+              processData: false,
+              beforeSend: function(){
+                $('#modalCargando').modal('show');
+              },
+              success: function(datos)
+              {
+                $("#imagen_secret").val(datos);
+                $("#imagen_bene").val("");
+                $('.slim').slim('destroy');
+                slimPrint();
+                  $.ajax({
+                    url: '{{ route("add_bene") }}',
+                    type: "POST",
+                    headers: {'X-CSRF-TOKEN': token},
+                    datatype: 'json',
+                    data:{
+                        id :$("#secreto").val(),
+                        descripcion:$( "#descripcion_bene" ).val(),
+                        tipo:$("#tipo").val(),
+                        fecha:$("#fecha").val(),
+                        titulo:$("#titulo").val(),
+                        link:$("#link").val(),
+                        active:$("#active").val(),
+                        url:$("#imagen_secret").val()
+
+                    },
+                    success:function(respuesta)
+                    {
+                      if(respuesta != null){
+                        $("#benetab tbody tr").each(function (index){
+                            if ($(this).data('id') == respuesta.id) {
+                                $(this).remove();
+                            }
+                        });
+                        var boton = '<tr  data-descripcion="' + respuesta.descripcion +'" data-id="' + respuesta.id + '" data-url="'+respuesta.url+'" ><td>'+respuesta.descripcion+'</td><td><a a target="_blank" href="'+respuesta.url+'" title="imagen">'+respuesta.url+'</a></td><td>'+respuesta.fecha+'</td><td><a id="edit_bene" type="submit" class="btn btn-success btn-xs edit_bene" >Editar</a><a id="delete_bene" type="submit" class="btn btn-danger btn-xs delete_bene" >eliminar</a></td></tr>';
+                        $('#benetab tbody').append( boton );
+                        $( "#descripcion_bene" ).val("");
+                        $("#imagen_secret").val("");
+                        $("#secreto").val("");
+                        $("#fecha").val("");
+                        $("#titulo").val("");
+                        $("#link").val("");
+                        $('#modalCargando').modal('hide');
+                      }else{
+                        alert("Error al guardar");
+                      }
+                    }
+                  });
+                  $("#add_bene").text('Agregar');
+              }
+          });
+        }else alert("La Imagen Beneficios requerida.");
     }else alert("Llenar campos.");
   });
   $("#benetab").on('click','a.edit_bene', function()
