@@ -280,9 +280,8 @@ class ConfiguracionController extends Controller
             }else {
 
                $beneficios = BeneficiosDorados::where('id', $request->id)->first();
-               $this->deleteFile($beneficios->foto, "configuracion/");
-
-               $data['foto'] = $this->saveFile($request->fileNameImgBene, "configuracion/");
+               $this->deleteFile($beneficios->url, "configuracion/");
+               $this->saveFile($request->fileNameImgBene, "configuracion/");
 
             }
             
