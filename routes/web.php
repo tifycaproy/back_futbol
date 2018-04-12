@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('calendarios', 'CalendarioController');
     Route::get('alineacion', 'CalendarioController@alineacion')->name('alineacion');
     Route::put('alineacion_actualizar', 'CalendarioController@alineacion_actualizar')->name('alineacion_actualizar');
+    Route::get('alineacion_imagen_compartir', 'CalendarioController@alineacion_imagen_compartir')->name('alineacion_imagen_compartir');
     Route::get('actividad_eliminar/{id}', 'ActividadController@destroy')->name('actividad_eliminar');
     Route::resource('actividad', 'ActividadController');
 //calendario fb
