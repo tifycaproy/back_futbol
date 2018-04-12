@@ -20,12 +20,6 @@
 <body>
     <!--CONTENEDOR-->
     <div class="container-fluid containerp"> 
-        <header class="row justify-content-center no-gutters">
-            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
-                <img src="{{ asset ('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
-                <img src="{{ asset ('compartir/images/separador.svg') }}" alt="" class="separador">
-            </div>            
-        </header>
         <!--contenido-->
         <div class="">
     <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
@@ -33,7 +27,7 @@
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
                 <h2><img src="{{asset('/') . 'compartir/images/puntos.png'}}" style="margin-right: 10px"> MAPA MILLOS</h2>
-                <h1 style="font-size: 22px; margin-top: 20px">{{ $pr->nombre }}</h1>
+                <h1 style="font-size: 22px; margin-top: 10px">{{ $pr->nombre }}</h1>
                 <p>{{ $pr->ciudad }}, {{ $pr->pais }}</p>
                 <p style="font-weight: normal; font-size: 0.8rem">{!! nl2br($pr->direccion) !!}<br>{{ date('d/m/Y H:i', strtotime($pr->hora_evento)) }}</p>
             </div>
