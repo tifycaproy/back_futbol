@@ -281,7 +281,7 @@ class ConfiguracionController extends Controller
 
                $beneficios = BeneficiosDorados::where('id', $request->id)->first();
                $this->deleteFile($beneficios->foto, "configuracion/");
-               
+
                $data['foto'] = $this->saveFile($request->fileNameImgBene, "configuracion/");
 
             }
