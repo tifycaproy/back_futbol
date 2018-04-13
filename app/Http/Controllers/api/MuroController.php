@@ -905,7 +905,7 @@ public function destroy($idpost, $token)
         );
         $fields = array('to'=>$key,
          'notification'=>array('title'=>$title,'body'=>$message),
-         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
+         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post,'id_post_codificado'=>codifica($id_post)));
 
         $payload = json_encode($fields);
 

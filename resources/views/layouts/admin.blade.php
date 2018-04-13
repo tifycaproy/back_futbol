@@ -133,6 +133,9 @@
                     <li>
                         <a href="{{ route("multimedia.index") }}"><i class="fa fa-fw fa-pencil"></i> Multimedia</a>
                     </li>
+                    <li>
+                        <a href="{{ route("terminos.index") }}"><i class="fa fa-fw fa-pencil"></i> Términos</a>
+                    </li>
 
                 </ul>
             </div>
