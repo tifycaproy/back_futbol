@@ -19,7 +19,7 @@ class TerminosController extends Controller
         $terminos=terminos::find($id);
         return view('terminos.edit')->with('terminos',$terminos);
     }
-    public function vista($id){
+    public function show($id){
          $terminos=terminos::find($id);
          
         return view('terminos.show')->with('terminos',$terminos);
