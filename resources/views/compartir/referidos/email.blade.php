@@ -219,20 +219,16 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                 data: cambio,
                 success: function (data) {
                     //console.log(data);
-                    if (data.status == 'exito') {
+                    if (data.status === 'exito') {
                         document.location = ira;
                     } else {
                         alert(data.error[0]);
-                    <<<<<<< HEAD
-                        $(this).find("button[type='submit']").prop('disabled',falses);
-                    =======
-                            $(this).find("input[type='submit']").prop('disabled',false);
-                    >>>>>>> dev
+                        $(this).find("input[type='submit']").prop('disabled',false);
                     }
                 },
                 error: function (xhr, status) {
                     alert('Disculpe, existió un problema');
-                },
+                }
             });
         });
     });
