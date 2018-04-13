@@ -194,11 +194,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
         }
         var dispositivo = getMobileOperatingSystem();
         $("#form1").submit(function (event) {
-<<<<<<< HEAD
-          $(this).find("button[type='submit']").prop('disabled',true);
-=======
           $(this).find("input[type='submit']").prop('disabled',true);
->>>>>>> dev
             event.preventDefault();
             var telefono = $('#pais').val() +" "+ $('#celular').val();
             var data_referido = new Object();
@@ -228,11 +224,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                       document.location = ira;
                     } else {
                       alert(data.error[0]);
-<<<<<<< HEAD
-                      $(this).find("button[type='submit']").prop('disabled',falses);
-=======
                       $(this).find("input[type='submit']").prop('disabled',false);
->>>>>>> dev
                     }
                 },
                 error: function (xhr, status) {
