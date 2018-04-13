@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('banners', 'BannersController');
 //Ventanas para compartir 
     Route::resource('ventanas', 'VentanasController');
+
+     Route::resource('terminos', 'TerminosController');
 });
 Route::get('documentacion', function () {
     return view('docs.documentacion');
