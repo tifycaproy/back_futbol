@@ -220,13 +220,18 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                 success: function (data) {
                     //console.log(data);
                     if (data.status == 'exito') {
-                      document.location = ira;
+                        document.location = ira;
                     } else {
-                      alert(data.error[0]);
+                        alert(data.error[0]);
+                    <<<<<<< HEAD
+                        $(this).find("button[type='submit']").prop('disabled',falses);
+                    =======
+                            $(this).find("input[type='submit']").prop('disabled',false);
+                    >>>>>>> dev
                     }
                 },
                 error: function (xhr, status) {
-                  alert('Disculpe, existió un problema');
+                    alert('Disculpe, existió un problema');
                 },
             });
         });
