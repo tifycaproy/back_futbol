@@ -34,7 +34,7 @@
         </section>
         <section class="row justify-content-center mt-3 no-gutters">
             <!--<div class="col-12 col-lg-5 ">-->
-                <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
+                <div class="col-10 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
                     <!-- Imagen-->
                     @if($imagen<>'') <img src="{{ $imagen }}" class="img-fluid" alt="">@endif
                 </div>
@@ -46,7 +46,6 @@
                         <div class="texto mt-1 pl-4 pr-4">
                             <h2>¡NO DEJES DE SEGUIR<br>AL MÁS GRANDE!</h2>
                             <h2 class="mt-1"><b>DESCARGA LA APP OFICIAL<br>DE MILLONARIOS FC</b></h2>
-                            <p>&nbsp;</p> 
                         </div>
                     </div>
                 </section>
