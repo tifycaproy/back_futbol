@@ -7,7 +7,6 @@ env:
     DB_PORT: "3306"
     DB_DATABASE: "millonarios_develop"
     DB_USERNAME: "shok-millonarios"
-  parameter-store:
     DB_PASSWORD: "mydatabasepass"
 phases:
  pre_build:
