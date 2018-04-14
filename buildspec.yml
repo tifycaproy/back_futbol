@@ -18,8 +18,9 @@ phases:
    commands:
      - vendor/bin/parallel-lint --exclude vendor .
      - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
-     - php artisan migrate --path=/database/migrations/v4  -y
-     - php artisan migrate --path=/database/migrations/v5  -y
+     - php artisan migrate --path=/database/migrations/v3  --force
+     - php artisan migrate --path=/database/migrations/v4  --force
+     - php artisan migrate --path=/database/migrations/v5  --force
      - vendor/bin/codecept run functional
  #eb_codebuild_settings:
  #  CodeBuildServiceRole: s3-admin-access
