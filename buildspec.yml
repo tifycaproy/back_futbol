@@ -3,7 +3,7 @@ env:
   variables:
     APP_NAME: "Millonarios FC - CodePipeline CI/CD"
     DB_CONNECTION: "mysql"
-    DB_HOST: ""
+    DB_HOST: "awsfcf2waysports.co6n6hotu5cp.us-east-1.rds.amazonaws.com"
     DB_PORT: "3306"
     DB_DATABASE: "millonarios_develop"
     DB_USERNAME: "shok-millonarios"
