@@ -270,22 +270,12 @@ class ConfiguracionController extends Controller
 
     public function add_beneImg(Request $request)
     {
+
         if ($request->fileNameImgBene) {
-            $foto = json_decode($request->fileNameImgBene);
-            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
-            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
-            $picture = $foto->output->image;
-            $filepath = 'configuracion/' . $fileName_foto;
-            $s3 = S3Client::factory(config('app.s3'));
-            $result = $s3->putObject(array(
-                'Bucket' => config('app.s3_bucket'),
-                'Key' => $filepath,
-                'SourceFile' => $picture,
-                'ContentType' => 'image',
-                'ACL' => 'public-read',
-            ));
-            return config('app.url').'configuracion/'.$fileName_foto;
-            
+
+            $file = $this->saveFile($request->fileNameImgBene, "configuracion/");
+            return config('app.url') . 'configuracion/' . $file;
+
         }
         return null;
         

@@ -236,7 +236,7 @@ class CalendarioController extends Controller
                 $archivo=json_encode([
                     'output' => [
                         'type' => 'image/jpeg',
-                        'image' => 'data:image/jpeg;base64,$data'
+                        'image' => 'data:image/jpeg;base64,' . $data
                     ],
                     'input' => [
                         'type' => '',
@@ -244,13 +244,14 @@ class CalendarioController extends Controller
                 ]);
 
                 $fileName = $this->saveFile($archivo, 'ventanas/');
-
-                $data['foto'] = $fileName;
+                $data=[
+                    'foto'=> $fileName,
+                ];
                 $compartir->update($data);
             }
         }
-        //exit;
+        //exit; 
 
-        return redirect()->route('alineacion')->with("notificacion","Se ha generado la imagen");
+        return redirect()->route('alineacion')->with("notificacion",'Se ha generado la imagen a compartir: ' . config('app.url') . 'ventanas/' . $fileName);
     }
 }

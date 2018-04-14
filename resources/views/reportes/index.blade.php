@@ -41,7 +41,7 @@
                         <thead>
                             <tr>
                                 <th >Usuario Reportado </th>
-                                <th >Descripcion</th>
+                                <th >Razon</th>
                                 <th width="80"></th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                             <tr data-id="{{$chats->id}}">
                                 <?php $usuario_reportado = Usuario::find($chats->usuario_reportado); ?>
                                 <td>{{ $usuario_reportado->nombre }}  {{ $usuario_reportado->apellido }} [ {{ $usuario_reportado->email }} ] </td>
-                                <td>{{ substr($chats->descripcion, 0, 50)  }}</td>
+                                <td>{{ $chats->descripcion }}   </td>
                                 <td>
                                     <a href="{{ route('chat_eliminar', codifica($chats->id) ) }}" title="Eliminar Reporte"><i class="fa fa-fw fa-ban"></i></a>
                                 </td>
@@ -71,6 +71,7 @@
                         <thead>
                             <tr>
                                 <th >Usuario Reportado</th>
+                                <th >Razon</th>
                                 <th >Post Reportado</th>
                                 <th >Foto/Video/Gif </th>
                                 <th width="80"></th>
@@ -81,6 +82,7 @@
                             @if($muros->muro_id != null && is_object($muros->post))
                                 <tr data-id="{{codifica($muros->post->id) }}">
                                     <td><a title="Usuario" >{{ $muros->post->usuario->email}}</a></td>
+                                    <td><a title="Ver Post" >{{ $muros->tipo}}</a></td>
                                     <td><a title="Ver Post" >{{ substr($muros->post->mensaje, 0, 50)}} . . . </a></td>
 
                                     @if($muros->post->tipo_post == "video"  || $muros->post->tipo_post == "gif")
@@ -92,8 +94,6 @@
                                             <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->post->foto}}" title="Ver Post">{{ config('app.url') . 'posts/' . $muros->post->foto}}</a></td>
                                         @endif
                                     @endif
-
-
                                     
                                     <td>
                                         <a href="{{ route('post_reporte_eliminar', codifica($muros->id) ) }}" title="Eliminar Reporte"><i class="fa fa-fw fa-ban"></i></a>
@@ -116,6 +116,7 @@
                         <thead>
                             <tr>
                                 <th >Comentario Reportado</th>
+                                <th >Razon</th>
                                 <th >Multimedia Reportado</th>
                                 <th width="80"></th>
                             </tr>
@@ -125,7 +126,7 @@
                             @if($muros->comentario_id != null && is_object($muros->comentario) )
                                 <tr data-id="{{codifica($muros->comentario->id)}}">
                                     <td><a title="Ver Comentario">{{ substr($muros->comentario->comentario, 0, 50)}} . . . </a></td>
-
+                                    <td><a title="Ver Post" >{{ $muros->tipo}}</a></td>
                                     <td><a target="_blank" href="{{ config('app.url') . 'posts/' . $muros->comentario->foto}}" title="Ver Post">@if($muros->comentario->foto != null){{ config('app.url') . 'posts/' . $muros->comentario->foto}}@endif</a></td>
                                     <td>
                                         <a href="{{ route('comentario_reporte_eliminar', codifica($muros->id) ) }}" title="Eliminar Comentario"><i class="fa fa-fw fa-ban"></i></a>
