@@ -207,7 +207,6 @@ inscripción, y por tanto desea no ser miembro del    <strong>PROGRAMA HINCHA DO
     estructura, selección, ordenación y presentación de sus contenidos,
     material informático, gráfico, publicitario, fotográfico, de multimedia,
     audiovisual y de diseño, así como todos los contenidos, textos y bases de
-
 datos son propiedad de <strong>LOS PROPIETARIOS,</strong> los cuales<a>se encuentran protegidos por
     las leyes Colombianas de la Comunidad Andina e internacionales sobre
     derechos de autor y propiedad industrial.
@@ -438,5 +437,4 @@ DORADO , o de los productos y servicios de    <strong>LOS PROPIETARIOS</strong> 
     <br/>
     • appmillonarios@2waysports.com
 </p>
-
 
