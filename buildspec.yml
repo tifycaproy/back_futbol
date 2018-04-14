@@ -8,11 +8,10 @@ env:
     DB_DATABASE: "millonarios_develop"
     DB_USERNAME: "shok-millonarios"
   parameter-store:
-    DB_PASSWORD: "mydatabasepass"
+    DB_PASSWORD: "keyforRDS"
 phases:
  pre_build:
    commands:
-     - export DB_PASSWORD=$DB_PASSWORD
      - php -m
      - php --ini
      - rm -rf vendor
