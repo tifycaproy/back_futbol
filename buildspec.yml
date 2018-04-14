@@ -2,12 +2,12 @@ version: 0.2
 env:
   variables:
     APP_NAME: "Millonarios FC - CodePipeline CI/CD"
-    DB_CONNECTION=mysql
-    DB_HOST=
-    DB_PORT=3306
-    DB_DATABASE=millonarios_dev
-    DB_USERNAME=root
-    DB_PASSWORD=242800gab
+    DB_CONNECTION: "mysql"
+    DB_HOST: ""
+    DB_PORT: "3306"
+    DB_DATABASE: "millonarios_develop"
+    DB_USERNAME: "shok-millonarios"
+    DB_PASSWORD: ""
 phases:
  pre_build:
    commands:
