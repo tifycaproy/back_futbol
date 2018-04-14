@@ -207,7 +207,7 @@ inscripción, y por tanto desea no ser miembro del    <strong>PROGRAMA HINCHA DO
     estructura, selección, ordenación y presentación de sus contenidos,
     material informático, gráfico, publicitario, fotográfico, de multimedia,
     audiovisual y de diseño, así como todos los contenidos, textos y bases de
-datos son propiedad de <strong>LOS PROPIETARIOS,</strong> los cuales<a>se encuentran protegidos </a><a id="_anchor_1" href="#_msocom_1" name="_msoanchor_1">[MLL1]</a>    <a>por</a><a id="_anchor_2" href="#_msocom_2" name="_msoanchor_2">[J2]</a>
+datos son propiedad de <strong>LOS PROPIETARIOS,</strong> los cuales<a>se encuentran protegidos por
     las leyes Colombianas de la Comunidad Andina e internacionales sobre
     derechos de autor y propiedad industrial.
 </p>
@@ -246,7 +246,7 @@ Los usuarios podrán utilizar y visualizar los contenidos dispuestos en el    <s
 </p>
 <p>
     El responsable del tratamiento de los datos personales es<strong> </strong>
-AZUL &amp; BLANCO MILLONARIOS F.C S.<a>A</a><a id="_anchor_3" href="#_msocom_3" name="_msoanchor_3">[J3]</a> .    <strong> </strong>
+AZUL &amp; BLANCO MILLONARIOS F.C S.A.    <strong> </strong>
 </p>
 <p>
     Sólo se almacenarán los datos personales que el usuario voluntariamente
@@ -437,35 +437,4 @@ DORADO , o de los productos y servicios de    <strong>LOS PROPIETARIOS</strong> 
     <br/>
     • appmillonarios@2waysports.com
 </p>
-<div>
-    <hr align="left" width="33%" size="1"/>
-    <div>
-        <div id="_com_1">
-            <a name="_msocom_1"></a>
-            <p>
-                <a href="#_msoanchor_1">[MLL1]</a>
-                Es verdad? Están registrados?.
-            </p>
-        </div>
-    </div>
-    <div>
-        <div id="_com_2">
-            <a name="_msocom_2"></a>
-            <p>
-                <a href="#_msoanchor_2">[J2]</a>
-                Registrados en ¿? Si se debe hacer un procedimiento extra por
-                faovr ponerlo en conocimiento de nosotros para realizarlo .
-            </p>
-        </div>
-    </div>
-    <div>
-        <div id="_com_3">
-            <a name="_msocom_3"></a>
-            <p>
-                <a href="#_msoanchor_3">[J3]</a>
-                el resposable del tratamiento cuando las personas se registran
-                es millonarios. Asi se estipuló desde el principio.
-            </p>
-        </div>
-    </div>
-</div>
+

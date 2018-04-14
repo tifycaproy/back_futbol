@@ -188,6 +188,13 @@ class ConfiguracionController extends Controller
             'target_popup' => $request->target_popup,
             'seccion_destino_popup' => $request->seccion_destino_popup,
             'id_partido_banner' => $request->id_partido_banner,
+            'boton_1_activo' => $request->boton_1_activo,
+            'boton_1_texto'=> $request->boton_1_texto,
+            'tipo_popup'=> $request->tipo_popup,
+            'version_app' => $request->version_app,
+            'version_ios' => $request->version_ios,  
+            'version_android' => $request->version_android
+
         ];
 
         Configuracion::find(1)->update($data);
@@ -229,16 +236,33 @@ class ConfiguracionController extends Controller
         return 1;
     }
 
+    public function buscar_bene(Request $request)
+    {
+        if(!is_null($request->id)){
+            $beneficios = BeneficiosDorados::findOrFail( $request->id );
+        }
+        return $beneficios;
+    }
+
     public function add_bene(Request $request)
     {
+
         if(is_null($request->id)){
-            $beneficios = BeneficiosDorados::create( $request->all() );
+
+            $beneficios = BeneficiosDorados::create( $request->all());
             return $beneficios;
+
         }else{
             $beneficios = BeneficiosDorados::findOrFail( $request->id );
             $beneficios->descripcion = $request->descripcion;
-            $beneficios->url = $request->url;
-                $beneficios->save();
+            $beneficios->titulo = $request->titulo;
+            $beneficios->link = $request->link;
+            $beneficios->fecha = $request->fecha;
+            $beneficios->active = $request->active;
+            $beneficios->tipo = $request->tipo;
+            if($request->url)
+                $beneficios->url = $request->url;
+            $beneficios->save();
             return $beneficios;
         }
       
@@ -246,22 +270,12 @@ class ConfiguracionController extends Controller
 
     public function add_beneImg(Request $request)
     {
+
         if ($request->fileNameImgBene) {
-            $foto = json_decode($request->fileNameImgBene);
-            $extensio = $foto->output->type == 'image/png' ? '.png' : '.jpg';
-            $fileName_foto = (string)(date("YmdHis")) . (string)(rand(1, 9)) . $extensio;
-            $picture = $foto->output->image;
-            $filepath = 'configuracion/' . $fileName_foto;
-            $s3 = S3Client::factory(config('app.s3'));
-            $result = $s3->putObject(array(
-                'Bucket' => config('app.s3_bucket'),
-                'Key' => $filepath,
-                'SourceFile' => $picture,
-                'ContentType' => 'image',
-                'ACL' => 'public-read',
-            ));
-            return config('app.url').'configuracion/'.$fileName_foto;
-            
+
+            $file = $this->saveFile($request->fileNameImgBene, "configuracion/");
+            return config('app.url') . 'configuracion/' . $file;
+
         }
         return null;
         

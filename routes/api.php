@@ -46,6 +46,8 @@ Route::post('registrar_referidos/{codifo}', 'api\UsuariosController@registrar_re
 Route::get('consultar_referidos/{token}', 'api\UsuariosController@consultar_referidos');
 
 Route::get('usuarios_activos', 'api\UsuariosController@usuarios_activos');
+//v3
+Route::post('ChatReporte', 'api\UsuariosController@ChatReporte');
 
 //registrar referidos
 Route::post('registrar_referido', 'api\UsuariosController@registrar_referido');
@@ -95,7 +97,7 @@ Route::put('muro/{id}', 'api\MuroController@edit_post');
 Route::get('muro', 'api\MuroController@index');
 Route::get('perfil_usuario/{idusuario}', 'api\MuroController@perfil_usuario');
 Route::post('muro_comentar', 'api\MuroController@muro_comentar')->middleware(['user.dorado:funcion,muro_comentar']);
-Route::put('muro_edit_coment/{idpost}/{idcoment}/{token}', 'api\MuroController@muro_edit_coment');
+Route::post('muro_edit_coment/{idpost}/{idcoment}/{token}', 'api\MuroController@muro_edit_coment');
 Route::delete('muro_comentar/{idpost}/{idcoment}/{token}', 'api\MuroController@muro_delete_coment');
 Route::get('comentarios_post/{idpost}', 'api\MuroController@comentarios_post');
 Route::post('muro_aplaudir', 'api\MuroController@muro_aplaudir')->middleware(['user.dorado:funcion,muro_post_aplaudir']);
@@ -105,7 +107,7 @@ Route::delete('muro/{idpost}/{token}', 'api\MuroController@destroy');
 Route::get('post/{idpost}/usuario/{token}', 'api\MuroController@single_post');
 
 Route::get('topMuroAplausos', 'api\MuroController@topAplausos');
-Route::post('SearchMuro', 'api\MuroController@SearchMuro');
+Route::post('SearchMuro/{page?}', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
@@ -133,3 +135,9 @@ Route::get('punto_referencia', 'api\PuntoReferenciaController@punto_referencia')
 
 //Multimedia
 Route::get('multimedia', 'api\ConfiguracionController@multimedia');
+
+//posicion
+Route::get('posicion', 'api\PosicionController@posicion');
+
+//perfil_nuevo
+Route::get('perfil/{id}', 'api\MuroController@perfil');

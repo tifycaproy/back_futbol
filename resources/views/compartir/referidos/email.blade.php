@@ -223,8 +223,8 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                     if (data.status === 'exito') {
                         document.location = ira;
                     } else {
-                        alert(data.error[0]);
-                        $(this).find("input[type='submit']").prop('disabled',false);
+                      alert(data.error[0]);
+                      $(this).find("input[type='submit']").prop('disabled',false);
                     }
                 },
                 error: function (xhr, status) {

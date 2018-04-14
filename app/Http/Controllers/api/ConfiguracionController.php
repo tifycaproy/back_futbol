@@ -26,7 +26,7 @@ class ConfiguracionController extends Controller
             'url_imagen_beneficios_dorados', 'footer_formulario_dorados', 'texto_bienvenida_dorados',
             'video_de_bienvenida_dorados', 'url_tyc_dorados','url_popup_dorado','act_pop_inicial','link_pop_inicial','target_popup','seccion_destino_popup', 
             'titulo_0_1','sub_titulo_1_1','sub_titulo_1_2','sub_titulo_1_3','sub_titulo_1_4','sub_titulo_1_5',
-            'titulo_0_2','sub_titulo_2_1','sub_titulo_2_2','sub_titulo_2_3','sub_titulo_2_4'
+            'titulo_0_2','sub_titulo_2_1','sub_titulo_2_2','sub_titulo_2_3','sub_titulo_2_4','boton_1_activo','boton_1_texto','boton_2_activo','boton_2_texto','tipo_popup','version_app','version_ios','version_android'
         ]);
         $data["status"] = 'exito';
         $data["data"] = $configuracion;
@@ -40,7 +40,8 @@ class ConfiguracionController extends Controller
     public function multimedia()
     {
         $data["status"] = 'exito';
-        $data["data"] = Multimedia::first(['url_envivo']);
+        $data["data"] = Multimedia::first(['url_envivo','foto']);
+        $data["data"]["foto"] = config('app.url') . 'noticias/' . $data["data"]["foto"];
         return $data;
     }
 }

@@ -16,7 +16,7 @@
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" rel="stylesheet">
     <link href="css/slim.min.css" rel="stylesheet">
-@yield('css')
+    @yield('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,7 +81,7 @@
                     <li>
                         <a href="{{ url('funciones_doradas') }}"><i class="fa fa-fw fa-pencil"></i> Funciones Doradas</a>
                     </li>
-                     <li>
+                    <li>
                         <a href="{{ route("enviarNotificaciones") }}"><i class="fa fa-fw fa-pencil"></i> Enviar notificaciones</a>
                     </li>
                     <li>
@@ -109,6 +109,9 @@
                         <a href="{{ route("copasfb.index") }}"><i class="fa fa-fw fa-pencil"></i> Copas / Calendario FB</a>
                     </li>
                     <li>
+                        <a href="{{ route("posiciones.index") }}"><i class="fa fa-fw fa-pencil"></i> Posiciones</a>
+                    </li>
+                    <li>
                         <a href="{{ route("convocados") }}"><i class="fa fa-fw fa-pencil"></i> Convocados</a>
                     </li>
                     <li>
@@ -123,6 +126,17 @@
                     <li>
                         <a href="{{ route("puntoreferencia.index") }}"><i class="fa fa-fw fa-pencil"></i> Puntos de referencia</a>
                     </li>
+                    <li>
+                        <a href="{{ route("reporte.index") }}"><i class="fa fa-fw fa-pencil"></i> Reportes</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route("multimedia.index") }}"><i class="fa fa-fw fa-pencil"></i> Multimedia</a>
+                    </li>
+                    <li>
+                        <a href="{{ route("terminos.index") }}"><i class="fa fa-fw fa-pencil"></i> Términos</a>
+                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -132,7 +146,7 @@
 
             <div class="container-fluid">
 
-@yield('content')
+                @yield('content')
 
             </div>
             <!-- /.container-fluid -->
@@ -148,7 +162,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
 
-@yield('javascript')
+    @yield('javascript')
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

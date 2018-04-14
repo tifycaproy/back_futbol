@@ -12,7 +12,8 @@ use App\MuroAplauso;
 use App\MuroComentarioAplauso;
 use App\MuroReporte;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
 class MuroController extends Controller
 {
     /**
@@ -311,7 +312,7 @@ class MuroController extends Controller
         $data["data"]=[];
         foreach ($posts as $post) {
             if($post->foto<>''){
-                if ($post->tipo_post == "gif")
+                if ($post->tipo_post == "gif" || $post->tipo_post == "video")
                 {
                     $post->foto = $post->foto;
                 }else{
@@ -526,34 +527,11 @@ class MuroController extends Controller
             if(count($errors)>0){
                 return ["status" => "fallo", "error" => $errors];
             }
-            //fin validaciones
-            if(isset($request["foto"])){
-                $foto=$request["foto"];
-                if($foto<>''){
-                    list($tipo, $Base64Img) = explode(';', $foto);
-                    $extensio=$tipo=='data:image/png' ? '.png' : '.jpg';
-                    $request["foto"] = (string)(date("YmdHis")) . (string)(rand(1,9)) . $extensio;
-                    $filepath='posts/' . $request["foto"];
-
-                    $s3 = S3Client::factory(config('app.s3'));
-                    $result = $s3->putObject(array(
-                        'Bucket' => config('app.s3_bucket'),
-                        'Key' => $filepath,
-                        'SourceFile' => $foto,
-                        'ContentType' => 'image',
-                        'ACL' => 'public-read',
-                    ));
-
-                }
-            }else{
-                $request["foto"]='';
-            }
-
 
             $comentPost = MuroComentario::where('id',$idcoment)
                 ->where('muro_id', $idpost)
                 ->where('usuario_id', $idusuario)
-                ->update($request);
+                ->update(['comentario'=> $request["comentario"]]);
 
             if ($comentPost) {
                 return ["status" => "exito", "data" => []];
@@ -927,7 +905,7 @@ public function destroy($idpost, $token)
         );
         $fields = array('to'=>$key,
          'notification'=>array('title'=>$title,'body'=>$message),
-         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
+         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post,'id_post_codificado'=>codifica($id_post)));
 
         $payload = json_encode($fields);
 
@@ -946,96 +924,243 @@ public function destroy($idpost, $token)
 
     public function SearchMuro(Request $request)
     {
-        $muro = DB::table('usuarios')
-        ->select('nombre','apellido','apodo', 'id') 
+        $muro = Usuario::select('nombre','apellido','apodo', 'id','foto') 
         ->where('nombre', 'like', '%'.$request->busqueda.'%')
         ->orWhere('apellido', 'like', '%'.$request->busqueda.'%')
-        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%');
-
-        return $muro->select('nombre','apellido','apodo','id')->distinct()->get();
+        ->orWhere('apodo', 'like', '%'.$request->busqueda.'%')->distinct()->paginate(25);
+        $data["data"]=[];
+        foreach ($muro as $mu) {
+            if($mu->foto<>'') $mu->foto=config('app.url') . 'usuarios/' . $mu->foto;
+            $data["data"][]=$mu;
+        }
+        return $muro;
     }
 
-            public function muro_reporte(Request $request)
-            {
-                $usuario=decodifica_token($request->token);
-                if(!isset($request->token)){
-                    return ['status' => 'fallo','error'=>["Usuario Requerido"]];
-                }
-
-                if($usuario == null || empty($usuario)){
-                    return ['status' => 'fallo','error'=>["Usuario no encontrado"]];
-                }
-                
-                if(!isset($request->post_id) && !isset($request->comentario_id)){
-                    return ['status' => 'fallo','error'=>["Post/Comentario Requerido"]];
-                }
-                if(!isset($request->tipo)){
-                    return ['status' => 'fallo','error'=>["Reporte Requerido"]];
-                }
-                $postid = null;
-                if($request->post_id != null){
-                    $postid = decodifica($request->post_id);
-                }
-
-                $comentarioid = null;
-                if($request->comentario_id != null){
-                    $comentarioid = decodifica($request->comentario_id);
-                }
-                $result = MuroReporte::create([
-                    'tipo' => $request->tipo,
-                    'descripcion' => null,
-                    'muro_id' => $postid ,
-                    'comentario_id' => $comentarioid,
-                    'usuario_id' => $usuario
-                ]);
-                
-                if(is_object($result)){
-                    return ["status" => "exito", "data" => []];
-                }else{
-                    return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-                }
-            
-            }
-
-            public function reporte()
-            {
-                $data["status"]='exito';
-                foreach (MuroReporte::all() as $reporte ) {
-                    $comenatrio = null;$usuario = null;$post = null;$email = null;
-                    $nombre = null;$apellido = null;$apodo = null;
-                    $mensaje = null;$foto = null;
-                    if(!is_null($reporte->comentario_id)){
-                        $comenatrio = MuroComentario::find($reporte->comentario_id)->comentario;
-                    }
-                    if(!is_null($reporte->muro_id)){
-                        $mensaje = $reporte->mensaje; $foto = config('app.url') . 'usuarios/' .$reporte->foto;
-                    }
-                    if(!is_null($reporte->usuario_id)){
-                        $email = $reporte->usuario->email;$nombre = $reporte->usuario->nombre;
-                        $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
-                    }
-
-                    if(!is_null($comenatrio)){
-                        $ti = "comentario";
-                    }else{
-                        $ti  = "post";
-                    }
-                    
-                    $data["data"][]=[
-                        'reporte' => $reporte->tipo,
-                        'usuario' =>  $email,
-                        'nombre' =>  $nombre." ".$apellido,
-                        'apodo' =>  $apodo,
-                        'post_mensaje' =>  $mensaje,
-                        'post_archivo' =>  $foto,
-                        'post_comentario' =>$comenatrio,
-                        'tipo' => $ti,
-                        'post_id' => $reporte->muro_id,
-                        'comentario_id' => $reporte->comentario_id
-                    ];
-                }
-                return $data;
-            }
-
+    public function muro_reporte(Request $request)
+    {
+        $usuario=decodifica_token($request->token);
+        if(!isset($request->token)){
+            return ['status' => 'fallo','error'=>["Usuario Requerido"]];
         }
+
+        if($usuario == null || empty($usuario)){
+            return ['status' => 'fallo','error'=>["Usuario no encontrado"]];
+        }
+        
+        if(!isset($request->post_id) && !isset($request->comentario_id)){
+            return ['status' => 'fallo','error'=>["Post/Comentario Requerido"]];
+        }
+        if(!isset($request->tipo)){
+            return ['status' => 'fallo','error'=>["Reporte Requerido"]];
+        }
+        $postid = null;
+        if($request->post_id != null){
+            $postid = decodifica($request->post_id);
+        }
+
+        $comentarioid = null;
+        if($request->comentario_id != null){
+            $comentarioid = decodifica($request->comentario_id);
+        }
+        $result = MuroReporte::create([
+            'tipo' => $request->tipo,
+            'descripcion' => null,
+            'muro_id' => $postid ,
+            'comentario_id' => $comentarioid,
+            'usuario_id' => $usuario
+        ]);
+        
+        if(is_object($result)){
+            return ["status" => "exito", "data" => []];
+        }else{
+            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+        }
+    
+    }
+
+    public function reporte()
+    {
+        $data["status"]='exito';
+        foreach (MuroReporte::all() as $reporte ) {
+            $comenatrio = null;$usuario = null;$post = null;$email = null;
+            $nombre = null;$apellido = null;$apodo = null;
+            $mensaje = null;$foto = null;
+            if(!is_null($reporte->comentario_id)){
+                $comenatrio = MuroComentario::find($reporte->comentario_id)->comentario;
+            }
+            if(!is_null($reporte->muro_id)){
+                $mensaje = $reporte->mensaje; $foto = config('app.url') . 'usuarios/' .$reporte->foto;
+            }
+            if(!is_null($reporte->usuario_id)){
+                $email = $reporte->usuario->email;$nombre = $reporte->usuario->nombre;
+                $apellido = $reporte->usuario->apellido;$apodo = $reporte->usuario->apodo;
+            }
+
+            if(!is_null($comenatrio)){
+                $ti = "comentario";
+            }else{
+                $ti  = "post";
+            }
+            
+            $data["data"][]=[
+                'reporte' => $reporte->tipo,
+                'usuario' =>  $email,
+                'nombre' =>  $nombre." ".$apellido,
+                'apodo' =>  $apodo,
+                'post_mensaje' =>  $mensaje,
+                'post_archivo' =>  $foto,
+                'post_comentario' =>$comenatrio,
+                'tipo' => $ti,
+                'post_id' => $reporte->muro_id,
+                'comentario_id' => $reporte->comentario_id
+            ];
+        }
+        return $data;
+    }
+
+    public function perfil($token)
+    {
+        $usuarioid=$token;
+        $aplausos_total=0;
+        $comentario_recibidos=0;
+        $posts=Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->paginate(15);
+        $data["status"]='exito';
+        $data["post"]=[];
+
+        foreach ($posts as $post) {
+            if($post->foto<>''){
+                if ($post->tipo_post == "gif")
+                {
+                    $post->foto = $post->foto;
+                }else{
+                    $post->foto=config('app.url') . 'posts/' . $post->foto;
+                }
+            } 
+            $usuario=$post->usuario;
+            $usuario=$usuario->toArray();
+            $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
+
+            if($usuario["foto"]==''){
+                if($usuario["foto_redes"]<>""){
+                    $usuario["foto"]=$usuario["foto_redes"];
+                }else{
+                    $usuario["foto"]="";
+                }
+            }else{
+                $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
+            }
+            $usuario["codigo"]=codifica($usuarioid);
+            unset($usuario["foto_redes"]);
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuarioid)->first() ? 1 : 0;
+            $usuarios_aplauso = MuroAplauso
+            ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
+            ->where('muro_id',$post->id)
+            ->get();
+            $user = array();
+            foreach ($usuarios_aplauso as $usuarios_aplausos) {
+                if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;
+                else if($usuarios_aplausos->foto)
+                    $foto = config('app.url') . 'usuarios/' . $usuario['foto'];
+                else 
+                    $foto = "";
+
+                if($usuarios_aplausos->apodo){
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->apodo,
+                        'foto' => $foto,
+                    );
+                    $user[]=$usuarios_aplausos;
+
+                }else{
+                    $usuarios_aplausos= array(
+                        'id'=>$usuarios_aplausos->id,
+                        'nombre'=>$usuarios_aplausos->nombre .' '.$usuarios_aplausos->apellido,
+                        'foto' => $foto,
+                    );
+                    $user[]=$usuarios_aplausos;
+                }
+
+            }
+
+
+
+            if(!is_null($post->thumbnail)){
+                $post->thumbnail = config('app.url') . 'posts/' . $post->thumbnail;
+            }
+            
+            $data["post"][]=[
+                'idpost'=>codifica($post->id),
+                'mensaje'=>$post->mensaje,
+                'foto'=>$post->foto,
+                'thumbnail'=>$post->thumbnail,
+                'fecha'=>Carbon::parse($post->created_at)->toDateTimeString(),
+                'usuario' => $usuario,
+                'ncomentarios'=>$post->comentarios->count(),
+                'naplausos'=>$post->aplausos->count(),
+                'usuarios_aplausos'=>$user,
+                'yaaplaudio' => $yaaplaudio,
+            ];
+        }
+        $posts=Muro::where('usuario_id','=',$usuarioid)->paginate(count(Muro::where('usuario_id','=',$usuarioid)->get()));
+
+        $comentarios=MuroComentario::where('usuario_id','=',$usuarioid)->get();
+        $comentario_hechos = 0;
+        foreach ($comentarios as $comen ) {
+            if($comen->muro->usuario_id != $usuarioid){
+                $comentario_hechos += 1; 
+            }
+        }
+
+        foreach ($posts as $post) {
+            $aplausos_total += $post->aplausos->count();
+            $comentario_recibidos += $post->comentarios->count();
+        }
+        $userx = Usuario::select('nombre','apellido','apodo', 'id','foto','created_at as desde', 'foto_redes') 
+        ->where('id','=',$usuarioid)->get();
+
+        
+        $foto = null;
+        if(!is_null($userx->first()->foto_redes)){
+            $foto=$userx->first()->foto_redes;
+        }else{
+            if($userx->first()->foto<>''){
+                $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+            }
+        } 
+        $fecha = Carbon::parse($userx->first()->desde);
+        $data["usuario"]=[
+            "nombre" => $userx->first()->nombre, 
+            "apellido" => $userx->first()->apellido, 
+            "apodo" => $userx->first()->apodo, 
+            "id" => crea_token($userx->first()->id), 
+            "foto" => $foto, 
+            "dede" => $fecha->day." de ".$this->mes($fecha->month)." ".$fecha->year
+        ];
+        $data["aplausos_recibidos"] = $aplausos_total;
+        $data["comentario_recibidos"] = $comentario_recibidos;
+        $data["comentario_dados"] = $comentario_hechos;
+        $data["publicaciones"]=count(Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->get());
+        return $data;
+    }
+
+    public function mes($mes)
+    {
+        if($mes == 1){return "Enero";}
+        if($mes == 2){return "Febrero";}
+        if($mes == 3){return "Marzo";}
+        if($mes == 4){return "Abril";}
+        if($mes == 5){return "Mayo";}
+        if($mes == 6){return "Junio";}
+        if($mes == 7){return "Julio";}
+        if($mes == 8){return "Agosto";}
+        if($mes == 9){return "Septiembre";}
+        if($mes == 10){return "Octubre";}
+        if($mes == 11){return "Noviembre";}
+        if($mes == 12){return "Diciembre";}
+    }   
+
+
+}
 

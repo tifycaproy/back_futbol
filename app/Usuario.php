@@ -13,4 +13,9 @@ class Usuario extends Model
 	protected $guarded = ['id'];
 
 //relaciones
+	public function post()
+    {
+        return $this->hasMany('App\Muro','usuario_id');
+    }
+
 }

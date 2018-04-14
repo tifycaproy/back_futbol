@@ -15,6 +15,10 @@ use App\Noticia;
 use App\Videovr;
 use App\Aplauso;
 use App\EncuestaRespuesta;
+use App\PuntoReferencia;
+use App\Multimedia;
+use function PHPSTORM_META\elementType;
+
 
 class CompartirController extends Controller
 {
@@ -22,6 +26,8 @@ class CompartirController extends Controller
     public function onceideal($ruta)
     {
         //dd($ruta);
+        $seccion='onceideal';
+        $seccion=Compartir::where('seccion',$seccion)->first();
         list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
@@ -52,15 +58,20 @@ class CompartirController extends Controller
         }
     }
 
-    public function onceidealr($ruta,$id)
+    public function onceidealr($ruta,$id=null)
     {
         //dd($ruta);
+        $seccion='onceideal';
+        $seccion=Compartir::where('seccion',$seccion)->first();
         list($idusuario,$idcalendario) = explode('.', $ruta);
         $idusuario=decodifica($idusuario);
         $idcalendario=decodifica($idcalendario);
         //dd($idusuario,$idcalendario);
         $fecha=Calendario::find($idcalendario);
         $once=Onceideal::where('usuario_id',$idusuario)->where('calendario_id',$idcalendario)->first();
+        if($once == null){
+            return ['status' => 'fallo','error'=>["Disculpe, no coinciden los registros"]];
+        }
         if(isset($fecha)){
             $data=[
                 "bandera_1"=>config('app.url') . 'equipos/' . $fecha->equipo1->bandera,
@@ -78,7 +89,7 @@ class CompartirController extends Controller
                     ];
                 }
             }
-            return view('compartir.onceideal')->with("data",$data);
+            return view('compartir.onceideal')->with("data",$data)->with('seccion',$seccion);
         }else{ $seccion='calendario';
             $seccion=Compartir::where('seccion',$seccion)->first();
             return view('compartir.general')->with('seccion',$seccion);
@@ -242,6 +253,29 @@ class CompartirController extends Controller
       public function descargar()
     {
         return view('compartir.referidos.descargar');
+    }
+    public function punto_referencia($id)
+    {
+        $pr=PuntoReferencia::find($id);
+        $imagen='';
+        if($tiene_imagen=$pr->imagenes->first()) $imagen=$imagen=config('app.url') . 'punto_referencia/' . $tiene_imagen->imagen;
+        return view('compartir.punto_referencia',['pr'=>$pr, 'imagen' => $imagen]);
+    }
+
+    public function video_share($id)
+    {
+        $data=noticia::find($id);
+        $seccion='video';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        return view('compartir.video',['data'=>$data, 'seccion'=>$seccion]);
+    }
+
+    public function envivo_share()
+    {
+        $data=Multimedia::all()->first();
+        $seccion='envivo';
+        $seccion=Compartir::where('seccion',$seccion)->first();
+        return view('compartir.envivo',['data'=>$data,'seccion'=>$seccion]);
     }
 }
 //

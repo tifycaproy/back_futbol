@@ -46,12 +46,18 @@ class Controller extends BaseController
 
     public function deleteFile($file, $path)
     {
-        $s3 = S3Client::factory(config('app.s3'));
+        try {
+            if($file<>''){
+                $s3 = S3Client::factory(config('app.s3'));
 
-        $result = $s3->deleteObject(array(
-            'Bucket' => config('app.s3_bucket'),
-            'Key' => $path . $file
-        ));
+                $result = $s3->deleteObject(array(
+                    'Bucket' => config('app.s3_bucket'),
+                    'Key' => $path . $file
+                ));
+            }
+        } catch (Exception $e) {
+            \Log::info('Error creating item: ' . $e);
+        }
     }
 
 }

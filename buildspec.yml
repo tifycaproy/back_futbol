@@ -1,55 +1,24 @@
 version: 0.2
 env:
   variables:
-    DB_PORT: "3306"
-    SESSION_DRIVER: "database"
-    S3_REGION: "us-east-1"
     APP_NAME: "Millonarios FC - CodePipeline CI/CD"
-    MAIL_ENCRYPTION: "tls"
-    PHP_ALLOW_URL_FOPEN: "On"
-    PHP_DOCUMENT_ROOT: "/public"
-    MAIL_USERNAME: "app@appmillonariosfc.com"
-    SENDINBLUE_KEY: "mF1nwzIhNcMXRUqA"
-    S3_SECRET: "------------"
-    S3_KEY: "---------------"
-    S3_BUCKET: "cmsmillos"
-    BROADCAST_DRIVER: "log"
-    CACHE_DRIVER: "file"
-    APP_URL: "http://cmsmillos.s3-website-us-east-1.amazonaws.com/"
-    PHP_MEMORY_LIMIT: "1024M"
-    DB_CONNECTION: "mysql"
-    MAIL_PASSWORD: "_________"
-    #DB_DATABASE: "millonarios_develop"
-    DB_PASSWORD: "------------------"
-    LANG: "en_US.UTF-8"
-    PHP_MAX_EXECUTION_TIME: "300"
-    APP_DEBUG: "true"
-    APP_KEY: "base64:LxF8NdKWs8zAIiMcxTVvVHHLC/nY3GPXMS/0gcobUbA="
-    PHP_DISPLAY_ERRORS: "On"
-    DB_USERNAME: "shok-millonarios"
-    APP_LOG_LEVEL: "debug"
-    MAIL_DRIVER: "sendinblue"
-    APP_SHARE_URL: "http://millos-dev.2waysports.com/"
-    APP_ENV: "develop"
-    PHP_ZLIB_OUTPUT_COMPRESSION: "Off"
-    QUEUE_DRIVER: "sync"
-    MAIL_HOST: "smtp-relay.sendinblue.com"
 phases:
  pre_build:
    commands:
-     - touch database/database.sqlite
+     - php -m
      - php --ini
- build:
-   commands:
      - rm -rf vendor
      - rm -rf composer.lock
+ build:
+   commands:
      - composer install --no-interaction --prefer-dist
+     - composer dump-autoload
+     - touch database/database.sqlite
  post_build:
    commands:
-     - pwd
-     - ls
-     - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force
-     - vendor/bin/codecept run acceptance --steps
+     - vendor/bin/parallel-lint --exclude vendor .
+     - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
+     - vendor/bin/codecept run functional
  #eb_codebuild_settings:
  #  CodeBuildServiceRole: s3-admin-access
  #  ComputeType: BUILD_GENERAL1_SMALL

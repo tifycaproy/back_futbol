@@ -228,3 +228,8 @@ ul.alert-dropdown {
 
 .activo{color: #FFF!important}
 .bloquear{color: #f00}
+
+.tabla_puntos{margin: 10px 0;}
+.tabla_puntos td{text-align: center}
+.tabla_puntos td img{width: 70px; padding:5px; cursor: pointer;}
+.tabla_puntos td img.active{background: #ddd;}

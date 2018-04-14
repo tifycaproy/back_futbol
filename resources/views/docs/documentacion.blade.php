@@ -297,10 +297,18 @@ $data = array(
         "Ruta" => "/partidos",
         "Método" => "GET",
         "Éxito (Array)" => array(
+            "copa_id",
             "copa",
             "partido (array)" => [
                 "idpartido", "estado", "equipo_1", "bandera_1", "goles_1", "equipo_2", "bandera_2", "goles_2", "fecha", "fecha_etapa", "estadio", "info"
             ],
+        )
+    ),
+    "Posiciones" => array(
+        "Ruta" => "/posicion",
+        "Método" => "GET",
+        "Éxito (Array)" => array(
+                "posicion_id","posicion", "bandera","equipo_id","pt","pj","pg","pp","pe","gc","gf","dif"
         )
     ),
     "Calendario" => array(
@@ -572,7 +580,7 @@ $data = array(
 
     "Muro Editar comentario" => array(
         "Ruta" => "/muro_edit_coment/{idpost}/{idcoment}/{token}",
-        "Método" => "PUT",
+        "Método" => "POST",
         "Parámetros" => array(
             "comentario" => "textarea / comentario",
             "foto" => "base64 / opcional",
@@ -664,10 +672,10 @@ $data = array(
         ],
     ),
     "Beneficios de Suscripcion" => array(
-        "Ruta" => "/suscripciones/razonescancelarsuscripcion",
+        "Ruta" => "/suscripciones/beneficios",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id', 'descripcion', 'url'
+            'id', 'link','titulo','descripcion', 'fecha', 'tipo','url'
         ],
     ),
     "Cancelar Suscripcion" => array(
@@ -687,7 +695,7 @@ $data = array(
         "Ruta" => "/punto_referencia",
         "Método" => "GET",
         "Éxito (Array)" => [
-            'id','titulo', 'latitud','longitud','direccion','fecha_evento','hora','imagenes'
+            'id','titulo', 'latitud','longitud','direccion','ciudad','pais','fecha_evento','hora','icono (null,"bar-rest","cc","estadio","hotel","tienda")','imagenes'
         ],
         "Falla" => array(
             "[]" => array("Array vacio")
