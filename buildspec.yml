@@ -19,7 +19,7 @@ phases:
      - echo ************************************************************************************************
      - echo ************************************  MYSQL INSTALL ********************************************
      - echo ************************************************************************************************
-     - yum install php7.2-mysql -y
+     - apt-get install mysql-server php7.1-mysql phpmyadmin -y
  build:
    commands:
      - composer install --no-interaction --prefer-dist
