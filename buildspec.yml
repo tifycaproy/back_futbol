@@ -19,7 +19,7 @@ phases:
      - echo ************************************************************************************************
      - echo ************************************  MYSQL INSTALL ********************************************
      - echo ************************************************************************************************
-     - apt-get install mysql-server php-mysql -y
+     #- apt-get install mysql-server php-mysql -y
  build:
    commands:
      - composer install --no-interaction --prefer-dist
