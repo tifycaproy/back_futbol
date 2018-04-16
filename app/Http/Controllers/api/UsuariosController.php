@@ -162,7 +162,15 @@ class UsuariosController extends Controller
                     $errors[] = "No se puede guardar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
                 }
             }
-        }     
+        }
+
+        if (isset($request["fecha_nacimiento"])) {
+
+            if($request["fecha_nacimiento"] == " " || $request["fecha_nacimiento"] == "")
+                $request["fecha_nacimiento"] = null;
+        }
+
+
         if (count($errors) > 0) {
             return ["status" => "fallo", "error" => $errors];
         }
@@ -365,11 +373,11 @@ class UsuariosController extends Controller
                     'albiazul','millos');
                 foreach($bads as $bad) {
                     if (stripos($string,$bad) !== false) {
-                     $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
-                 }
-             }
-         }
-         if (isset($request["apellido"])) {
+                       $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
+                   }
+               }
+           }
+           if (isset($request["apellido"])) {
             $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
             if ($resultado != "") {
                 if ($resultado['hasMatch']) {
@@ -644,11 +652,11 @@ public function actualizar_usuario(Request $request, $token)
                 'albiazul','millos');
             foreach($bads as $bad) {
                 if (stripos($string,$bad) !== false) {
-                 $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
-             }
-         }
-     }
-     if (isset($request["apellido"])) {
+                   $errors[] = "No se pudo actualizar tu nombre, esta palabra es de uso exclusivo de la App Oficial";
+               }
+           }
+       }
+       if (isset($request["apellido"])) {
         $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
         if ($resultado != "") {
             if ($resultado['hasMatch']) {
@@ -660,11 +668,11 @@ public function actualizar_usuario(Request $request, $token)
             'albiazul','millos');
         foreach($bads as $bad) {
             if (stripos($string,$bad) !== false) {
-             $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
-         }
-     }
- }
- if (isset($request["apodo"])) {
+               $errors[] = "No se pudo actualizar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
+           }
+       }
+   }
+   if (isset($request["apodo"])) {
     $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apodo"], true);
     if ($resultado != "") {
         if ($resultado['hasMatch']) {
@@ -676,10 +684,18 @@ public function actualizar_usuario(Request $request, $token)
         'albiazul','millos');
     foreach($bads as $bad) {
         if (stripos($string,$bad) !== false) {
-         $errors[] = "No se pudo actualizar tu apodo, esta palabra es de uso exclusivo de la App Oficial";
-     }
- }
+           $errors[] = "No se pudo actualizar tu apodo, esta palabra es de uso exclusivo de la App Oficial";
+       }
+   }
 }
+
+
+if (isset($request["fecha_nacimiento"])) {
+
+    if($request["fecha_nacimiento"] == " " || $request["fecha_nacimiento"] == "")
+        $request["fecha_nacimiento"] = null;
+}
+
 if (count($errors) > 0) {
     return ["status" => "fallo", "error" => $errors];
 }
@@ -814,11 +830,11 @@ public function actualizarNotificacionToken(Request $request)
     $usuario = Usuario::where('id',$idUsuario)->first();
     if(!$usuario){
             //Si no existe, retornamos error
-     return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
- }
- else
- {
-            
+       return ['status' => 'fallo', 'error' => ["Error en token de usuario"]];
+   }
+   else
+   {
+    
     $eliminarToken = Usuario::where('notificacionToken',$notificacionToken)->get();
 
     foreach($eliminarToken as $usuarioEliminar)
@@ -837,28 +853,28 @@ public function actualizarNotificacionToken(Request $request)
 }
 }
 
-    public function ChatReporte(Request $request)
-    {
-        if(!isset($request->usuario)){
-            return ['status' => 'fallo', 'error' => ["Falta usuario que efectua el reporte"]];
-        }
-        if(!isset($request->usuario_reportado)){
-            return ['status' => 'fallo', 'error' => ["Falta usuario reportado"]];
-        }
-        if(!isset($request->descripcion)){
-            return ['status' => 'fallo', 'error' => ["Falta motivo de reporte"]];
-        }
-
-        $ChatReporte = new ChatReporte();
-        $ChatReporte->usuario_id = $request->usuario;
-        $ChatReporte->usuario_reportado = $request->usuario_reportado;
-        $ChatReporte->descripcion = $request->descripcion;
-        if($ChatReporte->save()){
-            return ["status" => "exito", "data" => []];
-        }else{
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        }
+public function ChatReporte(Request $request)
+{
+    if(!isset($request->usuario)){
+        return ['status' => 'fallo', 'error' => ["Falta usuario que efectua el reporte"]];
     }
+    if(!isset($request->usuario_reportado)){
+        return ['status' => 'fallo', 'error' => ["Falta usuario reportado"]];
+    }
+    if(!isset($request->descripcion)){
+        return ['status' => 'fallo', 'error' => ["Falta motivo de reporte"]];
+    }
+
+    $ChatReporte = new ChatReporte();
+    $ChatReporte->usuario_id = $request->usuario;
+    $ChatReporte->usuario_reportado = $request->usuario_reportado;
+    $ChatReporte->descripcion = $request->descripcion;
+    if($ChatReporte->save()){
+        return ["status" => "exito", "data" => []];
+    }else{
+        return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+    }
+}
 
 
 }
