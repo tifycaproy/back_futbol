@@ -1058,10 +1058,10 @@ public function destroy($idpost, $token)
             ->get();
             $user = array();
             foreach ($usuarios_aplauso as $usuarios_aplausos) {
-                if($usuarios_aplausos->foto_redes)
-                    $foto = $usuarios_aplausos->foto_redes;
-                else if($usuarios_aplausos->foto)
-                    $foto = config('app.url') . 'usuarios/' . $usuario['foto'];
+                if($usuarios_aplausos->foto)
+                    $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
+                else if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;         
                 else 
                     $foto = "";
 

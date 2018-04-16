@@ -164,6 +164,8 @@
                                 <input id="imagen_bene" name="fileNameImgBene" type="file" accept="image/jpeg, image/png, image/gif" />
                             </div>
                             <label><span> JPG y PNG</span></label>
+                            <h5>Imagen actual</h5>
+                            <p><a id="imagen_actual" href="" target="_blank"><img id="img_actual" src="" style="max-width: 100%"></a></p>
                         </div>
                       </form>
                   </div>
@@ -435,6 +437,7 @@ $('.numeros').on('input', function () {
         }else alert("La Imagen Beneficios requerida.");
     }else alert("Llenar campos.");
   });
+
   $("#benetab").on('click','a.edit_bene', function()
   {
     row2 = $(this).parents('tr');
@@ -454,9 +457,11 @@ $('.numeros').on('input', function () {
               $( "#titulo" ).val(respuesta.titulo);
               $( "#link" ).val(respuesta.link);
               $( "#fecha" ).val(respuesta.fecha);
-              console.log(respuesta.fecha);
               $("#tipo").val(respuesta.tipo);
               $("#active").val(respuesta.active);
+              $("#img_actual").attr('src', respuesta.url);
+              $("#imagen_actual").attr('href', respuesta.url);
+              
           }
 
       });
