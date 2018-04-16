@@ -26,7 +26,7 @@
         <section class="row justify-content-center no-gutters ">    
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                <h2><img src="{{asset('/') . 'compartir/images/point_icn.png'}}" style="margin-right: 10px"> MAPA MILLOS</h2>
+                <h2><img src="{{asset('/') . 'compartir/images/point_icn.png'}}" style="margin-right: 10px;max-height: 64px; max-width: 64px;"> MAPA MILLOS</h2>
                 <h1 style="font-size: 22px; margin-top: 10px">{{ $pr->nombre }}</h1>
                 <p class="mt-1">{{ $pr->ciudad }}, {{ $pr->pais }}</p>
                 <p style="font-weight: normal; font-size: 0.8rem">{!! nl2br($pr->direccion) !!}{{ date('d/m/Y H:i', strtotime($pr->hora_evento)) }}</p>
