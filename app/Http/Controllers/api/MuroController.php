@@ -1122,11 +1122,11 @@ public function destroy($idpost, $token)
 
         
         $foto = null;
-        if(!is_null($userx->first()->foto_redes)){
-            $foto=$userx->first()->foto_redes;
+        if($userx->first()->foto<>''){
+           $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
         }else{
-            if($userx->first()->foto<>''){
-                $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+            if(!is_null($userx->first()->foto_redes)){
+                 $foto=$userx->first()->foto_redes;        
             }
         } 
         $fecha = Carbon::parse($userx->first()->desde);
