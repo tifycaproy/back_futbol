@@ -92,7 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
 //Ventanas para compartir 
     Route::resource('ventanas', 'VentanasController');
 
-     Route::resource('terminos', 'TerminosController');
 });
 Route::get('documentacion', function () {
     return view('docs.documentacion');
@@ -110,7 +109,7 @@ Route::get('compartir/referidos/{codigo}/email', [
     'uses' => 'CompartirController@email',
     'as' => 'compartir.email'
 ]);
-
+ Route::resource('terminos', 'TerminosController');
 Route::get('descargar', 'CompartirController@descargar');
 Route::get('compartir/onceideal/{ruta}/{id?}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');

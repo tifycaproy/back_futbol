@@ -111,6 +111,8 @@ Route::post('SearchMuro/{page?}', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
+Route::get('dorado/config/v2', 'api\SeccionesDoradasController@getConfigV2');
+
 Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController@editarSeccion');
 
 Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');

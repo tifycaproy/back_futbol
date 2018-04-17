@@ -15,8 +15,14 @@ class SeccionesDoradasController extends Controller
      */
     public function getConfig()
     {
+        return response()->json(SeccionesDoradas::where('id','<','13')->get());
+    }
+
+    public function getConfigV2()
+    {
         return response()->json(SeccionesDoradas::all());
     }
+
 
     public function editarSeccion(Request $request,$idseccion)
     {
