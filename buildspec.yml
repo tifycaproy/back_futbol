@@ -43,8 +43,8 @@ phases:
      - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
      - echo ************************************************************************************************
      - vendor/bin/codecept run functional
- #eb_codebuild_settings:
- #  CodeBuildServiceRole: s3-admin-access
- #  ComputeType: BUILD_GENERAL1_SMALL
- #  Image: aws/codebuild/docker:17.09.0
- #  Timeout: 60
+eb_codebuild_settings:
+   CodeBuildServiceRole: s3-admin-access
+   ComputeType: BUILD_GENERAL1_SMALL
+   Image: aws/codebuild/docker:17.09.0
+   Timeout: 60
