@@ -13,8 +13,8 @@ phases:
  pre_build:
    commands:
      - echo $DB_PASSWORD + "parametro encryptado"
-     - git remote add sync ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/millonarios_backend
-     - git push sync --mirror
+     #- git remote add sync ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/millonarios_backend
+     #- git push sync --mirror
      - php -m
      - php --ini
      - rm -rf vendor
