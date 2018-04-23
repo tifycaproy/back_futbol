@@ -12,6 +12,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "mpociot/laravel-firebase-sync": "^1.0",
+        "overtrue/phplint": "^1.1",
         "webup/laravel-sendinblue": "^1.1"
     },
     "require-dev": {
