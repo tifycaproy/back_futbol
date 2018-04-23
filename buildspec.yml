@@ -39,7 +39,7 @@ phases:
      - echo ************************************************************************************************
      - vendor/bin/parallel-lint --exclude vendor .
      - echo ************************************************************************************************
-     - echo ********************** MIGRACION DE DATABASE EN BD VIRTUAL (DOCKER) ****************************
+     - echo ********************** MIGRACION DE DATABASE EN BD VIRTUAL DOCKER ****************************
      - echo ************************************************************************************************
      - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
      #- php artisan migrate --path=/database/migrations/v3 --database=sqlite --force
