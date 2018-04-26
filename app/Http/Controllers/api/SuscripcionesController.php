@@ -97,4 +97,20 @@ class SuscripcionesController extends Controller
     }
 
 }
+
+
+public function reset()
+    {
+         $idusuario = decodifica_token($request->token);
+         $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('status', 'PENDIENTE')->first();
+         if(!$suscripcion)
+         {
+            return ["status" => "fallo", "data" => "Este usuario no tiene transacciones pendientes"];
+         }
+        $suscripcion->delete();
+      
+        return ["status" => "exito", "data" => "Transacción pendiente eliminada"];
+    }
+
+
 }
