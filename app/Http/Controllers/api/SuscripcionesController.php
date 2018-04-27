@@ -101,7 +101,9 @@ class SuscripcionesController extends Controller
 
 public function reset(Request $request)
 {
- $idusuario = decodifica_token($request->token);
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+ $idusuario = decodifica_token($request["token"]);
  $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('status', 'PENDIENTE')->first();
  if(!$suscripcion)
  {
