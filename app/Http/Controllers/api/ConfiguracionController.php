@@ -33,8 +33,12 @@ class ConfiguracionController extends Controller
         $data["data"]["patrocinante"] = config('app.url') . 'patrocinantes/' . $configuracion->patrocinante;
         $data["data"]["pop_inicial"] = config('app.url') . 'configuracion/'.Configuracion::first()->url_popup_inicial;
         $data["data"]["url_vistas"] = config('app.share_url');
-        $data["data"]["total_hinchas"] = Usuario::count();
+        $json_url = "https://millos-fc-app.firebaseio.com/estadisticas/total_usuarios.json";
+        $ch = curl_init( $json_url );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $data["data"]["total_hinchas"] = curl_exec($ch);
         return $data;
+
     }
 
     public function multimedia()
