@@ -36,7 +36,7 @@ class ConfiguracionController extends Controller
         $json_url = "https://millos-fc-app.firebaseio.com/estadisticas/total_usuarios.json";
         $ch = curl_init( $json_url );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        $data["data"]["total_hinchas"] = curl_exec($ch);
+        $data["data"]["total_hinchas"] = (int)curl_exec($ch);
         return $data;
 
     }
