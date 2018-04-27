@@ -44,7 +44,7 @@ phases:
      - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
      #- php artisan migrate --path=/database/migrations/v3 --database=sqlite --force
      #- php artisan migrate --path=/database/migrations/v4 --database=sqlite --force
-     - php artisan migrate --path=/database/migrations/v5 --database=sqlite --force
+     #- php artisan migrate --path=/database/migrations/v5 --database=sqlite --force
      - echo ************************************************************************************************
      - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
      - echo ************************************************************************************************
