@@ -105,7 +105,7 @@ public function reset(Request $request)
  $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('status', 'PENDIENTE')->first();
  if(!$suscripcion)
  {
-    return ["status" => "fallo", "data" => "Este usuario no tiene transacciones pendientes"];
+    return ["status" => "fallo", "data" => "No tienes transacciones pendientes"];
 }
 $suscripcion->delete();
 
