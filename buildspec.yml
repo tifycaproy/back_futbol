@@ -61,7 +61,7 @@ phases:
      - du -h
 artifacts:
   files:
-    - './**/*'
+    - './**'
     - 'app/**/*'
     - 'bootstrap/**/*'
     - 'config/**/*'
