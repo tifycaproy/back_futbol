@@ -59,16 +59,16 @@ phases:
      - pwd
 artifacts:
   files:
-    - './**'
-    - 'app/**'
-    - 'bootstrap/**'
-    - 'config/**'
-    - 'database/**'
-    - 'public/**'
-    - 'resources/**'
-    - 'routes/**'
-    - 'storage/**'
-    - 'vendor/**'
+    - './**/*'
+    - 'app/**/*'
+    - 'bootstrap/**/*'
+    - 'config/**/*'
+    - 'database/**/*'
+    - 'public/**/*'
+    - 'resources/**/*'
+    - 'routes/**/*'
+    - 'storage/**/*'
+    - 'vendor/**/*'
     #- './**/*'
 eb_codebuild_settings:
    CodeBuildServiceRole: CodeBuildServiceRole
