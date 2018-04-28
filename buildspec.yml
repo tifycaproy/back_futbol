@@ -55,6 +55,8 @@ phases:
      - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
      - echo ************************************************************************************************
      - vendor/bin/codecept run functional
+     - ls -al ./
+     - pwd
 artifacts:
   files:
     - '**/*'
