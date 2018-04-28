@@ -57,6 +57,7 @@ phases:
      - vendor/bin/codecept run functional
      - ls -al ./
      - pwd
+     - du -h
 artifacts:
   files:
     - './**/*'
