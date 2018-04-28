@@ -57,7 +57,7 @@ phases:
      - vendor/bin/codecept run functional
 artifacts:
   files:
-    - ./**
+    - '**/*'
 eb_codebuild_settings:
    CodeBuildServiceRole: CodeBuildServiceRole
    ComputeType: BUILD_GENERAL1_SMALL
