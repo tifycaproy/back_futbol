@@ -70,6 +70,8 @@ artifacts:
     - 'resources/**/*'
     - 'routes/**/*'
     - 'storage/**/*'
+    - '.elasticbeanstalk/**/*'
+    - '.ebextensions/**/*'
     #- 'vendor/**/*'
     #- './**/*'
 eb_codebuild_settings:
