@@ -70,7 +70,7 @@ artifacts:
     - 'resources/**/*'
     - 'routes/**/*'
     - 'storage/**/*'
-    - 'vendor/**/*'
+    #- 'vendor/**/*'
     #- './**/*'
 eb_codebuild_settings:
    CodeBuildServiceRole: CodeBuildServiceRole
