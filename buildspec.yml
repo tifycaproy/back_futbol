@@ -63,6 +63,5 @@ eb_codebuild_settings:
    ComputeType: BUILD_GENERAL1_SMALL
    Image: aws/codebuild/docker:17.09.0
    Timeout: 5
-
    # github token a264f53ebcc1e16741a7138d0be6726badfd02f7
    # template https://s3-eu-west-1.amazonaws.com/github-webhook-artifacts-eu-west-1/serverless/github-webhook/trigger/1494342303416-2017-05-09T15:05:03.416Z/compiled-cloudformation-template.json
