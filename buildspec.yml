@@ -19,13 +19,16 @@ phases:
      - php --ini
      - rm -rf vendor
      - rm -rf composer.lock
-     - echo ************************************************************************************************
-     - echo ************************************  MYSQL INSTALL ********************************************
-     - echo ************************************************************************************************
+     - echo '************************************************************************************************'
+     - echo '************************************  MYSQL INSTALL ********************************************'
+     - echo '************************************************************************************************'
      #- apt-get install mysql-server php-mysql -y
  build:
    commands:
+     - du -h
+     - ls
      - composer install --no-interaction --prefer-dist
+     - ls
      - composer dump-autoload
      - touch database/database.sqlite
  post_build:
@@ -55,11 +58,28 @@ phases:
      - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
      - echo ************************************************************************************************
      - vendor/bin/codecept run functional
+     - ls -al ./
+     - pwd
+     - du -h
+artifacts:
+  files:
+    - './**'
+    - 'app/**/*'
+    - 'bootstrap/**/*'
+    - 'config/**/*'
+    - 'database/**/*'
+    - 'public/**/*'
+    - 'resources/**/*'
+    - 'routes/**/*'
+    - 'storage/**/*'
+    - '.elasticbeanstalk/**/*'
+    - '.ebextensions/**/*'
+    #- 'vendor/**/*'
+    #- './**/*'
 eb_codebuild_settings:
    CodeBuildServiceRole: CodeBuildServiceRole
    ComputeType: BUILD_GENERAL1_SMALL
    Image: aws/codebuild/docker:17.09.0
    Timeout: 5
-
    # github token a264f53ebcc1e16741a7138d0be6726badfd02f7
    # template https://s3-eu-west-1.amazonaws.com/github-webhook-artifacts-eu-west-1/serverless/github-webhook/trigger/1494342303416-2017-05-09T15:05:03.416Z/compiled-cloudformation-template.json
