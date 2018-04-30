@@ -155,6 +155,15 @@
                            value="{{ $configuracion->url_academia }}" maxlength="200">
                 </div>
             </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>URL Banco Av Villas</label>
+                    <input type="text" class="form-control" name="url_av_villas"
+                           value="{{ $configuracion->url_av_villas }}" maxlength="200">
+                </div>
+            </div>
+
         </div>
 
         <div class="row">

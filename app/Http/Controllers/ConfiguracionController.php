@@ -193,7 +193,8 @@ class ConfiguracionController extends Controller
             'tipo_popup'=> $request->tipo_popup,
             'version_app' => $request->version_app,
             'version_ios' => $request->version_ios,  
-            'version_android' => $request->version_android
+            'version_android' => $request->version_android,
+            'url_av_villas' => $request->url_av_villas
 
         ];
 
