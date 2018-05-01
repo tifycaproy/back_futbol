@@ -13,7 +13,7 @@
     <title>{!! nl2br($seccion->titulo) !!}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="{{ $seccion->titulo}}"/>
+    <meta property="og:title"              content="{{ $data->titulo}}"/>
     <meta property="og:description"        content="{{$seccion->descripcion}}" />
     @if($data->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $data->foto }}" />@endif
 </head>
