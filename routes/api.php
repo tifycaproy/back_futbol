@@ -143,4 +143,4 @@ Route::get('multimedia', 'api\ConfiguracionController@multimedia');
 Route::get('posicion', 'api\PosicionController@posicion');
 
 //perfil_nuevo
-Route::get('perfil/{id}', 'api\MuroController@perfil');
+Route::get('perfil/{id}/{id_logeado?}', 'api\MuroController@perfil');
