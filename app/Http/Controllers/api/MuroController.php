@@ -342,10 +342,10 @@ class MuroController extends Controller
             $user = array();
             foreach ($usuarios_aplausos as $usuarios_aplausos) {
 
-                if($usuarios_aplausos->foto_redes)
-                    $foto = $usuarios_aplausos->foto_redes;
-                else if($usuarios_aplausos->foto)
+                if($usuarios_aplausos->foto)
                     $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
+                else if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;            
                 else 
                     $foto = "";
 
