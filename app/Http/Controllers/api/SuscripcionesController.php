@@ -28,9 +28,9 @@ class SuscripcionesController extends Controller
     {
 
         $suscripciones=BeneficiosDorados::select('id','link','titulo','descripcion','fecha','tipo','url')
-            ->where('active',1)
-            ->orderby('id','desc')
-            ->paginate(25);
+        ->where('active',1)
+        ->orderby('id','desc')
+        ->paginate(25);
 
         $data["status"]='exito';
         $data["data"]=[];
@@ -97,4 +97,22 @@ class SuscripcionesController extends Controller
     }
 
 }
+
+
+public function reset(Request $request)
+{
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+ $idusuario = decodifica_token($request["token"]);
+ $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('status', 'PENDIENTE')->first();
+ if(!$suscripcion)
+ {
+    return ["status" => "fallo", "data" => "No tienes transacciones pendientes"];
+}
+$suscripcion->delete();
+
+return ["status" => "exito", "data" => "Transacción pendiente eliminada"];
+}
+
+
 }
