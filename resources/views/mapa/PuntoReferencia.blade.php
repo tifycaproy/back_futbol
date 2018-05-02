@@ -207,7 +207,7 @@
 @section('javascript')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> 
-
+<script src="js/slim.jquery.js"></script>
 
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9KdpmPR1HKREweEn2U0fqb_NmmE5tl4s&callback=initMap" async defer>
@@ -228,10 +228,10 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           @if($id)
             center: {lat: parseInt(latx), lng: parseInt(lngy)},
-            zoom: 7
+            zoom: 17
           @else
-            center: {lat: 4.687986, lng: -74.075813},
-            zoom: 7
+            center: {lat: -2.17106200195008, lng: -79.92241116751433},
+            zoom: 17
           @endif
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
