@@ -1,4 +1,4 @@
-ap<?php
+<?php
 
 namespace App\Http\Controllers\api;
 
@@ -1018,7 +1018,7 @@ public function destroy($idpost, $token)
         return $data;
     }
 
-    public function perfil($token, $token_logeado = null)
+    public function perfil($token, $token_logeado)
     {
         $usuarioid=$token;
         $aplausos_total=0;
