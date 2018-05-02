@@ -1023,6 +1023,7 @@ public function destroy($idpost, $token)
         $usuarioid=$token;
         $aplausos_total=0;
         $comentario_recibidos=0;
+        $idusuario_logeado=$token_logeado;
         $posts=Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->paginate(15);
         $data["status"]='exito';
         $data["post"]=[];
@@ -1051,7 +1052,7 @@ public function destroy($idpost, $token)
             }
             $usuario["codigo"]=codifica($usuarioid);
             unset($usuario["foto_redes"]);
-            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuarioid)->first() ? 1 : 0;
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario_logeado)->first() ? 1 : 0;
             $usuarios_aplauso = MuroAplauso
             ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
             ->where('muro_id',$post->id)
