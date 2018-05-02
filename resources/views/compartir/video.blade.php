@@ -35,14 +35,13 @@
                         <h1>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $data->titulo) !!}</h1>
                     </div>
                 </section>
-                <section class="row justify-content-center no-gutters">
-                    <!--<div class="col-12 col-lg-5 ">-->
-                        <div align="center"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->    
-                            <video width="300" height="200" controls preload>
-                                <source src="{{$data->link}}" type="video/mp4">
-                            </video>
-                        </div>
-                    </section>
+                <section class="row justify-content-center mt-3 no-gutters">
+            <!--<div class="col-12 col-lg-5 ">-->
+                <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
+                    <!-- Imagen-->
+                    @if($data->foto<>'') <img src="{{ config('app.url') . 'noticias/' . $data->foto }}" class="img-fluid" alt="">@endif
+                </div>
+            </section>
 
                     <section class="row justify-content-center mt-1 no-gutters">
                         <!--<div class="col-12 col-lg-5">-->
