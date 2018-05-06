@@ -34,7 +34,7 @@ $(window).on("scroll", function(){
 
   var wndw = $(this);
 
-  if (wndw.scrollTop() > 180) { tabla.addClass("tabla-fixed"); } else { tabla.removeClass("tabla-fixed") }
+  if (wndw.scrollTop() > 190) { tabla.addClass("tabla-fixed"); } else { tabla.removeClass("tabla-fixed") }
 
 });
 
@@ -187,16 +187,14 @@ $("input[data-eq]").on("change", function(){
 function ordenaTabla(){
 
  var tabla = {
-          ar: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          bo: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          br: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          cl: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          co: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          ec: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          py: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          pe: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          uy: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
-          ve: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0}
+          BAR: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          NAC: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          FLU: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          MIN: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          VAR: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          RAN: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          COR: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0},
+          PSV: {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0}
   }
 
   $("input[data-eq]").each(function(){
