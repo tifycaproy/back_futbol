@@ -292,49 +292,6 @@ return Base64.encode(hash);
 
 }
 
-// Compartir por Facebook
 
-$("#compartir-fb").on("click", function(e){
-
-e.preventDefault();
-
-  FB.ui(
-    {
-      method: 'feed',
-      app_id: '316568105042097',
-      name: 'Mis pron\u00f3sticos para las Clasificatorias a Rusia 2018',
-      link: 'http://www.emol.com/especiales/2015/deportes/clasificatorias-rusia-2018/simulador.asp#!'+generaLink()+'/',
-      picture: 'http://www.emol.com/especiales/2015/deportes/clasificatorias-rusia-2018/img/facebook.jpg',
-      caption: 'Un especial de Emol.com',
-      description: 'Conoce cu&aacute;les resultados creo que se van a dar en las Clasificatorias para Rusia 2018 y haz tus propios vaticinios con todas las selecciones.'
-    },
-    function(response) {}
-  );
-
-});
-
-// Compartir por WhatsApp
-
-$("#compartir-ws").on("click", function(e){
-
-e.preventDefault();
-
-var link = encodeURIComponent("Mis pron\u00f3sticos para las Clasificatorias a Rusia 2018 " + "http://www.emol.com/especiales/2015/deportes/clasificatorias-rusia-2018/simulador.asp#!" + generaLink() + "/");
-
-window.open("whatsapp://send?text="+link)
-
-})
-
-// Compartir por Twitter
-
-$("#compartir-tw").on("click", function(e){
-
-e.preventDefault();
-
-var link = encodeURIComponent("http://www.emol.com/especiales/2015/deportes/clasificatorias-rusia-2018/simulador.asp#!" + generaLink() + "/");
-
-window.open("https://twitter.com/intent/tweet?url="+link+"&via=emol&text=Revisa mis pronÃ³sticos para las Clasificatorias a Rusia 2018");
-
-});
 
 });

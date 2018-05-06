@@ -1,0 +1,505 @@
+@charset "utf-8";
+/* CSS Document */
+.header{
+	position: fixed;
+	min-height: 325px!important;
+	background-color: #fff;
+	z-index: 50;
+	width: 100% !important;
+}
+
+/* == barras == */
+
+
+
+body {
+margin: 0px;
+padding: 0px;
+width: 100%;
+background: #818181;
+}
+
+
+.btn-primary{color:#000;background-color:#f7ca36;         border:0px;
+        width:90px; align-content:center;
+ border-radius: 10px 10px 10px 10px; font-family: 'Oswald'; font-weight: bold; font-size:18px;
+
+	}
+
+
+
+table.tabla-posiciones {
+font-size: 12px;
+width:100%;
+height: 325px;
+color: #ccc;
+}
+table.tabla-posiciones th {
+	background-color: #3f3f3f;
+	color: #fff;
+	font-weight: bold;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-family: 'Oswald';
+}
+table.tabla-posiciones td {
+	font-size: 14px;
+	background-color: #fff;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	color: #000;
+}
+.caja-simbologia-tablaposic {
+  background-color: #ededed;
+  float: left;
+  padding: 0 0%;
+  width: 100%;
+}
+.caja-simbologia-tablaposic-punto {
+	width: 6%;
+	float:left;
+	text-align:left;
+	font-size:36px;
+	font-weight: bold;
+	line-height: 14px;
+	
+			padding-bottom: 6px;
+}
+.simbologia-color-clasifica {
+	color: #f7ca36;
+}
+.simbologia-color-repechaje {
+	color: #FF7E00;
+}
+.simbologia-color-noclasifica {
+	color: #c6161d;
+}
+.caja-simbologia-tablaposic-fr {
+width:93%;
+	float:left;
+	font-size:11px;
+		line-height: 18px;
+		padding-bottom: 6px;
+}
+.simbologia-general {
+	padding: 0px 0 1px 0;
+	width: 50%;
+	float:left;
+	font-size:11px;
+	line-height: 14px;
+		text-align:left;
+}
+
+
+/*Tabla de posiciones*/
+
+
+
+table.tabla-posiciones-simulador td {
+border-bottom: 1px solid #ccc;
+height: 26px;
+line-height: 26px;
+text-align: center;
+background-color: #fff;
+
+}
+
+table.tabla-posiciones-simulador td:nth-child(even){
+background-color: #ededed;
+}
+
+table.tabla-posiciones-simulador td img {
+	max-width: 20px;
+	max-height: 20px;
+	width:100%;
+}
+
+table.tabla-posiciones-simulador td:first-child {
+font-family: 'Oswald';
+font-weight: 400;
+color: #fff;
+background-color: #818181;
+width:6.45%;
+}
+
+table.tabla-posiciones-simulador td:nth-child(n+3){
+width:6.45%;
+font-family: 'Oswald';
+}
+
+table.tabla-posiciones td:first-child {
+font-weight: 400;
+color: #fff;
+background-color: #818181;
+width:8%;
+}
+
+
+table.tabla-posiciones tbody tr:first-child td:first-child {
+background-color: #fff;
+}
+
+table.tabla-posiciones tbody tr:nth-child(2) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(3) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(4) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(5) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(6) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(7) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(8) td:first-child,
+table.tabla-posiciones tbody tr:nth-child(9) td:first-child
+{
+	background-color: #3f3f3f;
+}
+
+table.tabla-posiciones td:nth-child(2) {
+text-align: left;
+font-weight: normal;
+}
+table.tabla-posiciones td:nth-child(2) {
+text-align: left;
+font-weight: normal;
+}
+
+
+h4.calendario-fecha {
+  background-color: #f7ca36;
+  color: #000;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 10px 0 0;
+  padding: 5px 0;
+  position: relative;
+  text-indent: 10px;
+}
+
+
+h4.calendario-fecha {
+	background-color: #f7ca36;
+	color: #000;
+	font-size: 22px;
+	font-weight: bold;
+	margin: 10px 0 0;
+	padding: 5px 0;
+	position: relative;
+	text-indent: 10px;
+	text-align: center;
+}
+
+
+
+
+/*MenÃº activado*/
+
+
+
+
+/*simulador loc marc vis*/
+
+
+
+/* ----------------- NUEVO -------------------- */
+
+.header{
+	position: relative;
+	min-height: 325px!important;
+	background-color: #fff;
+	z-index: 50;
+	width: 100% !important;
+
+}
+
+/* ----------------- NUEVOS -------------------- */
+
+h4.calendario-fecha {
+  background-color: #f7ca36;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0 0;
+  padding: 5px 0;
+  position: relative;
+  text-indent: 10px;
+}
+
+
+ul.sim-calendario-grupo {
+list-style-type: none;
+padding:0px;
+margin:0px;
+float:left;
+clear:both;
+width:100%;
+
+}
+
+ul.sim-calendario-grupo li {
+	height: 45px;
+	line-height: 45px;
+	background: url(../img/calendario/bg-left.jpg) bottom left no-repeat, url(../img/calendario/bg-right.jpg) bottom right no-repeat;
+	background-color: #fff;
+	font-size: 14px;
+	font-family:'Oswald';
+	color: #3c3c3c;
+	text-transform: capitalize;
+	border-bottom: 2px solid #d9d9d9;
+}
+
+ul.sim-calendario-grupo li img {
+width: 30px;
+position: absolute;
+top:12px;
+}
+
+ul.sim-calendario-grupo li div {
+display: inline-block;
+position: relative;
+height: 45px;
+}
+
+ul.sim-calendario-grupo li div.loc,
+ul.sim-calendario-grupo li div.vis {
+width: 20%;
+}
+
+ul.sim-calendario-grupo li div.loc {
+padding-left:12.5%;
+}
+
+ul.sim-calendario-grupo li div.loc img {
+left:10.5%;
+}
+
+ul.sim-calendario-grupo li div.vis {
+padding-right:13.5%;
+text-align: right;
+}
+
+ul.sim-calendario-grupo li div.vis img {
+right:10.5%;
+}
+
+ul.sim-calendario-grupo li div.marc {
+width: 30%;
+font-size: 18px;
+text-align: center;
+position: relative;
+}
+
+ul.sim-calendario-grupo li div.marc span {
+width: 15%;
+font-weight: bold;
+display: inline-block;
+}
+
+ul.sim-calendario-grupo li div.marc input[disabled] {
+background-color: #efefef;
+}
+
+ul.sim-calendario-grupo li div.marc input {
+  background-color: #ccc;
+  border: 0 solid #cccccc;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  height: 32px;
+  text-align: center;
+  width: 25%;
+  	font-family:'Oswald';
+
+}
+
+
+
+#clasificacion {
+	position: relative;
+	top: 0px;
+	left: 0%;
+	width: 100%;
+	height: 625px;
+	display: block;
+	z-index: 100;
+	background: #818181;
+}
+
+/* ===== RESOLUCIÓN < 1180 ===== */
+
+
+
+@media (max-width: 1400px) {
+
+/*General*/
+
+#inner-wrap {
+display: none;
+  left: 0;
+  position: absolute;
+  top: 468px;
+  height:80px;
+ 
+  z-index: 51;
+transition: left 0.3s linear;
+  -webkit-transition: left 0.3s linear;
+  -ms-transition: left 0.3s linear;
+  -moz-transition: left 0.3s linear;
+  -o-transition: left 0.3s linear;
+}
+
+ul.nav-fechas-calendario {
+box-sizing: border-box;
+}
+
+
+/*Contenedor simulador*/
+
+div.contenedor-simulador-movil {
+height: 100%;
+width:100%;
+overflow: hidden;
+}
+
+
+div.contenedor-simulador-movil-inside {
+width:2300%;
+height: 173px;
+transition: margin-left 0.4s linear;
+  -webkit-transition: margin-left 0.4s linear;
+  -ms-transition: margin-left 0.4s linear;
+  -moz-transition: margin-left 0.4s linear;
+  -o-transition: margin-left 0.4s linear;
+}
+
+div.contenedor-simulador-movil-inside[data-pos="0"],
+div.contenedor-simulador-movil-inside[data-pos="23"] { margin-left:0%; }
+div.contenedor-simulador-movil-inside[data-pos="1"] { margin-left:-100%; }
+div.contenedor-simulador-movil-inside[data-pos="2"] { margin-left:-200%; }
+div.contenedor-simulador-movil-inside[data-pos="3"] { margin-left:-300%; }
+div.contenedor-simulador-movil-inside[data-pos="4"] { margin-left:-400%; }
+div.contenedor-simulador-movil-inside[data-pos="5"] { margin-left:-500%; }
+div.contenedor-simulador-movil-inside[data-pos="6"] { margin-left:-600%; }
+div.contenedor-simulador-movil-inside[data-pos="7"] { margin-left:-700%; }
+div.contenedor-simulador-movil-inside[data-pos="8"] { margin-left:-800%; }
+div.contenedor-simulador-movil-inside[data-pos="9"] { margin-left:-900%; }
+div.contenedor-simulador-movil-inside[data-pos="10"] { margin-left:-1000%; }
+div.contenedor-simulador-movil-inside[data-pos="11"] { margin-left:-1100%; }
+div.contenedor-simulador-movil-inside[data-pos="12"] { margin-left:-1200%; }
+div.contenedor-simulador-movil-inside[data-pos="13"] { margin-left:-1300%; }
+div.contenedor-simulador-movil-inside[data-pos="14"] { margin-left:-1400%; }
+div.contenedor-simulador-movil-inside[data-pos="15"] { margin-left:-1500%; }
+div.contenedor-simulador-movil-inside[data-pos="16"] { margin-left:-1600%; }
+div.contenedor-simulador-movil-inside[data-pos="17"] { margin-left:-1700%; }
+div.contenedor-simulador-movil-inside[data-pos="18"] { margin-left:-1800%; }
+div.contenedor-simulador-movil-inside[data-pos="19"] { margin-left:-1900%; }
+div.contenedor-simulador-movil-inside[data-pos="20"] { margin-left:-2000%; }
+div.contenedor-simulador-movil-inside[data-pos="21"] { margin-left:-2100%; }
+div.contenedor-simulador-movil-inside[data-pos="22"] { margin-left:-2200%; }
+
+
+span.titulo-nav-box-central {
+width:100%;
+}
+
+
+ul.nav-fechas-calendario,
+div.box-simulador-general {
+height: 100%;
+float:left;
+width:4.3478%;
+margin:0%;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+div.box-simulador-generaldos {
+height: 80px;
+float:left;
+width:4.3478%;
+margin:0%;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+
+h4.calendario-fecha {
+  height: 22px;
+  line-height: 22px;
+  margin-top: 0;
+  position: relative;
+  text-align: center;
+  text-indent: 0;
+}
+
+h4.calendario-fecha a:link,
+h4.calendario-fecha a:visited {
+background-color: transparent;
+position: absolute;
+top:0px;
+z-index: 2;
+background-repeat: no-repeat;
+background-size: auto 23px;
+background-position: center center;
+height: 38px;
+width: 38px;
+text-indent: -100px;
+overflow: hidden;
+display: block;
+}
+
+h4.calendario-fecha a.izq {
+left:0px;
+background-image: url(../img/nav-left.png);
+}
+
+h4.calendario-fecha a.der {
+right:0px;
+background-image: url(../img/nav-right.png);
+}
+
+
+
+div.lafecha-info {
+display: none;
+}
+
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+	
+	#inner-wrap {
+	display: none;
+  left: 0;
+  position: absolute;
+  top: 468px;
+  height:80px;
+    width:100%;
+  overflow:visible;
+
+  z-index: 51;
+transition: left 0.3s linear;
+  -webkit-transition: left 0.3s linear;
+  -ms-transition: left 0.3s linear;
+  -moz-transition: left 0.3s linear;
+  -o-transition: left 0.3s linear;
+}
+
+
+h4.calendario-fecha a.izq {
+left:5px;
+background-image: url(../img/nav-left.png);
+}
+
+	
+	}
+
+
+
