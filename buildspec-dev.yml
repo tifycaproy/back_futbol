@@ -1,0 +1,86 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "Millonarios FC - CodePipeline CI/CD"
+#    DB_CONNECTION: "mysql"
+#    DB_HOST: "awsfcf2waysports.co6n6hotu5cp.us-east-1.rds.amazonaws.com"
+#    DB_PORT: "3306"
+#    DB_DATABASE: "millonarios_develop"
+#    DB_USERNAME: "shok-millonarios"
+#  parameter-store:
+#    DB_PASSWORD: "keyforRDS"
+phases:
+ pre_build:
+   commands:
+     - echo '---------->   D   E    S    A   R   R   O   L   L   O   <------------'
+     - echo $DB_PASSWORD + "parametro encryptado"
+     #- git remote add sync ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/millonarios_backend
+     #- git push sync --mirror
+     - php -m
+     - php --ini
+     - rm -rf vendor
+     - rm -rf composer.lock
+     - echo '************************************************************************************************'
+     - echo '************************************  MYSQL INSTALL ********************************************'
+     - echo '************************************************************************************************'
+     #- apt-get install mysql-server php-mysql -y
+ build:
+   commands:
+     - du -h
+     - ls
+     - composer install --no-interaction --prefer-dist
+     - ls
+     - composer dump-autoload
+     - touch database/database.sqlite
+ post_build:
+   commands:
+     - echo ************************************************************************************************
+     - echo ********************  CHECK PHP CODE FOR HINTS AND IMPROVEMENTS ********************************
+     - echo ************************************************************************************************
+     - ./vendor/bin/phplint ./
+     - echo ************************************************************************************************
+     - echo ***************** VERIFICACIONES DE ERRORES DE SINTAXIS EN CODIGO PHP **************************
+     - echo ************************************************************************************************
+     - vendor/bin/parallel-lint --exclude vendor .
+     - echo ************************************************************************************************
+     - echo ********************** MIGRACION DE DATABASE EN BD VIRTUAL DOCKER ****************************
+     - echo ************************************************************************************************
+     - php artisan migrate:fresh --path=database/migrations/2way --database=sqlite --force --seed
+     #- php artisan migrate --path=/database/migrations/v3 --database=sqlite --force
+     #- php artisan migrate --path=/database/migrations/v4 --database=sqlite --force
+     #- php artisan migrate --path=/database/migrations/v5 --database=sqlite --force
+     - echo ************************************************************************************************
+     - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
+     - echo ************************************************************************************************
+     #- php artisan migrate --path=/database/migrations/v3 --database=mysql --force
+     #- php artisan migrate --path=/database/migrations/v4 --database=mysql --force
+     #- php artisan migrate --path=/database/migrations/v5 --database=mysql --force
+     - echo ************************************************************************************************
+     - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
+     - echo ************************************************************************************************
+     - vendor/bin/codecept run functional
+     - ls -al ./
+     - pwd
+     - du -h
+artifacts:
+  files:
+    - './**'
+    - 'app/**/*'
+    - 'bootstrap/**/*'
+    - 'config/**/*'
+    - 'database/**/*'
+    - 'public/**/*'
+    - 'resources/**/*'
+    - 'routes/**/*'
+    - 'storage/**/*'
+    - '.elasticbeanstalk/**/*'
+    - '.ebextensions/**/*'
+    #- 'vendor/**/*'
+    #- './**/*'
+eb_codebuild_settings:
+   CodeBuildServiceRole: CodeBuildServiceRole
+   ComputeType: BUILD_GENERAL1_SMALL
+   Image: aws/codebuild/docker:17.09.0
+   Timeout: 5
+   # github token a264f53ebcc1e16741a7138d0be6726badfd02f7
+   # template https://s3-eu-west-1.amazonaws.com/github-webhook-artifacts-eu-west-1/serverless/github-webhook/trigger/1494342303416-2017-05-09T15:05:03.416Z/compiled-cloudformation-template.json
