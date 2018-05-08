@@ -218,44 +218,54 @@ class UsuariosController extends Controller
             "email" => $email,
             'clave_recuperacion' => $clave_recuperacion,
         ];
-        Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
-            $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
-        });
-        //fin de email
-        if (isset($request["celular"])) {
-            $colombia = $this->sms_colombia($request);
+
+        if (\App::environment('production', 'staging')){
+
+            Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
+                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
+            });
+            //fin de email
+            if (isset($request["celular"])) {
+                $colombia = $this->sms_colombia($request);
+            } else {
+                $colombia = false;
+            }
+            //Envienado mensaje de texto
+            if ($colombia) {
+                $curl = curl_init();
+                //celular a donde va a enviar el mensaje
+                $celular = $request['celular'];
+                $celular = str_replace("+", "", $celular);
+                $celular = str_replace(" ", "", $celular);
+                $header = "Basic " . base64_encode(env('SMS_USER') . ":" . env('SMS_PASS'));
+                $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: " . $clave_recuperacion);
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "{ \"from\":\"SMS VERIFICACION DE CUENTA\", \"to\":\"$celular\", \"text\":\"$mensaje\" }",
+                    CURLOPT_HTTPHEADER => array(
+                        "accept: application/json",
+                        "authorization: " . $header,
+                        "content-type: application/json"
+                    ),
+                ));
+                $response = curl_exec($curl);
+                // $err = curl_error($curl);
+                curl_close($curl);
+            }
+            return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+
         } else {
-            $colombia = false;
+
+            echo "environment=", \App::environment(), "\n";
         }
-        //Envienado mensaje de texto
-        if ($colombia) {
-            $curl = curl_init();
-            //celular a donde va a enviar el mensaje
-            $celular = $request['celular'];
-            $celular = str_replace("+", "", $celular);
-            $celular = str_replace(" ", "", $celular);
-            $header = "Basic " . base64_encode(env('SMS_USER') . ":" . env('SMS_PASS'));
-            $mensaje = urldecode("¡Hola, Hincha Oficial! Tu código de verificación para la App Oficial Millonarios FC es: " . $clave_recuperacion);
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => "{ \"from\":\"SMS VERIFICACION DE CUENTA\", \"to\":\"$celular\", \"text\":\"$mensaje\" }",
-                CURLOPT_HTTPHEADER => array(
-                    "accept: application/json",
-                    "authorization: " . $header,
-                    "content-type: application/json"
-                ),
-            ));
-            $response = curl_exec($curl);
-            // $err = curl_error($curl);
-            curl_close($curl);
-        }
-        return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+
+
     }
     //verificar si es de colombia para realizar envio de sms
     public function sms_colombia($request)
@@ -552,11 +562,18 @@ public function recuperar_clave_link(Request $request)
                 "email" => $email,
                 'link_clave_recuperacion' => $link_clave_recuperacion
             ];
-            Mail::send('emails.recuperar_clave_link', $data, function ($message) use ($data) {
-                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
-            });
-                //fin de email
-            return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
+
+            if (\App::environment('production', 'staging')){
+
+                Mail::send('emails.recuperar_clave_link', $data, function ($message) use ($data) {
+                    $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
+                });
+                    //fin de email
+                return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
+            }
+            else{
+                echo "environment=", \App::environment(), "\n";
+            }
         } else {
             return ["status" => "fallo", "error" => ["El e-mail no es válido"]];
         }
