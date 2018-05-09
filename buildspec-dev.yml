@@ -14,22 +14,13 @@ phases:
    commands:
      - echo '---------->   D   E    S    A   R   R   O   L   L   O   <------------'
      - echo $DB_PASSWORD + "parametro encryptado"
-     #- git remote add sync ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/millonarios_backend
-     #- git push sync --mirror
      - php -m
      - php --ini
      - rm -rf vendor
      - rm -rf composer.lock
-     - echo '************************************************************************************************'
-     - echo '************************************  MYSQL INSTALL ********************************************'
-     - echo '************************************************************************************************'
-     #- apt-get install mysql-server php-mysql -y
  build:
    commands:
-     - du -h
-     - ls
      - composer install --no-interaction --prefer-dist
-     - ls
      - composer dump-autoload
      - touch database/database.sqlite
  post_build:
@@ -59,9 +50,6 @@ phases:
      - echo ****************  MIGRATE FOR DATABASE ON RDS FOR millonarios_develop **************************
      - echo ************************************************************************************************
      - vendor/bin/codecept run functional
-     - ls -al ./
-     - pwd
-     - du -h
 artifacts:
   files:
     - './**'
