@@ -12,12 +12,12 @@ env:
 phases:
  pre_build:
    commands:
-     #- echo $DB_PASSWORD + "parametro encryptado"
+     - echo $DB_PASSWORD + "parametro encryptado"
+     #- php -m
      #- php --ini
      #- rm -rf vendor
      - rm -rf composer.lock
-     - echo '************************** D E S A R R O L L O - BSC *******************************************'
-     #- echo '******************************  MYSQL INSTALL **************************************************'
+     - echo '************************** P R O D U C C I Ó N - Mill *******************************************'
      #- apt-get install mysql-server php-mysql -y
  build:
    commands:
@@ -29,7 +29,7 @@ phases:
      - echo 'Inician la pruebas de la APP'
      - echo 'phplint:'
      - vendor/bin/phplint ./
-     - echo 'parallel-lint:' 
+     - echo 'parallel-lint:'
      - vendor/bin/parallel-lint --exclude vendor .
      #- echo 'codecept:'
      #- vendor/bin/codecept run functional
