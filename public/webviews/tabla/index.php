@@ -1,30 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 
-<title>Simulador</title>
+  <title>Simulador</title>
 
-<link href="css/color.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="css/color.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
-<script type="text/javascript" src="jquery/jquery-min.js"></script>
+  <script type="text/javascript" src="jquery/jquery-min.js"></script>
 
 
-<style type="text/css">
-body,td,th {
-	font-family: 'Oswald';
-}
+  <style type="text/css">
+  body,td,th {
+   font-family: 'Oswald';
+ }
 </style>
 
-	</head>
-	
+</head>
+
 <?php  
 $mostrar_errores=0;
 
 if($mostrar_errores){
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+  error_reporting(E_ALL);
+  ini_set("display_errors", 1);
 }
 //tomamos los datos del archivo conexion.php  
 include("conexion.php");  
@@ -54,10 +54,10 @@ echo      "<th>GF</th>";
 echo      "<th>GC</th>";
 echo      "<th>DIF</th>";
 echo    "</tr>";
-	
-	
-	$query_equipos="SELECT distinct(local) FROM simulador_fechas WHERE 1 order by local asc";
-	
+
+
+$query_equipos="SELECT distinct(local) FROM simulador_fechas WHERE 1 order by local asc";
+
 	//se envia la consulta  
 $result = mysqli_query($link, $query_equipos);  
 
@@ -67,39 +67,39 @@ $ordenamiento_js='';
 $flag_contador=1;
 while ($row =mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
 
-if($flag_contador!=1){
-$ordenamiento_js.=',';
+  if($flag_contador!=1){
+    $ordenamiento_js.=',';
 
-}
+  }
 
-$ordenamiento_js.=equipo_nombre($row['local']).": {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0}";
-						
-    echo "<tr data-eq='".equipo_nombre($row['local'])."'>";
-	
-	echo "<td>".$flag_contador."</td>";  
+  $ordenamiento_js.=equipo_nombre($row['local']).": {pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0}";
 
-	echo "<td>&nbsp;".equipo_bandera($row['local'])."".equipo_nombre($row['local'])."</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
-    echo "<td>0</td>";  
+  echo "<tr data-eq='".equipo_nombre($row['local'])."'>";
 
-	echo "</tr>";  
-	
-	$flag_contador+=1;
+  echo "<td>".$flag_contador."</td>";  
+
+  echo "<td>&nbsp;".equipo_bandera($row['local'])."".equipo_nombre($row['local'])."</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+  echo "<td>0</td>";  
+
+  echo "</tr>";  
+
+  $flag_contador+=1;
 }
 
 echo "</table>";  
-	
-	echo "</div>";
-	echo "</div>";
-	
 
-	
+echo "</div>";
+echo "</div>";
+
+
+
 
 
 
@@ -133,8 +133,8 @@ echo "<div class='contenedor-simulador-movil-inside' data-pos='1'>";
 
 
 echo "<ul class='nav-fechas-calendario'>
-    <span class='titulo-nav-box-central' data-top='top'>Selecciona una fecha</span>
-    <li data-ancla='1'>1</li><li data-ancla='2'>2</li><li data-ancla='3'>3</li><li data-ancla='4'>4</li><li data-ancla='5'>5</li><li data-ancla='6'>6</li>
+<span class='titulo-nav-box-central' data-top='top'>Selecciona una fecha</span>
+<li data-ancla='1'>1</li><li data-ancla='2'>2</li><li data-ancla='3'>3</li><li data-ancla='4'>4</li><li data-ancla='5'>5</li><li data-ancla='6'>6</li>
 </ul>";
 
 
@@ -156,48 +156,48 @@ while($fila = mysqli_fetch_array($feca, MYSQLI_ASSOC)){
 
 
  
-echo "<div class='box-simulador-general'>";
+ echo "<div class='box-simulador-general'>";
 
-echo "<h4 class='calendario-fecha' data-anclado='".$fila['id_fecha']."'>";
-if($fila['id_fecha']!=1){
-echo "<a href='#' class='izq' ></a>";
+ echo "<h4 class='calendario-fecha' data-anclado='".$fila['id_fecha']."'>";
+ if($fila['id_fecha']!=1){
+  echo "<a href='#' class='izq' ></a>";
 }
 echo "Fecha ".$fila['id_fecha']."
 <a href='#' class='der'></a></h4>";
 
 echo "<ul class='sim-calendario-grupo'>";
-	
-	
+
+
 while($fila2 = mysqli_fetch_array($feca2, MYSQLI_ASSOC)){ 	
 
 
-$disabled_v='';
-$disabled_l='';
-if($fila2['marcador_l']!=NULL){
-$disabled_l='disabled';
-}
+  $disabled_v='';
+  $disabled_l='';
+  if($fila2['marcador_l']!=NULL){
+    $disabled_l='disabled';
+  }
 
-if($fila2['marcador_v']!=NULL){
+  if($fila2['marcador_v']!=NULL){
 
-$disabled_v='disabled';
-}
+    $disabled_v='disabled';
+  }
 
-      echo "<li>
-      <div class='loc'>
-      ".equipo_bandera($fila2['local'])." ".equipo_nombre($fila2['local'])."</div><div class='marc'>
-      <input tabindex='1' maxlength='2' pattern='\d*' type='tel' data-eq='".equipo_nombre($fila2['local'])."' value='".$fila2['marcador_l']."' ".$disabled_l.">
-      <span>--</span>
+  echo "<li>
+  <div class='loc'>
+  ".equipo_bandera($fila2['local'])." ".equipo_nombre($fila2['local'])."</div><div class='marc'>
+  <input tabindex='1' maxlength='2' pattern='\d*' type='tel' data-eq='".equipo_nombre($fila2['local'])."' value='".$fila2['marcador_l']."' ".$disabled_l.">
+  <span>--</span>
 
-      <input tabindex='2' pattern='\d*' maxlength='2' type='tel' data-eq='".equipo_nombre($fila2['visitante'])."' value='".$fila2['marcador_v']."' ".$disabled_v."></div>
-      <div class='vis'>".equipo_nombre($fila2['visitante'])." ".equipo_bandera($fila2['visitante'])."</div>
-       </li>"; 
+  <input tabindex='2' pattern='\d*' maxlength='2' type='tel' data-eq='".equipo_nombre($fila2['visitante'])."' value='".$fila2['marcador_v']."' ".$disabled_v."></div>
+  <div class='vis'>".equipo_nombre($fila2['visitante'])." ".equipo_bandera($fila2['visitante'])."</div>
+  </li>"; 
 }
 
 
 echo "<li><center>&nbsp;<button class='btn btn-primary'>Simular</button></center></li>";
 echo "<li></li>";
 
-	
+
 echo	"<br>";
 echo "</ul>";
 
@@ -206,7 +206,7 @@ echo "</div>";
 
 
 }
-
+mysqli_close($link);
 //<!--FIN FECHAS-->
 
 
@@ -223,36 +223,36 @@ echo "</div>";
 echo "</div>";
 
 function equipo_nombre($id){
-$link2 = Conectarse();  
+  $link2 = Conectarse();  
 //mysql_set_charset('utf8', $link);
-mysqli_set_charset($link2, "utf8");
+  mysqli_set_charset($link2, "utf8");
 
-$query_f="select nombre from equipos where id=".$id."";
+  $query_f="select nombre from equipos where id=".$id."";
 
-$feca = mysqli_query($link2, $query_f);
+  $feca = mysqli_query($link2, $query_f);
 
-$fila = mysqli_fetch_array($feca, MYSQLI_ASSOC);
-return $fila['nombre'];
+  $fila = mysqli_fetch_array($feca, MYSQLI_ASSOC);
+  return $fila['nombre'];
 
-mysqli_close($link2);
+  mysqli_close($link2);
 
 }
 
 function equipo_bandera($id){
-$link3 = Conectarse();  
+  $link3 = Conectarse();  
 //mysql_set_charset('utf8', $link);
-mysqli_set_charset($link3, "utf8");
+  mysqli_set_charset($link3, "utf8");
 
 
-$query_f="select bandera from equipos where id=".$id."";
+  $query_f="select bandera from equipos where id=".$id."";
 
-$feca = mysqli_query($link3,$query_f);
+  $feca = mysqli_query($link3,$query_f);
 
-$fila = mysqli_fetch_array($feca, MYSQLI_ASSOC);
+  $fila = mysqli_fetch_array($feca, MYSQLI_ASSOC);
 
-return "<img src=\"http://cmsmillos.s3-website-us-east-1.amazonaws.com/equipos/".$fila['bandera']."\" valing=\"top\" width=\"30px\">";
+  return "<img src=\"http://cmsmillos.s3-website-us-east-1.amazonaws.com/equipos/".$fila['bandera']."\" valing=\"top\" width=\"30px\">";
 
-mysqli_close($link3);
+  mysqli_close($link3);
 
 }
 
@@ -260,7 +260,7 @@ mysqli_close($link3);
 
 
 ?> 
-	
+
 
 <body>                          
 </body>
@@ -289,7 +289,7 @@ $("#menu-especial").on("click", function(e){ if (e.target.id === "menu-especial"
 // Scroll calendario
 
 $("[data-top='subir']").on("click", function(e){
-  
+
   e.preventDefault();
   animaScroll($("[data-top='top']").offset().top);
 
@@ -311,26 +311,26 @@ $(window).on("scroll", function(){
 
 $("a.ver-tabla-sim").on("click", function(e){
 
-e.preventDefault();
-tabla.toggleClass("tabla-slide-up");
+  e.preventDefault();
+  tabla.toggleClass("tabla-slide-up");
 
 });
 
 // Ancla
 
 var curr = 0,
-    box = $("div.contenedor-simulador-movil-inside");
+box = $("div.contenedor-simulador-movil-inside");
 
 $("[data-ancla]").on("click", function(e){
 
-e.preventDefault();
+  e.preventDefault();
 
   var ancho = $(window).outerWidth(),
-      el = $(this),
-      n = el.attr("data-ancla");
-      curr = n;
+  el = $(this),
+  n = el.attr("data-ancla");
+  curr = n;
 
-      el.parent().parent().attr("data-pos", n);
+  el.parent().parent().attr("data-pos", n);
 
   if ( ancho>709 ) { var d = $("[data-anclado='"+n+"']").offset().top;  animaScroll(d); }
 
@@ -340,34 +340,34 @@ e.preventDefault();
 
 $("h4.calendario-fecha a").on("click", function(e){
 
-    e.preventDefault();
-    var el = $(this),
-        dir = el.attr("class");
+  e.preventDefault();
+  var el = $(this),
+  dir = el.attr("class");
 
-    if (dir === "") { return }
+  if (dir === "") { return }
 
     curr = parseInt(el.parent().attr("data-anclado"));
 
-    if (dir === "izq") { curr=curr-1; box.attr("data-pos",curr) }
-    if (dir === "der") { curr=curr+1; box.attr("data-pos",curr) }
+  if (dir === "izq") { curr=curr-1; box.attr("data-pos",curr) }
+  if (dir === "der") { curr=curr+1; box.attr("data-pos",curr) }
 
 })
 
 $("div.contenedor-simulador-movil").on("scroll", function(){
 
-$("div.contenedor-simulador-movil").scrollLeft("100%");
+  $("div.contenedor-simulador-movil").scrollLeft("100%");
 
 })
 
 $("input[data-eq]").on("keydown", function(e){
 
-var el = $(this),
-    elInd = el.index(),
-    ind = el.parent().parent().index(),
-    ancho = $(window).outerWidth();
+  var el = $(this),
+  elInd = el.index(),
+  ind = el.parent().parent().index(),
+  ancho = $(window).outerWidth();
 
 
-if (e.keyCode == 9 && ind === 4 && elInd === 2 ) {
+  if (e.keyCode == 9 && ind === 4 && elInd === 2 ) {
 
     e.preventDefault();
     curr = parseInt(curr)+1;
@@ -376,12 +376,12 @@ if (e.keyCode == 9 && ind === 4 && elInd === 2 ) {
     var del = 0;
     if (ancho>709) { del = 0 }
 
-    setTimeout(function(){ $("h4[data-anclado='"+curr+"']").siblings("ul.sim-calendario-grupo").find("input").eq(0).focus(); }, del);
+      setTimeout(function(){ $("h4[data-anclado='"+curr+"']").siblings("ul.sim-calendario-grupo").find("input").eq(0).focus(); }, del);
     return
 
- }
+  }
 
-if (e.keyCode == 9 && e.shiftKey && ind === 0 && elInd === 0 ) {
+  if (e.keyCode == 9 && e.shiftKey && ind === 0 && elInd === 0 ) {
 
     e.preventDefault();
     curr = parseInt(curr)-1;
@@ -390,8 +390,8 @@ if (e.keyCode == 9 && e.shiftKey && ind === 0 && elInd === 0 ) {
     var del = 0;
     if (ancho>709) { del = 0 }
 
-    setTimeout(function(){ $("h4[data-anclado='"+curr+"']").siblings("ul.sim-calendario-grupo").find("input").eq(0).focus(); }, del);
-}
+      setTimeout(function(){ $("h4[data-anclado='"+curr+"']").siblings("ul.sim-calendario-grupo").find("input").eq(0).focus(); }, del);
+  }
 });
 
 // Simulador
@@ -409,12 +409,12 @@ if (res.length > 40) {
   $.each(res.split("/"), function(i, v){
 
     var marc = partidos.eq(i).children("div.marc"),
-        gL = parseInt(v.split("-")[0]),
-        gV = parseInt(v.split("-")[1]);
+    gL = parseInt(v.split("-")[0]),
+    gV = parseInt(v.split("-")[1]);
 
     if (isNaN(gL) || isNaN(gV)) { return }
 
-    marc.children("input").eq(0).val(gL);
+      marc.children("input").eq(0).val(gL);
     marc.children("input").eq(1).val(gV);
 
   });
@@ -423,7 +423,7 @@ if (res.length > 40) {
 
   window.location.hash = ""
 
- }
+}
 
 else {
   ordenaTabla();
@@ -436,65 +436,65 @@ $("input[data-eq]").on("focus", function(){  curr = parseInt($(this).parent().pa
 $("input[data-eq]").on("change", function(){
 
   var el = $(this),
-      tmp = parseInt(el.val().toString().slice(0,2));
+  tmp = parseInt(el.val().toString().slice(0,2));
 
-      el.val(tmp);
+  el.val(tmp);
 
   var v = el.val();
 
   if (isNaN(v) || v === null) { el.val("") }
-  if (v < 0 ) { el.val(Math.abs(v)) }
+    if (v < 0 ) { el.val(Math.abs(v)) }
 
-  var riv = el.siblings("input").val();
+      var riv = el.siblings("input").val();
 
-  if (isNaN(riv)) { return false }
-  if (isNaN(el) && isNaN(riv)) { ordenaTabla(); }
-  else { ordenaTabla(); }
+    if (isNaN(riv)) { return false }
+      if (isNaN(el) && isNaN(riv)) { ordenaTabla(); }
+    else { ordenaTabla(); }
 
-});
+  });
 
 function ordenaTabla(){
 
  var tabla = {
- 
-        
-        <?php 
-        echo $ordenamiento_js;
-        
-        ?>
+
+
+  <?php 
+  echo $ordenamiento_js;
+
+  ?>
+}
+
+$("input[data-eq]").each(function(){
+
+  var e = $(this).attr("data-eq"),
+  goles = parseInt($(this).val()),
+  golesRival = parseInt($(this).siblings("input").eq(0).val());
+
+  if (goles > golesRival) {
+
+    tabla[e].pts = tabla[e].pts + 3;
+    tabla[e].pj = tabla[e].pj + 1;
+    tabla[e].pg = tabla[e].pg + 1;
+    tabla[e].gf = tabla[e].gf + goles;
+    tabla[e].gc = tabla[e].gc + golesRival;
   }
 
-  $("input[data-eq]").each(function(){
+  if (goles === golesRival) {
 
-    var e = $(this).attr("data-eq"),
-        goles = parseInt($(this).val()),
-        golesRival = parseInt($(this).siblings("input").eq(0).val());
+    tabla[e].pts = tabla[e].pts + 1;
+    tabla[e].pj = tabla[e].pj + 1;
+    tabla[e].pe = tabla[e].pe + 1;
+    tabla[e].gf = tabla[e].gf + goles;
+    tabla[e].gc = tabla[e].gc + golesRival;
+  }
 
-    if (goles > golesRival) {
+  if (goles < golesRival) {
 
-      tabla[e].pts = tabla[e].pts + 3;
-      tabla[e].pj = tabla[e].pj + 1;
-      tabla[e].pg = tabla[e].pg + 1;
-      tabla[e].gf = tabla[e].gf + goles;
-      tabla[e].gc = tabla[e].gc + golesRival;
-    }
-
-    if (goles === golesRival) {
-      
-      tabla[e].pts = tabla[e].pts + 1;
-      tabla[e].pj = tabla[e].pj + 1;
-      tabla[e].pe = tabla[e].pe + 1;
-      tabla[e].gf = tabla[e].gf + goles;
-      tabla[e].gc = tabla[e].gc + golesRival;
-    }
-
-    if (goles < golesRival) {
-
-      tabla[e].pj = tabla[e].pj + 1;
-      tabla[e].pp = tabla[e].pp + 1;
-      tabla[e].gf = tabla[e].gf + goles;
-      tabla[e].gc = tabla[e].gc + golesRival;
-    }
+    tabla[e].pj = tabla[e].pj + 1;
+    tabla[e].pp = tabla[e].pp + 1;
+    tabla[e].gf = tabla[e].gf + goles;
+    tabla[e].gc = tabla[e].gc + golesRival;
+  }
 
   var tr = $("tr[data-eq='"+e+"'] td");
 
@@ -508,11 +508,11 @@ function ordenaTabla(){
   tr.eq(8).empty().text(tabla[e].gc);
   tr.eq(9).empty().text(tabla[e].gf - tabla[e].gc);
 
-  });
+});
 
-  reordenar(7);
-  reordenar(9);
-  reordenar(2);
+reordenar(7);
+reordenar(9);
+reordenar(2);
 
   // Posiciones
 
@@ -522,40 +522,40 @@ function ordenaTabla(){
 
 function reordenar(cifra){
 
-    var tbl = document.getElementById("tabla-posiciones-simulador").tBodies[0];
-    var store = [];
-    for(var i=0, len=tbl.rows.length; i<len; i++){
-        var row = tbl.rows[i];
-        var sortnr = parseFloat(row.cells[cifra].textContent || row.cells[cifra].innerText);
-        if(!isNaN(sortnr)) store.push([sortnr, row]);
-    }
-    store.sort(function(x,y){
-        return y[0] - x[0];
-    });
-    for(var i=0, len=store.length; i<len; i++){
-        tbl.appendChild(store[i][1]);
-    }
-    store = null;
+  var tbl = document.getElementById("tabla-posiciones-simulador").tBodies[0];
+  var store = [];
+  for(var i=0, len=tbl.rows.length; i<len; i++){
+    var row = tbl.rows[i];
+    var sortnr = parseFloat(row.cells[cifra].textContent || row.cells[cifra].innerText);
+    if(!isNaN(sortnr)) store.push([sortnr, row]);
+  }
+  store.sort(function(x,y){
+    return y[0] - x[0];
+  });
+  for(var i=0, len=store.length; i<len; i++){
+    tbl.appendChild(store[i][1]);
+  }
+  store = null;
 }
 
 // Genera link para compartir
 
 function generaLink(){
 
-var hash = "r=";
+  var hash = "r=";
 
-$("ul.sim-calendario-grupo li").each(function(){
+  $("ul.sim-calendario-grupo li").each(function(){
 
-var el = $(this).children("div.marc"),
+    var el = $(this).children("div.marc"),
     inp = el.children("input"),
     loc = inp.eq(0).val().toString(),
     vis = inp.eq(1).val().toString();
 
-hash = hash + loc + "-" + vis + "/"
+    hash = hash + loc + "-" + vis + "/"
 
-})
+  })
 
-return Base64.encode(hash);
+  return Base64.encode(hash);
 
 }
 
