@@ -1,5 +1,5 @@
 <?php
 
-este archivo tiene error de sintaxis de php para probar la integracion continua
+echo "este archivo tiene error de sintaxis de php para probar la integracion continua";
 
 ?>
