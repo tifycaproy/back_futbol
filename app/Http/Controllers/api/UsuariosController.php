@@ -260,11 +260,7 @@ class UsuariosController extends Controller
             }
             return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
 
-        } else {
-
-            echo "environment=", \App::environment(), "\n";
         }
-
 
     }
     //verificar si es de colombia para realizar envio de sms
@@ -571,9 +567,7 @@ public function recuperar_clave_link(Request $request)
                     //fin de email
                 return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
             }
-            else{
-                echo "environment=", \App::environment(), "\n";
-            }
+
         } else {
             return ["status" => "fallo", "error" => ["El e-mail no es válido"]];
         }
