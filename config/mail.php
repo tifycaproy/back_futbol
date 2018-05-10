@@ -120,4 +120,10 @@ return [
         ],
     ],
 
+    'ses' => [
+    'key' => 'AKIAI6IQT54TMQIBUFIQ',
+    'secret' => 'ApkXF/WSZVgv0kEw+jBGWSdLMhNCrMe2BviCm4ujkyyU',
+    'region' => 'us-east-1',  // e.g. us-east-1
+    ],
+
 ];
