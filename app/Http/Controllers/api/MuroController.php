@@ -322,13 +322,6 @@ class MuroController extends Controller
             $usuario=$post->usuario;
             $usuario=$usuario->toArray();
             $usuario["fecha_vencimiento"]=date('Y-m-d',strtotime('+1 year',strtotime($usuario['created_at'])));
-            //Eliminando datos sensibles
-            $usuario["email"] = "";
-            $usuario["celular"] = "";
-            $usuario["pais"] = "";
-            $usuario["ciudad"] = "";
-            $usuario["fecha_nacimiento"] = "";
-            $usuario["genero"] = "";
 
             if($usuario["foto"]==''){
                 if($usuario["foto_redes"]<>""){
