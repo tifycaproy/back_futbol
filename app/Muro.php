@@ -17,7 +17,7 @@ class Muro extends Model
 
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario','usuario_id')->select(['id as idusuario','nombre','apellido','email','apodo','celular','pais','ciudad','fecha_nacimiento','genero','foto','created_at','foto_redes','created_at']);
+        return $this->belongsTo('App\Usuario','usuario_id')->select(['id as idusuario','nombre','apellido','apodo','foto','created_at','foto_redes','created_at']);
     }
 
     public function aplausos()
