@@ -121,8 +121,8 @@ return [
     ],
 
     'ses' => [
-    'key' => 'AKIAI6IQT54TMQIBUFIQ',
-    'secret' => 'ApkXF/WSZVgv0kEw+jBGWSdLMhNCrMe2BviCm4ujkyyU',
+    'key' => env('MAIL_USERNAME'),
+    'secret' => env('MAIL_PASSWORD'),
     'region' => 'us-east-1',  // e.g. us-east-1
     ],
 
