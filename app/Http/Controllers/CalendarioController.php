@@ -51,6 +51,7 @@ class CalendarioController extends Controller
                 'video' => $request->video,
                 'info' => $request->info,
                 'formacion_id' => $request->formacion_id,
+                'destacado' => $request->destacado,
             ]);
             return redirect()->route('calendarios.edit', codifica($calendario->id))->with("notificacion","Se ha guardado correctamente su información");
 
@@ -101,6 +102,7 @@ class CalendarioController extends Controller
                 'video' => $request->video,
                 'info' => $request->info,
                 'formacion_id' => $request->formacion_id,
+                'destacado' => $request->destacado,
             ];
             Calendario::find($id)->update($data);
             return redirect()->route('calendarios.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
