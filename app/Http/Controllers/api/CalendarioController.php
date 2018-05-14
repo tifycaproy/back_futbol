@@ -50,6 +50,7 @@ class CalendarioController extends Controller
                     'fecha_etapa'=>$fecha->fecha_etapa,
                     'estadio'=>$fecha->estadio,
                     'info'=>$fecha->info,
+                    'destacado'=>$fecha->destacado,
                 ];
             }
             $data["data"][]=[
@@ -80,6 +81,7 @@ class CalendarioController extends Controller
                     'fecha_etapa'=>$fecha->fecha_etapa,
                     'estadio'=>$fecha->estadio,
                     'info'=>$fecha->info,
+                    'destacado'=>$fecha->destacado,
                 ];
             }
             $data["data"][]=[

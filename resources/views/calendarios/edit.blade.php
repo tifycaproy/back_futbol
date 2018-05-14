@@ -54,13 +54,22 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-2">
             <div class="form-group">
                 <label>Formación</label>
                 <select name="formacion_id" class="form-control">
                 @foreach($formaciones as $formacion)
                     <option value="{{ $formacion->id }}"@if($formacion->id==old('formacion_id',$calendario->formacion_id)) selected @endif>{{ $formacion->titulo }}</option>
                 @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                <label>Destacado</label>
+                <select name="destacado" class="form-control">
+                    <option value="0"@if(old('destacado', $calendario->destacado)=='0') selected @endif>No</option>
+                    <option value="1"@if(old('destacado', $calendario->destacado)=='1') selected @endif>Si</option>
                 </select>
             </div>
         </div>
