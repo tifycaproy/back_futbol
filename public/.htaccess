@@ -13,6 +13,7 @@
     RewriteCond %{HTTP_HOST} !^cms.appmillonariosfc.com [NC]
     RewriteCond %{HTTP_HOST} !^millos-stg.2waysports.com [NC]
     RewriteCond %{HTTP_HOST} !^millos-dev.2waysports.com [NC]
+    RewriteCond %{HTTP_HOST} !^dev.appmillonariosfc.com [NC]
     RewriteRule ^login(.*)$   - [F]
 
     # Redirect Trailing Slashes If Not A Folder...
