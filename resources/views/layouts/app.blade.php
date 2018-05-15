@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href=“{{ secure_asset(‘assets/app.css’) }}” media=“all” rel=“stylesheet” type=“text/css” />
+    <!--<link href=“{{ secure_asset(‘assets/app.css’) }}” media=“all” rel=“stylesheet” type=“text/css” />-->
+    <link href="{{ secure_asset('assets/app.css') }}" media="all" rel="stylesheet" type"text/css" />
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
 </head>
 <body>
