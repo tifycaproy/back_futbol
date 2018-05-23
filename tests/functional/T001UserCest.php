@@ -5,10 +5,9 @@ class UserCest
 
     public function userRegister(FunctionalTester $I)
     {
-
         $body = [
-            "nombre" => "Juan Ibarra",
-            "email" => "juan.ibarra@laplanamartinez.com",
+            "nombre" => "Ricardo Pereira",
+            "email" => "ricky@laplanamartinez.com",
             "clave" => "123456",
         ];
 
