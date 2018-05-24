@@ -1,9 +1,9 @@
 class_name: ApiTester
 modules:
     enabled:
-        - Helper\Api
+        - \Helper\Functional
         - Asserts
         - Laravel5:
-              environment_file: .env.codeception
+              environment_file: .env.testing
         - REST:
             depends: Laravel5

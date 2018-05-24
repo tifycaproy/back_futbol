@@ -328,7 +328,7 @@ class MuroController extends Controller
                     $usuario["foto"]=$usuario["foto_redes"];
                 }else{
                     $usuario["foto"]="";
-                }
+                    }
             }else{
                 $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
