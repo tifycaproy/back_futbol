@@ -51,20 +51,26 @@ public function enviar(Request $request)
         'Authorization:key=' .$server_key,
         'Content-Type:application/json'
     );
-    $fields = array('registration_ids'=>$tokens,
-       'notification'=>array('title'=>$title,'body'=>$message),
-       'data'=>array('seccion'=>$seccion,'id_post'=>'noAplica'));
+    
+    $tokens = array_chunk($tokens, 1000, true);
 
-    $payload = json_encode($fields);
-    $curl_session = curl_init();
-    curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
-    curl_setopt($curl_session, CURLOPT_POST, true);
-    curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-    curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
-    $result = curl_exec($curl_session);
+    foreach($tokens as $tokenSnap)
+    {
+        $fields = array('registration_ids'=>$tokenSnap,
+           'notification'=>array('title'=>$title,'body'=>$message),
+           'data'=>array('seccion'=>$seccion,'id_post'=>'noAplica'));
+
+        $payload = json_encode($fields);
+        $curl_session = curl_init();
+        curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+        curl_setopt($curl_session, CURLOPT_POST, true);
+        curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+        curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+        $result = curl_exec($curl_session);
+    }
     $secciones_destino=[
         'news','calendar','table','statistics','team','line_up','virtual_reality','football_base','store','academy','live','games','you_choose','profile','geolocalizacion','muro'
     ];
