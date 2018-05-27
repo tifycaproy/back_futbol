@@ -12,9 +12,9 @@
     # Author: gbanchs
     # Date: 08/03/2018 6:36 a.m
 
-    RewriteCond %{HTTP_HOST} !^cms.appmillonariosfc.com [NC]
-    RewriteCond %{HTTP_HOST} !^millos-stg.2waysports.com [NC]
-    RewriteCond %{HTTP_HOST} !^millos-dev.2waysports.com [NC]
+    RewriteCond %{HTTP_HOST} !^api.appmillonariosfc.com [NC]
+    #RewriteCond %{HTTP_HOST} !^millos-stg.2waysports.com [NC]
+    #RewriteCond %{HTTP_HOST} !^millos-dev.2waysports.com [NC]
     RewriteCond %{HTTP_HOST} !^dev.appmillonariosfc.com [NC]
     RewriteCond %{HTTP_HOST} !^stg.appmillonariosfc.com [NC]
     RewriteCond %{HTTP_HOST} !^cms.appmillonariosfc.com [NC]
