@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FuncionesDoradas extends Migration
+class MuroReporte extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class FuncionesDoradas extends Migration
      */
     public function up()
     {
-        Schema::create('funciones_doradas', function (Blueprint $table) {
+        Schema::create('muro_reporte', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('solo_dorado')->default(0);
-            $table->integer('max_dorado');
-            $table->integer('max_normal');
+            $table->string('tipo');
+            $table->string('descripcion');
+            $table->integer('muro_id')->index();
+            $table->integer('usuario_id')->index();
+            $table->integer('comentario_id')->index();
             $table->timestamps();
         });
     }
@@ -30,7 +31,6 @@ class FuncionesDoradas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funciones_doradas');
-
+        Schema::dropIfExists('muro_reporte');
     }
 }

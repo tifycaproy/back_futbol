@@ -9,18 +9,17 @@ class PostCest
     {
         //REGISTRO
 
-      /*  $user0 = [
-            'email' => 'user95@laplanamartinez.com',
-            'nombre' => 'user95',
-            "clave" => "123456",
+        /*$user0 = [
+            'email' => 'user99@laplanamartinez.com',
+            'nombre' => 'user99',
+            'clave' => '123456',
+            'estatus' => 'ACTIVO',
         ];
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST('/api/usuarios', $user0);
         $response = json_decode($I->grabResponse());
         $I->seeResponseCodeIs(200);
-        $I->assertTrue($response->status == 'exito');
-        ApiTester::$token0 = $response->data->token;*/
-
+        $I->assertTrue($response->status == 'exito');*/
     }
 
      // Auth
@@ -52,10 +51,10 @@ class PostCest
      public function registro2(ApiTester $I)
     {
         //REGISTRO2
-
-        /*$user0 = [
-            'email' => 'user95@laplanamartinez.com',
-            'nombre' => 'user95',
+/*
+        $user0 = [
+            'email' => 'user77@laplanamartinez.com',
+            'nombre' => 'user77',
             "clave" => "123456",
             "ci" => "24455331",
         ];
@@ -116,7 +115,8 @@ class PostCest
        /* $user0 = [
            'email' => 'ricardodpds2112@gmail.com',
            'nombre' => 'Ricardo',
-           'userID_google' => '1234'
+           'userID_google' => '1234',
+           'estatus' => 'ACTIVO',
        ];
 
        $I->haveHttpHeader('Content-Type', 'application/json');

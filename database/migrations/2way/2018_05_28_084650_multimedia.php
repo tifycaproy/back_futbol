@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FuncionesDoradas extends Migration
+class Multimedia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class FuncionesDoradas extends Migration
      */
     public function up()
     {
-        Schema::create('funciones_doradas', function (Blueprint $table) {
+        Schema::create('multimedia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('solo_dorado')->default(0);
-            $table->integer('max_dorado');
-            $table->integer('max_normal');
+            $table->string('url_envivo');
+            $table->string('foto');
             $table->timestamps();
         });
     }
@@ -30,7 +28,6 @@ class FuncionesDoradas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funciones_doradas');
-
+        Schema::dropIfExists('multimedia');
     }
 }
