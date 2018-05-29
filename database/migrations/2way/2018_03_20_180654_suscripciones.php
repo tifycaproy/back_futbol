@@ -19,6 +19,7 @@ class Suscripciones extends Migration
             $table->double('costo_menor');
             $table->double('costo_mayor');
             $table->integer('duracion');
+            $table->string('status');
             $table->timestamps();
         });
     }

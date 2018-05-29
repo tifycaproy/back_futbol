@@ -7,7 +7,7 @@ class GetsCest
     // tests
     public function config(ApiTester $I)
     {
-       /* $I->haveHttpHeader('Content-Type', 'application/json');
+        /*$I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get config
         $I->sendGET('/api/configuracion/');
@@ -184,7 +184,7 @@ class GetsCest
     public function posicion(ApiTester $I)
     {
         # code...	/posicion
-       /* $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get posicion
         $I->sendGET('/api/posicion/');
@@ -194,7 +194,7 @@ class GetsCest
             'data' => array()
         ]);
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');*/
+        $I->assertTrue($response->status == 'exito');
     }
 
     public function calendario(ApiTester $I)
@@ -408,7 +408,7 @@ class GetsCest
     public function ranking_encuestas(ApiTester $I)
     {
         # code...	/ranking_encuestas
-        /*$I->haveHttpHeader('Content-Type', 'application/json');
+       /* $I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get ranking_encuestas
         $I->sendGET('/api/ranking_encuestas/777777');
@@ -569,17 +569,16 @@ class GetsCest
     public function punto_referencia(ApiTester $I)
     {
         # code...	/punto_referencia
-        /*$I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get punto_referencia
         $I->sendGET('/api/punto_referencia/');
         $I->seeResponseCodeIs(200);
         $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
+            'status' => 'string'
         ]);
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');*/
+        $I->assertTrue($response->status == 'exito');
     }
 
 

@@ -41,6 +41,7 @@ class CreateUsuariosTable extends Migration
             $table->boolean('abonado')->nullable();
             $table->boolean('socio')->nullable();
             $table->integer('chat_status')->nullable();
+            $table->string('ci')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

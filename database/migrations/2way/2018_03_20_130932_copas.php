@@ -16,7 +16,7 @@ class Copas extends Migration
         Schema::create('copas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo',60);
-            $table->boolean('activa');
+            $table->integer('activa')->default(0);
             $table->timestamps();
         });
     }
