@@ -466,8 +466,9 @@ class PostCest
             'status' => 'string',
             'data' => array()
         ]);
+
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
+        $I->assertTrue($response->status  == 'exito');
     }
 
 }
