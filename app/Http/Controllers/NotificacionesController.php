@@ -52,7 +52,7 @@ public function enviar(Request $request)
         'Content-Type:application/json'
     );
     
-    $tokens = array_chunk($tokens, 1000, true);
+    $tokens = array_chunk($tokens, 1000);
 
     foreach($tokens as $tokenSnap)
     {
