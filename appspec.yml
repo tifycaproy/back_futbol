@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
-files:
-  - source: /
-    destination: /var/www/html
+#files:
+#  - source: /
+#    destination: /var/www/html
 permissions:
    - object: /var/www/html
      pattern: "**"
@@ -10,7 +10,8 @@ permissions:
      group: www-data
      mode: 755
      type:
-       - file    
+       - file 
+       - directory
 #hooks:
 #  BeforeInstall:
 #    - location: scripts/install_dependencies
