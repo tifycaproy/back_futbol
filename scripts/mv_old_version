@@ -1,3 +1,2 @@
 #!/bin/bash
-cd /var/www
-mv html html.old
+mv /var/www/html /var/www/html.old
