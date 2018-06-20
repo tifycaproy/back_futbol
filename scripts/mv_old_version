@@ -1,2 +1,3 @@
 #!/bin/bash
+rm -rf /var/www/html.old
 mv -f /var/www/html /var/www/html.old
