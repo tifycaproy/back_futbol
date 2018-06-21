@@ -13,10 +13,6 @@ permissions:
        - file 
        - directory
 hooks:
-#  ApplicationStop:
-#    - location: scripts/mv_old_version
-#      timeout: 300
-#      runas: root
   BeforeInstall:
     - location: scripts/mv_old_version
       timeout: 300
@@ -25,10 +21,3 @@ hooks:
     - location: scripts/install_laravel
       timeout: 300
       runas: root
-##    - location: scripts/start_server
-##      timeout: 300
-##      runas: root
-#  ApplicationStop:
-#    - location: scripts/stop_server
-#      timeout: 300
-#      runas: root
