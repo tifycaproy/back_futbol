@@ -32,21 +32,21 @@ class MuroCest
         $I->seeResponseCodeIs(200);
         $response = json_decode($I->grabResponse());
         $I->seeResponseMatchesJsonType(array());
-        $I->assertTrue($response->apodo == 'user0');
+        $I->assertTrue($response->apodo == 'user1');
 
 
         $I->sendGET('/api/perfil_usuario/' . MuroCest::$post2->usuario->codigo);
         $I->seeResponseCodeIs(200);
         $response = json_decode($I->grabResponse());
         $I->seeResponseMatchesJsonType(array());
-        $I->assertTrue($response->apodo == 'user1');
+        $I->assertTrue($response->apodo == 'user2');
 
 
         $I->sendGET('/api/perfil_usuario/' . MuroCest::$post3->usuario->codigo);
         $I->seeResponseCodeIs(200);
         $response = json_decode($I->grabResponse());
         $I->seeResponseMatchesJsonType(array());
-        $I->assertTrue($response->apodo == 'user2');
+        $I->assertTrue($response->apodo == 'user0');
     }
 
     public function comentariosPost(FunctionalTester $I)

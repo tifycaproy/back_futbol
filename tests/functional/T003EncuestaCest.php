@@ -1,12 +1,10 @@
 <?php
 
-class UserCest
-{
 
-    public function userRegister(FunctionalTester $I)
+class EncuestaCest
+{
+   /* public function userRegister(FunctionalTester $I)
     {
-        
-        //FALLANDO EL REGISTRO
         $user0 = [
             'email' => 'user0@laplanamartinez.com',
             'nombre' => 'user0',
@@ -27,6 +25,7 @@ class UserCest
             "clave" => "123456",
             'estatus' => 'ACTIVO'
         ];
+
 
         $I->sendPOST('/api/usuarios', $user0);
         $response = json_decode($I->grabResponse());
@@ -54,7 +53,7 @@ class UserCest
             'error' => array()
         ]);
         $I->assertTrue($response->status == 'fallo');
-    }
+    }*/
 
 
     public function userLogin(FunctionalTester $I)
@@ -110,42 +109,76 @@ class UserCest
         FunctionalTester::$token2 = $response->data->token;
     }
 
-    public function consultarUsuarios(FunctionalTester $I)
+    public function encuesta_votar(FunctionalTester $I)
     {
+       //encuesta_votar
+       //Voto 1
+        $body = [
+           'idencuesta' => "2",
+           'idrespuesta' => "4",
+           'token' =>FunctionalTester::$token0,
+       ];
 
+       $I->haveHttpHeader('Content-Type', 'application/json');
+
+        $I->sendPOST('/api/encuesta_votar', $body);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $response = json_decode($I->grabResponse());
+        $I->assertTrue($response->status == 'exito');
+
+        //Voto 2
+        $body = [
+            'idencuesta' => "2",
+            'idrespuesta' => "5",
+            'token' =>FunctionalTester::$token0,
+        ];
+ 
         $I->haveHttpHeader('Content-Type', 'application/json');
+ 
+         $I->sendPOST('/api/encuesta_votar', $body);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         $I->assertTrue($response->status == 'exito');
 
-        //Get user0
-        $I->sendGET('/api/usuarios/' . FunctionalTester::$token0);
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
-        ]);
-        $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user0');
+         //Voto 3
 
-        //Get user1
-        $I->sendGET('/api/usuarios/' . FunctionalTester::$token1);
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
-        ]);
-        $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user1');
+         $body = [
+            'idencuesta' => "2",
+            'idrespuesta' => "6",
+            'token' =>FunctionalTester::$token0,
+        ];
+ 
+        $I->haveHttpHeader('Content-Type', 'application/json');
+ 
+         $I->sendPOST('/api/encuesta_votar', $body);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         $I->assertTrue($response->status == 'exito');
 
-        //Get user2
-        $I->sendGET('/api/usuarios/' . FunctionalTester::$token2);
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
-        ]);
-        $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user2');
-    }
+         //Revisemos los votos
+         $I->haveHttpHeader('Content-Type', 'application/json'); 
+         $I->sendGET('/api/encuesta/' . FunctionalTester::$token0);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         foreach($response->data->respuestas as $respuestas){
+                $I->assertTrue($respuestas->yavoto == '1');            
+         }
+         $I->assertTrue($response->status == 'exito');
+    }   
 }

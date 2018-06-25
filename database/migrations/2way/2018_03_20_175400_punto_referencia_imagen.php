@@ -18,7 +18,7 @@ class PuntoReferenciaImagen extends Migration
             $table->string('descripcion');
             $table->string('imagen');
             $table->string('url');
-            $table->integer('punto_referencia_id');
+            $table->integer('punto_referencia_id')->index();
             $table->timestamps();
         });
     }

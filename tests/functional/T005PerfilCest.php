@@ -1,12 +1,12 @@
 <?php
 
-class UserCest
+
+class PerfilCest
 {
 
-    public function userRegister(FunctionalTester $I)
+
+    /* public function userRegister(FunctionalTester $I)
     {
-        
-        //FALLANDO EL REGISTRO
         $user0 = [
             'email' => 'user0@laplanamartinez.com',
             'nombre' => 'user0',
@@ -27,6 +27,7 @@ class UserCest
             "clave" => "123456",
             'estatus' => 'ACTIVO'
         ];
+
 
         $I->sendPOST('/api/usuarios', $user0);
         $response = json_decode($I->grabResponse());
@@ -54,7 +55,7 @@ class UserCest
             'error' => array()
         ]);
         $I->assertTrue($response->status == 'fallo');
-    }
+    }*/
 
 
     public function userLogin(FunctionalTester $I)
@@ -110,12 +111,47 @@ class UserCest
         FunctionalTester::$token2 = $response->data->token;
     }
 
-    public function consultarUsuarios(FunctionalTester $I)
+
+    public function consultar_usuario(ApiTester $I)
     {
+        # code...	/consultar_usuario
+
 
         $I->haveHttpHeader('Content-Type', 'application/json');
 
-        //Get user0
+        //Get consultar_usuario
+        $I->sendGET('/api/usuarios/' . FunctionalTester::$token0);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string',
+            'data' => array()
+        ]);
+        $response = json_decode($I->grabResponse());
+        $I->assertTrue($response->status == 'exito'); 
+        
+    
+       $user0 = [
+            'nombre' => 'Ricaldoo',
+            'genero' => 'Masculino',
+            'ciudad' => 'Caracas',
+        ];
+
+        $I->haveHttpHeader('Content-Type', 'application/json');
+
+        //Login user0
+        $I->sendPUT('/api/usuarios/' . FunctionalTester::$token0 , $user0);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseMatchesJsonType([
+            'status' => 'string'
+        ]);
+        $response = json_decode($I->grabResponse());
+        $I->assertTrue($response->status == 'exito');
+
+
+
+        $I->haveHttpHeader('Content-Type', 'application/json');
+
+        //Get consultar_usuario
         $I->sendGET('/api/usuarios/' . FunctionalTester::$token0);
         $I->seeResponseCodeIs(200);
         $I->seeResponseMatchesJsonType([
@@ -124,28 +160,8 @@ class UserCest
         ]);
         $response = json_decode($I->grabResponse());
         $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user0');
+        
+        $I->assertTrue($response->data->nombre == 'Ricaldoo');
 
-        //Get user1
-        $I->sendGET('/api/usuarios/' . FunctionalTester::$token1);
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
-        ]);
-        $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user1');
-
-        //Get user2
-        $I->sendGET('/api/usuarios/' . FunctionalTester::$token2);
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'data' => array()
-        ]);
-        $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');
-        $I->assertTrue($response->data->nombre == 'user2');
     }
 }

@@ -89,6 +89,26 @@ class Configuracion extends Migration
             $table->string('target_popup');
             $table->string('seccion_destino_popup');
             $table->string('id_partido_banner');
+            $table->string('titulo_0_1');
+            $table->string('sub_titulo_1_1');
+            $table->string('sub_titulo_1_2');
+            $table->string('sub_titulo_1_3');
+            $table->string('sub_titulo_1_4');
+            $table->string('sub_titulo_1_5');
+            $table->string('titulo_0_2');
+            $table->string('sub_titulo_2_1');
+            $table->string('sub_titulo_2_2');
+            $table->string('sub_titulo_2_3');
+            $table->string('sub_titulo_2_4');
+            $table->string('boton_1_activo');
+            $table->string('boton_1_texto');
+            $table->string('boton_2_activo');
+            $table->string('boton_2_texto');
+            $table->string('tipo_popup');
+            $table->string('version_app');
+            $table->string('version_ios');
+            $table->string('version_android');
+            $table->string('url_av_villas');
         });
     }
 
