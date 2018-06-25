@@ -120,4 +120,10 @@ return [
         ],
     ],
 
+    'ses' => [
+    'key' => env('MAIL_USERNAME'),
+    'secret' => env('MAIL_PASSWORD'),
+    'region' => 'us-east-1',  // e.g. us-east-1
+    ],
+
 ];

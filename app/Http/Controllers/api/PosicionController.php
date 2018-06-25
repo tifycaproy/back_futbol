@@ -20,7 +20,7 @@ class PosicionController extends Controller
 
     public  function posicion()
     {
-        $posiciones = Posicion::all();
+        $posiciones=Posicion::select('*')->orderby('pos','asc')->paginate(25);
         $data["status"]='exito';
         $data["data"]=[];
         $posicion=[];

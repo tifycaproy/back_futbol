@@ -194,6 +194,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
         }
         var dispositivo = getMobileOperatingSystem();
         $("#form1").submit(function (event) {
+          $(this).find("input[type='submit']").prop('disabled',true);
             event.preventDefault();
             var telefono = $('#pais').val() +" "+ $('#celular').val();
             var data_referido = new Object();
@@ -219,15 +220,16 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
                 data: cambio,
                 success: function (data) {
                     //console.log(data);
-                    if (data.status == 'exito') {
-                      document.location = ira;
+                    if (data.status === 'exito') {
+                        document.location = ira;
                     } else {
                       alert(data.error[0]);
+                      $(this).find("input[type='submit']").prop('disabled',false);
                     }
                 },
                 error: function (xhr, status) {
-                  alert('Disculpe, existió un problema');
-                },
+                    alert('Disculpe, existió un problema');
+                }
             });
         });
     });

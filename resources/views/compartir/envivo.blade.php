@@ -13,9 +13,9 @@
     <title>VIDEO</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="en vivo"/>
-    <meta property="og:description"        content="en vivo" />
-    <meta property="og:image"              content="{{ $data->foto }}" />
+    <meta property="og:title"              content="{{ $seccion->titulo }}"/>
+    <meta property="og:description"        content="{{ $seccion->descripcion }}" />
+    <meta property="og:image"              content="{{ config('app.url') . 'ventanas/' . $seccion->foto }}" />
 </head>
 <body>
     <!--CONTENEDOR-->
@@ -32,7 +32,7 @@
                 <section class="row justify-content-center no-gutters ">    
                     <!-- titulo-->
                     <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                        <h1>En vivo<br></h1>
+                        <h1>{!! nl2br($seccion->titulo) !!}<br></h1>
                     </div>
                 </section>
                 <section class="row justify-content-center no-gutters">

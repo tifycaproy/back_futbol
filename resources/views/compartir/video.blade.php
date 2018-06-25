@@ -10,12 +10,12 @@
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/bootstrap.min.css" type="text/css">
     <link rel=StyleSheet href="{{asset('/') }}compartir/css/main.css" type="text/css">
     <script src="{{ asset('compartir/js/bootstrap.min.js') }}"></script>
-    <title>VIDEO</title>
+    <title>{!! nl2br($seccion->titulo) !!}</title>
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="video"/>
-    <meta property="og:description"        content="video" />
-    <meta property="og:image"              content="{{ $data->foto }}" />
+    <meta property="og:title"              content="{{ $data->titulo}}"/>
+    <meta property="og:description"        content="{{$seccion->descripcion}}" />
+    @if($data->foto<>'') <meta property="og:image"              content="{{ config('app.url') . 'noticias/' . $data->foto }}" />@endif
 </head>
 <body>
     <!--CONTENEDOR-->
@@ -35,14 +35,13 @@
                         <h1>{!! str_replace(array("\\r\\n", "\\n", "\\r","\r\n", "\n", "\r"), "<br>", $data->titulo) !!}</h1>
                     </div>
                 </section>
-                <section class="row justify-content-center no-gutters">
-                    <!--<div class="col-12 col-lg-5 ">-->
-                        <div align="center"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->    
-                            <video width="300" height="200" controls preload>
-                                <source src="{{$data->link}}" type="video/mp4">
-                            </video>
-                        </div>
-                    </section>
+                <section class="row justify-content-center mt-3 no-gutters">
+            <!--<div class="col-12 col-lg-5 ">-->
+                <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
+                    <!-- Imagen-->
+                    @if($data->foto<>'') <img src="{{ config('app.url') . 'noticias/' . $data->foto }}" class="img-fluid" alt="">@endif
+                </div>
+            </section>
 
                     <section class="row justify-content-center mt-1 no-gutters">
                         <!--<div class="col-12 col-lg-5">-->

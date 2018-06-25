@@ -26,8 +26,20 @@ class SuscripcionesController extends Controller
 
     public function beneficiosDorados()
     {
-        $suscripciones = BeneficiosDorados::all();
-        return ["status" => "exito", "data" => $suscripciones];
+
+        $suscripciones=BeneficiosDorados::select('id','link','titulo','descripcion','fecha','tipo','url')
+        ->where('active',1)
+        ->orderby('id','desc')
+        ->paginate(25);
+
+        $data["status"]='exito';
+        $data["data"]=[];
+        foreach ($suscripciones as $suscripcion) {
+
+            $data["data"][]=$suscripcion;
+        }
+        
+        return $data;
     }
 
     public function cancelar(Request $request)
@@ -44,10 +56,10 @@ class SuscripcionesController extends Controller
         $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('fecha_fin','>', \Carbon\Carbon::now())->where('status', 'APROBADO')->first();
         if($suscripcion)
         {
-                    $suscripcion->status = 'CANCELADO';
-                    $suscripcion->fecha_fin = \Carbon\Carbon::now();
-                    $suscripcion->save();
-            }
+            $suscripcion->status = 'CANCELADO';
+            $suscripcion->fecha_fin = \Carbon\Carbon::now();
+            $suscripcion->save();
+        }
         return response()->json(['status' => 'exito', 'data' => ["Ya no eres Dorado :'("]]);
     }
 
@@ -85,4 +97,22 @@ class SuscripcionesController extends Controller
     }
 
 }
+
+
+public function reset(Request $request)
+{
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+ $idusuario = decodifica_token($request["token"]);
+ $suscripcion = UsuariosSuscripciones::all()->where('id_usuario',$idusuario)->where('status', 'PENDIENTE')->first();
+ if(!$suscripcion)
+ {
+    return ["status" => "fallo", "data" => "No tienes transacciones pendientes"];
+}
+$suscripcion->delete();
+
+return ["status" => "exito", "data" => "Transacción pendiente eliminada"];
+}
+
+
 }

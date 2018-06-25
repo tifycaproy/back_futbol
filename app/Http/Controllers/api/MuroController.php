@@ -328,7 +328,7 @@ class MuroController extends Controller
                     $usuario["foto"]=$usuario["foto_redes"];
                 }else{
                     $usuario["foto"]="";
-                }
+                    }
             }else{
                 $usuario['foto']=config('app.url') . 'usuarios/' . $usuario['foto'];
             }
@@ -342,10 +342,10 @@ class MuroController extends Controller
             $user = array();
             foreach ($usuarios_aplausos as $usuarios_aplausos) {
 
-                if($usuarios_aplausos->foto_redes)
-                    $foto = $usuarios_aplausos->foto_redes;
-                else if($usuarios_aplausos->foto)
+                if($usuarios_aplausos->foto)
                     $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
+                else if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;            
                 else 
                     $foto = "";
 
@@ -905,7 +905,7 @@ public function destroy($idpost, $token)
         );
         $fields = array('to'=>$key,
          'notification'=>array('title'=>$title,'body'=>$message),
-         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post));
+         'data'=>array('seccion'=>$seccion,'id_post'=>$id_post,'id_post_codificado'=>codifica($id_post)));
 
         $payload = json_encode($fields);
 
@@ -1018,11 +1018,12 @@ public function destroy($idpost, $token)
         return $data;
     }
 
-    public function perfil($token)
+    public function perfil($token, $token_logeado)
     {
         $usuarioid=$token;
         $aplausos_total=0;
         $comentario_recibidos=0;
+        $idusuario_logeado=$token_logeado;
         $posts=Muro::where('usuario_id','=',$usuarioid)->orderby('created_at','desc')->paginate(15);
         $data["status"]='exito';
         $data["post"]=[];
@@ -1051,17 +1052,17 @@ public function destroy($idpost, $token)
             }
             $usuario["codigo"]=codifica($usuarioid);
             unset($usuario["foto_redes"]);
-            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$usuarioid)->first() ? 1 : 0;
+            $yaaplaudio=MuroAplauso::where('muro_id',$post->id)->where('usuario_id',$idusuario_logeado)->first() ? 1 : 0;
             $usuarios_aplauso = MuroAplauso
             ::join('usuarios', 'muro_aplausos.usuario_id', '=', 'usuarios.id')
             ->where('muro_id',$post->id)
             ->get();
             $user = array();
             foreach ($usuarios_aplauso as $usuarios_aplausos) {
-                if($usuarios_aplausos->foto_redes)
-                    $foto = $usuarios_aplausos->foto_redes;
-                else if($usuarios_aplausos->foto)
-                    $foto = config('app.url') . 'usuarios/' . $usuario['foto'];
+                if($usuarios_aplausos->foto)
+                    $foto = config('app.url') . 'usuarios/' . $usuarios_aplausos->foto;
+                else if($usuarios_aplausos->foto_redes)
+                    $foto = $usuarios_aplausos->foto_redes;         
                 else 
                     $foto = "";
 
@@ -1122,11 +1123,11 @@ public function destroy($idpost, $token)
 
         
         $foto = null;
-        if(!is_null($userx->first()->foto_redes)){
-            $foto=$userx->first()->foto_redes;
+        if($userx->first()->foto<>''){
+           $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
         }else{
-            if($userx->first()->foto<>''){
-                $foto=config('app.url') . 'usuarios/' . $userx->first()->foto;
+            if(!is_null($userx->first()->foto_redes)){
+                 $foto=$userx->first()->foto_redes;        
             }
         } 
         $fecha = Carbon::parse($userx->first()->desde);

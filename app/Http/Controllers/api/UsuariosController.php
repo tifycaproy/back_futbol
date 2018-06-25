@@ -162,7 +162,15 @@ class UsuariosController extends Controller
                     $errors[] = "No se puede guardar tu apellido, esta palabra es de uso exclusivo de la App Oficial";
                 }
             }
-        }     
+        }
+
+        if (isset($request["fecha_nacimiento"])) {
+
+            if($request["fecha_nacimiento"] == " " || $request["fecha_nacimiento"] == "")
+                $request["fecha_nacimiento"] = null;
+        }
+
+
         if (count($errors) > 0) {
             return ["status" => "fallo", "error" => $errors];
         }
@@ -210,19 +218,26 @@ class UsuariosController extends Controller
             "email" => $email,
             'clave_recuperacion' => $clave_recuperacion,
         ];
-        Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
-            $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
-        });
-        //fin de email
+
+        if (\App::environment('produccion', 'staging')){
+
+            try {
+             Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
+                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
+            });
+         } catch (Exception $e) {
+            return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+        }
+            //fin de email
         if (isset($request["celular"])) {
             $colombia = $this->sms_colombia($request);
         } else {
             $colombia = false;
         }
-        //Envienado mensaje de texto
+            //Envienado mensaje de texto
         if ($colombia) {
             $curl = curl_init();
-            //celular a donde va a enviar el mensaje
+                //celular a donde va a enviar el mensaje
             $celular = $request['celular'];
             $celular = str_replace("+", "", $celular);
             $celular = str_replace(" ", "", $celular);
@@ -244,215 +259,224 @@ class UsuariosController extends Controller
                 ),
             ));
             $response = curl_exec($curl);
-            // $err = curl_error($curl);
+                // $err = curl_error($curl);
             curl_close($curl);
         }
         return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+
+    } else {
+        return $data;
     }
+
+}
     //verificar si es de colombia para realizar envio de sms
-    public function sms_colombia($request)
-    {
-        $cel = $request['celular'];
+public function sms_colombia($request)
+{
+    $cel = $request['celular'];
         //si tiene el signo mas se le remueve
-        $cel = str_replace("+", "", $cel);
-        $cel = str_replace(" ", "", $cel);
-        if (isset($cel) && (strlen($cel) >= '10') && (strlen($cel) <= '12') && strpos($cel, '57') == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    $cel = str_replace("+", "", $cel);
+    $cel = str_replace(" ", "", $cel);
+    if (isset($cel) && (strlen($cel) >= '10') && (strlen($cel) <= '12') && strpos($cel, '57') == 0) {
+        return true;
+    } else {
+        return false;
     }
-    public function reenviar_pin_confirmacion($email)
-    {
-        try {
-            $usuario = Usuario::where('email', $email)->first();
-            if (!$usuario) {
-                return ["status" => "fallo", "error" => ["El email es incorrecto"]];
-            }
-            $clave_recuperacion = $usuario->pinseguridad;
-            //email con pin de ingreso
-            $data = [
-                "email" => $email,
-                'clave_recuperacion' => $clave_recuperacion,
-            ];
-            Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
-                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
-            });
-            //fin de email
-            return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
-        } catch (Exception $e) {
-            return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
-        }
-    }
-    public function validar_cuenta(Request $request)
-    {
-        $request = json_decode($request->getContent());
-        $request = get_object_vars($request);
-        try {
-            //Validaciones
-            $errors = [];
-            if (!isset($request["email"])) $errors[] = "El email es requerido";
-            if (!isset($request["pin"])) $errors[] = "El pin es requerido";
-            if (count($errors) > 0) {
-                $result = ["status" => "fallo", "error" => $errors];
-                return $result;
-            }
-            //fin validaciones
-            $email = $request["email"];
-            if ($usuario = Usuario::where('pinseguridad', $request["pin"])->where('email', $email)->first(['id'])) {
-                $result = ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "codigo" => codifica($usuario->id), "idusuario" => $usuario->id]];
-                $usuario->update(['estatus' => 'Activo']);
-                return $result;
-            } else {
-                $result = ["status" => "fallo", "error" => ["Disculpa, PIN incorrecto"]];
-                return $result;
-            }
-        } catch (Exception $e) {
-            return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
-        }
-    }
-    public function iniciar_secion2(Request $request)
-    {
-        $request = json_decode($request->getContent());
-        $request = get_object_vars($request);
-        try {
-            //Validaciones
-            $errors = [];
-            if (!isset($request["email"])) $errors[] = "El email es requerido";
-            if (!isset($request["clave"])) $errors[] = "La clave es requerida";
-            if (count($errors) > 0) {
-                return ["status" => "fallo", "error" => $errors];
-            }
-            //fin validaciones
-            $email = $request["email"];
-            $usuario = Usuario::where('email', $email)->first();
-            if ($usuario) {
-                if (password_verify($request["clave"], $usuario->clave)) {
-                    if ($usuario->estatus == 'Pendiente') {
-                        return ["status" => "fallo", "error" => ["La cuenta aun no ha sido confirmada"]];
-                    }
-                    return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
-                } else {
-                    return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
-                }
-            } else {
-                return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
-            }
-        } catch (Exception $e) {
-            return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
-        }
-    }
-    public function auth_redes(Request $request)
-    {
-        $request = json_decode($request->getContent());
-        $request = get_object_vars($request);
-        try {
-            //Validaciones
-            $errors = [];
-            if (!isset($request["email"])) $errors[] = "El email es requerido";
-            if (!isset($request["nombre"])) $errors[] = "El nombre es requerido";
-            if (!isset($request["userID_facebook"]) and !isset($request["userID_google"])) $errors[] = "userID_facebook o userID_google son requeridos";
-            //Validaciones filtro de profanidad
-            if (isset($request["nombre"])) {
-                $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
-                if ($resultado != "") {
-                    if ($resultado['hasMatch']) {
-                        $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
-                    }
-                }
-                $string = $request["nombre"];
-                $bads = array('millonarios', 'oficial','embajador',
-                    'albiazul','millos');
-                foreach($bads as $bad) {
-                    if (stripos($string,$bad) !== false) {
-                     $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
-                 }
-             }
-         }
-         if (isset($request["apellido"])) {
-            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
-            if ($resultado != "") {
-                if ($resultado['hasMatch']) {
-                    $errors[] = "No se puede guardar tu apellido, contiene lenguaje inapropiado.";
-                }
-            }
-            $string = $request["apellido"];
-            $bads = array('millonarios', 'oficial','embajador',
-                'albiazul','millos');
-            foreach($bads as $bad) {
-                if (stripos($string,$bad) !== false) {
-                    $errors[] = "No se puede guardar tu apellido, contiene palabras reservadas.";
-                }
-            }
-        }
-        if (count($errors) > 0) {
-            return ["status" => "fallo", "error" => $errors];
-        }
-            //fin validaciones
-        $usuario = Usuario::where('email', '=', $request["email"])->first();
-        if ($usuario && isset($request["codigo"])) {
-            return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
-        }
-        $userID_facebook = "";
-        if (isset($request["userID_facebook"])) $userID_facebook = $request["userID_facebook"];
-        $userID_google = "";
-        if (isset($request["userID_google"])) $userID_google = $request["userID_google"];
-        $email = $request["email"];
+}
+public function reenviar_pin_confirmacion($email)
+{
+    try {
         $usuario = Usuario::where('email', $email)->first();
-        if ($usuario) {
-            if ($userID_facebook <> "") {
-                $data = ['userID_facebook' => $userID_facebook];
-            }
-            if ($userID_google <> "") {
-                $data = ['userID_google' => $userID_google];
-            }
-            Usuario::find($usuario->id)->update($data);
-            return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+        if (!$usuario) {
+            return ["status" => "fallo", "error" => ["El email es incorrecto"]];
+        }
+        $clave_recuperacion = $usuario->pinseguridad;
+            //email con pin de ingreso
+        $data = [
+            "email" => $email,
+            'clave_recuperacion' => $clave_recuperacion,
+        ];
+        try {
+           Mail::send('emails.enviar_pin', $data, function ($message) use ($data) {
+            $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Pin de validación de cuenta');
+        });
+       } catch (Exception $e) {
+        return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+    }
+            //fin de email
+    return ["status" => "exito", 'data' => ['mensaje_pin' => 'Procede a validar tu cuenta para poder entrar al app']];
+} catch (Exception $e) {
+    return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
+}
+}
+public function validar_cuenta(Request $request)
+{
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+    try {
+            //Validaciones
+        $errors = [];
+        if (!isset($request["email"])) $errors[] = "El email es requerido";
+        if (!isset($request["pin"])) $errors[] = "El pin es requerido";
+        if (count($errors) > 0) {
+            $result = ["status" => "fallo", "error" => $errors];
+            return $result;
+        }
+            //fin validaciones
+        $email = $request["email"];
+        if ($usuario = Usuario::where('pinseguridad', $request["pin"])->where('email', $email)->first(['id'])) {
+            $result = ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "codigo" => codifica($usuario->id), "idusuario" => $usuario->id]];
+            $usuario->update(['estatus' => 'Activo']);
+            return $result;
         } else {
-            $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-            $pass = array();
-            $alphaLength = strlen($alphabet) - 1;
-            for ($i = 0; $i < 8; $i++) {
-                $n = rand(0, $alphaLength);
-                $pass[] = $alphabet[$n];
-            }
-            $clave = implode($pass);
-            $clave = password_hash($clave, PASSWORD_DEFAULT);
-            $apellido = isset($request["apellido"]) ? $request["apellido"] : "";
-            if (isset($request["codigo"])) {
-                $codigo_referido = $request["codigo"];
-                $data = [
-                    'email' => $email,
-                    'nombre' => $request["nombre"],
-                    'apellido' => $apellido,
-                    'clave' => $clave,
-                    'userID_facebook' => $userID_facebook,
-                    'userID_google' => $userID_google,
-                    'referido' => $codigo_referido
-                ];
-            } else {
-                $data = [
-                    'email' => $email,
-                    'nombre' => $request["nombre"],
-                    'apellido' => $apellido,
-                    'clave' => $clave,
-                    'userID_facebook' => $userID_facebook,
-                    'userID_google' => $userID_google,
-                ];
-            }
-            if (isset($request["foto_redes"])) {
-                $data['foto_redes'] = $request["foto_redes"];
-            }
-                // Referidos
-            if ($referente = Referido::where('email', $email)->first()) {
-                $data["referido"] = $referente->usuario_id;
-            }
-            $usuario = Usuario::create($data);
-            return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+            $result = ["status" => "fallo", "error" => ["Disculpa, PIN incorrecto"]];
+            return $result;
         }
     } catch (Exception $e) {
         return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
     }
+}
+public function iniciar_secion2(Request $request)
+{
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+    try {
+            //Validaciones
+        $errors = [];
+        if (!isset($request["email"])) $errors[] = "El email es requerido";
+        if (!isset($request["clave"])) $errors[] = "La clave es requerida";
+        if (count($errors) > 0) {
+            return ["status" => "fallo", "error" => $errors];
+        }
+            //fin validaciones
+        $email = $request["email"];
+        $usuario = Usuario::where('email', $email)->first();
+        if ($usuario) {
+            if (password_verify($request["clave"], $usuario->clave)) {
+                if ($usuario->estatus == 'Pendiente') {
+                    return ["status" => "fallo", "error" => ["La cuenta aun no ha sido confirmada"]];
+                }
+                return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+            } else {
+                return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
+            }
+        } else {
+            return ["status" => "fallo", "error" => ["Usuario o clave incorrectos"]];
+        }
+    } catch (Exception $e) {
+        return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
+    }
+}
+public function auth_redes(Request $request)
+{
+    $request = json_decode($request->getContent());
+    $request = get_object_vars($request);
+    try {
+            //Validaciones
+        $errors = [];
+        if (!isset($request["email"])) $errors[] = "El email es requerido";
+        if (!isset($request["nombre"])) $errors[] = "El nombre es requerido";
+        if (!isset($request["userID_facebook"]) and !isset($request["userID_google"])) $errors[] = "userID_facebook o userID_google son requeridos";
+            //Validaciones filtro de profanidad
+        if (isset($request["nombre"])) {
+            $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["nombre"], true);
+            if ($resultado != "") {
+                if ($resultado['hasMatch']) {
+                    $errors[] = "No se puede guardar tu nombre, contiene lenguaje inapropiado.";
+                }
+            }
+            $string = $request["nombre"];
+            $bads = array('millonarios', 'oficial','embajador',
+                'albiazul','millos');
+            foreach($bads as $bad) {
+                if (stripos($string,$bad) !== false) {
+                 $errors[] = "No se puede guardar tu nombre, contiene palabras reservadas.";
+             }
+         }
+     }
+     if (isset($request["apellido"])) {
+        $resultado = app('profanityFilter')->replaceFullWords(false)->filter($request["apellido"], true);
+        if ($resultado != "") {
+            if ($resultado['hasMatch']) {
+                $errors[] = "No se puede guardar tu apellido, contiene lenguaje inapropiado.";
+            }
+        }
+        $string = $request["apellido"];
+        $bads = array('millonarios', 'oficial','embajador',
+            'albiazul','millos');
+        foreach($bads as $bad) {
+            if (stripos($string,$bad) !== false) {
+                $errors[] = "No se puede guardar tu apellido, contiene palabras reservadas.";
+            }
+        }
+    }
+    if (count($errors) > 0) {
+        return ["status" => "fallo", "error" => $errors];
+    }
+            //fin validaciones
+    $usuario = Usuario::where('email', '=', $request["email"])->first();
+    if ($usuario && isset($request["codigo"])) {
+        return ["status" => "correo_existe", "error" => 'El correo ' . $request["email"] . ' ya se encuentra registrado'];
+    }
+    $userID_facebook = "";
+    if (isset($request["userID_facebook"])) $userID_facebook = $request["userID_facebook"];
+    $userID_google = "";
+    if (isset($request["userID_google"])) $userID_google = $request["userID_google"];
+    $email = $request["email"];
+    $usuario = Usuario::where('email', $email)->first();
+    if ($usuario) {
+        if ($userID_facebook <> "") {
+            $data = ['userID_facebook' => $userID_facebook];
+        }
+        if ($userID_google <> "") {
+            $data = ['userID_google' => $userID_google];
+        }
+        Usuario::find($usuario->id)->update($data);
+        return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+    } else {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        $clave = implode($pass);
+        $clave = password_hash($clave, PASSWORD_DEFAULT);
+        $apellido = isset($request["apellido"]) ? $request["apellido"] : "";
+        if (isset($request["codigo"])) {
+            $codigo_referido = $request["codigo"];
+            $data = [
+                'email' => $email,
+                'nombre' => $request["nombre"],
+                'apellido' => $apellido,
+                'clave' => $clave,
+                'userID_facebook' => $userID_facebook,
+                'userID_google' => $userID_google,
+                'referido' => $codigo_referido
+            ];
+        } else {
+            $data = [
+                'email' => $email,
+                'nombre' => $request["nombre"],
+                'apellido' => $apellido,
+                'clave' => $clave,
+                'userID_facebook' => $userID_facebook,
+                'userID_google' => $userID_google,
+            ];
+        }
+        if (isset($request["foto_redes"])) {
+            $data['foto_redes'] = $request["foto_redes"];
+        }
+                // Referidos
+        if ($referente = Referido::where('email', $email)->first()) {
+            $data["referido"] = $referente->usuario_id;
+        }
+        $usuario = Usuario::create($data);
+        return ["status" => "exito", "data" => ["token" => crea_token($usuario->id), "idusuario" => $usuario->id, "codigo" => codifica($usuario->id)]];
+    }
+} catch (Exception $e) {
+    return ['status' => 'fallo', 'error' => ["Ha ocurrido un error, por favor intenta de nuevo"]];
+}
 }
 public function recuperar_clave(Request $request)
 {
@@ -477,9 +501,13 @@ public function recuperar_clave(Request $request)
                 "email" => $email,
                 'clave_recuperacion' => $clave_recuperacion,
             ];
-            Mail::send('emails.recuperar_clave', $data, function ($message) use ($data) {
-                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
-            });
+            try {
+                Mail::send('emails.recuperar_clave', $data, function ($message) use ($data) {
+                    $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
+                });
+            } catch (Exception $e) {
+                
+            }
                 //fin de email
             if (isset($request["celular"])) {
                 $colombia = $this->sms_colombia($request);
@@ -544,11 +572,22 @@ public function recuperar_clave_link(Request $request)
                 "email" => $email,
                 'link_clave_recuperacion' => $link_clave_recuperacion
             ];
-            Mail::send('emails.recuperar_clave_link', $data, function ($message) use ($data) {
-                $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
-            });
-                //fin de email
-            return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
+
+            if (\App::environment('produccion', 'staging')){
+
+                try {
+                    Mail::send('emails.recuperar_clave_link', $data, function ($message) use ($data) {
+                        $message->from('app@appmillonariosfc.com', "App Millonarios FC")->to($data['email'])->subject('Recuperación de clave');
+                    });
+                } catch (Exception $e) {
+                    return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
+                }
+                    //fin de email
+                return ["status" => "exito", "data" => "Se ha enviado un e-mail con un link para recuperar contraseña. Si no lo recibes por favor revisa tu carpeta de correo no deseado (spam)"];
+            } else {
+                return $data;
+            }
+
         } else {
             return ["status" => "fallo", "error" => ["El e-mail no es válido"]];
         }
@@ -680,6 +719,14 @@ public function actualizar_usuario(Request $request, $token)
      }
  }
 }
+
+
+if (isset($request["fecha_nacimiento"])) {
+
+    if($request["fecha_nacimiento"] == " " || $request["fecha_nacimiento"] == "")
+        $request["fecha_nacimiento"] = null;
+}
+
 if (count($errors) > 0) {
     return ["status" => "fallo", "error" => $errors];
 }
@@ -818,7 +865,7 @@ public function actualizarNotificacionToken(Request $request)
  }
  else
  {
-            
+    
     $eliminarToken = Usuario::where('notificacionToken',$notificacionToken)->get();
 
     foreach($eliminarToken as $usuarioEliminar)
@@ -837,28 +884,28 @@ public function actualizarNotificacionToken(Request $request)
 }
 }
 
-    public function ChatReporte(Request $request)
-    {
-        if(!isset($request->usuario)){
-            return ['status' => 'fallo', 'error' => ["Falta usuario que efectua el reporte"]];
-        }
-        if(!isset($request->usuario_reportado)){
-            return ['status' => 'fallo', 'error' => ["Falta usuario reportado"]];
-        }
-        if(!isset($request->descripcion)){
-            return ['status' => 'fallo', 'error' => ["Falta motivo de reporte"]];
-        }
-
-        $ChatReporte = new ChatReporte();
-        $ChatReporte->usuario_id = $request->usuario;
-        $ChatReporte->usuario_reportado = $request->usuario_reportado;
-        $ChatReporte->descripcion = $request->descripcion;
-        if($ChatReporte->save()){
-            return ["status" => "exito", "data" => []];
-        }else{
-            return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
-        }
+public function ChatReporte(Request $request)
+{
+    if(!isset($request->usuario)){
+        return ['status' => 'fallo', 'error' => ["Falta usuario que efectua el reporte"]];
     }
+    if(!isset($request->usuario_reportado)){
+        return ['status' => 'fallo', 'error' => ["Falta usuario reportado"]];
+    }
+    if(!isset($request->descripcion)){
+        return ['status' => 'fallo', 'error' => ["Falta motivo de reporte"]];
+    }
+
+    $ChatReporte = new ChatReporte();
+    $ChatReporte->usuario_id = $request->usuario;
+    $ChatReporte->usuario_reportado = $request->usuario_reportado;
+    $ChatReporte->descripcion = $request->descripcion;
+    if($ChatReporte->save()){
+        return ["status" => "exito", "data" => []];
+    }else{
+        return ['status' => 'fallo','error'=>["Ha ocurrido un error, por favor intenta de nuevo"]];
+    }
+}
 
 
 }

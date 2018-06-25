@@ -20,27 +20,21 @@
 <body>
     <!--CONTENEDOR-->
     <div class="container-fluid containerp"> 
-        <header class="row justify-content-center no-gutters">
-            <div class="col-12  col-lg-6 col-xl-3 no-gutters"> <!-- ETIQUETA REMPLAZADA (15/01/2018)-->
-                <img src="{{ asset ('compartir/images/logo_millos.png') }}" class="logo_millos" alt="">
-                <img src="{{ asset ('compartir/images/separador.svg') }}" alt="" class="separador">
-            </div>            
-        </header>
         <!--contenido-->
         <div class="">
     <!--<section class="row justify-content-center mt-3 no-gutters"> cambiada el 15012018 por ym, según nuevo diseño-->
         <section class="row justify-content-center no-gutters ">    
             <!-- titulo-->
             <div class="col-12 col-lg-6 col-xl-4 pl-1 pr-1"> <!-- Agregada el 150102018 por ym, según nuevo diseño-->   
-                <h2><img src="{{asset('/') . 'compartir/images/puntos.png'}}" style="margin-right: 10px"> MAPA MILLOS</h2>
-                <h1 style="font-size: 22px; margin-top: 20px">{{ $pr->nombre }}</h1>
-                <p>{{ $pr->ciudad }}, {{ $pr->pais }}</p>
-                <p style="font-weight: normal; font-size: 0.8rem">{!! nl2br($pr->direccion) !!}<br>{{ date('d/m/Y H:i', strtotime($pr->hora_evento)) }}</p>
+                <h2><img src="{{asset('/') . 'compartir/images/point_icn.png'}}" style="margin-right: 10px;max-height: 64px; max-width: 64px;"> MAPA MILLOS</h2>
+                <h1 style="font-size: 22px; margin-top: 10px">{{ $pr->nombre }}</h1>
+                <p class="mt-1">{{ $pr->ciudad }}, {{ $pr->pais }}</p>
+                <p style="font-weight: normal; font-size: 0.8rem">{!! nl2br($pr->direccion) !!}</p> <p style="font-weight: normal; font-size: 0.8rem">{{ date('d/m/Y H:i', strtotime($pr->hora_evento)) }}</p>
             </div>
         </section>
         <section class="row justify-content-center mt-3 no-gutters">
             <!--<div class="col-12 col-lg-5 ">-->
-                <div class="col-11 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
+                <div class="col-10 col-lg-5 col-xl-3"><!-- ETIQUETA REMPLAZADA (15/01/2018 por ym, según cambio del diseño)-->        
                     <!-- Imagen-->
                     @if($imagen<>'') <img src="{{ $imagen }}" class="img-fluid" alt="">@endif
                 </div>
@@ -52,7 +46,6 @@
                         <div class="texto mt-1 pl-4 pr-4">
                             <h2>¡NO DEJES DE SEGUIR<br>AL MÁS GRANDE!</h2>
                             <h2 class="mt-1"><b>DESCARGA LA APP OFICIAL<br>DE MILLONARIOS FC</b></h2>
-                            <p>&nbsp;</p> 
                         </div>
                     </div>
                 </section>

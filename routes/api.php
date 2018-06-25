@@ -111,6 +111,8 @@ Route::post('SearchMuro/{page?}', 'api\MuroController@SearchMuro');
 //SeccionesDoradas
 Route::get('dorado/config', 'api\SeccionesDoradasController@getConfig');
 
+Route::get('dorado/config/v2', 'api\SeccionesDoradasController@getConfigV2');
+
 Route::post('seccionesdoradas/{idseccion}/edit', 'api\SeccionesDoradasController@editarSeccion');
 
 Route::post('funcionesdoradas/{idfuncion}/edit', 'api\FuncionesDoradasController@editarFuncion');
@@ -127,6 +129,7 @@ Route::get('suscripciones/tipos', 'api\SuscripcionesController@index');
 Route::get('suscripciones/razonescancelarsuscripcion', 'api\SuscripcionesController@razonesCancelar');
 Route::get('suscripciones/beneficios', 'api\SuscripcionesController@beneficiosDorados');
 Route::post('suscripciones/cancelar', 'api\SuscripcionesController@cancelar');
+Route::post('suscripciones/reset', 'api\SuscripcionesController@reset');
 
 Route::get('suscripciones/usuario/{tokenUsuario}', 'api\SuscripcionesController@statusSuscripcion');
 
@@ -140,4 +143,4 @@ Route::get('multimedia', 'api\ConfiguracionController@multimedia');
 Route::get('posicion', 'api\PosicionController@posicion');
 
 //perfil_nuevo
-Route::get('perfil/{id}', 'api\MuroController@perfil');
+Route::get('perfil/{id}/{id_logeado?}', 'api\MuroController@perfil');

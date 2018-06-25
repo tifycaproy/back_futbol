@@ -17,4 +17,5 @@ class Usuario extends Model
     {
         return $this->hasMany('App\Muro','usuario_id');
     }
+
 }

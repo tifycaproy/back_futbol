@@ -45,6 +45,7 @@ class PagoController extends Controller
     	$datos->reference = 'PayUMillonarios'. rand(0, 10000);
     	$datos->Amount = number_format($costo, 0, '.', '');
     	$datos->currency = 'COP';
+        $datos->descripcionSuscripcion = $suscripcion->descripcion;
     	$datos->signature = md5($datos->ApiKey .'~'. $datos->merchantId.'~'. $datos->reference . '~' . $datos->Amount . '~' . $datos->currency);
         $datos->extra3 = $idSuscripcion;
     	 return view('pagos.payu.formulario')->with('datos',$datos);
