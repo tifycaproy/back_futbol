@@ -6,7 +6,7 @@ class UserCest
     public function userRegister(FunctionalTester $I)
     {
         
-
+        //FALLANDO EL REGISTRO
         $user0 = [
             'email' => 'user0@laplanamartinez.com',
             'nombre' => 'user0',
