@@ -1,0 +1,2 @@
+#!/bin/bas
+service nginx start
