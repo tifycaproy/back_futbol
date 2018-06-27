@@ -20,22 +20,7 @@ class NoticiasController extends Controller
      */
     public function index(Request $request ,$token='')
     {
-        $id_partido_banner = Configuracion::first(['id_partido_banner']);
-        $copa=Calendario::find($id_partido_banner);
-        $copa=[
-            'idpartido'=>$copa[0]->id,
-            "estado"=>$copa[0]->estado,
-            "equipo_1"=>$copa[0]->equipo1->nombre,
-            "bandera_1"=>config('app.url') . 'equipos/' . $copa[0]->equipo1->bandera,
-            "goles_1"=>$copa[0]->goles_1,
-            "equipo_2"=>$copa[0]->equipo2->nombre,
-            "bandera_2"=>config('app.url') . 'equipos/' . $copa[0]->equipo2->bandera,
-            "goles_2"=>$copa[0]->goles_2,
-            'fecha'=>$copa[0]->fecha,
-            'fecha_etapa'=>$copa[0]->fecha_etapa,
-            'estadio'=>$copa[0]->estadio,
-            'info'=>$copa[0]->info,
-        ];
+
         if($token<>''){
             $idusuario=decodifica_token($token);
             if($idusuario<>''){
@@ -46,6 +31,27 @@ class NoticiasController extends Controller
             }
         }
 
+        try {
+            $id_partido_banner = Configuracion::first(['id_partido_banner']);        
+            $copa=Calendario::find($id_partido_banner);
+            $copa=[
+                'idpartido'=>$copa[0]->id,
+                "estado"=>$copa[0]->estado,
+                "equipo_1"=>$copa[0]->equipo1->nombre,
+                "bandera_1"=>config('app.url') . 'equipos/' . $copa[0]->equipo1->bandera,
+                "goles_1"=>$copa[0]->goles_1,
+                "equipo_2"=>$copa[0]->equipo2->nombre,
+                "bandera_2"=>config('app.url') . 'equipos/' . $copa[0]->equipo2->bandera,
+                "goles_2"=>$copa[0]->goles_2,
+                'fecha'=>$copa[0]->fecha,
+                'fecha_etapa'=>$copa[0]->fecha_etapa,
+                'estadio'=>$copa[0]->estadio,
+                'info'=>$copa[0]->info,
+            ];
+        }
+        catch (\Exception $e) {
+            $copa = [];
+        }     
         $noticias=Noticia::select('id','link','titulo','descripcion','fecha','foto','destacada','tipo', 'dorado')
         ->where('active',1)
         ->where('aparecetimelineppal',1)
@@ -59,9 +65,6 @@ class NoticiasController extends Controller
             if($noticia->foto<>'') $noticia->foto=config('app.url') . 'noticias/' . $noticia->foto;
             $data["data"][]=$noticia;
         }
-
-
-
         return $data;
     }
     public function fotos(Request $request, $id)

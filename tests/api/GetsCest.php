@@ -55,8 +55,7 @@ class GetsCest
     public function noticias(ApiTester $I)
     {
         # code...	/noticias
-        /*$I->haveHttpHeader('Content-Type', 'application/json');
-        $var = "1234";
+        $I->haveHttpHeader('Content-Type', 'application/json');
         //Get noticias
         $I->sendGET('/api/noticias/');
         $I->seeResponseCodeIs(200);
@@ -65,13 +64,13 @@ class GetsCest
             'data' => array()
         ]);
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');*/
+        $I->assertTrue($response->status == 'exito');
     }
 
     public function noticia_fotos(ApiTester $I)
     {
         # code...	/noticia_fotos
-       /* $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get noticia_fotos
         $I->sendGET('/api/noticia_fotos/1');
@@ -81,7 +80,7 @@ class GetsCest
             'data' => array()
         ]);
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'exito');*/
+        $I->assertTrue($response->status == 'exito');
     }
     
 
@@ -408,17 +407,15 @@ class GetsCest
     public function ranking_encuestas(ApiTester $I)
     {
         # code...	/ranking_encuestas
-       /* $I->haveHttpHeader('Content-Type', 'application/json');
+        $I->haveHttpHeader('Content-Type', 'application/json');
 
         //Get ranking_encuestas
-        $I->sendGET('/api/ranking_encuestas/777777');
+        $I->sendGET('/api/ranking_encuestas/2');
         $I->seeResponseCodeIs(200);
         $I->seeResponseMatchesJsonType([
-            'status' => 'string',
-            'error' => array()
+            'respuestas' => array()
         ]);
         $response = json_decode($I->grabResponse());
-        $I->assertTrue($response->status == 'fallo');*/
     }
 
     public function onceideal_consulta(ApiTester $I)
