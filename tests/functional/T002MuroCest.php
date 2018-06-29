@@ -6,6 +6,62 @@ class MuroCest
     private static $post2;
     private static $post3;
 
+    public function login(FunctionalTester $I){
+        $user0 = [
+            'email' => 'user0@laplanamartinez.com',
+            "clave" => "user0",
+        ];
+
+        $user1 = [
+            'email' => 'user1@laplanamartinez.com',
+            "clave" => "user1",
+        ];
+
+        $user2 = [
+            'email' => 'user2@laplanamartinez.com',
+            "clave" => "user2",
+        ];
+
+        $I->haveHttpHeader('Content-Type', 'application/json');
+         //Login user0
+         $I->sendPOST('/api/auth', $user0);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         $I->assertTrue($response->status == 'exito');
+         FunctionalTester::$token0 = $response->data->token;
+
+         $I->haveHttpHeader('Content-Type', 'application/json');
+
+         //Login user0
+         $I->sendPOST('/api/auth', $user1);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         $I->assertTrue($response->status == 'exito');
+         FunctionalTester::$token1 = $response->data->token;
+
+         $I->haveHttpHeader('Content-Type', 'application/json');
+
+         //Login user0
+         $I->sendPOST('/api/auth', $user2);
+         $I->seeResponseCodeIs(200);
+         $I->seeResponseMatchesJsonType([
+             'status' => 'string',
+             'data' => array()
+         ]);
+         $response = json_decode($I->grabResponse());
+         $I->assertTrue($response->status == 'exito');
+         FunctionalTester::$token2 = $response->data->token;
+
+    }
+
     public function indexMuro(FunctionalTester $I)
     {
         $I->haveHttpHeader('Content-Type', 'application/json');
@@ -86,7 +142,7 @@ class MuroCest
         //
         $body = [
             "idpost" => MuroCest::$post1->idpost,
-            "token" => FunctionalTester::$token1,
+            "token" => FunctionalTester::$token0,
             "comentario" => "Test Comentario",
             "foto" => null,
         ];
