@@ -4,14 +4,14 @@
 class PostCest
 {
     public $token_for_test;
+    public $codigo_val;
     // Registro
     public function registro(ApiTester $I)
     {
         //REGISTRO
-
         /*$user0 = [
-            'email' => 'user99@laplanamartinez.com',
-            'nombre' => 'user99',
+            'email' => 'user150@laplanamartinez.com',
+            'nombre' => 'user966',
             'clave' => '123456',
             'estatus' => 'ACTIVO',
         ];
@@ -42,46 +42,43 @@ class PostCest
          ]);
          $response = json_decode($I->grabResponse());
          $I->assertTrue($response->status == 'exito');
-         $this->token_for_test = $response->data->token;
- 
+         $this->token_for_test = $response->data->token; 
      }
 
     
 
      public function registro2(ApiTester $I)
     {
-        //REGISTRO2
-/*
+        //REGISTRO2 - Validar
         $user0 = [
             'email' => 'user77@laplanamartinez.com',
             'nombre' => 'user77',
             "clave" => "123456",
-            "ci" => "24455331",
+            "ci" => "24455331"
         ];
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST('/api/usuarios2', $user0);
         $response = json_decode($I->grabResponse());
         $I->seeResponseCodeIs(200);
-        $I->assertTrue($response->status == 'exito');
-        $token_for_test = $response->data->token;*/
-
-    }
-
-    public function validar_cuenta(ApiTester $I)
-    {
+        $this->codigo_val = $response->clave_recuperacion;         
         //Validar cuenta
-
         $body = [
-            'email' => 'user95@laplanamartinez.com',
-            'pin' => '1234',
+            'email' => 'user77@laplanamartinez.com',
+            'pin' => $this->codigo_val,
         ];
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST('/api/validar_cuenta', $body);
         $response = json_decode($I->grabResponse());
         $I->seeResponseCodeIs(200);
-        $I->assertTrue($response->status == 'fallo');
+        $I->assertTrue($response->status == 'exito'); 
+    }
+
+    /*
+    public function validar_cuenta(ApiTester $I)
+    {              
 
     }
+    */
 
     // Auth2
     public function auth2(ApiTester $I)
