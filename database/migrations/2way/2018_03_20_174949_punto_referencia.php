@@ -19,7 +19,13 @@ class PuntoReferencia extends Migration
             $table->string('cordy');
             $table->string('descripcion');
             $table->string('nombre');
+            $table->string('ciudad');
+            $table->string('pais');
+            $table->string('direccion');
+            $table->timestamp('hora_evento')->nullable();
+            $table->enum('icono', ['bar-rest', 'cc', 'estadio', 'hotel', 'tienda']);
             $table->timestamps();
+            $table->timestamp('deleted_at');
         });
     }
 

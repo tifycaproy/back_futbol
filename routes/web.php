@@ -109,7 +109,8 @@ Route::get('compartir/referidos/{codigo}/email', [
     'uses' => 'CompartirController@email',
     'as' => 'compartir.email'
 ]);
- Route::resource('terminos', 'TerminosController');
+Route::get('terminos/vista/{id}', 'TerminosController@vista');
+Route::resource('terminos', 'TerminosController');
 Route::get('descargar', 'CompartirController@descargar');
 Route::get('compartir/onceideal/{ruta}/{id?}', 'CompartirController@onceidealr');
 Route::get('compartir/onceideal/{ruta}', 'CompartirController@onceideal');

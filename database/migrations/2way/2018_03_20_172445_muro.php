@@ -18,7 +18,8 @@ class Muro extends Migration
             $table->integer('usuario_id')->index();
             $table->mediumtext('mensaje');
             $table->string('foto', 120)->nullable();
-            $table->string('tipo_post')->nullable();
+            $table->string('tipo_post');
+            $table->string('thrumbnail')->nullable();
             $table->timestamps();
         });
     }

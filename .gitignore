@@ -9,6 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+cept.bat
 .env
 /composer.lock
 # I use a global gitignore file for the following, but worth noting these:

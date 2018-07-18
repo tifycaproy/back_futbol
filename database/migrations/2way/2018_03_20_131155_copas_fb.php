@@ -16,7 +16,7 @@ class CopasFB extends Migration
         Schema::create('copasfb', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo', 60);
-            $table->boolean('activa');
+            $table->integer('activa')->default(0);
             $table->timestamps();
         });
     }
