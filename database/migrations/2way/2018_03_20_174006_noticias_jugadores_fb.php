@@ -15,7 +15,7 @@ class NoticiasJugadoresFB extends Migration
     {
         Schema::create('noticias_jugadoresfb', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('noticia_id')->index();
+            $table->integer('noticias_id')->index();
             $table->integer('jugadoresfb_id')->index();
             $table->timestamps();
         });

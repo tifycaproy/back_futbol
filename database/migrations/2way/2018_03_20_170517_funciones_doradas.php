@@ -16,7 +16,7 @@ class FuncionesDoradas extends Migration
         Schema::create('funciones_doradas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->boolean('solo_dorado');
+            $table->integer('solo_dorado')->default(0);
             $table->integer('max_dorado');
             $table->integer('max_normal');
             $table->timestamps();

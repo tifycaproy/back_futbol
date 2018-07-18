@@ -21,6 +21,7 @@ class S002MuroSeeder extends Seeder
             Muro::create([
                 'usuario_id' => $user->id,
                 'mensaje' => 'Test post del usuario: ' . $user->email,
+                'tipo_post' => 'Tipo1',
             ]);
         }
 
