@@ -240,5 +240,12 @@ return [
         )
     ],
     's3_bucket'=>env('S3_BUCKET'),
+    /******  ESCONDIENDO TODAS LAS VARIABLES DE ENTORNO EN MODO DEBUG *******/
+    /******  MEDIDAS DE SEGURIDAD 02 AGOSTO 2018 GBANCHS              *******/
+    'debug_blacklist' => [
+        '_COOKIE' => array_keys($_COOKIE),
+        '_SERVER' => array_keys($_SERVER),
+        '_ENV' => array_keys($_ENV),
+    ],
 ];
 
